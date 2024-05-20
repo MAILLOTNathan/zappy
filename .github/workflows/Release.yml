@@ -20,15 +20,18 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
     - name: Add target repo as a remote
       run: |
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        echo "$SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
         git remote add target git@github.com:EpitechPromo2027/B-YEP-400-RUN-4-1-zappy-leo.sautron.git
         git fetch target
-        git reset --soft target/main  # Ou toute autre branche cible
+        git reset --soft target/main
+
     - name: Get last commit message
       id: last_commit
       run: |
@@ -40,5 +43,6 @@ jobs:
         git add -A
         git commit -m "Update from source repo - ${{ steps.last_commit.outputs.commit_message }}"
         git push target HEAD:main
+
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
