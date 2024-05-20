@@ -22,7 +22,7 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
     - name: Add target repo as a remote
       run: |
-        git remote add target https://MAILLOTNathan:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/EpitechPromo2027/B-YEP-400-RUN-4-1-zappy-leo.sautron
+        git remote add target git@github.com:EpitechPromo2027/B-YEP-400-RUN-4-1-zappy-leo.sautron.git
         git fetch target
         git reset --soft target/main
 
