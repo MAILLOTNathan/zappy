@@ -1,2 +1,2 @@
 echo "Hello, world!"
-echo "YES !"
+echo "YES!"
