@@ -32,8 +32,8 @@ jobs:
       run: |
         ./build.sh
 
-  needs: [build]
   push_to_mirror:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.4.0
