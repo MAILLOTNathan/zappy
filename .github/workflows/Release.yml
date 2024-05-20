@@ -6,43 +6,17 @@ on:
       - main
 
 jobs:
-  push_to_other_repo:
+  push_to_mirror:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout source repo
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false
-        fetch-depth: 0
-
-    - name: Setup Git
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-    - name: Add target repo as a remote
-      run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        echo "$SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-        git remote add target git@github.com:EpitechPromo2027/B-YEP-400-RUN-4-1-zappy-leo.sautron.git
-        git fetch target
-        git reset --soft target/main
-
-    - name: Get last commit message
-      id: last_commit
-      run: |
-        LAST_COMMIT=$(git log -1 --pretty=%B)
-        echo "::set-output name=commit_message::$LAST_COMMIT"
-
-    - name: Push to target repo
-      run: |
-        git add -A
-        git commit -m "Update from source repo - ${{ steps.last_commit.outputs.commit_message }}"
-        git push target HEAD:main
-
+      - uses: actions/checkout@v3.4.0
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1.1.1
+        with:
+          target_repo_url:
+            ${{ env.MIRROR_URL }}
+          ssh_private_key:
+            ${{ secrets.SSH_PRIVATE_KEY }}
       env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        MIRROR_URL: ${{ secrets.REPO_URL }}
