@@ -1,0 +1,65 @@
+/*
+** EPITECH PROJECT, 2024
+** zappy
+** File description:
+** amber_check_arg
+*/
+
+#ifndef AMBER_CHECK_ARG_H_
+    #define AMBER_CHECK_ARG_H_
+
+
+    #include <stdbool.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+/**
+ * @brief Structure representing the arguments for the program.
+ */
+typedef struct args_s {
+    int port;           /** The port number. */
+    int width;          /** The width of the game map. */
+    int height;         /** The height of the game map. */
+    char **teams;       /** The array of team names. */
+    int clientsNb;      /** The number of clients per team. */
+    double freq;           /** The frequency of game cycles. */
+} args_t;
+
+
+/**
+ * @brief Checks the command line arguments for the Amber application.
+ *
+ * This function takes the command line arguments and checks if they are valid
+ * for the Amber application.
+ *
+ * @param ac The number of command line arguments.
+ * @param av An array of strings representing the command line arguments.
+ * @param args A pointer to a structure that will store the parsed arguments.
+ * @return true if the arguments are valid, false otherwise.
+ */
+bool amber_check_arg(int ac, char **av, args_t *args);
+
+
+/**
+ * @brief Retrieves the value of a specific flag from the command
+ * line arguments.
+ *
+ * This function searches through the command line arguments to find
+ * the specified flag and returns its value.
+ *
+ * @param ac The number of command line arguments.
+ * @param av An array of strings representing the command line arguments.
+ * @param flag The flag to search for.
+ * @return The value of the specified flag, or NULL if the flag is not found.
+ */
+double amber_get_flags(int ac, char **av, char *flag);
+
+/**
+ * Displays the arguments passed to the program.
+ *
+ * @param args The arguments structure containing the program arguments.
+ */
+void amber_display_args(args_t *args);
+
+#endif /* !AMBER_CHECK_ARG_H_ */
