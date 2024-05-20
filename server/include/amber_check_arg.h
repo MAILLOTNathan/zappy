@@ -16,6 +16,13 @@
 
 /**
  * @brief Structure representing the arguments for the program.
+ *
+ * @param port The port number.
+ * @param width The width of the game map.
+ * @param height The height of the game map.
+ * @param teams The array of team names.
+ * @param clientsNb The number of clients per team.
+ * @param freq The frequency of game cycles.
  */
 typedef struct args_s {
     int port;           /** The port number. */
