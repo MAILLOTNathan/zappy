@@ -33,12 +33,14 @@ fclean: clean
 
 re: fclean all
 
-tests_run: $(CC) -o unit_tests $(TEST_SRC) $(CFLAGS) --coverage -lcriterion \
-    ./unit_tests \
-    gcovr --exclude tests/ \
-    gcovr -b --exclude tests/ \
+tests_run:
+	$(CC) -o unit_tests $(TEST_SRC) $(CFLAGS) --coverage -lcriterion
+	./unit_tests
+	gcovr --exclude tests/
+	gcovr -b --exclude tests/
 
-tests_clean: $(RM) unit_tests \
-    $(RM) *.gcda \
-    $(RM) *.gcno \
-    $(RM) *.gcov \
+tests_clean:
+	$(RM) unit_tests
+	$(RM) *.gcda
+	$(RM) *.gcno
+	$(RM) *.gcov
