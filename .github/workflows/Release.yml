@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_to_other_repo:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source repo
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Setup Git
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+    - name: Add target repo as a remote
+      run: |
+        git remote add target https://github.com/EpitechPromo2027/B-YEP-400-RUN-4-1-zappy-leo.sautron
+        git fetch target
+        git reset --soft target/main
+
+    - name: Get last commit message
+      id: last_commit
+      run: |
+        LAST_COMMIT=$(git log -1 --pretty=%B)
+        echo "::set-output name=commit_message::$LAST_COMMIT"
+
+    - name: Push to target repo
+      run: |
+        git add -A
+        git commit -m "Update from source repo - ${{ steps.last_commit.outputs.commit_message }}"
+        git push target HEAD:main
+      env:
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

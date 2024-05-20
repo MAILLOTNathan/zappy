@@ -1,0 +1,30 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dev deps
+      run: |
+         sudo apt-get -y update
+         sudo apt-get -y install g++ cmake build-essential libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew-dev libjpeg-dev libsndfile1-dev libopenal-dev
+    - name: Install OpenGL deps
+      run: |
+        sudo apt-get install libgl-dev libglfw3-dev libglm-dev
+    - name: Install Python
+      run: |
+        sudo apt-get install python3 python-pip python3-pip
+    - name: Install Python deps
+      run: |
+        pip3 install torch torchvision torchaudio tensorflow
+    - name: Build
+      run: |
+        ./build.sh
