@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  MIRROR_URL: ${{ secrets.REPO_URL }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,3 +31,17 @@ jobs:
     - name: Build
       run: |
         ./build.sh
+
+  needs: [build]
+  push_to_mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.4.0
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1.1.1
+        with:
+          target_repo_url:
+            ${{ env.MIRROR_URL }}
+          ssh_private_key:
+            ${{ secrets.SSH_PRIVATE_KEY }}
