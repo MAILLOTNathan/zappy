@@ -26,12 +26,12 @@
  * @param freq The frequency of game cycles.
  */
 typedef struct args_s {
-    int port;           /** The port number. */
-    int width;          /** The width of the game map. */
-    int height;         /** The height of the game map. */
-    char **teams;       /** The array of team names. */
-    int clientsNb;      /** The number of clients per team. */
-    double freq;           /** The frequency of game cycles. */
+    int _port;           /** The port number. */
+    int _width;          /** The width of the game map. */
+    int _height;         /** The height of the game map. */
+    char **_teams;       /** The array of team names. */
+    int _clientsNb;      /** The number of clients per team. */
+    double _freq;           /** The frequency of game cycles. */
 } args_t;
 
 

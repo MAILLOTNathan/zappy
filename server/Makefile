@@ -25,6 +25,8 @@ TEST_SRC = 	$(wildcard tests/*.c) \
 all: lib_string_array lib_list $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
 
+debug: lib_string_array lib_list
+	$(CC) -o $(NAME) $(SRC) $(CFLAGS) $(LDFLAGS) -g3 -ggdb
 
 lib_list:
 	make -C libs/list
@@ -49,9 +51,6 @@ lib_string_array_fclean:
 
 lib_string_array_re:
 	make re -C libs/string_array
-
-debug:
-	$(CC) -o $(NAME) $(SRC) $(CFLAGS) $(LDFLAGS) -g3 -ggdb
 
 clean: lib_string_array_clean lib_list_clean
 	rm -f $(OBJ)

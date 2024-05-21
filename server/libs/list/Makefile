@@ -7,10 +7,11 @@
 
 NAME = liblist.a
 
-CFLAGS = -Wall -Werror -Wextra -W -g3
+CFLAGS = -Wall -Werror -Wextra -W -g3 -I./include
 
 SRC = 	list.c \
 		linked_list.c \
+		utils_list.c
 
 OBJ = $(SRC:.c=.o)
 
