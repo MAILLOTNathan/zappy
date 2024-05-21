@@ -8,6 +8,7 @@
 #include "common_defines.h"
 #include "amber_process.h"
 #include "amber_world.h"
+#include "amber_clock.h"
 #include "signal.h"
 
 amber_serv_t *server;
