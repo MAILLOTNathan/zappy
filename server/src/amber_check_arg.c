@@ -80,4 +80,3 @@ void amber_display_args(args_t *args)
         printf("- %s\n", args->_teams[i]);
     printf("=====================================\n");
 }
-

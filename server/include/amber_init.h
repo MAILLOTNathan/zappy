@@ -17,7 +17,7 @@
     #include <netinet/in.h>
     #include <arpa/inet.h>
     #include <netdb.h>
-    #include "commonDefines.h"
+    #include "common_defines.h"
     #include "list.h"
     #include "amber_check_arg.h"
 

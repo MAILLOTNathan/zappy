@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "commonDefines.h"
+#include "common_defines.h"
 #include "amber_process.h"
 #include "signal.h"
 

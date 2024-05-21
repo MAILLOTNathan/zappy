@@ -8,9 +8,9 @@
 #ifndef AMBER_MANAGE_CLIENT_H_
     #define AMBER_MANAGE_CLIENT_H_
 
-    #include "commonDefines.h"
+    #include "common_defines.h"
     #include "amber_init.h"
-    
+
 /**
  * Creates a new Amber client.
  *

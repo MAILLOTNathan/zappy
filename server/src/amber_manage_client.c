@@ -43,5 +43,4 @@ void amber_manage_client_read(amber_serv_t *server, amber_client_t *client)
         return;
     }
     printf("[AMBER INFO] Message received: %s\n", buffer);
-    // Handle the message here
 }
