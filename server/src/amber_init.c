@@ -49,8 +49,6 @@ amber_serv_t *init_server_tcp(amber_serv_t *server)
 
 amber_serv_t *amber_create_server(args_t *args)
 {
-    amber_display_world(amber_create_world(args->_width, args->_height), true);
-    exit(0);
     amber_serv_t *server = calloc(1, sizeof(amber_serv_t));
 
     if (!server)
@@ -63,7 +61,6 @@ amber_serv_t *amber_create_server(args_t *args)
     &amber_destroy_client);
     FD_ZERO(&server->_readfds);
     init_server_tcp(server);
-
     printf("[AMBER INFO] Server started on port %d\n", server->_tcp._port);
     return server;
 }

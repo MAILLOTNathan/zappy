@@ -138,8 +138,7 @@ void amber_display_world(amber_world_t *world, bool box)
     world->_phiras_info._m_value);
     printf("Thystame: %d/%d\n", world->_thystame_info._c_value,
     world->_thystame_info._m_value);
-    if (box) {
+    if (box)
         display_box(world);
-    }
     printf("=====================================\n");
 }
