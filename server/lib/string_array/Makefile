@@ -9,7 +9,7 @@ NAME = lib_string_array.a
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -W -Wextra -I./include
+CFLAGS = -Wall -Werror -W -Wextra -I./include -g3 -ggdb
 
 SRC = $(wildcard src/*.c)
 
