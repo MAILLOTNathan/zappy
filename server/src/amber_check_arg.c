@@ -11,12 +11,12 @@ static bool add_team_name(args_t *args, char **av, int i, int ac)
 {
     for (int j = i; j < ac; j++) {
         if (av[j][0] != '-') {
-            args->teams = append_string_array(args->teams, strdup(av[j]));
+            args->_teams = append_string_array(args->_teams, strdup(av[j]));
         } else {
             break;
         }
     }
-    if (length_string_array(args->teams) == 0) {
+    if (length_string_array(args->_teams) == 0) {
         printf("Error: no team name found\n");
         return false;
     }
@@ -54,13 +54,13 @@ double amber_get_flags(int ac, char **av, char *flag)
 
 bool amber_check_arg(int ac, char **av, args_t *args)
 {
-    args->port = amber_get_flags(ac, av, "-p");
-    args->width = amber_get_flags(ac, av, "-x");
-    args->height = amber_get_flags(ac, av, "-y");
-    args->freq = amber_get_flags(ac, av, "-f");
-    args->clientsNb = amber_get_flags(ac, av, "-c");
-    if (args->port == -1 || args->width == -1 || args->height == -1
-        || args->freq == -1 || args->clientsNb == -1)
+    args->_port = amber_get_flags(ac, av, "-p");
+    args->_width = amber_get_flags(ac, av, "-x");
+    args->_height = amber_get_flags(ac, av, "-y");
+    args->_freq = amber_get_flags(ac, av, "-f");
+    args->_clientsNb = amber_get_flags(ac, av, "-c");
+    if (args->_port == -1 || args->_width == -1 || args->_height == -1
+        || args->_freq == -1 || args->_clientsNb == -1)
         return false;
     if (amber_get_team_name(ac, av, args) == false)
         return false;
@@ -70,14 +70,13 @@ bool amber_check_arg(int ac, char **av, args_t *args)
 void amber_display_args(args_t *args)
 {
     printf("===========Amber arguments===========\n");
-    printf("Port: %d\n", args->port);
-    printf("Width: %d\n", args->width);
-    printf("Height: %d\n", args->height);
-    printf("Frequency: %f\n", args->freq);
-    printf("Clients per team: %d\n", args->clientsNb);
+    printf("Port: %d\n", args->_port);
+    printf("Width: %d\n", args->_width);
+    printf("Height: %d\n", args->_height);
+    printf("Frequency: %f\n", args->_freq);
+    printf("Clients per team: %d\n", args->_clientsNb);
     printf("Teams: \n");
-    for (int i = 0; args->teams[i] != NULL; i++)
-        printf("- %s\n", args->teams[i]);
+    for (int i = 0; args->_teams[i] != NULL; i++)
+        printf("- %s\n", args->_teams[i]);
     printf("=====================================\n");
 }
-
