@@ -15,6 +15,8 @@ void *amber_create_client(va_list *ap)
     if (!client)
         return NULL;
     client->_tcp._fd = va_arg(*ap, int);
+    client->_buffer = NULL;
+    client->_team_name = va_arg(*ap, char *);
     return client;
 }
 
@@ -23,12 +25,40 @@ void amber_destroy_client(void *client)
     amber_client_t *tmp = (amber_client_t *)client;
 
     close(tmp->_tcp._fd);
+    if (tmp->_buffer)
+        free(tmp->_buffer);
+    if (tmp->_team_name)
+        free(tmp->_team_name);
     free(tmp);
 }
 
 static bool cmp(void *data, void *data_ref)
 {
     return (data == data_ref);
+}
+
+static void eval_command(UNUSED amber_serv_t *server, amber_client_t *client,
+    char *buffer)
+{
+    char *match = NULL;
+    char *cmd = NULL;
+
+    if (client->_buffer == NULL)
+        client->_buffer = strdup(buffer);
+    else {
+        client->_buffer = realloc(client->_buffer,
+            strlen(client->_buffer) + strlen(buffer) + 1);
+        strcat(client->_buffer, buffer);
+    }
+    do {
+        match = strstr(client->_buffer, "\n");
+        if (match == NULL)
+            break;
+        cmd = strndup(client->_buffer, match - client->_buffer);
+        memmove(client->_buffer, match + 1, strlen(match));
+        printf("[AMBER INFO] Command received: %s\n", cmd);
+        free(cmd);
+    } while (match);
 }
 
 void amber_manage_client_read(amber_serv_t *server, amber_client_t *client)
@@ -42,5 +72,5 @@ void amber_manage_client_read(amber_serv_t *server, amber_client_t *client)
         server->_clients, client, cmp));
         return;
     }
-    printf("[AMBER INFO] Message received: %s\n", buffer);
+    eval_command(server, client, buffer);
 }

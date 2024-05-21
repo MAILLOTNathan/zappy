@@ -56,6 +56,7 @@ amber_serv_t *amber_create_server(args_t *args)
     server->_freq = args->_freq;
     server->_tcp._port = args->_port;
     server->_is_running = true;
+    server->_teams_name = args->_teams;
     server->_clients = create_list(&amber_create_client,
     &amber_destroy_client);
     FD_ZERO(&server->_readfds);
@@ -69,6 +70,7 @@ void amber_destroy_server(amber_serv_t *server)
     if (server->_tcp._fd != -1)
         close(server->_tcp._fd);
     destroy_list(&server->_clients);
+    free_string_array(server->_teams_name);
     free(server);
     printf("[AMBER INFO] Server stopped\n");
 }

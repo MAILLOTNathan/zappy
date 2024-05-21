@@ -30,19 +30,47 @@ void amber_init_fd(amber_serv_t *server)
     }
 }
 
+static char *get_team_name(UNUSED char **teams_name, int fd)
+{
+    char *team_name = NULL;
+    int len = 0;
+
+    do {
+        team_name = realloc(team_name, len + 2);
+        read(fd, team_name + len, 1);
+        len++;
+    } while (team_name[len - 1] != '\n');
+    team_name[len - 1] = '\0';
+    printf("[AMBER INFO] Team name received: %s\n", team_name);
+    if (!contains_string_array(teams_name, team_name)) {
+        free(team_name);
+        return NULL;
+    }
+    return team_name;
+}
+
 void amber_accept_client(amber_serv_t *server)
 {
     int new_fd;
     struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
+    char *team_name = NULL;
 
     new_fd = accept(server->_tcp._fd, (struct sockaddr *)&addr, &addrlen);
     if (new_fd == -1) {
         printf("[AMBER ERROR] Accept failed\n");
         return;
     }
-    push_front_list(server->_clients, new_fd);
     printf("[AMBER INFO] New client connected\n");
+    dprintf(new_fd, "WELCOME\n");
+    team_name = get_team_name(server->_teams_name, new_fd);
+    if (!team_name) {
+        dprintf(new_fd, "ko\n");
+        close(new_fd);
+    } else {
+        push_front_list(server->_clients, new_fd, team_name);
+        dprintf(new_fd, "10 10\n");
+    }
 }
 
 void amber_manage_client(amber_serv_t *server)

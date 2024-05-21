@@ -20,6 +20,8 @@
     #include "common_defines.h"
     #include "list.h"
     #include "amber_check_arg.h"
+    #include "string_array.h"
+    #include "amber_world.h"
 
 /**
  * @brief Represents a TCP connection.
@@ -45,10 +47,13 @@ typedef struct tcp_s {
  * It includes a TCP connection object.
  *
  * @param _tcp The TCP connection object for the client.
+ * @param _buffer A buffer to store the data received from the client.
+ * @param _team_name The name of the team the client belongs to.
  */
 typedef struct amber_client_s {
     tcp_t _tcp;
     char *_buffer;
+    char *_team_name;
 } amber_client_t;
 
 /**
@@ -71,6 +76,7 @@ typedef struct amber_serv_s {
 
     list_t *_clients;
     bool _is_running;
+    char **_teams_name;
 } amber_serv_t;
 
 /**

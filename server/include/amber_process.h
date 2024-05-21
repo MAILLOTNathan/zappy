@@ -9,6 +9,7 @@
     #define AMBER_PROCESS_H_
 
     #include "amber_init.h"
+    #include "string_array.h"
 
 /**
  * Accepts a new client connection and adds it to the server's client list.
