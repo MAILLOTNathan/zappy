@@ -57,9 +57,11 @@ def check_args(TuringAI):
         elif sys.argv[i] == "-h":
             TuringAI.host = sys.argv[i + 1]
     if (len(sys.argv) < 2) or sys.argv[1] == "-help":
+        print ("blublu")
         help_message()
     if sys.argv[1] == "--debug":
         TuringAI.debug = True
+        return
     if TuringAI.port == None or TuringAI.team_name == "":
         help_message()
 
@@ -78,6 +80,7 @@ def parse_look(response):
     tiles = response.strip('[]').split(',')
     food_counts = [tile.count('food') for tile in tiles]
     max_index = food_counts.index(max(food_counts))
+    print("max_index: ", max_index)
     return max_index    
 
 def find_path(direction, conn):
@@ -102,19 +105,19 @@ def find_path(direction, conn):
         conn.send_request("Take food")
         print("Food taken")
     elif direction == 2:
-        print("direction 1")
+        print("direction 2")
         conn.send_request("Forward")
         conn.send_request("Take food")
         print("Food taken")
     elif direction == 3:
-        print("direction 2")
+        print("direction 3")
         conn.send_request("Forward")
         conn.send_request("Right")
         conn.send_request("Forward")
         conn.send_request("Take food")
         print("Food taken")
     elif direction == 4:
-        print("direction 3")
+        print("direction 4")
         conn.send_request("Forward")
         conn.send_request("Forward")
         conn.send_request("Left")
@@ -123,7 +126,7 @@ def find_path(direction, conn):
         conn.send_request("Take food")
         print("Food taken")
     elif direction == 5:
-        print("direction 4")
+        print("direction 5")
         conn.send_request("Forward")
         conn.send_request("Forward")
         conn.send_request("Left")
@@ -131,13 +134,13 @@ def find_path(direction, conn):
         conn.send_request("Take food")
         print("Food taken")
     elif direction == 6:
-        print("direction 5")
+        print("direction 6")
         conn.send_request("Forward")
         conn.send_request("Forward")
         conn.send_request("Take food")
         print("Food taken")
     elif direction == 7:
-        print("direction 6")
+        print("direction 7")
         conn.send_request("Forward")
         conn.send_request("Forward")
         conn.send_request("Right")
@@ -145,7 +148,7 @@ def find_path(direction, conn):
         conn.send_request("Take food")
         print("Food taken")
     elif direction == 8:
-        print("direction 7")
+        print("direction 8")
         conn.send_request("Forward")
         conn.send_request("Forward")
         conn.send_request("Right")
