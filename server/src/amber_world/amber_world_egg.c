@@ -22,7 +22,6 @@ void *amber_create_egg(va_list *ap)
     return egg;
 }
 
-
 void amber_destroy_egg(void *gree)
 {
     egg_t *egg = (egg_t *)gree;

@@ -55,12 +55,12 @@ void amber_clock_stop(amber_clock_t *clock);
 unsigned long amber_clock_set_time_point(amber_clock_t *clock);
 
 /**
- * @brief Returns the time elapsed between the start and end times of the interval.
+ * @brief Returns the time elapsed between the start and end times of
+ * the interval.
  *
  * @param[in] clock The amber clock instance to get the time elapsed.
  * @return The time elapsed in milliseconds.
  */
 unsigned long amber_clock_get_ellapsed_time(amber_clock_t *clock);
-
 
 #endif /* !AMBER_CLOCK_H_ */

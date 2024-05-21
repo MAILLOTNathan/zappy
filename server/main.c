@@ -26,6 +26,7 @@ int main(int ac, char **av)
     args_t args = {0};
     amber_world_t *world = NULL;
 
+    srand(time(NULL));
     signal(SIGINT, handle_sigint);
     if (amber_check_arg(ac, av, &args) == false)
         return 84;

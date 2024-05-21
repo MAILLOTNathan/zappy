@@ -64,21 +64,21 @@ static void add_client(amber_serv_t *server, int new_fd, char *team_name,
     team_name = get_team_name(server->_teams_name, new_fd);
     if (!team_name) {
         dprintf(new_fd, "ko\n");
-        close(new_fd);
-    } else if (strcmp(team_name, "GRAPHIC") == 0) {
-        push_front_list(server->_graphic_clients, new_fd, team_name);
-        printf("[AMBER INFO] New graphic client connected\n");
-    } else {
-        egg = amber_get_egg_by_team(world, team_name);
-        if (!egg) {
-            dprintf(new_fd, "ko\n");
-            close(new_fd);
-            return;
-        }
-        push_front_list(server->_clients, new_fd, egg);
-        dprintf(new_fd, "%d %d\n", world->_width, world->_height);
-        printf("[AMBER INFO] New client connected\n");
+        return (void)close(new_fd);
     }
+    if (strcmp(team_name, "GRAPHIC") == 0) {
+        push_front_list(server->_graphic_clients, new_fd, team_name);
+        return (void)printf("[AMBER INFO] New graphic client connected\n");
+    }
+    egg = amber_get_egg_by_team(world, team_name);
+    if (!egg) {
+        dprintf(new_fd, "ko\n");
+        close(new_fd);
+        return;
+    }
+    push_front_list(server->_clients, new_fd, egg);
+    dprintf(new_fd, "%d %d\n", world->_width, world->_height);
+    printf("[AMBER INFO] New client connected\n");
 }
 
 void amber_accept_client(amber_serv_t *server, amber_world_t *world)
