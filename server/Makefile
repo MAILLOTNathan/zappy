@@ -48,7 +48,7 @@ fclean: lib_string_array_fclean clean
 re: lib_string_array_re fclean all
 
 tests_run:
-	$(CC) -o unit_tests $(TEST_SRC) $(CFLAGS) --coverage -lcriterion
+	$(CC) -o unit_tests $(TEST_SRC) $(CFLAGS) $(LDFLAGS) --coverage -lcriterion
 	./unit_tests
 	gcovr --exclude tests/
 	gcovr -b --exclude tests/

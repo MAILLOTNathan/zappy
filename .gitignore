@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Unit test output
+*.xml
+*.gcov
+*.gcda
+*.gcno
+unit_tests
+
+.vscode

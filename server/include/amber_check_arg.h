@@ -13,6 +13,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
+    #include "string_array.h"
 
 /**
  * @brief Structure representing the arguments for the program.
@@ -68,5 +69,19 @@ double amber_get_flags(int ac, char **av, char *flag);
  * @param args The arguments structure containing the program arguments.
  */
 void amber_display_args(args_t *args);
+
+/**
+ * @brief Retrieves the team name from the command line arguments.
+ *
+ * This function parses the command line arguments and retrieves the team name.
+ *
+ * @param ac The number of command line arguments.
+ * @param av The array of command line arguments.
+ * @param args The structure to store the parsed arguments.
+ *
+ * @return true if the team name was successfully retrieved, false otherwise.
+ */
+bool amber_get_team_name(int ac, char **av, args_t *args);
+
 
 #endif /* !AMBER_CHECK_ARG_H_ */

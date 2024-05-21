@@ -7,21 +7,49 @@
 
 #include "amber_check_arg.h"
 
-// bool amber_get_team_name(int ac, char **av, args_t *args)
-// {
+static bool add_team_name(args_t *args, char **av, int i, int ac)
+{
+    for (int j = i; j < ac; j++) {
+        if (av[j][0] != '-') {
+            args->teams = append_string_array(args->teams, strdup(av[j]));
+        } else {
+            break;
+        }
+    }
+    if (length_string_array(args->teams) == 0) {
+        printf("Error: no team name found\n");
+        return false;
+    }
+    return true;
+}
 
-//     return false;
-// }
+bool amber_get_team_name(int ac, char **av, args_t *args)
+{
+    for (int i = 0; i < ac; i++) {
+        if (strcmp(av[i], "-n") == 0 && i + 1 < ac) {
+            return add_team_name(args, av, i + 1, ac);
+        }
+    }
+    printf("Error: flag -n not found\n");
+    return false;
+}
 
 double amber_get_flags(int ac, char **av, char *flag)
 {
+    double res = -1;
+
     for (int i = 0; i < ac; i++) {
+        if (res != -1 && strcmp(av[i], flag) == 0) {
+            printf("Error: flag %s already found\n", flag);
+            return -1;
+        }
         if (strcmp(av[i], flag) == 0 && i + 1 < ac) {
-            return atof(av[i + 1]);
+            res = atof(av[i + 1]);
         }
     }
-    printf("Error: flag %s not found\n", flag);
-    return -1;
+    if (res == -1)
+        printf("Error: flag %s not found\n", flag);
+    return res;
 }
 
 bool amber_check_arg(int ac, char **av, args_t *args)
@@ -34,7 +62,8 @@ bool amber_check_arg(int ac, char **av, args_t *args)
     if (args->port == -1 || args->width == -1 || args->height == -1
         || args->freq == -1 || args->clientsNb == -1)
         return false;
-
+    if (amber_get_team_name(ac, av, args) == false)
+        return false;
     return true;
 }
 
@@ -46,6 +75,9 @@ void amber_display_args(args_t *args)
     printf("Height: %d\n", args->height);
     printf("Frequency: %f\n", args->freq);
     printf("Clients per team: %d\n", args->clientsNb);
+    printf("Teams: \n");
+    for (int i = 0; args->teams[i] != NULL; i++)
+        printf("- %s\n", args->teams[i]);
     printf("=====================================\n");
 }
 
