@@ -32,7 +32,7 @@ static void init_info_world(amber_world_t *world)
     amber_refill_world(world);
 }
 
-amber_world_t *amber_create_world(int width, int height)
+amber_world_t *amber_create_world(int width, int height, char **teams)
 {
     amber_world_t *world = calloc(1, sizeof(amber_world_t));
 
@@ -47,6 +47,9 @@ amber_world_t *amber_create_world(int width, int height)
             return NULL;
     }
     init_info_world(world);
+    world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
+    for (int i = 0; teams[i]; i++)
+        push_back_list(world->_eggs, RAND(width), RAND(height), teams[i], i);
     return world;
 }
 

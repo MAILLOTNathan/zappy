@@ -128,9 +128,10 @@ typedef struct list_s {
  *
  * @param l The pointer to the pointer of the linked list.
  * @param index The pointer to the node to be removed.
+ * @param free_data A boolean indicating whether the data should be freed.
  * @return true if the node was successfully removed, false otherwise.
  */
-bool remove_node(list_t **l, linked_list_t *index);
+bool remove_node(list_t **l, linked_list_t *index, bool free_data);
 
 /**
  * Returns the number of elements in the list.

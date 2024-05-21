@@ -49,11 +49,21 @@ typedef struct tcp_s {
  * @param _tcp The TCP connection object for the client.
  * @param _buffer A buffer to store the data received from the client.
  * @param _team_name The name of the team the client belongs to.
+ * @param _direction The direction the client is facing.
+ * @param _x The x-coordinate of the client.
+ * @param _y The y-coordinate of the client.
+ * @param _level The level of the client.
+ * @param _id The ID of the client.
  */
 typedef struct amber_client_s {
     tcp_t _tcp;
     char *_buffer;
     char *_team_name;
+    direction_t _direction;
+    int _x;
+    int _y;
+    int _level;
+    int _id;
 } amber_client_t;
 
 /**
@@ -67,7 +77,9 @@ typedef struct amber_client_s {
  * @param _freq The frequency of game cycles.
  * @param _readfds The file descriptor set for the server.
  * @param _clients The list of clients connected to the server.
+ * @param _graphic_clients The list of graphic clients connected to the server.
  * @param _is_running A boolean flag indicating if the server is running.
+ * @param _teams_name The names of the teams participating in the game.
  */
 typedef struct amber_serv_s {
     tcp_t _tcp;
@@ -75,6 +87,7 @@ typedef struct amber_serv_s {
     fd_set _readfds;
 
     list_t *_clients;
+    list_t *_graphic_clients;
     bool _is_running;
     char **_teams_name;
 } amber_serv_t;

@@ -61,9 +61,9 @@ Test(list, remove_node)
 
     push_back_list(list, 42);
     push_back_list(list, 84);
-    cr_assert_eq(remove_node(&list, list->nodes->next), true);
+    cr_assert_eq(remove_node(&list, list->nodes->next, true), true);
     cr_assert_eq(*(int *)list->nodes->data, 42);
-    cr_assert_eq(remove_node(&list, list->nodes), true);
+    cr_assert_eq(remove_node(&list, list->nodes, true), true);
     cr_assert_null(list->nodes);
     destroy_list(&list);
 }
@@ -74,7 +74,7 @@ Test(list, remove_first_node)
 
     push_back_list(list, 42);
     push_back_list(list, 84);
-    cr_assert_eq(remove_node(&list, list->nodes), true);
+    cr_assert_eq(remove_node(&list, list->nodes, true), true);
     cr_assert_eq(*(int *)list->nodes->data, 84);
     destroy_list(&list);
 }
@@ -102,7 +102,7 @@ Test(list, remove_node_null)
 {
     list_t *list = NULL;
 
-    cr_assert_eq(remove_node(&list, NULL), false);
+    cr_assert_eq(remove_node(&list, NULL, true), false);
 }
 
 Test(list, create_list_null_malloc)

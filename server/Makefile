@@ -11,6 +11,8 @@ NAME = zappy_server
 
 SRC = 	main.c \
 		$(wildcard src/*.c) \
+		$(wildcard src/amber_world/*.c) \
+		$(wildcard src/amber_command_server/*.c) \
 
 CFLAGS = -W -Werror -Wall -Wextra -I./include
 CFLAGS += -I./libs/string_array/include -I./libs/list/include
@@ -60,7 +62,7 @@ fclean: lib_string_array_fclean lib_list_fclean clean
 
 re: lib_string_array_re lib_list_re fclean all
 
-tests_run:
+tests_run: lib_string_array lib_list
 	$(CC) -o unit_tests $(TEST_SRC) $(CFLAGS) $(LDFLAGS) --coverage -lcriterion
 	./unit_tests
 	gcovr --exclude tests/

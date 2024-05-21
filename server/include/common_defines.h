@@ -5,6 +5,11 @@
 ** commonDefines
 */
 
+/**
+ * @file common_defines.h
+ * @brief Contains the definition of the direction_t enum.
+ */
+
 #ifndef COMMONDEFINES_H_
     #define COMMONDEFINES_H_
 
@@ -21,5 +26,16 @@
      * ```
      */
     #define UNUSED __attribute__((unused))
+
+/**
+ * @enum direction_s
+ * @brief Represents the possible directions.
+ */
+typedef enum direction_s {
+    UP,     /**< Up direction */
+    RIGHT,  /**< Right direction */
+    DOWN,   /**< Down direction */
+    LEFT    /**< Left direction */
+} direction_t;
 
 #endif /* !COMMONDEFINES_H_ */

@@ -59,6 +59,8 @@ amber_serv_t *amber_create_server(args_t *args)
     server->_teams_name = args->_teams;
     server->_clients = create_list(&amber_create_client,
     &amber_destroy_client);
+    server->_graphic_clients = create_list(&amber_create_client,
+    &amber_destroy_client);
     FD_ZERO(&server->_readfds);
     init_server_tcp(server);
     printf("[AMBER INFO] Server started on port %d\n", server->_tcp._port);

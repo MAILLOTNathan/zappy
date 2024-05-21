@@ -10,13 +10,14 @@
 
     #include "amber_init.h"
     #include "string_array.h"
+    #include "amber_world.h"
 
 /**
  * Accepts a new client connection and adds it to the server's client list.
  *
  * @param server The Amber server instance.
  */
-void amber_accept_client(amber_serv_t *server);
+void amber_accept_client(amber_serv_t *server, amber_world_t *world);
 
 /**
  * Manages the clients connected to the Amber server.
@@ -32,7 +33,8 @@ void amber_manage_client(amber_serv_t *server);
  * manages client requests.
  *
  * @param server The Amber server instance.
+ * @param world The Amber world instance.
  */
-void amber_listening(amber_serv_t *server);
+void amber_listening(amber_serv_t *server, amber_world_t *world);
 
 #endif /* !AMBER_PROCESS_H_ */

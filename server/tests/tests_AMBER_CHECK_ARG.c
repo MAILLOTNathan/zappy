@@ -39,11 +39,11 @@ Test(amber_check_arg, test_amber_check_arg)
     int ac = 13;
     args_t args = {0};
     cr_assert_eq(amber_check_arg(ac, av, &args), true);
-    cr_assert_eq(args.port, 4242);
-    cr_assert_eq(args.width, 10);
-    cr_assert_eq(args.height, 10);
-    cr_assert_eq(args.freq, 100);
-    cr_assert_eq(args.clientsNb, 10);
+    cr_assert_eq(args._port, 4242);
+    cr_assert_eq(args._width, 10);
+    cr_assert_eq(args._height, 10);
+    cr_assert_eq(args._freq, 100);
+    cr_assert_eq(args._clientsNb, 10);
 }
 
 Test(amber_check_arg, missing_arg_c)
@@ -100,9 +100,9 @@ Test(amber_get_team_name, test_amber_get_team_name)
     int ac = 15;
     args_t args = {0};
     cr_assert_eq(amber_get_team_name(ac, av, &args), true);
-    cr_assert_str_eq(args.teams[0], "team1");
-    cr_assert_str_eq(args.teams[1], "team2");
-    cr_assert_str_eq(args.teams[2], "team3");
+    cr_assert_str_eq(args._teams[0], "team1");
+    cr_assert_str_eq(args._teams[1], "team2");
+    cr_assert_str_eq(args._teams[2], "team3");
 }
 
 Test(amber_get_team_name, missing_team_name)

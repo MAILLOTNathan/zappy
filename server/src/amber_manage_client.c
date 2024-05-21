@@ -7,16 +7,25 @@
 
 #include "amber_manage_client.h"
 #include "list.h"
+#include "amber_world.h"
 
 void *amber_create_client(va_list *ap)
 {
     amber_client_t *client = calloc(1, sizeof(amber_client_t));
+    egg_t *egg = NULL;
 
     if (!client)
         return NULL;
     client->_tcp._fd = va_arg(*ap, int);
+    egg = va_arg(*ap, egg_t *);
     client->_buffer = NULL;
-    client->_team_name = va_arg(*ap, char *);
+    client->_team_name = strdup(egg->_team);
+    client->_direction = egg->_direction;
+    client->_x = egg->_x;
+    client->_y = egg->_y;
+    client->_level = 1;
+    client->_id = egg->_id;
+    amber_destroy_egg(egg);
     return client;
 }
 
@@ -69,7 +78,7 @@ void amber_manage_client_read(amber_serv_t *server, amber_client_t *client)
     if (valread == 0) {
         printf("[AMBER INFO] Client disconnected\n");
         remove_node(&server->_clients, list_find_node(
-        server->_clients, client, cmp));
+        server->_clients, client, cmp), true);
         return;
     }
     eval_command(server, client, buffer);

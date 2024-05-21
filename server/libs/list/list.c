@@ -40,7 +40,7 @@ bool push_back_list(list_t *l, ...)
     return result;
 }
 
-bool remove_node(list_t **l, linked_list_t *index)
+bool remove_node(list_t **l, linked_list_t *index, bool free_data)
 {
     if (index == NULL)
         return false;
@@ -50,7 +50,8 @@ bool remove_node(list_t **l, linked_list_t *index)
         index->next->prev = index->prev;
     if (index == (*l)->nodes)
         (*l)->nodes = index->next;
-    (*l)->destructor(index->data);
+    if (free_data)
+        (*l)->destructor(index->data);
     free(index);
     index = NULL;
     return true;
