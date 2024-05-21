@@ -13,6 +13,9 @@ SRC = 	list.c \
 		linked_list.c \
 		utils_list.c
 
+TEST_SRC = 	$(wildcard tests/*.c) \
+			$(SRC)
+
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
@@ -31,3 +34,15 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+tests_run:
+	$(CC) -o unit_tests $(TEST_SRC) $(CFLAGS) $(LDFLAGS) --coverage -lcriterion
+	./unit_tests
+	gcovr --exclude tests/
+	gcovr -b --exclude tests/
+
+tests_clean:
+	$(RM) unit_tests
+	$(RM) *.gcda
+	$(RM) *.gcno
+	$(RM) *.gcov
