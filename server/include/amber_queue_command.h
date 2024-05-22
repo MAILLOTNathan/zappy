@@ -100,4 +100,15 @@ void queue_display(queue_command_t *q);
  */
 void queue_destroy(queue_command_t **q);
 
+/**
+ * @brief Returns the front element of the queue.
+ *
+ * This function returns the front element of the specified queue.
+ *
+ * @param q A pointer to the queue from which to retrieve the front element.
+ * @return A pointer to the front element of the queue,
+ * or NULL if the queue is empty.
+ */
+command_t *queue_front(queue_command_t *q);
+
 #endif /* !AMBER_QUEUE_COMMAND_H_ */

@@ -61,3 +61,8 @@ void queue_destroy(queue_command_t **q)
     }
     *q = NULL;
 }
+
+command_t *queue_front(queue_command_t *q)
+{
+    return q->_command;
+}
