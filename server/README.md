@@ -1,4 +1,4 @@
-## COMMAND IA
+## AI COMMANDS
 
 ### Queues of commands
 
@@ -11,9 +11,9 @@ typedef struct queue_command_s
 } queue_command_t;
 ```
 
-| make | Command  | time | return | Description |
+| Done | Command  | time | return | Description |
 | ---- |:--------:|:----:|:------:|:-----------:|
-| NO   | Forwards | 7/f  | ok     | move player one case forward |
+| NO   | Forward  | 7/f  | ok     | move player one case forward |
 | NO   | Right    | 7/f  | ok     | turn player right |
 | NO   | Left     | 7/f  | ok     | turn player left |
 | NO   | Look     | 7/f  | list of tile     | look around |
