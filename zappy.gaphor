@@ -426,8 +426,15 @@
 </Property>
 <Class id="9edb1bb0-16b2-11ef-b0b6-653f6ed89d15">
 <name>
-<val>Tree</val>
+<val>TuringAI</val>
 </name>
+<ownedAttribute>
+<reflist>
+<ref refid="e5c8863a-1804-11ef-a009-15734cd4e014"/>
+<ref refid="f302908a-1804-11ef-92c4-15734cd4e014"/>
+<ref refid="06a17daf-1805-11ef-94b2-15734cd4e014"/>
+</reflist>
+</ownedAttribute>
 <package>
 <ref refid="e892964a-16b0-11ef-90d8-653f6ed89d15"/>
 </package>
@@ -439,16 +446,16 @@
 </Class>
 <ClassItem id="9edbae4d-16b2-11ef-94e1-653f6ed89d15">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 1003.2421264648436, 453.8202819824219)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 1176.1413310139928, 226.234375)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
 </top-left>
 <width>
-<val>100.0</val>
+<val>243.0</val>
 </width>
 <height>
-<val>70.0</val>
+<val>121.0</val>
 </height>
 <diagram>
 <ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
@@ -461,6 +468,15 @@
 <name>
 <val>Client</val>
 </name>
+<note>
+<val></val>
+</note>
+<ownedAttribute>
+<reflist>
+<ref refid="1d07df47-1804-11ef-9749-15734cd4e014"/>
+<ref refid="2580536e-1804-11ef-9784-15734cd4e014"/>
+</reflist>
+</ownedAttribute>
 <package>
 <ref refid="e892964a-16b0-11ef-90d8-653f6ed89d15"/>
 </package>
@@ -472,16 +488,16 @@
 </Class>
 <ClassItem id="23d8dcce-16b3-11ef-9c4a-653f6ed89d15">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 1003.2421264648438, 571.82421875)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 1162.6170043945312, 444.2773132324219)</val>
 </matrix>
 <top-left>
-<val>(0.0, 0.0)</val>
+<val>(-20.13716994473748, 0.0)</val>
 </top-left>
 <width>
-<val>100.0</val>
+<val>276.66149656419896</val>
 </width>
 <height>
-<val>70.0</val>
+<val>121.0</val>
 </height>
 <diagram>
 <ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
@@ -490,4 +506,44 @@
 <ref refid="23d86564-16b3-11ef-a2cf-653f6ed89d15"/>
 </subject>
 </ClassItem>
+<Property id="1d07df47-1804-11ef-9749-15734cd4e014">
+<class_>
+<ref refid="23d86564-16b3-11ef-a2cf-653f6ed89d15"/>
+</class_>
+<name>
+<val>+ connect_to_server(self)</val>
+</name>
+</Property>
+<Property id="2580536e-1804-11ef-9784-15734cd4e014">
+<class_>
+<ref refid="23d86564-16b3-11ef-a2cf-653f6ed89d15"/>
+</class_>
+<name>
+<val>+ send_request(self, request)</val>
+</name>
+</Property>
+<Property id="e5c8863a-1804-11ef-a009-15734cd4e014">
+<class_>
+<ref refid="9edb1bb0-16b2-11ef-b0b6-653f6ed89d15"/>
+</class_>
+<name>
+<val>+ parse_look(look_response)</val>
+</name>
+</Property>
+<Property id="f302908a-1804-11ef-92c4-15734cd4e014">
+<class_>
+<ref refid="9edb1bb0-16b2-11ef-b0b6-653f6ed89d15"/>
+</class_>
+<name>
+<val>+ basic_ai(client)</val>
+</name>
+</Property>
+<Property id="06a17daf-1805-11ef-94b2-15734cd4e014">
+<class_>
+<ref refid="9edb1bb0-16b2-11ef-b0b6-653f6ed89d15"/>
+</class_>
+<name>
+<val>find_path(most_food_direction)</val>
+</name>
+</Property>
 </gaphor>
