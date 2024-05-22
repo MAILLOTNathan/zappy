@@ -13,9 +13,8 @@
 
 amber_serv_t *server;
 
-void handle_sigint(int sig)
+void handle_sigint(UNUSED int sig)
 {
-    (void)sig;
     server->_is_running = false;
     amber_destroy_server(server);
     exit(0);
