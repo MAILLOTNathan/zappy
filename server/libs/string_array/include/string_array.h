@@ -95,7 +95,8 @@ bool contains_string_array(char **array, char *string);
  * @brief Converts a string array to a single string, separated by newlines.
  *
  * @param array The string array to convert.
- * @return A single string containing all elements of the array, separated by newlines.
+ * @return A single string containing all elements of the array,
+ * separated by newlines.
  */
 [[__nodiscard__]] char *string_array_to_string(char **array);
 
@@ -104,7 +105,8 @@ bool contains_string_array(char **array, char *string);
  *
  * @param str The string to convert.
  * @param sep The separator to use.
- * @return A string array containing the elements of the string, separated by the specified separator.
+ * @return A string array containing the elements of the string,
+ * separated by the specified separator.
  */
 [[__nodiscard__]] char **string_to_string_array_separator(char *str, char sep);
 
@@ -112,7 +114,8 @@ bool contains_string_array(char **array, char *string);
  * @brief Converts a string to a string array.
  *
  * @param string The string to convert.
- * @return A string array containing the elements of the string, separated by newlines.
+ * @return A string array containing the elements of the string,
+ * separated by newlines.
  */
 [[__nodiscard__]] char **string_to_string_array(char *string);
 

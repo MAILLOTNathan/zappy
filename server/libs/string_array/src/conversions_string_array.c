@@ -39,7 +39,7 @@ char *string_array_to_string(char **array)
     return copy_array(array, str);
 }
 
-char *get_string_to_sep(char *string, char sep)
+static char *get_string_to_sep(char *string, char sep)
 {
     int len = 0;
 
@@ -52,6 +52,8 @@ char **string_to_string_array_separator(char *string, char sep)
     char **arr = NULL;
     char *tmp = NULL;
 
+    if (string == NULL)
+        return NULL;
     for (int i = 0; string[i] != 0; i++) {
         while (string[i] == sep)
             i++;

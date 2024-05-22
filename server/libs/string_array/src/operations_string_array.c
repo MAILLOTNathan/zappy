@@ -14,7 +14,7 @@ char **insert_string_array(char **array, char *string, int index)
 
     if (index < 0)
         return NULL;
-    index = index > len ? len + 1 : index;
+    index = index > len ? len : index;
     new_array = malloc(sizeof(char *) * (len + 2));
     if (new_array == NULL) {
         free_string_array(array);

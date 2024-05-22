@@ -10,8 +10,11 @@
 char **pop_back_string_array(char **array)
 {
     int len = length_string_array(array);
-    char **new_array = malloc(sizeof(char *) * len);
+    char **new_array = NULL;
 
+    if (len <= 0)
+        return NULL;
+    new_array = malloc(sizeof(char *) * len);
     if (new_array == NULL) {
         free_string_array(array);
         return NULL;
@@ -26,8 +29,11 @@ char **pop_back_string_array(char **array)
 char **pop_front_string_array(char **array)
 {
     int len = length_string_array(array);
-    char **new_array = malloc(sizeof(char *) * len);
+    char **new_array = NULL;
 
+    if (len <= 0)
+        return NULL;
+    new_array = malloc(sizeof(char *) * len);
     if (new_array == NULL) {
         free_string_array(array);
         return NULL;
