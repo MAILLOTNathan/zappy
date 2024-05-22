@@ -6,5 +6,3 @@
 */
 
 #include "amber_queue_command.h"
-
-
