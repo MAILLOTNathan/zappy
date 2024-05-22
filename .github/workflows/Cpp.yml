@@ -49,7 +49,9 @@ jobs:
             input=coding-style-reports.log
             while IFS= read -r line
             do
-              echo "::error:: $line"
+              if ! echo $line | grep "tests"
+                echo "::error:: $line"
+              fi
             done < "$input"
             exit 1
           fi
