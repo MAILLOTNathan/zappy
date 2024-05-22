@@ -119,4 +119,6 @@ bool contains_string_array(char **array, char *string);
  */
 [[__nodiscard__]] char **string_to_string_array(char *string);
 
+[[__nodiscard__]] char *string_array_to_string_separator(char **arr, char sep);
+
 #endif /* !STRING_ARRAY_H_ */
