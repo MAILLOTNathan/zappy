@@ -25,10 +25,15 @@ void amber_manage_command_ai(amber_client_t *client, char *buffer)
     }
     if (ai_commands[i]._command == NULL)
         dprintf(client->_tcp._fd, "ko\n");
+    else
+        printf("[AMBER AI] Command recevei %s\n", arg[0]);
     free_string_array(arg);
 }
 
 const ai_command_t ai_commands[] = {
     {"Forward", T_FORWARD, &amber_ai_forward},
+    {"Right", T_RIGHT, &amber_ai_right},
+    {"Look", T_LOOK, &amber_ai_look},
     {NULL, -1, NULL}
 };
+

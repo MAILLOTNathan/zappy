@@ -44,6 +44,38 @@ void amber_ai_forward(amber_client_t *client, char **arg);
  */
 void amber_manage_command_ai(amber_client_t *client, char *buffer);
 
+/**
+ * Moves the AI player to the right.
+ *
+ * @param client The client representing the AI player.
+ * @param arg Unused argument.
+ */
+void amber_ai_right(amber_client_t *client, UNUSED char **arg);
+
+/**
+ * @brief Moves the AI client to the left.
+ *
+ * This function is responsible for moving the AI client to the left.
+ *
+ * @param client The AI client to move.
+ * @param arg Unused argument.
+ */
+void amber_ai_left(amber_client_t *client, UNUSED char **arg);
+
+/**
+ * @brief Executes the "look" command for the AI client.
+ *
+ * This function is responsible for executing the "look" command
+ * for the AI client.
+ * It takes a pointer to the `amber_client_t` structure and an
+ * unused argument array.
+ *
+ * @param client A pointer to the `amber_client_t`
+ * structure representing the AI client.
+ * @param arg An unused argument array.
+ */
+void amber_ai_look(amber_client_t *client, UNUSED char **arg);
+
 extern const ai_command_t ai_commands[];
 
 #endif /* !AMBER_MANAGE_COMMAND_AI_H_ */
