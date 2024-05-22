@@ -14,7 +14,7 @@ void amber_manage_command(amber_serv_t *server, amber_world_t *world,
 
     for (int i = 0; command_serv[i].command != NULL; i++) {
         if (strcmp(command_serv[i].command, cmd[0]) == 0) {
-            command_serv[i].func(server, world, buffer);
+            command_serv[i].func(server, world, cmd);
             break;
         }
     }
@@ -24,5 +24,6 @@ void amber_manage_command(amber_serv_t *server, amber_world_t *world,
 
 const amber_command_server_t command_serv[] = {
     {"/clients", &amber_serv_clients},
+    {"/map", &amber_serv_map},
     {NULL, NULL}
 };

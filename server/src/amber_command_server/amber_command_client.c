@@ -8,7 +8,7 @@
 #include "amber_command_server.h"
 
 void amber_serv_clients(amber_serv_t *server, UNUSED amber_world_t *world,
-    UNUSED char *buffer)
+    UNUSED char **cmd)
 {
     linked_list_t *tmp = server->_clients->nodes;
     amber_client_t *client = NULL;

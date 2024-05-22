@@ -14,6 +14,7 @@
     #include <stdbool.h>
     #include "common_defines.h"
     #include "list.h"
+    #include "string_array.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -52,6 +53,8 @@ typedef struct box_s {
     int _mendiane;
     int _phiras;
     int _thystame;
+    int _players;
+    int _eggs;
 } box_t;
 
 /**

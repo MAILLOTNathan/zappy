@@ -37,7 +37,7 @@ char *string_array_to_string_separator(char **array, char sep)
         free_string_array(array);
         return NULL;
     }
-    return copy_array_separator(array, str);
+    return copy_array_separator(array, str, sep);
 }
 
 char *string_array_to_string(char **array)
