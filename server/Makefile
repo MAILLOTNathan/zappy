@@ -13,6 +13,7 @@ SRC = 	main.c \
 		$(wildcard src/*.c) \
 		$(wildcard src/amber_world/*.c) \
 		$(wildcard src/amber_command_server/*.c) \
+		$(wildcard src/amber_command_ai/*.c) \
 
 CFLAGS = -W -Werror -Wall -Wextra -I./include
 CFLAGS += -I./libs/string_array/include -I./libs/list/include

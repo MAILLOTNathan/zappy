@@ -73,6 +73,17 @@ typedef struct queue_command_s {
 bool queue_push_back(queue_command_t **q, command_t *command);
 
 /**
+ * Adds a new command to the end of the queue.
+ *
+ * @param q The pointer to the queue.
+ * @param arg The command argument.
+ * @param time The command execution time.
+ * @param id The command ID.
+ * @return `true` if the command was successfully added, `false` otherwise.
+ */
+bool queue_push_back_d(queue_command_t **q, char *arg, int time, int id);
+
+/**
  * @brief Removes and returns the front element from the queue.
  *
  * This function removes and returns the front element
@@ -110,5 +121,13 @@ void queue_destroy(queue_command_t **q);
  * or NULL if the queue is empty.
  */
 command_t *queue_front(queue_command_t *q);
+
+/**
+ * Calculates the size of the queue_command.
+ *
+ * @param queue A pointer to the queue_command.
+ * @return The size of the queue_command.
+ */
+int queue_command_size(queue_command_t *queue);
 
 #endif /* !AMBER_QUEUE_COMMAND_H_ */

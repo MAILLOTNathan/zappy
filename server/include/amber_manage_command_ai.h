@@ -1,0 +1,49 @@
+/*
+** EPITECH PROJECT, 2024
+** zappy
+** File description:
+** amber_manage_command_ai
+*/
+
+#ifndef AMBER_MANAGE_COMMAND_AI_H_
+    #define AMBER_MANAGE_COMMAND_AI_H_
+
+    #include "amber_init.h"
+    #include "amber_queue_command.h"
+    #include "string_array.h"
+
+typedef struct ai_command_s {
+    char *_command;
+    type_command_t _type;
+    void (*_func)(amber_client_t *client, char **arg);
+} ai_command_t;
+
+/**
+ * @brief Moves the AI client forward in the game.
+ *
+ * This function is responsible for moving the AI client forward in the game.
+ * It takes a pointer to the `amber_client_t` structure representing the client
+ * and a pointer to the buffer containing the command.
+ *
+ * @param client A pointer to the `amber_client_t` structure representing
+ * the client.
+ * @param arg A pointer to the buffer containing the command.
+ */
+void amber_ai_forward(amber_client_t *client, char **arg);
+
+/**
+ * @brief Manages the command received from an AI client.
+ *
+ * This function is responsible for processing the command received
+ * from an AI client and performing the necessary actions based on the command.
+ *
+ * @param client A pointer to the `amber_client_t` structure representing
+ * the AI client.
+ * @param buffer A pointer to the buffer containing the command received
+ * from the AI client.
+ */
+void amber_manage_command_ai(amber_client_t *client, char *buffer);
+
+extern const ai_command_t ai_commands[];
+
+#endif /* !AMBER_MANAGE_COMMAND_AI_H_ */

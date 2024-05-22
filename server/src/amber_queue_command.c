@@ -26,6 +26,37 @@ bool queue_push_back(queue_command_t **q, command_t *command)
     return true;
 }
 
+static command_t *create_command(char *arg, int time, int id)
+{
+    command_t *command = malloc(sizeof(command_t));
+
+    if (!command)
+        return NULL;
+    command->_arg = arg;
+    command->_time = time;
+    command->_id = id;
+    return command;
+}
+
+bool queue_push_back_d(queue_command_t **q, char *arg, int time, int id)
+{
+    queue_command_t *new = malloc(sizeof(queue_command_t));
+    queue_command_t *last = *q;
+
+    if (!new)
+        return false;
+    new->_command = create_command(arg, time, id);
+    new->_next = NULL;
+    if (*q == NULL) {
+        *q = new;
+        return true;
+    }
+    while (last->_next != NULL)
+        last = last->_next;
+    last->_next = new;
+    return true;
+}
+
 command_t *queue_pop_front(queue_command_t **q)
 {
     queue_command_t *tmp = *q;
@@ -37,16 +68,6 @@ command_t *queue_pop_front(queue_command_t **q)
     command = tmp->_command;
     free(tmp);
     return command;
-}
-
-void queue_display(queue_command_t *q)
-{
-    queue_command_t *tmp = q;
-
-    while (tmp != NULL) {
-        printf("id: %d, time: %d\n", tmp->_command->_id, tmp->_command->_time);
-        tmp = tmp->_next;
-    }
 }
 
 void queue_destroy(queue_command_t **q)

@@ -13,7 +13,7 @@ typedef struct queue_command_s
 
 | Done | Command  | time | return | Description |
 | ---- |:--------:|:----:|:------:|:-----------:|
-| NO   | Forward  | 7/f  | ok     | move player one case forward |
+| NETWORK   | Forward  | 7/f  | ok     | move player one case forward |
 | NO   | Right    | 7/f  | ok     | turn player right |
 | NO   | Left     | 7/f  | ok     | turn player left |
 | NO   | Look     | 7/f  | list of tile     | look around |
