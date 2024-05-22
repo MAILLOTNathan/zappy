@@ -8,6 +8,7 @@
 #include "amber_manage_client.h"
 #include "list.h"
 #include "amber_world.h"
+#include "amber_manage_command_ai.h"
 
 void *amber_create_client(va_list *ap)
 {
@@ -65,7 +66,8 @@ static void eval_command(UNUSED amber_serv_t *server, amber_client_t *client,
             break;
         cmd = strndup(client->_buffer, match - client->_buffer);
         memmove(client->_buffer, match + 1, strlen(match));
-        printf("[AMBER INFO] Command received: %s\n", cmd);
+        client->_buffer[strlen(client->_buffer)] = '\0';
+        amber_manage_command_ai(client, cmd);
         free(cmd);
     } while (match);
 }

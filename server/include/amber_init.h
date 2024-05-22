@@ -22,6 +22,7 @@
     #include "amber_check_arg.h"
     #include "string_array.h"
     #include "amber_world.h"
+    #include "amber_queue_command.h"
 
 /**
  * @brief Represents a TCP connection.
@@ -54,6 +55,7 @@ typedef struct tcp_s {
  * @param _y The y-coordinate of the client.
  * @param _level The level of the client.
  * @param _id The ID of the client.
+ * @param _queue_command The queue of commands to be executed by the client.
  */
 typedef struct amber_client_s {
     tcp_t _tcp;
@@ -64,6 +66,7 @@ typedef struct amber_client_s {
     int _y;
     int _level;
     int _id;
+    queue_command_t *_queue_command;
 } amber_client_t;
 
 /**
