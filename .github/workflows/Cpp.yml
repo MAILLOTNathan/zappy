@@ -56,7 +56,7 @@ jobs:
                 exitcode=1
               fi
             done < "$input"
-            exit exitcode
+            exit $exitcode
           fi
 
   push_to_mirror:
