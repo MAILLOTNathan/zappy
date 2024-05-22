@@ -47,14 +47,16 @@ jobs:
           then
             echo "::group::Annotation"
             input=coding-style-reports.log
+            exitcode=0
             while IFS= read -r line
             do
               if ! echo $line | grep "tests"
               then
                 echo "::error:: $line"
+                exitcode=1
               fi
             done < "$input"
-            exit 1
+            exit $exitcode
           fi
 
   push_to_mirror:
