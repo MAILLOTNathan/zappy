@@ -50,6 +50,7 @@ jobs:
             while IFS= read -r line
             do
               if ! echo $line | grep "tests"
+              then
                 echo "::error:: $line"
               fi
             done < "$input"
