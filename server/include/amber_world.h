@@ -168,4 +168,6 @@ void amber_destroy_egg(void *gree);
  */
 egg_t *amber_get_egg_by_team(amber_world_t *world, char *team);
 
+char *amber_world_case_stringify(box_t *box);
+
 #endif /* !AMBER_WORLD_H_ */
