@@ -26,6 +26,9 @@
 
     #define RAND(x) (rand() % x)
 
+    #define INV_TMP "mendiane %d, phiras %d, thystame %d]\n"
+    #define INVENTORY "[food %d, linemate %d, deraumere %d, sibur %d, " INV_TMP
+
 /**
  * @brief Structure representing an egg in the game world.
  */
@@ -172,5 +175,7 @@ void amber_destroy_egg(void *gree);
 egg_t *amber_get_egg_by_team(amber_world_t *world, char *team);
 
 char *amber_world_case_stringify(box_t *box);
+
+box_t *amber_world_case_init(void);
 
 #endif /* !AMBER_WORLD_H_ */

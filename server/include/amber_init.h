@@ -67,6 +67,7 @@ typedef struct amber_client_s {
     int _level;
     int _id;
     queue_command_t *_queue_command;
+    box_t *_inventory;
 } amber_client_t;
 
 /**
