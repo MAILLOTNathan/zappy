@@ -11,9 +11,7 @@
 
 static void amber_waiting_select(amber_serv_t *server)
 {
-    struct timeval tv = {0, 0};
-
-    if (select(FD_SETSIZE, &server->_readfds, NULL, NULL, &tv) == -1) {
+    if (select(FD_SETSIZE, &server->_readfds, NULL, NULL, NULL) == -1) {
         perror("select");
         server->_is_running = false;
     }

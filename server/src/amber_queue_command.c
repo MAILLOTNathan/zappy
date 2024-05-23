@@ -85,5 +85,7 @@ void queue_destroy(queue_command_t **q)
 
 command_t *queue_front(queue_command_t *q)
 {
+    if (!q)
+        return NULL;
     return q->_command;
 }
