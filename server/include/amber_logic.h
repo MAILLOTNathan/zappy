@@ -21,5 +21,6 @@ void send_client_message(amber_client_t *client, const char *message);
 void amber_logic_forward(amber_client_t *client, amber_world_t *world);
 void amber_logic_left(amber_client_t *client, amber_world_t *world);
 void amber_logic_right(amber_client_t *client, amber_world_t *world);
+void amber_logic_look(amber_client_t *client, amber_world_t *world);
 
 #endif /* !AMBER_LOGIC_H_ */
