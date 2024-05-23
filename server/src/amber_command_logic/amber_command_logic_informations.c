@@ -13,17 +13,17 @@ void amber_logic_look(amber_client_t *client, amber_world_t *world)
 
     for (int i = 0; i < client->_level; i++) {
         for (int j = 0; j < client->_level; j++) {
-            
+
         }
     }
 }
 
 void amber_logic_inventory(amber_client_t *client, amber_world_t *world)
 {
-    
+
 }
 
 void amber_logic_connect_br(amber_client_t *client, amber_world_t *world)
 {
-    
+
 }
