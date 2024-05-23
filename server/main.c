@@ -37,11 +37,6 @@ int main(int ac, char **av)
     world = amber_create_world(args._width, args._height, args._teams);
     if (!world)
         return 84;
-    amber_client_t client_test = {0};
-    client_test._x = 2;
-    client_test._y = 5;
-    client_test._level = 3;
-    client_test._direction = RIGHT;
     amber_listening(server, world);
     return 0;
 }
