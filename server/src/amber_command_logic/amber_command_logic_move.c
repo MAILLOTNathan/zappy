@@ -71,4 +71,3 @@ void amber_logic_left(amber_client_t *client, amber_world_t *world)
     }
     send_client_message(client, "ok");
 }
-
