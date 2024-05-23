@@ -40,3 +40,21 @@ char *amber_world_case_stringify(box_t *box)
     free_string_array(array);
     return (str);
 }
+
+box_t *amber_world_case_init(void)
+{
+    box_t *box = malloc(sizeof(box_t));
+
+    if (box == NULL)
+        return NULL;
+    box->_food = 0;
+    box->_linemate = 0;
+    box->_deraumere = 0;
+    box->_sibur = 0;
+    box->_mendiane = 0;
+    box->_phiras = 0;
+    box->_thystame = 0;
+    box->_players = 0;
+    box->_eggs = 0;
+    return box;
+}

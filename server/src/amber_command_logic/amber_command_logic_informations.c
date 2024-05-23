@@ -111,10 +111,13 @@ void amber_logic_look(amber_client_t *client, amber_world_t *world)
     }
 }
 
-// void amber_logic_inventory(amber_client_t *client, amber_world_t *world)
-// {
+void amber_logic_inventory(amber_client_t *client, amber_world_t *world)
+{
+    box_t *inv = client->_inventory;
 
-// }
+    dprintf(INVENTORY, inv->_food, inv->_linemate, inv->_deraumere,
+    inv->_sibur, inv->_mendiane, inv->_phiras, inv->_thystame);
+}
 
 // void amber_logic_connect_br(amber_client_t *client, amber_world_t *world)
 // {

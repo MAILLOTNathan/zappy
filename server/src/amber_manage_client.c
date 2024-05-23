@@ -26,6 +26,7 @@ void *amber_create_client(va_list *ap)
     client->_y = egg->_y;
     client->_level = 1;
     client->_id = egg->_id;
+    client->_inventory = 
     amber_destroy_egg(egg);
     return client;
 }
