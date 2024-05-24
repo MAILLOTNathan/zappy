@@ -21,6 +21,10 @@ static amber_client_t *get_shortest_client_command(linked_list_t *clients)
     int c_time = 0;
 
     for (linked_list_t *tmp = clients; tmp; tmp = tmp->next) {
+        if (((amber_client_t *)tmp->data)->_queue_command == NULL)
+            continue;
+        if (((amber_client_t *)tmp->data)->_queue_command->_command == NULL)
+            continue;
         c_time = ((amber_client_t *)tmp->data)->_queue_command->_command->_time;
         if (c_time < s_time && s_time >= 0)
             shortest = ((amber_client_t *)tmp->data);
@@ -32,10 +36,14 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
 {
     linked_list_t *clients = serv->_clients->nodes;
     amber_clock_t clock = {._start = 0, _stop = 0};
+    amber_client_t *tmp = NULL;
 
     amber_clock_start(&clock);
     while (clients) {
-        exec_logic_function(get_shortest_client_command(clients), world);
+        tmp = get_shortest_client_command(clients);
+        if (tmp == NULL)
+            return;
+        exec_logic_function(tmp, world);
         clients = clients->next;
     }
 }

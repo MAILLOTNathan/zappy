@@ -18,7 +18,33 @@ int clamp(int min, int current, int max)
   return current;
 }
 
+int real_clamp(int min, int current, int max)
+{
+  if (current < min)
+    return min;
+  if (current > max)
+    return max;
+  return current;
+}
+
 void send_client_message(amber_client_t *client, const char *message)
 {
     dprintf(client->_tcp._fd, "%s\n", message);
+}
+
+void amber_check_client_alive(amber_serv_t *server)
+{
+    linked_list_t *node = server->_clients->nodes;
+    linked_list_t *ref = server->_clients->nodes;
+    int len = list_len(server->_clients);
+    amber_client_t *client = NULL;
+
+    for (int i = 0; i < len; i++) {
+        client = CAST(amber_client_t *, node->data);
+        ref = node->next;
+        client->_inventory->_food--;
+        if(client->_inventory->_food < 0)
+            remove_node(&server->_clients, node, true);
+        node = ref;
+    }
 }
