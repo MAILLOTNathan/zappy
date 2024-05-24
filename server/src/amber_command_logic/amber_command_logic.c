@@ -14,7 +14,6 @@ static void exec_logic_function(amber_client_t *cli, amber_world_t *wd,
     command_t *command = cli->_queue_command->_command;
     amber_client_t *client = NULL;
 
-    printf("%f\n", (command->_time * 1000000) / wd->_freq);
     usleep((command->_time * 1000000) / wd->_freq);
     for (int i = 0; logic_commands[i]._func != NULL; i++)
         if (cli->_queue_command->_command->_id == logic_commands[i]._command)
