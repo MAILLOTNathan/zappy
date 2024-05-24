@@ -19,7 +19,7 @@
         void (*_func)(amber_client_t *cli, amber_world_t *world);
     } logic_command_t;
 
-extern const logic_command_t *logic_commands[];
+extern const logic_command_t logic_commands[];
 
 int clamp(int min, int current, int max);
 int real_clamp(int min, int current, int max);

@@ -15,6 +15,7 @@
     #include "common_defines.h"
     #include "list.h"
     #include "string_array.h"
+    #include "amber_check_arg.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -85,6 +86,8 @@ typedef struct pair_s {
  * @param _mendiane_info The information about the mendiane in the Amber World.
  * @param _phiras_info The information about the phiras in the Amber World.
  * @param _thystame_info The information about the thystame in the Amber World.
+ * @param _eggs The eggs in the Amber World.
+ * @param _freq The frequency of the resources in the Amber World.
  */
 typedef struct amber_world_s {
     int _width;
@@ -98,19 +101,18 @@ typedef struct amber_world_s {
     pair_t _phiras_info;
     pair_t _thystame_info;
     list_t *_eggs;
+    double _freq;
 } amber_world_t;
 
 /**
- * @brief Creates a new instance of an Amber World.
+ * Creates a new instance of the amber_world_t struct and initializes
+ * its properties.
  *
- * This function creates a new instance of an Amber World with the
- * specified width and height.
- *
- * @param width The width of the Amber World.
- * @param height The height of the Amber World.
- * @return A pointer to the created Amber World instance.
+ * @param arg The arguments for creating the world.
+ * @return A pointer to the newly created amber_world_t struct,
+ * or NULL if memory allocation fails.
  */
-amber_world_t *amber_create_world(int width, int height, char **teams);
+amber_world_t *amber_create_world(args_t *args);
 
 /**
  * @brief Destroys an amber_world_t object.

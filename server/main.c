@@ -11,6 +11,7 @@
 #include "amber_clock.h"
 #include "signal.h"
 #include "amber_logic.h"
+#include <time.h>
 
 amber_serv_t *server;
 
@@ -34,7 +35,7 @@ int main(int ac, char **av)
     server = amber_create_server(&args);
     if (!server)
         return 84;
-    world = amber_create_world(args._width, args._height, args._teams);
+    world = amber_create_world(&args);
     if (!world)
         return 84;
     amber_listening(server, world);
