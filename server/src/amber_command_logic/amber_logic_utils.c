@@ -18,6 +18,15 @@ int clamp(int min, int current, int max)
   return current;
 }
 
+int real_clamp(int min, int current, int max)
+{
+  if (current < min)
+    return min;
+  if (current > max)
+    return max;
+  return current;
+}
+
 void send_client_message(amber_client_t *client, const char *message)
 {
     dprintf(client->_tcp._fd, "%s\n", message);

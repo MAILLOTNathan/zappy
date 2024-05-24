@@ -59,8 +59,8 @@ bool amber_check_arg(int ac, char **av, args_t *args)
     args->_height = amber_get_flags(ac, av, "-y");
     args->_freq = amber_get_flags(ac, av, "-f");
     args->_clientsNb = amber_get_flags(ac, av, "-c");
-    if (args->_port == -1 || args->_width == -1 || args->_height == -1
-        || args->_freq == -1 || args->_clientsNb == -1)
+    if (args->_port == -1 || args->_width <= 0 || args->_height <= 0
+        || args->_freq <= 0 || args->_clientsNb <= 0)
         return false;
     if (amber_get_team_name(ac, av, args) == false)
         return false;

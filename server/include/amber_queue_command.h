@@ -45,7 +45,7 @@ typedef enum type_command_s {
  */
 typedef struct command_s {
     char *_arg; /**< The argument of the command. */
-    int _id;    /**< The ID of the command. */
+    type_command_t _id;    /**< The ID of the command. */
     int _time;  /**< The time of the command. */
 } command_t;
 
