@@ -22,7 +22,6 @@ static char *copy_array_separator(char **array, char *str, char sep)
     return str;
 }
 
-
 char *string_array_to_string_separator(char **array, char sep)
 {
     int len = 0;

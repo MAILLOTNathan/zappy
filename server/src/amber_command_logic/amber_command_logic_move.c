@@ -24,9 +24,6 @@ void amber_logic_forward(amber_client_t *client, amber_world_t *world)
             break;
         case RIGHT:
             client->_x = clamp(-world->_width, client->_x + 1, world->_width);
-            break;
-        default:
-            break;
     }
     client->_x = world->_width == client->_x ? 0 : client->_x;
     client->_y = world->_height == client->_y ? 0 : client->_y;

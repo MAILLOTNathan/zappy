@@ -39,8 +39,10 @@ static void update_time(amber_client_t *client)
     for (queue_command_t *tmp = client->_queue_command; tmp;
         tmp = tmp->_next) {
         time = tmp->_command->_time;
-        tmp->_command->_time = real_clamp(0, time - client->_elapsed_time, 10000);
-        client->_elapsed_time = real_clamp(0, client->_elapsed_time - time, 10000);
+        tmp->_command->_time = real_clamp(0, time - client->_elapsed_time,
+        10000);
+        client->_elapsed_time = real_clamp(0, client->_elapsed_time - time,
+        10000);
         if (client->_elapsed_time == 0)
             return;
     }
@@ -58,7 +60,8 @@ static amber_client_t *get_shortest_client_command(linked_list_t *clients)
         if (((amber_client_t *)tmp->data)->_queue_command->_command == NULL)
             continue;
         update_time(((amber_client_t *)tmp->data));
-        c_time = ((amber_client_t *)tmp->data)->_queue_command->_command->_time;
+        c_time = ((amber_client_t *)tmp->data)
+        ->_queue_command->_command->_time;
         if (c_time <= s_time || s_time == 0) {
             shortest = ((amber_client_t *)tmp->data);
             s_time = c_time;
@@ -66,7 +69,6 @@ static amber_client_t *get_shortest_client_command(linked_list_t *clients)
     }
     return shortest;
 }
-
 
 void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
 {

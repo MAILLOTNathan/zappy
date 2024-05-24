@@ -77,6 +77,35 @@ void amber_ai_left(amber_client_t *client, UNUSED char **arg);
  */
 void amber_ai_look(amber_client_t *client, UNUSED char **arg);
 
+/**
+ * @brief Handles the inventory command for the Amber AI.
+ *
+ * This function is responsible for handling
+ * the inventory command for the Amber AI.
+ * It takes a pointer to the `amber_client_t`
+ * structure and an unused array of strings as arguments.
+ *
+ * @param client A pointer to the `amber_client_t`
+ * structure representing the client.
+ * @param arg An unused array of strings.
+ */
+void amber_ai_inventory(amber_client_t *client, UNUSED char **arg);
+
+/**
+ * @brief Connects the AI client to the nearest available server slot.
+ *
+ * This function is responsible for connecting the AI client
+ * to the nearest available server slot.
+ * It takes a pointer to the `amber_client_t` structure representing
+ * the AI client and an unused
+ * array of strings as arguments.
+ *
+ * @param client A pointer to the `amber_client_t` structure representing
+ * the AI client.
+ * @param arg An unused array of strings.
+ */
+void amber_ai_connect_nbr(amber_client_t *client, UNUSED char **arg);
+
 extern const ai_command_t ai_commands[];
 
 #endif /* !AMBER_MANAGE_COMMAND_AI_H_ */

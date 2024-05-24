@@ -9,22 +9,22 @@
 
 int clamp(int min, int current, int max)
 {
-  while (current < min || current > max) {
-    if (current < min)
-      current = max - (ABS(current) - ABS(min));
-    if (current > max)
-      current = min + (ABS(current) - max);
-  }
-  return current;
+    while (current < min || current > max) {
+        if (current < min)
+            current = max - (ABS(current) - ABS(min));
+        if (current > max)
+            current = min + (ABS(current) - max);
+    }
+    return current;
 }
 
 int real_clamp(int min, int current, int max)
 {
-  if (current < min)
-    return min;
-  if (current > max)
-    return max;
-  return current;
+    if (current < min)
+        return min;
+    if (current > max)
+        return max;
+    return current;
 }
 
 void send_client_message(amber_client_t *client, const char *message)
@@ -43,7 +43,7 @@ void amber_check_client_alive(amber_serv_t *server)
         client = CAST(amber_client_t *, node->data);
         ref = node->next;
         client->_inventory->_food--;
-        if(client->_inventory->_food < 0)
+        if (client->_inventory->_food < 0)
             remove_node(&server->_clients, node, true);
         node = ref;
     }

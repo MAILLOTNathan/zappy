@@ -14,10 +14,10 @@
 
     #define ABS(n) (n < 0) ? -n : n
 
-    typedef struct logic_command_s {
-        type_command_t _command;
-        void (*_func)(amber_client_t *cli, amber_world_t *world);
-    } logic_command_t;
+typedef struct logic_command_s {
+    type_command_t _command;
+    void (*_func)(amber_client_t *cli, amber_world_t *world);
+} logic_command_t;
 
 extern const logic_command_t logic_commands[];
 

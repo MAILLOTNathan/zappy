@@ -74,11 +74,11 @@ static void amber_look_right(amber_client_t *client, amber_world_t *world)
     int level = client->_level;
     int start_y = clamp(0, client->_y - level, world->_height);
     int start_x = clamp(0, client->_x + level, world->_width);
-    printf("start_x: %d, start_y: %d\n", start_x, start_y);
     int offset = 0;
     int x = 0;
     int y = 0;
 
+    printf("start_x: %d, start_y: %d\n", start_x, start_y);
     for (int i = level; i > 0; i--) {
         x = clamp(0, start_x - offset, world->_width);
         x = x == world->_width ? 0 : x;
@@ -93,10 +93,7 @@ static void amber_look_right(amber_client_t *client, amber_world_t *world)
 
 void amber_logic_look(amber_client_t *client, amber_world_t *world)
 {
-    // char **array = string_to_string_array("[ ]");
-
-    switch (client->_direction)
-    {
+    switch (client->_direction) {
     case UP:
         amber_look_up(client, world);
         break;
@@ -119,8 +116,3 @@ void amber_logic_inventory(amber_client_t *client, UNUSED amber_world_t *world)
     inv->_deraumere, inv->_sibur, inv->_mendiane,
     inv->_phiras, inv->_thystame);
 }
-
-// void amber_logic_connect_br(amber_client_t *client, amber_world_t *world)
-// {
-
-// }

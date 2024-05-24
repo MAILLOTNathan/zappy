@@ -35,6 +35,7 @@ const ai_command_t ai_commands[] = {
     {"Right", T_RIGHT, &amber_ai_right},
     {"Left", T_LEFT, &amber_ai_left},
     {"Look", T_LOOK, &amber_ai_look},
+    {"Inventory", T_INVENTORY, &amber_ai_inventory},
+    {"Connect_nbr", T_CONNECT_NBR, &amber_ai_connect_nbr},
     {NULL, -1, NULL}
 };
-
