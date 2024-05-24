@@ -14,6 +14,7 @@ static void exec_logic_function(amber_client_t *cli, amber_world_t *wd,
     command_t *command = cli->_queue_command->_command;
     amber_client_t *client = NULL;
 
+    printf("%f\n", (command->_time * 1000000) / wd->_freq);
     usleep((command->_time * 1000000) / wd->_freq);
     for (int i = 0; logic_commands[i]._func != NULL; i++)
         if (cli->_queue_command->_command->_id == logic_commands[i]._command)
@@ -25,6 +26,7 @@ static void exec_logic_function(amber_client_t *cli, amber_world_t *wd,
         client->_queue_command->_command->_time = real_clamp(0,
         client->_queue_command->_command->_time - command->_time, 10000);
     }
+    queue_pop_front(&cli->_queue_command);
 }
 
 static amber_client_t *get_shortest_client_command(linked_list_t *clients)
@@ -39,8 +41,10 @@ static amber_client_t *get_shortest_client_command(linked_list_t *clients)
         if (((amber_client_t *)tmp->data)->_queue_command->_command == NULL)
             continue;
         c_time = ((amber_client_t *)tmp->data)->_queue_command->_command->_time;
-        if (c_time < s_time && s_time >= 0)
+        if (c_time <= s_time || s_time == 0) {
             shortest = ((amber_client_t *)tmp->data);
+            s_time = c_time;
+        }
     }
     return shortest;
 }

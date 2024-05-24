@@ -33,5 +33,6 @@ void amber_logic_right(amber_client_t *client, amber_world_t *world);
 void amber_logic_look(amber_client_t *client, amber_world_t *world);
 void amber_logic_inventory(amber_client_t *client, amber_world_t *world);
 
+void amber_logic_loop(amber_serv_t *serv, amber_world_t *world);
 
 #endif /* !AMBER_LOGIC_H_ */

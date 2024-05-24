@@ -8,6 +8,7 @@
 #include "amber_process.h"
 #include "amber_manage_client.h"
 #include "amber_command_server.h"
+#include "amber_logic.h"
 
 static void amber_waiting_select(amber_serv_t *server)
 {
@@ -131,5 +132,6 @@ void amber_listening(amber_serv_t *server, amber_world_t *world)
         amber_manage_client(server);
         if (FD_ISSET(0, &server->_readfds))
             amber_manage_server_command(server, world);
+        amber_logic_loop(server, world);
     }
 }
