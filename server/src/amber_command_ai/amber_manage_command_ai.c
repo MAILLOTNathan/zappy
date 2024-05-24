@@ -33,6 +33,7 @@ void amber_manage_command_ai(amber_client_t *client, char *buffer)
 const ai_command_t ai_commands[] = {
     {"Forward", T_FORWARD, &amber_ai_forward},
     {"Right", T_RIGHT, &amber_ai_right},
+    {"Left", T_LEFT, &amber_ai_left},
     {"Look", T_LOOK, &amber_ai_look},
     {NULL, -1, NULL}
 };

@@ -28,6 +28,8 @@ void amber_logic_forward(amber_client_t *client, amber_world_t *world)
         default:
             break;
     }
+    client->_x = world->_width == client->_x ? 0 : client->_x;
+    client->_y = world->_height == client->_y ? 0 : client->_y;
     world->_case[client->_y][client->_x]._players++;
     send_client_message(client, "ok");
 }

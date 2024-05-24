@@ -75,7 +75,7 @@ static void add_client(amber_serv_t *server, int new_fd, char *team_name,
         close(new_fd);
         return;
     }
-    push_front_list(server->_clients, new_fd, egg);
+    push_back_list(server->_clients, new_fd, egg);
     dprintf(new_fd, "%d %d\n", world->_width, world->_height);
     printf("[AMBER INFO] New client connected\n");
 }

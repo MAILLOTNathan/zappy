@@ -56,6 +56,8 @@ typedef struct tcp_s {
  * @param _level The level of the client.
  * @param _id The ID of the client.
  * @param _queue_command The queue of commands to be executed by the client.
+ * @param _inventory The inventory of the client.
+ * @param _elapsed_time The elapsed time since the last command.
  */
 typedef struct amber_client_s {
     tcp_t _tcp;
@@ -68,6 +70,7 @@ typedef struct amber_client_s {
     int _id;
     queue_command_t *_queue_command;
     box_t *_inventory;
+    int _elapsed_time;
 } amber_client_t;
 
 /**

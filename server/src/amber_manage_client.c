@@ -27,6 +27,8 @@ void *amber_create_client(va_list *ap)
     client->_level = 1;
     client->_id = egg->_id;
     client->_inventory = amber_world_case_init();
+    client->_queue_command = NULL;
+    client->_elapsed_time = 0;
     amber_destroy_egg(egg);
     return client;
 }
@@ -82,6 +84,7 @@ void amber_manage_client_read(amber_serv_t *server, amber_client_t *client)
         printf("[AMBER INFO] Client disconnected\n");
         remove_node(&server->_clients, list_find_node(
         server->_clients, client, cmp), true);
+        fflush(stdout);
         return;
     }
     eval_command(server, client, buffer);
