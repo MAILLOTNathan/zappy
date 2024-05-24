@@ -11,6 +11,7 @@
     #include "amber_init.h"
     #include "amber_queue_command.h"
     #include "string_array.h"
+    #include "amber_logic.h"
 
 typedef struct ai_command_s {
     char *_command;
