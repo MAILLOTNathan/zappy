@@ -10,6 +10,7 @@
 
     #include "common_defines.h"
     #include "amber_init.h"
+    #include "amber_world.h"
 
 /**
  * Creates a new Amber client.

@@ -24,7 +24,18 @@ LDFLAGS = -L./libs/string_array -l_string_array -L./libs/list -llist
 OBJ = $(SRC:.c=.o)
 
 TEST_SRC = 	$(wildcard tests/*.c) \
-			$(wildcard src/*.c)
+			$(wildcard src/*.c) \
+			$(wildcard src/amber_world/*.c) \
+			$(wildcard src/amber_command_server/*.c) \
+			$(wildcard src/amber_command_ai/*.c) \
+			$(wildcard src/amber_command_logic/*.c) \
+
+TEST_GREP = $(wildcard tests/GREP*.c) \
+			$(wildcard src/*.c) \
+			$(wildcard src/amber_world/*.c) \
+			$(wildcard src/amber_command_server/*.c) \
+			$(wildcard src/amber_command_ai/*.c) \
+			$(wildcard src/amber_command_logic/*.c) \
 
 all: lib_string_array lib_list $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
@@ -69,6 +80,12 @@ tests_run: lib_string_array lib_list
 	./unit_tests
 	gcovr --exclude tests/
 	gcovr -b --exclude tests/
+
+tests_run_GREP: lib_string_array lib_list
+	$(CC) -o unit_tests $(TEST_GREP) $(CFLAGS) $(LDFLAGS) --coverage -lcriterion
+	./unit_tests
+	gcovr --exclude tests/GREP*.c
+	gcovr -b --exclude tests/GREP*.c
 
 tests_clean:
 	$(RM) unit_tests

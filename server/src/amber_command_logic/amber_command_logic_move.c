@@ -13,18 +13,20 @@ void amber_logic_forward(amber_client_t *client, amber_world_t *world,
     world->_case[client->_y][client->_x]._players--;
     switch (client->_direction) {
         case UP:
-            client->_y = clamp(-world->_height, client->_y + 1,
-            world->_height);
+            client->_y = clamp(0, client->_y + 1, world->_height);
             break;
         case DOWN:
-            client->_y = clamp(-world->_height, client->_y - 1,
+            client->_y = clamp(0, client->_y - 1,
             world->_height);
             break;
         case LEFT:
-            client->_x = clamp(-world->_width, client->_x - 1, world->_width);
+            client->_x = clamp(0, client->_x - 1, world->_width);
             break;
         case RIGHT:
-            client->_x = clamp(-world->_width, client->_x + 1, world->_width);
+            client->_x = clamp(0, client->_x + 1, world->_width);
+            break;
+        default:
+            break;
     }
     client->_x = world->_width == client->_x ? 0 : client->_x;
     client->_y = world->_height == client->_y ? 0 : client->_y;
