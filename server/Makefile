@@ -82,7 +82,8 @@ tests_run: lib_string_array lib_list
 	gcovr -b --exclude tests/
 
 tests_run_GREP: lib_string_array lib_list
-	$(CC) -o unit_tests $(TEST_GREP) $(CFLAGS) $(LDFLAGS) --coverage -lcriterion
+	$(CC) -o unit_tests $(TEST_GREP) $(CFLAGS) $(LDFLAGS) --coverage \
+	-lcriterion
 	./unit_tests
 	gcovr --exclude tests/GREP*.c
 	gcovr -b --exclude tests/GREP*.c
