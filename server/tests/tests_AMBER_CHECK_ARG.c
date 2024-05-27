@@ -121,3 +121,10 @@ Test(amber_display_args, test_amber_display_args, .init = redirect_all_stdout)
     amber_display_args(&args);
     // cr_assert_stdout_eq_str("===========Amber arguments===========\nPort: 4242\nWidth: 10\nHeight: 10\nFrequency: 100.000000\nClients per team: 10\n=====================================\n");
 }
+
+Test(amber_get_flags, flag_already_found)
+{
+    char *av[] = {"./zappy_server", "-p", "4242", "-p", "10", "-y", "10", "-f", "100", "-c", "10"};
+    int ac = 11;
+    cr_assert_eq(amber_get_flags(ac, av, "-p"), -1);
+}

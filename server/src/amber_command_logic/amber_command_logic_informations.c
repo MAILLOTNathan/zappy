@@ -94,17 +94,17 @@ static void amber_look_right(amber_client_t *client, amber_world_t *world)
 void amber_logic_look(amber_client_t *client, amber_world_t *world)
 {
     switch (client->_direction) {
-    case UP:
-        amber_look_up(client, world);
-        break;
-    case LEFT:
-        amber_look_left(client, world);
-        break;
-    case DOWN:
-        amber_look_down(client, world);
-        break;
-    case RIGHT:
-        amber_look_right(client, world);
+        case UP:
+            amber_look_up(client, world);
+            break;
+        case LEFT:
+            amber_look_left(client, world);
+            break;
+        case DOWN:
+            amber_look_down(client, world);
+            break;
+        case RIGHT:
+            amber_look_right(client, world);
     }
 }
 
