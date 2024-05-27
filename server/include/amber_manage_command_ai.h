@@ -89,7 +89,15 @@ void amber_ai_look(amber_client_t *client, UNUSED char **arg);
  * structure representing the client.
  * @param arg An unused array of strings.
  */
-void amber_ai_inventory(amber_client_t *client, UNUSED char **arg);
+void amber_ai_inventory(amber_client_t *client, char **arg);
+
+/**
+ * Sends a broadcast message from the AI client to the server.
+ *
+ * @param client The AI client sending the broadcast.
+ * @param arg The arguments for the broadcast command.
+ */
+void amber_ai_broadcast(amber_client_t *client, char **arg);
 
 /**
  * @brief Connects the AI client to the nearest available server slot.

@@ -7,7 +7,8 @@
 
 #include "amber_logic.h"
 
-void amber_logic_forward(amber_client_t *client, amber_world_t *world)
+void amber_logic_forward(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv)
 {
     world->_case[client->_y][client->_x]._players--;
     switch (client->_direction) {
@@ -31,9 +32,9 @@ void amber_logic_forward(amber_client_t *client, amber_world_t *world)
     send_client_message(client, "ok");
 }
 
-void amber_logic_right(amber_client_t *client, amber_world_t *world)
+void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
+    UNUSED amber_serv_t *serv)
 {
-    (void)world;
     switch (client->_direction) {
         case UP:
             client->_direction = RIGHT;
@@ -53,9 +54,9 @@ void amber_logic_right(amber_client_t *client, amber_world_t *world)
     send_client_message(client, "ok");
 }
 
-void amber_logic_left(amber_client_t *client, amber_world_t *world)
+void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
+    UNUSED amber_serv_t *serv)
 {
-    (void)world;
     switch (client->_direction) {
         case UP:
             client->_direction = LEFT;

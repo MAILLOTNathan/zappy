@@ -9,15 +9,16 @@
 #include <unistd.h>
 
 static void exec_logic_function(amber_client_t *cli, amber_world_t *wd,
-    linked_list_t *clients)
+    amber_serv_t *serv)
 {
+    linked_list_t *clients = serv->_clients->nodes;
     command_t *command = cli->_queue_command->_command;
     amber_client_t *client = NULL;
 
     usleep((command->_time * 1000000) / wd->_freq);
     for (int i = 0; logic_commands[i]._func != NULL; i++)
         if (cli->_queue_command->_command->_id == logic_commands[i]._command)
-            logic_commands[i]._func(cli, wd);
+            logic_commands[i]._func(cli, wd, serv);
     for (linked_list_t *tmp = clients; tmp; tmp = tmp->next) {
         client = (amber_client_t *)tmp->data;
         if (client->_queue_command == NULL) {
@@ -81,7 +82,7 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
         tmp = get_shortest_client_command(clients);
         if (tmp == NULL)
             return;
-        exec_logic_function(tmp, world, clients);
+        exec_logic_function(tmp, world, serv);
     }
 }
 
@@ -91,6 +92,6 @@ const logic_command_t logic_commands[] = {
     {T_LEFT, &amber_logic_left},
     {T_LOOK, &amber_logic_look},
     {T_INVENTORY, &amber_logic_inventory},
-    // {T_BROADCAST, &amber_logic_broadcast},
+    {T_BROADCAST, &amber_logic_broadcast},
     {-1, NULL}
 };

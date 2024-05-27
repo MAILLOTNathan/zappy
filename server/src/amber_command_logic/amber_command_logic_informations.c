@@ -91,7 +91,8 @@ static void amber_look_right(amber_client_t *client, amber_world_t *world)
     }
 }
 
-void amber_logic_look(amber_client_t *client, amber_world_t *world)
+void amber_logic_look(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv)
 {
     switch (client->_direction) {
     case UP:
@@ -108,7 +109,8 @@ void amber_logic_look(amber_client_t *client, amber_world_t *world)
     }
 }
 
-void amber_logic_inventory(amber_client_t *client, UNUSED amber_world_t *world)
+void amber_logic_inventory(amber_client_t *client, UNUSED amber_world_t *world,
+    UNUSED amber_serv_t *serv)
 {
     box_t *inv = client->_inventory;
 
