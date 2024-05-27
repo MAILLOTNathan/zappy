@@ -66,7 +66,7 @@ static void add_client(amber_serv_t *server, int new_fd, char *team_name,
         return (void)close(new_fd);
     }
     if (strcmp(team_name, "GRAPHIC") == 0) {
-        push_front_list(server->_graphic_clients, new_fd, team_name);
+        push_front_list(server->_graphic_clients, new_fd, NULL);
         return (void)printf("[AMBER INFO] New graphic client connected\n");
     }
     egg = amber_get_egg_by_team(world, team_name);

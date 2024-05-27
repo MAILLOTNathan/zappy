@@ -37,5 +37,6 @@ const ai_command_t ai_commands[] = {
     {"Look", T_LOOK, &amber_ai_look},
     {"Inventory", T_INVENTORY, &amber_ai_inventory},
     {"Connect_nbr", T_CONNECT_NBR, &amber_ai_connect_nbr},
+    {"Broadcast", T_BROADCAST, &amber_ai_broadcast},
     {NULL, -1, NULL}
 };
