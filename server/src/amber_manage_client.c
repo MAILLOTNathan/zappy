@@ -20,6 +20,7 @@ static void *init_client_ai(amber_client_t *client, egg_t *egg)
     client->_level = 1;
     client->_id = egg->_id;
     client->_inventory = amber_world_case_init();
+    client->_inventory->_food = 10;
     client->_elapsed_time = 0;
     return client;
 }

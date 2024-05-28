@@ -42,6 +42,7 @@ amber_world_t *amber_create_world(args_t *arg)
     world->_height = arg->_height;
     world->_freq = arg->_freq;
     world->_clientsNb = arg->_clientsNb;
+    world->_clock = 20;
     world->_case = calloc(arg->_height, sizeof(box_t *));
     world->_teams_name = arg->_teams;
     for (int i = 0; i < arg->_height; i++)

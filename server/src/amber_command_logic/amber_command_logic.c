@@ -71,17 +71,43 @@ static amber_client_t *get_shortest_client_command(linked_list_t *clients)
     return shortest;
 }
 
+static void remove_waiting_clock(linked_list_t *clients, amber_world_t *world)
+{
+    amber_client_t *client = NULL;
+
+    for (linked_list_t *tmp = clients; tmp; tmp = tmp->next) {
+        client = (amber_client_t *)tmp->data;
+        if (client->_queue_command == NULL)
+            continue;
+        if (client->_queue_command->_command == NULL)
+            continue;
+        client->_queue_command->_command->_time = real_clamp(0,
+        client->_queue_command->_command->_time - world->_clock, 10000);
+    }
+    world->_clock = 20;
+}
+
 void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
 {
-    linked_list_t *clients = serv->_clients->nodes;
+    linked_list_t *clients = NULL;
     amber_clock_t clock = {._start = 0, ._end = 0};
     amber_client_t *tmp = NULL;
 
     amber_clock_start(&clock);
     while (true) {
+        clients = serv->_clients->nodes;
         tmp = get_shortest_client_command(clients);
         if (tmp == NULL)
             return;
+        if (world->_clock > tmp->_queue_command->_command->_time) {
+            world->_clock -= tmp->_queue_command->_command->_time;
+        } else {
+            usleep((world->_clock * 1000000) / world->_freq);
+            amber_check_client_alive(serv);
+            amber_refill_world(world);
+            remove_waiting_clock(serv->_clients->nodes, world);
+            continue;
+        }
         exec_logic_function(tmp, world, serv);
     }
 }

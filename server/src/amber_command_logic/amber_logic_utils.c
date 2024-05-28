@@ -43,8 +43,10 @@ void amber_check_client_alive(amber_serv_t *server)
         client = CAST(amber_client_t *, node->data);
         ref = node->next;
         client->_inventory->_food--;
-        if (client->_inventory->_food < 0)
+        if (client->_inventory->_food < 0) {
+            dprintf(client->_tcp._fd, "dead\n");
             remove_node(&server->_clients, node, true);
+        }
         node = ref;
     }
 }

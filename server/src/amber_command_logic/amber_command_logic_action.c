@@ -7,22 +7,22 @@
 
 #include "amber_logic.h"
 
-static int get_distance(int x1, int y1, int x2, int y2)
-{
-    return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
-}
+// static int get_distance(int x1, int y1, int x2, int y2)
+// {
+//     return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+// }
 
-static int update_pos(int *pos, int dis_ref, int x2, int y2)
-{
-    int dis_new = get_distance(pos[0], pos[1], x2, y2);
+// static int update_pos(int *pos, int dis_ref, int x2, int y2)
+// {
+//     int dis_new = get_distance(pos[0], pos[1], x2, y2);
 
-    if (dis_new < dis_ref) {
-        pos[0] = x2;
-        pos[1] = y2;
-        return dis_new;
-    }
-    return dis_ref;
-}
+//     if (dis_new < dis_ref) {
+//         pos[0] = x2;
+//         pos[1] = y2;
+//         return dis_new;
+//     }
+//     return dis_ref;
+// }
 
 static int get_direction_message(amber_client_t *src, amber_client_t *des,
     int width, UNUSED int height)
@@ -30,6 +30,8 @@ static int get_direction_message(amber_client_t *src, amber_client_t *des,
     (void) height;
     (void) des;
     (void) src;
+    (void) width;
+    (void) height;
     return 0;
 }
 
