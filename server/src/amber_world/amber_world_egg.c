@@ -51,3 +51,16 @@ egg_t *amber_get_egg_by_team(amber_world_t *world, char *team)
     }
     return NULL;
 }
+
+int amber_get_nbr_eggs_by_team(amber_world_t *world, char *team)
+{
+    linked_list_t *tmp = world->_eggs->nodes;
+    int count = 0;
+
+    while (tmp) {
+        if (!strcmp(((egg_t *)tmp->data)->_team, team))
+            count++;
+        tmp = tmp->next;
+    }
+    return count;
+}

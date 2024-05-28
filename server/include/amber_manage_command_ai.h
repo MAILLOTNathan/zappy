@@ -40,10 +40,9 @@ void amber_ai_forward(amber_client_t *client, char **arg);
  *
  * @param client A pointer to the `amber_client_t` structure representing
  * the AI client.
- * @param buffer A pointer to the buffer containing the command received
- * from the AI client.
+ * @param arg A pointer to the buffer containing the command.
  */
-void amber_manage_command_ai(amber_client_t *client, char *buffer);
+void amber_manage_command_ai(amber_client_t *client, char **arg);
 
 /**
  * Moves the AI player to the right.

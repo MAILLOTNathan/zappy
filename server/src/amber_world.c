@@ -41,12 +41,11 @@ amber_world_t *amber_create_world(args_t *arg)
     world->_width = arg->_width;
     world->_height = arg->_height;
     world->_freq = arg->_freq;
+    world->_clientsNb = arg->_clientsNb;
     world->_case = calloc(arg->_height, sizeof(box_t *));
-    for (int i = 0; i < arg->_height; i++) {
+    world->_teams_name = arg->_teams;
+    for (int i = 0; i < arg->_height; i++)
         world->_case[i] = calloc(arg->_width, sizeof(box_t));
-        if (!world->_case[i])
-            return NULL;
-    }
     init_info_world(world);
     world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
     for (int i = 0; arg->_teams[i]; i++)
