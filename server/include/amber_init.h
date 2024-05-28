@@ -58,6 +58,7 @@ typedef struct tcp_s {
  * @param _queue_command The queue of commands to be executed by the client.
  * @param _inventory The inventory of the client.
  * @param _elapsed_time The elapsed time since the last command.
+ * @param _is_graphical A boolean flag indicating if the client is graphical.
  */
 typedef struct amber_client_s {
     tcp_t _tcp;
@@ -71,6 +72,7 @@ typedef struct amber_client_s {
     queue_command_t *_queue_command;
     box_t *_inventory;
     int _elapsed_time;
+    bool _is_graphical;
 } amber_client_t;
 
 /**

@@ -15,6 +15,7 @@ SRC = 	main.c \
 		$(wildcard src/amber_command_server/*.c) \
 		$(wildcard src/amber_command_ai/*.c) \
 		$(wildcard src/amber_command_logic/*.c) \
+		$(wildcard src/amber_command_graphical/*.c) \
 
 CFLAGS = -W -Werror -Wall -Wextra -I./include
 CFLAGS += -I./libs/string_array/include -I./libs/list/include
@@ -29,6 +30,7 @@ TEST_SRC = 	$(wildcard tests/*.c) \
 			$(wildcard src/amber_command_server/*.c) \
 			$(wildcard src/amber_command_ai/*.c) \
 			$(wildcard src/amber_command_logic/*.c) \
+			$(wildcard src/amber_command_graphic/*.c) \
 
 TEST_GREP = $(wildcard tests/GREP*.c) \
 			$(wildcard src/*.c) \
@@ -36,6 +38,7 @@ TEST_GREP = $(wildcard tests/GREP*.c) \
 			$(wildcard src/amber_command_server/*.c) \
 			$(wildcard src/amber_command_ai/*.c) \
 			$(wildcard src/amber_command_logic/*.c) \
+			$(wildcard src/amber_command_graphic/*.c) \
 
 all: lib_string_array lib_list $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)

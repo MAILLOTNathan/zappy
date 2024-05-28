@@ -77,6 +77,8 @@ typedef struct pair_s {
  *
  * @param _width The width of the Amber World.
  * @param _height The height of the Amber World.
+ * @param _clientsNb The number of clients in the Amber World.
+ * @param _teams_name The names of the teams in the Amber World.
  * @param _case The cases in the Amber World.
  * @param _food_info The information about the food in the Amber World.
  * @param _linemate_info The information about the linemate in the Amber World.
@@ -92,6 +94,8 @@ typedef struct pair_s {
 typedef struct amber_world_s {
     int _width;
     int _height;
+    int _clientsNb;
+    char **_teams_name;
     box_t **_case;
     pair_t _food_info;
     pair_t _linemate_info;
@@ -176,8 +180,38 @@ void amber_destroy_egg(void *gree);
  */
 egg_t *amber_get_egg_by_team(amber_world_t *world, char *team);
 
+/**
+ * @brief Converts a box_t structure into a string representation.
+ *
+ * This function takes a pointer to a box_t structure and converts it
+ * into a string representation.
+ * The resulting string contains information about the box, such as its
+ * coordinates and contents.
+ *
+ * @param box A pointer to the box_t structure to be converted.
+ * @return A dynamically allocated string representing the box.
+ */
 char *amber_world_case_stringify(box_t *box);
 
+/**
+ * Retrieves the number of eggs belonging to a specific team in
+ * the given world.
+ *
+ * @param world The pointer to the amber_world_t structure representing
+ * the game world.
+ * @param team The name of the team for which to retrieve the number of eggs.
+ * @return The number of eggs belonging to the specified team.
+ */
+int amber_get_nbr_eggs_by_team(amber_world_t *world, char *team);
+
+/**
+ * @brief Initializes a new box in the Amber World.
+ *
+ * This function creates and initializes a new box in the Amber World.
+ * The box is represented by the `box_t` data structure.
+ *
+ * @return A pointer to the newly created box.
+ */
 box_t *amber_world_case_init(void);
 
 #endif /* !AMBER_WORLD_H_ */

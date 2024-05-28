@@ -77,6 +77,9 @@ void queue_destroy(queue_command_t **q)
 
     while (tmp != NULL) {
         next = tmp->_next;
+        if (tmp->_command->_arg)
+            free(tmp->_command->_arg);
+        free(tmp->_command);
         free(tmp);
         tmp = next;
     }
