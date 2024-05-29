@@ -26,7 +26,7 @@
  * @param buffer A character buffer.
  */
 void amber_serv_clients(amber_serv_t *server, amber_world_t *world,
-    char *buffer);
+    char **cmd);
 
 /**
  * @brief Manages a command received by the Amber server.
@@ -45,6 +45,23 @@ void amber_manage_command(amber_serv_t *server, amber_world_t *world,
     char *buffer);
 
 /**
+ * @brief Maps the given command to the corresponding function
+ * in the Amber server.
+ *
+ * This function is responsible for mapping the given command
+ * to the corresponding
+ * function in the Amber server. It takes a pointer to the server structure,
+ * a pointer
+ * to the world structure, and a double pointer to the command string
+ * as parameters.
+ *
+ * @param server A pointer to the Amber server structure.
+ * @param world A pointer to the Amber world structure.
+ * @param cmd A double pointer to the command string.
+ */
+void amber_serv_map(amber_serv_t *server, amber_world_t *world, char **cmd);
+
+/**
  * @brief Structure representing an Amber command server.
  *
  * This structure holds information about a command that
@@ -54,7 +71,7 @@ void amber_manage_command(amber_serv_t *server, amber_world_t *world,
  */
 typedef struct amber_command_server_s {
     char *command; /**< The command string. */
-    void (*func)(amber_serv_t *, amber_world_t *, char *);
+    void (*func)(amber_serv_t *, amber_world_t *, char **);
 } amber_command_server_t;
 
 /**

@@ -52,16 +52,32 @@ double amber_get_flags(int ac, char **av, char *flag)
     return res;
 }
 
+static void display_help(void)
+{
+    printf(HELP);
+    printf("port\tis the port number\n");
+    printf("width\tis the width of the world\n");
+    printf("height\tis the height of the world\n");
+    printf("nameX\tis the name of the team X\n");
+    printf("clientsNb\tis the number of authorized clients per team\n");
+    printf("freq\tis the reciprocal of time unit for execution of actions\n");
+}
+
 bool amber_check_arg(int ac, char **av, args_t *args)
 {
+    if (ac == 2 && strcmp(av[1], "-help") == 0){
+        display_help();
+        exit(0);
+    }
     args->_port = amber_get_flags(ac, av, "-p");
     args->_width = amber_get_flags(ac, av, "-x");
     args->_height = amber_get_flags(ac, av, "-y");
     args->_freq = amber_get_flags(ac, av, "-f");
     args->_clientsNb = amber_get_flags(ac, av, "-c");
-    if (args->_port == -1 || args->_width == -1 || args->_height == -1
-        || args->_freq == -1 || args->_clientsNb == -1)
+    if (args->_port == -1 || args->_width <= 0 || args->_height <= 0
+        || args->_clientsNb <= 0)
         return false;
+    args->_freq = args->_freq == -1 ? 100 : args->_freq;
     if (amber_get_team_name(ac, av, args) == false)
         return false;
     return true;

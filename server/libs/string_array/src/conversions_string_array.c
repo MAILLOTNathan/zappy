@@ -7,7 +7,7 @@
 
 #include "string_array.h"
 
-static char *copy_array(char **array, char *str)
+static char *copy_array_separator(char **array, char *str, char sep)
 {
     int len = 0;
 
@@ -16,13 +16,13 @@ static char *copy_array(char **array, char *str)
             str[len] = array[i][j];
             len++;
         }
-        str[len] = array[i + 1] == NULL ? 0 : ' ';
+        str[len] = array[i + 1] == NULL ? 0 : sep;
         len++;
     }
     return str;
 }
 
-char *string_array_to_string(char **array)
+char *string_array_to_string_separator(char **array, char sep)
 {
     int len = 0;
     char *str = NULL;
@@ -36,7 +36,12 @@ char *string_array_to_string(char **array)
         free_string_array(array);
         return NULL;
     }
-    return copy_array(array, str);
+    return copy_array_separator(array, str, sep);
+}
+
+char *string_array_to_string(char **array)
+{
+    return string_array_to_string_separator(array, ' ');
 }
 
 static char *get_string_to_sep(char *string, char sep)
