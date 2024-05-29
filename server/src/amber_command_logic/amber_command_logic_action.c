@@ -148,3 +148,45 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
             world->_height));
     }
 }
+
+static int get_direction_by_pos(amber_client_t *src, int x, int y)
+{
+    int distances[2] = {get_distance(src->_x, x, 10),
+        get_distance(src->_y, y, 10)};
+    int directions[2] = {get_direction(src->_x, x, 10),
+        get_direction(src->_y, y, 10)};
+    bool *perimeter = NULL;
+
+    perimeter = initialize_perimeter(directions);
+    perimeter = precise_perimeter(perimeter, distances);
+    display_perimeter(perimeter);
+    return get_direction_by_perimeter(perimeter, src);
+}
+
+void amber_logic_eject(amber_client_t *client, amber_world_t *world,
+    amber_serv_t *serv)
+{
+    amber_client_t *tmp = NULL;
+    linked_list_t *clients = serv->_clients->nodes;
+    int x = 0;
+    int y = 0;
+
+    for (linked_list_t *node = clients; node; node = node->next) {
+        tmp = (amber_client_t *)node->data;
+        if (tmp->_id == client->_id)
+            continue;
+        if (tmp->_x != client->_x || tmp->_y != client->_y)
+            continue;
+        x = tmp->_x;
+        y = tmp->_y;
+        if (tmp->_direction == UP)
+            tmp->_y = tmp->_y - 1 < 0 ? world->_height - 1 : tmp->_y - 1;
+        if (tmp->_direction == DOWN)
+            tmp->_y = tmp->_y + 1 >= world->_height ? 0 : tmp->_y + 1;
+        if (tmp->_direction == RIGHT)
+            tmp->_x = tmp->_x + 1 >= world->_width ? 0 : tmp->_x + 1;
+        if (tmp->_direction == LEFT)
+            tmp->_x = tmp->_x - 1 < 0 ? world->_width - 1 : tmp->_x - 1;
+        printf("%d\n", get_direction_by_pos(tmp, x, y));
+    }
+}

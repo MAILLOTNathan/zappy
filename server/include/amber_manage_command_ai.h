@@ -113,6 +113,19 @@ void amber_ai_broadcast(amber_client_t *client, char **arg);
  */
 void amber_ai_connect_nbr(amber_client_t *client, UNUSED char **arg);
 
+/**
+ * @brief Ejects the AI client from the server.
+ *
+ * This function is responsible for ejecting the AI client from the server.
+ * It takes a pointer to the `amber_client_t` structure representing
+ * the AI client and an unused array of strings as arguments.
+ *
+ * @param client A pointer to the `amber_client_t` structure representing
+ * the AI client.
+ * @param arg An unused array of strings.
+ */
+void amber_ai_eject(amber_client_t *client, UNUSED char **arg);
+
 extern const ai_command_t ai_commands[];
 
 #endif /* !AMBER_MANAGE_COMMAND_AI_H_ */

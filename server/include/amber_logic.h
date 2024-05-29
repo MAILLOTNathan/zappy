@@ -42,6 +42,9 @@ void amber_logic_inventory(amber_client_t *client, amber_world_t *world,
 void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
     amber_serv_t *serv);
 
+void amber_logic_eject(amber_client_t *client, amber_world_t *world,
+    amber_serv_t *serv);
+
 void amber_logic_loop(amber_serv_t *serv, amber_world_t *world);
 
 #endif /* !AMBER_LOGIC_H_ */

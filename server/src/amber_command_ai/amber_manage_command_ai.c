@@ -7,7 +7,6 @@
 
 #include "amber_manage_command_ai.h"
 
-
 void amber_manage_command_ai(amber_client_t *client, char **arg)
 {
     int i = 0;
@@ -36,5 +35,6 @@ const ai_command_t ai_commands[] = {
     {"Inventory", T_INVENTORY, &amber_ai_inventory},
     {"Connect_nbr", T_CONNECT_NBR, &amber_ai_connect_nbr},
     {"Broadcast", T_BROADCAST, &amber_ai_broadcast},
+    {"Eject", T_EJECT, &amber_ai_eject},
     {NULL, -1, NULL}
 };
