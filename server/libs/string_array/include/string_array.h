@@ -122,13 +122,16 @@ bool contains_string_array(char **array, char *string);
 /**
  * @brief Converts a string array to a single string with a specified separator.
  *
- * This function takes a string array and concatenates all the elements into a single string,
- * using the specified separator between each element. The resulting string is dynamically allocated
+ * This function takes a string array and concatenates all the elements into a
+ * single string,
+ * using the specified separator between each element. The resulting string is
+ * dynamically allocated
  * and should be freed by the caller when no longer needed.
  *
  * @param arr The string array to convert.
  * @param sep The separator to use between elements in the resulting string.
- * @return A dynamically allocated string containing the concatenated elements of the array,
+ * @return A dynamically allocated string containing the concatenated elements
+ * of the array,
  *         separated by the specified separator.
  */
 [[__nodiscard__]] char *string_array_to_string_separator(char **arr, char sep);
