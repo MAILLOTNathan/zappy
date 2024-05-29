@@ -120,7 +120,8 @@ bool contains_string_array(char **array, char *string);
 [[__nodiscard__]] char **string_to_string_array(char *string);
 
 /**
- * @brief Converts a string array to a single string with a specified separator.
+ * @brief Converts a string array to a single string with a specified
+ * separator.
  *
  * This function takes a string array and concatenates all the elements into a
  * single string,

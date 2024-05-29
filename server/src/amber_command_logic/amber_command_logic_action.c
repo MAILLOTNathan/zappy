@@ -171,6 +171,7 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
     int x = 0;
     int y = 0;
 
+    (void) world;
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
         if (tmp->_id == client->_id)
