@@ -37,5 +37,7 @@ const ai_command_t ai_commands[] = {
     {"Broadcast", T_BROADCAST, &amber_ai_broadcast},
     {"Eject", T_EJECT, &amber_ai_eject},
     {"Fork", T_FORK, &amber_ai_fork},
+    {"Take", T_TAKE, &amber_ai_take_object},
+    {"Set", T_SET, &amber_ai_set_object},
     {NULL, -1, NULL}
 };
