@@ -26,6 +26,28 @@ static bool ressource_available(box_t *world_case, box_t *need)
     return true;
 }
 
+static void change_inventory(amber_client_t *client,
+    box_t *ressource, bool mode)
+{
+    if (mode) {
+        client->_inventory->_food += ressource->_food;
+        client->_inventory->_linemate += ressource->_linemate;
+        client->_inventory->_deraumere += ressource->_deraumere;
+        client->_inventory->_sibur += ressource->_sibur;
+        client->_inventory->_mendiane += ressource->_mendiane;
+        client->_inventory->_phiras += ressource->_phiras;
+        client->_inventory->_thystame += ressource->_thystame;
+    } else {
+        client->_inventory->_food -= ressource->_food;
+        client->_inventory->_linemate -= ressource->_linemate;
+        client->_inventory->_deraumere -= ressource->_deraumere;
+        client->_inventory->_sibur -= ressource->_sibur;
+        client->_inventory->_mendiane -= ressource->_mendiane;
+        client->_inventory->_phiras -= ressource->_phiras;
+        client->_inventory->_thystame -= ressource->_thystame;
+    }
+}
+
 static bool take_ressource(amber_client_t *cli, amber_world_t *world,
     box_t *need)
 {
@@ -69,28 +91,6 @@ static box_t *get_ressource_needed(char *request)
     if (strcmp(request, "thystame") == 0)
         ressource_needed->_thystame = 1;
     return ressource_needed;
-}
-
-static void change_inventory(amber_client_t *client,
-    box_t *ressource, bool mode)
-{
-    if (mode) {
-        client->_inventory->_food += ressource->_food;
-        client->_inventory->_linemate += ressource->_linemate;
-        client->_inventory->_deraumere += ressource->_deraumere;
-        client->_inventory->_sibur += ressource->_sibur;
-        client->_inventory->_mendiane += ressource->_mendiane;
-        client->_inventory->_phiras += ressource->_phiras;
-        client->_inventory->_thystame += ressource->_thystame;
-    } else {
-        client->_inventory->_food -= ressource->_food;
-        client->_inventory->_linemate -= ressource->_linemate;
-        client->_inventory->_deraumere -= ressource->_deraumere;
-        client->_inventory->_sibur -= ressource->_sibur;
-        client->_inventory->_mendiane -= ressource->_mendiane;
-        client->_inventory->_phiras -= ressource->_phiras;
-        client->_inventory->_thystame -= ressource->_thystame;
-    }
 }
 
 void amber_logic_take(amber_client_t *client, amber_world_t *world,

@@ -263,4 +263,20 @@ void amber_logic_take(amber_client_t *client, amber_world_t *world,
 void amber_logic_set(amber_client_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
+/**
+ * @brief Executes the incantation logic for a client in the Zappy server.
+ *
+ * This function is responsible for handling the incantation logic for a
+ * specific client
+ * in the Zappy server. It takes a pointer to the client structure, a pointer
+ * to the world
+ * structure, and a pointer to the server structure as arguments.
+ *
+ * @param client A pointer to the client structure.
+ * @param world A pointer to the world structure.
+ * @param serv A pointer to the server structure (UNUSED).
+ */
+void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
+    amber_serv_t *serv);
+
 #endif /* !AMBER_LOGIC_H_ */
