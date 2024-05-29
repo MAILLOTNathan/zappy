@@ -8,7 +8,8 @@ import numpy as np
 import random
 from collections import deque
 import time
-import pickle  # For saving and loading replay memory
+import pickle
+import os
 
 def help_message():
     print("USAGE: ./zappy_ai -p port -n name -h machine")
@@ -34,11 +35,9 @@ def check_args(TuringAI):
         help_message()
 
 def parse_look(response):
-    response = response.strip('[]').replace(',,', ',')
-    tiles = [tile.strip() for tile in response.split(',')]
-    food_counts = [tile.count('food') for tile in tiles]
-    max_index = food_counts.index(max(food_counts))
-    return max_index
+    response = response.strip('[]').strip()
+    tiles = [tile.strip() for tile in response.split(',') if tile.strip()]
+    return tiles
 
 def find_path(direction, conn, object):
     if direction == 0:
@@ -90,7 +89,7 @@ def find_path(direction, conn, object):
 class DQN(nn.Module):
     def __init__(self, input_size, output_size):
         super(DQN, self).__init__()
-        self.fc1 = nn.Linear(11, 128)
+        self.fc1 = nn.Linear(input_size, 128)
         self.fc2 = nn.Linear(128, 128)
         self.fc3 = nn.Linear(128, output_size)
 
@@ -115,33 +114,20 @@ class ReplayMemory:
         return len(self.memory)
 
 class TuringAI:
-    debug = False
-    port = None
-    team_name = ""
-    host = "localhost"
-    command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take", "Set", "Incantation"]
-
-    level_requirements = {
-        1: {"players": 1, "linemate": 1, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0},
-        2: {"players": 2, "linemate": 1, "deraumere": 1, "sibur": 1, "mendiane": 0, "phiras": 0, "thystame": 0},
-        3: {"players": 2, "linemate": 2, "deraumere": 0, "sibur": 1, "mendiane": 0, "phiras": 2, "thystame": 0},
-        4: {"players": 4, "linemate": 1, "deraumere": 1, "sibur": 2, "mendiane": 0, "phiras": 1, "thystame": 0},
-        5: {"players": 4, "linemate": 1, "deraumere": 2, "sibur": 1, "mendiane": 3, "phiras": 0, "thystame": 0},
-        6: {"players": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
-        7: {"players": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
-    }
-
     def __init__(self):
         self.debug = False
         self.port = None
         self.team_name = ""
         self.host = "localhost"
-        self.command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take", "Set", "Incantation"]
+        self.command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take food", "Set", "Incantation"]
         self.inventory = {"food": 0, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.level = 1
 
-        self.state_size = 16
-        self.action_size = 12
+        look_response_example = '[ player, food linemate mendiane, mendiane, food ]'
+        state_example = self.compute_state_size(look_response_example, self.inventory)
+        self.state_size = len(state_example)
+        self.action_size = len(self.command)
+        
         self.memory = ReplayMemory(10000)
         self.model = DQN(self.state_size, self.action_size)
         self.target_model = DQN(self.state_size, self.action_size)
@@ -152,17 +138,13 @@ class TuringAI:
         self.epsilon_min = 0.1
         self.epsilon_decay = 0.995
 
-        # Load model weights if they exist
         try:
             self.model.load_state_dict(torch.load("model_weights.pth"))
             self.target_model.load_state_dict(torch.load("model_weights.pth"))
-            self.model.eval()
-            self.target_model.eval()
             print("Loaded saved model weights.")
         except FileNotFoundError:
             print("No saved model weights found. Starting from scratch.")
 
-        # Load replay memory if it exists
         try:
             with open("replay_memory.pkl", "rb") as f:
                 self.memory = pickle.load(f)
@@ -181,34 +163,51 @@ class TuringAI:
             return
         transitions = self.memory.sample(batch_size)
         batch = list(zip(*transitions))
-
+    
         states = torch.FloatTensor(batch[0])
         actions = torch.LongTensor(batch[1])
         rewards = torch.FloatTensor(batch[2])
         next_states = torch.FloatTensor(batch[3])
         dones = torch.FloatTensor(batch[4])
-
+    
+        assert states.shape[1] == self.state_size, f"State size mismatch in training: expected {self.state_size}, got {states.shape[1]}"
+    
         q_values = self.model(states).gather(1, actions.unsqueeze(1)).squeeze(1)
         next_q_values = self.target_model(next_states).max(1)[0]
         target_q_values = rewards + self.gamma * next_q_values * (1 - dones)
-
+    
         loss = self.criterion(q_values, target_q_values)
-
+    
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
-
+    
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
 
     def update_target_model(self):
         self.target_model.load_state_dict(self.model.state_dict())
 
-    def get_state(self, response):
-        tiles = response.strip('[]').split(',')
-        state = [tile.count('food') for tile in tiles]
-        state.extend(self.inventory.values())
+    def get_state(self, look_response, inventory):
+        tiles = parse_look(look_response)
+        food_counts = [tile.count('food') for tile in tiles]
+        state = food_counts + list(inventory.values()) + [self.level]
+        
+        # Debug information
+        print(f"Look response: {look_response}")
+        print(f"Parsed tiles: {tiles}")
+        print(f"Inventory: {inventory}")
+        print(f"Generated state: {state}")
+        print(f"Expected state size: {self.state_size}, Actual state size: {len(state)}")
+        
+        assert len(state) == self.state_size, f"State size mismatch: expected {self.state_size}, got {len(state)}"
         return np.array(state, dtype=np.float32)
+
+    def compute_state_size(self, look_response, inventory):
+        tiles = parse_look(look_response)
+        food_counts = [tile.count('food') for tile in tiles]
+        state = food_counts + list(inventory.values()) + [self.level]
+        return state
 
     def check_level_up(self):
         requirements = self.level_requirements[self.level]
@@ -220,12 +219,27 @@ class TuringAI:
         return True
 
     def save_progress(self):
-        # Save model weights
         torch.save(self.model.state_dict(), "model_weights.pth")
-        # Save replay memory
         with open("replay_memory.pkl", "wb") as f:
             pickle.dump(self.memory, f)
         print("Progress saved.")
+
+def compute_reward(action, result, ai):
+    if result == "dead":
+        return -100  # Large negative reward for dying
+    if action == 3:  # "Look" action
+        return 0
+    if "Take" in result:  # Successfully taking an item
+        if "food" in result:
+            return 10  # Reward for taking food
+        else:
+            return 5  # Reward for taking other items
+    if "Incantation" in result and "Elevation underway" in result:
+        return 50  # Reward for starting incantation
+    if "current level" in result:
+        return 100 * ai.level  # Reward for leveling up
+    return -1  # Small negative reward for other actions to encourage meaningful actions
+
 
 def parse_inventory(response):
     items = response.strip('{}').split(',')
@@ -236,58 +250,29 @@ def parse_inventory(response):
     return inventory
 
 def basic_ia(conn, ai):
-    start_time = time.time()
-    reward = 0
-    state = ai.get_state(conn.send_request("Look").decode())
-    while ai.level < 3:
+    state = ai.get_state(conn.send_request("Look").decode(), ai.inventory)
+    done = False
+    while not done and ai.level < 8:
         action = ai.select_action(state)
-        if action == 0:
-            res = conn.send_request("Forward")
-            if res == "dead":
-                break
-        elif action == 1:
-            res = conn.send_request("Right")
-            if res == "dead":
-                break
-        elif action == 2:
-            res = conn.send_request("Left")
-            if res == "dead":
-                break
-        elif 3 <= action < 10:
-            item = list(ai.inventory.keys())[action - 3]
-            res = conn.send_request(f"Take {item}")
-            if res == "dead":
-                break
-        elif action == 11:
-            if ai.check_level_up():
-                res = conn.send_request("Incantation")
-                if res == "dead":
-                    break
-                ai.level += 1  # Increment level after successful incantation
-                reward = 10  # Reward for leveling up
-            else:
-                reward = 0
+        if action == 3:  # Look
+            response = conn.send_request("Look")
+            direction = parse_look(response.decode())
+            find_path(direction, conn, "food")
+            result = response.decode()
         else:
-            reward = 1 / (time.time() - start_time)  # Default survival reward
+            command = ai.command[action]
+            result = conn.send_request(command).decode()
 
-        try :
-            next_state = ai.get_state(conn.send_request("Look").decode())
-        except:
-            break
-        done = False
+        reward = compute_reward(action, result, ai)
+        next_state = ai.get_state(conn.send_request("Look").decode(), ai.inventory)
+        done = "dead" in result
 
         ai.memory.push((state, action, reward, next_state, done))
         state = next_state
 
         ai.train_step(32)
-
-        if done:
-            state = ai.get_state(conn.send_request("Look").decode())
-
         ai.update_target_model()
 
-    print(ai.level)
-    ai.save_progress()
 
 def main():
     ai = TuringAI()
