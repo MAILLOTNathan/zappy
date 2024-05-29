@@ -133,6 +133,9 @@ void amber_logic_inventory(amber_client_t *client,
 void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
     amber_serv_t *serv);
 
+void amber_logic_eject(amber_client_t *client, amber_world_t *world,
+    amber_serv_t *serv);
+
 /**
  * @brief The main logic loop for the server.
  *

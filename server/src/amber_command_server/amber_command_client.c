@@ -19,13 +19,13 @@ static void display_client_graphic(linked_list_t *client_graphical)
 
 static char *get_direction(int direction)
 {
-    if (direction == 0)
+    if (direction == UP)
         return "UP";
-    if (direction == 1)
+    if (direction == RIGHT)
         return "RIGHT";
-    if (direction == 2)
+    if (direction == DOWN)
         return "DOWN";
-    if (direction == 3)
+    if (direction == LEFT)
         return "LEFT";
     return "UNKNOWN";
 }

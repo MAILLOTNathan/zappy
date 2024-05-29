@@ -33,9 +33,9 @@
  */
 typedef enum direction_s {
     UP = 1,     /**< Up direction */
-    RIGHT = 2,  /**< Right direction */
-    DOWN = 3,   /**< Down direction */
-    LEFT = 4    /**< Left direction */
+    RIGHT,  /**< Right direction */
+    DOWN,   /**< Down direction */
+    LEFT    /**< Left direction */
 } direction_t;
 
 #endif /* !COMMONDEFINES_H_ */

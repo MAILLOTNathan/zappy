@@ -117,5 +117,6 @@ const logic_command_t logic_commands[] = {
     {T_LOOK, &amber_logic_look},
     {T_INVENTORY, &amber_logic_inventory},
     {T_BROADCAST, &amber_logic_broadcast},
+    {T_EJECT, &amber_logic_eject},
     {-1, NULL}
 };
