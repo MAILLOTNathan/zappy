@@ -27,5 +27,6 @@ void amber_manage_command(amber_serv_t *server, amber_world_t *world,
 const amber_command_server_t command_serv[] = {
     {"/clients", &amber_serv_clients},
     {"/map", &amber_serv_map},
+    {"/tp", &amber_serv_tp},
     {NULL, NULL}
 };

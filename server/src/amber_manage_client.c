@@ -134,7 +134,6 @@ amber_client_t *amber_get_client_by_id(list_t *clients, int id)
     linked_list_t *tmp = clients->nodes;
 
     while (tmp) {
-        printf("ID: %d\n", ((amber_client_t *)tmp->data)->_id);
         if (((amber_client_t *)tmp->data)->_id == id)
             return (amber_client_t *)tmp->data;
         tmp = tmp->next;
