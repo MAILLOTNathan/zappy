@@ -202,4 +202,26 @@ int get_direction_by_perimeter(bool *perimeter, amber_client_t *client);
  */
 bool *precise_perimeter(bool *perim, int *distances);
 
+/**
+ * Takes an object from the Amber world to the client.
+ *
+ *
+ * @param client The client performing the action.
+ * @param world The world in which the action is being performed.
+ * @param serv The server on which the action is being performed.
+ */
+void amber_logic_take(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv);
+
+/**
+ * Set an object from the inventory to the world.
+ *
+ *
+ * @param client The Amber client to set the object.
+ * @param world The Amber world information.
+ * @param serv The Amber server information (unused).
+ */
+void amber_logic_set(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv);
+
 #endif /* !AMBER_LOGIC_H_ */
