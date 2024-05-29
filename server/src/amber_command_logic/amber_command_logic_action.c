@@ -179,14 +179,6 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
             continue;
         x = tmp->_x;
         y = tmp->_y;
-        if (tmp->_direction == UP)
-            tmp->_y = tmp->_y - 1 < 0 ? world->_height - 1 : tmp->_y - 1;
-        if (tmp->_direction == DOWN)
-            tmp->_y = tmp->_y + 1 >= world->_height ? 0 : tmp->_y + 1;
-        if (tmp->_direction == RIGHT)
-            tmp->_x = tmp->_x + 1 >= world->_width ? 0 : tmp->_x + 1;
-        if (tmp->_direction == LEFT)
-            tmp->_x = tmp->_x - 1 < 0 ? world->_width - 1 : tmp->_x - 1;
         printf("%d\n", get_direction_by_pos(tmp, x, y));
     }
 }
