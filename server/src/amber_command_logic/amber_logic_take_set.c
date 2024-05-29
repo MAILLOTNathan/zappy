@@ -55,19 +55,19 @@ static bool take_ressource(amber_client_t *cli, amber_world_t *world,
 
     if (!ressource_available(copy, need))
         return false;
-    world->_case[cli->_y][cli->_x]._food -= copy->_food >= need->_food ? 1 : 0;
+    world->_case[cli->_y][cli->_x]._food -= copy->_food >= 1 ? need->_food : 0;
     world->_case[cli->_y][cli->_x]._linemate -=
-        copy->_linemate >= need->_linemate ? 1 : 0;
+        copy->_linemate >= 1 ? need->_linemate : 0;
     world->_case[cli->_y][cli->_x]._deraumere -=
-        copy->_deraumere >= need->_deraumere ? 1 : 0;
+        copy->_deraumere >= 1 ? need->_deraumere : 0;
     world->_case[cli->_y][cli->_x]._sibur -=
-        copy->_sibur >= need->_sibur ? 1 : 0;
+        copy->_sibur >= 1 ? need->_sibur : 0;
     world->_case[cli->_y][cli->_x]._mendiane -=
-        copy->_mendiane >= need->_mendiane ? 1 : 0;
+        copy->_mendiane >= 1 ? need->_mendiane : 0;
     world->_case[cli->_y][cli->_x]._phiras -=
-        copy->_phiras >= need->_phiras ? 1 : 0;
+        copy->_phiras >= 1 ? need->_phiras : 0;
     world->_case[cli->_y][cli->_x]._thystame -=
-        copy->_thystame >= need->_thystame ? 1 : 0;
+        copy->_thystame >= 1 ? need->_thystame : 0;
     change_inventory(cli, need, true);
     return true;
 }
