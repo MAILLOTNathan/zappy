@@ -26,7 +26,7 @@ static char **amber_look_up(amber_client_t *client, amber_world_t *world)
     char **result = NULL;
 
     for (int i = client->_level; i > 0; i--) {
-        y = clamp(0, start_y + offset, world->_height);
+        y = clamp(0, start_y - offset, world->_height);
         y = y == world->_height ? 0 : y;
         for (int j = 0; i * 2 + 1 > j; j++) {
             x = clamp(0, start_x - j, world->_width);
@@ -90,7 +90,7 @@ static char **amber_look_down(amber_client_t *client, amber_world_t *world)
 
 static char **amber_look_right(amber_client_t *client, amber_world_t *world)
 {
-    int start_y = clamp(0, client->_y - client->_level, world->_height);
+    int start_y = clamp(0, client->_y + client->_level, world->_height);
     int start_x = clamp(0, client->_x + client->_level, world->_width);
     int offset = 0;
     int x = 0;

@@ -22,6 +22,7 @@ static void *init_client_ai(amber_client_t *client, egg_t *egg)
     client->_inventory = amber_world_case_init();
     client->_inventory->_food = 10;
     client->_elapsed_time = 0;
+    client->_is_incantating = false;
     return client;
 }
 
@@ -61,8 +62,8 @@ static bool cmp(void *data, void *data_ref)
     return (data == data_ref);
 }
 
-static void choose_handler(UNUSED amber_serv_t *server, amber_client_t *client,
-    char *cmd)
+static void choose_handler(amber_world_t *world, amber_serv_t *server,
+    amber_client_t *client, char *cmd)
 {
     char **arg = string_to_string_array(cmd);
 
@@ -71,12 +72,12 @@ static void choose_handler(UNUSED amber_serv_t *server, amber_client_t *client,
     if (client->_is_graphical)
         amber_manage_command_grahical(client, arg);
     else
-        amber_manage_command_ai(client, arg);
+        amber_manage_command_ai(world, server, client, arg);
     free_string_array(arg);
 }
 
-static void eval_command(amber_serv_t *server, amber_client_t *client,
-    char *buffer)
+static void eval_command(amber_world_t *world, amber_serv_t *server,
+    amber_client_t *client, char *buffer)
 {
     char *match = NULL;
     char *cmd = NULL;
@@ -95,13 +96,13 @@ static void eval_command(amber_serv_t *server, amber_client_t *client,
         cmd = strndup(client->_buffer, match - client->_buffer);
         memmove(client->_buffer, match + 1, strlen(match));
         client->_buffer[strlen(client->_buffer)] = '\0';
-        choose_handler(server, client, cmd);
+        choose_handler(world, server, client, cmd);
         free(cmd);
     } while (match);
 }
 
-void amber_manage_client_read(amber_serv_t *server, amber_client_t *client,
-    list_t *clients)
+void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
+    amber_client_t *client, list_t *clients)
 {
     char buffer[1024] = {0};
     int valread = read(client->_tcp._fd, buffer, 1024);
@@ -113,7 +114,7 @@ void amber_manage_client_read(amber_serv_t *server, amber_client_t *client,
         fflush(stdout);
         return;
     }
-    eval_command(server, client, buffer);
+    eval_command(world, server, client, buffer);
 }
 
 int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team)

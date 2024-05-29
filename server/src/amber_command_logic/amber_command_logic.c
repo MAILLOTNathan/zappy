@@ -54,17 +54,19 @@ static amber_client_t *get_shortest_client_command(linked_list_t *clients)
     amber_client_t *shortest = NULL;
     int s_time = 0;
     int c_time = 0;
+    amber_client_t *client = NULL;
 
     for (linked_list_t *tmp = clients; tmp; tmp = tmp->next) {
-        if (((amber_client_t *)tmp->data)->_queue_command == NULL)
+        client = (amber_client_t *)tmp->data;
+        if (client->_queue_command == NULL)
             continue;
-        if (((amber_client_t *)tmp->data)->_queue_command->_command == NULL)
+        if (client->_queue_command->_command->_id != T_INCANTATION &&
+            client->_is_incantating)
             continue;
-        update_time(((amber_client_t *)tmp->data));
-        c_time = ((amber_client_t *)tmp->data)
-        ->_queue_command->_command->_time;
+        update_time(client);
+        c_time = client->_queue_command->_command->_time;
         if (c_time <= s_time || s_time == 0) {
-            shortest = ((amber_client_t *)tmp->data);
+            shortest = client;
             s_time = c_time;
         }
     }
@@ -122,5 +124,6 @@ const logic_command_t logic_commands[] = {
     {T_CONNECT_NBR, &amber_logic_connect_nbr},
     {T_TAKE, &amber_logic_take},
     {T_SET, &amber_logic_set},
+    {T_INCANTATION, &amber_logic_incantation},
     {-1, NULL}
 };

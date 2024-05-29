@@ -106,7 +106,8 @@ static void amber_accept_client(amber_serv_t *server, amber_world_t *world)
     add_client(server, new_fd, team_name, world);
 }
 
-void amber_manage_client(amber_serv_t *server, list_t *clients)
+void amber_manage_client(amber_world_t *world, amber_serv_t *server,
+    list_t *clients)
 {
     linked_list_t *node = clients->nodes;
     linked_list_t *ref = clients->nodes;
@@ -117,7 +118,7 @@ void amber_manage_client(amber_serv_t *server, list_t *clients)
         client = CAST(amber_client_t *, node->data);
         ref = node->next;
         if (FD_ISSET(client->_tcp._fd, &server->_readfds))
-            amber_manage_client_read(server, client, clients);
+            amber_manage_client_read(world, server, client, clients);
         node = ref;
     }
 }
@@ -139,8 +140,8 @@ void amber_listening(amber_serv_t *server, amber_world_t *world)
         amber_waiting_select(server);
         if (FD_ISSET(server->_tcp._fd, &server->_readfds))
             amber_accept_client(server, world);
-        amber_manage_client(server, server->_clients);
-        amber_manage_client(server, server->_graphic_clients);
+        amber_manage_client(world, server, server->_clients);
+        amber_manage_client(world, server, server->_graphic_clients);
         amber_graphic_loop(server, world);
         if (FD_ISSET(0, &server->_readfds))
             amber_manage_server_command(server, world);

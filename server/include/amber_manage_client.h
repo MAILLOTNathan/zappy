@@ -49,8 +49,8 @@ void amber_destroy_client(void *client);
  * @param client A pointer to the client structure.
  * @param clients A pointer to the list of clients.
  */
-void amber_manage_client_read(amber_serv_t *server, amber_client_t *client,
-    list_t *clients);
+void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
+    amber_client_t *client, list_t *clients);
 
 /**
  * @brief Retrieves the number of clients belonging to a specific team

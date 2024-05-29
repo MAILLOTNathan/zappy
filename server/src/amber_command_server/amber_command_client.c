@@ -40,9 +40,9 @@ void amber_serv_clients(amber_serv_t *server, UNUSED amber_world_t *world,
     while (tmp) {
         client = (amber_client_t *)tmp->data;
         printf("================USER AI================\n");
-        printf("Client ID: %d | Team: %s | Position: %d %d | Level: %d | ",
-            client->_id, client->_team_name, client->_x,
-            client->_y, client->_level);
+        printf("Client ID: %d | Team: %s | Position: y=%d x=%d | Level: %d | ",
+            client->_id, client->_team_name, client->_y,
+            client->_x, client->_level);
         printf("Direction: %s\n", get_direction(client->_direction));
         printf(INVENTORY, client->_inventory->_food,
             client->_inventory->_linemate, client->_inventory->_deraumere,

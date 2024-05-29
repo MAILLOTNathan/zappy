@@ -7,7 +7,7 @@
 
 #include "amber_logic.h"
 
-const box_t *elevation_needs[] = {
+static const box_t *elevation_needs[] = {
     &(box_t){._players = 1, ._linemate = 1, ._deraumere = 0, ._sibur = 0,
         ._mendiane = 0, ._phiras = 0, ._thystame = 0},
     &(box_t){._players = 2, ._linemate = 1, ._deraumere = 1, ._sibur = 1,
@@ -26,8 +26,6 @@ const box_t *elevation_needs[] = {
 
 static bool ressource_available(box_t *world_case, const box_t *need)
 {
-    if (world_case->_players < need->_players)
-        return false;
     if (world_case->_food < need->_food)
         return false;
     if (world_case->_linemate < need->_linemate)
@@ -45,6 +43,23 @@ static bool ressource_available(box_t *world_case, const box_t *need)
     return true;
 }
 
+static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
+    int need_players)
+{
+    linked_list_t *clients = serv->_clients->nodes;
+    amber_client_t *tmp = NULL;
+    int count = 0;
+
+    for (linked_list_t *node = clients; node; node = node->next) {
+        tmp = (amber_client_t *)node->data;
+        if (tmp->_level != client->_level)
+            continue;
+        if (tmp->_x == client->_x && tmp->_y == client->_y)
+            count++;
+    }
+    return count >= need_players;
+}
+
 static void level_up_players(amber_client_t *client, amber_serv_t *server)
 {
     linked_list_t *clients = server->_clients->nodes;
@@ -59,10 +74,12 @@ static void level_up_players(amber_client_t *client, amber_serv_t *server)
             dprintf(tmp->_tcp._fd, "Elevation underway\nCurrent level: %d\n",
                 tmp->_level);
         }
+        tmp->_is_incantating = false;
     }
     client->_level++;
     dprintf(client->_tcp._fd, "Elevation underway\nCurrent level: %d\n",
         client->_level);
+    client->_is_incantating = false;
 }
 
 void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
@@ -72,6 +89,10 @@ void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
 
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
+        dprintf(client->_tcp._fd, "ko\n");
+        return;
+    }
+    if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
         dprintf(client->_tcp._fd, "ko\n");
         return;
     }

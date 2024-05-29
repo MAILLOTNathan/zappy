@@ -42,13 +42,16 @@ void amber_check_client_alive(amber_serv_t *server, amber_world_t *world)
     for (int i = 0; i < len; i++) {
         client = CAST(amber_client_t *, node->data);
         ref = node->next;
+        if (client->_is_incantating) {
+            node = ref;
+            continue;
+        }
         client->_inventory->_food--;
         if (client->_inventory->_food < 0) {
             dprintf(client->_tcp._fd, "dead\n");
             remove_node(&server->_clients, node, true);
-        } else {
+        } else
             world->_food_info._c_value--;
-        }
         node = ref;
     }
 }
