@@ -101,7 +101,7 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
         tmp->_queue_command->_command->_time : 0;
         if (world->_clock <= tmp->_queue_command->_command->_time) {
             usleep((world->_clock * 1000000) / world->_freq);
-            amber_check_client_alive(serv);
+            amber_check_client_alive(serv, world);
             amber_refill_world(world);
             remove_waiting_clock(serv->_clients->nodes, world);
             continue;

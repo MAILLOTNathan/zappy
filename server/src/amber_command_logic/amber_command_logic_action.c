@@ -58,8 +58,7 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
             continue;
         update_client_pos(client->_direction, tmp, world);
         if (client->_direction == UP || client->_direction == DOWN) {
-            dir = concave[tmp->_direction - 1]
-            [invert(client->_direction - 1) + 1];
+            dir = concave[tmp->_direction - 1][(invert(client->_direction) - 1)* 2];
         } else
             dir = concave[tmp->_direction - 1][(client->_direction - 1) * 2];
         dprintf(tmp->_tcp._fd, "eject: %d\n", dir);

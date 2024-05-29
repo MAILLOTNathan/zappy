@@ -32,7 +32,7 @@ void send_client_message(amber_client_t *client, const char *message)
     dprintf(client->_tcp._fd, "%s\n", message);
 }
 
-void amber_check_client_alive(amber_serv_t *server)
+void amber_check_client_alive(amber_serv_t *server, amber_world_t *world)
 {
     linked_list_t *node = server->_clients->nodes;
     linked_list_t *ref = server->_clients->nodes;
@@ -46,6 +46,8 @@ void amber_check_client_alive(amber_serv_t *server)
         if (client->_inventory->_food < 0) {
             dprintf(client->_tcp._fd, "dead\n");
             remove_node(&server->_clients, node, true);
+        } else {
+            world->_food_info._c_value--;
         }
         node = ref;
     }

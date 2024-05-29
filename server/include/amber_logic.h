@@ -62,8 +62,9 @@ int real_clamp(int min, int current, int max);
  * @brief Checks if a client is still alive and disconnects it if not.
  *
  * @param server The server instance.
+ * @param world The world instance.
  */
-void amber_check_client_alive(amber_serv_t *server);
+void amber_check_client_alive(amber_serv_t *server, amber_world_t *world);
 
 /**
  * @brief Sends a message to a client.
