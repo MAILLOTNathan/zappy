@@ -15,6 +15,7 @@ static void init_pair(pair_t *pair, int width, int height, double density)
 
 static void init_info_world(amber_world_t *world)
 {
+    world->_clock = 20;
     init_pair(&world->_food_info, world->_width, world->_height,
     FOOD_DENSITY);
     init_pair(&world->_linemate_info, world->_width, world->_height,
@@ -35,6 +36,7 @@ static void init_info_world(amber_world_t *world)
 amber_world_t *amber_create_world(args_t *arg)
 {
     amber_world_t *world = calloc(1, sizeof(amber_world_t));
+    int i = 0;
 
     if (!world)
         return NULL;
@@ -42,16 +44,16 @@ amber_world_t *amber_create_world(args_t *arg)
     world->_height = arg->_height;
     world->_freq = arg->_freq;
     world->_clientsNb = arg->_clientsNb;
-    world->_clock = 20;
     world->_case = calloc(arg->_height, sizeof(box_t *));
     world->_teams_name = arg->_teams;
     for (int i = 0; i < arg->_height; i++)
         world->_case[i] = calloc(arg->_width, sizeof(box_t));
     init_info_world(world);
     world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
-    for (int i = 0; arg->_teams[i]; i++)
+    for (i = 0; arg->_teams[i]; i++)
         push_back_list(world->_eggs, world, RAND(arg->_width),
         RAND(arg->_height), arg->_teams[i], i);
+    world->_last_egg_id = i;
     return world;
 }
 

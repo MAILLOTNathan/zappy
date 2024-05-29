@@ -20,3 +20,8 @@ void amber_ai_eject(amber_client_t *client, UNUSED char **arg)
 {
     queue_push_back_d(&client->_queue_command, NULL, 7, T_EJECT);
 }
+
+void amber_ai_fork(amber_client_t *client, UNUSED char **arg)
+{
+    queue_push_back_d(&client->_queue_command, NULL, 42, T_FORK);
+}

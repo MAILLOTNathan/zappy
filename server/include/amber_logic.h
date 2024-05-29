@@ -134,8 +134,46 @@ void amber_logic_inventory(amber_client_t *client,
 void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
     amber_serv_t *serv);
 
+/**
+ * Ejects the client from the world in the Zappy server.
+ *
+ * @param client The client to eject.
+ * @param world The world in which the client is located.
+ * @param serv The server instance.
+ */
 void amber_logic_eject(amber_client_t *client, amber_world_t *world,
     amber_serv_t *serv);
+
+/**
+ * Forks the logic for the given client in the world.
+ *
+ * @param client The client to fork the logic for.
+ * @param world The world in which the client exists.
+ * @param serv The server instance.
+ */
+void amber_logic_fork(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv);
+
+/**
+ * Connects the given client to the world.
+ *
+ * This function is responsible for establishing a connection between
+ * the client and the world.
+ * It takes a pointer to the `amber_client_t` structure representing the
+ * client and a pointer to
+ * the `amber_world_t` structure representing the world. The `amber_serv_t`
+ * structure is not used
+ * in this function and is marked as `UNUSED`.
+ *
+ * @param client A pointer to the `amber_client_t` structure representing
+ * the client.
+ * @param world A pointer to the `amber_world_t` structure representing
+ * the world.
+ * @param serv A pointer to the `amber_serv_t` structure representing
+ * the server (UNUSED).
+ */
+void amber_logic_connect_nbr(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv);
 
 /**
  * @brief The main logic loop for the server.

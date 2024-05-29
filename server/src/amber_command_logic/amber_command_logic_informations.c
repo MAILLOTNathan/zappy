@@ -146,3 +146,19 @@ void amber_logic_inventory(amber_client_t *client, UNUSED amber_world_t *world,
     inv->_deraumere, inv->_sibur, inv->_mendiane,
     inv->_phiras, inv->_thystame);
 }
+
+void amber_logic_connect_nbr(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv)
+{
+    int count = 0;
+    amber_client_t *tmp = NULL;
+
+    for (linked_list_t *node = serv->_clients->nodes; node;
+        node = node->next) {
+        tmp = (amber_client_t *)node->data;
+        if (tmp->_team_name &&
+            strcmp(tmp->_team_name, client->_team_name) == 0)
+            count++;
+    }
+    dprintf(client->_tcp._fd, "%d\n", world->_clientsNb - count);
+}

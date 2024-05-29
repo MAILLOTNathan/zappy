@@ -118,5 +118,7 @@ const logic_command_t logic_commands[] = {
     {T_INVENTORY, &amber_logic_inventory},
     {T_BROADCAST, &amber_logic_broadcast},
     {T_EJECT, &amber_logic_eject},
+    {T_FORK, &amber_logic_fork},
+    {T_CONNECT_NBR, &amber_logic_connect_nbr},
     {-1, NULL}
 };

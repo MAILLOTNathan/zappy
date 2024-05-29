@@ -58,9 +58,19 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
             continue;
         update_client_pos(client->_direction, tmp, world);
         if (client->_direction == UP || client->_direction == DOWN) {
-            dir = concave[tmp->_direction - 1][(invert(client->_direction) - 1)* 2];
+            dir = concave[tmp->_direction - 1]
+            [(invert(client->_direction) - 1)* 2];
         } else
             dir = concave[tmp->_direction - 1][(client->_direction - 1) * 2];
         dprintf(tmp->_tcp._fd, "eject: %d\n", dir);
     }
+}
+
+void amber_logic_fork(amber_client_t *client, amber_world_t *world,
+    UNUSED amber_serv_t *serv)
+{
+    push_back_list(world->_eggs, world, client->_x, client->_y,
+        client->_team_name, world->_last_egg_id);
+    world->_last_egg_id++;
+    dprintf(client->_tcp._fd, "ok\n");
 }

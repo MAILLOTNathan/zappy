@@ -125,6 +125,14 @@ void amber_ai_broadcast(amber_client_t *client, char **arg);
 void amber_ai_connect_nbr(amber_client_t *client, UNUSED char **arg);
 
 /**
+ * Forks a new AI process for the given client.
+ *
+ * @param client The client for which to fork a new AI process.
+ * @param arg Unused argument.
+ */
+void amber_ai_fork(amber_client_t *client, UNUSED char **arg);
+
+/**
  * @brief Ejects the AI client from the server.
  *
  * This function is responsible for ejecting the AI client from the server.

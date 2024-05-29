@@ -36,5 +36,6 @@ const ai_command_t ai_commands[] = {
     {"Connect_nbr", T_CONNECT_NBR, &amber_ai_connect_nbr},
     {"Broadcast", T_BROADCAST, &amber_ai_broadcast},
     {"Eject", T_EJECT, &amber_ai_eject},
+    {"Fork", T_FORK, &amber_ai_fork},
     {NULL, -1, NULL}
 };
