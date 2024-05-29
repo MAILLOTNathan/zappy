@@ -14,13 +14,30 @@
 #include <memory>
 
 namespace Onyx {
+    /**
+     * @class Entity
+     * @brief Represents an entity in the game.
+     *
+     * This class provides a base for all entities in the game. It contains common
+     * attributes and methods that are shared among different types of entities.
+     */
     class Entity {
         public:
+            /**
+             * @brief Default destructor.
+             */
             ~Entity() = default;
 
-            virtual void update(EGE::Shader& shader);
+            /**
+             * @brief Updates the entity.
+             *
+             * This method is called to update the entity's state.
+             *
+             * @param shader The shader used for rendering the entity.
+             */
+            virtual void update(std::shared_ptr<EGE::Shader> shader);
         protected:
-            std::shared_ptr<EGE::Model> _model;
-            EGE::Maths::Vector3<float> _position;
+            std::shared_ptr<EGE::Model> _model; /**< The model used for rendering the entity. */
+            EGE::Maths::Vector3<float> _position; /**< The position of the entity in 3D space. */
     };
 }

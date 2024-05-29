@@ -15,3 +15,15 @@ Onyx::Map::Map(const EGE::Maths::Vector2<int>& size)
         }
     }
 }
+
+Onyx::Map::~Map()
+{
+}
+
+void Onyx::Map::update(std::shared_ptr<EGE::Shader> shader)
+{
+    shader->use();
+    for (auto& floor : this->_floor) {
+        floor->update(shader);
+    }
+}

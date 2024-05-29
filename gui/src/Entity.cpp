@@ -7,6 +7,6 @@
 
 #include "Entity.hpp"
 
-void Onyx::Entity::update(EGE::Shader& shader)
+void Onyx::Entity::update(std::shared_ptr<EGE::Shader> shader)
 {
 }
