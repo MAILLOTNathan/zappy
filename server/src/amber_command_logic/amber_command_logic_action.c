@@ -14,11 +14,41 @@ const int concave[4][8] = {
     {7, 8, 1, 2, 3, 4, 5, 6}
 };
 
+static direction_t invert(direction_t d)
+{
+    switch (d) {
+        case UP:
+            return DOWN;
+        case DOWN:
+            return UP;
+        case RIGHT:
+            return LEFT;
+        case LEFT:
+            return RIGHT;
+        default:
+            return 0;
+    }
+}
+
+static void update_client_pos(direction_t dir, amber_client_t *client,
+    amber_world_t *world)
+{
+    if (dir == UP)
+        client->_y = client->_y - 1 < 0 ? world->_height - 1 : client->_y - 1;
+    if (dir == DOWN)
+        client->_y = client->_y + 1 >= world->_height ? 0 : client->_y + 1;
+    if (dir == RIGHT)
+        client->_x = client->_x + 1 >= world->_width ? 0 : client->_x + 1;
+    if (dir == LEFT)
+        client->_x = client->_x - 1 < 0 ? world->_width - 1 : client->_x - 1;
+}
+
 void amber_logic_eject(amber_client_t *client, amber_world_t *world,
     amber_serv_t *serv)
 {
     amber_client_t *tmp = NULL;
     linked_list_t *clients = serv->_clients->nodes;
+    int dir = 0;
 
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
@@ -26,17 +56,12 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
             continue;
         if (tmp->_x != client->_x || tmp->_y != client->_y)
             continue;
-        if (tmp->_direction == UP)
-            tmp->_y = tmp->_y - 1 < 0 ? world->_height - 1 : tmp->_y - 1;
-        if (tmp->_direction == DOWN)
-            tmp->_y = tmp->_y + 1 >= world->_height ? 0 : tmp->_y + 1;
-        if (tmp->_direction == RIGHT)
-            tmp->_x = tmp->_x + 1 >= world->_width ? 0 : tmp->_x + 1;
-        if (tmp->_direction == LEFT)
-            tmp->_x = tmp->_x - 1 < 0 ? world->_width - 1 : tmp->_x - 1;
-        int dir =  concave[tmp->_direction - 1][(client->_direction - 1) * 2];
-        printf("push %d\n", tmp->_direction);
-        printf("invert push %d\n", invert(tmp->_direction));
-        printf("LA DIRECXTION MACHIN BIDULE: %d\n", dir);
+        update_client_pos(client->_direction, tmp, world);
+        if (client->_direction == UP || client->_direction == DOWN) {
+            dir = concave[tmp->_direction - 1]
+            [invert(client->_direction - 1) + 1];
+        } else
+            dir = concave[tmp->_direction - 1][(client->_direction - 1) * 2];
+        dprintf(tmp->_tcp._fd, "eject: %d\n", dir);
     }
 }

@@ -176,8 +176,10 @@ bool *initialize_perimeter(int *directions);
 /**
  * @brief Retrieves the direction based on the given perimeter and client.
  *
- * This function takes a boolean array representing the perimeter and a pointer to an amber_client_t structure.
- * It calculates and returns the direction based on the given perimeter and client.
+ * This function takes a boolean array representing the perimeter and a
+ * pointer to an amber_client_t structure.
+ * It calculates and returns the direction based on the given perimeter
+ * and client.
  *
  * @param perimeter A boolean array representing the perimeter.
  * @param client A pointer to an amber_client_t structure.
@@ -186,10 +188,13 @@ bool *initialize_perimeter(int *directions);
 int get_direction_by_perimeter(bool *perimeter, amber_client_t *client);
 
 /**
- * @brief Calculates the precise perimeter based on the given perimeter and distances.
+ * @brief Calculates the precise perimeter based on the given perimeter
+ * and distances.
  *
- * This function takes in a boolean array representing the perimeter and an integer array
- * representing the distances. It calculates the precise perimeter based on these inputs.
+ * This function takes in a boolean array representing the perimeter and
+ * an integer array
+ * representing the distances. It calculates the precise perimeter based
+ * on these inputs.
  *
  * @param perim The boolean array representing the perimeter.
  * @param distances The integer array representing the distances.

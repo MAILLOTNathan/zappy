@@ -90,10 +90,8 @@ static void remove_waiting_clock(linked_list_t *clients, amber_world_t *world)
 void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
 {
     linked_list_t *clients = NULL;
-    amber_clock_t clock = {._start = 0, ._end = 0};
     amber_client_t *tmp = NULL;
 
-    amber_clock_start(&clock);
     while (true) {
         clients = serv->_clients->nodes;
         tmp = get_shortest_client_command(clients);
