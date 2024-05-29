@@ -97,6 +97,8 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
     while (true) {
         clients = serv->_clients->nodes;
         tmp = get_shortest_client_command(clients);
+        if (tmp == NULL)
+            break;
         world->_clock -= world->_clock > tmp->_queue_command->_command->_time ?
         tmp->_queue_command->_command->_time : 0;
         if (world->_clock <= tmp->_queue_command->_command->_time) {
