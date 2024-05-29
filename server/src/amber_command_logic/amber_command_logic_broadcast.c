@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2024
 ** zappy
 ** File description:
-** amber_command_logic_action
+** amber_command_logic_broadcast
 */
 
 #include "amber_logic.h"
+
 static void display_perimeter(bool *perimeter)
 {
     printf("Perimeter:\n");
@@ -19,37 +20,36 @@ static void display_perimeter(bool *perimeter)
     printf("%s\n", perimeter[4] ? "X" : "O");
 }
 
-static int get_direction_by_pos(amber_client_t *src, int x, int y)
+static int get_direction_message(amber_client_t *src, amber_client_t *des,
+    int width, int height)
 {
-    int distances[2] = {get_distance(src->_x, x, 10),
-        get_distance(src->_y, y, 10)};
-    int directions[2] = {get_direction_action(src->_x, x, 10),
-        get_direction_action(src->_y, y, 10)};
+    int distances[2] = {get_distance(src->_x, des->_x, width),
+        get_distance(src->_y, des->_y, height)};
+    int directions[2] = {get_direction_action(src->_x, des->_x, width),
+        get_direction_action(src->_y, des->_y, height)};
     bool *perimeter = NULL;
 
+    printf("Player position:\n\tx = %d\n\ty = %d\n", src->_x, src->_y);
+    printf("Enemy position:\n\tx = %d\n\ty = %d\n", des->_x, des->_y);
+    printf("destination position:\n\tx = %d\n\ty = %d\n",
+        distances[0] * directions[0], distances[1] * directions[1]);
     perimeter = initialize_perimeter(directions);
     perimeter = precise_perimeter(perimeter, distances);
     display_perimeter(perimeter);
     return get_direction_by_perimeter(perimeter, src);
 }
 
-void amber_logic_eject(amber_client_t *client, amber_world_t *world,
+void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
     amber_serv_t *serv)
 {
     amber_client_t *tmp = NULL;
     linked_list_t *clients = serv->_clients->nodes;
-    int x = 0;
-    int y = 0;
 
-    (void) world;
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
         if (tmp->_id == client->_id)
             continue;
-        if (tmp->_x != client->_x || tmp->_y != client->_y)
-            continue;
-        x = tmp->_x;
-        y = tmp->_y;
-        printf("%d\n", get_direction_by_pos(tmp, x, y));
+        printf("%d\n", get_direction_message(client, tmp, world->_width,
+            world->_height));
     }
 }
