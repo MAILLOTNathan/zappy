@@ -7,21 +7,21 @@
 
 #include "amber_logic.h"
 
-static bool ressource_available(box_t *case, box_t *need)
+static bool ressource_available(box_t *world_case, box_t *need)
 {
-    if (case->_food < need->_food)
+    if (world_case->_food < need->_food)
         return false;
-    if (case->_linemate < need->_linemate)
+    if (world_case->_linemate < need->_linemate)
         return false;
-    if (case->_deraumere < need->_deraumere)
+    if (world_case->_deraumere < need->_deraumere)
         return false;
-    if (case->_sibur < need->_sibur)
+    if (world_case->_sibur < need->_sibur)
         return false;
-    if (case->_mendiane < need->_mendiane)
+    if (world_case->_mendiane < need->_mendiane)
         return false;
-    if (case->_phiras < need->_phiras)
+    if (world_case->_phiras < need->_phiras)
         return false;
-    if (case->_thystame < need->_thystame)
+    if (world_case->_thystame < need->_thystame)
         return false;
     return true;
 }
@@ -29,7 +29,7 @@ static bool ressource_available(box_t *case, box_t *need)
 static bool take_ressource(amber_client_t *cli, amber_world_t *world,
     box_t *need)
 {
-    box_t *copy = world->_map[cli->_y][cli->_x];
+    box_t *copy = &world->_case[cli->_y][cli->_x];
 
     if (!ressource_available(copy, need))
         return false;
