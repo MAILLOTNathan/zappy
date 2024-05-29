@@ -13,11 +13,22 @@
     #include "string_array.h"
     #include "amber_logic.h"
 
+/**
+ * @brief Structure representing an AI command.
+ *
+ * This structure holds information about an AI command, including the
+ * command string,
+ * the type of command, and a function pointer to the corresponding
+ * command handler.
+ */
 typedef struct ai_command_s {
-    char *_command;
-    type_command_t _type;
-    void (*_func)(amber_client_t *client, char **arg);
+    char *_command; /**< The command string. */
+    type_command_t _type; /**< The type of command. */
+    void (*_func)
+    (amber_client_t *client, char **arg); /**< Function pointer to the
+    command handler. */
 } ai_command_t;
+
 
 /**
  * @brief Moves the AI client forward in the game.
