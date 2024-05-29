@@ -49,7 +49,8 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
         tmp = (amber_client_t *)node->data;
         if (tmp->_id == client->_id)
             continue;
-        printf("%d\n", get_direction_message(client, tmp, world->_width,
-            world->_height));
+        printf("message %d, %s\n",
+        get_direction_message(client, tmp, world->_width,world->_height),
+        client->_queue_command->_command->_arg);
     }
 }
