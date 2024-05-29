@@ -31,6 +31,23 @@ typedef struct ai_command_s {
 
 
 /**
+ * Takes an object from the game world and adds it to the inventory
+ * of the AI client.
+ *
+ * @param client The AI client that wants to take the object.
+ * @param arg The argument specifying the object to be taken.
+ */
+void amber_ai_take_object(amber_client_t *client, char **arg);
+
+/**
+ * Sets the object for the given AI client.
+ *
+ * @param client The AI client.
+ * @param arg The object to set.
+ */
+void amber_ai_set_object(amber_client_t *client, char **arg);
+
+/**
  * @brief Moves the AI client forward in the game.
  *
  * This function is responsible for moving the AI client forward in the game.

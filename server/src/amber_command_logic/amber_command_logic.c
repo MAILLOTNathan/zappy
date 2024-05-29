@@ -120,5 +120,7 @@ const logic_command_t logic_commands[] = {
     {T_EJECT, &amber_logic_eject},
     {T_FORK, &amber_logic_fork},
     {T_CONNECT_NBR, &amber_logic_connect_nbr},
+    {T_TAKE, &amber_logic_take},
+    {T_SET, &amber_logic_set},
     {-1, NULL}
 };
