@@ -13,7 +13,7 @@ Onyx::Item::Item(EGE::Maths::Vector2<int> position, Onyx::Item::TYPE type)
     this->_type = type;
     switch (type) {
         case Onyx::Item::TYPE::FOOD:
-            this->_model = std::make_shared<EGE::Model>("./assets/models/food/steak.glb", EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 3.0f, position.y * CELL_SIZE));
+            this->_model = std::make_shared<EGE::Model>("./assets/models/food/steak.obj", EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 3.0f, position.y * CELL_SIZE), EGE::Maths::Vector3<float>(0.1f, 0.1f, 0.1f));
             break;
         case Onyx::Item::TYPE::LINEMATE:
             throw Onyx::Item::ItemError("This item is not implemented yet");
@@ -58,12 +58,13 @@ void Onyx::Item::setType(Onyx::Item::TYPE type)
     this->_type = type;
 }
 
-EGE::Maths::Vector2<int> Onyx::Item::getPosition() const
+EGE::Maths::Vector2<int> Onyx::Item::getPos() const
 {
     return this->_position;
 }
 
-void Onyx::Item::setPosition(EGE::Maths::Vector2<int> position)
+void Onyx::Item::setPos(EGE::Maths::Vector2<int> position)
 {
     this->_position = position;
+    Entity::setPosition(EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 3.0f, position.y * CELL_SIZE));
 }

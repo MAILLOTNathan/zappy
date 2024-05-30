@@ -7,9 +7,10 @@
 
 #pragma once
 
+#define CELL_SIZE 3
+
 #include "Entity.hpp"
 #include "Error.hpp"
-#include "Map.hpp"
 
 /**
  * @namespace Onyx
@@ -85,16 +86,18 @@ namespace Onyx {
             void setType(TYPE type);
 
             /**
-             * @brief Gets the position of the item.
+             * @brief Gets the position of the item in the grid of the game.
+             *
              * @return The position of the item.
-             */
-            EGE::Maths::Vector2<int> getPosition() const;
+            */
+            EGE::Maths::Vector2<int> getPos() const;
 
             /**
-             * @brief Sets the position of the item.
+             * @brief Sets the position of the item in the grid of the game.
+             *
              * @param position The new position of the item.
-             */
-            void setPosition(EGE::Maths::Vector2<int> position);
+            */
+            void setPos(EGE::Maths::Vector2<int> position);
         private:
             /**
              * @brief The type of the item.

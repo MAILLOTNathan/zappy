@@ -15,8 +15,6 @@
 
 #include <regex>
 
-#define CELL_SIZE 3
-
 namespace Onyx {
     /**
      * @brief Represents a map in the game.
@@ -43,10 +41,15 @@ namespace Onyx {
              *
              * @param shader The shader used to update the map.
              */
-            void update(UNUSED std::shared_ptr<EGE::Shader> shader);
+            void update(std::shared_ptr<EGE::Shader> shader);
+
+            void addItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type);
+
+            void removeItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type);
 
         private:
             std::vector<std::shared_ptr<Floor>> _floor; /**< The collection of floor models in the map. */
             std::shared_ptr<EGE::Shader> _shader;       /**< The shader used to update the map. */
+            EGE::Maths::Vector2<int> _size;             /**< The size of the map. */
     };
 }
