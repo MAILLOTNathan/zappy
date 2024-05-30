@@ -58,5 +58,6 @@ namespace Onyx {
             std::shared_ptr<EGE::Shader> _shader;           /**< The shader used for rendering the entities. */
             std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
             float _deltaTime;                               /**< The time between frames. */
+            std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
     };
 }

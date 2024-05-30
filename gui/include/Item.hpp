@@ -7,9 +7,10 @@
 
 #pragma once
 
+#define CELL_SIZE 3
+
 #include "Entity.hpp"
 #include "Error.hpp"
-#include "Map.hpp"
 
 namespace Onyx {
     class Item : public Onyx::Entity {
@@ -38,9 +39,9 @@ namespace Onyx {
 
             void setType(TYPE type);
 
-            EGE::Maths::Vector2<int> getPosition() const;
+            EGE::Maths::Vector2<int> getPos() const;
 
-            void setPosition(EGE::Maths::Vector2<int> position);
+            void setPos(EGE::Maths::Vector2<int> position);
         private:
             TYPE _type;
             EGE::Maths::Vector2<int> _position;

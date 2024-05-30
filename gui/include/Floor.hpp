@@ -8,6 +8,7 @@
 #pragma once
 
 #include "Entity.hpp"
+#include "Item.hpp"
 #include "Shader.hpp"
 
 namespace Onyx {
@@ -24,7 +25,7 @@ namespace Onyx {
              *
              * @param position The position of the floor entity.
              */
-            Floor(const EGE::Maths::Vector3<float>& position);
+            Floor(const EGE::Maths::Vector2<int>& position);
 
             /**
              * @brief Destroys the Floor object.
@@ -39,5 +40,33 @@ namespace Onyx {
              * @param shader A shared pointer to the shader used for rendering.
              */
             void update(std::shared_ptr<EGE::Shader> shader) override;
+
+            /**
+             * @brief Adds an item to the floor entity.
+             *
+             * @param type The type of the item to add.
+             */
+            void addItem(Onyx::Item::TYPE type);
+
+            /**
+             * @brief Removes an item from the floor entity.
+             *
+             * @param type The type of the item to remove.
+             */
+            void removeItem(Onyx::Item::TYPE type);
+
+            /**
+             * @brief Gets the items on the floor entity.
+             *
+             * @return A vector of shared pointers to the items on the floor entity.
+             */
+            int getQuantity(Onyx::Item::TYPE type) const;
+
+            EGE::Maths::Vector2<int> getPos() const;
+
+        private:
+            int _quantity[Onyx::Item::TYPE::MAX]; /**< The quantity of each item on the floor entity. */
+            static std::vector<std::shared_ptr<Onyx::Item>> _items; /**< The collection of items in the map. */
+            EGE::Maths::Vector2<int> _pos; /**< The position of the floor entity. */
     };
 }
