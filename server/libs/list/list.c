@@ -42,6 +42,7 @@ bool push_back_list(list_t *l, ...)
 
 bool remove_node(list_t **l, linked_list_t *index, bool free_data)
 {
+    (void)free_data;
     if (index == NULL)
         return false;
     if (index->prev)

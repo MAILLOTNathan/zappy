@@ -15,6 +15,7 @@ static void init_pair(pair_t *pair, int width, int height, double density)
 
 static void init_info_world(amber_world_t *world)
 {
+    world->_clock = 20;
     init_pair(&world->_food_info, world->_width, world->_height,
     FOOD_DENSITY);
     init_pair(&world->_linemate_info, world->_width, world->_height,
@@ -32,24 +33,27 @@ static void init_info_world(amber_world_t *world)
     amber_refill_world(world);
 }
 
-amber_world_t *amber_create_world(int width, int height, char **teams)
+amber_world_t *amber_create_world(args_t *arg)
 {
     amber_world_t *world = calloc(1, sizeof(amber_world_t));
+    int i = 0;
 
     if (!world)
         return NULL;
-    world->_width = width;
-    world->_height = height;
-    world->_case = calloc(height, sizeof(box_t *));
-    for (int i = 0; i < height; i++) {
-        world->_case[i] = calloc(width, sizeof(box_t));
-        if (!world->_case[i])
-            return NULL;
-    }
+    world->_width = arg->_width;
+    world->_height = arg->_height;
+    world->_freq = arg->_freq;
+    world->_clientsNb = arg->_clientsNb;
+    world->_case = calloc(arg->_height, sizeof(box_t *));
+    world->_teams_name = arg->_teams;
+    for (int i = 0; i < arg->_height; i++)
+        world->_case[i] = calloc(arg->_width, sizeof(box_t));
     init_info_world(world);
     world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
-    for (int i = 0; teams[i]; i++)
-        push_back_list(world->_eggs, RAND(width), RAND(height), teams[i], i);
+    for (i = 0; arg->_teams[i]; i++)
+        push_back_list(world->_eggs, world, RAND(arg->_width),
+        RAND(arg->_height), arg->_teams[i], i);
+    world->_last_egg_id = i;
     return world;
 }
 
@@ -117,9 +121,18 @@ static void display_box(amber_world_t *world)
             printf("Sibur: %d\n", world->_case[i][j]._sibur);
             printf("Mendiane: %d\n", world->_case[i][j]._mendiane);
             printf("Phiras: %d\n", world->_case[i][j]._phiras);
-            printf("Thystame: %d\n\n", world->_case[i][j]._thystame);
+            printf("Thystame: %d\n", world->_case[i][j]._thystame);
+            printf("Players: %d\n", world->_case[i][j]._players);
+            printf("Eggs: %d\n\n", world->_case[i][j]._eggs);
         }
     }
+}
+
+static void display_more(amber_world_t *world, bool box)
+{
+    printf("Eggs: %ld\n", list_len(world->_eggs));
+    if (box)
+        display_box(world);
 }
 
 void amber_display_world(amber_world_t *world, bool box)
@@ -141,7 +154,6 @@ void amber_display_world(amber_world_t *world, bool box)
     world->_phiras_info._m_value);
     printf("Thystame: %d/%d\n", world->_thystame_info._c_value,
     world->_thystame_info._m_value);
-    if (box)
-        display_box(world);
+    display_more(world, box);
     printf("=====================================\n");
 }

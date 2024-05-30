@@ -32,7 +32,7 @@
  * @brief Represents the possible directions.
  */
 typedef enum direction_s {
-    UP,     /**< Up direction */
+    UP = 1,     /**< Up direction */
     RIGHT,  /**< Right direction */
     DOWN,   /**< Down direction */
     LEFT    /**< Left direction */
