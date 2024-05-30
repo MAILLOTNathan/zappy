@@ -8,7 +8,7 @@
 #ifndef AMBER_CLOCK_H_
     #define AMBER_CLOCK_H_
 
-    #include <time.h>
+    #include <sys/time.h>
     #include <stdio.h>
 
 /**

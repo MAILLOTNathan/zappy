@@ -14,6 +14,8 @@
     #include <stdbool.h>
     #include "common_defines.h"
     #include "list.h"
+    #include "string_array.h"
+    #include "amber_check_arg.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -24,6 +26,9 @@
     #define THYSTAME_DENSITY 0.05
 
     #define RAND(x) (rand() % x)
+
+    #define INV_TMP "mendiane %d, phiras %d, thystame %d]\n"
+    #define INVENTORY "[food %d, linemate %d, deraumere %d, sibur %d, " INV_TMP
 
 /**
  * @brief Structure representing an egg in the game world.
@@ -52,6 +57,8 @@ typedef struct box_s {
     int _mendiane;
     int _phiras;
     int _thystame;
+    int _players;
+    int _eggs;
 } box_t;
 
 /**
@@ -70,6 +77,8 @@ typedef struct pair_s {
  *
  * @param _width The width of the Amber World.
  * @param _height The height of the Amber World.
+ * @param _clientsNb The number of clients in the Amber World.
+ * @param _teams_name The names of the teams in the Amber World.
  * @param _case The cases in the Amber World.
  * @param _food_info The information about the food in the Amber World.
  * @param _linemate_info The information about the linemate in the Amber World.
@@ -79,10 +88,16 @@ typedef struct pair_s {
  * @param _mendiane_info The information about the mendiane in the Amber World.
  * @param _phiras_info The information about the phiras in the Amber World.
  * @param _thystame_info The information about the thystame in the Amber World.
+ * @param _eggs The eggs in the Amber World.
+ * @param _freq The frequency of the resources in the Amber World.
+ * @param _clock The clock of the Amber World.
+ * @param _last_egg_id The last egg ID in the Amber World.
  */
 typedef struct amber_world_s {
     int _width;
     int _height;
+    int _clientsNb;
+    char **_teams_name;
     box_t **_case;
     pair_t _food_info;
     pair_t _linemate_info;
@@ -92,19 +107,20 @@ typedef struct amber_world_s {
     pair_t _phiras_info;
     pair_t _thystame_info;
     list_t *_eggs;
+    double _freq;
+    int _clock;
+    int _last_egg_id;
 } amber_world_t;
 
 /**
- * @brief Creates a new instance of an Amber World.
+ * Creates a new instance of the amber_world_t struct and initializes
+ * its properties.
  *
- * This function creates a new instance of an Amber World with the
- * specified width and height.
- *
- * @param width The width of the Amber World.
- * @param height The height of the Amber World.
- * @return A pointer to the created Amber World instance.
+ * @param arg The arguments for creating the world.
+ * @return A pointer to the newly created amber_world_t struct,
+ * or NULL if memory allocation fails.
  */
-amber_world_t *amber_create_world(int width, int height, char **teams);
+amber_world_t *amber_create_world(args_t *args);
 
 /**
  * @brief Destroys an amber_world_t object.
@@ -167,5 +183,39 @@ void amber_destroy_egg(void *gree);
  * @return A pointer to the egg if found, or NULL if no matching egg is found.
  */
 egg_t *amber_get_egg_by_team(amber_world_t *world, char *team);
+
+/**
+ * @brief Converts a box_t structure into a string representation.
+ *
+ * This function takes a pointer to a box_t structure and converts it
+ * into a string representation.
+ * The resulting string contains information about the box, such as its
+ * coordinates and contents.
+ *
+ * @param box A pointer to the box_t structure to be converted.
+ * @return A dynamically allocated string representing the box.
+ */
+char *amber_world_case_stringify(box_t *box);
+
+/**
+ * Retrieves the number of eggs belonging to a specific team in
+ * the given world.
+ *
+ * @param world The pointer to the amber_world_t structure representing
+ * the game world.
+ * @param team The name of the team for which to retrieve the number of eggs.
+ * @return The number of eggs belonging to the specified team.
+ */
+int amber_get_nbr_eggs_by_team(amber_world_t *world, char *team);
+
+/**
+ * @brief Initializes a new box in the Amber World.
+ *
+ * This function creates and initializes a new box in the Amber World.
+ * The box is represented by the `box_t` data structure.
+ *
+ * @return A pointer to the newly created box.
+ */
+box_t *amber_world_case_init(void);
 
 #endif /* !AMBER_WORLD_H_ */

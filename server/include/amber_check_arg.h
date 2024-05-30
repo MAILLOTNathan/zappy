@@ -15,6 +15,9 @@
     #include <string.h>
     #include "string_array.h"
 
+    #define HELP_TMP " -n name1 name2 ... -c clientsNb [-f freq]\n"
+    #define HELP "USAGE: ./zappy_server -p port -x width -y height" HELP_TMP
+
 /**
  * @brief Structure representing the arguments for the program.
  *

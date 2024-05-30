@@ -31,7 +31,16 @@ typedef enum type_command_s {
     T_EJECT,            /**< Eject a player from the current tile */
     T_TAKE,             /**< Take a resource from the current tile */
     T_SET,              /**< Set a resource on the current tile */
-    T_INCANTATION       /**< Perform an incantation */
+    T_INCANTATION,      /**< Perform an incantation */
+    T_MSZ,              /**< Get the map size */
+    T_BCT,              /**< Get the content of a tile */
+    T_MCT,              /**< Get the content of the entire map */
+    T_SGT,              /**< Get the time unit */
+    T_SST,              /**< Set the time unit */
+    T_TNA,              /**< Get the team names */
+    T_PPO,              /**< Get the player position */
+    T_PLV,              /**< Get the player level */
+    T_PIN,              /**< Get the player inventory */
 } type_command_t;
 
 /**
@@ -45,7 +54,7 @@ typedef enum type_command_s {
  */
 typedef struct command_s {
     char *_arg; /**< The argument of the command. */
-    int _id;    /**< The ID of the command. */
+    type_command_t _id;    /**< The ID of the command. */
     int _time;  /**< The time of the command. */
 } command_t;
 
