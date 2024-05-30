@@ -60,7 +60,6 @@ class ServerConnection:
         # data = self.s.recv(1024)
         # print(repr(data))
 
-
     def send_request(self, request):
             """
             Sends a request to the server and returns the response.

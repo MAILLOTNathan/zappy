@@ -20,7 +20,8 @@ class TuringAI:
     host = "localhost"
     food_quantity = 0
     level = 1
-    command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take", "Set", "Incantation"]
+    elapsed_time = 0
+    command ={"Forward": 7, "Right": 7, "Left": 7, "Look": 7, "Inventory": 1, "Broadcast": 7, "Connect_nbr": 0, "Fork": 42, "Eject": 7, "Take": 7, "Set": 7, "Incantation": 300}
     def __init__(self):
         self.debug = False
         self.port = None
@@ -28,8 +29,9 @@ class TuringAI:
         self.food_quantity = 0
         self.level = 1
         self.host = "localhost"
-        self.command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take", "Set", "Incantation"]
-        self.inventory = {"food": 0, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+        self.elapsed_time = 0
+        self.command = {"Forward": 7, "Right": 7, "Left": 7, "Look": 7, "Inventory": 1, "Broadcast": 7, "Connect_nbr": 0, "Fork": 42, "Eject": 7, "Take": 7, "Set": 7, "Incantation": 300}
+        self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
 
 def help_message():
     """
@@ -106,7 +108,7 @@ def get_obj(map, obj):
                 y = e
                 nb = map[i][e].count(obj)
     return x,y,nb
-    
+
 def get_direction(x,y,ai):
     dir = []
     y -= ai.level
@@ -119,10 +121,36 @@ def get_direction(x,y,ai):
     if abs(y) > 0:
         for i in range(abs(y)):
             dir.append("Forward")
-    return dir 
-   
+    return dir
 
-def find_path(direction, conn, quantity, obj, ai):
+def sendRequest(conn, request : str, ai : TuringAI):
+    """
+    Sends a request to the server and updates the AI's state.
+
+    Args:
+        conn (Connection): The connection object used to send the request.
+        request (str): The request to be sent to the server.
+        ai (TuringAI): The AI object representing the current state of the AI.
+
+    Returns:
+        str: The response received from the server.
+
+    Raises:
+        None
+
+    """
+    res = conn.send_request(request)
+    if request == "Incantation":
+        return res
+    for key in ai.command:
+        if key == request:
+            ai.elapsed_time += ai.command[key]
+    if ai.elapsed_time >= 20:
+        ai.elapsed_time = ai.elapsed_time - 20
+        ai.inventory["food"] -= 1
+    return res
+
+def find_path(direction : list, conn, quantity, obj : str, ai : TuringAI):
     """
     Find the path to the tile with the most food.
 
@@ -133,23 +161,23 @@ def find_path(direction, conn, quantity, obj, ai):
         None
     """
     for i in direction:
-        conn.send_request(i)
+        sendRequest(conn, i, ai)
     for i in range(0, quantity):
-        conn.send_request("Take " + obj)
+        sendRequest(conn, "Take " + obj, ai)
         print(obj + " taken")
         ai.inventory[obj] += 1
 
-def basic_ia(ai, conn):
+def basic_ia(ai : TuringAI, conn):
     while True:
         for i in range(0, 4):
             if ai.inventory["linemate"] == 1 and ai.level == 1:
-               conn.send_request("Set linemate")
-               conn.send_request("Incantation")
+               sendRequest(conn, "Set linemate", ai)
+               sendRequest(conn, "Incantation", ai)
                ai.level += 1
                conn.s.recv(1024)
                continue
-            conn.send_request("Right")
-            response = conn.send_request("Look")
+            sendRequest(conn, "Right", ai)
+            response = sendRequest(conn, "Look", ai)
             map = parse_look(response.decode(), ai, 'linemate')
             if len(map) != 0:
                 x,y,nb = get_obj(map, "linemate")
@@ -170,14 +198,14 @@ def basic_ia(ai, conn):
             ##    continue
             ##find_path(most_food_case, conn, ai.food_quantity, "food", ai)
             continue
-        conn.send_request("Forward")
+        sendRequest(conn, "Forward", ai)
 
 def main():
     """
     This is the main function of the Zappy AI program.
     It is responsible for checking the arguments and executing the necessary logic.
     """
-    ai = TuringAI()
+    ai : TuringAI = TuringAI()
     check_args(ai)
     conn = debug_lib.ServerConnection(ai)
     if ai.debug:
