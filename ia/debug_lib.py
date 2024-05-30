@@ -57,6 +57,9 @@ class ServerConnection:
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
         print(repr(data))
+        # data = self.s.recv(1024)
+        # print(repr(data))
+
 
     def send_request(self, request):
             """
