@@ -29,7 +29,7 @@ static char **amber_look_up(amber_client_t *client, amber_world_t *world)
         y = clamp(0, start_y - offset, world->_height);
         y = y == world->_height ? 0 : y;
         for (int j = 0; i * 2 + 1 > j; j++) {
-            x = clamp(0, start_x - j, world->_width);
+            x = clamp(0, start_x - j - offset, world->_width);
             x = x == world->_width ? 0 : x;
             result = prepend_string_array(result, switch_string(world, y, x));
         }
@@ -53,7 +53,7 @@ static char **amber_look_left(amber_client_t *client, amber_world_t *world)
         x = clamp(0, start_x + offset, world->_width);
         x = x == world->_width ? 0 : x;
         for (int j = 0; i * 2 + 1 > j; j++) {
-            y = clamp(0, start_y + j, world->_height);
+            y = clamp(0, start_y + j + offset, world->_height);
             y = y == world->_height ? 0 : y;
             result = prepend_string_array(result, switch_string(world, y, x));
         }
@@ -77,7 +77,7 @@ static char **amber_look_down(amber_client_t *client, amber_world_t *world)
         y = clamp(0, start_y - offset, world->_height);
         y = y == world->_height ? 0 : y;
         for (int j = 0; i * 2 + 1 > j; j++) {
-            x = clamp(0, start_x + j, world->_width);
+            x = clamp(0, start_x + j + offset, world->_width);
             x = x == world->_width ? 0 : x;
             result = prepend_string_array(result, switch_string(world, y, x));
         }
@@ -101,7 +101,7 @@ static char **amber_look_right(amber_client_t *client, amber_world_t *world)
         x = clamp(0, start_x - offset, world->_width);
         x = x == world->_width ? 0 : x;
         for (int j = 0; i * 2 + 1 > j; j++) {
-            y = clamp(0, start_y - j, world->_height);
+            y = clamp(0, start_y - j - offset, world->_height);
             y = y == world->_height ? 0 : y;
             result = prepend_string_array(result, switch_string(world, y, x));
         }
