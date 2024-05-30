@@ -7,10 +7,15 @@
 
 #pragma once
 
+#define UNUSED __attribute__((unused))
+
 #include "Floor.hpp"
 #include "Maths/Vector2.hpp"
+#include "Utils.hpp"
 
-#define CELL_SIZE 2
+#include <regex>
+
+#define CELL_SIZE 3
 
 namespace Onyx {
     /**
@@ -38,9 +43,10 @@ namespace Onyx {
              *
              * @param shader The shader used to update the map.
              */
-            void update(std::shared_ptr<EGE::Shader> shader);
+            void update(UNUSED std::shared_ptr<EGE::Shader> shader);
 
         private:
             std::vector<std::shared_ptr<Floor>> _floor; /**< The collection of floor models in the map. */
+            std::shared_ptr<EGE::Shader> _shader;       /**< The shader used to update the map. */
     };
 }

@@ -10,6 +10,7 @@
 #include "Camera.hpp"
 #include "Entity.hpp"
 #include "Error.hpp"
+#include "Item.hpp"
 #include "Map.hpp"
 #include "Window.hpp"
 
@@ -56,5 +57,6 @@ namespace Onyx {
             std::vector<std::shared_ptr<Entity>> _entities; /**< The entities in the graphical user interface. */
             std::shared_ptr<EGE::Shader> _shader;           /**< The shader used for rendering the entities. */
             std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
+            float _deltaTime;                               /**< The time between frames. */
     };
 }

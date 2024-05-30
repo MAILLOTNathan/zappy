@@ -36,6 +36,20 @@ namespace Onyx {
              * @param shader The shader used for rendering the entity.
              */
             virtual void update(std::shared_ptr<EGE::Shader> shader);
+
+            /**
+             * @brief Set the new position of the floor
+             *
+             * @param position The new position as a Vector3 of float
+            */
+            virtual void setPosition(const EGE::Maths::Vector3<float>& position);
+
+            /**
+             * @brief Returns the position of the floor
+             *
+             * @return The floot position as a Vector3 of float
+            */
+            virtual EGE::Maths::Vector3<float> getPosition();
         protected:
             std::shared_ptr<EGE::Model> _model; /**< The model used for rendering the entity. */
             EGE::Maths::Vector3<float> _position; /**< The position of the entity in 3D space. */
