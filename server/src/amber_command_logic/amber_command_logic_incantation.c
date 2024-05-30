@@ -71,14 +71,14 @@ static void level_up_players(amber_client_t *client, amber_serv_t *server)
             continue;
         if (tmp->_x == client->_x && tmp->_y == client->_y) {
             tmp->_level++;
-            dprintf(tmp->_tcp._fd, "Elevation underway\nCurrent level: %d\n",
-                tmp->_level);
+            dprintf(tmp->_tcp._fd, "Elevation underway\n");
+            dprintf(tmp->_tcp._fd, "Current level: %d\n", tmp->_level);
         }
         tmp->_is_incantating = false;
     }
     client->_level++;
-    dprintf(client->_tcp._fd, "Elevation underway\nCurrent level: %d\n",
-        client->_level);
+    dprintf(client->_tcp._fd, "Elevation underway\n");
+    dprintf(client->_tcp._fd, "Current level: %d\n", client->_level);
     client->_is_incantating = false;
 }
 
