@@ -58,11 +58,20 @@ static char *get_team_name(UNUSED char **teams_name, int fd)
 }
 
 static void display_info_client_ai(int new_fd, amber_serv_t *server,
-    char *team_name, amber_world_t *world)
+    egg_t *egg, amber_world_t *world)
 {
+    linked_list_t *node = server->_graphic_clients->nodes;
+    amber_client_t *client = NULL;
+
     dprintf(new_fd, "%d\n",
-    world->_clientsNb - amber_get_nbr_clients_by_team(server, team_name));
+    world->_clientsNb - amber_get_nbr_clients_by_team(server, egg->_team));
     dprintf(new_fd, "%d %d\n", world->_width, world->_height);
+    while (node) {
+        client = CAST(amber_client_t *, node->data);
+        dprintf(client->_tcp._fd, "pnw %d %d %d %d %d %s\n",
+            egg->_id, egg->_x, egg->_y, egg->_direction, 1, egg->_team);
+        node = node->next;
+    }
     printf("[AMBER INFO] New client connected\n");
 }
 
@@ -86,8 +95,8 @@ static void add_client(amber_serv_t *server, int new_fd, char *team_name,
         close(new_fd);
         return;
     }
+    display_info_client_ai(new_fd, server, egg, world);
     push_back_list(server->_clients, new_fd, egg, false);
-    display_info_client_ai(new_fd, server, team_name, world);
 }
 
 static void amber_accept_client(amber_serv_t *server, amber_world_t *world)

@@ -14,6 +14,8 @@ static void display_client_graphic(linked_list_t *client_graphical)
         printf("================USER GRAPHIC================\n");
         printf("Client ID: %d\n",
             ((amber_client_t *)client_graphical->data)->_id);
+        printf("========================================\n");
+        client_graphical = client_graphical->next;
     }
 }
 
