@@ -7,29 +7,21 @@
 
 #include "amber_clock.h"
 
-unsigned long amber_clock_get_ellapsed_time(amber_clock_t *clock)
+unsigned long get_time_in_microseconds(void)
 {
-    return (clock->_end.tv_usec - clock->_start.tv_usec);
+    struct timeval time;
+    unsigned long time_in_microseconds;
+
+    gettimeofday(&time, NULL);
+    time_in_microseconds = (time.tv_sec * 1000000) + time.tv_usec;
+    return time_in_microseconds;
 }
 
-void amber_clock_start(amber_clock_t *clock)
+unsigned long get_new_time_in_microseconds(double ref)
 {
-    gettimeofday(&clock->_start, NULL);
-    clock->_end = clock->_start;
-}
+    unsigned long time_in_microseconds = get_time_in_microseconds();
+    unsigned long time_to_add = (unsigned long)(ref * 1000000);
 
-void amber_clock_restart(amber_clock_t *clock)
-{
-    amber_clock_start(clock);
-}
-
-void amber_clock_stop(amber_clock_t *clock)
-{
-    gettimeofday(&clock->_end, NULL);
-}
-
-unsigned long amber_clock_set_time_point(amber_clock_t *clock)
-{
-    gettimeofday(&clock->_end, NULL);
-    return amber_clock_get_ellapsed_time(clock);
+    time_in_microseconds += time_to_add;
+    return time_in_microseconds;
 }

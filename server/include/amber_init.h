@@ -76,6 +76,7 @@ typedef struct amber_client_s {
     bool _is_graphical;
     bool _is_incantating;
     unsigned long _ellapsed_time;
+    unsigned long _clock_food;
 } amber_client_t;
 
 /**
@@ -104,7 +105,6 @@ typedef struct amber_serv_s {
     list_t *_graphic_clients;
     bool _is_running;
     char **_teams_name;
-    amber_clock_t _clock;
 } amber_serv_t;
 
 /**

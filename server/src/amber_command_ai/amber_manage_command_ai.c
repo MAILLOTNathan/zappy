@@ -92,6 +92,15 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
     return true;
 }
 
+void check_ellapsed_time(amber_client_t *client, char *cmd, double freq)
+{
+    printf("[AMBER AI] Command recevei %s\n", cmd);
+    if (queue_command_size(client->_queue_command) != 1)
+        return;
+    client->_ellapsed_time = get_new_time_in_microseconds(
+        client->_queue_command->_command->_time / freq);
+}
+
 void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
     amber_client_t *client, char **arg)
 {
@@ -113,7 +122,7 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
     if (ai_commands[i]._command == NULL)
         dprintf(client->_tcp._fd, "ko\n");
     else
-        printf("[AMBER AI] Command recevei %s\n", arg[0]);
+        check_ellapsed_time(client, arg[0], world->_freq);
 }
 
 const ai_command_t ai_commands[] = {

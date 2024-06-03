@@ -16,6 +16,7 @@
     #include "list.h"
     #include "string_array.h"
     #include "amber_check_arg.h"
+    #include "amber_clock.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3

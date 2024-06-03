@@ -13,16 +13,11 @@
 
 static void amber_waiting_select(amber_serv_t *server)
 {
-    amber_clock_t clock = {0};
-
-    amber_clock_start(&clock);
     if (select(FD_SETSIZE, &server->_readfds, &server->_writefds, NULL,
         NULL) == -1) {
         perror("select");
         server->_is_running = false;
     }
-    printf("[AMBER INFO] Select took %ld ms\n",
-        amber_clock_set_time_point(&clock));
 }
 
 void amber_init_fd(amber_serv_t *server)
@@ -105,7 +100,7 @@ static void add_client(amber_serv_t *server, int new_fd, char *team_name,
         return;
     }
     display_info_client_ai(new_fd, server, egg, world);
-    push_back_list(server->_clients, new_fd, egg, false);
+    push_back_list(server->_clients, new_fd, egg, false, world->_freq);
 }
 
 static void amber_accept_client(amber_serv_t *server, amber_world_t *world)
@@ -154,7 +149,6 @@ void amber_manage_server_command(amber_serv_t *server, amber_world_t *world)
 void amber_listening(amber_serv_t *server, amber_world_t *world)
 {
     while (server->_is_running) {
-        amber_clock_restart(&server->_clock);
         amber_init_fd(server);
         amber_waiting_select(server);
         if (FD_ISSET(server->_tcp._fd, &server->_readfds))

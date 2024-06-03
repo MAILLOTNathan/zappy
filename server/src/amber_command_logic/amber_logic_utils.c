@@ -32,6 +32,20 @@ void send_client_message(amber_client_t *client, const char *message)
     dprintf(client->_tcp._fd, "%s\n", message);
 }
 
+static void check_clock_food(amber_client_t *client, amber_world_t *world,
+    linked_list_t *node, amber_serv_t *server)
+{
+    if (client->_clock_food >= get_time_in_microseconds())
+        return;
+    client->_inventory->_food--;
+    if (client->_inventory->_food < 0) {
+        dprintf(client->_tcp._fd, "dead\n");
+        remove_node(&server->_clients, node, true);
+    } else
+        world->_food_info._c_value--;
+    client->_clock_food = get_new_time_in_microseconds(126 / world->_freq);
+}
+
 void amber_check_client_alive(amber_serv_t *server, amber_world_t *world)
 {
     linked_list_t *node = server->_clients->nodes;
@@ -46,12 +60,7 @@ void amber_check_client_alive(amber_serv_t *server, amber_world_t *world)
             node = ref;
             continue;
         }
-        client->_inventory->_food--;
-        if (client->_inventory->_food < 0) {
-            dprintf(client->_tcp._fd, "dead\n");
-            remove_node(&server->_clients, node, true);
-        } else
-            world->_food_info._c_value--;
+        check_clock_food(client, world, node, server);
         node = ref;
     }
 }

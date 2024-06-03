@@ -11,7 +11,7 @@
 #include "amber_manage_command_ai.h"
 #include "amber_command_graphical.h"
 
-static void *init_client_ai(amber_client_t *client, egg_t *egg)
+static void *init_client_ai(amber_client_t *client, egg_t *egg, va_list *ap)
 {
     client->_team_name = strdup(egg->_team);
     client->_direction = egg->_direction;
@@ -21,8 +21,9 @@ static void *init_client_ai(amber_client_t *client, egg_t *egg)
     client->_id = egg->_id;
     client->_inventory = amber_world_case_init();
     client->_inventory->_food = 10;
-    client->_elapsed_time = 0;
     client->_is_incantating = false;
+    client->_clock_food = get_new_time_in_microseconds(126 /
+        va_arg(*ap, double));
     return client;
 }
 
@@ -40,7 +41,7 @@ void *amber_create_client(va_list *ap)
     client->_queue_command = NULL;
     if (client->_is_graphical)
         return client;
-    init_client_ai(client, egg);
+    init_client_ai(client, egg, ap);
     amber_destroy_egg(egg);
     return client;
 }

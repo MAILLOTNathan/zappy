@@ -15,7 +15,7 @@ static void init_pair(pair_t *pair, int width, int height, double density)
 
 static void init_info_world(amber_world_t *world)
 {
-    world->_clock = 20;
+    world->_clock = get_new_time_in_microseconds(20 / world->_freq);
     init_pair(&world->_food_info, world->_width, world->_height,
     FOOD_DENSITY);
     init_pair(&world->_linemate_info, world->_width, world->_height,
@@ -108,6 +108,7 @@ void amber_refill_world(amber_world_t *world)
         world->_case[RAND(world->_height)][RAND(world->_width)]._phiras++;
     for (int i = 0; box._thystame > i; i++)
         world->_case[RAND(world->_height)][RAND(world->_width)]._thystame++;
+    world->_clock = get_new_time_in_microseconds(20 / world->_freq);
 }
 
 static void display_box(amber_world_t *world)

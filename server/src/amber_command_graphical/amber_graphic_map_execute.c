@@ -55,7 +55,7 @@ void amber_graphic_execute_sgt(UNUSED command_t *cmd, amber_client_t *client,
 void amber_graphic_execute_sst(command_t *cmd, amber_client_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
-   double freq = atof(cmd->_arg);
+    double freq = atof(cmd->_arg);
 
     if (freq <= 0)
         return;
