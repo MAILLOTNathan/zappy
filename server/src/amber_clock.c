@@ -9,14 +9,12 @@
 
 unsigned long amber_clock_get_ellapsed_time(amber_clock_t *clock)
 {
-    return clock->_end - clock->_start;
+    return (clock->_end.tv_usec - clock->_start.tv_usec);
 }
 
 void amber_clock_start(amber_clock_t *clock)
 {
-    struct timeval start;
-
-    clock->_start = gettimeofday(&start, NULL) * 1000000;
+    gettimeofday(&clock->_start, NULL);
     clock->_end = clock->_start;
 }
 
@@ -27,15 +25,11 @@ void amber_clock_restart(amber_clock_t *clock)
 
 void amber_clock_stop(amber_clock_t *clock)
 {
-    struct timeval end;
-
-    clock->_end = gettimeofday(&end, NULL) * 1000000;
+    gettimeofday(&clock->_end, NULL);
 }
 
 unsigned long amber_clock_set_time_point(amber_clock_t *clock)
 {
-    struct timeval end;
-
-    clock->_end = gettimeofday(&end, NULL) * 1000000;
+    gettimeofday(&clock->_end, NULL);
     return amber_clock_get_ellapsed_time(clock);
 }

@@ -18,11 +18,11 @@ typedef struct amber_clock_s {
     /**
      * @brief Start time of the interval.
      */
-    unsigned long _start;
+    struct timeval _start;
     /**
      * @brief End time of the interval.
      */
-    unsigned long _end;
+    struct timeval _end;
 } amber_clock_t;
 
 /**

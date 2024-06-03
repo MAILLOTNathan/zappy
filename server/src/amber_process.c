@@ -13,10 +13,16 @@
 
 static void amber_waiting_select(amber_serv_t *server)
 {
-    if (select(FD_SETSIZE, &server->_readfds, NULL, NULL, NULL) == -1) {
+    amber_clock_t clock = {0};
+
+    amber_clock_start(&clock);
+    if (select(FD_SETSIZE, &server->_readfds, &server->_writefds, NULL,
+        NULL) == -1) {
         perror("select");
         server->_is_running = false;
     }
+    printf("[AMBER INFO] Select took %ld ms\n",
+        amber_clock_set_time_point(&clock));
 }
 
 void amber_init_fd(amber_serv_t *server)
@@ -24,15 +30,18 @@ void amber_init_fd(amber_serv_t *server)
     linked_list_t *tmp = server->_clients->nodes;
 
     FD_ZERO(&server->_readfds);
+    FD_ZERO(&server->_writefds);
     FD_SET(server->_tcp._fd, &server->_readfds);
     FD_SET(0, &server->_readfds);
     while (tmp) {
         FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_readfds);
+        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_writefds);
         tmp = tmp->next;
     }
     tmp = server->_graphic_clients->nodes;
     while (tmp) {
         FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_readfds);
+        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_writefds);
         tmp = tmp->next;
     }
 }
@@ -145,6 +154,7 @@ void amber_manage_server_command(amber_serv_t *server, amber_world_t *world)
 void amber_listening(amber_serv_t *server, amber_world_t *world)
 {
     while (server->_is_running) {
+        amber_clock_restart(&server->_clock);
         amber_init_fd(server);
         amber_waiting_select(server);
         if (FD_ISSET(server->_tcp._fd, &server->_readfds))

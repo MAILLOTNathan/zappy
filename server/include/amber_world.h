@@ -108,7 +108,7 @@ typedef struct amber_world_s {
     pair_t _thystame_info;
     list_t *_eggs;
     double _freq;
-    int _clock;
+    unsigned long _clock;
     int _last_egg_id;
 } amber_world_t;
 

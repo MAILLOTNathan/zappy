@@ -55,6 +55,10 @@ void amber_graphic_execute_sgt(UNUSED command_t *cmd, amber_client_t *client,
 void amber_graphic_execute_sst(command_t *cmd, amber_client_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
-    world->_freq = atof(cmd->_arg);
+   double freq = atof(cmd->_arg);
+
+    if (freq <= 0)
+        return;
+    world->_freq = freq;
     dprintf(client->_tcp._fd, "sst %f\n", world->_freq);
 }
