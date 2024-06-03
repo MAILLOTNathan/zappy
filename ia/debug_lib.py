@@ -82,4 +82,3 @@ class ServerConnection:
                 return data
             except:
                 print("Error: Connection to server lost.")
-                exit(84)

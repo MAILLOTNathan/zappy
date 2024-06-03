@@ -126,8 +126,9 @@ class TuringAI:
     def compute_reward(self, conn, final_move, result, elapsed_time):
         if result == "dead":
             return -20
-        if "Incantation" in final_move and "Elevation underway" in result:
-            conn.s.recv(1024)
+        print("-----------",result,"----------------")
+        if "Incantation" in final_move:
+            conn.recv(1024)
             if "current level" in result:
                 return 100 * self.level
         return 0
@@ -135,25 +136,26 @@ class TuringAI:
     def train(self, conn):
         start_clock = time.time()
         while True:
-            res = conn.send_request("Look").decode()
-            if res == "done":
+            res = conn.send_request("Look")
+            if res == "done" or res == None:
                 self.ngames += 1
                 self.train_long_memory()
                 self.model.save()
-                break
-
-            state_old = self.get_state(conn.send_request("Look").decode())
+                return
+            print("###############",res,"##############")
+            res = res.decode()
+            state_old = self.get_state(res)
             final_move = self.get_action(state_old)
             result = conn.send_request(self.command[final_move])
             elapsed_time = time.time() - start_clock
             reward = self.compute_reward(self, self.command[final_move], result, elapsed_time)
-            print("skjvbskvbsjvksbv",result)
-            res = conn.send_request("Look").decode()
-            if res == "done":
+            res = conn.send_request("Look")
+            if res == "done" or res == None:
                 self.ngames += 1
                 self.train_long_memory()
                 self.model.save()
-                break
+                return
+            res = res.decode()
             state_new = self.get_state(res)
             self.train_short_memory(state_old, final_move, reward, state_new, result)
             self.remember(state_old, final_move, reward, state_new, result)

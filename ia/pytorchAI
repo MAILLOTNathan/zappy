@@ -330,6 +330,7 @@ def main():
         conn.s.close()
         conn = debug_lib.ServerConnection(ai)
         conn.connect_to_server(ai.team_name)
+        print("guillllll<sjlvyevfbvezvguizhhjv")
 
 
 
