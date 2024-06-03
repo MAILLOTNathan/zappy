@@ -24,7 +24,7 @@ class TuringAI:
         self.epsilon = 0
         self.gamma = 0.9
         self.memory = deque(maxlen=MAX_MEMORY)
-        self.model = Linear_QNet(618, 256, 20)
+        self.model = Linear_QNet(618, 1233, 20)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
         self.level = 1
         
@@ -80,7 +80,6 @@ class TuringAI:
             response = '[' + add_ + ']'
 
         first_part = response.split('[')[0]
-        print(response)
         Food = self.nb_item(response, 'food')
         Linemate = self.nb_item(response, 'linemate')
         Deraumere = self.nb_item(response, 'deraumere')
