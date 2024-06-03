@@ -29,6 +29,13 @@ namespace Onyx {
              *
              * @param size The size of the map.
              */
+            Map();
+
+            /**
+             * @brief Constructs a Map object with the specified size.
+             *
+             * @param size The size of the map.
+             */
             Map(const EGE::Maths::Vector2<int>& size);
 
             /**
@@ -43,7 +50,7 @@ namespace Onyx {
              */
             void update(std::shared_ptr<EGE::Shader> shader);
 
-            void addItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type);
+            void addItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type, int number = 1);
 
             void removeItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type);
 

@@ -36,9 +36,9 @@ void Onyx::Floor::update(std::shared_ptr<EGE::Shader> shader)
     }
 }
 
-void Onyx::Floor::addItem(Onyx::Item::TYPE type)
+void Onyx::Floor::addItem(Onyx::Item::TYPE type, int number)
 {
-    this->_quantity[type]++;
+    this->_quantity[type] = number;
 }
 
 void Onyx::Floor::removeItem(Onyx::Item::TYPE type)

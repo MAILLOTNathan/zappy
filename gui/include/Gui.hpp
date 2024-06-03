@@ -40,6 +40,17 @@ namespace Onyx {
              * @param running A reference to a boolean that indicates whether the application is running.
             */
             void update(bool& running);
+
+            /**
+             * @brief Creates a map.
+             *
+             * This method is called to create a map with the specified width and height.
+             * @param width The width of the map.
+             * @param height The height of the map.
+            */
+            void createMap(int width, int height);
+
+            std::shared_ptr<Onyx::Map> getMap();
         private:
             /**
              * @brief Binds the events to the window.

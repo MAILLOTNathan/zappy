@@ -46,7 +46,7 @@ namespace Onyx {
              *
              * @param type The type of the item to add.
              */
-            void addItem(Onyx::Item::TYPE type);
+            void addItem(Onyx::Item::TYPE type, int number);
 
             /**
              * @brief Removes an item from the floor entity.

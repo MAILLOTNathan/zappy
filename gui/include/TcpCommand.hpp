@@ -17,6 +17,7 @@ namespace net {
     typedef enum type_command_s {
         MSZ,
         BCT,
+        MCT,
         TNA,
         PNW,
         PPO,

@@ -13,21 +13,20 @@ Onyx::Gui::Gui()
     this->_window->create();
     this->_shader = std::make_shared<EGE::Shader>("./assets/shaders/vertex.vert", "./assets/shaders/fragment.frag");
     this->_bindEvents();
-    this->_map = std::make_shared<Onyx::Map>(EGE::Maths::Vector2<int>(10, 10));
-    this->_entities.push_back(this->_map);
     this->_camera = std::make_shared<EGE::Camera>(EGE::Maths::Vector3<float>(7.0f, 3.0f, 7.0f), EGE::Maths::Vector3<float>(0.0f, 1.0f, 0.0f), -135.0f, 0.0f);
     this->_camera->setSpeed(10.0f);
     this->_deltaTime = 0.0f;
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            this->_map->addItem(EGE::Maths::Vector2<int>(i, j), Onyx::Item::TYPE::FOOD);
-        }
-    }
 }
 
 Onyx::Gui::~Gui()
 {
     this->_window->close();
+}
+
+void Onyx::Gui::createMap(int width, int height)
+{
+    this->_map = std::make_shared<Onyx::Map>(EGE::Maths::Vector2(width, height));
+    this->_entities.push_back(this->_map);
 }
 
 void Onyx::Gui::update(bool& running)
@@ -51,6 +50,11 @@ void Onyx::Gui::update(bool& running)
     this->_window->display();
     if (!this->_window->isOpen())
         running = false;
+}
+
+std::shared_ptr<Onyx::Map> Onyx::Gui::getMap()
+{
+    return this->_map;
 }
 
 void Onyx::Gui::_bindEvents()

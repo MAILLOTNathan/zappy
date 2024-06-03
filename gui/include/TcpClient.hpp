@@ -106,6 +106,7 @@ namespace net {
         TcpManagerCmd _manager; /**< The command manager for the TCP client. */
         fd_set _readfds; /**< The file descriptor set for the select operation. */
         std::string _buffer; /**< The buffer for storing received data. */
+        fd_set _writefds; /**< */
 
     private:
         /**
