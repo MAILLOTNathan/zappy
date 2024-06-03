@@ -68,14 +68,14 @@ void net::TcpClient::disconnect()
 
 void net::TcpClient::sendRequest(const std::string& request)
 {
-    send(this->_fd, request.c_str(), request.size(), 0);
+    if (FD_ISSET(this->_fd, &this->_writefds))
+        send(this->_fd, request.c_str(), request.size(), 0);
 }
 
 void net::TcpClient::waitEvent()
 {
     this->_initFdSet();
-    if (select(this->_fd + 1, &this->_readfds, NULL, NULL, NULL) < 0)
-        throw net::TcpClientError("Select failed");
+    select(this->_fd + 1, &this->_readfds, &this->_writefds, NULL, NULL);
     if (FD_ISSET(this->_fd, &this->_readfds)) {
         this->_readAll();
         this->_evalCommand();
@@ -127,6 +127,8 @@ void net::TcpClient::_evalCommand()
 void net::TcpClient::_initFdSet()
 {
     FD_ZERO(&this->_readfds);
+    FD_ZERO(&this->_writefds);
     FD_SET(this->_fd, &this->_readfds);
+    FD_SET(this->_fd, &this->_writefds);
     FD_SET(0, &this->_readfds);
 }
