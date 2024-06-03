@@ -78,6 +78,8 @@ bool amber_check_arg(int ac, char **av, args_t *args)
         || args->_clientsNb <= 0)
         return false;
     args->_freq = args->_freq == -1 ? 100 : args->_freq;
+    if (args->_freq <= 0)
+        return false;
     if (amber_get_team_name(ac, av, args) == false)
         return false;
     return true;
