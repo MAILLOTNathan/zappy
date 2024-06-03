@@ -8,7 +8,8 @@ import numpy as np
 import random
 from collections import deque
 import time
-import pickle  # For saving and loading replay memory
+import pickle
+from agent import TuringAI
 
 def help_message():
     print("USAGE: ./zappy_ai -p port -n name -h machine")
@@ -33,261 +34,288 @@ def check_args(TuringAI):
     if TuringAI.port is None or TuringAI.team_name == "":
         help_message()
 
-def parse_look(response):
-    response = response.strip('[]').replace(',,', ',')
-    tiles = [tile.strip() for tile in response.split(',')]
-    food_counts = [tile.count('food') for tile in tiles]
-    max_index = food_counts.index(max(food_counts))
-    return max_index
+# def parse_look(response):
+#     response = response.strip('[]').replace(',,', ',')
+#     tiles = [tile.strip() for tile in response.split(',')]
+#     food_counts = [tile.count('food') for tile in tiles]
+#     max_index = food_counts.index(max(food_counts))
+#     return max_index
 
-def find_path(direction, conn, object):
-    if direction == 0:
-        conn.send_request("Take " + object)
-    elif direction == 1:
-        conn.send_request("Forward")
-        conn.send_request("Left")
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
-    elif direction == 2:
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
-    elif direction == 3:
-        conn.send_request("Forward")
-        conn.send_request("Right")
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
-    elif direction == 4:
-        conn.send_request("Forward")
-        conn.send_request("Forward")
-        conn.send_request("Left")
-        conn.send_request("Forward")
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
-    elif direction == 5:
-        conn.send_request("Forward")
-        conn.send_request("Forward")
-        conn.send_request("Left")
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
-    elif direction == 6:
-        conn.send_request("Forward")
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
-    elif direction == 7:
-        conn.send_request("Forward")
-        conn.send_request("Forward")
-        conn.send_request("Right")
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
-    elif direction == 8:
-        conn.send_request("Forward")
-        conn.send_request("Forward")
-        conn.send_request("Right")
-        conn.send_request("Forward")
-        conn.send_request("Forward")
-        conn.send_request("Take " + object)
+# class DQN(nn.Module):
+#     def __init__(self, input_size, output_size):
+#         ## input and output
+#         super(DQN, self).__init__()
+#         self.fc1 = nn.Linear(11, 128)
+#         self.fc2 = nn.Linear(128, 128)
+#         self.fc3 = nn.Linear(128, output_size)
+#         ##-------------------------
+#     def forward(self, x):
+#         x = torch.relu(self.fc1(x))
+#         x = torch.relu(self.fc2(x))
+#         x = self.fc3(x)
+#         return x
 
-class DQN(nn.Module):
-    def __init__(self, input_size, output_size):
-        super(DQN, self).__init__()
-        self.fc1 = nn.Linear(11, 128)
-        self.fc2 = nn.Linear(128, 128)
-        self.fc3 = nn.Linear(128, output_size)
+# class ReplayMemory:
+#     def __init__(self, capacity):
+#         self.capacity = capacity
+#         self.memory = deque(maxlen=capacity)
 
-    def forward(self, x):
-        x = torch.relu(self.fc1(x))
-        x = torch.relu(self.fc2(x))
-        x = self.fc3(x)
-        return x
+#     def push(self, transition):
+#         self.memory.append(transition)
 
-class ReplayMemory:
-    def __init__(self, capacity):
-        self.capacity = capacity
-        self.memory = deque(maxlen=capacity)
+#     def sample(self, batch_size):
+#         return random.sample(self.memory, batch_size)
 
-    def push(self, transition):
-        self.memory.append(transition)
+#     def __len__(self):
+#         return len(self.memory)
 
-    def sample(self, batch_size):
-        return random.sample(self.memory, batch_size)
 
-    def __len__(self):
-        return len(self.memory)
+# class TuringAI:
+#     debug = False
+#     port = None
+#     team_name = ""
+#     host = "localhost"
+#     ## add all the command take and set
+#     command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take", "Set", "Incantation"]
+#     #--------------------------------------------------
+#     level_requirements = {
+#         1: {"players": 1, "linemate": 1, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0},
+#         2: {"players": 2, "linemate": 1, "deraumere": 1, "sibur": 1, "mendiane": 0, "phiras": 0, "thystame": 0},
+#         3: {"players": 2, "linemate": 2, "deraumere": 0, "sibur": 1, "mendiane": 0, "phiras": 2, "thystame": 0},
+#         4: {"players": 4, "linemate": 1, "deraumere": 1, "sibur": 2, "mendiane": 0, "phiras": 1, "thystame": 0},
+#         5: {"players": 4, "linemate": 1, "deraumere": 2, "sibur": 1, "mendiane": 3, "phiras": 0, "thystame": 0},
+#         6: {"players": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
+#         7: {"players": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
+#     }
 
-class TuringAI:
-    debug = False
-    port = None
-    team_name = ""
-    host = "localhost"
-    command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take", "Set", "Incantation"]
+#     def __init__(self):
+#         self.debug = False
+#         self.port = None
+#         self.team_name = ""
+#         self.host = "localhost"
+#         self.command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Incantation"]
+#         self.inventory = {"food": 0, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+#         self.level = 1
 
-    level_requirements = {
-        1: {"players": 1, "linemate": 1, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0},
-        2: {"players": 2, "linemate": 1, "deraumere": 1, "sibur": 1, "mendiane": 0, "phiras": 0, "thystame": 0},
-        3: {"players": 2, "linemate": 2, "deraumere": 0, "sibur": 1, "mendiane": 0, "phiras": 2, "thystame": 0},
-        4: {"players": 4, "linemate": 1, "deraumere": 1, "sibur": 2, "mendiane": 0, "phiras": 1, "thystame": 0},
-        5: {"players": 4, "linemate": 1, "deraumere": 2, "sibur": 1, "mendiane": 3, "phiras": 0, "thystame": 0},
-        6: {"players": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
-        7: {"players": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
-    }
+#         ## separer le model et le trainning
+#         self.state_size = 16
+#         self.action_size = 9
+#         self.memory = ReplayMemory(10000)
+#         self.model = DQN(self.state_size, self.action_size)
+#         self.target_model = DQN(self.state_size, self.action_size)
+#         self.optimizer = optim.Adam(self.model.parameters())
+#         self.criterion = nn.MSELoss()
+#         self.gamma = 0.99
+#         self.epsilon = 1.0
+#         self.epsilon_min = 0.1
+#         self.epsilon_decay = 0.995
+#         ##----------------------------------
 
-    def __init__(self):
-        self.debug = False
-        self.port = None
-        self.team_name = ""
-        self.host = "localhost"
-        self.command = ["Forward", "Right", "Left", "Look", "Inventory", "Broadcast", "Connect_nbr", "Fork", "Eject", "Take", "Set", "Incantation"]
-        self.inventory = {"food": 0, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
-        self.level = 1
+#         # Load model weights if they exist
+#         try:
+#             self.model.load_state_dict(torch.load("model_weights.pth"))
+#             self.target_model.load_state_dict(torch.load("model_weights.pth"))
+#             self.model.eval()
+#             self.target_model.eval()
+#             print("Loaded saved model weights.")
+#         except FileNotFoundError:
+#             print("No saved model weights found. Starting from scratch.")
 
-        self.state_size = 16
-        self.action_size = 12
-        self.memory = ReplayMemory(10000)
-        self.model = DQN(self.state_size, self.action_size)
-        self.target_model = DQN(self.state_size, self.action_size)
-        self.optimizer = optim.Adam(self.model.parameters())
-        self.criterion = nn.MSELoss()
-        self.gamma = 0.99
-        self.epsilon = 1.0
-        self.epsilon_min = 0.1
-        self.epsilon_decay = 0.995
+#         # Load replay memory if it exists
+#         try:
+#             with open("replay_memory.pkl", "rb") as f:
+#                 self.memory = pickle.load(f)
+#             print("Loaded saved replay memory.")
+#         except FileNotFoundError:
+#             print("No saved replay memory found. Starting from scratch.")
 
-        # Load model weights if they exist
-        try:
-            self.model.load_state_dict(torch.load("model_weights.pth"))
-            self.target_model.load_state_dict(torch.load("model_weights.pth"))
-            self.model.eval()
-            self.target_model.eval()
-            print("Loaded saved model weights.")
-        except FileNotFoundError:
-            print("No saved model weights found. Starting from scratch.")
+#     def select_action(self, state):
+#         ## add predict
+#         if random.random() < self.epsilon:
+#             return random.randrange(self.action_size)
+#         with torch.no_grad():
+#             return self.model(torch.FloatTensor(state)).argmax().item()
+#         #-------------------------------
+    
+#     def train_step(self, batch_size):
+#         ## save as short memory
+#         if len(self.memory) < batch_size:
+#             return
+#         transitions = self.memory.sample(batch_size)
+#         batch = list(zip(*transitions))
 
-        # Load replay memory if it exists
-        try:
-            with open("replay_memory.pkl", "rb") as f:
-                self.memory = pickle.load(f)
-            print("Loaded saved replay memory.")
-        except FileNotFoundError:
-            print("No saved replay memory found. Starting from scratch.")
+#         states = torch.FloatTensor(batch[0])
+#         actions = torch.LongTensor(batch[1])
+#         rewards = torch.FloatTensor(batch[2])
+#         next_states = torch.FloatTensor(batch[3])
+#         dones = torch.FloatTensor(batch[4])
 
-    def select_action(self, state):
-        if random.random() < self.epsilon:
-            return random.randrange(self.action_size)
-        with torch.no_grad():
-            return self.model(torch.FloatTensor(state)).argmax().item()
+#         q_values = self.model(states).gather(1, actions.unsqueeze(1)).squeeze(1)
+#         next_q_values = self.target_model(next_states).max(1)[0]
+#         target_q_values = rewards + self.gamma * next_q_values * (1 - dones)
 
-    def train_step(self, batch_size):
-        if len(self.memory) < batch_size:
-            return
-        transitions = self.memory.sample(batch_size)
-        batch = list(zip(*transitions))
+#         loss = self.criterion(q_values, target_q_values)
 
-        states = torch.FloatTensor(batch[0])
-        actions = torch.LongTensor(batch[1])
-        rewards = torch.FloatTensor(batch[2])
-        next_states = torch.FloatTensor(batch[3])
-        dones = torch.FloatTensor(batch[4])
+#         self.optimizer.zero_grad()
+#         loss.backward()
+#         self.optimizer.step()
 
-        q_values = self.model(states).gather(1, actions.unsqueeze(1)).squeeze(1)
-        next_q_values = self.target_model(next_states).max(1)[0]
-        target_q_values = rewards + self.gamma * next_q_values * (1 - dones)
+#         if self.epsilon > self.epsilon_min:
+#             self.epsilon *= self.epsilon_decay
+#     #------------------------------------
 
-        loss = self.criterion(q_values, target_q_values)
+#     def update_target_model(self):
+#         self.target_model.load_state_dict(self.model.state_dict())
 
-        self.optimizer.zero_grad()
-        loss.backward()
-        self.optimizer.step()
+#     def get_state(self, response):
+#         ## change the format of state
+#         tiles = response.strip('[]').split(',')
+#         state = [tile.count('food') for tile in tiles]
+#         state.extend(self.inventory.values())
+#         return np.array(state, dtype=np.float32)
+#         #-----------------------------------------
+    
+#     def check_level_up(self):
+#         requirements = self.level_requirements[self.level]
+#         for item in requirements:
+#             if item == "players":
+#                 continue
+#             if self.inventory.get(item, 0) < requirements[item]:
+#                 return False
+#         return True
 
-        if self.epsilon > self.epsilon_min:
-            self.epsilon *= self.epsilon_decay
+#     def save_progress(self):
+#         # Save model weights
+#         torch.save(self.model.state_dict(), "model_weights.pth")
+#         # Save replay memory
+#         with open("replay_memory.pkl", "wb") as f:
+#             pickle.dump(self.memory, f)
+#         print("Progress saved.")
 
-    def update_target_model(self):
-        self.target_model.load_state_dict(self.model.state_dict())
+# def parse_inventory(response):
+#     items = response.strip('{}').split(',')
+#     inventory = {}
+#     for item in items:
+#         k, v = item.split()
+#         inventory[k] = int(v)
+#     return inventory
 
-    def get_state(self, response):
-        tiles = response.strip('[]').split(',')
-        state = [tile.count('food') for tile in tiles]
-        state.extend(self.inventory.values())
-        return np.array(state, dtype=np.float32)
+# def parse_look(response, ai, obj):
+#     """
+#     Parse the look response from the server and return the tile where there is the most food.
 
-    def check_level_up(self):
-        requirements = self.level_requirements[self.level]
-        for item in requirements:
-            if item == "players":
-                continue
-            if self.inventory.get(item, 0) < requirements[item]:
-                return False
-        return True
+#     Args:
+#         response (str): The response from the server.
 
-    def save_progress(self):
-        # Save model weights
-        torch.save(self.model.state_dict(), "model_weights.pth")
-        # Save replay memory
-        with open("replay_memory.pkl", "wb") as f:
-            pickle.dump(self.memory, f)
-        print("Progress saved.")
+#     Returns:
+#         str: The direction where there is the most food.
+#     """
+#     tiles = response.strip('[]').split(',')
+#     if len(tiles) == 1:
+#         return []
+#     if ai.level == 1:
+#         look = [['',tiles[0],''], [tiles[1],tiles[2],tiles[3]]]
+#         return look
+#     if ai.level == 2:
+#         look = [['','',tiles[0],'',''], ['',tiles[1],tiles[2],tiles[3],''], [tiles[4],tiles[5],tiles[6],tiles[7],tiles[8]]]
+#         return look
+#     if ai.level == 3:
+#         look = [['','','',tiles[0],'','',''], ['','',tiles[1],tiles[2],tiles[3],'',''], ['',tiles[4],tiles[5],tiles[6],tiles[7],tiles[8],''],
+#                 [tiles[9],tiles[10],tiles[11],tiles[12],tiles[13],tiles[14],tiles[15]]]
+#         return look
 
-def parse_inventory(response):
-    items = response.strip('{}').split(',')
-    inventory = {}
-    for item in items:
-        k, v = item.split()
-        inventory[k] = int(v)
-    return inventory
+# def get_obj(map, obj):
+#     x = 0
+#     y = 0
+#     nb = 0
+#     for i in range(len(map)):
+#         for e in range(len(map[0])):
+#             if map[i][e].count(obj) > nb:
+#                 x = i
+#                 y = e
+#                 nb = map[i][e].count(obj)
+#     return x,y,nb
+    
+# def get_direction(x,y,ai):
+#     dir = []
+#     y -= ai.level
+#     for i in range(x):
+#         dir.append("Forward")
+#     if y < 0:
+#         dir.append("Left")
+#     if y > 0:
+#         dir.append("Right")
+#     if abs(y) > 0:
+#         for i in range(abs(y)):
+#             dir.append("Forward")
+#     return dir 
+   
 
-def basic_ia(conn, ai):
-    start_time = time.time()
-    reward = 0
-    state = ai.get_state(conn.send_request("Look").decode())
-    while ai.level < 3:
-        action = ai.select_action(state)
-        if action == 0:
-            res = conn.send_request("Forward")
-            if res == "dead":
-                break
-        elif action == 1:
-            res = conn.send_request("Right")
-            if res == "dead":
-                break
-        elif action == 2:
-            res = conn.send_request("Left")
-            if res == "dead":
-                break
-        elif 3 <= action < 10:
-            item = list(ai.inventory.keys())[action - 3]
-            res = conn.send_request(f"Take {item}")
-            if res == "dead":
-                break
-        elif action == 11:
-            if ai.check_level_up():
-                res = conn.send_request("Incantation")
-                if res == "dead":
-                    break
-                ai.level += 1  # Increment level after successful incantation
-                reward = 10  # Reward for leveling up
-            else:
-                reward = 0
-        else:
-            reward = 1 / (time.time() - start_time)  # Default survival reward
+# def find_path(direction, conn, quantity, obj, ai):
+#     """
+#     Find the path to the tile with the most food.
 
-        try :
-            next_state = ai.get_state(conn.send_request("Look").decode())
-        except:
-            break
-        done = False
+#     Args:
+#         direction (str): The direction where there is the most food.
 
-        ai.memory.push((state, action, reward, next_state, done))
-        state = next_state
+#     Returns:
+#         None
+#     """
+#     for i in direction:
+#         conn.send_request(i)
+#     for i in range(0, quantity):
+#         conn.send_request("Take " + obj)
+#         print(obj + " taken")
+#         ai.inventory[obj] += 1
 
-        ai.train_step(32)
 
-        if done:
-            state = ai.get_state(conn.send_request("Look").decode())
+# def basic_ia(conn, ai):
+#     start_time = time.time()
+#     reward = 0
+#     state = ai.get_state(conn.send_request("Look").decode())
+#     while ai.level < 3:
+#         action = ai.select_action(state)
+#         if action == 3:
+#             response = conn.send_request("Look")
+#             map = parse_look(response.decode(), ai, 'food')
+#             if len(map) == 0:
+#                 continue
+#             x,y,nb = get_obj(map, "food")
+#             find_path(get_direction(x,y,ai), conn, nb, 'food', ai)
+#         elif action == 9:
+#             if ai.check_level_up():
+#                 res = conn.send_request("Incantation")
+#                 if res == "dead":
+#                     break
+#                 ai.level += 1  # Increment level after successful incantation
+#                 reward = 10  # Reward for leveling up
+#                 time.sleep(10)
+#             else:
+#                 reward = 0
+#         else:
+#             res = conn.send_request(ai.command[action])
+#             if res == "dead":
+#                 break
+#             reward = 1 / (time.time() - start_time)  # Default survival reward
 
-        ai.update_target_model()
+#         try :
+#             next_state = ai.get_state(conn.send_request("Look").decode())
+#         except:
+#             break
+#         done = False
 
-    print(ai.level)
-    ai.save_progress()
+#         ai.memory.push((state, action, reward, next_state, done))
+#         state = next_state
+
+#         ai.train_step(32)
+
+#         if done:
+#             state = ai.get_state(conn.send_request("Look").decode())
+
+#         ai.update_target_model()
+
+#     print(ai.level)
+#     ai.save_progress()
 
 def main():
     ai = TuringAI()
@@ -296,7 +324,16 @@ def main():
     if ai.debug:
         conn.connect_to_server_debug()
     conn.connect_to_server(ai.team_name)
-    basic_ia(conn, ai)
+    ai.ngames = 0
+    while True:
+        ai.train(conn)
+        conn.s.close()
+        conn = debug_lib.ServerConnection(ai)
+        conn.connect_to_server(ai.team_name)
+
+
+
+
 
 if __name__ == "__main__":
     main()

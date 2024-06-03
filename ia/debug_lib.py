@@ -78,7 +78,7 @@ class ServerConnection:
                 print(repr(data))
                 if data == b"dead\n":
                     print("AI is dead.")
-                    return "dead"
+                    return "done"
                 return data
             except:
                 print("Error: Connection to server lost.")
