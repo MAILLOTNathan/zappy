@@ -14,6 +14,7 @@ class TuringAI:
     def __init__(self):
         self.debug = False
         self.port = None
+        self.conn = None
         self.team_name = ""
         self.host = "localhost"
         self.command  = ['Forward', 'Left', 'Right', 'Take food', 'Take linemate', 'Take deraumere', 'Take sibur', 'Take mendiane', 'Take phiras', 'Take thystame', 
@@ -75,8 +76,11 @@ class TuringAI:
             add_ += ','
         response = response.replace(']', add_)
         response += ']'
-        first_part = response.split('[')[0]
+        if len(response) < 10:
+            response = '[' + add_ + ']'
 
+        first_part = response.split('[')[0]
+        print(response)
         Food = self.nb_item(response, 'food')
         Linemate = self.nb_item(response, 'linemate')
         Deraumere = self.nb_item(response, 'deraumere')
@@ -198,9 +202,8 @@ class TuringAI:
         """
         if result == "dead":
             return -20
-        print("-----------",result,"----------------")
         if "Incantation" in final_move:
-            conn.recv(1024)
+            conn.s.recv(1024)
             if "current level" in result:
                 return 100 * self.level
         return 0
@@ -223,13 +226,12 @@ class TuringAI:
                 self.train_long_memory()
                 self.model.save()
                 return
-            print("###############",res,"##############")
             res = res.decode()
             state_old = self.get_state(res)
             final_move = self.get_action(state_old)
             result = conn.send_request(self.command[final_move])
             elapsed_time = time.time() - start_clock
-            reward = self.compute_reward(self, self.command[final_move], result, elapsed_time)
+            reward = self.compute_reward(conn, self.command[final_move], result, elapsed_time)
             res = conn.send_request("Look")
             if res == "done" or res == None:
                 self.ngames += 1

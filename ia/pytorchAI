@@ -29,17 +29,16 @@ def check_args(TuringAI):
 def main():
     ai = TuringAI()
     check_args(ai)
-    conn = debug_lib.ServerConnection(ai)
+    ai.conn = debug_lib.ServerConnection(ai)
     if ai.debug:
-        conn.connect_to_server_debug()
-    conn.connect_to_server(ai.team_name)
+        ai.conn.connect_to_server_debug()
+    ai.conn.connect_to_server(ai.team_name)
     ai.ngames = 0
     while True:
-        ai.train(conn)
-        conn.s.close()
-        conn = debug_lib.ServerConnection(ai)
-        conn.connect_to_server(ai.team_name)
-        print("guillllll<sjlvyevfbvezvguizhhjv")
+        ai.train(ai.conn)
+        ai.conn.s.close()
+        ai.conn = debug_lib.ServerConnection(ai)
+        ai.conn.connect_to_server(ai.team_name)
 
 if __name__ == "__main__":
     main()
