@@ -28,8 +28,6 @@ int main()
         client.addCommand("bct", net::type_command_t::MCT, [&gui](std::vector<std::string>& args) {
             if (args.size() != 10)
                 throw EGE::Error("Wrong number of param.");
-            for (const auto& arg : args)
-                std::cout << arg << std::endl;
             EGE::Maths::Vector2<int> position(std::stoi(args[1]), std::stoi(args[2]));
             gui->getMap()->addItem(position, Onyx::Item::TYPE::FOOD, std::stoi(args[3]));
             gui->getMap()->addItem(position, Onyx::Item::TYPE::LINEMATE, std::stoi(args[4]));
