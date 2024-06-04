@@ -20,10 +20,10 @@ Onyx::Gui::Gui()
 
     this->_interface->init(this->_window.get());
 
-    this->_interface->_menuBar->add(new EGE::Menu("File"));
-    this->_interface->_menuBar->add(new EGE::Menu("Edit"));
-    this->_interface->_menuBar->add(new EGE::Menu("View"));
-    this->_interface->_menuBar->add(new EGE::Menu("Help"));
+    this->_interface->_menuBar->add(new EGE::Menu("File"), "file");
+    this->_interface->_menuBar->add(new EGE::Menu("Edit"), "edit");
+    this->_interface->_menuBar->add(new EGE::Menu("View"), "view");
+    this->_interface->_menuBar->add(new EGE::Menu("Help"), "help");
 }
 
 Onyx::Gui::~Gui()
@@ -128,13 +128,12 @@ void Onyx::Gui::createWorldPanel()
     EGE::ListBox *dimensions = new EGE::ListBox("Dimensions");
 
     EGE::Maths::Vector2<int> size = this->_map->getSize();
-    dimensions->add(new EGE::Text("Width: " + std::to_string(size.x)));
-    dimensions->add(new EGE::Text("Height: " + std::to_string(size.y)));
+    dimensions->add(new EGE::Text("Width: " + std::to_string(size.x)), "width");
+    dimensions->add(new EGE::Text("Height: " + std::to_string(size.y)), "height");
 
-    panel->add(dimensions);
+    panel->add(dimensions, "dimensions");
 
     EGE::ListBox *content = new EGE::ListBox("Content");
-    std::cout << "Creating world panel" << std::endl;
     std::map<std::string, int> items = {};
 
     items["Food"] = 0;
@@ -145,7 +144,41 @@ void Onyx::Gui::createWorldPanel()
     items["Phiras"] = 0;
     items["Thystame"] = 0;
 
-    std::cout << "Getting items" << std::endl;
+    for (auto &floor : this->_map->getFloor()) {
+        items["Food"] += floor->getQuantity(Onyx::Item::TYPE::FOOD);
+        items["Linemate"] += floor->getQuantity(Onyx::Item::TYPE::LINEMATE);
+        items["Deraumere"] += floor->getQuantity(Onyx::Item::TYPE::DERAUMERE);
+        items["Sibur"] += floor->getQuantity(Onyx::Item::TYPE::SIBUR);
+        items["Mendiane"] += floor->getQuantity(Onyx::Item::TYPE::MENDIANE);
+        items["Phiras"] += floor->getQuantity(Onyx::Item::TYPE::PHIRAS);
+        items["Thystame"] += floor->getQuantity(Onyx::Item::TYPE::THYSTAME);
+    }
+    content->add(new EGE::Text("Food: " + std::to_string(items["Food"])), "food");
+    content->add(new EGE::Text("Linemate: " + std::to_string(items["Linemate"])), "linemate");
+    content->add(new EGE::Text("Deraumere: " + std::to_string(items["Deraumere"])), "deraumere");
+    content->add(new EGE::Text("Sibur: " + std::to_string(items["Sibur"])), "sibur");
+    content->add(new EGE::Text("Mendiane: " + std::to_string(items["Mendiane"])), "mendiane");
+    content->add(new EGE::Text("Phiras: " + std::to_string(items["Phiras"])), "phiras");
+    content->add(new EGE::Text("Thystame: " + std::to_string(items["Thystame"])), "thystame");
+
+    panel->add(content, "content");
+    this->_interface->_panels["Amber World"] = panel;
+}
+
+void Onyx::Gui::updateWorldPanel()
+{
+    EGE::ListBox *dimensions = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("dimensions"));
+    EGE::ListBox *content = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("content"));
+    EGE::Maths::Vector2<int> size = this->_map->getSize();
+    std::map<std::string, int> items = {};
+
+    items["Food"] = 0;
+    items["Linemate"] = 0;
+    items["Deraumere"] = 0;
+    items["Sibur"] = 0;
+    items["Mendiane"] = 0;
+    items["Phiras"] = 0;
+    items["Thystame"] = 0;
 
     for (auto &floor : this->_map->getFloor()) {
         items["Food"] += floor->getQuantity(Onyx::Item::TYPE::FOOD);
@@ -156,17 +189,16 @@ void Onyx::Gui::createWorldPanel()
         items["Phiras"] += floor->getQuantity(Onyx::Item::TYPE::PHIRAS);
         items["Thystame"] += floor->getQuantity(Onyx::Item::TYPE::THYSTAME);
     }
-    std::cout << "Item get" << std::endl;
-    content->add(new EGE::Text("Food: " + std::to_string(items["Food"])));
-    content->add(new EGE::Text("Linemate: " + std::to_string(items["Linemate"])));
-    content->add(new EGE::Text("Deraumere: " + std::to_string(items["Deraumere"])));
-    content->add(new EGE::Text("Sibur: " + std::to_string(items["Sibur"])));
-    content->add(new EGE::Text("Mendiane: " + std::to_string(items["Mendiane"])));
-    content->add(new EGE::Text("Phiras: " + std::to_string(items["Phiras"])));
-    content->add(new EGE::Text("Thystame: " + std::to_string(items["Thystame"])));
 
-    panel->add(content);
-    this->_interface->_panels["Amber World"] = panel;
+    dimensions->get("width")->setName("Width: " + std::to_string(size.x));
+    dimensions->get("height")->setName("Height: " + std::to_string(size.y));
+    content->get("food")->setName("Food: " + std::to_string(items["Food"]));
+    content->get("linemate")->setName("Linemate: " + std::to_string(items["Linemate"]));
+    content->get("deraumere")->setName("Deraumere: " + std::to_string(items["Deraumere"]));
+    content->get("sibur")->setName("Sibur: " + std::to_string(items["Sibur"]));
+    content->get("mendiane")->setName("Mendiane: " + std::to_string(items["Mendiane"]));
+    content->get("phiras")->setName("Phiras: " + std::to_string(items["Phiras"]));
+    content->get("thystame")->setName("Thystame: " + std::to_string(items["Thystame"]));
 }
 
 // EGE::Panel *Onyx::Gui::createPlayerPanel()

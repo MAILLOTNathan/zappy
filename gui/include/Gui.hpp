@@ -59,6 +59,8 @@ namespace Onyx {
             std::shared_ptr<EGE::Window> getWindow() const;
 
             void createWorldPanel();
+
+            void updateWorldPanel();
             // EGE::Panel *createPlayerPanel();
 
         private:

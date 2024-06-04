@@ -68,8 +68,7 @@ void net::TcpClient::disconnect()
 
 void net::TcpClient::sendRequest(const std::string& request)
 {
-    if (FD_ISSET(this->_fd, &this->_writefds))
-        send(this->_fd, request.c_str(), request.size(), 0);
+    send(this->_fd, request.c_str(), request.size(), 0);
 }
 
 void net::TcpClient::waitEvent()
@@ -90,17 +89,17 @@ void net::TcpClient::addCommand(const std::string& command, net::type_command_t 
 
 void net::TcpClient::_readAll()
 {
-    char buffer[4096] = {0};
+    char buffer[1000000] = {0};
     std::string response;
     ssize_t valread;
 
     do {
-        valread = recv(this->_fd, buffer, 4096, 0);
+        valread = recv(this->_fd, buffer, 1000000, 0);
         if (valread == 0)
             break;
         response += buffer;
-        std::memset(buffer, 0, 4096);
-    } while (valread == 4096);
+        std::memset(buffer, 0, 1000000);
+    } while (valread == 1000000);
 
     this->_buffer += response;
 }
@@ -113,8 +112,8 @@ void net::TcpClient::_evalCommand()
 
     while ((pos = this->_buffer.find("\n")) != std::string::npos) {
         command = this->_buffer.substr(0, pos);
-        std::cout << "|" << command << "|" << std::endl;
         this->_buffer.erase(0, pos + 1);
+
         if (command == "dead") {
             this->disconnect();
             throw net::TcpClientError("Dead");
