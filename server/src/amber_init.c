@@ -57,6 +57,7 @@ amber_serv_t *amber_create_server(args_t *args)
     server->_tcp._port = args->_port;
     server->_is_running = true;
     server->_teams_name = args->_teams;
+    server->_debug_client._fd = -1;
     server->_clients = create_list(&amber_create_client,
     &amber_destroy_client);
     server->_graphic_clients = create_list(&amber_create_client,

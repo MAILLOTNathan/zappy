@@ -100,11 +100,13 @@ typedef struct amber_serv_s {
     int _freq;
     fd_set _readfds;
     fd_set _writefds;
+    fd_set _exceptfds;
 
     list_t *_clients;
     list_t *_graphic_clients;
     bool _is_running;
     char **_teams_name;
+    tcp_t _debug_client;
 } amber_serv_t;
 
 /**

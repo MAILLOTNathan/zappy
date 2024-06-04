@@ -78,4 +78,23 @@ int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team);
  */
 amber_client_t *amber_get_client_by_id(list_t *clients, int id);
 
+/**
+ * Initializes an Amber client.
+ *
+ * This function initializes an Amber client by setting up the necessary
+ * connections and resources. It takes a pointer to an `amber_client_t`
+ * structure, a pointer to an `amber_serv_t` structure, a pointer to an
+ * `amber_world_t` structure, and a double pointer to a character array.
+ *
+ * @param client A pointer to the `amber_client_t` structure to be initialized.
+ * @param serv A pointer to the `amber_serv_t` structure representing
+ * the server.
+ * @param world A pointer to the `amber_world_t` structure representing
+ * the world.
+ * @param arg A double pointer to a character array representing the arguments.
+ * @return `true` if the client is successfully initialized, `false` otherwise.
+ */
+bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
+    amber_world_t *world, char **arg);
+
 #endif /* !AMBER_MANAGE_CLIENT_H_ */

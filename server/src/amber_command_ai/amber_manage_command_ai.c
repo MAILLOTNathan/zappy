@@ -101,15 +101,27 @@ void check_ellapsed_time(amber_client_t *client, char *cmd, double freq)
         client->_queue_command->_command->_time / freq);
 }
 
+bool check_command_queue_team_name(amber_world_t *world, amber_serv_t *serv,
+    amber_client_t *client, char **arg)
+{
+    if (queue_command_size(client->_queue_command) >= 10) {
+        dprintf(client->_tcp._fd, "ko\n");
+        return false;
+    }
+    if (client->_team_name == NULL) {
+        amber_init_client(client, serv, world, arg);
+        return false;
+    }
+    return true;
+}
+
 void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
     amber_client_t *client, char **arg)
 {
     int i = 0;
 
-    if (queue_command_size(client->_queue_command) >= 10) {
-        dprintf(client->_tcp._fd, "ko\n");
+    if (!check_command_queue_team_name(world, serv, client, arg))
         return;
-    }
     if (strcmp(arg[0], "Incantation") == 0 &&
         !check_incanation(world, serv, client))
         return;

@@ -37,7 +37,7 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
         if (tmp->_is_incantating &&
         tmp->_queue_command->_command->_id != T_INCANTATION)
             continue;
-        if (!tmp->_queue_command)
+        if (!tmp->_queue_command || tmp->_team_name == NULL)
             continue;
         exec_logic_function(tmp, world, serv);
     }

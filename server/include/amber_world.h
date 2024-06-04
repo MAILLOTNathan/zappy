@@ -149,11 +149,12 @@ void amber_refill_world(amber_world_t *world);
  * It can optionally display the world
  * inside a box.
  *
+ * @param fd    The file descriptor to write the output to.
  * @param world The amber world to be displayed.
  * @param box   A boolean value indicating whether
  * to display the world inside a box.
  */
-void amber_display_world(amber_world_t *world, bool box);
+void amber_display_world(int fd, amber_world_t *world, bool box);
 
 /**
  * @brief Creates a new egg in the Amber World.

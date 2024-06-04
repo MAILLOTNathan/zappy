@@ -56,7 +56,7 @@ void amber_check_client_alive(amber_serv_t *server, amber_world_t *world)
     for (int i = 0; i < len; i++) {
         client = CAST(amber_client_t *, node->data);
         ref = node->next;
-        if (client->_is_incantating) {
+        if (client->_is_incantating || client->_team_name == NULL) {
             node = ref;
             continue;
         }
