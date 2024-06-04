@@ -202,7 +202,7 @@ class TuringAI:
         if result == "dead":
             return -20
         if "Incantation" in final_move:
-            conn.s.recv(1024)
+            result = conn.s.recv(1024).decode()
             if "current level" in result:
                 return 100 * self.level
         return 0
