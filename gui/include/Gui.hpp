@@ -14,6 +14,10 @@
 #include "Map.hpp"
 #include "Window.hpp"
 
+#include "TcpClient.hpp"
+
+#include "UserInterface.hpp"
+
 namespace Onyx {
     /**
      * @class Gui
@@ -51,6 +55,12 @@ namespace Onyx {
             void createMap(int width, int height);
 
             std::shared_ptr<Onyx::Map> getMap();
+
+            std::shared_ptr<EGE::Window> getWindow() const;
+
+            void createWorldPanel();
+            // EGE::Panel *createPlayerPanel();
+
         private:
             /**
              * @brief Binds the events to the window.
@@ -70,5 +80,6 @@ namespace Onyx {
             std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
             float _deltaTime;                               /**< The time between frames. */
             std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
+            std::shared_ptr<UserInterface> _interface;
     };
 }

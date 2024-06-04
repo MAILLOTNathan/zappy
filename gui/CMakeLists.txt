@@ -19,7 +19,7 @@ endif()
 
 add_subdirectory("ege/")
 
-include_directories("ege/include/" "include/")
+include_directories("ege/include/" "include/" "ege/imgui/" "ege/imgui/backends/")
 
 add_executable(Onyx ${SOURCES})
 

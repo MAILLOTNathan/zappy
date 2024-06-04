@@ -10,5 +10,4 @@
 UserInterface::UserInterface()
 {
     this->_menuBar = new EGE::Main();
-    this->_panels.push_back(new EGE::Panel("Test"));
 }

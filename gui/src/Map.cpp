@@ -57,3 +57,14 @@ void Onyx::Map::removeItem(const EGE::Maths::Vector2<int>& position, Onyx::Item:
         }
     }
 }
+
+EGE::Maths::Vector2<int> Onyx::Map::getSize() const
+{
+    return this->_size;
+}
+
+
+std::vector<std::shared_ptr<Onyx::Floor>> Onyx::Map::getFloor() const
+{
+    return this->_floor;
+}

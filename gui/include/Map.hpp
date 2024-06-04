@@ -54,6 +54,10 @@ namespace Onyx {
 
             void removeItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type);
 
+            EGE::Maths::Vector2<int> getSize() const;
+
+            std::vector<std::shared_ptr<Floor>> getFloor() const;
+
         private:
             std::vector<std::shared_ptr<Floor>> _floor; /**< The collection of floor models in the map. */
             std::shared_ptr<EGE::Shader> _shader;       /**< The shader used to update the map. */
