@@ -31,9 +31,9 @@ static bool check_different_mode(amber_client_t *client, amber_serv_t *serv,
     if (length_string_array(arg) != 1)
         return false;
     if (strcmp(arg[0], "GRAPHIC") == 0) {
-        push_back_list(serv->_graphic_clients, client->_tcp._fd, NULL, true);
+        push_back_list(serv->_graphic_clients, client->_tcp._fd, true);
         remove_node(&serv->_clients, list_find_node_p(serv->_clients, client),
-        true);
+        false);
         printf("[AMBER INFO] New graphical client connected\n");
         return false;
     }

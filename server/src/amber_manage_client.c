@@ -20,6 +20,7 @@ void *amber_create_client(va_list *ap)
     client->_buffer = NULL;
     client->_queue_command = NULL;
     client->_tcp._fd = va_arg(*ap, int);
+    client->_is_graphical = va_arg(*ap, int);
     return client;
 }
 
