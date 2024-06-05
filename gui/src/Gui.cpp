@@ -374,10 +374,9 @@ void Onyx::Gui::createConsolePanel()
 
 void Onyx::Gui::updateConsolePanel(std::vector<std::string>& args)
 {
-    EGE::ListBox *content = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Console"]->get("Content"));
+    std::string message = "";
 
-    for (auto &arg : args) {
-        std::cout << arg << std::endl;
-        //content->add(new EGE::Text(arg), "args");
-    }
+    for (auto &arg : args)
+        message += " " + arg;
+    this->_interface->_panels["Console"]->add(new EGE::Text(message), message);
 }
