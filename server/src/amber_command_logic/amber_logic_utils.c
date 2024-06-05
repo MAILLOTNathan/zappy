@@ -32,6 +32,24 @@ void send_client_message(amber_client_t *client, const char *message)
     dprintf(client->_tcp._fd, "%s\n", message);
 }
 
+static void drop_item(amber_world_t *world, int x, int y, box_t *inv)
+{
+    world->_case[y][x]._food += inv->_food;
+    world->_case[y][x]._linemate += inv->_linemate;
+    world->_case[y][x]._deraumere += inv->_deraumere;
+    world->_case[y][x]._sibur += inv->_sibur;
+    world->_case[y][x]._mendiane += inv->_mendiane;
+    world->_case[y][x]._phiras += inv->_phiras;
+    world->_case[y][x]._thystame += inv->_thystame;
+    world->_food_info._c_value += inv->_food;
+    world->_food_info._c_value += inv->_linemate;
+    world->_food_info._c_value += inv->_deraumere;
+    world->_food_info._c_value += inv->_sibur;
+    world->_food_info._c_value += inv->_mendiane;
+    world->_food_info._c_value += inv->_phiras;
+    world->_food_info._c_value += inv->_thystame;
+}
+
 static void check_clock_food(amber_client_t *client, amber_world_t *world,
     linked_list_t *node, amber_serv_t *server)
 {
@@ -39,6 +57,8 @@ static void check_clock_food(amber_client_t *client, amber_world_t *world,
         return;
     client->_inventory->_food--;
     if (client->_inventory->_food < 0) {
+        drop_item(world, client->_x, client->_y, client->_inventory);
+        printf("[AMBER INFO] Client %d died\n", client->_tcp._fd);
         dprintf(client->_tcp._fd, "dead\n");
         remove_node(&server->_clients, node, true);
     } else

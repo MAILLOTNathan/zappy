@@ -43,7 +43,6 @@ static void update_client_pos(direction_t dir, amber_client_t *client,
         client->_x = client->_x - 1 < 0 ? world->_width - 1 : client->_x - 1;
 }
 
-
 static void manage_eject_send(amber_client_t *client, amber_client_t *tmp,
     amber_world_t *world)
 {
