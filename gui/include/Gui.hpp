@@ -60,9 +60,11 @@ namespace Onyx {
 
             void createWorldPanel();
             void createTilePanel();
+            void createConsolePanel();
 
             void updateWorldPanel();
             void updateTilePanel();
+            void updateConsolePanel(std::vector<std::string>& args);
             // void createPlayerPanel();
 
         private:

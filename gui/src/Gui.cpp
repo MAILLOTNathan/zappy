@@ -165,12 +165,12 @@ void Onyx::Gui::createWorldPanel()
 
     panel->add(content, "content");
 
-    EGE::ListBox *Teams = new EGE::ListBox("Teams");
-    //send request to serveur for the teams names
-    Teams->add(new EGE::Text("Team 1"));
-    Teams->add(new EGE::Text("Team 2"));
+    // EGE::ListBox *Teams = new EGE::ListBox("Teams");
+    // //send request to serveur for the teams names
+    // Teams->add(new EGE::Text("Team 1"));
+    // Teams->add(new EGE::Text("Team 2"));
 
-    panel->add(Teams, "teams");
+    // panel->add(Teams, "teams");
 
     this->_interface->_panels["Amber World"] = panel;
 }
@@ -285,4 +285,21 @@ void Onyx::Gui::updateTilePanel()
     content->get("mendiane")->setName("Mendiane: " + std::to_string(floor->getQuantity(Onyx::Item::MENDIANE)));
     content->get("phiras")->setName("Phiras: " + std::to_string(floor->getQuantity(Onyx::Item::PHIRAS)));
     content->get("thystame")->setName("Thystame: " + std::to_string(floor->getQuantity(Onyx::Item::THYSTAME)));
+}
+
+void Onyx::Gui::createConsolePanel()
+{
+    EGE::Panel *panel = new EGE::Panel("Console");
+
+    this->_interface->_panels["Console"] = panel;
+}
+
+void Onyx::Gui::updateConsolePanel(std::vector<std::string>& args)
+{
+    EGE::ListBox *content = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Console"]->get("Content"));
+
+    for (auto &arg : args) {
+        std::cout << arg << std::endl;
+        //content->add(new EGE::Text(arg), "args");
+    }
 }
