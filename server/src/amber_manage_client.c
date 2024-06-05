@@ -11,37 +11,16 @@
 #include "amber_manage_command_ai.h"
 #include "amber_command_graphical.h"
 
-static void *init_client_ai(amber_client_t *client, egg_t *egg)
-{
-    client->_team_name = strdup(egg->_team);
-    client->_direction = egg->_direction;
-    client->_x = egg->_x;
-    client->_y = egg->_y;
-    client->_level = 1;
-    client->_id = egg->_id;
-    client->_inventory = amber_world_case_init();
-    client->_inventory->_food = 10;
-    client->_elapsed_time = 0;
-    client->_is_incantating = false;
-    return client;
-}
-
 void *amber_create_client(va_list *ap)
 {
     amber_client_t *client = calloc(1, sizeof(amber_client_t));
-    egg_t *egg = NULL;
 
     if (!client)
         return NULL;
-    client->_tcp._fd = va_arg(*ap, int);
-    egg = va_arg(*ap, egg_t *);
-    client->_is_graphical = va_arg(*ap, int);
     client->_buffer = NULL;
     client->_queue_command = NULL;
-    if (client->_is_graphical)
-        return client;
-    init_client_ai(client, egg);
-    amber_destroy_egg(egg);
+    client->_tcp._fd = va_arg(*ap, int);
+    client->_is_graphical = va_arg(*ap, int);
     return client;
 }
 
@@ -86,7 +65,7 @@ static void eval_command(amber_world_t *world, amber_serv_t *server,
         client->_buffer = strdup(buffer);
     else {
         client->_buffer = realloc(client->_buffer,
-            strlen(client->_buffer) + strlen(buffer) + 1);
+            strlen(client->_buffer) + 1024 + 1);
         strcat(client->_buffer, buffer);
     }
     do {
@@ -123,6 +102,10 @@ int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team)
     int count = 0;
 
     while (tmp) {
+        if (((amber_client_t *)tmp->data)->_team_name == NULL) {
+            tmp = tmp->next;
+            continue;
+        }
         if (!strcmp(((amber_client_t *)tmp->data)->_team_name, team))
             count++;
         tmp = tmp->next;

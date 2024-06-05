@@ -17,6 +17,8 @@
 
     #define HELP_TMP " -n name1 name2 ... -c clientsNb [-f freq]\n"
     #define HELP "USAGE: ./zappy_server -p port -x width -y height" HELP_TMP
+    #define HELP_FREQ_TMP "time unit for execution of actions\n"
+    #define HELP_FREQ "\tfreq: is the reciprocal of " HELP_FREQ_TMP
 
 /**
  * @brief Structure representing the arguments for the program.

@@ -15,7 +15,7 @@ static void init_pair(pair_t *pair, int width, int height, double density)
 
 static void init_info_world(amber_world_t *world)
 {
-    world->_clock = 20;
+    world->_clock = get_new_time_in_microseconds(20 / world->_freq);
     init_pair(&world->_food_info, world->_width, world->_height,
     FOOD_DENSITY);
     init_pair(&world->_linemate_info, world->_width, world->_height,
@@ -108,52 +108,53 @@ void amber_refill_world(amber_world_t *world)
         world->_case[RAND(world->_height)][RAND(world->_width)]._phiras++;
     for (int i = 0; box._thystame > i; i++)
         world->_case[RAND(world->_height)][RAND(world->_width)]._thystame++;
+    world->_clock = get_new_time_in_microseconds(20 / world->_freq);
 }
 
-static void display_box(amber_world_t *world)
+static void display_box(int fd, amber_world_t *world)
 {
     for (int i = 0; i < world->_height; i++) {
         for (int j = 0; j < world->_width; j++) {
-            printf("=============Case[%d][%d]:\n", i, j);
-            printf("Food: %d\n", world->_case[i][j]._food);
-            printf("Linemate: %d\n", world->_case[i][j]._linemate);
-            printf("Deraumere: %d\n", world->_case[i][j]._deraumere);
-            printf("Sibur: %d\n", world->_case[i][j]._sibur);
-            printf("Mendiane: %d\n", world->_case[i][j]._mendiane);
-            printf("Phiras: %d\n", world->_case[i][j]._phiras);
-            printf("Thystame: %d\n", world->_case[i][j]._thystame);
-            printf("Players: %d\n", world->_case[i][j]._players);
-            printf("Eggs: %d\n\n", world->_case[i][j]._eggs);
+            dprintf(fd, "=============Case[%d][%d]:\n", i, j);
+            dprintf(fd, "Food: %d\n", world->_case[i][j]._food);
+            dprintf(fd, "Linemate: %d\n", world->_case[i][j]._linemate);
+            dprintf(fd, "Deraumere: %d\n", world->_case[i][j]._deraumere);
+            dprintf(fd, "Sibur: %d\n", world->_case[i][j]._sibur);
+            dprintf(fd, "Mendiane: %d\n", world->_case[i][j]._mendiane);
+            dprintf(fd, "Phiras: %d\n", world->_case[i][j]._phiras);
+            dprintf(fd, "Thystame: %d\n", world->_case[i][j]._thystame);
+            dprintf(fd, "Players: %d\n", world->_case[i][j]._players);
+            dprintf(fd, "Eggs: %d\n\n", world->_case[i][j]._eggs);
         }
     }
 }
 
-static void display_more(amber_world_t *world, bool box)
+static void display_more(int fd, amber_world_t *world, bool box)
 {
-    printf("Eggs: %ld\n", list_len(world->_eggs));
+    dprintf(fd, "Eggs: %ld\n", list_len(world->_eggs));
     if (box)
-        display_box(world);
+        display_box(fd, world);
 }
 
-void amber_display_world(amber_world_t *world, bool box)
+void amber_display_world(int fd, amber_world_t *world, bool box)
 {
-    printf("=============AMBER WORLD=============\n");
-    printf("Width: %d\n", world->_width);
-    printf("Height: %d\n", world->_height);
-    printf("Food: %d/%d\n", world->_food_info._c_value,
+    dprintf(fd, "=============AMBER WORLD=============\n");
+    dprintf(fd, "Width: %d\n", world->_width);
+    dprintf(fd, "Height: %d\n", world->_height);
+    dprintf(fd, "Food: %d/%d\n", world->_food_info._c_value,
     world->_food_info._m_value);
-    printf("Linemate: %d/%d\n", world->_linemate_info._c_value,
+    dprintf(fd, "Linemate: %d/%d\n", world->_linemate_info._c_value,
     world->_linemate_info._m_value);
-    printf("Deraumere: %d/%d\n", world->_deraumere_info._c_value,
+    dprintf(fd, "Deraumere: %d/%d\n", world->_deraumere_info._c_value,
     world->_deraumere_info._m_value);
-    printf("Sibur: %d/%d\n", world->_sibur_info._c_value,
+    dprintf(fd, "Sibur: %d/%d\n", world->_sibur_info._c_value,
     world->_sibur_info._m_value);
-    printf("Mendiane: %d/%d\n", world->_mendiane_info._c_value,
+    dprintf(fd, "Mendiane: %d/%d\n", world->_mendiane_info._c_value,
     world->_mendiane_info._m_value);
-    printf("Phiras: %d/%d\n", world->_phiras_info._c_value,
+    dprintf(fd, "Phiras: %d/%d\n", world->_phiras_info._c_value,
     world->_phiras_info._m_value);
-    printf("Thystame: %d/%d\n", world->_thystame_info._c_value,
+    dprintf(fd, "Thystame: %d/%d\n", world->_thystame_info._c_value,
     world->_thystame_info._m_value);
-    display_more(world, box);
-    printf("=====================================\n");
+    display_more(fd, world, box);
+    dprintf(fd, "=====================================\n");
 }

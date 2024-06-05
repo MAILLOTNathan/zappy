@@ -195,6 +195,17 @@ list_t *create_list(constructor_t constructor, destructor_t destructor);
 linked_list_t *list_find_node(list_t *l, void *data,
     bool (*cmp)(void *, void *));
 
+
+/**
+ * Finds a node in the linked list that contains a specific reference.
+ *
+ * @param l The linked list to search in.
+ * @param ref The reference to search for.
+ * @return A pointer to the found node, or NULL if not found.
+ */
+linked_list_t *list_find_node_p(list_t *l, void *ref);
+
+
     /**
      * @brief Macro to move the list pointer forward to the next element.
      *

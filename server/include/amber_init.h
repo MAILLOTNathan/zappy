@@ -73,9 +73,10 @@ typedef struct amber_client_s {
     int _id;
     queue_command_t *_queue_command;
     box_t *_inventory;
-    int _elapsed_time;
     bool _is_graphical;
     bool _is_incantating;
+    unsigned long _ellapsed_time;
+    unsigned long _clock_food;
 } amber_client_t;
 
 /**
@@ -88,6 +89,7 @@ typedef struct amber_client_s {
  * @param _tcp The TCP connection object for the server.
  * @param _freq The frequency of game cycles.
  * @param _readfds The file descriptor set for the server.
+ * @param _writefds
  * @param _clients The list of clients connected to the server.
  * @param _graphic_clients The list of graphic clients connected to the server.
  * @param _is_running A boolean flag indicating if the server is running.
@@ -97,11 +99,14 @@ typedef struct amber_serv_s {
     tcp_t _tcp;
     int _freq;
     fd_set _readfds;
+    fd_set _writefds;
+    fd_set _exceptfds;
 
     list_t *_clients;
     list_t *_graphic_clients;
     bool _is_running;
     char **_teams_name;
+    tcp_t _debug_client;
 } amber_serv_t;
 
 /**
