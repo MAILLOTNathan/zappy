@@ -14,8 +14,8 @@ int main()
     try {
         bool running = true;
 
-        std::shared_ptr<Onyx::Gui> gui = std::make_shared<Onyx::Gui>();
         net::TcpClient client("127.0.0.1", 4242);
+        std::shared_ptr<Onyx::Gui> gui = std::make_shared<Onyx::Gui>(client);
 
         client.addCommand("msz", net::type_command_t::MSZ, [&gui](std::vector<std::string>& args) {
             if (args.size() != 3)
@@ -46,9 +46,15 @@ int main()
             gui->updateTilePanel();
             gui->updateConsolePanel(args);
         });
+        client.addCommand("sgt", net::type_command_t::SGT, [&gui](std::vector<std::string>& args) {
+            if (args.size() != 2)
+                throw EGE::Error("Wrong number of param.");
+            gui->updateWorldSettings(std::stof(args[1]));
+        });
         client.connection();
         client.sendRequest("msz\n");
         client.sendRequest("mct\n");
+        client.sendRequest("sgt\n");
 
         while (running) {
             client.waitEvent();

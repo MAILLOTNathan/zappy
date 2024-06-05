@@ -7,7 +7,7 @@
 
 #include "Gui.hpp"
 
-Onyx::Gui::Gui()
+Onyx::Gui::Gui(net::TcpClient client)
 {
     this->_window = std::make_shared<EGE::Window>("Onyx", EGE::Maths::Vector2<int>(1920, 1080), EGE::Window::Styles::Close & EGE::Window::Styles::Titlebar);
     this->_window->create();
@@ -20,88 +20,7 @@ Onyx::Gui::Gui()
 
     this->_interface->init(this->_window.get());
 
-    EGE::Menu *settings = new EGE::Menu("Settings");
-
-    settings->add(new EGE::Item("World", [this] () {
-        if (this->_interface->_panels["World settings"])
-            return this->_interface->_panels["World settings"]->setVisible(true);
-        EGE::Panel *panel = new EGE::Panel("World settings");
-        EGE::Slider *frequency = new EGE::Slider("Frequency", 0, 10000);
-        EGE::Button *apply = new EGE::Button("Apply", [this] () {
-            this->_interface->_panels["World settings"]->setVisible(false);
-        });
-
-        panel->add(frequency, "0 Frequency");
-        panel->add(apply, "1 Apply");
-        this->_interface->_panels["World settings"] = panel;
-    }), "0 World");
-    settings->add(new EGE::Item("Camera", [this] () {
-        if (this->_interface->_panels["Camera settings"])
-            return this->_interface->_panels["Camera settings"]->setVisible(true);
-        EGE::Panel *panel = new EGE::Panel("Camera settings");
-        EGE::Slider *sensivity = new EGE::Slider("Sensivity", 1, 100);
-        EGE::CheckBox *cinematicMode = new EGE::CheckBox("Cinematic mode");
-        EGE::Button *apply = new EGE::Button("Apply", [this] () {
-            this->_interface->_panels["Camera settings"]->setVisible(false);
-        });
-
-        panel->add(sensivity, "0 Sensivity");
-        panel->add(cinematicMode, "1 Cinematic mode");
-        panel->add(apply, "2 Apply");
-        this->_interface->_panels["Camera settings"] = panel;
-    }), "1 Camera");
-    settings->add(new EGE::Item("Disconnect", [this] () {
-        std::cout << "DISCONNECT" << std::endl;
-    }), "2 Disconnect");
-    settings->add(new EGE::Item("Quit", [this] () {
-        std::cout << "quit" << std::endl;
-    }), "3 Quit");
-
-    this->_interface->_menuBar->add(settings, "0 Settings");
-
-    EGE::Menu *music = new EGE::Menu("Music");
-
-    music->add(new EGE::Item("Previous", [this] () {
-        std::cout << "Previous" << std::endl;
-    }), "0 Previous");
-    music->add(new EGE::Item("Play / Stop", [this] () {
-        std::cout << "Play" << std::endl;
-    }), "1 Play");
-    music->add(new EGE::Item("Next", [this] () {
-        std::cout << "Next" << std::endl;
-    }), "2 Next");
-
-    this->_interface->_menuBar->add(music, "1 Music");
-
-    EGE::Menu *help = new EGE::Menu("Help");
-
-    help->add(new EGE::Item("Launch Tutorial", [this] () {
-        std::cout << "Tutorial" << std::endl;
-    }), "0 Tutorial");
-
-    help->add(new EGE::Item("Shortcuts", [this] () {
-        if (this->_interface->_panels["Shortcuts"])
-            return this->_interface->_panels["Shortcuts"]->setVisible(true);
-        EGE::Panel *panel = new EGE::Panel("Shortcuts");
-        EGE::ListBox *camera = new EGE::ListBox("Camera");
-        EGE::Button *done = new EGE::Button("Done", [this] () {
-            this->_interface->_panels["Shortcuts"]->setVisible(false);
-        });
-
-        // TODO:
-        // Add a config file to store shortcuts
-        camera->add(new EGE::Text("Z || W: Move forward"), "0 Forward");
-        camera->add(new EGE::Text("S: Move backward"), "1 Backward");
-        camera->add(new EGE::Text("Q || A: Move left"), "2 Left");
-        camera->add(new EGE::Text("D: Move right"), "3 Right");
-
-        panel->add(camera, "0 Camera");
-        panel->add(done, "1 Done");
-
-        this->_interface->_panels["Shortcuts"] = panel;
-    }), "1 Shortcuts");
-
-    this->_interface->_menuBar->add(help, "2 Help");
+    this->createMenuBar();
 
     this->_tileSelected = 0;
 }
@@ -379,4 +298,108 @@ void Onyx::Gui::updateConsolePanel(std::vector<std::string>& args)
     for (auto &arg : args)
         message += " " + arg;
     this->_interface->_panels["Console"]->add(new EGE::Text(message), message);
+}
+
+void Onyx::Gui::updateWorldSettings(float value)
+{
+    EGE::Slider *frequency = dynamic_cast<EGE::Slider *>(this->_interface->_panels["World settings"]->get("0 Frequency"));
+    frequency->setValue(value);
+}
+
+void Onyx::Gui::createMenuBar()
+{
+    EGE::Menu *settings = new EGE::Menu("Settings");
+
+    EGE::Panel *world = new EGE::Panel("World settings");
+    EGE::Slider *frequency = new EGE::Slider("Frequency", 0.1, 2000);
+    EGE::Button *worldApply = new EGE::Button("Apply", [this] () {
+    std::cout << "after" << std::endl;
+        EGE::Slider *frequ = dynamic_cast<EGE::Slider *>(this->_interface->_panels["World settings"]->get("0 Frequency"));
+        this->_interface->_panels["World settings"]->setVisible(false);
+        this->updateWorldSettings(frequ->getValue());
+    });
+
+    world->add(frequency, "0 Frequency");
+    world->add(worldApply, "1 Apply");
+    world->setVisible(false);
+    this->_interface->_panels["World settings"] = world;
+
+    settings->add(new EGE::Item("World", [this] () {
+        if (this->_interface->_panels["World settings"])
+            return this->_interface->_panels["World settings"]->setVisible(true);
+    }), "0 World");
+
+    EGE::Panel *cam = new EGE::Panel("Camera settings");
+    EGE::Slider *sensivity = new EGE::Slider("Sensivity", 1, 100);
+    EGE::CheckBox *cinematicMode = new EGE::CheckBox("Cinematic mode");
+    EGE::Button *camApply = new EGE::Button("Apply", [this] () {
+        this->_interface->_panels["Camera settings"]->setVisible(false);
+    });
+
+    cam->add(sensivity, "0 Sensivity");
+    cam->add(cinematicMode, "1 Cinematic mode");
+    cam->add(camApply, "2 Apply");
+    cam->setVisible(false);
+    this->_interface->_panels["Camera settings"] = cam;
+
+    settings->add(new EGE::Item("Camera", [this] () {
+        if (this->_interface->_panels["Camera settings"])
+            return this->_interface->_panels["Camera settings"]->setVisible(true);
+    }), "1 Camera");
+
+
+    settings->add(new EGE::Item("Disconnect", [this] () {
+        std::cout << "DISCONNECT" << std::endl;
+    }), "2 Disconnect");
+    settings->add(new EGE::Item("Quit", [this] () {
+        std::cout << "quit" << std::endl;
+    }), "3 Quit");
+
+    this->_interface->_menuBar->add(settings, "0 Settings");
+
+    EGE::Menu *music = new EGE::Menu("Music");
+
+    music->add(new EGE::Item("Previous", [this] () {
+        std::cout << "Previous" << std::endl;
+    }), "0 Previous");
+    music->add(new EGE::Item("Play / Stop", [this] () {
+        std::cout << "Play" << std::endl;
+    }), "1 Play");
+    music->add(new EGE::Item("Next", [this] () {
+        std::cout << "Next" << std::endl;
+    }), "2 Next");
+
+    this->_interface->_menuBar->add(music, "1 Music");
+
+    EGE::Menu *help = new EGE::Menu("Help");
+
+    help->add(new EGE::Item("Launch Tutorial", [this] () {
+        std::cout << "Tutorial" << std::endl;
+    }), "0 Tutorial");
+
+    EGE::Panel *helpPanel = new EGE::Panel("Shortcuts");
+    EGE::ListBox *hcam = new EGE::ListBox("Camera");
+    EGE::Button *done = new EGE::Button("Done", [this] () {
+        this->_interface->_panels["Shortcuts"]->setVisible(false);
+    });
+
+    // TODO:
+    // Add a config file to store shortcuts
+    hcam->add(new EGE::Text("Z || W: Move forward"), "0 Forward");
+    hcam->add(new EGE::Text("S: Move backward"), "1 Backward");
+    hcam->add(new EGE::Text("Q || A: Move left"), "2 Left");
+    hcam->add(new EGE::Text("D: Move right"), "3 Right");
+
+    helpPanel->add(hcam, "0 Camera");
+    helpPanel->add(done, "1 Done");
+    helpPanel->setVisible(false);
+
+    this->_interface->_panels["Shortcuts"] = helpPanel;
+
+    help->add(new EGE::Item("Shortcuts", [this] () {
+        if (this->_interface->_panels["Shortcuts"])
+            return this->_interface->_panels["Shortcuts"]->setVisible(true);
+    }), "1 Shortcuts");
+
+    this->_interface->_menuBar->add(help, "2 Help");
 }
