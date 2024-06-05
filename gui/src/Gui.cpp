@@ -306,6 +306,13 @@ void Onyx::Gui::updateWorldSettings(float value)
     frequency->setValue(value);
 }
 
+void Onyx::Gui::updateSensitivities(float value)
+{
+    EGE::Slider *sensivity = dynamic_cast<EGE::Slider *>(this->_interface->_panels["Camera settings"]->get("0 Sensivity"));
+    sensivity->setValue(value);
+    this->_camera->setSpeed(value);
+}
+
 void Onyx::Gui::createMenuBar()
 {
     EGE::Menu *settings = new EGE::Menu("Settings");
@@ -331,9 +338,12 @@ void Onyx::Gui::createMenuBar()
 
     EGE::Panel *cam = new EGE::Panel("Camera settings");
     EGE::Slider *sensivity = new EGE::Slider("Sensivity", 1, 100);
+    sensivity->setValue(10);
     EGE::CheckBox *cinematicMode = new EGE::CheckBox("Cinematic mode");
     EGE::Button *camApply = new EGE::Button("Apply", [this] () {
+        EGE::Slider *sens = dynamic_cast<EGE::Slider *>(this->_interface->_panels["Camera settings"]->get("0 Sensivity"));
         this->_interface->_panels["Camera settings"]->setVisible(false);
+        this->updateSensitivities(sens->getValue());
     });
 
     cam->add(sensivity, "0 Sensivity");

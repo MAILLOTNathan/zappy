@@ -68,6 +68,7 @@ namespace Onyx {
             void updateConsolePanel(std::vector<std::string>& args);
 
             void updateWorldSettings(float value);
+            void updateSensitivities(float value);
             // void createPlayerPanel();
 
         private:
