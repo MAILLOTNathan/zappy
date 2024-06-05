@@ -20,10 +20,44 @@ Onyx::Gui::Gui()
 
     this->_interface->init(this->_window.get());
 
-    this->_interface->_menuBar->add(new EGE::Menu("File"), "file");
-    this->_interface->_menuBar->add(new EGE::Menu("Edit"), "edit");
-    this->_interface->_menuBar->add(new EGE::Menu("View"), "view");
-    this->_interface->_menuBar->add(new EGE::Menu("Help"), "help");
+    EGE::Menu *menu = new EGE::Menu("Settings");
+
+    menu->add(new EGE::Item("World", [this] () {
+        if (this->_interface->_panels["World settings"])
+            return this->_interface->_panels["World settings"]->setVisible(true);
+        EGE::Panel *panel = new EGE::Panel("World settings");
+        EGE::Slider *frequency = new EGE::Slider("Frequency", 0, 10000);
+        EGE::Button *apply = new EGE::Button("Apply", [this] () {
+            this->_interface->_panels["World settings"]->setVisible(false);
+        });
+
+        panel->add(frequency, "0 Frequency");
+        panel->add(apply, "1 Apply");
+        this->_interface->_panels["World settings"] = panel;
+    }), "0 World");
+    menu->add(new EGE::Item("Camera", [this] () {
+        if (this->_interface->_panels["Camera settings"])
+            return this->_interface->_panels["Camera settings"]->setVisible(true);
+        EGE::Panel *panel = new EGE::Panel("Camera settings");
+        EGE::Slider *sensivity = new EGE::Slider("Sensivity", 1, 100);
+        EGE::CheckBox *cinematicMode = new EGE::CheckBox("Cinematic mode");
+        EGE::Button *apply = new EGE::Button("Apply", [this] () {
+            this->_interface->_panels["Camera settings"]->setVisible(false);
+        });
+
+        panel->add(sensivity, "0 Sensivity");
+        panel->add(cinematicMode, "1 Cinematic mode");
+        panel->add(apply, "2 Apply");
+        this->_interface->_panels["Camera settings"] = panel;
+    }), "1 Camera");
+    menu->add(new EGE::Item("Disconnect", [this] () {
+        std::cout << "DISCONNECT" << std::endl;
+    }), "2 Disconnect");
+    menu->add(new EGE::Item("Quit", [this] () {
+        std::cout << "quit" << std::endl;
+    }), "3 Quit");
+
+    this->_interface->_menuBar->add(menu, "Settings");
 
     this->_tileSelected = 0;
 }
