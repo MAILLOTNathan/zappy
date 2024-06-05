@@ -43,12 +43,27 @@ static void update_client_pos(direction_t dir, amber_client_t *client,
         client->_x = client->_x - 1 < 0 ? world->_width - 1 : client->_x - 1;
 }
 
+
+static void manage_eject_send(amber_client_t *client, amber_client_t *tmp,
+    amber_world_t *world)
+{
+    int dir = 0;
+
+    update_client_pos(client->_direction, tmp, world);
+    if (client->_direction == UP || client->_direction == DOWN) {
+        dir = concave[tmp->_direction - 1]
+        [(invert(client->_direction) - 1)* 2];
+    } else
+        dir = concave[tmp->_direction - 1][(client->_direction - 1) * 2];
+    dprintf(tmp->_tcp._fd, "eject: %d\n", dir);
+}
+
 void amber_logic_eject(amber_client_t *client, amber_world_t *world,
     amber_serv_t *serv)
 {
     amber_client_t *tmp = NULL;
     linked_list_t *clients = serv->_clients->nodes;
-    int dir = 0;
+    bool is_eject = false;
 
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
@@ -56,14 +71,13 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
             continue;
         if (tmp->_x != client->_x || tmp->_y != client->_y)
             continue;
-        update_client_pos(client->_direction, tmp, world);
-        if (client->_direction == UP || client->_direction == DOWN) {
-            dir = concave[tmp->_direction - 1]
-            [(invert(client->_direction) - 1)* 2];
-        } else
-            dir = concave[tmp->_direction - 1][(client->_direction - 1) * 2];
-        dprintf(tmp->_tcp._fd, "eject: %d\n", dir);
+        is_eject = true;
+        manage_eject_send(client, tmp, world);
     }
+    if (is_eject)
+        dprintf(client->_tcp._fd, "ok\n");
+    else
+        dprintf(client->_tcp._fd, "ko\n");
 }
 
 void amber_logic_fork(amber_client_t *client, amber_world_t *world,
