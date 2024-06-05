@@ -18,7 +18,7 @@ void *amber_create_egg(va_list *ap)
     egg->_y = va_arg(*ap, int);
     egg->_team = strdup(va_arg(*ap, char *));
     egg->_hatching_time = 0;
-    egg->_direction = RAND(4);
+    egg->_direction = RAND(4) + 1;
     egg->_id = va_arg(*ap, int);
     world->_case[egg->_y][egg->_x]._eggs++;
     return egg;

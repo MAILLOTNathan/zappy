@@ -17,7 +17,8 @@
  *
  * @param server The Amber server instance.
  */
-void amber_manage_client(amber_serv_t *server, list_t *clients);
+void amber_manage_client(amber_world_t *world, amber_serv_t *server,
+    list_t *clients);
 
 /**
  * @brief Function to handle the main listening loop of the Amber server.

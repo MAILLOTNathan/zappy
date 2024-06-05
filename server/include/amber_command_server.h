@@ -62,6 +62,22 @@ void amber_manage_command(amber_serv_t *server, amber_world_t *world,
 void amber_serv_map(amber_serv_t *server, amber_world_t *world, char **cmd);
 
 /**
+ * @brief Executes the amber_serv_tp command on the specified server.
+ *
+ * This function is responsible for executing the amber_serv_tp command
+ * on the given server.
+ * It takes a pointer to the server structure, a pointer to the world
+ * structure, and a double pointer to the command string.
+ *
+ * @param server A pointer to the amber_serv_t structure representing
+ * the server.
+ * @param world A pointer to the amber_world_t structure representing
+ * the world.
+ * @param cmd A double pointer to the command string.
+ */
+void amber_serv_tp(amber_serv_t *server, amber_world_t *world, char **cmd);
+
+/**
  * @brief Structure representing an Amber command server.
  *
  * This structure holds information about a command that

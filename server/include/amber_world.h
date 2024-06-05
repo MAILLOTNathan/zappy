@@ -91,6 +91,7 @@ typedef struct pair_s {
  * @param _eggs The eggs in the Amber World.
  * @param _freq The frequency of the resources in the Amber World.
  * @param _clock The clock of the Amber World.
+ * @param _last_egg_id The last egg ID in the Amber World.
  */
 typedef struct amber_world_s {
     int _width;
@@ -108,6 +109,7 @@ typedef struct amber_world_s {
     list_t *_eggs;
     double _freq;
     int _clock;
+    int _last_egg_id;
 } amber_world_t;
 
 /**

@@ -29,6 +29,35 @@ typedef struct ai_command_s {
     command handler. */
 } ai_command_t;
 
+/**
+ * @brief Executes the "incantation" command for the AI client.
+ *
+ * This function is responsible for handling the "incantation" command
+ * received from the AI client. It takes a pointer to the client structure
+ * and a pointer to the argument array as parameters.
+ *
+ * @param client A pointer to the amber_client_t structure representing
+ * the AI client.
+ * @param arg    An array of strings representing the command arguments.
+ */
+void amber_ai_incantation(amber_client_t *client, UNUSED char **arg);
+
+/**
+ * Takes an object from the game world and adds it to the inventory
+ * of the AI client.
+ *
+ * @param client The AI client that wants to take the object.
+ * @param arg The argument specifying the object to be taken.
+ */
+void amber_ai_take_object(amber_client_t *client, char **arg);
+
+/**
+ * Sets the object for the given AI client.
+ *
+ * @param client The AI client.
+ * @param arg The object to set.
+ */
+void amber_ai_set_object(amber_client_t *client, char **arg);
 
 /**
  * @brief Moves the AI client forward in the game.
@@ -53,7 +82,8 @@ void amber_ai_forward(amber_client_t *client, char **arg);
  * the AI client.
  * @param arg A pointer to the buffer containing the command.
  */
-void amber_manage_command_ai(amber_client_t *client, char **arg);
+void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
+    amber_client_t *client, char **arg);
 
 /**
  * Moves the AI player to the right.
@@ -123,6 +153,14 @@ void amber_ai_broadcast(amber_client_t *client, char **arg);
  * @param arg An unused array of strings.
  */
 void amber_ai_connect_nbr(amber_client_t *client, UNUSED char **arg);
+
+/**
+ * Forks a new AI process for the given client.
+ *
+ * @param client The client for which to fork a new AI process.
+ * @param arg Unused argument.
+ */
+void amber_ai_fork(amber_client_t *client, UNUSED char **arg);
 
 /**
  * @brief Ejects the AI client from the server.

@@ -59,6 +59,8 @@ typedef struct tcp_s {
  * @param _inventory The inventory of the client.
  * @param _elapsed_time The elapsed time since the last command.
  * @param _is_graphical A boolean flag indicating if the client is graphical.
+ * @param _is_incantating A boolean flag indicating if the client
+ * is incantating.
  */
 typedef struct amber_client_s {
     tcp_t _tcp;
@@ -73,6 +75,7 @@ typedef struct amber_client_s {
     box_t *_inventory;
     int _elapsed_time;
     bool _is_graphical;
+    bool _is_incantating;
 } amber_client_t;
 
 /**

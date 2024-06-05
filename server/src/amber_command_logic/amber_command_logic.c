@@ -54,17 +54,19 @@ static amber_client_t *get_shortest_client_command(linked_list_t *clients)
     amber_client_t *shortest = NULL;
     int s_time = 0;
     int c_time = 0;
+    amber_client_t *client = NULL;
 
     for (linked_list_t *tmp = clients; tmp; tmp = tmp->next) {
-        if (((amber_client_t *)tmp->data)->_queue_command == NULL)
+        client = (amber_client_t *)tmp->data;
+        if (client->_queue_command == NULL)
             continue;
-        if (((amber_client_t *)tmp->data)->_queue_command->_command == NULL)
+        if (client->_queue_command->_command->_id != T_INCANTATION &&
+            client->_is_incantating)
             continue;
-        update_time(((amber_client_t *)tmp->data));
-        c_time = ((amber_client_t *)tmp->data)
-        ->_queue_command->_command->_time;
+        update_time(client);
+        c_time = client->_queue_command->_command->_time;
         if (c_time <= s_time || s_time == 0) {
-            shortest = ((amber_client_t *)tmp->data);
+            shortest = client;
             s_time = c_time;
         }
     }
@@ -90,18 +92,18 @@ static void remove_waiting_clock(linked_list_t *clients, amber_world_t *world)
 void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
 {
     linked_list_t *clients = NULL;
-    amber_clock_t clock = {._start = 0, ._end = 0};
     amber_client_t *tmp = NULL;
 
-    amber_clock_start(&clock);
     while (true) {
         clients = serv->_clients->nodes;
         tmp = get_shortest_client_command(clients);
+        if (tmp == NULL)
+            break;
         world->_clock -= world->_clock > tmp->_queue_command->_command->_time ?
         tmp->_queue_command->_command->_time : 0;
         if (world->_clock <= tmp->_queue_command->_command->_time) {
             usleep((world->_clock * 1000000) / world->_freq);
-            amber_check_client_alive(serv);
+            amber_check_client_alive(serv, world);
             amber_refill_world(world);
             remove_waiting_clock(serv->_clients->nodes, world);
             continue;
@@ -118,5 +120,10 @@ const logic_command_t logic_commands[] = {
     {T_INVENTORY, &amber_logic_inventory},
     {T_BROADCAST, &amber_logic_broadcast},
     {T_EJECT, &amber_logic_eject},
+    {T_FORK, &amber_logic_fork},
+    {T_CONNECT_NBR, &amber_logic_connect_nbr},
+    {T_TAKE, &amber_logic_take},
+    {T_SET, &amber_logic_set},
+    {T_INCANTATION, &amber_logic_incantation},
     {-1, NULL}
 };
