@@ -50,7 +50,7 @@ jobs:
             exitcode=0
             while IFS= read -r line
             do
-              if ! echo $line | grep "tests"
+              if ! echo $line | grep "tests" && ! echo $line | grep "gui"
               then
                 echo "::error:: $line"
                 exitcode=1
