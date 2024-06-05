@@ -150,22 +150,6 @@ def sendRequest(conn, request : str, ai : TuringAI):
         ai.inventory["food"] -= 1
     return res
 
-def find_path(direction : list, conn, quantity, obj : str, ai : TuringAI):
-    """
-    Find the path to the tile with the most food.
-
-    Args:
-        direction (str): The direction where there is the most food.
-
-    Returns:
-        None
-    """
-    for i in direction:
-        sendRequest(conn, i, ai)
-    for i in range(0, quantity):
-        sendRequest(conn, "Take " + obj, ai)
-        print(obj + " taken")
-        ai.inventory[obj] += 1
 
 def basic_ia(ai : TuringAI, conn):
     while True:
