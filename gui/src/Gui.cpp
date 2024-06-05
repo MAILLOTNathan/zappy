@@ -162,6 +162,14 @@ void Onyx::Gui::createWorldPanel()
     content->add(new EGE::Text("Thystame: " + std::to_string(items["Thystame"])), "thystame");
 
     panel->add(content, "content");
+
+    EGE::ListBox *Teams = new EGE::ListBox("Teams");
+    //send request to serveur for the teams names
+    Teams->add(new EGE::Text("Team 1"));
+    Teams->add(new EGE::Text("Team 2"));
+
+    panel->add(Teams, "teams");
+
     this->_interface->_panels["Amber World"] = panel;
 }
 
@@ -199,6 +207,32 @@ void Onyx::Gui::updateWorldPanel()
     content->get("mendiane")->setName("Mendiane: " + std::to_string(items["Mendiane"]));
     content->get("phiras")->setName("Phiras: " + std::to_string(items["Phiras"]));
     content->get("thystame")->setName("Thystame: " + std::to_string(items["Thystame"]));
+}
+
+EGE::Panel *Onyx::Gui::createPLayerPanel()
+{
+    EGE::Panel *panel = new EGE::Panel("Trantorian");
+    EGE::ListBox *player = new EGE::ListBox("Player");
+    EGE::ListBox *inventory = new EGE::ListBox("Inventory");
+
+
+    player->add(new EGE::Text("ID: 1"));
+    player->add(new EGE::Text("Level: 1"));
+    player->add(new EGE::Text("Position"));
+    player->add(new EGE::Text("X: 0"));
+    player->add(new EGE::Text("Y: 0"));
+    player->add(new EGE::Text("Direction: Nord"));
+
+
+    std::map<std::string, int> items = {};
+
+    items["Food"] = 0;
+    items["Linemate"] = 0;
+    items["Deraumere"] = 0;
+    items["Sibur"] = 0;
+    items["Mendiane"] = 0;
+    items["Phiras"] = 0;
+    items["Thystame"] = 0;
 }
 
 // EGE::Panel *Onyx::Gui::createPlayerPanel()
