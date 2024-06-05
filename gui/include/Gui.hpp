@@ -59,9 +59,11 @@ namespace Onyx {
             std::shared_ptr<EGE::Window> getWindow() const;
 
             void createWorldPanel();
+            void createTilePanel();
 
             void updateWorldPanel();
-            // EGE::Panel *createPlayerPanel();
+            void updateTilePanel();
+            // void createPlayerPanel();
 
         private:
             /**
@@ -82,6 +84,7 @@ namespace Onyx {
             std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
             float _deltaTime;                               /**< The time between frames. */
             std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
-            std::shared_ptr<UserInterface> _interface;
+            int _tileSelected;                              /**< The selected tile. */
+            std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
     };
 }

@@ -24,6 +24,8 @@ Onyx::Gui::Gui()
     this->_interface->_menuBar->add(new EGE::Menu("Edit"), "edit");
     this->_interface->_menuBar->add(new EGE::Menu("View"), "view");
     this->_interface->_menuBar->add(new EGE::Menu("Help"), "help");
+
+    this->_tileSelected = 0;
 }
 
 Onyx::Gui::~Gui()
@@ -209,70 +211,78 @@ void Onyx::Gui::updateWorldPanel()
     content->get("thystame")->setName("Thystame: " + std::to_string(items["Thystame"]));
 }
 
-EGE::Panel *Onyx::Gui::createPLayerPanel()
+// void Onyx::Gui::createPlayerPanel()
+// {
+//     EGE::Panel *panel = new EGE::Panel("Trantorian");
+//     EGE::ListBox *dimensions = new EGE::ListBox("Dimensions");
+
+//     EGE::Maths::Vector2<int> size = this->_map->getSize();
+//     dimensions->add(new EGE::Text("Width: " + std::to_string(size.x)), "width");
+//     dimensions->add(new EGE::Text("Height: " + std::to_string(size.y)), "height");
+
+//     panel->add(dimensions, "dimensions");
+
+//     EGE::ListBox *content = new EGE::ListBox("Content");
+//     std::map<std::string, int> items = {};
+
+//     items["Food"] = 0;
+//     items["Linemate"] = 0;
+//     items["Deraumere"] = 0;
+//     items["Sibur"] = 0;
+//     items["Mendiane"] = 0;
+//     items["Phiras"] = 0;
+//     items["Thystame"] = 0;
+
+//     for (auto &floor : this->_map->getFloor()) {
+//         items["Food"] += floor->getQuantity(Onyx::Item::TYPE::FOOD);
+//         items["Linemate"] += floor->getQuantity(Onyx::Item::TYPE::LINEMATE);
+//         items["Deraumere"] += floor->getQuantity(Onyx::Item::TYPE::DERAUMERE);
+//         items["Sibur"] += floor->getQuantity(Onyx::Item::TYPE::SIBUR);
+//         items["Mendiane"] += floor->getQuantity(Onyx::Item::TYPE::MENDIANE);
+//         items["Phiras"] += floor->getQuantity(Onyx::Item::TYPE::PHIRAS);
+//         items["Thystame"] += floor->getQuantity(Onyx::Item::TYPE::THYSTAME);
+//     }
+//     content->add(new EGE::Text("Food: " + std::to_string(items["Food"])), "food");
+//     content->add(new EGE::Text("Linemate: " + std::to_string(items["Linemate"])), "linemate");
+//     content->add(new EGE::Text("Deraumere: " + std::to_string(items["Deraumere"])), "deraumere");
+//     content->add(new EGE::Text("Sibur: " + std::to_string(items["Sibur"])), "sibur");
+//     content->add(new EGE::Text("Mendiane: " + std::to_string(items["Mendiane"])), "mendiane");
+//     content->add(new EGE::Text("Phiras: " + std::to_string(items["Phiras"])), "phiras");
+//     content->add(new EGE::Text("Thystame: " + std::to_string(items["Thystame"])), "thystame");
+
+//     panel->add(content, "content");
+//     this->_interface->_panels["Trantorian"] = panel;
+// }
+
+void Onyx::Gui::createTilePanel()
 {
-    EGE::Panel *panel = new EGE::Panel("Trantorian");
-    EGE::ListBox *player = new EGE::ListBox("Player");
-    EGE::ListBox *inventory = new EGE::ListBox("Inventory");
+    EGE::Panel *panel = new EGE::Panel("Tile");
+    EGE::ListBox *content = new EGE::ListBox("Content");
 
+    Onyx::Floor *floor = this->_map->getFloor().at(this->_tileSelected).get();
+    content->add(new EGE::Text("Food: " + std::to_string(floor->getQuantity(Onyx::Item::FOOD))), "food");
+    content->add(new EGE::Text("Linemate: " + std::to_string(floor->getQuantity(Onyx::Item::LINEMATE))), "linemate");
+    content->add(new EGE::Text("Deraumere: " + std::to_string(floor->getQuantity(Onyx::Item::DERAUMERE))), "deraumere");
+    content->add(new EGE::Text("Sibur: " + std::to_string(floor->getQuantity(Onyx::Item::SIBUR))), "sibur");
+    content->add(new EGE::Text("Mendiane: " + std::to_string(floor->getQuantity(Onyx::Item::MENDIANE))), "mendiane");
+    content->add(new EGE::Text("Phiras: " + std::to_string(floor->getQuantity(Onyx::Item::PHIRAS))), "phiras");
+    content->add(new EGE::Text("Thystame: " + std::to_string(floor->getQuantity(Onyx::Item::THYSTAME))), "thystame");
 
-    player->add(new EGE::Text("ID: 1"));
-    player->add(new EGE::Text("Level: 1"));
-    player->add(new EGE::Text("Position"));
-    player->add(new EGE::Text("X: 0"));
-    player->add(new EGE::Text("Y: 0"));
-    player->add(new EGE::Text("Direction: Nord"));
+    panel->add(content, "Content");
 
-
-    std::map<std::string, int> items = {};
-
-    items["Food"] = 0;
-    items["Linemate"] = 0;
-    items["Deraumere"] = 0;
-    items["Sibur"] = 0;
-    items["Mendiane"] = 0;
-    items["Phiras"] = 0;
-    items["Thystame"] = 0;
+    this->_interface->_panels["Content"] = panel;
 }
 
-// EGE::Panel *Onyx::Gui::createPlayerPanel()
-// {
-    // EGE::Panel *panel = new EGE::Panel("Trantorian");
+void Onyx::Gui::updateTilePanel()
+{
+    EGE::ListBox *content = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Content"]->get("Content"));
+    Onyx::Floor *floor = this->_map->getFloor().at(this->_tileSelected).get();
 
-    // client.addCommand("plv", net::type_command_t::PLV, [&panel](std::vector<std::string>& args) {
-    //     if (args.size() != 3)
-    //         throw EGE::Error("Wrong number of param.");
-    //     panel->add(new EGE::Text("ID: " + args[1]));
-    //     panel->add(new EGE::Text("Level: " + args[2]));
-    // });
-    // client.addCommand("ppo", net::type_command_t::PPO, [&panel](std::vector<std::string>& args) {
-    //     if (args.size() != 4)
-    //         throw EGE::Error("Wrong number of param.");
-    //     EGE::ListBox *listBox = new EGE::ListBox("Position");
-    //     listBox->add(new EGE::Text("X: " + args[2]));
-    //     listBox->add(new EGE::Text("Y: " + args[3]));
-    //     if (args[4] == "1")
-    //         listBox->add(new EGE::Text("Direction: Nord"));
-    //     else if (args[4] == "2")
-    //         listBox->add(new EGE::Text("Direction: East"));
-    //     else if (args[4] == "3")
-    //         listBox->add(new EGE::Text("Direction: South"));
-    //     else
-    //         listBox->add(new EGE::Text("Direction: West"));
-    //     panel->add(listBox);
-    // });
-    // client.addCommand("pin", net::type_command_t::PIN, [&panel](std::vector<std::string>& args) {
-    //     if (args.size() != 11)
-    //         throw EGE::Error("Wrong number of param.");
-    //     EGE::ListBox *listBox = new EGE::ListBox("Inventory");
-    //     listBox->add(new EGE::Text("Food: " + args[4]));
-    //     listBox->add(new EGE::Text("Linemate: " + args[5]));
-    //     listBox->add(new EGE::Text("Deraumere: " + args[6]));
-    //     listBox->add(new EGE::Text("Sibur: " + args[7]));
-    //     listBox->add(new EGE::Text("Mendiane: " + args[8]));
-    //     listBox->add(new EGE::Text("Phiras: " + args[9]));
-    //     listBox->add(new EGE::Text("Thystame: " + args[10]));
-    //     panel->add(listBox);
-    // });
-    // return panel;
-// }
+    content->get("food")->setName("Food: " + std::to_string(floor->getQuantity(Onyx::Item::FOOD)));
+    content->get("linemate")->setName("Linemate: " + std::to_string(floor->getQuantity(Onyx::Item::LINEMATE)));
+    content->get("deraumere")->setName("Deraumere: " + std::to_string(floor->getQuantity(Onyx::Item::DERAUMERE)));
+    content->get("sibur")->setName("Sibur: " + std::to_string(floor->getQuantity(Onyx::Item::SIBUR)));
+    content->get("mendiane")->setName("Mendiane: " + std::to_string(floor->getQuantity(Onyx::Item::MENDIANE)));
+    content->get("phiras")->setName("Phiras: " + std::to_string(floor->getQuantity(Onyx::Item::PHIRAS)));
+    content->get("thystame")->setName("Thystame: " + std::to_string(floor->getQuantity(Onyx::Item::THYSTAME)));
+}

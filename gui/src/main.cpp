@@ -22,6 +22,7 @@ int main()
                 throw EGE::Error("Wrong number of param.");
             gui->createMap(std::stoi(args[1]), std::stoi(args[2]));
             gui->createWorldPanel();
+            gui->createTilePanel();
         });
         client.addCommand("pnw", net::type_command_t::PNW, [](std::vector<std::string>& args) {
             for (auto& arg : args) {
@@ -40,6 +41,7 @@ int main()
             gui->getMap()->addItem(position, Onyx::Item::TYPE::PHIRAS, std::stoi(args[8]));
             gui->getMap()->addItem(position, Onyx::Item::TYPE::THYSTAME, std::stoi(args[9]));
             gui->updateWorldPanel();
+            gui->updateTilePanel();
         });
         client.connection();
         client.sendRequest("msz\n");
