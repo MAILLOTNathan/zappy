@@ -55,6 +55,7 @@ class evolver:
     elapsed_time = 0
     conn = None
     def __init__(self):
+        print("EVOLVER INIT")
         self.debug = False
         self.port = None
         self.team_name = ""
@@ -179,9 +180,6 @@ def main():
         if response[0] < 7 :
             response = bot.conn.send_request('Take food')
     return 0
-
-
-
 
 if __name__ == "__main__":
     main()

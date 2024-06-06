@@ -1,7 +1,5 @@
 import sys
 import socket
-import zappy_ai
-import time
 
 class ServerConnection:
     def __init__(self, ai):
@@ -12,7 +10,7 @@ class ServerConnection:
         self.PORT = ai.port
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((self.HOST, self.PORT))
-
+        
     def connect_to_server_debug(self):
         """
         Connects to the server in debug mode.
@@ -30,11 +28,11 @@ class ServerConnection:
         """
         data = self.s.recv(1024)
         print(repr(data))
-        self.s.sendall(("team2"+ "\n").encode())
-        data = self.s.recv(1024)
-        print(repr(data))
-        data = self.s.recv(1024)
-        print(repr(data))        
+        # self.s.sendall(("team2"+ "\n").encode())
+        # data = self.s.recv(1024)
+        # print(repr(data))
+        # data = self.s.recv(1024)
+        # print(repr(data))        
         while True:
             input = sys.stdin.readline()
             if input == "quit\n":

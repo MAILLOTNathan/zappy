@@ -2,6 +2,7 @@
 import sys
 import debug_lib
 from agent import TuringAI
+import os
 
 def help_message():
     print("USAGE: ./zappy_ai -p port -n name -h machine")
@@ -18,8 +19,6 @@ def check_args(TuringAI):
                 exit(84)
         elif sys.argv[i] == "-h":
             TuringAI.host = sys.argv[i + 1]
-        elif sys.argv[i] == "-e":
-            TuringAI.children = True
     if (len(sys.argv) < 2) or sys.argv[1] == "-help":
         help_message()
     if sys.argv[1] == "--debug":
@@ -46,8 +45,6 @@ def main():
         ai.conn.connect_to_server_debug()
     ai.conn.connect_to_server(ai.team_name)
     ai.ngames = 0
-    if ai.children:
-        children_here()
     while True:
         ai.train(ai.conn)
         ai.conn.s.close()

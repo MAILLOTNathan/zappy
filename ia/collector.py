@@ -46,6 +46,7 @@ def check_args(TuringAI):
 
 
 class food_collector:
+    print("COLLECTOR INIT")
     debug = False
     port = None
     team_name = ""
@@ -173,8 +174,8 @@ def main():
             come_back(dir, bot)
             dir = []
             continue
-        bot.conn.send_request('Foward')
-        dir.append('Foward')
+        bot.conn.send_request('Forward')
+        dir.append('Forward')
 
 
 
