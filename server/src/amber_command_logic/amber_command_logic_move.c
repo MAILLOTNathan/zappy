@@ -28,7 +28,7 @@ void amber_logic_forward(amber_client_t *client, amber_world_t *world,
     client->_x = world->_width == client->_x ? 0 : client->_x;
     client->_y = world->_height == client->_y ? 0 : client->_y;
     world->_case[client->_y][client->_x]._players++;
-    send_client_message(client, "ok");
+    send_cli_msg(client, "ok");
 }
 
 void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
@@ -50,7 +50,7 @@ void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
         default:
             break;
     }
-    send_client_message(client, "ok");
+    send_cli_msg(client, "ok");
 }
 
 void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
@@ -72,5 +72,5 @@ void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
         default:
             break;
     }
-    send_client_message(client, "ok");
+    send_cli_msg(client, "ok");
 }

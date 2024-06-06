@@ -72,7 +72,7 @@ void amber_check_client_alive(amber_serv_t *server, amber_world_t *world);
  * @param client The client to send the message to.
  * @param message The message to send.
  */
-void send_client_message(amber_client_t *client, const char *message);
+void send_cli_msg(amber_client_t *client, const char *message);
 
 /**
  * @brief Turns the client to the left in the world.

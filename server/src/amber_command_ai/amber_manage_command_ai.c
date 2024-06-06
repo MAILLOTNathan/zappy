@@ -81,11 +81,11 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
 
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
-        dprintf(client->_tcp._fd, "ko\n");
+        send_cli_msg(client, "ko\n");
         return false;
     }
     if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
-        dprintf(client->_tcp._fd, "ko\n");
+        send_cli_msg(client, "ko\n");
         return false;
     }
     update_players_on_case(serv, client);
@@ -105,7 +105,7 @@ bool check_command_queue_team_name(amber_world_t *world, amber_serv_t *serv,
     amber_client_t *client, char **arg)
 {
     if (queue_command_size(client->_queue_command) >= 10) {
-        dprintf(client->_tcp._fd, "ko\n");
+        send_cli_msg(client, "ko\n");
         return false;
     }
     if (client->_team_name == NULL) {
@@ -132,7 +132,7 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
         }
     }
     if (ai_commands[i]._command == NULL)
-        dprintf(client->_tcp._fd, "ko\n");
+        send_cli_msg(client, "ko");
     else
         check_ellapsed_time(client, arg[0], world->_freq);
 }

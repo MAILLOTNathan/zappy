@@ -33,6 +33,8 @@ void amber_destroy_client(void *client)
         free(tmp->_buffer);
     if (tmp->_team_name)
         free(tmp->_team_name);
+    if (tmp->_queue_command)
+        queue_destroy(&tmp->_queue_command);
     free(tmp);
 }
 
@@ -93,6 +95,7 @@ void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
         fflush(stdout);
         return;
     }
+    buffer[valread] = '\0';
     eval_command(world, server, client, buffer);
 }
 

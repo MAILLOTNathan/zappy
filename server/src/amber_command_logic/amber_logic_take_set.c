@@ -118,9 +118,9 @@ void amber_logic_take(amber_client_t *client, amber_world_t *world,
         world->_mendiane_info._c_value -= ressource_needed->_mendiane;
         world->_phiras_info._c_value -= ressource_needed->_phiras;
         world->_thystame_info._c_value -= ressource_needed->_thystame;
-        return send_client_message(client, "ok");
+        return send_cli_msg(client, "ok");
     }
-    return send_client_message(client, "ko");
+    return send_cli_msg(client, "ko");
 }
 
 void amber_logic_set(amber_client_t *client, amber_world_t *world,
@@ -130,7 +130,7 @@ void amber_logic_set(amber_client_t *client, amber_world_t *world,
     box_t *ressource_needed = get_ressource_needed(request);
 
     if (!ressource_available(client->_inventory, ressource_needed))
-        return send_client_message(client, "ko");
+        return send_cli_msg(client, "ko");
     world->_case[client->_y][client->_x]._food += ressource_needed->_food;
     world->_case[client->_y][client->_x]._linemate +=
         ressource_needed->_linemate;
@@ -144,5 +144,5 @@ void amber_logic_set(amber_client_t *client, amber_world_t *world,
         ressource_needed->_thystame;
     change_inventory(client, ressource_needed, false);
     drop_ressource_from_world(world, ressource_needed);
-    return send_client_message(client, "ok");
+    return send_cli_msg(client, "ok");
 }

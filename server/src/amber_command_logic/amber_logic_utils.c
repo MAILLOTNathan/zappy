@@ -6,6 +6,13 @@
 */
 
 #include "amber_logic.h"
+#include <signal.h>
+
+static void handle_sigpipe(int sig)
+{
+    (void)sig;
+    return;
+}
 
 int clamp(int min, int current, int max)
 {
@@ -27,9 +34,11 @@ int real_clamp(int min, int current, int max)
     return current;
 }
 
-void send_client_message(amber_client_t *client, const char *message)
+void send_cli_msg(amber_client_t *client, const char *message)
 {
+    signal(SIGPIPE, handle_sigpipe);
     dprintf(client->_tcp._fd, "%s\n", message);
+    signal(SIGPIPE, SIG_DFL);
 }
 
 static void drop_item(amber_world_t *world, int x, int y, box_t *inv)
