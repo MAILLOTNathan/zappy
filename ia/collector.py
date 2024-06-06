@@ -63,6 +63,29 @@ class food_collector:
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
 
+    def broadcast_parse(self, response):
+        if "message" in response:
+            return self.conn.s.recv(1024)
+        return response
+
+    def get_food(self):
+        response = self.conn.send_request('Inventory')
+        response = self.broadcast_parse(response)
+        if response == None or response == 'done':
+            return
+        response = response.decode().strip('[]')
+        response = response.split(',')
+        response = [component.strip() for component in response]
+        response = [int(component.split()[1]) for component in response]
+        self.inventory['food'] = response
+
+    def priority_guide(self, map : list): 
+        return
+    
+    def take_action(self, obj, map):
+        x,y,nb = get_obj(map, obj)
+        dir += get_direction(x,y)
+        find_path(dir, nb, obj, self)
 
 def parse_look(response):
     """
@@ -140,6 +163,7 @@ def come_back(direction : list, ia):
         ia.inventory["food"] -= 1
 
 
+
 def main():
     bot : food_collector = food_collector()
     check_args(bot)
@@ -149,24 +173,11 @@ def main():
 
     while True:
         for i in range(0, 4):
-            response = bot.conn.send_request('Right')
-            print(response)
             response = bot.conn.send_request('Look')
             if response == None or response == 'done':
                 return
             map = parse_look(response.decode())
-            if len(map) == 0:
-                continue
-            x,y,nb = get_obj(map, "food")
-            dir += get_direction(x,y)
-            find_path(dir, nb, 'food', bot)
-            response = bot.conn.send_request('Inventory')
-            if response == None or response == 'done':
-                return
-            response = response.decode().strip('[]')
-            response = response.split(',')
-            response = [component.strip() for component in response]
-            response = [int(component.split()[1]) for component in response]
+            bot.get_food()
             bot.conn.send_request('Right')
             bot.conn.send_request('Right')
             dir = reversed(dir)
