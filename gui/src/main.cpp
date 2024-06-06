@@ -26,10 +26,17 @@ int main()
             gui->createConsolePanel();
             gui->updateConsolePanel(args);
         });
-        client.addCommand("pnw", net::type_command_t::PNW, [](std::vector<std::string>& args) {
-            for (auto& arg : args) {
-                std::cout << arg << std::endl;
-            }
+        client.addCommand("pnw", net::type_command_t::PNW, [&gui](std::vector<std::string>& args) {
+            if (args.size() != 7)
+                throw EGE::Error("Wrong number of param.");
+            // 1: player id (need to remove the #)
+            // 2: x pos
+            // 3: y pos
+            // 4: orientation (1: N, 2: E, 3: S, 4: W)
+            // 5: level
+            // 6: team name
+
+            gui->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
         });
         client.addCommand("bct", net::type_command_t::MCT, [&gui](std::vector<std::string>& args) {
             if (args.size() != 10)

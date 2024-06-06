@@ -20,6 +20,8 @@ Onyx::Gui::Gui(net::TcpClient client)
 
     this->_interface->init(this->_window.get());
 
+    this->_players.push_back(std::make_shared<Onyx::Player>("Team 1", EGE::Maths::Vector2<int>(0, 0), "N"));
+
     this->createMenuBar();
 
     this->_tileSelected = 0;
@@ -34,6 +36,11 @@ void Onyx::Gui::createMap(int width, int height)
 {
     this->_map = std::make_shared<Onyx::Map>(EGE::Maths::Vector2(width, height));
     this->_entities.push_back(this->_map);
+}
+
+void Onyx::Gui::addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
+{
+    this->_players.push_back(std::make_shared<Onyx::Player>(teamName, position, rotation));
 }
 
 void Onyx::Gui::update(bool& running)
@@ -55,6 +62,9 @@ void Onyx::Gui::update(bool& running)
     this->_interface->draw();
     for (const auto& entity : this->_entities) {
         entity->update(this->_shader);
+    }
+    for (const auto& player : this->_players) {
+        player->update(this->_shader);
     }
     this->_interface->display();
     this->_window->display();
