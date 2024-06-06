@@ -8,10 +8,18 @@ import os
 
 MAX_MEMORY = 100_000
 BATCH_SIZE = 1000   
-LR = 0.001
+LR = 0.010
+
+def generate_sring():
+    broadcast = "broadcast "
+    string = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(10):
+        broadcast += random.choice(string)
 
 class TuringAI:
     def __init__(self):
+        self.children = False
+        self.broadcast_string = generate_sring()
         self.debug = False
         self.port = None
         self.conn = None
@@ -19,19 +27,19 @@ class TuringAI:
         self.host = "localhost"
         self.command  = ['Forward', 'Left', 'Right', 'Take food', 'Take linemate', 'Take deraumere', 'Take sibur', 'Take mendiane', 'Take phiras', 'Take thystame', 
                   'Set food', 'Set linemate', 'Set deraumere', 'Set sibur', 'Set mendiane', 'Set phiras', 'Set thystame',
-                  'Incantation', 'Fork', 'Eject']
+                  'Incantation', 'Fork', 'Eject', self.broadcast_string, 'Connect_nbr']
         self.ngames = 0
         self.epsilon = 0
         self.gamma = 0.9
         self.memory = deque(maxlen=MAX_MEMORY)
-        
+        self.team_number = 0
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         self.model = Linear_QNet(618, 1233, 20).to(self.device)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
         self.level = 1
         self.attempt = 0
-        
+
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.level_requirements = {
             1: {"players": 1, "linemate": 1, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0},
@@ -42,6 +50,14 @@ class TuringAI:
             6: {"players": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
             7: {"players": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
+
+        try:
+            self.model.load()
+            print("Model loaded")
+            time.sleep(1)
+        except:
+            print("No model found")
+            time.sleep(1)
 
     def nb_item(self, looked, item):
         cut = looked.split(',')
@@ -113,18 +129,23 @@ class TuringAI:
         return move
 
     def compute_reward(self, conn, final_move, result, elapsed_time):
-        if result == "dead":
+        if final_move is None:
+            return 0
+        result_str = result.decode("utf-8") if isinstance(result, bytes) else result
+        if result_str == "dead":
             return -100
         elif "Incantation" in final_move:
-            if bytes("Elevation underway", "utf-8") in result:
+            if "Elevation underway" in result_str:
                 print("LEVELING UP")
                 time.sleep(1)
                 conn.s.recv(1024)
                 self.level += 1
                 return 100 * self.level
-        elif "Take Food" in final_move and bytes("ok", "utf-8") in result:
+        elif "Take Food" in final_move and "ok" in result_str:
+            print("TOOK FOOD")
+            time.sleep(1)
             return 12
-        elif "Fork" in final_move and bytes("ok", "utf-8") in result:
+        elif "Fork" in final_move and "ok" in result_str:
             if self.level == 1:
                 return -100
             if self.level > 1:
@@ -132,6 +153,7 @@ class TuringAI:
         elif final_move in ['Forward', 'Left', 'Right']:
             return 1
         return 0
+
 
     def add_item(self, response, command):
         if response is None:
@@ -145,7 +167,7 @@ class TuringAI:
                 self.inventory[command.split(" ")[1]] -= 1
 
     def save_information(self):
-        if self.level == 2:
+        if self.level >= 2:
             os.makedirs("saved_information", exist_ok=True)
             with open(f"saved_information/LEVELUPinformation_{self.team_name}.txt", "w") as file:
                 file.write(f"Team name: {self.team_name}\n")
@@ -163,6 +185,23 @@ class TuringAI:
             file.write(f"Inventory: {self.inventory}\n")
             file.write(f"Level: {self.level}\n")
 
+    def launch_new_instance(self):
+        print("FORKING NEW INSTANCE")
+        if self.inventory["food"] < 10:
+            os.system("python pytorchAI -p " + str(self.port) + " -n " + self.team_name + " -w " + "kys" + " -h " + self.host)
+        elif self.level == 2 and self.inventory["food"] >= 10:
+            os.system("python pytorchAI -p " + str(self.port) + " -n " + self.team_name + " -w " + "evolve" + " -h " + self.host)
+        else:
+            os.system("python pytorchAI -p " + str(self.port) + " -n " + self.team_name + " -w " + "worker" + " -h " + self.host)
+
+    def can_fork(self, action, result):
+        if result is None:
+            return False
+        result_str = result.decode("utf-8") if isinstance(result, bytes) else result
+        if "Fork" in action and "ok" in result_str:
+            return True
+        return False
+
     def train(self, conn):
         start_clock = time.time()
         while True:
@@ -171,11 +210,14 @@ class TuringAI:
                 self.train_long_memory()
                 self.model.save()
                 self.save_information()
+                print("DEAD")
                 return
             res = res.decode()
             state_old = self.get_state(res)
             final_move = self.get_action(state_old)
             result = conn.send_request(self.command[final_move])
+            if self.can_fork(self.command[final_move], result):
+                self.launch_new_instance()
             self.add_item(result, self.command[final_move])
             elapsed_time = time.time() - start_clock
             reward = self.compute_reward(conn, self.command[final_move], result, elapsed_time)
@@ -184,6 +226,7 @@ class TuringAI:
                 self.train_long_memory()
                 self.model.save()
                 self.save_information()
+                print("DEAD")
                 return
             res = res.decode()
             state_new = self.get_state(res)

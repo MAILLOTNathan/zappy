@@ -30,6 +30,11 @@ class ServerConnection:
         """
         data = self.s.recv(1024)
         print(repr(data))
+        self.s.sendall(("team2"+ "\n").encode())
+        data = self.s.recv(1024)
+        print(repr(data))
+        data = self.s.recv(1024)
+        print(repr(data))        
         while True:
             input = sys.stdin.readline()
             if input == "quit\n":
@@ -57,8 +62,8 @@ class ServerConnection:
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
         print(repr(data))
-        # data = self.s.recv(1024)
-        # print(repr(data))
+        """ data = self.s.recv(1024)
+        print(repr(data)) """
 
 
     def send_request(self, request):
