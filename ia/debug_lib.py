@@ -10,7 +10,13 @@ class ServerConnection:
         self.PORT = ai.port
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((self.HOST, self.PORT))
-        
+        self.conn_num = 0
+    
+
+    def get_con_num(self, data):
+        res = data.decode().split("\n")
+        self.conn_num = int(res[0])
+
     def connect_to_server_debug(self):
         """
         Connects to the server in debug mode.
@@ -28,6 +34,7 @@ class ServerConnection:
         """
         data = self.s.recv(1024)
         print(repr(data))
+        self.get_con_num(data)
         # self.s.sendall(("team2"+ "\n").encode())
         # data = self.s.recv(1024)
         # print(repr(data))
@@ -60,8 +67,8 @@ class ServerConnection:
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
         print(repr(data))
-        """ data = self.s.recv(1024)
-        print(repr(data)) """
+        # data = self.s.recv(1024)
+        # print(repr(data)) 
 
 
     def send_request(self, request):

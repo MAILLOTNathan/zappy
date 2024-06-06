@@ -8,7 +8,7 @@ import os
 
 MAX_MEMORY = 100_000
 BATCH_SIZE = 1000   
-LR = 0.001
+LR = 0.5
 
 def generate_sring():
     """
@@ -44,6 +44,7 @@ class TuringAI:
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
         self.level = 1
         self.attempt = 0
+        self.action = 0
 
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.level_requirements = {
@@ -62,7 +63,6 @@ class TuringAI:
             self.model.load()
         except:
             print("Model not loaded")
-            time.sleep(1)
 
     def update_inventory(self, response):
         """
@@ -222,9 +222,9 @@ class TuringAI:
         Returns:
         int: The index of the action to be taken.
         """
-        self.epsilon = 80 - self.ngames
+        self.epsilon = 300 - self.ngames
         final_move = len(self.command) * [0]
-        if random.randint(0, 200) < self.epsilon:
+        if random.randint(0, 500) < self.epsilon:
             move = random.randint(0, len(self.command) - 1)
             final_move[move] = 1
         else:
@@ -234,14 +234,12 @@ class TuringAI:
             final_move[move] = 1
         return move
 
-    def compute_reward(self, conn, final_move, result, elapsed_time):
+    def compute_reward(self, conn, final_move, result, elapsed_time, res):
         # if final_move is None:
         #     return 0
         # result_str = result.decode("utf-8") if isinstance(result, bytes) else result
-        # first_part = result.split('[')[0]
+        # first_part = result_str.split('[')[0]
         # if self.check_level_up(first_part):
-        #     print("LEVELING UP")
-        #     time.sleep(1)
         #     conn.s.recv(1024)
         #     self.level += 1
         #     return 100 * self.level
@@ -259,35 +257,21 @@ class TuringAI:
         Returns:
             int: The computed reward based on the final move and result.
         """
-        if final_move is None:
-            return 0
         result_str = result.decode("utf-8") if isinstance(result, bytes) else result
-        if result_str == "dead":
-            return -100
-        elif "Incantation" in final_move:
-            if "Elevation underway" in result_str:
-                print("LEVELING UP")
-                time.sleep(1)
-                conn.s.recv(1024)
-                self.level += 1
-                return 100 * self.level
-        elif "Take Food" in final_move and "ok" in result_str:
-            print("TOOK FOOD")
-            time.sleep(1)
-            return 12
-        elif "Fork" in final_move:
-            if result_str is None:
-                return 0
-            if "ok" in result_str:
-                if self.level == 1:
-                    return -200
-                if self.level > 1:
-                    return 50
-        elif final_move in ['Forward', 'Left', 'Right']:
-            return 1
-        return 0
-
-
+        if result_str is None:
+            return -500
+        if final_move is None:
+            return -500
+        elif "dead"in result_str:
+            return -500
+        elif self.check_level_up(res.split('[')[0]) == True and "Incantation" not in final_move:
+            return -50
+        elif "Incantation" in final_move and self.check_level_up(res.split('[')[0]) == True:
+            return 1000 * self.level
+        elif "Incantation" in final_move and self.check_level_up(res.split('[')[0]) == False:
+            return -50
+        else:
+            return -elapsed_time
 
     def add_item(self, response, command):
         """
@@ -327,6 +311,7 @@ class TuringAI:
                 None
             """
             if self.level >= 2:
+                os.system("echo " + str(self.attempt) + " >> attempt.txt")
                 os.makedirs("saved_information", exist_ok=True)
                 with open(f"saved_information/LEVELUPinformation_{self.team_name}.txt", "w") as file:
                     file.write(f"Team name: {self.team_name}\n")
@@ -334,6 +319,7 @@ class TuringAI:
                     file.write(f"Games played: {self.ngames}\n")
                     file.write(f"Inventory: {self.inventory}\n")
                     file.write(f"Level: {self.level}\n")
+                    file.write(f"action: {self.action}\n")
                 return
             file_name = f"information_{self.team_name}.txt"
             os.makedirs("saved_information", exist_ok=True)
@@ -343,6 +329,7 @@ class TuringAI:
                 file.write(f"Games played: {self.ngames}\n")
                 file.write(f"Inventory: {self.inventory}\n")
                 file.write(f"Level: {self.level}\n")
+                file.write(f"action: {self.action}\n")
 
     def launch_new_instance(self):
         """
@@ -358,11 +345,18 @@ class TuringAI:
             None
         """
         if self.inventory["food"] < 10:
-            os.system("python sucide.py -p " + str(self.port) + " -n " + self.team_name + " -h " + self.host + " > sucide_child.log")
-        elif self.level == 2 and self.inventory["food"] >= 10:
-            os.system("python evolver.py -p " + str(self.port) + " -n " + self.team_name + " -h " + self.host + " > evolver_child.log")
+            os.system("python sucide.py -p " + str(self.port) + " -n " + self.team_name + " -h " + self.host + "&")
+            self.children += 1
+            return
+        elif self.level > 2 and self.inventory["food"] >= 10:
+            os.system("python evolver.py -p " + str(self.port) + " -n " + self.team_name + " -h " + self.host + "&")
+            self.children += 1
+            return
         else:
-            os.system("python collector.py -p " + str(self.port) + " -n " + self.team_name + " -h " + self.host + " > collector_child.log")
+            os.system("python collector.py -p " + str(self.port) + " -n " + self.team_name + " -h " + self.host + "&")
+            self.children += 1
+            return
+
 
     def can_fork(self, action, result):
         """
@@ -375,6 +369,8 @@ class TuringAI:
         Returns:
             bool: True if forking is possible, False otherwise.
         """
+        if self.conn.conn_num == self.children:
+            return False
         if result is None:
             return False
         result_str = result.decode("utf-8") if isinstance(result, bytes) else result
@@ -392,7 +388,6 @@ class TuringAI:
         Returns:
             None
         """
-        start_clock = time.time()
         while True:
             inv = conn.send_request("Inventory")
             self.update_inventory(inv)
@@ -406,12 +401,19 @@ class TuringAI:
             res = res.decode()
             state_old = self.get_state(res)
             final_move = self.get_action(state_old)
+            start_clock = time.time()
+            if self.command[final_move] == "Incantation":
+                result = conn.send_request(self.command[final_move])
+                self.action += 1
+                if result != "ko":
+                    conn.s.recv(1024)
             result = conn.send_request(self.command[final_move])
+            self.action +=1
             if self.can_fork(self.command[final_move], result):
                 self.launch_new_instance()
             self.add_item(result, self.command[final_move])
             elapsed_time = time.time() - start_clock
-            reward = self.compute_reward(conn, self.command[final_move], result, elapsed_time)
+            reward = self.compute_reward(conn, self.command[final_move], result, elapsed_time, res)
             res = conn.send_request("Look")
             if res in ("done", None):
                 self.train_long_memory()
