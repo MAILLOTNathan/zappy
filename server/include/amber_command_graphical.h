@@ -319,6 +319,17 @@ void amber_graphic_pin(amber_client_t *client, char **arg);
 void amber_graphic_loop(amber_serv_t *server, amber_world_t *world);
 
 /**
+ * @brief Sends the PNW event to a graphical client.
+ *
+ * This function sends the PNW event to a graphical client, providing
+ * information about a newly connected player.
+ *
+ * @param client The graphical client to send the event to.
+ * @param clients_gra The list of graphical clients.
+ */
+void amber_event_pnw(amber_client_t *client, list_t *clients_gra);
+
+/**
  * @file amber_command_graphical.h
  * @brief Header file containing the declaration of the
  * graphical_commands array.
