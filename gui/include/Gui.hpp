@@ -12,6 +12,7 @@
 #include "Error.hpp"
 #include "Item.hpp"
 #include "Map.hpp"
+#include "Player.hpp"
 #include "Window.hpp"
 
 #include "TcpClient.hpp"
@@ -52,6 +53,8 @@ namespace Onyx {
              * @param height The height of the map.
             */
             void createMap(int width, int height);
+
+            void addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation);
 
             std::shared_ptr<Onyx::Map> getMap();
 
@@ -97,5 +100,6 @@ namespace Onyx {
             std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
             bool _running;                                  /**< A boolean that indicates whether the application is running. */
             net::TcpClient *_client;
+            std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
     };
 }

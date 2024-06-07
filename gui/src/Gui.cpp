@@ -20,6 +20,8 @@ Onyx::Gui::Gui(net::TcpClient client)
 
     this->_interface->init(this->_window.get());
 
+    this->_players.push_back(std::make_shared<Onyx::Player>("Team 1", EGE::Maths::Vector2<int>(0, 0), "N"));
+
     this->createMenuBar();
 
     this->_tileSelected = 0;
@@ -35,6 +37,11 @@ void Onyx::Gui::createMap(int width, int height)
 {
     this->_map = std::make_shared<Onyx::Map>(EGE::Maths::Vector2(width, height));
     this->_entities.push_back(this->_map);
+}
+
+void Onyx::Gui::addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
+{
+    this->_players.push_back(std::make_shared<Onyx::Player>(teamName, position, rotation));
 }
 
 void Onyx::Gui::update()
@@ -56,6 +63,9 @@ void Onyx::Gui::update()
     this->_interface->draw();
     for (const auto& entity : this->_entities) {
         entity->update(this->_shader);
+    }
+    for (const auto& player : this->_players) {
+        player->update(this->_shader);
     }
     this->_interface->display();
     this->_window->display();
@@ -79,10 +89,17 @@ void Onyx::Gui::loop()
         this->createConsolePanel();
         this->updateConsolePanel(args);
     });
-    this->_client->addCommand("pnw", net::type_command_t::PNW, [](std::vector<std::string>& args) {
-        for (auto& arg : args) {
-            std::cout << arg << std::endl;
-        }
+    this->_client->addCommand("pnw", net::type_command_t::PNW, [&gui](std::vector<std::string>& args) {
+        if (args.size() != 7)
+            throw EGE::Error("Wrong number of param.");
+        // 1: player id (need to remove the #)
+        // 2: x pos
+        // 3: y pos
+        // 4: orientation (1: N, 2: E, 3: S, 4: W)
+        // 5: level
+        // 6: team name
+
+        gui->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
