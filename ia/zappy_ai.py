@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 import sys
 import debug_lib
-import time
+import os
+import subprocess
+import threading
 
 class TuringAI:
     """
@@ -19,9 +21,164 @@ class TuringAI:
     team_name = ""
     host = "localhost"
     food_quantity = 0
-    level = 1
     elapsed_time = 0
-    command ={"Forward": 7, "Right": 7, "Left": 7, "Look": 7, "Inventory": 1, "Broadcast": 7, "Connect_nbr": 0, "Fork": 42, "Eject": 7, "Take": 7, "Set": 7, "Incantation": 300}
+    inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+    children = 0
+    collector = 0
+
+    def check_level_up(self, res):
+        """
+        Check if the player meets the requirements to level up.
+
+        Args:
+        box_zero (list): The items in the player's inventory.
+
+        Returns:
+        bool: True if the player meets the requirements, False otherwise.
+        """
+        if res == None:
+            return
+        if res == "done":
+            return
+        res_str = res.decode()
+        box_zero = res_str.split(',')[0]
+        requirements = self.level_requirements[self.level]
+        for item in requirements:
+            if item == "players":
+                continue
+            if box_zero.count(item) < requirements[item]:
+                return False
+        return True
+
+    def can_fork(self, conn):
+        """
+        Checks if forking is possible based on the action and result.
+
+        Args:
+            conn (Connection): The connection object used to send the request.
+
+        Returns:
+            bool: True if forking is possible, False otherwise.
+        """
+        if conn.conn_num == self.children:
+            return False
+        res = conn.send_request("Fork")
+        if res is None:
+            return False
+        print(res)
+        if res == "done":
+            return False
+        res = res.decode()
+        if "ok" in res:
+            return True
+        return False
+
+    def broadcast_parse(self, response):
+        if response == None:
+            exit(0)
+        print(response)
+        if "message" in response.decode():
+            response = response.decode()
+            self.objectif = {"linemate": response.count("linemate"), "deraumere":  response.count("deraumere"), "sibur": response.count("sibur"), "mendiane": response.count("mendiane"), "phiras": response.count("phiras"), "thystame": response.count("thystame")}
+            return self.conn.s.recv(1024)
+        return response
+
+    def get_food(self, conn):
+        """
+        Retrieves the amount of food from the inventory command.
+        Returns:
+            None: If the response is None or 'done'.
+            int: The amount of food in the inventory.
+        """
+        response = conn.send_request('Inventory')
+        response = self.broadcast_parse(response)
+        if response == None or response == 'done':
+            return
+        response = response.decode().strip('[]')
+        response = response.split(',')
+        response = [component.strip() for component in response]
+        response = [int(component.split()[1]) for component in response]
+        self.inventory['food'] = response[0]
+
+    def do_incantation(self, conn):
+        """
+        Perform the incantation action.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        conn.send_request("Incantation")
+        data = conn.s.recv(1024)
+        print(data)
+        if "Elevation underway" in data.decode():
+            self.level += 1
+            conn.s.recv(1024)
+
+    def stay_alive(self, res, conn):
+        if res == None:
+            return
+        if res == "done":
+            return
+        if self.inventory["food"] < 10:
+            res = res.decode()
+            first_box = res.split(',')[0]
+            food_number = first_box.count("food")
+            if food_number > 0:
+                for i in range(food_number):
+                    conn.send_request("Take food")
+
+    def update_children(self, conn):
+        """
+        Updates the number of children based on the number of connections.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        try:
+            available_conn = conn.send_request("Connect_nbr")
+            self.children = conn.conn_num - int(available_conn.decode())
+        except:
+            return
+
+    def basic_ia(self, conn):
+        while True:
+            if self.level == 1:
+                for i in range(0,4):
+                    if self.level != 1:
+                        break
+                    self.get_food(conn)
+                    res = conn.send_request("Look")
+                    if self.check_level_up(res) == True:
+                        self.do_incantation(conn)
+                        self.level += 1
+                        continue
+                    look = parse_look(res, self, "linemate")
+                    x,y,nb = get_obj(look, "linemate")
+                    if nb == 0:
+                        take_action(self,"food", look, conn)
+                    else:
+                        take_action(self,"linemate", look, conn)
+                    conn.send_request("Right")
+                conn.send_request("Forward")
+            else:
+                self.update_children(conn)
+                res = conn.send_request("Look")
+                
+                look = parse_look(res, self, "food")
+                if self.inventory['food'] < 10 and look[0][1].count('food') != 0:
+                    self.stay_alive(res, conn)
+                ##elif self.check_level_up(res) == True:
+                ##    self.do_incantation(self, conn)
+                elif self.can_fork(conn) == True:
+                    launch_new_instance(self, look)
+                self.get_food(conn)
+
     def __init__(self):
         self.debug = False
         self.port = None
@@ -30,8 +187,17 @@ class TuringAI:
         self.level = 1
         self.host = "localhost"
         self.elapsed_time = 0
-        self.command = {"Forward": 7, "Right": 7, "Left": 7, "Look": 7, "Inventory": 1, "Broadcast": 7, "Connect_nbr": 0, "Fork": 42, "Eject": 7, "Take": 7, "Set": 7, "Incantation": 300}
+        self.children = 0
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+        self.level_requirements = {
+            1: {"players": 1, "linemate": 1, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0},
+            2: {"players": 2, "linemate": 1, "deraumere": 1, "sibur": 1, "mendiane": 0, "phiras": 0, "thystame": 0},
+            3: {"players": 2, "linemate": 2, "deraumere": 0, "sibur": 1, "mendiane": 0, "phiras": 2, "thystame": 0},
+            4: {"players": 4, "linemate": 1, "deraumere": 1, "sibur": 2, "mendiane": 0, "phiras": 1, "thystame": 0},
+            5: {"players": 4, "linemate": 1, "deraumere": 2, "sibur": 1, "mendiane": 3, "phiras": 0, "thystame": 0},
+            6: {"players": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
+            7: {"players": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
+        }
 
 def help_message():
     """
@@ -81,21 +247,12 @@ def parse_look(response, ai, obj):
     Returns:
         str: The direction where there is the most food.
     """
-    print("hereeeee", response)
-    print("AI LEVEL", ai.level)
+    response = response.decode()
     tiles = response.strip('[]').split(',')
     if len(tiles) == 1:
         return []
-    if ai.level == 1:
-        look = [['',tiles[0],''], [tiles[1],tiles[2],tiles[3]]]
-        return look
-    if ai.level == 2:
-        look = [['','',tiles[0],'',''], ['',tiles[1],tiles[2],tiles[3],''], [tiles[4],tiles[5],tiles[6],tiles[7],tiles[8]]]
-        return look
-    if ai.level == 3:
-        look = [['','','',tiles[0],'','',''], ['','',tiles[1],tiles[2],tiles[3],'',''], ['',tiles[4],tiles[5],tiles[6],tiles[7],tiles[8],''],
-                [tiles[9],tiles[10],tiles[11],tiles[12],tiles[13],tiles[14],tiles[15]]]
-        return look
+    look = [['',tiles[0],''], [tiles[1],tiles[2],tiles[3]]]
+    return look
 
 def get_obj(map, obj):
     x = 0
@@ -150,39 +307,62 @@ def sendRequest(conn, request : str, ai : TuringAI):
         ai.inventory["food"] -= 1
     return res
 
+def find_path(direction : list, quantity, obj : str, ai: TuringAI, conn):
+    """
+    Find the path to the tile with the most food.
 
-def basic_ia(ai : TuringAI, conn):
-    while True:
-        for i in range(0, 4):
-            if ai.inventory["linemate"] == 1 and ai.level == 1:
-               sendRequest(conn, "Set linemate", ai)
-               sendRequest(conn, "Incantation", ai)
-               ai.level += 1
-               conn.s.recv(1024)
-               continue
-            sendRequest(conn, "Right", ai)
-            response = sendRequest(conn, "Look", ai)
-            map = parse_look(response.decode(), ai, 'linemate')
-            if len(map) != 0:
-                x,y,nb = get_obj(map, "linemate")
-                find_path(get_direction(x,y,ai), conn, nb, 'linemate', ai)
-            else:
-                pass
-            map = parse_look(response.decode(), ai, 'food')
-            if len(map) == 0:
-                continue
-            x,y,nb = get_obj(map, "food")
-            find_path(get_direction(x,y,ai), conn, nb, 'food', ai)
-            ##m_linemate = parse_look_linemate(response.decode(), ai)
-            ##if m_linemate != 0:
-            ##    find_path(m_linemate, conn, 1, "linemate", ai)
-            ##    continue
-            ##most_food_case = parse_look(response.decode(), ai)
-            ##if most_food_case == '' :
-            ##    continue
-            ##find_path(most_food_case, conn, ai.food_quantity, "food", ai)
-            continue
-        sendRequest(conn, "Forward", ai)
+    Args:
+        direction (str): The direction where there is the most food.
+
+    Returns:
+        None
+    """
+    for i in direction:
+        res = conn.send_request(i)
+        ai.broadcast_parse(res)
+    if obj == "linemate":
+        return
+    for i in range(0, quantity):
+        res = conn.send_request("Take " + obj)
+        ai.broadcast_parse(res)
+        ai.inventory[obj] = ai.inventory[obj] + 1
+
+def take_action(self, obj, map, conn):
+    x,y,nb = get_obj(map, obj)
+    dir = get_direction(x,y, self)
+    find_path(dir, nb, obj, self, conn)
+
+def launch_new_instance(self, map):
+    """
+    Launches a new instance based on the current state of the agent.
+
+    If the agent's food inventory is less than 10, it launches the `sucide.py` script.
+    If the agent's level is 2 and the food inventory is greater than or equal to 10, it launches the `evolver.py` script.
+    Otherwise, it launches the `collector.py` script.
+
+    The launched scripts are executed in the background and their output is redirected to os.devnull.
+    """
+    def run_subprocess(command):
+        with open(os.devnull, 'w') as devnull:
+            process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
+            process.wait()
+    print(map[0])
+    if self.inventory["food"] < 10:
+        command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made a sucide child")
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
+    elif map[0][1].count("player") < (self.level * 2):
+        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made an evolver child")
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
+    elif self.collector != 2:
+        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made a collector child")
+        self.collector += 1
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
 
 def main():
     """
@@ -195,7 +375,7 @@ def main():
     if ai.debug:
         conn.connect_to_server_debug()
     conn.connect_to_server(ai.team_name)
-    basic_ia(ai, conn)
+    ai.basic_ia(conn)
 
 if __name__ == "__main__":
     main()

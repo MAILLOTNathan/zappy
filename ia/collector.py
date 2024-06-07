@@ -50,21 +50,31 @@ class food_collector:
     port = None
     team_name = ""
     host = "localhost"
+    signal_angle = []
     food_quantity = 0
     level = 1
     elapsed_time = 0
     conn = None
+    
     def __init__(self):
         self.debug = False
         self.port = None
         self.team_name = ""
         self.food_quantity = 0
         self.level = 1
+        self.signal_angle = [0,0,0,0,0,0,0,0]
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+        self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
 
     def broadcast_parse(self, response):
-        if "message" in response:
+        if response == None:
+            exit(0)
+        if "message" in response.decode():
+            response = response.decode()
+            self.objectif = {"linemate": response.count("linemate"), "deraumere":  response.count("deraumere"), "sibur": response.count("sibur"), "mendiane": response.count("mendiane"), "phiras": response.count("phiras"), "thystame": response.count("thystame")}
+            for i in range(1,8):
+                self.signal_angle[i-1] = response.count(str(i))
             return self.conn.s.recv(1024)
         return response
 
@@ -77,14 +87,59 @@ class food_collector:
         response = response.split(',')
         response = [component.strip() for component in response]
         response = [int(component.split()[1]) for component in response]
-        self.inventory['food'] = response
+        self.inventory['food'] = response[0]
+
+    def objectif_done(self):
+        for i in self.objectif:
+            if self.inventory[i] >= self.objectif[i]:
+                return False
+        return True
+    
+    def get_max_objectif(self):
+        max = -1
+        element = ''
+        for i in self.objectif:
+            if self.objectif[i] > max:
+                element = i
+                max = self.objectif[i]
+        return element
+    
+    def go_to_broadcast(self):
+        if self.signal_angle[0] != 0 and self.signal_angle[2] != 0 and self.signal_angle[5] != 0:
+            for i in self.inventory:
+                if i != 'food':
+                    for i in range(self.inventory[i]):
+                        res = self.conn.send_request("Set " + i)
+                        self.broadcast_parse(res)
+        if self.signal_angle[0] != 0 or self.signal_angle[1] != 0 or self.signal_angle[7] != 0 :
+            res = self.conn.send_request("Forward")
+            self.broadcast_parse(res)
+        elif self.signal_angle[2] != 0 or self.signal_angle[3] != 0:
+            res = self.conn.send_request("Left")
+            self.broadcast_parse(res)
+        elif self.signal_angle[6] != 0 or self.signal_angle[5] != 0:
+            res = self.conn.send_request("Right")
+            self.broadcast_parse(res)
+        elif self.signal_angle[4] != 0:
+            res = self.conn.send_request("Right")
+            self.broadcast_parse(res)
+            res = self.conn.send_request("Right")
+            self.broadcast_parse(res)
+        return
 
     def priority_guide(self, map : list): 
+        if self.inventory['food'] < 12:
+            self.take_action('food', map)
+        elif self.objectif_done() == False:
+            find = self.get_max_objectif()
+            self.take_action(find , map)
+        elif self.objectif_done() == True:
+            self.go_to_broadcast()
         return
     
     def take_action(self, obj, map):
         x,y,nb = get_obj(map, obj)
-        dir += get_direction(x,y)
+        dir = get_direction(x,y)
         find_path(dir, nb, obj, self)
 
 def parse_look(response):
@@ -129,7 +184,7 @@ def get_direction(x,y):
             dir.append("Forward")
     return dir
 
-def find_path(direction : list, quantity, obj : str, ai ):
+def find_path(direction : list, quantity, obj : str, ai: food_collector):
     """
     Find the path to the tile with the most food.
 
@@ -140,28 +195,13 @@ def find_path(direction : list, quantity, obj : str, ai ):
         None
     """
     for i in direction:
-        ai.conn.send_request(i)
+        res = ai.conn.send_request(i)
+        ai.broadcast_parse(res)
     for i in range(0, quantity):
-        ai.conn.send_request("Take " + obj)
+        res = ai.conn.send_request("Take " + obj)
+        ai.broadcast_parse(res)
         print(obj + " taken")
-        ai.inventory[obj] += 1
-
-def come_back(direction : list, ia):
-    """
-    Find the path to the tile with the most food.
-
-    Args:
-        direction (str): The direction where there is the most food.
-
-    Returns:
-        None
-    """
-    for i in direction:
-        ia.conn.send_request(i)
-    for i in range(0, round(ia.inventory["food"] / 3)):
-        ia.conn.send_request("Set food")
-        ia.inventory["food"] -= 1
-
+        ai.inventory[obj] = ai.inventory[obj] + 1
 
 
 def main():
@@ -174,18 +214,16 @@ def main():
     while True:
         for i in range(0, 4):
             response = bot.conn.send_request('Look')
+            response = bot.broadcast_parse(response)
             if response == None or response == 'done':
                 return
             map = parse_look(response.decode())
             bot.get_food()
-            bot.conn.send_request('Right')
-            bot.conn.send_request('Right')
-            dir = reversed(dir)
-            come_back(dir, bot)
-            dir = []
+            bot.priority_guide(map)
             continue
-        bot.conn.send_request('Foward')
-        dir.append('Foward')
+        bot.conn.send_request('Forward')
+        response = bot.broadcast_parse(response)
+
 
 
 
