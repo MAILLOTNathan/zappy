@@ -19,6 +19,7 @@ class Linear_QNet(nn.Module):
     Methods:
         forward(x): Performs forward pass through the network.
         save(file_name='model.pth'): Saves the model's state dictionary to a file.
+        load(file_name='model.pth'): Loads the model's state dictionary from a file.
     """
 
     def __init__(self, input_size, hidden_size, output_size):
@@ -60,6 +61,21 @@ class Linear_QNet(nn.Module):
             os.makedirs(model_folder_path)
         file_name = os.path.join(model_folder_path, file_name)
         torch.save(self.state_dict(), file_name)
+
+    def load(self, file_name='model.pth'):
+        """
+        Loads the model's state dictionary from a file.
+
+        Args:
+            file_name (str): The name of the file to load the model from. Defaults to 'model.pth'.
+        """
+        model_folder_path = './model'
+        file_name = os.path.join(model_folder_path, file_name)
+        if os.path.isfile(file_name):
+            self.load_state_dict(torch.load(file_name))
+            self.eval()
+        else:
+            print(f"No model found at {file_name}")
 
 class QTrainer:
     """
@@ -104,6 +120,7 @@ class QTrainer:
         self.model = model
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr)
         self.criterion = nn.MSELoss()
+        self.device = next(model.parameters()).device
 
     def train_step(self, state, action, reward, next_state, done):
         """
@@ -117,16 +134,16 @@ class QTrainer:
             done (bool): Whether the episode is done after taking the action.
 
         """
-        state = torch.tensor(state, dtype=torch.float)
-        next_state = torch.tensor(next_state, dtype=torch.float)
-        action = torch.tensor(action, dtype=torch.long)
-        reward = torch.tensor(reward, dtype=torch.float)
+        state = torch.tensor(state, dtype=torch.float).to(self.device)
+        next_state = torch.tensor(next_state, dtype=torch.float).to(self.device)
+        action = torch.tensor(action, dtype=torch.long).to(self.device)
+        reward = torch.tensor(reward, dtype=torch.float).to(self.device)
 
-        if (len(state.shape) == 1):
-            state = torch.unsqueeze(state, 0)
-            next_state = torch.unsqueeze(next_state, 0)
-            action = torch.unsqueeze(action, 0)
-            reward = torch.unsqueeze(reward, 0)
+        if len(state.shape) == 1:
+            state = torch.unsqueeze(state, 0).to(self.device)
+            next_state = torch.unsqueeze(next_state, 0).to(self.device)
+            action = torch.unsqueeze(action, 0).to(self.device)
+            reward = torch.unsqueeze(reward, 0).to(self.device)
             done = (done, )
 
         pred = self.model(state)
@@ -136,7 +153,7 @@ class QTrainer:
             Q_new = reward[idx]
             if not done[idx]:
                 Q_new = reward[idx] + self.gamma * torch.max(self.model(next_state[idx]))
-            if torch.argmax(action).item() >= 20:
+            if torch.argmax(action).item() >= 22:
                 return
             target[idx][torch.argmax(action).item()] = Q_new
 

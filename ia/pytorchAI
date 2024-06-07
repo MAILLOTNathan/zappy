@@ -2,6 +2,7 @@
 import sys
 import debug_lib
 from agent import TuringAI
+import os
 
 def help_message():
     print("USAGE: ./zappy_ai -p port -n name -h machine")
@@ -30,6 +31,11 @@ def clear_inventory(ai):
     for i in range(0, 7):
         ai.inventory[i] = 0
     ai.level = 1
+
+
+def children_here():
+    with open("children_here", "w") as f:
+        f.write("Children connected\n")
 
 def main():
     ai = TuringAI()

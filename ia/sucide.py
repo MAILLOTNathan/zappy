@@ -46,6 +46,7 @@ def check_args(TuringAI):
 
 
 class food_collector:
+    print("SUCIDE INIT")
     debug = False
     port = None
     team_name = ""
@@ -157,9 +158,6 @@ def main():
         for i in range(response[0]):
             bot.conn.send_request("Set food")
         return 0
-
-
-
 
 if __name__ == "__main__":
     main()

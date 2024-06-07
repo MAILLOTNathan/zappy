@@ -1,7 +1,5 @@
 import sys
 import socket
-import zappy_ai
-import time
 
 class ServerConnection:
     def __init__(self, ai):
@@ -35,6 +33,12 @@ class ServerConnection:
         """
         data = self.s.recv(1024)
         print(repr(data))
+        self.get_con_num(data)
+        # self.s.sendall(("team2"+ "\n").encode())
+        # data = self.s.recv(1024)
+        # print(repr(data))
+        # data = self.s.recv(1024)
+        # print(repr(data))        
         while True:
             input = sys.stdin.readline()
             if input == "quit\n":
@@ -64,7 +68,7 @@ class ServerConnection:
         print(repr(data))
         self.get_con_num(data)
         # data = self.s.recv(1024)
-        # print(repr(data))
+        # print(repr(data)) 
 
 
     def send_request(self, request):

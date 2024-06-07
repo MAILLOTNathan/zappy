@@ -46,6 +46,7 @@ def check_args(TuringAI):
 
 
 class food_collector:
+    print("COLLECTOR INIT")
     debug = False
     port = None
     team_name = ""
