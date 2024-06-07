@@ -23,6 +23,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->createMenuBar();
 
     this->_tileSelected = 0;
+    this->_client = &client;
 }
 
 Onyx::Gui::~Gui()
@@ -36,7 +37,7 @@ void Onyx::Gui::createMap(int width, int height)
     this->_entities.push_back(this->_map);
 }
 
-void Onyx::Gui::update(bool& running)
+void Onyx::Gui::update()
 {
     static float lastFrame = 0.0f;
     static float timer = 0.0f;
@@ -59,7 +60,60 @@ void Onyx::Gui::update(bool& running)
     this->_interface->display();
     this->_window->display();
     if (!this->_window->isOpen())
-        running = false;
+        this->_running = false;
+}
+
+bool Onyx::Gui::isRunning() const
+{
+    return this->_window->isOpen();
+}
+
+void Onyx::Gui::loop()
+{
+    this->_client->addCommand("msz", net::type_command_t::MSZ, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("Wrong number of param.");
+        this->createMap(std::stoi(args[1]), std::stoi(args[2]));
+        this->createWorldPanel();
+        this->createTilePanel();
+        this->createConsolePanel();
+        this->updateConsolePanel(args);
+    });
+    this->_client->addCommand("pnw", net::type_command_t::PNW, [](std::vector<std::string>& args) {
+        for (auto& arg : args) {
+            std::cout << arg << std::endl;
+        }
+    });
+    this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
+        if (args.size() != 10)
+            throw EGE::Error("Wrong number of param.");
+        EGE::Maths::Vector2<int> position(std::stoi(args[1]), std::stoi(args[2]));
+        this->_map->addItem(position, Onyx::Item::TYPE::FOOD, std::stoi(args[3]));
+        this->_map->addItem(position, Onyx::Item::TYPE::LINEMATE, std::stoi(args[4]));
+        this->_map->addItem(position, Onyx::Item::TYPE::DERAUMERE, std::stoi(args[5]));
+        this->_map->addItem(position, Onyx::Item::TYPE::SIBUR, std::stoi(args[6]));
+        this->_map->addItem(position, Onyx::Item::TYPE::MENDIANE, std::stoi(args[7]));
+        this->_map->addItem(position, Onyx::Item::TYPE::PHIRAS, std::stoi(args[8]));
+        this->_map->addItem(position, Onyx::Item::TYPE::THYSTAME, std::stoi(args[9]));
+        this->updateWorldPanel();
+        this->updateTilePanel();
+        this->updateConsolePanel(args);
+    });
+    this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("Wrong number of param.");
+        this->updateWorldSettings(std::stof(args[1]));
+    });
+    this->_client->connection();
+    this->_client->sendRequest("msz\n");
+    this->_client->sendRequest("mct\n");
+    this->_client->sendRequest("sgt\n");
+
+    while (this->isRunning()) {
+        this->_client->waitEvent();
+        this->update();
+    }
+    this->_client->disconnect();
 }
 
 std::shared_ptr<Onyx::Map> Onyx::Gui::getMap()

@@ -41,9 +41,8 @@ namespace Onyx {
              * @brief Updates the graphical user interface.
              *
              * This method is called to update the graphical user interface.
-             * @param running A reference to a boolean that indicates whether the application is running.
             */
-            void update(bool& running);
+            void update();
 
             /**
              * @brief Creates a map.
@@ -57,6 +56,10 @@ namespace Onyx {
             std::shared_ptr<Onyx::Map> getMap();
 
             std::shared_ptr<EGE::Window> getWindow() const;
+
+            void loop();
+
+            bool isRunning() const;
 
             void createWorldPanel();
             void createTilePanel();
@@ -92,5 +95,7 @@ namespace Onyx {
             std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
             int _tileSelected;                              /**< The selected tile. */
             std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
+            bool _running;                                  /**< A boolean that indicates whether the application is running. */
+            net::TcpClient *_client;
     };
 }
