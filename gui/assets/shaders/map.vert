@@ -8,7 +8,7 @@ out vec2 TexCoords;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
-uniform float offsets[100];
+uniform float offsets[900];
 
 void main()
 {

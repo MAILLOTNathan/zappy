@@ -89,7 +89,7 @@ void Onyx::Gui::loop()
         this->createConsolePanel();
         this->updateConsolePanel(args);
     });
-    this->_client->addCommand("pnw", net::type_command_t::PNW, [&gui](std::vector<std::string>& args) {
+    this->_client->addCommand("pnw", net::type_command_t::PNW, [this](std::vector<std::string>& args) {
         if (args.size() != 7)
             throw EGE::Error("Wrong number of param.");
         // 1: player id (need to remove the #)
@@ -99,7 +99,7 @@ void Onyx::Gui::loop()
         // 5: level
         // 6: team name
 
-        gui->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+        this->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
