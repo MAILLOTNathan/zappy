@@ -12,7 +12,7 @@ bool isHelp(char *str)
 {
     if (std::string(str) == "--help")
         return true;
-    if (std::string(str) == "-h")
+    if (std::string(str) == "-help")
         return true;
     if (std::string(str) == "--aled")
         return true;
@@ -27,25 +27,47 @@ void launchGame(const std::string &ip, int port)
     exit(0);
 }
 
-void launchMenu()
+void launchMenu(const std::string &ip, int port)
 {
-    Onyx::MainMenu *mainMenu = new Onyx::MainMenu();
+    Onyx::MainMenu *mainMenu = new Onyx::MainMenu(ip, port);
 
     mainMenu->loop();
     launchGame(mainMenu->getClient()->getIP(), mainMenu->getClient()->getPort());
+}
+
+// dinf the port after the -p flag
+int getPort(char **argv)
+{
+    for (int i = 1; argv[i] != NULL; i++) {
+        if (std::string(argv[i]) == "-p") {
+            return std::stoi(argv[i + 1]);
+        }
+    }
+    return 0;
+}
+
+std::string getIp(char **argv)
+{
+    for (int i = 1; argv[i] != NULL; i++) {
+        if (std::string(argv[i]) == "-h") {
+            return std::string(argv[i + 1]);
+        }
+    }
+    return "127.0.0.1";
 }
 
 int main(int argc, char **argv)
 {
     try {
         if (argc == 1) {
-            launchMenu();
-        } else if (argc == 3) {
-            if (std::stoi(argv[2]) < 0 || std::stoi(argv[2]) > 65535)
+            launchMenu("", 0);
+        } else if (argc == 5 || argc == 3) {
+            int port = getPort(argv);
+            if (port < 0 || port > 65535)
                 throw EGE::Error("Invalid port number: " + std::string(argv[2]));
-            launchGame(argv[1], std::stoi(argv[2]));
+            launchMenu(getIp(argv), port);
         } else {
-            if (argc > 3) {
+            if (argc > 5) {
                 throw EGE::Error("Too many arguments");
             } else if (argc == 2 && isHelp(argv[1])) {
                 std::cout << "USAGE: ./onyx [ip] [port]" << std::endl;

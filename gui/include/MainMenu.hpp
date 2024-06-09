@@ -32,7 +32,7 @@ namespace Onyx {
             /**
              * @brief Default constructor for MainMenu.
              */
-            MainMenu();
+            MainMenu(const std::string& ip, int port);
 
             /**
              * @brief Destructor for MainMenu.
@@ -73,6 +73,8 @@ namespace Onyx {
             std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
             float _deltaTime;                               /**< The time between frames. */
             std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays information about the world. */
+            std::string _ip;                                /**< The IP address of the server. */
+            int _port;                                      /**< The port number of the server. */
     };
 }
 
