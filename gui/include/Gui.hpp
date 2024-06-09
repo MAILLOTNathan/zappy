@@ -42,9 +42,8 @@ namespace Onyx {
              * @brief Updates the graphical user interface.
              *
              * This method is called to update the graphical user interface.
-             * @param running A reference to a boolean that indicates whether the application is running.
             */
-            void update(bool& running);
+            void update();
 
             /**
              * @brief Creates a map.
@@ -60,6 +59,10 @@ namespace Onyx {
             std::shared_ptr<Onyx::Map> getMap();
 
             std::shared_ptr<EGE::Window> getWindow() const;
+
+            void loop();
+
+            bool isRunning() const;
 
             void createWorldPanel();
             void createTilePanel();
@@ -87,14 +90,16 @@ namespace Onyx {
             */
             void _updateCamera();
 
-            std::shared_ptr<EGE::Window> _window;                   /**< The window used for rendering the graphical user interface. */
-            std::vector<std::shared_ptr<Entity>> _entities;         /**< The entities in the graphical user interface. */
-            std::shared_ptr<EGE::Shader> _shader;                   /**< The shader used for rendering the entities. */
-            std::shared_ptr<EGE::Camera> _camera;                   /**< The camera used for rendering the entities. */
-            float _deltaTime;                                       /**< The time between frames. */
-            std::shared_ptr<Onyx::Map> _map;                        /**< The map in the graphical user interface. */
-            int _tileSelected;                                      /**< The selected tile. */
-            std::shared_ptr<UserInterface> _interface;              /**< The Interface which displays informations about the world. */
+            std::shared_ptr<EGE::Window> _window;           /**< The window used for rendering the graphical user interface. */
+            std::vector<std::shared_ptr<Entity>> _entities; /**< The entities in the graphical user interface. */
+            std::shared_ptr<EGE::Shader> _shader;           /**< The shader used for rendering the entities. */
+            std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
+            float _deltaTime;                               /**< The time between frames. */
+            std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
+            int _tileSelected;                              /**< The selected tile. */
+            std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
+            bool _running;                                  /**< A boolean that indicates whether the application is running. */
+            net::TcpClient *_client;
             std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
     };
 }
