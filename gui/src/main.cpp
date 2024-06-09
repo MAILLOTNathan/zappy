@@ -9,12 +9,12 @@
 #include "TcpClient.hpp"
 #include <thread>
 
-int main()
+int main(int ac, char **av)
 {
     try {
         bool running = true;
 
-        net::TcpClient client("127.0.0.1", 4242);
+        net::TcpClient client("10.106.0.169", 4242);
         std::shared_ptr<Onyx::Gui> gui = std::make_shared<Onyx::Gui>(client);
 
         client.addCommand("msz", net::type_command_t::MSZ, [&gui](std::vector<std::string>& args) {
@@ -29,6 +29,9 @@ int main()
         client.addCommand("pnw", net::type_command_t::PNW, [&gui](std::vector<std::string>& args) {
             if (args.size() != 7)
                 throw EGE::Error("Wrong number of param.");
+            for (const auto& arg : args) {
+                std::cout << arg << std::endl;
+            }
             // 1: player id (need to remove the #)
             // 2: x pos
             // 3: y pos
@@ -65,6 +68,7 @@ int main()
 
         while (running) {
             client.waitEvent();
+            client.sendRequest("ppo\n");
             gui->update(running);
         }
         client.disconnect();

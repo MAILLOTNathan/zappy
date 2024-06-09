@@ -20,8 +20,6 @@ Onyx::Gui::Gui(net::TcpClient client)
 
     this->_interface->init(this->_window.get());
 
-    this->_players.push_back(std::make_shared<Onyx::Player>("Team 1", EGE::Maths::Vector2<int>(0, 0), "N"));
-
     this->createMenuBar();
 
     this->_tileSelected = 0;
@@ -57,7 +55,7 @@ void Onyx::Gui::update(bool& running)
     this->_window->pollEvents();
     this->_shader->use();
     this->_camera->update(*this->_shader.get(), static_cast<float>(this->_window->getSize().x) / static_cast<float>(this->_window->getSize().y));
-    this->_window->clear(EGE::Color(0.0f, 1.0f, 0.0f, 1.0f));
+    this->_window->clear(EGE::Color(0.0f, 0.0f, 0.0f, 1.0f));
     this->_interface->clear();
     this->_interface->draw();
     for (const auto& entity : this->_entities) {
@@ -83,18 +81,9 @@ void Onyx::Gui::_bindEvents()
         this->_window->close();
     });
     this->_window->bindWindowTrigger<GLFWwindow *, double, double>(EGE::Event::WindowTrigger::WindowCursorMoved, [this] (GLFWwindow *win, double xpos, double ypos) {
-        static double lastX = 0.0;
-        static double lastY = 0.0;
-        static bool firstMouse = true;
-        if (firstMouse) {
-            lastX = xpos;
-            lastY = ypos;
-            firstMouse = false;
-        }
-        double xoffset = xpos - lastX;
-        double yoffset = lastY - ypos;
-        lastX = xpos;
-        lastY = ypos;
+        glfwSetCursorPos(win, this->_window->getSize().x / 2, this->_window->getSize().y / 2);
+        float xoffset = xpos - this->_window->getSize().x / 2;
+        float yoffset = this->_window->getSize().y / 2 - ypos;
         this->_camera->rotate(xoffset, yoffset, true);
     });
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyW, EGE::Event::Mode::Pressed, [this]() {
@@ -123,6 +112,12 @@ void Onyx::Gui::_bindEvents()
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyEscape, EGE::Event::Mode::JustPressed, [this]() {
         this->_window->close();
+    }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Mouse, EGE::Event::Mouse::MouseLeft, EGE::Event::Mode::JustPressed, [this]() {
+        this->_tileSelected = this->_map->getTileSelected(this->_camera->getPosition(), this->_camera->getFront(), this->_window->getMousePosition());
+        std::cout << "Tile selected: " << this->_tileSelected << std::endl;
+        if (this->_tileSelected >= 0)
+            this->updateTilePanel();
     }));
 }
 

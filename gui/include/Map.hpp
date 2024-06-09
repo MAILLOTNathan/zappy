@@ -58,6 +58,8 @@ namespace Onyx {
 
             std::vector<std::shared_ptr<Floor>> getFloor() const;
 
+            int getTileSelected(EGE::Maths::Vector3<float> cameraPositon, EGE::Maths::Vector3<float> cameraFront, EGE::Maths::Vector2<int> mousePos);
+
         private:
             std::vector<std::shared_ptr<Floor>> _floor; /**< The collection of floor models in the map. */
             std::shared_ptr<EGE::Shader> _shader;       /**< The shader used to update the map. */
