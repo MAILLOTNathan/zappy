@@ -77,6 +77,7 @@ typedef struct amber_client_s {
     bool _is_incantating;
     unsigned long _ellapsed_time;
     unsigned long _clock_food;
+    bool _is_error;
 } amber_client_t;
 
 /**

@@ -104,8 +104,7 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
         printf("len_clients: %ld\n", list_len(serv->_clients));
         printf("[AMBER ERROR] No egg available for team %s\n", arg[0]);
         dprintf(client->_tcp._fd, "ko\n");
-        remove_node(&serv->_clients, list_find_node_p(serv->_clients, client),
-        true);
+        client->_is_error = true;
         return false;
     }
     if (!check_if_enough_places(serv, arg[0], world->_clientsNb, client))
