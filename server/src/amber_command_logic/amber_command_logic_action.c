@@ -34,6 +34,7 @@ static direction_t invert(direction_t d)
 static void update_client_pos(direction_t dir, amber_client_t *client,
     amber_world_t *world)
 {
+    world->_case[client->_y][client->_x]._players--;
     if (dir == UP)
         client->_y = client->_y - 1 < 0 ? world->_height - 1 : client->_y - 1;
     if (dir == DOWN)
@@ -42,6 +43,7 @@ static void update_client_pos(direction_t dir, amber_client_t *client,
         client->_x = client->_x + 1 >= world->_width ? 0 : client->_x + 1;
     if (dir == LEFT)
         client->_x = client->_x - 1 < 0 ? world->_width - 1 : client->_x - 1;
+    world->_case[client->_y][client->_x]._players++;
 }
 
 static void manage_eject_send(amber_client_t *client, amber_client_t *tmp,
@@ -77,7 +79,6 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
     }
     if (is_eject)
         dprintf(client->_tcp._fd, "ok\n");
-        
     else
         dprintf(client->_tcp._fd, "ko\n");
 }
