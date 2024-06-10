@@ -10,7 +10,7 @@
 std::map<std::string, Onyx::Player::Color> Onyx::Player::_colorMap = {};
 static int currentColor = 1;
 
-Onyx::Player::Player(const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName)
+Onyx::Player::Player(const int& id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName) , _id(id)
 {
     this->_level = 1;
     if (Player::_colorMap[teamName] == 0) {
@@ -94,7 +94,7 @@ std::string Onyx::Player::getTeamName()
     return this->_teamName;
 }
 
-void Onyx::Player::setID(int id)
+void Onyx::Player::setID(const int &id)
 {
     this->_id = id;
 }

@@ -55,7 +55,7 @@ namespace Onyx {
             */
             void createMap(int width, int height);
 
-            void addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation);
+            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation);
 
             std::shared_ptr<Onyx::Map> getMap();
 

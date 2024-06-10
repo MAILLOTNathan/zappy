@@ -35,7 +35,7 @@ namespace Onyx {
                 CYAN,
                 LAST
             };
-            Player(const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation);
+            Player(const int& id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation);
             ~Player();
 
             void update(std::shared_ptr<EGE::Shader> shader) override;
@@ -51,7 +51,7 @@ namespace Onyx {
             void setTeamName(const std::string& teamName);
             std::string getTeamName();
 
-            void setID(int id);
+            void setID(const int& id);
             int getID();
         private:
             void _setColor(std::string &teamName);

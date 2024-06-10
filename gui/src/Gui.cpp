@@ -39,9 +39,9 @@ void Onyx::Gui::createMap(int width, int height)
     this->_entities.push_back(this->_map);
 }
 
-void Onyx::Gui::addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
+void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
 {
-    this->_players.push_back(std::make_shared<Onyx::Player>(teamName, position, rotation));
+    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation));
 }
 
 void Onyx::Gui::update()
@@ -99,9 +99,8 @@ void Onyx::Gui::loop()
         // 4: orientation (1: N, 2: E, 3: S, 4: W)
         // 5: level
         // 6: team name
-        std::cout << args[1] << std::endl;
 
-        this->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+        this->addPlayer(std::stoi(args[1]), EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
         this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
@@ -313,13 +312,13 @@ void Onyx::Gui::updatePlayerPanel()
 {
     EGE::Text *team = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Team"));
     EGE::Text *level = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Level"));
-    // EGE::Text *id = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("ID"));
+    EGE::Text *id = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("ID"));
     // EGE::ListBox *inventory = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Trantorian"]->get("Inventory"));
     Onyx::Player *player = this->_players.at(0).get();
 
     team->setName("Team: " + player->getTeamName());
     level->setName("Level: " + std::to_string(player->getLevel()));
-    // id->setName("ID: " + std::to_string(player->getID()));
+    id->setName("ID: " + std::to_string(player->getID()));
     // inventory->get("food")->setName("Food: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::FOOD)));
     // inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::LINEMATE)));
     // inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::DERAUMERE)));
