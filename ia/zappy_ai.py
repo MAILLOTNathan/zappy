@@ -44,8 +44,6 @@ class TuringAI:
         box_zero = res_str.split(',')[0]
         requirements = self.level_requirements[self.level]
         for item in requirements:
-            if item == "players":
-                continue
             if box_zero.count(item) < requirements[item]:
                 return False
         return True
@@ -82,7 +80,7 @@ class TuringAI:
         """
         response = conn.send_request('Inventory')
         response = self.broadcast_parse(response)
-        print(response)
+        print("smelizieuf")
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
@@ -102,11 +100,10 @@ class TuringAI:
         Returns:
             None
         """
-        conn.send_request("Incantation")
-        data = conn.s.recv(1024)
+        data = conn.send_request("Incantation")
         if "Elevation underway" in data.decode():
             self.level += 1
-            conn.s.recv(1024)
+            data = conn.s.recv(1024)
 
     def update_children(self, conn):
         """
@@ -121,6 +118,7 @@ class TuringAI:
         try:
             available_conn = conn.send_request("Connect_nbr")
             self.children = conn.conn_num - int(available_conn.decode())
+            print("apres con_nb")
         except:
             return
 
@@ -134,7 +132,6 @@ class TuringAI:
                     res = conn.send_request("Look")
                     if self.check_level_up(res) == True:
                         self.do_incantation(conn)
-                        self.level += 1
                         continue
                     look = parse_look(res, self, "linemate")
                     x,y,nb = get_obj(look, "linemate")
@@ -151,12 +148,11 @@ class TuringAI:
                 if self.inventory['food'] < 5 and look[0][1].count('food') != 0:
                     res = conn.send_request("Take food")
                 elif self.check_level_up(res) == True:
-                    #conn.send_request("Broadcast sibur")
                     self.do_incantation(self, conn)
                 elif self.can_fork(conn) == True:
-                    #conn.send_request("Broadcast sibur")
                     launch_new_instance(self, look, conn)
-                #conn.send_request("Broadcast sibur")
+                if self.collector >= 3:
+                    conn.s.send(("Broadcast " + broadcast_needed(self)+ "\n").encode())
                 self.get_food(conn)
 
     def __init__(self):
@@ -170,13 +166,13 @@ class TuringAI:
         self.children = 0
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.level_requirements = {
-            1: {"players": 1, "linemate": 1, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0},
-            2: {"players": 2, "linemate": 1, "deraumere": 1, "sibur": 1, "mendiane": 0, "phiras": 0, "thystame": 0},
-            3: {"players": 2, "linemate": 2, "deraumere": 0, "sibur": 1, "mendiane": 0, "phiras": 2, "thystame": 0},
-            4: {"players": 4, "linemate": 1, "deraumere": 1, "sibur": 2, "mendiane": 0, "phiras": 1, "thystame": 0},
-            5: {"players": 4, "linemate": 1, "deraumere": 2, "sibur": 1, "mendiane": 3, "phiras": 0, "thystame": 0},
-            6: {"players": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
-            7: {"players": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
+            1: {"player": 1, "linemate": 1, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0},
+            2: {"player": 2, "linemate": 1, "deraumere": 1, "sibur": 1, "mendiane": 0, "phiras": 0, "thystame": 0},
+            3: {"player": 2, "linemate": 2, "deraumere": 0, "sibur": 1, "mendiane": 0, "phiras": 2, "thystame": 0},
+            4: {"player": 4, "linemate": 1, "deraumere": 1, "sibur": 2, "mendiane": 0, "phiras": 1, "thystame": 0},
+            5: {"player": 4, "linemate": 1, "deraumere": 2, "sibur": 1, "mendiane": 3, "phiras": 0, "thystame": 0},
+            6: {"player": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
+            7: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
 
 def help_message():
@@ -272,7 +268,13 @@ def get_direction(x,y):
             dir.append("Forward")
     return dir
 
-
+def broadcast_needed(bot: TuringAI):
+    add = ''
+    for i in bot.level_requirements[bot.level]:
+        if i != 'food':
+            for y in range(bot.level_requirements[bot.level][i]):
+                add += i
+    return add
 def find_path(direction : list, quantity, obj : str, ai: TuringAI, conn):
     """
     Find the path to the tile with the most food.
@@ -321,18 +323,19 @@ def launch_new_instance(self, map, conn):
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    elif map[0][1].count("player") < (self.level * 2):
+    elif map[0][1].count("player") < 4:
         conn.send_request("Fork")
         command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made an evolver child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    #elif self.collector != 1:
-    #    command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-    #    print("made a collector child")
-    #    self.collector += 1
-    #    thread = threading.Thread(target=run_subprocess, args=(command,))
-    #    thread.start()
+    elif self.collector < 3:
+        conn.send_request("Fork")
+        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made a collector child")
+        self.collector += 1
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
 
 def main():
     """
