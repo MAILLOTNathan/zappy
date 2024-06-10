@@ -79,10 +79,9 @@ class TuringAI:
             int: The amount of food in the inventory.
         """
         response = conn.send_request('Inventory')
-        response = self.broadcast_parse(response)
-        print("smelizieuf")
         if response == None or response == 'done':
             return
+        print(response)
         response = response.decode().strip('[]')
         response = response.split(']')[0]
         response = response.split(',')
@@ -152,7 +151,7 @@ class TuringAI:
                 elif self.can_fork(conn) == True:
                     launch_new_instance(self, look, conn)
                 if self.collector >= 3:
-                    conn.s.send(("Broadcast " + broadcast_needed(self)+ "\n").encode())
+                    conn.send_request("Broadcast " + broadcast_needed(self))
                 self.get_food(conn)
 
     def __init__(self):
