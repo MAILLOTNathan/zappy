@@ -218,13 +218,16 @@ void Onyx::Gui::loop()
             }
         }
         for (auto &player : this->_players) {
-            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::FOOD) << " food" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::LINEMATE) << " linemate" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::DERAUMERE) << " deraumere" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::SIBUR) << " sibur" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::MENDIANE) << " mendiane" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::PHIRAS) << " phiras" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::THYSTAME) << " thystame" << std::endl;
+            if (player->getID() == std::stoi(args[1].erase(0, 1))) {
+                this->updatePlayerPanel(player);
+            }
+            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::FOOD) << " food" << std::endl;
+            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::LINEMATE) << " linemate" << std::endl;
+            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::DERAUMERE) << " deraumere" << std::endl;
+            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::SIBUR) << " sibur" << std::endl;
+            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::MENDIANE) << " mendiane" << std::endl;
+            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::PHIRAS) << " phiras" << std::endl;
+            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::THYSTAME) << " thystame" << std::endl;
         }
         // this->updatePlayerPanel();
     });
@@ -415,25 +418,23 @@ void Onyx::Gui::createPlayerPanel()
     this->_interface->_panels["Trantorian"] = panel;
 }
 
-void Onyx::Gui::updatePlayerPanel()
+void Onyx::Gui::updatePlayerPanel(std::shared_ptr<Onyx::Player> &player)
 {
     EGE::Text *team = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Team"));
     EGE::Text *level = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Level"));
     EGE::Text *id = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("ID"));
-    // EGE::ListBox *inventory = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Trantorian"]->get("Inventory"));
-    Onyx::Player *player = this->_players.at(0).get();
+    EGE::ListBox *inventory = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Trantorian"]->get("Inventory"));
 
     team->setName("Team: " + player->getTeamName());
     level->setName("Level: " + std::to_string(player->getLevel()));
     id->setName("ID: " + std::to_string(player->getId()));
-    // inventory->get("food")->setName("Food: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::FOOD)));
-    // inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::LINEMATE)));
-    // inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::DERAUMERE)));
-    // inventory->get("sibur")->setName("Sibur: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::SIBUR)));
-    // inventory->get("mendiane")->setName("Mendiane: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::MENDIANE)));
-    // inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::PHIRAS)));
-    // inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::THYSTAME));
-    
+    inventory->get("food")->setName("Food: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::FOOD)));
+    inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::LINEMATE)));
+    inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::DERAUMERE)));
+    inventory->get("sibur")->setName("Sibur: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::SIBUR)));
+    inventory->get("mendiane")->setName("Mendiane: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::MENDIANE)));
+    inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::PHIRAS)));
+    inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::THYSTAME)));
 }
 
 // void Onyx::Gui::updatePlayerPanel()

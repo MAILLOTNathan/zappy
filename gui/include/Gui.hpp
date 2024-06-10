@@ -90,7 +90,7 @@ namespace Onyx {
 
             void createPlayerPanel();
 
-            void updatePlayerPanel();
+            void updatePlayerPanel(std::shared_ptr<Onyx::Player> &player);
 
             /**
              * @brief Updates the world panel.
