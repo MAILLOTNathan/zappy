@@ -5,6 +5,8 @@
 ** UserInterface
 */
 
+#include "Sound/Device.hpp"
+#include "Sound/Playlist.hpp"
 #include "GUI/GUIManager.hpp"
 
 /**
@@ -24,5 +26,11 @@ class UserInterface : public EGE::GUIManager {
          */
         ~UserInterface(){};
 
-    private:
+        void initPlaylist(const std::string &path);
+
+        EGE::Sound::Playlist *getPlaylist();
+
+    protected:
+        EGE::Sound::Device *_soundDevice;
+        EGE::Sound::Playlist *_playlist;
 };

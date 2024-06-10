@@ -19,6 +19,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_interface = std::make_shared<UserInterface>();
 
     this->_interface->init(this->_window.get());
+    this->_interface->initPlaylist("./assets/musics/");
 
     this->createMenuBar();
 
@@ -442,13 +443,13 @@ void Onyx::Gui::createMenuBar()
     EGE::Menu *music = new EGE::Menu("Music");
 
     music->add(new EGE::Item("Previous", [this] () {
-        std::cout << "Previous" << std::endl;
+        this->_interface->getPlaylist()->previous();
     }), "0 Previous");
-    music->add(new EGE::Item("Play / Stop", [this] () {
-        std::cout << "Play" << std::endl;
+    music->add(new EGE::Item("Play / Pause", [this] () {
+        this->_interface->getPlaylist()->play();
     }), "1 Play");
     music->add(new EGE::Item("Next", [this] () {
-        std::cout << "Next" << std::endl;
+        this->_interface->getPlaylist()->next();
     }), "2 Next");
 
     this->_interface->_menuBar->add(music, "1 Music");
