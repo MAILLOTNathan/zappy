@@ -12,6 +12,7 @@ static int currentColor = 1;
 
 Onyx::Player::Player(const int& id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName) , _id(id)
 {
+    std::cout << "id" << id << std::endl;
     this->_level = 1;
     if (Player::_colorMap[teamName] == 0) {
         Player::_colorMap[teamName] = static_cast<Color>(currentColor++);
