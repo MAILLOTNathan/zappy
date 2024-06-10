@@ -1,0 +1,14 @@
+To explore Amber world, you can do many things !
+
+If you want to move yourself in the world you can press :
+    - [W] -> to move forward
+    - [S] -> to move backward
+    - [A] -> to move left
+    - [D] -> to move right
+
+To look around yourself, you must use the [mouse].
+
+And to switch between the camera and the free mouse pointer,
+you may use the [C] key.
+
+Now let's discover how much you can configure you experience !
