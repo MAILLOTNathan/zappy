@@ -94,6 +94,16 @@ std::string Onyx::Player::getTeamName()
     return this->_teamName;
 }
 
+void Onyx::Player::setID(int id)
+{
+    this->_id = id;
+}
+
+int Onyx::Player::getID()
+{
+    return this->_id;
+}
+
 void Onyx::Player::_setColor(std::string &fileContent)
 {
     std::string newFile = "../colors/";

@@ -50,11 +50,15 @@ namespace Onyx {
 
             void setTeamName(const std::string& teamName);
             std::string getTeamName();
+
+            void setID(int id);
+            int getID();
         private:
             void _setColor(std::string &teamName);
 
             Color _color;
             int _level;
+            int _id;
             std::string _teamName;
             static std::map<std::string, Color> _colorMap;
             EGE::Maths::Vector2<int> _pos;
