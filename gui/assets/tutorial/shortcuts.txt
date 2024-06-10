@@ -1,0 +1,10 @@
+[W] -> Move Forward
+[S] -> Move Backward
+[A] -> Move to the Left
+[D] -> Move to the Right
+
+[L-Shift] -> Speed
+
+[Esc] -> Quit
+
+[C] -> Change mouse mode

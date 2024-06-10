@@ -23,6 +23,7 @@ Onyx::Gui::Gui(net::TcpClient client)
 
     this->_cameraMode = true;
     this->createMenuBar();
+    this->createTutorial();
 
     this->_tileSelected = 0;
     this->_client = &client;
@@ -585,23 +586,15 @@ void Onyx::Gui::createMenuBar()
     EGE::Menu *help = new EGE::Menu("Help");
 
     help->add(new EGE::Item("Launch Tutorial", [this] () {
-        std::cout << "Tutorial" << std::endl;
+        this->_interface->_panels["Tutorial"]->setVisible(true);
     }), "0 Tutorial");
 
     EGE::Panel *helpPanel = new EGE::Panel("Shortcuts");
-    EGE::ListBox *hcam = new EGE::ListBox("Camera");
     EGE::Button *done = new EGE::Button("Done", [this] () {
         this->_interface->_panels["Shortcuts"]->setVisible(false);
     });
 
-    // TODO:
-    // Add a config file to store shortcuts
-    hcam->add(new EGE::Text("Z || W: Move forward"), "0 Forward");
-    hcam->add(new EGE::Text("S: Move backward"), "1 Backward");
-    hcam->add(new EGE::Text("Q || A: Move left"), "2 Left");
-    hcam->add(new EGE::Text("D: Move right"), "3 Right");
-
-    helpPanel->add(hcam, "0 Camera");
+    helpPanel->add(new EGE::Text(Utils::getFileContent("./assets/tutorial/shortcuts.txt")), "0 Shortcuts");
     helpPanel->add(done, "1 Done");
     helpPanel->setVisible(false);
 
@@ -626,6 +619,7 @@ void Onyx::Gui::createTutorial()
 
     main->add(mainDescription, "0 Main");
     main->add(mainDone, "1 Done");
+    main->setVisible(false);
     this->_interface->_panels["Tutorial"] = main;
 
     EGE::Panel *camera = new EGE::Panel("Camera tutorial");
@@ -637,6 +631,7 @@ void Onyx::Gui::createTutorial()
 
     camera->add(cameraDescription, "0 Camera");
     camera->add(cameraDone, "1 Done");
+    camera->setVisible(false);
     this->_interface->_panels["Camera tutorial"] = camera;
 
     EGE::Panel *settings = new EGE::Panel("Settings tutorial");
@@ -648,6 +643,7 @@ void Onyx::Gui::createTutorial()
 
     settings->add(settingsDescription, "0 Settings");
     settings->add(settingsDone, "1 Done");
+    settings->setVisible(false);
     this->_interface->_panels["Settings tutorial"] = settings;
 
     EGE::Panel *music = new EGE::Panel("Music tutorial");
@@ -659,6 +655,7 @@ void Onyx::Gui::createTutorial()
 
     music->add(musicDescription, "0 Music");
     music->add(musicDone, "1 Done");
+    music->setVisible(false);
     this->_interface->_panels["Music tutorial"] = music;
 
     EGE::Panel *help = new EGE::Panel("Help tutorial");
@@ -670,6 +667,7 @@ void Onyx::Gui::createTutorial()
 
     help->add(helpDescription, "0 Help");
     help->add(helpDone, "1 Done");
+    help->setVisible(false);
     this->_interface->_panels["Help tutorial"] = help;
 
     EGE::Panel *world = new EGE::Panel("World tutorial");
@@ -681,6 +679,7 @@ void Onyx::Gui::createTutorial()
 
     world->add(worldDescription, "0 World");
     world->add(worldDone, "1 Done");
+    world->setVisible(false);
     this->_interface->_panels["World tutorial"] = world;
 
     EGE::Panel *trantorian = new EGE::Panel("Trantorian tutorial");
@@ -692,6 +691,7 @@ void Onyx::Gui::createTutorial()
 
     trantorian->add(trantorianDescription, "0 Trantorian");
     trantorian->add(trantorianDone, "1 Done");
+    trantorian->setVisible(false);
     this->_interface->_panels["Trantorian tutorial"] = trantorian;
 
     EGE::Panel *tile = new EGE::Panel("Tile tutorial");
@@ -703,6 +703,7 @@ void Onyx::Gui::createTutorial()
 
     tile->add(tileDescription, "0 Tile");
     tile->add(tileDone, "1 Done");
+    tile->setVisible(false);
     this->_interface->_panels["Tile tutorial"] = tile;
 
     EGE::Panel *console = new EGE::Panel("Console tutorial");
@@ -713,5 +714,6 @@ void Onyx::Gui::createTutorial()
 
     console->add(consoleDescription, "0 Console");
     console->add(consoleDone, "1 Done");
+    console->setVisible(false);
     this->_interface->_panels["Console tutorial"] = console;
 }
