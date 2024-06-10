@@ -13,10 +13,6 @@ UserInterface::UserInterface()
     this->_soundDevice = new EGE::Sound::Device();
 }
 
-UserInterface::~UserInterface()
-{
-}
-
 void UserInterface::initPlaylist(const std::string &path)
 {
     this->_playlist = new EGE::Sound::Playlist(path);
