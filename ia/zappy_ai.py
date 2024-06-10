@@ -323,12 +323,12 @@ def launch_new_instance(self, map, conn):
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    elif map[0][1].count("player") < 4:
-        conn.send_request("Fork")
-        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made an evolver child")
-        thread = threading.Thread(target=run_subprocess, args=(command,))
-        thread.start()
+    #elif map[0][1].count("player") < 4:
+    #    conn.send_request("Fork")
+    #    command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+    #    print("made an evolver child")
+    #    thread = threading.Thread(target=run_subprocess, args=(command,))
+    #    thread.start()
     elif self.collector < 3:
         conn.send_request("Fork")
         command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]

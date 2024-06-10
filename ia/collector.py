@@ -142,7 +142,7 @@ class food_collector:
         return
 
     def priority_guide(self, map : list): 
-        if self.inventory['food'] < 10:
+        if self.inventory['food'] < 5:
             self.take_action('food', map)
         elif self.objectif_done() == False:
             find = self.get_max_objectif()
