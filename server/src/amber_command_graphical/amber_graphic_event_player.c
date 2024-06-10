@@ -55,7 +55,8 @@ void amber_event_pbc(amber_client_t *client, list_t *clients_gra)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pcb #%d %s\n", client->_id, client->_queue_command->_command->_arg);
+        dprintf(gra->_tcp._fd, "pcb #%d %s\n", client->_id,
+            client->_queue_command->_command->_arg);
         tmp = tmp->next;
     }
 }
@@ -72,14 +73,27 @@ void amber_event_idmoved(amber_client_t *client, list_t *clients_gra, char c)
     }
 }
 
-void amber_event_pic(amber_client_t *client, amber_serv_t *clients_gra)
+static void print_ids(int *ids, int i, amber_client_t *cli)
 {
-    linked_list_t *tmp = clients_gra->_graphic_clients->nodes;
-    amber_client_t *gra = NULL;
+    for (int j = 0; j < i; j++) {
+        if (ids[j] == -1)
+            continue;
+        dprintf(cli->_tcp._fd, " #%d", ids[j]);
+    }
+    dprintf(cli->_tcp._fd, "\n");
+}
+
+void amber_event_pic(amber_client_t *client, amber_serv_t *serv, int *ids)
+{
+    int i = list_len(serv->_clients);
+    linked_list_t *tmp = serv->_graphic_clients->nodes;
+    amber_client_t *cli = NULL;
 
     while (tmp) {
-        gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pic %d %d %d", client->_x, client->_y, (client->_level + 1));
+        cli = (amber_client_t *)tmp->data;
+        dprintf(cli->_tcp._fd, "pic %d %d %d", client->_x, client->_y,
+            client->_level);
+        print_ids(ids, i, cli);
         tmp = tmp->next;
     }
 }

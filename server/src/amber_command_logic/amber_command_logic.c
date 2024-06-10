@@ -34,6 +34,8 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
     clients = serv->_clients->nodes;
     for (; clients; clients = clients->next) {
         tmp = (amber_client_t *)clients->data;
+        if (tmp->_queue_command == NULL)
+            continue;
         if (tmp->_is_incantating &&
         tmp->_queue_command->_command->_id != T_INCANTATION)
             continue;

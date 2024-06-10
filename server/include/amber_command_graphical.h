@@ -344,8 +344,10 @@ extern const graphical_command_t graphical_commands[];
 /**
  * @brief Handles the event when an ID is moved.
  *
- * This function is responsible for handling the event when an ID is moved in the graphical client.
- * It takes the client, the list of graphical clients, and the character representing the ID as parameters.
+ * This function is responsible for handling the event when an ID is moved in
+ * the graphical client.
+ * It takes the client, the list of graphical clients, and the character
+ * representing the ID as parameters.
  *
  * @param client The client triggering the event.
  * @param clients_gra The list of graphical clients.
@@ -356,8 +358,10 @@ void amber_event_idmoved(amber_client_t *client, list_t *clients_gra, char c);
 /**
  * @brief Handles the PCB event for the Amber graphical client.
  *
- * This function is responsible for handling the PCB event for the Amber graphical client.
- * It takes in a pointer to the client and a list of graphical clients as parameters.
+ * This function is responsible for handling the PCB event for the
+ * Amber graphical client.
+ * It takes in a pointer to the client and a list of graphical
+ * clients as parameters.
  *
  * @param client A pointer to the Amber graphical client.
  * @param clients_gra A list of graphical clients.
@@ -367,7 +371,8 @@ void amber_event_pbc(amber_client_t *client, list_t *clients_gra);
 /**
  * @brief Sends a PEX event to a graphical client.
  *
- * This function sends a PEX event to a graphical client, indicating that a player has joined or left the game.
+ * This function sends a PEX event to a graphical client, indicating that a
+ * player has joined or left the game.
  *
  * @param client The client to send the event to.
  * @param clients_gra The list of graphical clients.
@@ -377,13 +382,26 @@ void amber_event_pex(amber_client_t *client, list_t *clients_gra);
 /**
  * @brief Handles the "pie" event for the graphical client.
  *
- * This function is responsible for processing the "pie" event received from the server.
+ * This function is responsible for processing the "pie" event received from
+ * the server.
  * It updates the graphical client's state based on the event information.
  *
  * @param client The graphical client receiving the event.
  * @param clients_gra The list of graphical clients.
  * @param success A boolean indicating whether the event was successful or not.
  */
-void amber_event_pie(amber_client_t *client, list_t *clients_gra, bool success);
+void amber_event_pie(amber_client_t *client,
+    list_t *clients_gra, bool success);
+/**
+ * @brief Handles the "pic" event for the graphical client.
+ *
+ * This function is responsible for processing the "pic" event received from
+ * the server
+ * and updating the graphical client accordingly.
+ *
+ * @param client A pointer to the graphical client.
+ * @param clients_gra A pointer to the server structure.
+ */
+void amber_event_pic(amber_client_t *client, amber_serv_t *serv, int *ids);
 
 #endif /* !AMBER_COMMAND_GRAPHICAL_H_ */

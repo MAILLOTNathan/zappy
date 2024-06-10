@@ -77,7 +77,6 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
     }
     if (is_eject)
         dprintf(client->_tcp._fd, "ok\n");
-        
     else
         dprintf(client->_tcp._fd, "ko\n");
 }

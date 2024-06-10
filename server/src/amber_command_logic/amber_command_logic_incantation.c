@@ -6,6 +6,7 @@
 */
 
 #include "amber_logic.h"
+#include "amber_command_graphical.h"
 
 static const box_t *elevation_needs[] = {
     &(box_t){._players = 1, ._linemate = 1, ._deraumere = 0, ._sibur = 0,
@@ -73,15 +74,14 @@ static void level_up_players(amber_client_t *client, amber_serv_t *server)
             tmp->_level++;
             dprintf(tmp->_tcp._fd, "Elevation underway\n");
             dprintf(tmp->_tcp._fd, "Current level: %d\n", tmp->_level);
-            // amber_event_pie(tmp, server->_graphic_clients, true);
         }
         tmp->_is_incantating = false;
     }
     client->_level++;
     dprintf(client->_tcp._fd, "Elevation underway\n");
     dprintf(client->_tcp._fd, "Current level: %d\n", client->_level);
-    // amber_event_pie(client, server->_graphic_clients, true);
     client->_is_incantating = false;
+    amber_event_pie(client, server->_graphic_clients, true);
 }
 
 void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
@@ -92,12 +92,12 @@ void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
         dprintf(client->_tcp._fd, "ko\n");
-        // amber_event_pie(client, serv->_graphic_clients, false);
+        amber_event_pie(client, serv->_graphic_clients, false);
         return;
     }
     if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
         dprintf(client->_tcp._fd, "ko\n");
-        // amber_event_pie(client, serv->_graphic_clients, false);
+        amber_event_pie(client, serv->_graphic_clients, false);
         return;
     }
     world->_case[client->_y][client->_x]._linemate -= needs->_linemate;
