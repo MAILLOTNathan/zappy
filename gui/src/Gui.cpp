@@ -101,7 +101,7 @@ void Onyx::Gui::loop()
         // 6: team name
         int id, x, y, level;
         try {
-            id = std::stoi(args[1].substr(1));
+            id = std::stoi(args[1].erase(0, 1));
         } catch (std::exception &e) {
             throw EGE::Error("Invalid id received in pnw command : |" + args[1] + "|.");
         }
@@ -218,7 +218,7 @@ void Onyx::Gui::loop()
             }
         }
         for (auto &player : this->_players) {
-            if (player->getID() == std::stoi(args[1].erase(0, 1))) {
+            if (player->getId() == std::stoi(args[1])) {
                 this->updatePlayerPanel(player);
             }
             // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::FOOD) << " food" << std::endl;
