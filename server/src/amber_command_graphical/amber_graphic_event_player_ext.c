@@ -20,3 +20,15 @@ void amber_event_pie(amber_client_t *client, list_t *clients_gra, bool success)
         tmp = tmp->next;
     }
 }
+
+void amber_event_pdi(amber_client_t *client, list_t *clients_gra)
+{
+    linked_list_t *tmp = clients_gra->nodes;
+    amber_client_t *gra = NULL;
+
+    while (tmp) {
+        gra = (amber_client_t *)tmp->data;
+        dprintf(gra->_tcp._fd, "pdi #%d\n", client->_id);
+        tmp = tmp->next;
+    }
+}

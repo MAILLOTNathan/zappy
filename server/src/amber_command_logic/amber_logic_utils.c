@@ -6,6 +6,7 @@
 */
 
 #include "amber_logic.h"
+#include "amber_command_graphical.h"
 #include <signal.h>
 
 static void handle_sigpipe(int sig)
@@ -68,6 +69,7 @@ static void check_clock_food(amber_client_t *client, amber_world_t *world,
         drop_item(world, client->_x, client->_y, client->_inventory);
         printf("[AMBER INFO] Client %d died\n", client->_tcp._fd);
         dprintf(client->_tcp._fd, "dead\n");
+        amber_event_pdi(client, server);
         world->_case[client->_y][client->_x]._players--;
         remove_node(&server->_clients, node, true);
     } else

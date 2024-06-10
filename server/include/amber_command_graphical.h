@@ -404,4 +404,16 @@ void amber_event_pie(amber_client_t *client,
  */
 void amber_event_pic(amber_client_t *client, amber_serv_t *serv, int *ids);
 
+/**
+ * @brief Handles the PDI event for a graphical client.
+ *
+ * This function is called when a PDI event is received from a client.
+ * It updates the graphical representation of the game state by removing
+ * the specified client from the list of graphical clients.
+ *
+ * @param client The graphical client that triggered the event.
+ * @param clients_gra The list of graphical clients.
+ */
+void amber_event_pdi(amber_client_t *client, list_t *clients_gra);
+
 #endif /* !AMBER_COMMAND_GRAPHICAL_H_ */
