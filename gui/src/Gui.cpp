@@ -454,7 +454,7 @@ void Onyx::Gui::createMenuBar()
         this->_interface->getPlaylist()->previous();
     }), "0 Previous");
     music->add(new EGE::Item("Play / Pause", [this] () {
-        this->_interface->getPlaylist()->play();
+        this->_interface->getPlaylist()->playPause();
     }), "1 Play");
     music->add(new EGE::Item("Next", [this] () {
         this->_interface->getPlaylist()->next();
