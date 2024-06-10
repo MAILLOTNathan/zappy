@@ -147,9 +147,9 @@ void Onyx::Gui::_bindEvents()
         this->_window->close();
     });
     this->_window->bindWindowTrigger<GLFWwindow *, double, double>(EGE::Event::WindowTrigger::WindowCursorMoved, [this] (GLFWwindow *win, double xpos, double ypos) {
-        glfwSetCursorPos(win, this->_window->getSize().x / 2, this->_window->getSize().y / 2);
         if (!this->_cameraMode)
             return;
+        glfwSetCursorPos(win, this->_window->getSize().x / 2, this->_window->getSize().y / 2);
         float xoffset = xpos - this->_window->getSize().x / 2;
         float yoffset = this->_window->getSize().y / 2 - ypos;
         this->_camera->rotate(xoffset, yoffset, true);
