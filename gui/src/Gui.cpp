@@ -101,7 +101,7 @@ void Onyx::Gui::loop()
         // 6: team name
 
         this->addPlayer(std::stoi(args[1]), EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
-        this->updatePlayerPanel();
+        // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
@@ -123,11 +123,44 @@ void Onyx::Gui::loop()
             throw EGE::Error("Wrong number of param.");
         this->updateWorldSettings(std::stof(args[1]));
     });
+
+    this->_client->addCommand("pin", net::type_command_t::PIN, [this](std::vector<std::string>& args) {
+        if (args.size() != 10)
+            throw EGE::Error("Wrong number of param.");
+        // 1: player id (need to remove the #)
+        // 2: x pos
+        // 3: y pos
+        // 4: food
+        // 5: linemate
+        // 6: deraumere
+        // 7: sibur
+        // 8: mendiane
+        // 9: phiras
+        // 10: thystame
+        for (auto &player : this->_players) {
+            if (player->getID() == std::stoi(args[1])) {
+                player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
+                player->setInventory(std::stoi(args[5]), Onyx::Item::TYPE::LINEMATE);
+                player->setInventory(std::stoi(args[6]), Onyx::Item::TYPE::DERAUMERE);
+                player->setInventory(std::stoi(args[7]), Onyx::Item::TYPE::SIBUR);
+                player->setInventory(std::stoi(args[8]), Onyx::Item::TYPE::MENDIANE);
+                player->setInventory(std::stoi(args[9]), Onyx::Item::TYPE::PHIRAS);
+                player->setInventory(std::stoi(args[10]), Onyx::Item::TYPE::THYSTAME);
+                break;
+            }
+        }
+        for (auto &player : this->_players) {
+            std::cout << "Player " << player->getID() << " has " << player->_items[Onyx::Item::TYPE::FOOD]->getQuantity() << " food" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->_items[Onyx::Item::TYPE::LINEMATE]->getQuantity() << " linemate" << std::endl;
+        }
+        // this->updatePlayerPanel();
+    });
     this->_client->connection();
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("mct\n");
     this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("pnw\n");
+    this->_client->sendRequest("pin\n");
 
     while (this->isRunning()) {
         this->_client->waitEvent();

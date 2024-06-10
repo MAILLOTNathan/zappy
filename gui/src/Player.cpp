@@ -12,8 +12,17 @@ static int currentColor = 1;
 
 Onyx::Player::Player(const int& id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName) , _id(id)
 {
-    std::cout << "id" << id << std::endl;
     this->_level = 1;
+    memset(this->_quantity, 0, sizeof(this->_quantity));
+    if (Onyx::Player::_items.empty()) {
+        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::FOOD));
+        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::LINEMATE));
+        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::DERAUMERE));
+        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::SIBUR));
+        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::MENDIANE));
+        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::PHIRAS));
+        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::THYSTAME));
+    }
     if (Player::_colorMap[teamName] == 0) {
         Player::_colorMap[teamName] = static_cast<Color>(currentColor++);
     }
@@ -103,6 +112,23 @@ void Onyx::Player::setID(const int &id)
 int Onyx::Player::getID()
 {
     return this->_id;
+}
+
+int Onyx::Player::getQuantity(Onyx::Item::TYPE type)
+{
+    return this->_quantity[type];
+}
+
+void Onyx::Player::setInventory(int quantity, Onyx::Item::TYPE type)
+{
+    this->_quantity[type] = quantity;
+}
+
+void Onyx::Player::getInventory()
+{
+    for (auto &item : this->_items) {
+        this->_quantity[item->getType()] = item->getQuantity();
+    }
 }
 
 void Onyx::Player::_setColor(std::string &fileContent)
