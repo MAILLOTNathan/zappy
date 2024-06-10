@@ -6,6 +6,7 @@
 */
 
 #include "amber_logic.h"
+#include "amber_command_graphical.h"
 
 const int concave[4][8] = {
     {1, 2, 3, 4, 5, 6, 7, 8},
@@ -44,7 +45,7 @@ static void update_client_pos(direction_t dir, amber_client_t *client,
 }
 
 static void manage_eject_send(amber_client_t *client, amber_client_t *tmp,
-    amber_world_t *world)
+    amber_world_t *world, amber_serv_t *serv)
 {
     int dir = 0;
 
@@ -55,6 +56,7 @@ static void manage_eject_send(amber_client_t *client, amber_client_t *tmp,
     } else
         dir = concave[tmp->_direction - 1][(client->_direction - 1) * 2];
     dprintf(tmp->_tcp._fd, "eject: %d\n", dir);
+    amber_event_pex(tmp, serv->_graphic_clients);
 }
 
 void amber_logic_eject(amber_client_t *client, amber_world_t *world,
@@ -71,10 +73,11 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
         if (tmp->_x != client->_x || tmp->_y != client->_y)
             continue;
         is_eject = true;
-        manage_eject_send(client, tmp, world);
+        manage_eject_send(client, tmp, world, serv);
     }
     if (is_eject)
         dprintf(client->_tcp._fd, "ok\n");
+        
     else
         dprintf(client->_tcp._fd, "ko\n");
 }

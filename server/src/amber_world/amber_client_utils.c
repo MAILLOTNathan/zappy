@@ -51,7 +51,7 @@ static void send_graphical_players(amber_client_t *gra, list_t *client_ai)
         client = (amber_client_t *)tmp->data;
         if (client->_team_name == NULL)
             continue;
-        dprintf(gra->_tcp._fd, "pnw %d %d %d %c %d %s\n", client->_id,
+        dprintf(gra->_tcp._fd, "pnw #%d %d %d %c %d %s\n", client->_id,
         client->_x, client->_y, get_direction(client->_direction),
         client->_level, client->_team_name);
     }
@@ -62,7 +62,7 @@ static bool check_different_mode(amber_client_t *client, amber_serv_t *serv,
 {
     if (length_string_array(arg) != 1)
         return false;
-    if (strcmp(arg[0], "GRAPHIC") == 0) {
+    if (strncmp(arg[0], "GRAPHIC", 8) == 0) {
         push_back_list(serv->_graphic_clients, client->_tcp._fd, true);
         send_graphical_players(client, serv->_clients);
         remove_node(&serv->_clients, list_find_node_p(serv->_clients, client),
@@ -70,7 +70,7 @@ static bool check_different_mode(amber_client_t *client, amber_serv_t *serv,
         printf("[AMBER INFO] New graphical client connected\n");
         return false;
     }
-    if (strcmp(arg[0], "DEBUG") == 0 && serv->_debug_client._fd != 1) {
+    if (strncmp(arg[0], "DEBUG", 5) == 0 && serv->_debug_client._fd != 1) {
         serv->_debug_client._fd = client->_tcp._fd;
         remove_node(&serv->_clients, list_find_node_p(serv->_clients, client),
         false);
@@ -101,6 +101,7 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
         return false;
     egg = amber_get_egg_by_team(world, arg[0]);
     if (!egg) {
+        printf("len_clients: %ld\n", list_len(serv->_clients));
         printf("[AMBER ERROR] No egg available for team %s\n", arg[0]);
         dprintf(client->_tcp._fd, "ko\n");
         remove_node(&serv->_clients, list_find_node_p(serv->_clients, client),

@@ -6,6 +6,7 @@
 */
 
 #include "amber_logic.h"
+#include "amber_command_graphical.h"
 
 static int get_direction_message(amber_client_t *src, amber_client_t *des,
     int width, int height)
@@ -35,5 +36,6 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
         get_direction_message(client, tmp, world->_width, world->_height),
         client->_queue_command->_command->_arg);
     }
+    amber_event_pbc(client, serv->_graphic_clients);
     send_cli_msg(client, "ok\n");
 }

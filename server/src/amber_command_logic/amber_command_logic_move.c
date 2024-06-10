@@ -6,9 +6,10 @@
 */
 
 #include "amber_logic.h"
+#include "amber_command_graphical.h"
 
 void amber_logic_forward(amber_client_t *client, amber_world_t *world,
-    UNUSED amber_serv_t *serv)
+    amber_serv_t *serv)
 {
     world->_case[client->_y][client->_x]._players--;
     switch (client->_direction) {
@@ -29,10 +30,11 @@ void amber_logic_forward(amber_client_t *client, amber_world_t *world,
     client->_y = world->_height == client->_y ? 0 : client->_y;
     world->_case[client->_y][client->_x]._players++;
     send_cli_msg(client, "ok");
+    amber_event_idmoved(client, serv->_graphic_clients, 'F');
 }
 
 void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
-    UNUSED amber_serv_t *serv)
+    amber_serv_t *serv)
 {
     switch (client->_direction) {
         case UP:
@@ -51,6 +53,7 @@ void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
             break;
     }
     send_cli_msg(client, "ok");
+    amber_event_idmoved(client, serv->_graphic_clients, 'R');
 }
 
 void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
@@ -73,4 +76,5 @@ void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
             break;
     }
     send_cli_msg(client, "ok");
+    amber_event_idmoved(client, serv->_graphic_clients, 'L');
 }

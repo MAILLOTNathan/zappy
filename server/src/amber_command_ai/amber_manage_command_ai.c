@@ -6,6 +6,7 @@
 */
 
 #include "amber_manage_command_ai.h"
+#include "amber_command_graphical.h"
 
 static const box_t *elevation_needs[] = {
     &(box_t){._players = 1, ._linemate = 1, ._deraumere = 0, ._sibur = 0,
@@ -64,13 +65,15 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
 {
     linked_list_t *clients = serv->_clients->nodes;
     amber_client_t *tmp = NULL;
-
+    // int *clients
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
         if (tmp->_level != client->_level)
             continue;
-        if (tmp->_x == client->_x && tmp->_y == client->_y)
+        if (tmp->_x == client->_x && tmp->_y == client->_y) {
             tmp->_is_incantating = true;
+
+        }
     }
 }
 
