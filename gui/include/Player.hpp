@@ -58,6 +58,8 @@ namespace Onyx {
 
             void setInventory(int quantity, Onyx::Item::TYPE type);
 
+            std::vector<std::shared_ptr<Onyx::Item>> getItems();
+
         private:
             void _setColor(std::string &teamName);
 
@@ -66,7 +68,7 @@ namespace Onyx {
             int _id;
             std::string _teamName;
             int _quantity[Onyx::Item::TYPE::MAX];
-            static std::vector<std::shared_ptr<Onyx::Item>> _items;
+            std::vector<std::shared_ptr<Onyx::Item>> _items;
             static std::map<std::string, Color> _colorMap;
             EGE::Maths::Vector2<int> _pos;
             EGE::Maths::Vector3<float> _rotation;

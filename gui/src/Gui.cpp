@@ -100,7 +100,7 @@ void Onyx::Gui::loop()
         // 5: level
         // 6: team name
 
-        this->addPlayer(std::stoi(args[1]), EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+        this->addPlayer(std::stoi(args[1].erase(0, 1)), EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
         // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
@@ -125,20 +125,11 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("pin", net::type_command_t::PIN, [this](std::vector<std::string>& args) {
-        if (args.size() != 10)
+        if (args.size() != 11)
             throw EGE::Error("Wrong number of param.");
-        // 1: player id (need to remove the #)
-        // 2: x pos
-        // 3: y pos
-        // 4: food
-        // 5: linemate
-        // 6: deraumere
-        // 7: sibur
-        // 8: mendiane
-        // 9: phiras
-        // 10: thystame
         for (auto &player : this->_players) {
-            if (player->getID() == std::stoi(args[1])) {
+            std::cout << player->getID() << std::endl;
+            if (player->getID() == std::stoi(args[1].erase(0, 1))) {
                 player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
                 player->setInventory(std::stoi(args[5]), Onyx::Item::TYPE::LINEMATE);
                 player->setInventory(std::stoi(args[6]), Onyx::Item::TYPE::DERAUMERE);
@@ -146,12 +137,16 @@ void Onyx::Gui::loop()
                 player->setInventory(std::stoi(args[8]), Onyx::Item::TYPE::MENDIANE);
                 player->setInventory(std::stoi(args[9]), Onyx::Item::TYPE::PHIRAS);
                 player->setInventory(std::stoi(args[10]), Onyx::Item::TYPE::THYSTAME);
-                break;
             }
         }
         for (auto &player : this->_players) {
-            std::cout << "Player " << player->getID() << " has " << player->_items[Onyx::Item::TYPE::FOOD]->getQuantity() << " food" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->_items[Onyx::Item::TYPE::LINEMATE]->getQuantity() << " linemate" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::FOOD] << " food" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::LINEMATE] << " linemate" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::DERAUMERE] << " deraumere" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::SIBUR] << " sibur" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::MENDIANE] << " mendiane" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::PHIRAS] << " phiras" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::THYSTAME] << " thystame" << std::endl;
         }
         // this->updatePlayerPanel();
     });
@@ -159,11 +154,12 @@ void Onyx::Gui::loop()
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("mct\n");
     this->_client->sendRequest("sgt\n");
-    this->_client->sendRequest("pnw\n");
-    this->_client->sendRequest("pin\n");
 
     while (this->isRunning()) {
         this->_client->waitEvent();
+        for (auto &player : this->_players) {
+            this->_client->sendRequest("pin #" + std::to_string(player->getID()) + "\n");
+        }
         this->update();
     }
     this->_client->disconnect();
