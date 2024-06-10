@@ -416,4 +416,46 @@ void amber_event_pic(amber_client_t *client, amber_serv_t *serv, int *ids);
  */
 void amber_event_pdi(amber_client_t *client, list_t *clients_gra);
 
+/**
+ * @brief Handles the "pgt" event for the graphical client.
+ *
+ * This function is responsible for processing the "pgt" event received from
+ * a graphical client.
+ * It updates the graphical client's state based on the provided parameters.
+ *
+ * @param client The graphical client that triggered the event.
+ * @param clients_gra The list of graphical clients.
+ * @param ressource The resource box associated with the event.
+ */
+void amber_event_pgt(amber_client_t *client, list_t *clients_gra,
+    box_t *ressource);
+
+/**
+ * @brief Handles the PDR (Player Drop Resource) event for a graphical client.
+ *
+ * This function is responsible for handling the PDR event, which occurs
+ * when a player
+ * drops a resource. It updates the graphical client's state and sends
+ * the necessary
+ * information to all graphical clients.
+ *
+ * @param client The graphical client that triggered the event.
+ * @param clients_gra The list of all graphical clients.
+ * @param ressource The box containing the dropped resource.
+ */
+void amber_event_pdr(amber_client_t *client, list_t *clients_gra,
+    box_t *ressource);
+
+/**
+ * @brief Notifies the graphical clients about the creation of a new egg.
+ *
+ * This function sends an ENW (Egg New) event to the graphical clients,
+ * informing them about the creation of a new egg.
+ *
+ * @param client The client who triggered the event.
+ * @param gra_client The list of graphical clients.
+ * @param id_egg The ID of the newly created egg.
+ */
+void amber_event_enw(amber_client_t *client, list_t *gra_client, int id_egg);
+
 #endif /* !AMBER_COMMAND_GRAPHICAL_H_ */

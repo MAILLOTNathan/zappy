@@ -84,10 +84,11 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
 }
 
 void amber_logic_fork(amber_client_t *client, amber_world_t *world,
-    UNUSED amber_serv_t *serv)
+    amber_serv_t *serv)
 {
     push_back_list(world->_eggs, world, client->_x, client->_y,
         client->_team_name, world->_last_egg_id);
+    amber_event_enw(client, serv->_graphic_clients, world->_last_egg_id);
     world->_last_egg_id++;
     dprintf(client->_tcp._fd, "ok\n");
 }
