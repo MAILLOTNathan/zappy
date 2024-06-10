@@ -416,4 +416,17 @@ void amber_event_pic(amber_client_t *client, amber_serv_t *serv, int *ids);
  */
 void amber_event_pdi(amber_client_t *client, list_t *clients_gra);
 
+/**
+ * @brief Handles the PFK event for a graphical client.
+ *
+ * This function is responsible for handling the PFK event, which is triggered
+ * when a player
+ * successfully lays an egg. It takes in a pointer to the client and server
+ * structures.
+ *
+ * @param client A pointer to the graphical client structure.
+ * @param serv A pointer to the server structure.
+ */
+void amber_event_pfk(amber_client_t *client, amber_serv_t *serv);
+
 #endif /* !AMBER_COMMAND_GRAPHICAL_H_ */
