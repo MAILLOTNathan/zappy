@@ -66,6 +66,8 @@ namespace Onyx {
              */
             net::TcpClient *getClient() const;
 
+            std::shared_ptr<EGE::Window> getWindow();
+
         protected:
             bool _running;                                  /**< A boolean that indicates whether the application is running. */
             net::TcpClient *_client;                        /**< The TCP client used for communication. */

@@ -98,3 +98,8 @@ void Onyx::MainMenu::loop()
         this->update();
     }
 }
+
+std::shared_ptr<EGE::Window> Onyx::MainMenu::getWindow()
+{
+    return this->_window;
+}

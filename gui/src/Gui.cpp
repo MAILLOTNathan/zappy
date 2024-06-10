@@ -21,6 +21,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_interface->init(this->_window.get());
     this->_interface->initPlaylist("./assets/musics/");
 
+    this->_cameraMode = true;
     this->createMenuBar();
 
     this->_tileSelected = 0;
@@ -85,7 +86,7 @@ void Onyx::Gui::loop()
         this->createMap(std::stoi(args[1]), std::stoi(args[2]));
         this->createWorldPanel();
         this->createTilePanel();
-        // this->createPlayerPanel();
+        this->createPlayerPanel();
         this->createConsolePanel();
         this->updateConsolePanel(args);
     });
@@ -172,7 +173,7 @@ void Onyx::Gui::loop()
                 break;
         }
     });
-    this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args){
+    this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args) {
         if (args.size() != 5)
             throw EGE::Error("Wrong number of param.");
         for (const auto& arg : args)
@@ -201,11 +202,44 @@ void Onyx::Gui::loop()
             }
         }
     });
+
+    this->_client->addCommand("pin", net::type_command_t::PIN, [this](std::vector<std::string>& args) {
+        if (args.size() != 10)
+            throw EGE::Error("Wrong number of param.");
+        // 1: player id (need to remove the #)
+        // 2: x pos
+        // 3: y pos
+        // 4: food
+        // 5: linemate
+        // 6: deraumere
+        // 7: sibur
+        // 8: mendiane
+        // 9: phiras
+        // 10: thystame
+        for (auto &player : this->_players) {
+            if (player->getId() == std::stoi(args[1])) {
+                player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
+                player->setInventory(std::stoi(args[5]), Onyx::Item::TYPE::LINEMATE);
+                player->setInventory(std::stoi(args[6]), Onyx::Item::TYPE::DERAUMERE);
+                player->setInventory(std::stoi(args[7]), Onyx::Item::TYPE::SIBUR);
+                player->setInventory(std::stoi(args[8]), Onyx::Item::TYPE::MENDIANE);
+                player->setInventory(std::stoi(args[9]), Onyx::Item::TYPE::PHIRAS);
+                player->setInventory(std::stoi(args[10]), Onyx::Item::TYPE::THYSTAME);
+                break;
+            }
+        }
+        for (auto &player : this->_players) {
+            // std::cout << "Player " << player->getID() << " has " << player->_items[Onyx::Item::TYPE::FOOD]->getQuantity() << " food" << std::endl;
+            // std::cout << "Player " << player->getID() << " has " << player->_items[Onyx::Item::TYPE::LINEMATE]->getQuantity() << " linemate" << std::endl;
+        }
+        // this->updatePlayerPanel();
+    });
     this->_client->connection();
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("mct\n");
     this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("pnw\n");
+    this->_client->sendRequest("pin\n");
 
     while (this->isRunning()) {
         this->_client->waitEvent();
@@ -225,6 +259,8 @@ void Onyx::Gui::_bindEvents()
         this->_window->close();
     });
     this->_window->bindWindowTrigger<GLFWwindow *, double, double>(EGE::Event::WindowTrigger::WindowCursorMoved, [this] (GLFWwindow *win, double xpos, double ypos) {
+        if (!this->_cameraMode)
+            return;
         glfwSetCursorPos(win, this->_window->getSize().x / 2, this->_window->getSize().y / 2);
         float xoffset = xpos - this->_window->getSize().x / 2;
         float yoffset = this->_window->getSize().y / 2 - ypos;
@@ -247,6 +283,9 @@ void Onyx::Gui::_bindEvents()
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyE, EGE::Event::Mode::Pressed, [this]() {
         this->_camera->move(EGE::Camera::Movement::UP, this->_deltaTime);
+    }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyC, EGE::Event::Mode::Pressed, [this]() {
+        this->_cameraMode = !this->_cameraMode;
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyLShift, EGE::Event::Mode::JustPressed, [this]() {
         this->_camera->setSpeed(this->_camera->getSpeed() * 2);
@@ -361,22 +400,22 @@ void Onyx::Gui::createPlayerPanel()
 {
     EGE::Panel *panel = new EGE::Panel("Trantorian");
     EGE::Text *team = new EGE::Text("Team: None");
-    // EGE::Text *id = new EGE::Text("ID: 0");
-    // EGE::Text *level = new EGE::Text("Level: 1");
-    // EGE::ListBox *inventory = new EGE::ListBox("Inventory");
+    EGE::Text *id = new EGE::Text("ID: 0");
+    EGE::Text *level = new EGE::Text("Level: 0");
+    EGE::ListBox *inventory = new EGE::ListBox("Inventory");
 
-    // inventory->add(new EGE::Text("Food: 0"), "food");
-    // inventory->add(new EGE::Text("Linemate: 0"), "linemate");
-    // inventory->add(new EGE::Text("Deraumere: 0"), "deraumere");
-    // inventory->add(new EGE::Text("Sibur: 0"), "sibur");
-    // inventory->add(new EGE::Text("Mendiane: 0"), "mendiane");
-    // inventory->add(new EGE::Text("Phiras: 0"), "phiras");
-    // inventory->add(new EGE::Text("Thystame: 0"), "thystame");
+    inventory->add(new EGE::Text("Food: 0"), "food");
+    inventory->add(new EGE::Text("Linemate: 0"), "linemate");
+    inventory->add(new EGE::Text("Deraumere: 0"), "deraumere");
+    inventory->add(new EGE::Text("Sibur: 0"), "sibur");
+    inventory->add(new EGE::Text("Mendiane: 0"), "mendiane");
+    inventory->add(new EGE::Text("Phiras: 0"), "phiras");
+    inventory->add(new EGE::Text("Thystame: 0"), "thystame");
 
     panel->add(team, "Team");
-    // panel->add(id, "ID");
-    // panel->add(level, "1Level");
-    // panel->add(inventory, "Inventory");
+    panel->add(id, "ID");
+    panel->add(level, "Level");
+    panel->add(inventory, "Inventory");
 
     this->_interface->_panels["Trantorian"] = panel;
 }
@@ -384,11 +423,22 @@ void Onyx::Gui::createPlayerPanel()
 void Onyx::Gui::updatePlayerPanel()
 {
     EGE::Text *team = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Team"));
-    // EGE::Text *level = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("1Level"));
+    EGE::Text *level = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Level"));
+    EGE::Text *id = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("ID"));
+    // EGE::ListBox *inventory = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Trantorian"]->get("Inventory"));
     Onyx::Player *player = this->_players.at(0).get();
 
     team->setName("Team: " + player->getTeamName());
-    // team->setName("Level: " + std::to_string(player->getLevel()));
+    level->setName("Level: " + std::to_string(player->getLevel()));
+    id->setName("ID: " + std::to_string(player->getId()));
+    // inventory->get("food")->setName("Food: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::FOOD)));
+    // inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::LINEMATE)));
+    // inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::DERAUMERE)));
+    // inventory->get("sibur")->setName("Sibur: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::SIBUR)));
+    // inventory->get("mendiane")->setName("Mendiane: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::MENDIANE)));
+    // inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::PHIRAS)));
+    // inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::THYSTAME));
+    
 }
 
 // void Onyx::Gui::updatePlayerPanel()
@@ -513,10 +563,11 @@ void Onyx::Gui::createMenuBar()
 
 
     settings->add(new EGE::Item("Disconnect", [this] () {
-        std::cout << "DISCONNECT" << std::endl;
+        this->_client->disconnect();
+        this->getWindow()->close();
     }), "2 Disconnect");
     settings->add(new EGE::Item("Quit", [this] () {
-        std::cout << "quit" << std::endl;
+        exit(0);
     }), "3 Quit");
 
     this->_interface->_menuBar->add(settings, "0 Settings");
@@ -527,7 +578,7 @@ void Onyx::Gui::createMenuBar()
         this->_interface->getPlaylist()->previous();
     }), "0 Previous");
     music->add(new EGE::Item("Play / Pause", [this] () {
-        this->_interface->getPlaylist()->play();
+        this->_interface->getPlaylist()->playPause();
     }), "1 Play");
     music->add(new EGE::Item("Next", [this] () {
         this->_interface->getPlaylist()->next();
@@ -566,4 +617,13 @@ void Onyx::Gui::createMenuBar()
     }), "1 Shortcuts");
 
     this->_interface->_menuBar->add(help, "2 Help");
+}
+
+void Onyx::Gui::createTutorial()
+{
+    EGE::Panel *main = new EGE::Panel("Tutorial");
+    EGE::Text *mainDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/main.txt"));
+
+    main->add(mainDescription, "0 Main");
+    this->_interface->_panels["Tutorial"] = main;
 }

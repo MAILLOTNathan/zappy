@@ -86,6 +86,8 @@ namespace Onyx {
              */
             void createMenuBar();
 
+            void createTutorial();
+
             void createPlayerPanel();
 
             void updatePlayerPanel();
@@ -144,5 +146,6 @@ namespace Onyx {
             bool _running;                                  /**< A boolean that indicates whether the application is running. */
             net::TcpClient *_client;
             std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
+            bool _cameraMode;                               /**< A boolean that indicates whether the camera mode is enabled. */
     };
 }
