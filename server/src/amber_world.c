@@ -36,7 +36,6 @@ static void init_info_world(amber_world_t *world)
 amber_world_t *amber_create_world(args_t *arg)
 {
     amber_world_t *world = calloc(1, sizeof(amber_world_t));
-    int i = 0;
 
     if (!world)
         return NULL;
@@ -50,10 +49,7 @@ amber_world_t *amber_create_world(args_t *arg)
         world->_case[i] = calloc(arg->_width, sizeof(box_t));
     init_info_world(world);
     world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
-    for (i = 0; arg->_teams[i]; i++)
-        push_back_list(world->_eggs, world, RAND(arg->_width),
-        RAND(arg->_height), arg->_teams[i], i);
-    world->_last_egg_id = i;
+    amber_init_egg(world);
     return world;
 }
 

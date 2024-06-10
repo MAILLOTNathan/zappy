@@ -43,7 +43,6 @@ void send_cli_msg(amber_client_t *client, const char *message)
 
 static void drop_item(amber_world_t *world, int x, int y, box_t *inv)
 {
-    world->_case[y][x]._food += inv->_food;
     world->_case[y][x]._linemate += inv->_linemate;
     world->_case[y][x]._deraumere += inv->_deraumere;
     world->_case[y][x]._sibur += inv->_sibur;
@@ -69,6 +68,7 @@ static void check_clock_food(amber_client_t *client, amber_world_t *world,
         drop_item(world, client->_x, client->_y, client->_inventory);
         printf("[AMBER INFO] Client %d died\n", client->_tcp._fd);
         dprintf(client->_tcp._fd, "dead\n");
+        world->_case[client->_y][client->_x]._players--;
         remove_node(&server->_clients, node, true);
     } else
         world->_food_info._c_value--;

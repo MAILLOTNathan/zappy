@@ -35,4 +35,5 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
         get_direction_message(client, tmp, world->_width, world->_height),
         client->_queue_command->_command->_arg);
     }
+    send_cli_msg(client, "ok\n");
 }
