@@ -506,3 +506,12 @@ void Onyx::Gui::createMenuBar()
 
     this->_interface->_menuBar->add(help, "2 Help");
 }
+
+void Onyx::Gui::createTutorial()
+{
+    EGE::Panel *main = new EGE::Panel("Tutorial");
+    EGE::Text *mainDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/main.txt"));
+
+    main->add(mainDescription, "0 Main");
+    this->_interface->_panels["Tutorial"] = main;
+}

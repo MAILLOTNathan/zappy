@@ -86,6 +86,8 @@ namespace Onyx {
              */
             void createMenuBar();
 
+            void createTutorial();
+
             void createPlayerPanel();
 
             void updatePlayerPanel();
