@@ -14,6 +14,9 @@ Onyx::MainMenu::MainMenu()
     this->_camera = std::make_shared<EGE::Camera>(EGE::Maths::Vector3<float>(7.0f, 3.0f, 7.0f), EGE::Maths::Vector3<float>(0.0f, 1.0f, 0.0f), -135.0f, 0.0f);
     this->_deltaTime = 0.0f;
     this->_interface = std::make_shared<UserInterface>();
+    this->_window->bindWindowTrigger<GLFWwindow *>(EGE::Event::WindowTrigger::WindowClose, [this] (GLFWwindow *win) {
+        this->_window->close();
+    });
 
     this->createMainPanel();
     this->_interface->init(this->_window.get());
