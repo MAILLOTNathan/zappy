@@ -35,12 +35,15 @@ namespace Onyx {
                 CYAN,
                 LAST
             };
-            Player(const int& id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation);
+            Player(int id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation);
             ~Player();
 
             void update(std::shared_ptr<EGE::Shader> shader) override;
 
             void evolve();
+            void forward();
+            void left();
+            void right();
 
             void setLevel(int level);
             int getLevel();
@@ -51,8 +54,14 @@ namespace Onyx {
             void setTeamName(const std::string& teamName);
             std::string getTeamName();
 
-            void setID(const int& id);
-            int getID();
+            void setRotation(const std::string& rotation);
+            EGE::Maths::Vector3<float> getRotation();
+            std::string getRotationString();
+
+            void setPos(EGE::Maths::Vector2<int> pos);
+            EGE::Maths::Vector2<int> getPos();
+
+            int getId();
 
             int getQuantity(Onyx::Item::TYPE type);
 
@@ -63,15 +72,16 @@ namespace Onyx {
         private:
             void _setColor(std::string &teamName);
 
+            int _id;
             Color _color;
             int _level;
-            int _id;
             std::string _teamName;
             int _quantity[Onyx::Item::TYPE::MAX];
             std::vector<std::shared_ptr<Onyx::Item>> _items;
             static std::map<std::string, Color> _colorMap;
             EGE::Maths::Vector2<int> _pos;
             EGE::Maths::Vector3<float> _rotation;
+            std::string _rotationString;
             const EGE::Maths::Vector3<float> _scale = {0.2f, 0.2f, 0.2f};
     };
 }

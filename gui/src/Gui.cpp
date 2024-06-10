@@ -99,8 +99,33 @@ void Onyx::Gui::loop()
         // 4: orientation (1: N, 2: E, 3: S, 4: W)
         // 5: level
         // 6: team name
+        int id, x, y, level;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid id received in pnw command : |" + args[1] + "|.");
+        }
+        try {
+            x = std::stoi(args[2]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid x position received in pnw command : |" + args[2] + "|.");
+        }
+        try {
+            y = std::stoi(args[3]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid y position received in pnw command : |" + args[3] + "|.");
+        }
+        try {
+            level = std::stoi(args[5]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid level received in pnw command : |" + args[5] + "|.");
+        }
 
+<<<<<<< HEAD
         this->addPlayer(std::stoi(args[1].erase(0, 1)), EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+=======
+        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4]);
+>>>>>>> 48fbeddbd0f83a9541ebfd5363fcc06b3776d36d
         // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
@@ -123,12 +148,69 @@ void Onyx::Gui::loop()
             throw EGE::Error("Wrong number of param.");
         this->updateWorldSettings(std::stof(args[1]));
     });
+    this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("Wrong number of param.");
+        for (const auto& arg : args)
+            std::cout << arg << std::endl;
+        int id = std::stoi(args[1]);
+        switch (args[2][0]) {
+            case 'F':
+                this->_client->sendRequest("ppo #" + args[1] + "\n");
+                break;
+            case 'L':
+                for (const auto& player : this->_players) {
+                    if (player->getId() == id) {
+                        player->left();
+                    }
+                }
+                break;
+            case 'R':
+                for (const auto& player : this->_players) {
+                    if (player->getId() == id) {
+                        player->right();
+                    }
+                }
+                break;
+            default:
+                throw EGE::Error("Invalid change received in idm command : |" + args[2] + "|.");
+                break;
+        }
+    });
+    this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args) {
+        if (args.size() != 5)
+            throw EGE::Error("Wrong number of param.");
+        for (const auto& arg : args)
+            std::cout << arg << std::endl;
+        int id, x, y;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid id received in ppo command : |" + args[1] + "|.");
+        }
+        try {
+            x = std::stoi(args[2]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid x position received in ppo command : |" + args[2] + "|.");
+        }
+        try {
+            y = std::stoi(args[3]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid y position received in ppo command : |" + args[3] + "|.");
+        }
+        for (const auto& player : this->_players) {
+            std::cout << player->getId() << std::endl;
+            if (player->getId() == id) {
+                player->setPos(EGE::Maths::Vector2<int>(x, y));
+                player->setRotation(args[4]);
+            }
+        }
+    });
 
     this->_client->addCommand("pin", net::type_command_t::PIN, [this](std::vector<std::string>& args) {
         if (args.size() != 11)
             throw EGE::Error("Wrong number of param.");
         for (auto &player : this->_players) {
-            std::cout << player->getID() << std::endl;
             if (player->getID() == std::stoi(args[1].erase(0, 1))) {
                 player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
                 player->setInventory(std::stoi(args[5]), Onyx::Item::TYPE::LINEMATE);
@@ -347,7 +429,7 @@ void Onyx::Gui::updatePlayerPanel()
 
     team->setName("Team: " + player->getTeamName());
     level->setName("Level: " + std::to_string(player->getLevel()));
-    id->setName("ID: " + std::to_string(player->getID()));
+    id->setName("ID: " + std::to_string(player->getId()));
     // inventory->get("food")->setName("Food: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::FOOD)));
     // inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::LINEMATE)));
     // inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::DERAUMERE)));

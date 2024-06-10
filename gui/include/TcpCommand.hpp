@@ -42,6 +42,7 @@ namespace net {
         SGT,    ///< Get the time unit value
         SEG,    ///< Get the end of the game
         SMG,    ///< Get a server message
+        IDM,    ///< Get the id of the player that moves or rotates
     } type_command_t;
 
     /**
