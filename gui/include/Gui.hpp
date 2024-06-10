@@ -12,6 +12,7 @@
 #include "Error.hpp"
 #include "Item.hpp"
 #include "Map.hpp"
+#include "Player.hpp"
 #include "Window.hpp"
 
 #include "TcpClient.hpp"
@@ -42,9 +43,8 @@ namespace Onyx {
              * @brief Updates the graphical user interface.
              *
              * This method is called to update the graphical user interface.
-             * @param running A reference to a boolean that indicates whether the application is running.
             */
-            void update(bool& running);
+            void update();
 
             /**
              * @brief Creates a map.
@@ -55,10 +55,8 @@ namespace Onyx {
             */
             void createMap(int width, int height);
 
-            /**
-             * @brief Gets the map.
-             * @return A shared pointer to the map object.
-             */
+            void addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation);
+
             std::shared_ptr<Onyx::Map> getMap();
 
             /**
@@ -67,9 +65,10 @@ namespace Onyx {
              */
             std::shared_ptr<EGE::Window> getWindow() const;
 
-            /**
-             * @brief Creates the world panel.
-             */
+            void loop();
+
+            bool isRunning() const;
+
             void createWorldPanel();
 
             /**
@@ -142,5 +141,8 @@ namespace Onyx {
             std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
             int _tileSelected;                              /**< The selected tile. */
             std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
+            bool _running;                                  /**< A boolean that indicates whether the application is running. */
+            net::TcpClient *_client;
+            std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
     };
 }

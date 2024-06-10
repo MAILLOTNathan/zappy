@@ -5,64 +5,81 @@
 ** main
 */
 
-#include "Gui.hpp"
+#include "MainMenu.hpp"
 #include "TcpClient.hpp"
-#include <thread>
 
-int main()
+bool isHelp(char *str)
+{
+    if (std::string(str) == "--help")
+        return true;
+    if (std::string(str) == "-help")
+        return true;
+    if (std::string(str) == "--aled")
+        return true;
+    return false;
+}
+
+void launchGame(const std::string &ip, int port)
+{
+    net::TcpClient client(ip, port);
+    std::shared_ptr<Onyx::Gui> gui = std::make_shared<Onyx::Gui>(client);
+    gui->loop();
+    exit(0);
+}
+
+void launchMenu(const std::string &ip, int port)
+{
+    Onyx::MainMenu *mainMenu = new Onyx::MainMenu(ip, port);
+
+    mainMenu->loop();
+    launchGame(mainMenu->getClient()->getIP(), mainMenu->getClient()->getPort());
+}
+
+// dinf the port after the -p flag
+int getPort(char **argv)
+{
+    for (int i = 1; argv[i] != NULL; i++) {
+        if (std::string(argv[i]) == "-p") {
+            return std::stoi(argv[i + 1]);
+        }
+    }
+    return 0;
+}
+
+std::string getIp(char **argv)
+{
+    for (int i = 1; argv[i] != NULL; i++) {
+        if (std::string(argv[i]) == "-h") {
+            return std::string(argv[i + 1]);
+        }
+    }
+    return "127.0.0.1";
+}
+
+int main(int argc, char **argv)
 {
     try {
-        bool running = true;
-
-        net::TcpClient client("127.0.0.1", 4242);
-        std::shared_ptr<Onyx::Gui> gui = std::make_shared<Onyx::Gui>(client);
-
-        client.addCommand("msz", net::type_command_t::MSZ, [&gui](std::vector<std::string>& args) {
-            if (args.size() != 3)
-                throw EGE::Error("Wrong number of param.");
-            gui->createMap(std::stoi(args[1]), std::stoi(args[2]));
-            gui->createWorldPanel();
-            gui->createTilePanel();
-            gui->createConsolePanel();
-            gui->createPlayerPanel();
-            gui->updateConsolePanel(args);
-        });
-        client.addCommand("pnw", net::type_command_t::PNW, [](std::vector<std::string>& args) {
-            for (auto& arg : args) {
-                std::cout << arg << std::endl;
+        if (argc == 1) {
+            launchMenu("", 0);
+        } else if (argc == 5 || argc == 3) {
+            int port = getPort(argv);
+            if (port < 0 || port > 65535)
+                throw EGE::Error("Invalid port number: " + std::string(argv[2]));
+            launchMenu(getIp(argv), port);
+        } else {
+            if (argc > 5) {
+                throw EGE::Error("Too many arguments");
+            } else if (argc == 2 && isHelp(argv[1])) {
+                std::cout << "USAGE: ./onyx [ip] [port]" << std::endl;
+                std::cout << "          OR" << std::endl;
+                std::cout << "       ./onyx" << std::endl;
+                std::cout << "ip: The IP address of the server to connect to." << std::endl;
+                std::cout << "port: The port number of the server to connect to." << std::endl;
+                exit(0);
+            } else {
+                throw EGE::Error("Invalid argument: " + std::string(argv[1]));
             }
-        });
-        client.addCommand("bct", net::type_command_t::MCT, [&gui](std::vector<std::string>& args) {
-            if (args.size() != 10)
-                throw EGE::Error("Wrong number of param.");
-            EGE::Maths::Vector2<int> position(std::stoi(args[1]), std::stoi(args[2]));
-            gui->getMap()->addItem(position, Onyx::Item::TYPE::FOOD, std::stoi(args[3]));
-            gui->getMap()->addItem(position, Onyx::Item::TYPE::LINEMATE, std::stoi(args[4]));
-            gui->getMap()->addItem(position, Onyx::Item::TYPE::DERAUMERE, std::stoi(args[5]));
-            gui->getMap()->addItem(position, Onyx::Item::TYPE::SIBUR, std::stoi(args[6]));
-            gui->getMap()->addItem(position, Onyx::Item::TYPE::MENDIANE, std::stoi(args[7]));
-            gui->getMap()->addItem(position, Onyx::Item::TYPE::PHIRAS, std::stoi(args[8]));
-            gui->getMap()->addItem(position, Onyx::Item::TYPE::THYSTAME, std::stoi(args[9]));
-            gui->updateWorldPanel();
-            gui->updateTilePanel();
-            gui->updateConsolePanel(args);
-        });
-        client.addCommand("sgt", net::type_command_t::SGT, [&gui](std::vector<std::string>& args) {
-            if (args.size() != 2)
-                throw EGE::Error("Wrong number of param.");
-            gui->updateWorldSettings(std::stof(args[1]));
-        });
-        client.connection();
-        client.sendRequest("msz\n");
-        client.sendRequest("mct\n");
-        client.sendRequest("sgt\n");
-
-        while (running) {
-            client.waitEvent();
-            gui->update(running);
         }
-        client.disconnect();
-        exit(0);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 84;

@@ -23,6 +23,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->createMenuBar();
 
     this->_tileSelected = 0;
+    this->_client = &client;
 }
 
 Onyx::Gui::~Gui()
@@ -36,7 +37,12 @@ void Onyx::Gui::createMap(int width, int height)
     this->_entities.push_back(this->_map);
 }
 
-void Onyx::Gui::update(bool& running)
+void Onyx::Gui::addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
+{
+    this->_players.push_back(std::make_shared<Onyx::Player>(teamName, position, rotation));
+}
+
+void Onyx::Gui::update()
 {
     static float lastFrame = 0.0f;
     static float timer = 0.0f;
@@ -50,16 +56,79 @@ void Onyx::Gui::update(bool& running)
     this->_window->pollEvents();
     this->_shader->use();
     this->_camera->update(*this->_shader.get(), static_cast<float>(this->_window->getSize().x) / static_cast<float>(this->_window->getSize().y));
-    this->_window->clear(EGE::Color(0.0f, 1.0f, 0.0f, 1.0f));
+    this->_window->clear(EGE::Color(0.0f, 0.0f, 0.0f, 1.0f));
     this->_interface->clear();
     this->_interface->draw();
     for (const auto& entity : this->_entities) {
         entity->update(this->_shader);
     }
+    for (const auto& player : this->_players) {
+        player->update(this->_shader);
+    }
     this->_interface->display();
     this->_window->display();
     if (!this->_window->isOpen())
-        running = false;
+        this->_running = false;
+}
+
+bool Onyx::Gui::isRunning() const
+{
+    return this->_window->isOpen();
+}
+
+void Onyx::Gui::loop()
+{
+    this->_client->addCommand("msz", net::type_command_t::MSZ, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("Wrong number of param.");
+        this->createMap(std::stoi(args[1]), std::stoi(args[2]));
+        this->createWorldPanel();
+        this->createTilePanel();
+        this->createConsolePanel();
+        this->updateConsolePanel(args);
+    });
+    this->_client->addCommand("pnw", net::type_command_t::PNW, [this](std::vector<std::string>& args) {
+        if (args.size() != 7)
+            throw EGE::Error("Wrong number of param.");
+        // 1: player id (need to remove the #)
+        // 2: x pos
+        // 3: y pos
+        // 4: orientation (1: N, 2: E, 3: S, 4: W)
+        // 5: level
+        // 6: team name
+
+        this->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+    });
+    this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
+        if (args.size() != 10)
+            throw EGE::Error("Wrong number of param.");
+        EGE::Maths::Vector2<int> position(std::stoi(args[1]), std::stoi(args[2]));
+        this->_map->addItem(position, Onyx::Item::TYPE::FOOD, std::stoi(args[3]));
+        this->_map->addItem(position, Onyx::Item::TYPE::LINEMATE, std::stoi(args[4]));
+        this->_map->addItem(position, Onyx::Item::TYPE::DERAUMERE, std::stoi(args[5]));
+        this->_map->addItem(position, Onyx::Item::TYPE::SIBUR, std::stoi(args[6]));
+        this->_map->addItem(position, Onyx::Item::TYPE::MENDIANE, std::stoi(args[7]));
+        this->_map->addItem(position, Onyx::Item::TYPE::PHIRAS, std::stoi(args[8]));
+        this->_map->addItem(position, Onyx::Item::TYPE::THYSTAME, std::stoi(args[9]));
+        this->updateWorldPanel();
+        this->updateTilePanel();
+        this->updateConsolePanel(args);
+    });
+    this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("Wrong number of param.");
+        this->updateWorldSettings(std::stof(args[1]));
+    });
+    this->_client->connection();
+    this->_client->sendRequest("msz\n");
+    this->_client->sendRequest("mct\n");
+    this->_client->sendRequest("sgt\n");
+
+    while (this->isRunning()) {
+        this->_client->waitEvent();
+        this->update();
+    }
+    this->_client->disconnect();
 }
 
 std::shared_ptr<Onyx::Map> Onyx::Gui::getMap()
@@ -73,18 +142,9 @@ void Onyx::Gui::_bindEvents()
         this->_window->close();
     });
     this->_window->bindWindowTrigger<GLFWwindow *, double, double>(EGE::Event::WindowTrigger::WindowCursorMoved, [this] (GLFWwindow *win, double xpos, double ypos) {
-        static double lastX = 0.0;
-        static double lastY = 0.0;
-        static bool firstMouse = true;
-        if (firstMouse) {
-            lastX = xpos;
-            lastY = ypos;
-            firstMouse = false;
-        }
-        double xoffset = xpos - lastX;
-        double yoffset = lastY - ypos;
-        lastX = xpos;
-        lastY = ypos;
+        glfwSetCursorPos(win, this->_window->getSize().x / 2, this->_window->getSize().y / 2);
+        float xoffset = xpos - this->_window->getSize().x / 2;
+        float yoffset = this->_window->getSize().y / 2 - ypos;
         this->_camera->rotate(xoffset, yoffset, true);
     });
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyW, EGE::Event::Mode::Pressed, [this]() {
@@ -113,6 +173,12 @@ void Onyx::Gui::_bindEvents()
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyEscape, EGE::Event::Mode::JustPressed, [this]() {
         this->_window->close();
+    }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Mouse, EGE::Event::Mouse::MouseLeft, EGE::Event::Mode::JustPressed, [this]() {
+        this->_tileSelected = this->_map->getTileSelected(this->_camera->getPosition(), this->_camera->getFront(), this->_window->getMousePosition());
+        std::cout << "Tile selected: " << this->_tileSelected << std::endl;
+        if (this->_tileSelected >= 0)
+            this->updateTilePanel();
     }));
 }
 
