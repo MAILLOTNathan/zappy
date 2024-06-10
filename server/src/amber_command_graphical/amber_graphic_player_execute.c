@@ -47,7 +47,7 @@ void amber_graphic_execute_ppo(command_t *cmd, amber_client_t *client,
 void amber_graphic_execute_plv(command_t *cmd, amber_client_t *client,
     UNUSED amber_world_t *world, list_t *clients)
 {
-    int id = atoi(cmd->_arg);
+    int id = atoi(cmd->_arg + 1);
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
@@ -60,7 +60,7 @@ void amber_graphic_execute_plv(command_t *cmd, amber_client_t *client,
 void amber_graphic_execute_pin(command_t *cmd, amber_client_t *client,
     UNUSED amber_world_t *world, list_t *clients)
 {
-    int id = atoi(cmd->_arg);
+    int id = atoi(cmd->_arg + 1);
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
