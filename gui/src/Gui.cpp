@@ -121,11 +121,7 @@ void Onyx::Gui::loop()
             throw EGE::Error("Invalid level received in pnw command : |" + args[5] + "|.");
         }
 
-<<<<<<< HEAD
-        this->addPlayer(std::stoi(args[1].erase(0, 1)), EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
-=======
         this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4]);
->>>>>>> 48fbeddbd0f83a9541ebfd5363fcc06b3776d36d
         // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
@@ -222,13 +218,13 @@ void Onyx::Gui::loop()
             }
         }
         for (auto &player : this->_players) {
-            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::FOOD] << " food" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::LINEMATE] << " linemate" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::DERAUMERE] << " deraumere" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::SIBUR] << " sibur" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::MENDIANE] << " mendiane" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::PHIRAS] << " phiras" << std::endl;
-            std::cout << "Player " << player->getID() << " has " << player->getItems()[Onyx::Item::TYPE::THYSTAME] << " thystame" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::FOOD) << " food" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::LINEMATE) << " linemate" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::DERAUMERE) << " deraumere" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::SIBUR) << " sibur" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::MENDIANE) << " mendiane" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::PHIRAS) << " phiras" << std::endl;
+            std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::THYSTAME) << " thystame" << std::endl;
         }
         // this->updatePlayerPanel();
     });

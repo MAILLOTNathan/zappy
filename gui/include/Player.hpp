@@ -67,7 +67,7 @@ namespace Onyx {
 
             void setInventory(int quantity, Onyx::Item::TYPE type);
 
-            std::vector<std::shared_ptr<Onyx::Item>> getItems();
+            Onyx::Item getItems(Onyx::Item::TYPE type);
 
         private:
             void _setColor(std::string &teamName);
