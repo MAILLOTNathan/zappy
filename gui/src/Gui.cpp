@@ -85,7 +85,7 @@ void Onyx::Gui::loop()
         this->createMap(std::stoi(args[1]), std::stoi(args[2]));
         this->createWorldPanel();
         this->createTilePanel();
-        this->createPlayerPanel();
+        // this->createPlayerPanel();
         this->createConsolePanel();
         this->updateConsolePanel(args);
     });
@@ -100,7 +100,7 @@ void Onyx::Gui::loop()
         // 6: team name
 
         this->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
-        this->updatePlayerPanel();
+        // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
@@ -296,7 +296,7 @@ void Onyx::Gui::createPlayerPanel()
 
     panel->add(team, "Team");
     // panel->add(id, "ID");
-    // panel->add(level, "Level");
+    // panel->add(level, "1Level");
     // panel->add(inventory, "Inventory");
 
     this->_interface->_panels["Trantorian"] = panel;
@@ -305,9 +305,11 @@ void Onyx::Gui::createPlayerPanel()
 void Onyx::Gui::updatePlayerPanel()
 {
     EGE::Text *team = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Team"));
+    // EGE::Text *level = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("1Level"));
     Onyx::Player *player = this->_players.at(0).get();
 
     team->setName("Team: " + player->getTeamName());
+    // team->setName("Level: " + std::to_string(player->getLevel()));
 }
 
 // void Onyx::Gui::updatePlayerPanel()
