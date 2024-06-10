@@ -484,10 +484,11 @@ void Onyx::Gui::createMenuBar()
 
 
     settings->add(new EGE::Item("Disconnect", [this] () {
-        std::cout << "DISCONNECT" << std::endl;
+        this->_client->disconnect();
+        this->getWindow()->close();
     }), "2 Disconnect");
     settings->add(new EGE::Item("Quit", [this] () {
-        std::cout << "quit" << std::endl;
+        exit(0);
     }), "3 Quit");
 
     this->_interface->_menuBar->add(settings, "0 Settings");

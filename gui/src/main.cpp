@@ -24,15 +24,19 @@ void launchGame(const std::string &ip, int port)
     net::TcpClient client(ip, port);
     std::shared_ptr<Onyx::Gui> gui = std::make_shared<Onyx::Gui>(client);
     gui->loop();
-    exit(0);
 }
 
 void launchMenu(const std::string &ip, int port)
 {
-    Onyx::MainMenu *mainMenu = new Onyx::MainMenu(ip, port);
 
-    mainMenu->loop();
-    launchGame(mainMenu->getClient()->getIP(), mainMenu->getClient()->getPort());
+    while (true) {
+        Onyx::MainMenu *mainMenu = new Onyx::MainMenu(ip, port);
+        mainMenu->loop();
+        std::string localIP = mainMenu->getClient()->getIP();
+        int localPort = mainMenu->getClient()->getPort();
+        delete mainMenu;
+        launchGame(localIP, localPort);
+    }
 }
 
 // dinf the port after the -p flag
