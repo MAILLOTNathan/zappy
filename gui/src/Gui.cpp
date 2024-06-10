@@ -19,6 +19,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_interface = std::make_shared<UserInterface>();
 
     this->_interface->init(this->_window.get());
+    this->_interface->initPlaylist("./assets/musics/");
 
     this->createMenuBar();
 
@@ -84,6 +85,7 @@ void Onyx::Gui::loop()
         this->createMap(std::stoi(args[1]), std::stoi(args[2]));
         this->createWorldPanel();
         this->createTilePanel();
+        // this->createPlayerPanel();
         this->createConsolePanel();
         this->updateConsolePanel(args);
     });
@@ -98,6 +100,7 @@ void Onyx::Gui::loop()
         // 6: team name
 
         this->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+        // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
@@ -123,6 +126,7 @@ void Onyx::Gui::loop()
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("mct\n");
     this->_client->sendRequest("sgt\n");
+    this->_client->sendRequest("pnw\n");
 
     while (this->isRunning()) {
         this->_client->waitEvent();
@@ -274,47 +278,52 @@ void Onyx::Gui::updateWorldPanel()
     content->get("thystame")->setName("Thystame: " + std::to_string(items["Thystame"]));
 }
 
-// void Onyx::Gui::createPlayerPanel()
+void Onyx::Gui::createPlayerPanel()
+{
+    EGE::Panel *panel = new EGE::Panel("Trantorian");
+    EGE::Text *team = new EGE::Text("Team: None");
+    // EGE::Text *id = new EGE::Text("ID: 0");
+    // EGE::Text *level = new EGE::Text("Level: 1");
+    // EGE::ListBox *inventory = new EGE::ListBox("Inventory");
+
+    // inventory->add(new EGE::Text("Food: 0"), "food");
+    // inventory->add(new EGE::Text("Linemate: 0"), "linemate");
+    // inventory->add(new EGE::Text("Deraumere: 0"), "deraumere");
+    // inventory->add(new EGE::Text("Sibur: 0"), "sibur");
+    // inventory->add(new EGE::Text("Mendiane: 0"), "mendiane");
+    // inventory->add(new EGE::Text("Phiras: 0"), "phiras");
+    // inventory->add(new EGE::Text("Thystame: 0"), "thystame");
+
+    panel->add(team, "Team");
+    // panel->add(id, "ID");
+    // panel->add(level, "1Level");
+    // panel->add(inventory, "Inventory");
+
+    this->_interface->_panels["Trantorian"] = panel;
+}
+
+void Onyx::Gui::updatePlayerPanel()
+{
+    EGE::Text *team = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Team"));
+    // EGE::Text *level = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("1Level"));
+    Onyx::Player *player = this->_players.at(0).get();
+
+    team->setName("Team: " + player->getTeamName());
+    // team->setName("Level: " + std::to_string(player->getLevel()));
+}
+
+// void Onyx::Gui::updatePlayerPanel()
 // {
-//     EGE::Panel *panel = new EGE::Panel("Trantorian");
-//     EGE::ListBox *dimensions = new EGE::ListBox("Dimensions");
+//     EGE::ListBox *inventory = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Trantorian"]->get("Inventory"));
+//     Onyx::Player *player = this->_map->getPlayer().at(0).get();
 
-//     EGE::Maths::Vector2<int> size = this->_map->getSize();
-//     dimensions->add(new EGE::Text("Width: " + std::to_string(size.x)), "width");
-//     dimensions->add(new EGE::Text("Height: " + std::to_string(size.y)), "height");
-
-//     panel->add(dimensions, "dimensions");
-
-//     EGE::ListBox *content = new EGE::ListBox("Content");
-//     std::map<std::string, int> items = {};
-
-//     items["Food"] = 0;
-//     items["Linemate"] = 0;
-//     items["Deraumere"] = 0;
-//     items["Sibur"] = 0;
-//     items["Mendiane"] = 0;
-//     items["Phiras"] = 0;
-//     items["Thystame"] = 0;
-
-//     for (auto &floor : this->_map->getFloor()) {
-//         items["Food"] += floor->getQuantity(Onyx::Item::TYPE::FOOD);
-//         items["Linemate"] += floor->getQuantity(Onyx::Item::TYPE::LINEMATE);
-//         items["Deraumere"] += floor->getQuantity(Onyx::Item::TYPE::DERAUMERE);
-//         items["Sibur"] += floor->getQuantity(Onyx::Item::TYPE::SIBUR);
-//         items["Mendiane"] += floor->getQuantity(Onyx::Item::TYPE::MENDIANE);
-//         items["Phiras"] += floor->getQuantity(Onyx::Item::TYPE::PHIRAS);
-//         items["Thystame"] += floor->getQuantity(Onyx::Item::TYPE::THYSTAME);
-//     }
-//     content->add(new EGE::Text("Food: " + std::to_string(items["Food"])), "food");
-//     content->add(new EGE::Text("Linemate: " + std::to_string(items["Linemate"])), "linemate");
-//     content->add(new EGE::Text("Deraumere: " + std::to_string(items["Deraumere"])), "deraumere");
-//     content->add(new EGE::Text("Sibur: " + std::to_string(items["Sibur"])), "sibur");
-//     content->add(new EGE::Text("Mendiane: " + std::to_string(items["Mendiane"])), "mendiane");
-//     content->add(new EGE::Text("Phiras: " + std::to_string(items["Phiras"])), "phiras");
-//     content->add(new EGE::Text("Thystame: " + std::to_string(items["Thystame"])), "thystame");
-
-//     panel->add(content, "content");
-//     this->_interface->_panels["Trantorian"] = panel;
+//     inventory->get("food")->setName("Food: " + std::to_string(player->getInventory().at(Onyx::Item::FOOD)));
+//     inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getInventory().at(Onyx::Item::LINEMATE)));
+//     inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getInventory().at(Onyx::Item::DERAUMERE)));
+//     inventory->get("sibur")->setName("Sibur: " + std::to_string(player->getInventory().at(Onyx::Item::SIBUR)));
+//     inventory->get("mendiane")->setName("Mendiane: " + std::to_string(player->getInventory().at(Onyx::Item::MENDIANE)));
+//     inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getInventory().at(Onyx::Item::PHIRAS)));
+//     inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getInventory().at(Onyx::Item::THYSTAME)));
 // }
 
 void Onyx::Gui::createTilePanel()
@@ -436,13 +445,13 @@ void Onyx::Gui::createMenuBar()
     EGE::Menu *music = new EGE::Menu("Music");
 
     music->add(new EGE::Item("Previous", [this] () {
-        std::cout << "Previous" << std::endl;
+        this->_interface->getPlaylist()->previous();
     }), "0 Previous");
-    music->add(new EGE::Item("Play / Stop", [this] () {
-        std::cout << "Play" << std::endl;
+    music->add(new EGE::Item("Play / Pause", [this] () {
+        this->_interface->getPlaylist()->play();
     }), "1 Play");
     music->add(new EGE::Item("Next", [this] () {
-        std::cout << "Next" << std::endl;
+        this->_interface->getPlaylist()->next();
     }), "2 Next");
 
     this->_interface->_menuBar->add(music, "1 Music");
