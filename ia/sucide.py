@@ -44,25 +44,119 @@ def check_args(TuringAI):
         help_message()
 
 
-
-class food_collector:
-    print("SUCIDE INIT")
+class Sucide:
+    print("COLLECTOR INIT")
     debug = False
     port = None
     team_name = ""
     host = "localhost"
+    signal_angle = []
     food_quantity = 0
     level = 1
     elapsed_time = 0
     conn = None
+    wait = False
     def __init__(self):
         self.debug = False
         self.port = None
         self.team_name = ""
         self.food_quantity = 0
         self.level = 1
+        self.signal_angle = -1
+        self.wait = True
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+        self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+
+    def broadcast_parse(self, response):
+        if response == None:
+            exit(0)
+        if "message" in response.decode():
+            response = response.decode()
+            res = response.split('\n')
+            print(res)
+            if 'message' in res[1]:
+                self.objectif = {"linemate": res[1].count("linemate"), "deraumere":  res[1].count("deraumere"), "sibur": res[1].count("sibur"), "mendiane": res[1].count("mendiane"), "phiras": res[1].count("phiras"), "thystame": res[1].count("thystame")}
+                result = res[1].split(' ')
+                self.signal_angle = int(result[1].split(',')[0])
+                self.wait = False
+                return res[0].encode()
+            else:
+                self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
+                result = res[0].split(' ')
+                self.signal_angle = int(result[1].split(',')[0])
+                self.wait = False
+                return self.conn.s.recv(1024)
+        return response
+
+            
+
+    def get_food(self):
+        response = self.send_request('Inventory')
+        response = self.broadcast_parse(response)
+        print(response)
+        if response == None or response == 'done':
+            return
+        response = response.decode().strip('[]')
+        response = response.split(']')[0]
+        response = response.split(',')
+        response = [component.strip() for component in response]
+        print(response)
+        response = [int(component.split()[1]) for component in response]
+        self.inventory['food'] = response[0]
+
+
+    def objectif_done(self):
+        for i in self.inventory:
+            if i != 'food' and self.objectif[i] != 0 and self.inventory[i] >= self.objectif[i]:
+                return True
+        return False
+    
+    def get_max_objectif(self):
+        max = -1
+        element = ''
+        for i in self.objectif:
+            if self.objectif[i] > max:
+                element = i
+                max = self.objectif[i]
+        return element
+    
+    def go_to_broadcast(self):
+        self.wait = True
+        if self.signal_angle == 0:
+            for i in self.inventory:
+                if i == 'food':
+                    for y in range(self.inventory[i]):
+                        res = self.conn.send_request("Set " + i)
+                        self.broadcast_parse(res)
+            exit(0)
+        if self.signal_angle == 1 or self.signal_angle == 3 or self.signal_angle == 7 :
+            res = self.conn.send_request("Forward")
+            self.broadcast_parse(res)
+        elif self.signal_angle == 3 or self.signal_angle == 4:
+            res = self.conn.send_request("Left")
+            self.broadcast_parse(res)
+        elif self.signal_angle == 7 or self.signal_angle == 6:
+            res = self.conn.send_request("Right")
+            self.broadcast_parse(res)
+        elif self.signal_angle == 5:
+            res = self.conn.send_request("Right")
+            self.broadcast_parse(res)
+            res = self.conn.send_request("Right")
+            self.broadcast_parse(res)
+        return
+
+    def priority_guide(self, map : list): 
+        if self.inventory['food'] < 3:
+            self.take_action('food', map)
+        elif self.wait == False:
+            self.go_to_broadcast()
+        return
+    
+    def take_action(self, obj, map):
+        x,y,nb = get_obj(map, obj)
+        dir = get_direction(x,y)
+        find_path(dir, nb, obj, self)
 
 
 def parse_look(response):
@@ -118,11 +212,13 @@ def find_path(direction : list, quantity, obj : str, ai ):
         None
     """
     for i in direction:
-        ai.conn.send_request(i)
+        res = ai.conn.send_request(i)
+        ai.broadcast_parse(res)
     for i in range(0, quantity):
-        ai.conn.send_request("Take " + obj)
+        res = ai.conn.send_request("Take " + obj)
         print(obj + " taken")
         ai.inventory[obj] += 1
+        ai.broadcast_parse(res)
 
 def come_back(direction : list, ia):
     """
@@ -142,7 +238,7 @@ def come_back(direction : list, ia):
 
 
 def main():
-    bot : food_collector = food_collector()
+    bot : Sucide = Sucide()
     check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
@@ -152,6 +248,7 @@ def main():
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
+        response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
         response = [int(component.split()[1]) for component in response]

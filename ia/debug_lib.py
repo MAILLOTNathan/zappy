@@ -67,8 +67,8 @@ class ServerConnection:
         data = self.s.recv(1024)
         print(repr(data))
         self.get_con_num(data)
-        # data = self.s.recv(1024)
-        # print(repr(data)) 
+        data = self.s.recv(1024)
+        print(repr(data)) 
 
 
     def send_request(self, request):

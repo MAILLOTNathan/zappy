@@ -62,7 +62,15 @@ class TuringAI:
         """
         if conn.conn_num == self.children:
             return False
-        return True
+        res = conn.send_request("Fork")
+        if res is None:
+            return False
+        if res == "done":
+            return False
+        res = res.decode()
+        if "ok" in res:
+            return True
+        return False
 
     def broadcast_parse(self, response):
         if response == None:
@@ -82,11 +90,9 @@ class TuringAI:
         """
         response = conn.send_request('Inventory')
         response = self.broadcast_parse(response)
-        print(response)
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
-        response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
         response = [int(component.split()[1]) for component in response]
@@ -148,15 +154,17 @@ class TuringAI:
                 self.update_children(conn)
                 res = conn.send_request("Look")
                 look = parse_look(res, self, "food")
-                if self.inventory['food'] < 5 and look[0][1].count('food') != 0:
+                if self.inventory['food'] < 5 and look[0][1].count('food') == 0 and look[0][1].count('player') == 1:
+                    take_action(self,"food", look, conn)
+                elif self.inventory['food'] < 5 and look[0][1].count('food') != 0:
                     res = conn.send_request("Take food")
                 elif self.check_level_up(res) == True:
-                    #conn.send_request("Broadcast sibur")
+                    conn.send_request("Broadcast sibur")
                     self.do_incantation(self, conn)
                 elif self.can_fork(conn) == True:
-                    #conn.send_request("Broadcast sibur")
-                    launch_new_instance(self, look, conn)
-                #conn.send_request("Broadcast sibur")
+                    conn.send_request("Broadcast sibur")
+                    launch_new_instance(self, look)
+                conn.send_request("Broadcast sibur")
                 self.get_food(conn)
 
     def __init__(self):
@@ -301,7 +309,7 @@ def take_action(self, obj, map, conn):
     dir = get_direction(x,y)
     find_path(dir, nb, obj, self, conn)
 
-def launch_new_instance(self, map, conn):
+def launch_new_instance(self, map):
     """
     Launches a new instance based on the current state of the agent.
 
@@ -315,14 +323,12 @@ def launch_new_instance(self, map, conn):
         with open(os.devnull, 'w') as devnull:
             process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
             process.wait()
-    if map[0][1].count('food') == 0:
-        conn.send_request("Fork")
+    if self.inventory["food"] < 10:
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
     elif map[0][1].count("player") < (self.level * 2):
-        conn.send_request("Fork")
         command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made an evolver child")
         thread = threading.Thread(target=run_subprocess, args=(command,))

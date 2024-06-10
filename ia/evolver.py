@@ -174,6 +174,7 @@ def main():
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
+        response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
         response = [int(component.split()[1]) for component in response]
