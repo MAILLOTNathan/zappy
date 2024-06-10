@@ -84,6 +84,7 @@ void Onyx::Gui::loop()
         this->createMap(std::stoi(args[1]), std::stoi(args[2]));
         this->createWorldPanel();
         this->createTilePanel();
+        this->createPlayerPanel();
         this->createConsolePanel();
         this->updateConsolePanel(args);
     });
@@ -98,6 +99,7 @@ void Onyx::Gui::loop()
         // 6: team name
 
         this->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+        this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
@@ -123,6 +125,7 @@ void Onyx::Gui::loop()
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("mct\n");
     this->_client->sendRequest("sgt\n");
+    this->_client->sendRequest("pnw\n");
 
     while (this->isRunning()) {
         this->_client->waitEvent();
@@ -275,24 +278,35 @@ void Onyx::Gui::updateWorldPanel()
 }
 
 void Onyx::Gui::createPlayerPanel()
-
 {
     EGE::Panel *panel = new EGE::Panel("Trantorian");
-    EGE::Text *id = new EGE::Text("ID: 0");
-    EGE::Text *level = new EGE::Text("Level: 1");
-    EGE::ListBox *inventory = new EGE::ListBox("Inventory");
+    EGE::Text *team = new EGE::Text("Team: None");
+    // EGE::Text *id = new EGE::Text("ID: 0");
+    // EGE::Text *level = new EGE::Text("Level: 1");
+    // EGE::ListBox *inventory = new EGE::ListBox("Inventory");
 
-    inventory->add(new EGE::Text("Food: 0"), "food");
-    inventory->add(new EGE::Text("Linemate: 0"), "linemate");
-    inventory->add(new EGE::Text("Deraumere: 0"), "deraumere");
-    inventory->add(new EGE::Text("Sibur: 0"), "sibur");
-    inventory->add(new EGE::Text("Mendiane: 0"), "mendiane");
-    inventory->add(new EGE::Text("Phiras: 0"), "phiras");
-    inventory->add(new EGE::Text("Thystame: 0"), "thystame");
+    // inventory->add(new EGE::Text("Food: 0"), "food");
+    // inventory->add(new EGE::Text("Linemate: 0"), "linemate");
+    // inventory->add(new EGE::Text("Deraumere: 0"), "deraumere");
+    // inventory->add(new EGE::Text("Sibur: 0"), "sibur");
+    // inventory->add(new EGE::Text("Mendiane: 0"), "mendiane");
+    // inventory->add(new EGE::Text("Phiras: 0"), "phiras");
+    // inventory->add(new EGE::Text("Thystame: 0"), "thystame");
 
-    panel->add(id, "ID");
-    panel->add(level, "Level");
-    panel->add(inventory, "Inventory");
+    panel->add(team, "Team");
+    // panel->add(id, "ID");
+    // panel->add(level, "Level");
+    // panel->add(inventory, "Inventory");
+
+    this->_interface->_panels["Trantorian"] = panel;
+}
+
+void Onyx::Gui::updatePlayerPanel()
+{
+    EGE::Text *team = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Team"));
+    Onyx::Player *player = this->_players.at(0).get();
+
+    team->setName("Team: " + player->getTeamName());
 }
 
 // void Onyx::Gui::updatePlayerPanel()
