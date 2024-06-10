@@ -21,6 +21,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_interface->init(this->_window.get());
     this->_interface->initPlaylist("./assets/musics/");
 
+    this->_cameraMode = true;
     this->createMenuBar();
 
     this->_tileSelected = 0;
@@ -147,6 +148,8 @@ void Onyx::Gui::_bindEvents()
     });
     this->_window->bindWindowTrigger<GLFWwindow *, double, double>(EGE::Event::WindowTrigger::WindowCursorMoved, [this] (GLFWwindow *win, double xpos, double ypos) {
         glfwSetCursorPos(win, this->_window->getSize().x / 2, this->_window->getSize().y / 2);
+        if (!this->_cameraMode)
+            return;
         float xoffset = xpos - this->_window->getSize().x / 2;
         float yoffset = this->_window->getSize().y / 2 - ypos;
         this->_camera->rotate(xoffset, yoffset, true);
@@ -168,6 +171,9 @@ void Onyx::Gui::_bindEvents()
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyE, EGE::Event::Mode::Pressed, [this]() {
         this->_camera->move(EGE::Camera::Movement::UP, this->_deltaTime);
+    }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyC, EGE::Event::Mode::Pressed, [this]() {
+        this->_cameraMode = !this->_cameraMode;
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyLShift, EGE::Event::Mode::JustPressed, [this]() {
         this->_camera->setSpeed(this->_camera->getSpeed() * 2);
