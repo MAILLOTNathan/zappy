@@ -10,7 +10,7 @@
 std::map<std::string, Onyx::Player::Color> Onyx::Player::_colorMap = {};
 static int currentColor = 1;
 
-Onyx::Player::Player(const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName)
+Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName)
 {
     this->_level = 1;
     if (Player::_colorMap[teamName] == 0) {
@@ -19,31 +19,17 @@ Onyx::Player::Player(const std::string &teamName, const EGE::Maths::Vector2<int>
     if (Player::_colorMap[teamName] >= Onyx::Player::Color::LAST) {
         throw Onyx::PlayerError("The GUI does not support more than " + std::to_string(static_cast<int>(Onyx::Player::Color::LAST) - 1) + " teams.");
     }
+    this->_id = id;
     this->_color = Player::_colorMap[teamName];
     std::string mtl = Utils::getFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
     this->_setColor(mtl);
     Utils::setFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl, false);
     this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 2, position.y * CELL_SIZE);
+    this->_pos = position;
     if (rotation.size() != 1)
         throw Onyx::PlayerError("Invalid rotation: " + rotation);
-    switch (rotation[0]) {
-        case 'S':
-            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 0.0f, 0.0f);
-            break;
-        case 'E':
-            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 90.0f, 0.0f);
-            break;
-        case 'N':
-            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 180.0f, 0.0f);
-            break;
-        case 'W':
-            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 270.0f, 0.0f);
-            break;
-        default:
-            throw Onyx::PlayerError("Invalid rotation: " + rotation);
-            break;
-    }
     this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
+    this->setRotation(rotation);
 }
 
 Onyx::Player::~Player()
@@ -62,6 +48,52 @@ void Onyx::Player::evolve()
     this->_setColor(mtl);
     Utils::setFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl, false);
     this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
+}
+
+void Onyx::Player::forward()
+{
+}
+
+void Onyx::Player::left()
+{
+    switch (this->_rotationString[0]) {
+        case 'S':
+            this->setRotation("E");
+            break;
+        case 'E':
+            this->setRotation("N");
+            break;
+        case 'N':
+            this->setRotation("W");
+            break;
+        case 'W':
+            this->setRotation("S");
+            break;
+        default:
+            throw Onyx::PlayerError("Invalid rotation: " + this->_rotationString);
+            break;
+    }
+}
+
+void Onyx::Player::right()
+{
+    switch (this->_rotationString[0]) {
+        case 'S':
+            this->setRotation("W");
+            break;
+        case 'E':
+            this->setRotation("S");
+            break;
+        case 'N':
+            this->setRotation("E");
+            break;
+        case 'W':
+            this->setRotation("N");
+            break;
+        default:
+            throw Onyx::PlayerError("Invalid rotation: " + this->_rotationString);
+            break;
+    }
 }
 
 void Onyx::Player::setLevel(int level)
@@ -126,4 +158,53 @@ void Onyx::Player::_setColor(std::string &fileContent)
         break;
     }
     fileContent = std::regex_replace(fileContent, std::regex("map_Kd .+"), "map_Kd " + newFile);
+}
+
+void Onyx::Player::setRotation(const std::string& rotation)
+{
+    switch (rotation[0]) {
+        case 'S':
+            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 0.0f, 0.0f);
+            break;
+        case 'E':
+            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 90.0f, 0.0f);
+            break;
+        case 'N':
+            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 180.0f, 0.0f);
+            break;
+        case 'W':
+            this->_rotation = EGE::Maths::Vector3<float>(0.0f, 270.0f, 0.0f);
+            break;
+        default:
+            throw Onyx::PlayerError("Invalid rotation: " + rotation);
+            break;
+    }
+    this->_rotationString = rotation;
+    this->_model->setRotation(this->_rotation);
+}
+
+EGE::Maths::Vector3<float> Onyx::Player::getRotation()
+{
+    return this->_rotation;
+}
+
+std::string Onyx::Player::getRotationString()
+{
+    return this->_rotationString;
+}
+
+void Onyx::Player::setPos(EGE::Maths::Vector2<int> pos)
+{
+    this->_pos = pos;
+    this->setPosition(EGE::Maths::Vector3<float>(pos.x * CELL_SIZE, 2, pos.y * CELL_SIZE));
+}
+
+EGE::Maths::Vector2<int> Onyx::Player::getPos()
+{
+    return this->_pos;
+}
+
+int Onyx::Player::getId()
+{
+    return this->_id;
 }

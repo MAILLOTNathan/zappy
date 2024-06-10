@@ -38,9 +38,9 @@ void Onyx::Gui::createMap(int width, int height)
     this->_entities.push_back(this->_map);
 }
 
-void Onyx::Gui::addPlayer(EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
+void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
 {
-    this->_players.push_back(std::make_shared<Onyx::Player>(teamName, position, rotation));
+    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation));
 }
 
 void Onyx::Gui::update()
@@ -98,8 +98,29 @@ void Onyx::Gui::loop()
         // 4: orientation (1: N, 2: E, 3: S, 4: W)
         // 5: level
         // 6: team name
+        int id, x, y, level;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid id received in pnw command : |" + args[1] + "|.");
+        }
+        try {
+            x = std::stoi(args[2]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid x position received in pnw command : |" + args[2] + "|.");
+        }
+        try {
+            y = std::stoi(args[3]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid y position received in pnw command : |" + args[3] + "|.");
+        }
+        try {
+            level = std::stoi(args[5]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid level received in pnw command : |" + args[5] + "|.");
+        }
 
-        this->addPlayer(EGE::Maths::Vector2<int>(std::stoi(args[2]), std::stoi(args[3])), args[6], args[4]);
+        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4]);
         // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
@@ -121,6 +142,64 @@ void Onyx::Gui::loop()
         if (args.size() != 2)
             throw EGE::Error("Wrong number of param.");
         this->updateWorldSettings(std::stof(args[1]));
+    });
+    this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("Wrong number of param.");
+        for (const auto& arg : args)
+            std::cout << arg << std::endl;
+        int id = std::stoi(args[1]);
+        switch (args[2][0]) {
+            case 'F':
+                this->_client->sendRequest("ppo #" + args[1] + "\n");
+                break;
+            case 'L':
+                for (const auto& player : this->_players) {
+                    if (player->getId() == id) {
+                        player->left();
+                    }
+                }
+                break;
+            case 'R':
+                for (const auto& player : this->_players) {
+                    if (player->getId() == id) {
+                        player->right();
+                    }
+                }
+                break;
+            default:
+                throw EGE::Error("Invalid change received in idm command : |" + args[2] + "|.");
+                break;
+        }
+    });
+    this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args){
+        if (args.size() != 5)
+            throw EGE::Error("Wrong number of param.");
+        for (const auto& arg : args)
+            std::cout << arg << std::endl;
+        int id, x, y;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid id received in ppo command : |" + args[1] + "|.");
+        }
+        try {
+            x = std::stoi(args[2]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid x position received in ppo command : |" + args[2] + "|.");
+        }
+        try {
+            y = std::stoi(args[3]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid y position received in ppo command : |" + args[3] + "|.");
+        }
+        for (const auto& player : this->_players) {
+            std::cout << player->getId() << std::endl;
+            if (player->getId() == id) {
+                player->setPos(EGE::Maths::Vector2<int>(x, y));
+                player->setRotation(args[4]);
+            }
+        }
     });
     this->_client->connection();
     this->_client->sendRequest("msz\n");
