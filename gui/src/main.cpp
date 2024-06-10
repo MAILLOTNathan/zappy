@@ -24,6 +24,7 @@ int main()
             gui->createWorldPanel();
             gui->createTilePanel();
             gui->createConsolePanel();
+            gui->createPlayerPanel();
             gui->updateConsolePanel(args);
         });
         client.addCommand("pnw", net::type_command_t::PNW, [](std::vector<std::string>& args) {

@@ -208,47 +208,39 @@ void Onyx::Gui::updateWorldPanel()
     content->get("thystame")->setName("Thystame: " + std::to_string(items["Thystame"]));
 }
 
-// void Onyx::Gui::createPlayerPanel()
+void Onyx::Gui::createPlayerPanel()
+
+{
+    EGE::Panel *panel = new EGE::Panel("Trantorian");
+    EGE::Text *id = new EGE::Text("ID: 0");
+    EGE::Text *level = new EGE::Text("Level: 1");
+    EGE::ListBox *inventory = new EGE::ListBox("Inventory");
+
+    inventory->add(new EGE::Text("Food: 0"), "food");
+    inventory->add(new EGE::Text("Linemate: 0"), "linemate");
+    inventory->add(new EGE::Text("Deraumere: 0"), "deraumere");
+    inventory->add(new EGE::Text("Sibur: 0"), "sibur");
+    inventory->add(new EGE::Text("Mendiane: 0"), "mendiane");
+    inventory->add(new EGE::Text("Phiras: 0"), "phiras");
+    inventory->add(new EGE::Text("Thystame: 0"), "thystame");
+
+    panel->add(id, "ID");
+    panel->add(level, "Level");
+    panel->add(inventory, "Inventory");
+}
+
+// void Onyx::Gui::updatePlayerPanel()
 // {
-//     EGE::Panel *panel = new EGE::Panel("Trantorian");
-//     EGE::ListBox *dimensions = new EGE::ListBox("Dimensions");
+//     EGE::ListBox *inventory = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Trantorian"]->get("Inventory"));
+//     Onyx::Player *player = this->_map->getPlayer().at(0).get();
 
-//     EGE::Maths::Vector2<int> size = this->_map->getSize();
-//     dimensions->add(new EGE::Text("Width: " + std::to_string(size.x)), "width");
-//     dimensions->add(new EGE::Text("Height: " + std::to_string(size.y)), "height");
-
-//     panel->add(dimensions, "dimensions");
-
-//     EGE::ListBox *content = new EGE::ListBox("Content");
-//     std::map<std::string, int> items = {};
-
-//     items["Food"] = 0;
-//     items["Linemate"] = 0;
-//     items["Deraumere"] = 0;
-//     items["Sibur"] = 0;
-//     items["Mendiane"] = 0;
-//     items["Phiras"] = 0;
-//     items["Thystame"] = 0;
-
-//     for (auto &floor : this->_map->getFloor()) {
-//         items["Food"] += floor->getQuantity(Onyx::Item::TYPE::FOOD);
-//         items["Linemate"] += floor->getQuantity(Onyx::Item::TYPE::LINEMATE);
-//         items["Deraumere"] += floor->getQuantity(Onyx::Item::TYPE::DERAUMERE);
-//         items["Sibur"] += floor->getQuantity(Onyx::Item::TYPE::SIBUR);
-//         items["Mendiane"] += floor->getQuantity(Onyx::Item::TYPE::MENDIANE);
-//         items["Phiras"] += floor->getQuantity(Onyx::Item::TYPE::PHIRAS);
-//         items["Thystame"] += floor->getQuantity(Onyx::Item::TYPE::THYSTAME);
-//     }
-//     content->add(new EGE::Text("Food: " + std::to_string(items["Food"])), "food");
-//     content->add(new EGE::Text("Linemate: " + std::to_string(items["Linemate"])), "linemate");
-//     content->add(new EGE::Text("Deraumere: " + std::to_string(items["Deraumere"])), "deraumere");
-//     content->add(new EGE::Text("Sibur: " + std::to_string(items["Sibur"])), "sibur");
-//     content->add(new EGE::Text("Mendiane: " + std::to_string(items["Mendiane"])), "mendiane");
-//     content->add(new EGE::Text("Phiras: " + std::to_string(items["Phiras"])), "phiras");
-//     content->add(new EGE::Text("Thystame: " + std::to_string(items["Thystame"])), "thystame");
-
-//     panel->add(content, "content");
-//     this->_interface->_panels["Trantorian"] = panel;
+//     inventory->get("food")->setName("Food: " + std::to_string(player->getInventory().at(Onyx::Item::FOOD)));
+//     inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getInventory().at(Onyx::Item::LINEMATE)));
+//     inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getInventory().at(Onyx::Item::DERAUMERE)));
+//     inventory->get("sibur")->setName("Sibur: " + std::to_string(player->getInventory().at(Onyx::Item::SIBUR)));
+//     inventory->get("mendiane")->setName("Mendiane: " + std::to_string(player->getInventory().at(Onyx::Item::MENDIANE)));
+//     inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getInventory().at(Onyx::Item::PHIRAS)));
+//     inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getInventory().at(Onyx::Item::THYSTAME)));
 // }
 
 void Onyx::Gui::createTilePanel()

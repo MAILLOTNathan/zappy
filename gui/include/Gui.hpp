@@ -22,13 +22,14 @@ namespace Onyx {
     /**
      * @class Gui
      * @brief The Gui class represents the graphical user interface for the application.
-     *`
+     *
      * This class is responsible for managing the graphical elements and rendering them on the screen.
      */
     class Gui {
         public:
             /**
              * @brief Constructs a Gui object.
+             * @param client The TCP client used for communication with the server.
              */
             Gui(net::TcpClient client);
 
@@ -54,34 +55,83 @@ namespace Onyx {
             */
             void createMap(int width, int height);
 
+            /**
+             * @brief Gets the map.
+             * @return A shared pointer to the map object.
+             */
             std::shared_ptr<Onyx::Map> getMap();
 
+            /**
+             * @brief Gets the window.
+             * @return A shared pointer to the window object.
+             */
             std::shared_ptr<EGE::Window> getWindow() const;
 
+            /**
+             * @brief Creates the world panel.
+             */
             void createWorldPanel();
+
+            /**
+             * @brief Creates the tile panel.
+             */
             void createTilePanel();
+
+            /**
+             * @brief Creates the console panel.
+             */
             void createConsolePanel();
+
+            /**
+             * @brief Creates the menu bar.
+             */
             void createMenuBar();
 
+            void createPlayerPanel();
+
+            void updatePlayerPanel();
+
+            /**
+             * @brief Updates the world panel.
+             */
             void updateWorldPanel();
+
+            /**
+             * @brief Updates the tile panel.
+             */
             void updateTilePanel();
+
+            /**
+             * @brief Updates the console panel.
+             * @param args The arguments to be displayed in the console panel.
+             */
             void updateConsolePanel(std::vector<std::string>& args);
 
+            /**
+             * @brief Updates the world settings.
+             * @param value The value of the world settings.
+             */
             void updateWorldSettings(float value);
+
+            /**
+             * @brief Updates the sensitivities.
+             * @param value The value of the sensitivities.
+             */
             void updateSensitivities(float value);
-            // void createPlayerPanel();
 
         private:
             /**
              * @brief Binds the events to the window.
-             * @note This method is called by the constructor to bind the events to the window.
-            */
+             *
+             * This method is called by the constructor to bind the events to the window.
+             */
             void _bindEvents();
 
             /**
              * @brief Updates the camera.
-             * @note This method is called to update the camera's position and orientation.
-            */
+             *
+             * This method is called to update the camera's position and orientation.
+             */
             void _updateCamera();
 
             std::shared_ptr<EGE::Window> _window;           /**< The window used for rendering the graphical user interface. */
