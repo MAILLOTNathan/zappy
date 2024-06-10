@@ -57,6 +57,24 @@ int Onyx::Floor::getQuantity(Onyx::Item::TYPE type) const
     return this->_quantity[type];
 }
 
+/*
+    double modelview[16];
+    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+    double projection[16];
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);
+    int viewport[4];
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    double winX, winY, winZ, winW;
+    int ret = gluProject(this->_position.x, this->_position.y, this->_position.z, modelview, projection, viewport, &winX, &winY, &winZ);
+    std::cout << "Floor : " << this->_pos.x << " : " << this->_pos.y << " | X: " << winX << " Y: " << winY << " Z: " << winZ << std::endl;
+    return EGE::Maths::Vector3<double>(winX, winY, winZ);
+*/
+
+float Onyx::Floor::getDistance(const EGE::Maths::Vector3<float>& cameraPositon, const EGE::Maths::Vector3<float>& cameraFront) const
+{
+    return EGE::Maths::Vector3<float>(this->_position.x - cameraPositon.x, this->_position.y - cameraPositon.y, this->_position.z - cameraPositon.z).length();
+}
+
 EGE::Maths::Vector2<int> Onyx::Floor::getPos() const
 {
     return this->_pos;

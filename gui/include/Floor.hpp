@@ -11,6 +11,8 @@
 #include "Item.hpp"
 #include "Shader.hpp"
 
+#include <GL/glu.h>
+
 namespace Onyx {
     /**
      * @brief The Floor class represents a floor entity in the game.
@@ -61,6 +63,8 @@ namespace Onyx {
              * @return A vector of shared pointers to the items on the floor entity.
              */
             int getQuantity(Onyx::Item::TYPE type) const;
+
+            float getDistance(const EGE::Maths::Vector3<float>& cameraPositon, const EGE::Maths::Vector3<float>& cameraFront) const;
 
             EGE::Maths::Vector2<int> getPos() const;
 

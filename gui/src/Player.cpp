@@ -8,29 +8,32 @@
 #include "Player.hpp"
 
 std::map<std::string, Onyx::Player::Color> Onyx::Player::_colorMap = {};
+static int currentColor = 1;
 
 Onyx::Player::Player(const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName)
 {
     this->_level = 1;
     if (Player::_colorMap[teamName] == 0) {
-        Player::_colorMap[teamName] = static_cast<Color>(Player::_colorMap.size());
+        Player::_colorMap[teamName] = static_cast<Color>(currentColor++);
     }
     if (Player::_colorMap[teamName] >= Onyx::Player::Color::LAST) {
         throw Onyx::PlayerError("The GUI does not support more than " + std::to_string(static_cast<int>(Onyx::Player::Color::LAST) - 1) + " teams.");
     }
     this->_color = Player::_colorMap[teamName];
-    std::string mtl = Utils::getFileContent("./assets/models/player/lvl1/lvl1.mtl");
+    std::string mtl = Utils::getFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
     this->_setColor(mtl);
-    Utils::setFileContent("./assets/models/player/lvl1/lvl1.mtl", mtl, false);
+    Utils::setFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl, false);
     this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 2, position.y * CELL_SIZE);
+    if (rotation.size() != 1)
+        throw Onyx::PlayerError("Invalid rotation: " + rotation);
     switch (rotation[0]) {
-        case 'N':
+        case 'S':
             this->_rotation = EGE::Maths::Vector3<float>(0.0f, 0.0f, 0.0f);
             break;
         case 'E':
             this->_rotation = EGE::Maths::Vector3<float>(0.0f, 90.0f, 0.0f);
             break;
-        case 'S':
+        case 'N':
             this->_rotation = EGE::Maths::Vector3<float>(0.0f, 180.0f, 0.0f);
             break;
         case 'W':
@@ -40,7 +43,7 @@ Onyx::Player::Player(const std::string &teamName, const EGE::Maths::Vector2<int>
             throw Onyx::PlayerError("Invalid rotation: " + rotation);
             break;
     }
-    this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl1/lvl1.obj", this->_position, this->_rotation, this->_scale);
+    this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
 }
 
 Onyx::Player::~Player()
@@ -58,7 +61,7 @@ void Onyx::Player::evolve()
     std::string mtl = Utils::getFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
     this->_setColor(mtl);
     Utils::setFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl, false);
-    this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_scale);
+    this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
 }
 
 void Onyx::Player::setLevel(int level)
@@ -117,7 +120,7 @@ void Onyx::Player::_setColor(std::string &fileContent)
         newFile += "purple.png";
         break;
     case Onyx::Player::Color::CYAN:
-        newFile += "cyan.png";
+        newFile += "epitech_blue.png";
         break;
     default:
         break;

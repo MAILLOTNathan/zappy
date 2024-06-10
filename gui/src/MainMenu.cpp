@@ -7,16 +7,28 @@
 
 #include "MainMenu.hpp"
 
-Onyx::MainMenu::MainMenu()
+Onyx::MainMenu::MainMenu(const std::string& ip, int port)
 {
     this->_window = std::make_shared<EGE::Window>("Onyx", EGE::Maths::Vector2<int>(1920, 1080), EGE::Window::Styles::Close & EGE::Window::Styles::Titlebar);
     this->_window->create();
     this->_camera = std::make_shared<EGE::Camera>(EGE::Maths::Vector3<float>(7.0f, 3.0f, 7.0f), EGE::Maths::Vector3<float>(0.0f, 1.0f, 0.0f), -135.0f, 0.0f);
     this->_deltaTime = 0.0f;
     this->_interface = std::make_shared<UserInterface>();
+    if (ip == "")
+        this->_ip = "127.0.0.1";
+    else
+        this->_ip = ip;
+    if (port == 0)
+        this->_port = 4242;
+    else
+        this->_port = port;
+
     this->_window->bindWindowTrigger<GLFWwindow *>(EGE::Event::WindowTrigger::WindowClose, [this] (GLFWwindow *win) {
-        this->_window->close();
+        std::exit(0);
     });
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyEscape, EGE::Event::Mode::JustPressed, [this]() {
+        std::exit(0);
+    }));
 
     this->createMainPanel();
     this->_interface->init(this->_window.get());
@@ -34,8 +46,8 @@ void Onyx::MainMenu::createMainPanel()
     EGE::String *address = new EGE::String("Address");
     EGE::Number *port = new EGE::Number("Port");
 
-    address->setContent("127.0.0.1");
-    port->setValue(4242);
+    address->setContent(this->_ip);
+    port->setValue(this->_port);
 
     listBox->add(address, "0 Address");
     listBox->add(port, "1 Port");
