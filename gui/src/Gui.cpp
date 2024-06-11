@@ -41,9 +41,9 @@ void Onyx::Gui::createMap(int width, int height)
     this->_entities.push_back(this->_map);
 }
 
-void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
+void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, float timeUnit)
 {
-    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation));
+    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation, timeUnit));
 }
 
 void Onyx::Gui::update()
@@ -68,6 +68,7 @@ void Onyx::Gui::update()
         entity->update(this->_shader);
     }
     for (const auto& player : this->_players) {
+        player->setDelta(this->_deltaTime);
         player->update(this->_shader);
     }
     this->_interface->display();
@@ -209,7 +210,6 @@ void Onyx::Gui::loop()
             throw EGE::Error("[PPO] Invalid y position : |" + args[3] + "|.");
         }
         for (const auto& player : this->_players) {
-            std::cout << player->getId() << std::endl;
             if (player->getId() == id) {
                 player->setPos(EGE::Maths::Vector2<int>(x, y));
                 player->setRotation(args[4]);
@@ -238,6 +238,31 @@ void Onyx::Gui::loop()
             }
         }
     });
+    this->_client->addCommand("pex", net::type_command_t::PEX, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid id received in pex command : |" + args[1] + "|.");
+        }
+        for (auto &player : this->_players) {
+            // if (player->getId() == id)
+        }
+    });
+    this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("Wrong number of param.");
+        float timeUnit;
+        try {
+            timeUnit = std::stof(args[1]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid time unit received in sgt command : |" + args[1] + "|.");
+        }
+        std::cout << "Time unit received: " << timeUnit << std::endl;
+        this->_timeUnit = timeUnit;
+    });
 
     this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
         std::cout << "TNA passed" << std::endl;
@@ -251,6 +276,7 @@ void Onyx::Gui::loop()
     });
 
     this->_client->connection();
+    this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("mct\n");

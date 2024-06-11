@@ -11,7 +11,7 @@ std::map<std::string, Onyx::Player::Color> Onyx::Player::_colorMap = {};
 std::vector<std::shared_ptr<Onyx::Item>> Onyx::Player::_items = {};
 static int currentColor = 1;
 
-Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName)
+Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, float timeUnit) : _teamName(teamName)
 {
     this->_level = 1;
     memset(this->_quantity, 0, sizeof(this->_quantity));
@@ -35,6 +35,7 @@ Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vect
     Utils::setFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl, false);
     this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 2, position.y * CELL_SIZE);
     this->_pos = position;
+    this->_deltaTime = 0.0f;
     if (rotation.size() != 1)
         throw Onyx::PlayerError("Invalid rotation: " + rotation);
     this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
@@ -105,6 +106,16 @@ void Onyx::Player::right()
     }
 }
 
+void Onyx::Player::setDelta(float deltaTime)
+{
+    this->_deltaTime = deltaTime;
+}
+
+float Onyx::Player::getDelta()
+{
+    return this->_deltaTime;
+}
+
 void Onyx::Player::setLevel(int level)
 {
     this->_level = level;
@@ -133,6 +144,16 @@ void Onyx::Player::setTeamName(const std::string &teamName)
 std::string Onyx::Player::getTeamName()
 {
     return this->_teamName;
+}
+
+void Onyx::Player::setTimeUnit(int timeUnit)
+{
+    this->_timeUnit = timeUnit;
+}
+
+int Onyx::Player::getTimeUnit()
+{
+    return this->_timeUnit;
 }
 
 int Onyx::Player::getQuantity(Onyx::Item::TYPE type)
