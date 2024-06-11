@@ -229,7 +229,6 @@ void Onyx::Gui::loop()
             // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::PHIRAS) << " phiras" << std::endl;
             // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::THYSTAME) << " thystame" << std::endl;
         }
-        // this->updatePlayerPanel();
     });
     this->_client->connection();
     this->_client->sendRequest("msz\n");
