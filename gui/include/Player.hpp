@@ -11,6 +11,7 @@
 #include "Entity.hpp"
 #include "Error.hpp"
 #include "Map.hpp"
+#include "Movement.hpp"
 #include "Utils.hpp"
 
 #include <regex>
@@ -35,7 +36,19 @@ namespace Onyx {
                 CYAN,
                 LAST
             };
-            Player(int id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation);
+            enum Animation {
+                FORWARD_NORTH = 0,
+                LEFT,
+                RIGHT,
+                BROADCAST,
+                INCANTATION,
+                EXPULSE,
+                FORWARD_EAST,
+                FORWARD_SOUTH,
+                FORWARD_WEST,
+                MAX
+            };
+            Player(int id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, float timeUnit);
             ~Player();
 
             void update(std::shared_ptr<EGE::Shader> shader) override;
@@ -61,7 +74,13 @@ namespace Onyx {
             void setPos(EGE::Maths::Vector2<int> pos);
             EGE::Maths::Vector2<int> getPos();
 
+            void setTimeUnit(int timeUnit);
+            int getTimeUnit();
+
             int getId();
+
+            void setDelta(float deltaTime);
+            float getDelta();
 
             int getQuantity(Onyx::Item::TYPE type);
 
@@ -80,5 +99,7 @@ namespace Onyx {
             EGE::Maths::Vector3<float> _rotation;
             std::string _rotationString;
             const EGE::Maths::Vector3<float> _scale = {0.2f, 0.2f, 0.2f};
+            float _timeUnit;
+            float _deltaTime;
     };
 }

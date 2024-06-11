@@ -55,7 +55,7 @@ namespace Onyx {
             */
             void createMap(int width, int height);
 
-            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation);
+            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, float timeUnit);
 
             std::shared_ptr<Onyx::Map> getMap();
 
@@ -147,5 +147,6 @@ namespace Onyx {
             net::TcpClient *_client;
             std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
             bool _cameraMode;                               /**< A boolean that indicates whether the camera mode is enabled. */
+            float _timeUnit;                                  /**< The time unit. */
     };
 }

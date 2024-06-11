@@ -39,9 +39,9 @@ void Onyx::Gui::createMap(int width, int height)
     this->_entities.push_back(this->_map);
 }
 
-void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation)
+void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, float timeUnit)
 {
-    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation));
+    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation, timeUnit));
 }
 
 void Onyx::Gui::update()
@@ -65,6 +65,7 @@ void Onyx::Gui::update()
         entity->update(this->_shader);
     }
     for (const auto& player : this->_players) {
+        player->setDelta(this->_deltaTime);
         player->update(this->_shader);
     }
     this->_interface->display();
@@ -121,7 +122,7 @@ void Onyx::Gui::loop()
             throw EGE::Error("Invalid level received in pnw command : |" + args[5] + "|.");
         }
 
-        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4]);
+        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], this->_timeUnit);
         // this->updatePlayerPanel();
     });
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
@@ -195,7 +196,6 @@ void Onyx::Gui::loop()
             throw EGE::Error("Invalid y position received in ppo command : |" + args[3] + "|.");
         }
         for (const auto& player : this->_players) {
-            std::cout << player->getId() << std::endl;
             if (player->getId() == id) {
                 player->setPos(EGE::Maths::Vector2<int>(x, y));
                 player->setRotation(args[4]);
@@ -234,7 +234,33 @@ void Onyx::Gui::loop()
         }
         // this->updatePlayerPanel();
     });
+    this->_client->addCommand("pex", net::type_command_t::PEX, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid id received in pex command : |" + args[1] + "|.");
+        }
+        for (auto &player : this->_players) {
+            // if (player->getId() == id)
+        }
+    });
+    this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("Wrong number of param.");
+        float timeUnit;
+        try {
+            timeUnit = std::stof(args[1]);
+        } catch (std::exception &e) {
+            throw EGE::Error("Invalid time unit received in sgt command : |" + args[1] + "|.");
+        }
+        std::cout << "Time unit received: " << timeUnit << std::endl;
+        this->_timeUnit = timeUnit;
+    });
     this->_client->connection();
+    this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("mct\n");
     this->_client->sendRequest("sgt\n");
@@ -438,7 +464,7 @@ void Onyx::Gui::updatePlayerPanel()
     // inventory->get("mendiane")->setName("Mendiane: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::MENDIANE)));
     // inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::PHIRAS)));
     // inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getInventory().at(Onyx::Item::TYPE::THYSTAME));
-    
+
 }
 
 // void Onyx::Gui::updatePlayerPanel()
