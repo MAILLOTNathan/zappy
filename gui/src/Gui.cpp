@@ -91,6 +91,7 @@ void Onyx::Gui::loop()
         this->createConsolePanel();
         this->updateConsolePanel(args);
     });
+
     this->_client->addCommand("pnw", net::type_command_t::PNW, [this](std::vector<std::string>& args) {
         if (args.size() != 7)
             throw EGE::Error("Wrong number of param.");
@@ -123,8 +124,8 @@ void Onyx::Gui::loop()
         }
 
         this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4]);
-        // this->updatePlayerPanel();
     });
+
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
             throw EGE::Error("Wrong number of param.");
@@ -140,11 +141,13 @@ void Onyx::Gui::loop()
         this->updateTilePanel();
         this->updateConsolePanel(args);
     });
+
     this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
         if (args.size() != 2)
             throw EGE::Error("Wrong number of param.");
         this->updateWorldSettings(std::stof(args[1]));
     });
+
     this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
         if (args.size() != 3)
             throw EGE::Error("Wrong number of param.");
@@ -174,6 +177,7 @@ void Onyx::Gui::loop()
                 break;
         }
     });
+
     this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args) {
         if (args.size() != 5)
             throw EGE::Error("Wrong number of param.");
@@ -222,15 +226,9 @@ void Onyx::Gui::loop()
             if (player->getId() == std::stoi(args[1])) {
                 this->updatePlayerPanel(player);
             }
-            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::FOOD) << " food" << std::endl;
-            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::LINEMATE) << " linemate" << std::endl;
-            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::DERAUMERE) << " deraumere" << std::endl;
-            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::SIBUR) << " sibur" << std::endl;
-            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::MENDIANE) << " mendiane" << std::endl;
-            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::PHIRAS) << " phiras" << std::endl;
-            // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::THYSTAME) << " thystame" << std::endl;
         }
     });
+
     this->_client->connection();
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("mct\n");
@@ -436,20 +434,6 @@ void Onyx::Gui::updatePlayerPanel(std::shared_ptr<Onyx::Player> &player)
     inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::PHIRAS)));
     inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getQuantity(Onyx::Item::TYPE::THYSTAME)));
 }
-
-// void Onyx::Gui::updatePlayerPanel()
-// {
-//     EGE::ListBox *inventory = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Trantorian"]->get("Inventory"));
-//     Onyx::Player *player = this->_map->getPlayer().at(0).get();
-
-//     inventory->get("food")->setName("Food: " + std::to_string(player->getInventory().at(Onyx::Item::FOOD)));
-//     inventory->get("linemate")->setName("Linemate: " + std::to_string(player->getInventory().at(Onyx::Item::LINEMATE)));
-//     inventory->get("deraumere")->setName("Deraumere: " + std::to_string(player->getInventory().at(Onyx::Item::DERAUMERE)));
-//     inventory->get("sibur")->setName("Sibur: " + std::to_string(player->getInventory().at(Onyx::Item::SIBUR)));
-//     inventory->get("mendiane")->setName("Mendiane: " + std::to_string(player->getInventory().at(Onyx::Item::MENDIANE)));
-//     inventory->get("phiras")->setName("Phiras: " + std::to_string(player->getInventory().at(Onyx::Item::PHIRAS)));
-//     inventory->get("thystame")->setName("Thystame: " + std::to_string(player->getInventory().at(Onyx::Item::THYSTAME)));
-// }
 
 void Onyx::Gui::createTilePanel()
 {
