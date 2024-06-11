@@ -77,7 +77,7 @@ class food_collector:
             res = response.split('\n')
             print(res)
             data = self.conn.read_line()
-            while data.decode().find("level"):
+            while data.decode().find("level") or data.decode().find("ko"):
                 data = self.conn.read_line()
                 data = self.broadcast_parse(data)
             return data
@@ -101,7 +101,9 @@ class food_collector:
 
     def get_food(self):
         response = self.conn.send_request('Inventory')
+        response = self.elevate_parse(response)
         response = self.broadcast_parse(response)
+        response = self.elevate_parse(response)
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
@@ -250,22 +252,27 @@ def find_path(direction : list, quantity, obj : str, ai: food_collector):
         print(obj + " taken")
         ai.inventory[obj] = ai.inventory[obj] + 1
 
-
 def main():
+    a = 0
     bot : food_collector = food_collector()
     check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
 
     while True:
+        print("COLLECTOR LEVEL IS : ", bot.level)
+        if a == 1:
+            response = bot.elevate_parse(response)
         response = bot.conn.send_request('Look')
         response = bot.elevate_parse(response)
         response = bot.broadcast_parse(response)
+        response = bot.elevate_parse(response)
         if response == None or response == 'done':
             return
         map = parse_look(response.decode())
         bot.get_food()
         bot.priority_guide(map)
+        a = 1
 
 if __name__ == "__main__":
     main()

@@ -88,7 +88,7 @@ class evolver:
             res = response.split('\n')
             print(res)
             data = self.conn.read_line()
-            while data.decode().find("level"):
+            while data.decode().find("level") or data.decode().find("ko"):
                 data = self.conn.read_line()
                 data = self.broadcast_parse(data)
             return data
@@ -214,6 +214,7 @@ def main():
     bot.conn.connect_to_server(bot.team_name)
 
     while True:
+        print("EVOLVER LEVEL IS : ", bot.level)
         print("0")
         response = bot.conn.send_request('Look')
         response = bot.broadcast_parse(response)

@@ -26,6 +26,21 @@ class TuringAI:
     children = 0
     collector = 0
 
+    def elevate_parse(self, conn, response):
+        if response is None:
+            exit(84)
+        if "Elevation" in response.decode():
+            response = response.decode()
+            res = response.split('\n')
+            print(res)
+            data = conn.read_line()
+            print("LA DATA DE FDP", data)
+            while data.decode().find("level") or data.decode().find("ko"):
+                data = conn.read_line()
+                data = self.broadcast_parse(data)
+            return data
+        return response
+
     def check_level_up(self, res):
         """
         Check if the player meets the requirements to level up.
@@ -79,6 +94,7 @@ class TuringAI:
             int: The amount of food in the inventory.
         """
         response = conn.send_request('Inventory')
+        response = self.elevate_parse(conn, response)
         if response == None or response == 'done':
             return
         print(response)
@@ -117,6 +133,7 @@ class TuringAI:
         """
         try:
             available_conn = conn.send_request("Connect_nbr")
+            available_conn = self.elevate_parse(conn, available_conn)
             self.children = conn.conn_num - int(available_conn.decode())
             print("apres con_nb")
         except:
@@ -124,6 +141,7 @@ class TuringAI:
 
     def basic_ia(self, conn):
         while True:
+            print("DARONNE LEVEL IS : ", self.level)
             if self.level == 1:
                 for i in range(0,4):
                     if self.level != 1:
@@ -144,17 +162,20 @@ class TuringAI:
             else:
                 self.update_children(conn)
                 res = conn.send_request("Look")
+                self.elevate_parse(conn, res)
                 look = parse_look(res, self, "food")
                 if self.inventory['food'] < 5 and look[0][1].count('food') != 0:
                     res = conn.send_request("Take food")
+                    self.elevate_parse(conn, res)
                 elif self.check_level_up(res) == True:
-                    conn.send_request("Broadcast " + broadcast_needed(self))
                     self.do_incantation(conn)
                 elif self.can_fork(conn) == True:
                     conn.send_request("Broadcast " + broadcast_needed(self))
+                    self.elevate_parse(conn, res) 
                     launch_new_instance(self, look, conn)
                 if self.collector >= 1:
                     conn.send_request("Broadcast " + broadcast_needed(self))
+                    self.elevate_parse(conn, res)
                 self.get_food(conn)
 
     def __init__(self):
@@ -320,7 +341,8 @@ def launch_new_instance(self, map, conn):
             process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
             process.wait()
     if map[0][1].count('food') == 0:
-        conn.send_request("Fork")
+        res = conn.send_request("Fork")
+        self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
@@ -331,13 +353,13 @@ def launch_new_instance(self, map, conn):
     #    print("made an evolver child")
     #    thread = threading.Thread(target=run_subprocess, args=(command,))
     #    thread.start()
-    elif self.collector < 1:
-        conn.send_request("Fork")
-        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made a collector child")
-        self.collector += 1
-        thread = threading.Thread(target=run_subprocess, args=(command,))
-        thread.start()
+    # elif self.collector < 1:
+    #     conn.send_request("Fork")
+    #     command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+    #     print("made a collector child")
+    #     self.collector += 1
+    #     thread = threading.Thread(target=run_subprocess, args=(command,))
+    #     thread.start()
 
 def main():
     """
