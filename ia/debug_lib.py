@@ -66,9 +66,9 @@ class ServerConnection:
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
         print(repr(data))
-        self.get_con_num(data)
-        data = self.s.recv(1024)
-        print(repr(data)) 
+        #self.get_con_num(data)
+        #data = self.s.recv(1024)
+        #print(repr(data)) 
 
 
     def send_request(self, request):
@@ -87,7 +87,16 @@ class ServerConnection:
             print("AI request: ", request)
             try:
                 self.s.send((request + "\n").encode())
-                data = self.s.recv(1024)
+                buffer = []
+                while True:
+                    data = self.s.recv(1)
+                    if not data:
+                        break
+                    if data == b'\n':
+                        break
+                    buffer.append(data)
+                data = b''.join(buffer)
+
                 print(repr(data))
                 if data == b"dead\n":
                     print("AI is dead.")
@@ -95,3 +104,17 @@ class ServerConnection:
                 return data
             except:
                 print("Error: Connection to server lost.")
+    
+    def read_line(self):
+        buffer = []
+        while True:
+            data = self.s.recv(1)
+            if not data:
+                break
+            if data == b'\n':
+                break
+            buffer.append(data)
+        data = b''.join(buffer)
+        return data
+        
+    

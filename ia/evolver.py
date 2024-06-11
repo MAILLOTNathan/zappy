@@ -79,6 +79,56 @@ class evolver:
             if box_zero.count(item) < requirements[item]:
                 return False
         return True
+    
+    def elevation_parse(self, response):
+        if response is None:
+            exit(84)
+        if "Elevation" in response.decode():
+            response = response.decode()
+            res = response.split('\n')
+            print(res)
+            data = self.conn.read_line()
+            while data.decode().find("level"):
+                data = self.conn.read_line()
+                data = self.broadcast_parse(data)
+            return data
+        return response
+
+    def do_incantation(self, conn):
+        """
+        Perform the incantation action.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        data = conn.send_request("Incantation")
+        data = self.broadcast_parse(data)
+        if "Elevation underway" in data.decode():
+            self.level += 1
+            print(data.decode(),"apres inc")
+            data = conn.s.recv(1024)
+            data = self.broadcast_parse(data)
+            return data
+
+    def broadcast_parse(self, response):
+        if response == None:
+            exit(0)
+        if "message" in response.decode():
+            response = response.decode()
+            res = response.split('\n')
+            self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
+            result = res[0].split(' ')
+            print("-----------",result)
+            self.signal_angle = int(result[1].split(',')[0])
+            self.wait = False
+            data = self.conn.read_line()
+            print(data.decode(),"------------")
+            data = self.broadcast_parse(data)
+            return data
+        return response
 
 def parse_look(response):
     """
@@ -90,6 +140,7 @@ def parse_look(response):
     Returns:
         str: The direction where there is the most food.
     """
+    print(response)
     tiles = response.strip('[]').split(',')
     if len(tiles) == 1:
         return []
@@ -163,23 +214,40 @@ def main():
     bot.conn.connect_to_server(bot.team_name)
 
     while True:
+        print("0")
         response = bot.conn.send_request('Look')
+        response = bot.broadcast_parse(response)
+        print("zzzz")
+        response = bot.elevation_parse(response)
         if response == None or response == 'done':
             return
-        
+        print("1", response)
         map = parse_look(response.decode())
-        if bot.check_level_up(map[0]) == True:
-            bot.conn.send_request("Incantation")
+        print(map)
+        print("2")
+        if bot.check_level_up(map[0][1]) == True:
+            res = bot.do_incantation(bot.conn)
+            print(res.decode(), "@@@@@@@@@@@@")
+            res = bot.broadcast_parse(res)
+            response = bot.elevation_parse(res)
+            continue
+        print("3")
         response = bot.conn.send_request('Inventory')
+        response = bot.broadcast_parse(response)
+        response = bot.elevation_parse(response)
+        print("4")
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
-        response = response.split(']')[0]
+        print(response)
+        #response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
         response = [int(component.split()[1]) for component in response]
         if response[0] < 5 :
             response = bot.conn.send_request('Take food')
+            response = bot.broadcast_parse(response)
+            response = bot.elevation_parse(response)
     return 0
 
 if __name__ == "__main__":

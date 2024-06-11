@@ -1,2 +1,1 @@
-echo "Hello, world!"
-echo "YES !"
+make -C server/

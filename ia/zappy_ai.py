@@ -83,9 +83,10 @@ class TuringAI:
             return
         print(response)
         response = response.decode().strip('[]')
-        response = response.split(']')[0]
+        #response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
+        print(response)
         response = [int(component.split()[1]) for component in response]
         self.inventory['food'] = response[0]
 
@@ -147,10 +148,12 @@ class TuringAI:
                 if self.inventory['food'] < 5 and look[0][1].count('food') != 0:
                     res = conn.send_request("Take food")
                 elif self.check_level_up(res) == True:
-                    self.do_incantation(self, conn)
+                    conn.send_request("Broadcast " + broadcast_needed(self))
+                    self.do_incantation(conn)
                 elif self.can_fork(conn) == True:
+                    conn.send_request("Broadcast " + broadcast_needed(self))
                     launch_new_instance(self, look, conn)
-                if self.collector >= 3:
+                if self.collector >= 1:
                     conn.send_request("Broadcast " + broadcast_needed(self))
                 self.get_food(conn)
 
@@ -270,7 +273,7 @@ def get_direction(x,y):
 def broadcast_needed(bot: TuringAI):
     add = ''
     for i in bot.level_requirements[bot.level]:
-        if i != 'food':
+        if i != 'player':
             for y in range(bot.level_requirements[bot.level][i]):
                 add += i
     return add
@@ -328,7 +331,7 @@ def launch_new_instance(self, map, conn):
     #    print("made an evolver child")
     #    thread = threading.Thread(target=run_subprocess, args=(command,))
     #    thread.start()
-    elif self.collector < 3:
+    elif self.collector < 1:
         conn.send_request("Fork")
         command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a collector child")

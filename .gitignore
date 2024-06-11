@@ -1,11 +1,11 @@
 # Prerequisites
 *.d
+*.log
 
 # Compiled Object files
 *.slo
 *.lo
 *.o
-*.obj
 
 # Precompiled Headers
 *.gch
@@ -30,3 +30,14 @@
 *.exe
 *.out
 *.app
+
+# Unit test output
+*.xml
+*.gcov
+*.gcda
+*.gcno
+unit_tests
+
+.vscode
+
+zappy_server

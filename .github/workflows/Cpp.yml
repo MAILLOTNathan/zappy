@@ -32,8 +32,35 @@ jobs:
       run: |
         ./build.sh
 
+  check_coding_style:
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.4.0
+        with:
+          fetch-depth: 0
+      - run: check.sh $(pwd) $(pwd)
+      - run: cat coding-style-reports.log
+      - run: |
+          if [ -s coding-style-reports.log ]
+          then
+            echo "::group::Annotation"
+            input=coding-style-reports.log
+            exitcode=0
+            while IFS= read -r line
+            do
+              if ! echo $line | grep "tests" && ! echo $line | grep "gui"
+              then
+                echo "::error:: $line"
+                exitcode=1
+              fi
+            done < "$input"
+            exit $exitcode
+          fi
+
   push_to_mirror:
-    needs: [build]
+    needs: [build, check_coding_style]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.4.0
