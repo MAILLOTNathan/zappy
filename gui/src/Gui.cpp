@@ -84,7 +84,7 @@ void Onyx::Gui::loop()
 {
     this->_client->addCommand("msz", net::type_command_t::MSZ, [this](std::vector<std::string>& args) {
         if (args.size() != 3)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[MSZ] Wrong number of param.");
         this->createMap(std::stoi(args[1]), std::stoi(args[2]));
         this->createWorldPanel();
         this->createTilePanel();
@@ -95,7 +95,7 @@ void Onyx::Gui::loop()
 
     this->_client->addCommand("pnw", net::type_command_t::PNW, [this](std::vector<std::string>& args) {
         if (args.size() != 7)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[PNW] Wrong number of param.");
         // 1: player id (need to remove the #)
         // 2: x pos
         // 3: y pos
@@ -106,22 +106,22 @@ void Onyx::Gui::loop()
         try {
             id = std::stoi(args[1].erase(0, 1));
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid id received in pnw command : |" + args[1] + "|.");
+            throw EGE::Error("[PNW] Invalid id received : |" + args[1] + "|.");
         }
         try {
             x = std::stoi(args[2]);
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid x position received in pnw command : |" + args[2] + "|.");
+            throw EGE::Error("[PNW] Invalid x position received : |" + args[2] + "|.");
         }
         try {
             y = std::stoi(args[3]);
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid y position received in pnw command : |" + args[3] + "|.");
+            throw EGE::Error("[PNW] Invalid y position received : |" + args[3] + "|.");
         }
         try {
             level = std::stoi(args[5]);
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid level received in pnw command : |" + args[5] + "|.");
+            throw EGE::Error("[PNW] Invalid level received : |" + args[5] + "|.");
         }
 
         this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4]);
@@ -129,7 +129,7 @@ void Onyx::Gui::loop()
 
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
         if (args.size() != 10)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[BCT] Wrong number of param.");
         EGE::Maths::Vector2<int> position(std::stoi(args[1]), std::stoi(args[2]));
         this->_map->addItem(position, Onyx::Item::TYPE::FOOD, std::stoi(args[3]));
         this->_map->addItem(position, Onyx::Item::TYPE::LINEMATE, std::stoi(args[4]));
@@ -145,13 +145,13 @@ void Onyx::Gui::loop()
 
     this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
         if (args.size() != 2)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[SGT] Wrong number of param.");
         this->updateWorldSettings(std::stof(args[1]));
     });
 
     this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
         if (args.size() != 3)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[IDM] Wrong number of param.");
         for (const auto& arg : args)
             std::cout << arg << std::endl;
         int id = std::stoi(args[1]);
@@ -174,31 +174,31 @@ void Onyx::Gui::loop()
                 }
                 break;
             default:
-                throw EGE::Error("Invalid change received in idm command : |" + args[2] + "|.");
+                throw EGE::Error("[IDM] Invalid change received : |" + args[2] + "|.");
                 break;
         }
     });
 
     this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args) {
         if (args.size() != 5)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[PPO] Wrong number of param.");
         for (const auto& arg : args)
             std::cout << arg << std::endl;
         int id, x, y;
         try {
             id = std::stoi(args[1].substr(1));
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid id received in ppo command : |" + args[1] + "|.");
+            throw EGE::Error("[PPO] Invalid id : |" + args[1] + "|.");
         }
         try {
             x = std::stoi(args[2]);
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid x position received in ppo command : |" + args[2] + "|.");
+            throw EGE::Error("[PPO] Invalid x position : |" + args[2] + "|.");
         }
         try {
             y = std::stoi(args[3]);
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid y position received in ppo command : |" + args[3] + "|.");
+            throw EGE::Error("[PPO] Invalid y position : |" + args[3] + "|.");
         }
         for (const auto& player : this->_players) {
             std::cout << player->getId() << std::endl;
@@ -211,7 +211,7 @@ void Onyx::Gui::loop()
 
     this->_client->addCommand("pin", net::type_command_t::PIN, [this](std::vector<std::string>& args) {
         if (args.size() != 11)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[PIN] Wrong number of param.");
         for (auto &player : this->_players) {
             if (player->getId() == std::stoi(args[1].erase(0, 1))) {
                 player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
@@ -231,8 +231,8 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
-        if (args.size() != 3)
-            throw EGE::Error("Wrong number of param.");
+        if (args.size() != 2)
+            throw EGE::Error("[TNA] Wrong number of param.");
         for (auto &teams: args) {
             this->_teams.push_back(teams);
         }
