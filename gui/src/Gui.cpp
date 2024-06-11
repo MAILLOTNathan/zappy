@@ -23,6 +23,7 @@ Onyx::Gui::Gui(net::TcpClient client)
 
     this->_cameraMode = true;
     this->createMenuBar();
+    this->createTutorial();
 
     this->_tileSelected = 0;
     this->_client = &client;
@@ -101,7 +102,7 @@ void Onyx::Gui::loop()
         // 6: team name
         int id, x, y, level;
         try {
-            id = std::stoi(args[1].substr(1));
+            id = std::stoi(args[1].erase(0, 1));
         } catch (std::exception &e) {
             throw EGE::Error("Invalid id received in pnw command : |" + args[1] + "|.");
         }
@@ -207,7 +208,7 @@ void Onyx::Gui::loop()
         if (args.size() != 11)
             throw EGE::Error("Wrong number of param.");
         for (auto &player : this->_players) {
-            if (player->getID() == std::stoi(args[1].erase(0, 1))) {
+            if (player->getId() == std::stoi(args[1].erase(0, 1))) {
                 player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
                 player->setInventory(std::stoi(args[5]), Onyx::Item::TYPE::LINEMATE);
                 player->setInventory(std::stoi(args[6]), Onyx::Item::TYPE::DERAUMERE);
@@ -218,7 +219,7 @@ void Onyx::Gui::loop()
             }
         }
         for (auto &player : this->_players) {
-            if (player->getID() == std::stoi(args[1].erase(0, 1))) {
+            if (player->getId() == std::stoi(args[1])) {
                 this->updatePlayerPanel(player);
             }
             // std::cout << "Player " << player->getID() << " has " << player->getQuantity(Onyx::Item::TYPE::FOOD) << " food" << std::endl;
@@ -238,7 +239,7 @@ void Onyx::Gui::loop()
     while (this->isRunning()) {
         this->_client->waitEvent();
         for (auto &player : this->_players) {
-            this->_client->sendRequest("pin #" + std::to_string(player->getID()) + "\n");
+            this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
         }
         this->update();
     }
@@ -584,23 +585,15 @@ void Onyx::Gui::createMenuBar()
     EGE::Menu *help = new EGE::Menu("Help");
 
     help->add(new EGE::Item("Launch Tutorial", [this] () {
-        std::cout << "Tutorial" << std::endl;
+        this->_interface->_panels["Tutorial"]->setVisible(true);
     }), "0 Tutorial");
 
     EGE::Panel *helpPanel = new EGE::Panel("Shortcuts");
-    EGE::ListBox *hcam = new EGE::ListBox("Camera");
     EGE::Button *done = new EGE::Button("Done", [this] () {
         this->_interface->_panels["Shortcuts"]->setVisible(false);
     });
 
-    // TODO:
-    // Add a config file to store shortcuts
-    hcam->add(new EGE::Text("Z || W: Move forward"), "0 Forward");
-    hcam->add(new EGE::Text("S: Move backward"), "1 Backward");
-    hcam->add(new EGE::Text("Q || A: Move left"), "2 Left");
-    hcam->add(new EGE::Text("D: Move right"), "3 Right");
-
-    helpPanel->add(hcam, "0 Camera");
+    helpPanel->add(new EGE::Text(Utils::getFileContent("./assets/tutorial/shortcuts.txt")), "0 Shortcuts");
     helpPanel->add(done, "1 Done");
     helpPanel->setVisible(false);
 
@@ -618,7 +611,108 @@ void Onyx::Gui::createTutorial()
 {
     EGE::Panel *main = new EGE::Panel("Tutorial");
     EGE::Text *mainDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/main.txt"));
+    EGE::Button *mainDone = new EGE::Button("Lets do it !", [this] () {
+        this->_interface->_panels["Tutorial"]->setVisible(false);
+        this->_interface->_panels["Camera tutorial"]->setVisible(true);
+    });
 
     main->add(mainDescription, "0 Main");
+    main->add(mainDone, "1 Done");
+    main->setVisible(false);
     this->_interface->_panels["Tutorial"] = main;
+
+    EGE::Panel *camera = new EGE::Panel("Camera tutorial");
+    EGE::Text *cameraDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/camera.txt"));
+    EGE::Button *cameraDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["Camera tutorial"]->setVisible(false);
+        this->_interface->_panels["Settings tutorial"]->setVisible(true);
+    });
+
+    camera->add(cameraDescription, "0 Camera");
+    camera->add(cameraDone, "1 Done");
+    camera->setVisible(false);
+    this->_interface->_panels["Camera tutorial"] = camera;
+
+    EGE::Panel *settings = new EGE::Panel("Settings tutorial");
+    EGE::Text *settingsDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/settings.txt"));
+    EGE::Button *settingsDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["Settings tutorial"]->setVisible(false);
+        this->_interface->_panels["Music tutorial"]->setVisible(true);
+    });
+
+    settings->add(settingsDescription, "0 Settings");
+    settings->add(settingsDone, "1 Done");
+    settings->setVisible(false);
+    this->_interface->_panels["Settings tutorial"] = settings;
+
+    EGE::Panel *music = new EGE::Panel("Music tutorial");
+    EGE::Text *musicDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/music.txt"));
+    EGE::Button *musicDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["Music tutorial"]->setVisible(false);
+        this->_interface->_panels["Help tutorial"]->setVisible(true);
+    });
+
+    music->add(musicDescription, "0 Music");
+    music->add(musicDone, "1 Done");
+    music->setVisible(false);
+    this->_interface->_panels["Music tutorial"] = music;
+
+    EGE::Panel *help = new EGE::Panel("Help tutorial");
+    EGE::Text *helpDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/help.txt"));
+    EGE::Button *helpDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["Help tutorial"]->setVisible(false);
+        this->_interface->_panels["World tutorial"]->setVisible(true);
+    });
+
+    help->add(helpDescription, "0 Help");
+    help->add(helpDone, "1 Done");
+    help->setVisible(false);
+    this->_interface->_panels["Help tutorial"] = help;
+
+    EGE::Panel *world = new EGE::Panel("World tutorial");
+    EGE::Text *worldDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/world.txt"));
+    EGE::Button *worldDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["World tutorial"]->setVisible(false);
+        this->_interface->_panels["Trantorian tutorial"]->setVisible(true);
+    });
+
+    world->add(worldDescription, "0 World");
+    world->add(worldDone, "1 Done");
+    world->setVisible(false);
+    this->_interface->_panels["World tutorial"] = world;
+
+    EGE::Panel *trantorian = new EGE::Panel("Trantorian tutorial");
+    EGE::Text *trantorianDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/trantorian.txt"));
+    EGE::Button *trantorianDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["Trantorian tutorial"]->setVisible(false);
+        this->_interface->_panels["Tile tutorial"]->setVisible(true);
+    });
+
+    trantorian->add(trantorianDescription, "0 Trantorian");
+    trantorian->add(trantorianDone, "1 Done");
+    trantorian->setVisible(false);
+    this->_interface->_panels["Trantorian tutorial"] = trantorian;
+
+    EGE::Panel *tile = new EGE::Panel("Tile tutorial");
+    EGE::Text *tileDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/tile.txt"));
+    EGE::Button *tileDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["Tile tutorial"]->setVisible(false);
+        this->_interface->_panels["Console tutorial"]->setVisible(true);
+    });
+
+    tile->add(tileDescription, "0 Tile");
+    tile->add(tileDone, "1 Done");
+    tile->setVisible(false);
+    this->_interface->_panels["Tile tutorial"] = tile;
+
+    EGE::Panel *console = new EGE::Panel("Console tutorial");
+    EGE::Text *consoleDescription = new EGE::Text(Utils::getFileContent("./assets/tutorial/console.txt"));
+    EGE::Button *consoleDone = new EGE::Button("Done !", [this] () {
+        this->_interface->_panels["Console tutorial"]->setVisible(false);
+    });
+
+    console->add(consoleDescription, "0 Console");
+    console->add(consoleDone, "1 Done");
+    console->setVisible(false);
+    this->_interface->_panels["Console tutorial"] = console;
 }

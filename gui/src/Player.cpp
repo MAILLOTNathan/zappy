@@ -154,14 +154,6 @@ void Onyx::Player::setInventory(int quantity, Onyx::Item::TYPE type)
 //     }
 // }
 
-Onyx::Player::getItems(Onyx::Item::TYPE type)
-{
-    for (auto &item : this->_items) {
-        if (item->getType() == type)
-            return *item;
-    }
-}
-
 void Onyx::Player::_setColor(std::string &fileContent)
 {
     std::string newFile = "../colors/";

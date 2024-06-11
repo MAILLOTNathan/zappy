@@ -1,0 +1,23 @@
+Here you can do many things to customize the experience.
+
+WORLD :
+    Here you can change the *frequency* of the Amber world.
+
+CAMERA :
+    But you can also customize how you see the world !
+
+    If you are a FPS harcore player, don't worry about the DPI of your mouse.
+    You can configure it here !
+
+    And if you are here just to enjoy life, you can enable the cinematic mode !
+    (WIP)
+
+DISCONNECT :
+    The simulation is not funny enough ? Don't panic, you can choose another
+    one be disconnecting to the current session.
+
+QUIT :
+    But maybe Amber is boring for you...
+    It hurts but we hope to see you later... Bye !
+
+You don't think it's silent ? Let's play some music !
