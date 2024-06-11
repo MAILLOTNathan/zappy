@@ -27,6 +27,7 @@ Onyx::Gui::Gui(net::TcpClient client)
 
     this->_tileSelected = 0;
     this->_client = &client;
+    this->_teams = {};
 }
 
 Onyx::Gui::~Gui()
@@ -229,10 +230,24 @@ void Onyx::Gui::loop()
         }
     });
 
+    this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("Wrong number of param.");
+        for (auto &teams: args) {
+            this->_teams.push_back(teams);
+        }
+        this->updateWorldPanel();
+    });
+
     this->_client->connection();
     this->_client->sendRequest("msz\n");
-    this->_client->sendRequest("mct\n");
     this->_client->sendRequest("sgt\n");
+    this->_client->sendRequest("bct\n");
+    this->_client->sendRequest("pnw\n");
+    this->_client->sendRequest("pin\n");
+    this->_client->sendRequest("tna\n");
+    this->_client->sendRequest("ppo\n");
+    this->_client->sendRequest("idm\n");
 
     while (this->isRunning()) {
         this->_client->waitEvent();
@@ -310,11 +325,14 @@ void Onyx::Gui::createWorldPanel()
     EGE::Panel *panel = new EGE::Panel("Amber World");
     EGE::ListBox *dimensions = new EGE::ListBox("Dimensions");
 
+    EGE::ListBox *teams = new EGE::ListBox("Teams");
+
     EGE::Maths::Vector2<int> size = this->_map->getSize();
     dimensions->add(new EGE::Text("Width: " + std::to_string(size.x)), "width");
     dimensions->add(new EGE::Text("Height: " + std::to_string(size.y)), "height");
 
     panel->add(dimensions, "dimensions");
+    panel->add(teams, "teams");
 
     EGE::ListBox *content = new EGE::ListBox("Content");
     std::map<std::string, int> items = {};
@@ -346,13 +364,6 @@ void Onyx::Gui::createWorldPanel()
 
     panel->add(content, "content");
 
-    // EGE::ListBox *Teams = new EGE::ListBox("Teams");
-    // //send request to serveur for the teams names
-    // Teams->add(new EGE::Text("Team 1"));
-    // Teams->add(new EGE::Text("Team 2"));
-
-    // panel->add(Teams, "teams");
-
     this->_interface->_panels["Amber World"] = panel;
 }
 
@@ -360,6 +371,7 @@ void Onyx::Gui::updateWorldPanel()
 {
     EGE::ListBox *dimensions = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("dimensions"));
     EGE::ListBox *content = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("content"));
+    EGE::ListBox *teams = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("teams"));
     EGE::Maths::Vector2<int> size = this->_map->getSize();
     std::map<std::string, int> items = {};
 
@@ -379,6 +391,17 @@ void Onyx::Gui::updateWorldPanel()
         items["Mendiane"] += floor->getQuantity(Onyx::Item::TYPE::MENDIANE);
         items["Phiras"] += floor->getQuantity(Onyx::Item::TYPE::PHIRAS);
         items["Thystame"] += floor->getQuantity(Onyx::Item::TYPE::THYSTAME);
+    }
+
+    for (const auto& team : this->_teams) {
+        teams->add(new EGE::ListBox(team), team);
+        for (const auto& player : this->_players) {
+            if (player->getTeamName() == team) {
+                teams->add(new EGE::Button("Player #" + std::to_string(player->getId()), [this, player]() {
+                    this->_camera->setPosition(EGE::Maths::Vector3<float>(player->getPosition().x, 3.0f, player->getPosition().y));
+                }), "Player #" + std::to_string(player->getId()));
+            }
+        }
     }
 
     dimensions->get("width")->setName("Width: " + std::to_string(size.x));

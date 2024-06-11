@@ -1,9 +1,7 @@
-/*
-** EPITECH PROJECT, 2024
-** gui
-** File description:
-** Gui
-*/
+/**
+ * @file Gui.hpp
+ * @brief Contains the declaration of the Gui class.
+ */
 
 #pragma once
 
@@ -55,8 +53,19 @@ namespace Onyx {
             */
             void createMap(int width, int height);
 
+            /**
+             * @brief Adds a player to the graphical user interface.
+             * @param id The ID of the player.
+             * @param position The position of the player.
+             * @param teamName The name of the team the player belongs to.
+             * @param rotation The rotation of the player.
+             */
             void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation);
 
+            /**
+             * @brief Gets the map.
+             * @return A shared pointer to the map object.
+             */
             std::shared_ptr<Onyx::Map> getMap();
 
             /**
@@ -65,10 +74,20 @@ namespace Onyx {
              */
             std::shared_ptr<EGE::Window> getWindow() const;
 
+            /**
+             * @brief Starts the main loop of the graphical user interface.
+             */
             void loop();
 
+            /**
+             * @brief Checks if the graphical user interface is running.
+             * @return True if the graphical user interface is running, false otherwise.
+             */
             bool isRunning() const;
 
+            /**
+             * @brief Creates the world panel.
+             */
             void createWorldPanel();
 
             /**
@@ -86,10 +105,20 @@ namespace Onyx {
              */
             void createMenuBar();
 
+            /**
+             * @brief Creates the tutorial.
+             */
             void createTutorial();
 
+            /**
+             * @brief Creates the player panel.
+             */
             void createPlayerPanel();
 
+            /**
+             * @brief Updates the player panel.
+             * @param player A shared pointer to the player object.
+             */
             void updatePlayerPanel(std::shared_ptr<Onyx::Player> &player);
 
             /**
@@ -144,8 +173,9 @@ namespace Onyx {
             int _tileSelected;                              /**< The selected tile. */
             std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
             bool _running;                                  /**< A boolean that indicates whether the application is running. */
-            net::TcpClient *_client;
+            net::TcpClient *_client;                        /**< The TCP client used for communication with the server. */
             std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
+            std::vector<std::string> _teams;                /**< The names of all the teams. */
             bool _cameraMode;                               /**< A boolean that indicates whether the camera mode is enabled. */
     };
 }
