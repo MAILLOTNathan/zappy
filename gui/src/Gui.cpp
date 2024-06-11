@@ -233,6 +233,7 @@ void Onyx::Gui::loop()
     this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
         if (args.size() != 2)
             throw EGE::Error("[TNA] Wrong number of param.");
+        args.erase(args.begin());
         for (auto &teams: args) {
             this->_teams.push_back(teams);
         }
@@ -251,9 +252,9 @@ void Onyx::Gui::loop()
 
     while (this->isRunning()) {
         this->_client->waitEvent();
-        for (auto &player : this->_players) {
-            this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
-        }
+        // for (auto &player : this->_players) {
+        //     this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
+        // }
         this->update();
     }
     this->_client->disconnect();
