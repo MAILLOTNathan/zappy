@@ -85,7 +85,7 @@ static bool check_if_enough_places(amber_serv_t *serv, char *team,
 {
     if (amber_get_nbr_clients_by_team(serv, team) >= client_nb) {
         printf("[AMBER ERROR] Too many clients for team %s\n", team);
-        send_cli_msg(client, "ko\n");
+        send_cli_msg(client, "ko");
         return false;
     }
     printf("[AMBER INFO] New ai connected\n");

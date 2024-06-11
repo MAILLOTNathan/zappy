@@ -37,5 +37,5 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
         client->_queue_command->_command->_arg);
     }
     amber_event_pbc(client, serv->_graphic_clients);
-    send_cli_msg(client, "ok\n");
+    send_cli_msg(client, "ok");
 }
