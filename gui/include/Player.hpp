@@ -85,6 +85,7 @@ namespace Onyx {
             int getQuantity(Onyx::Item::TYPE type);
 
             void setInventory(int quantity, Onyx::Item::TYPE type);
+
         private:
             void _setColor(std::string &teamName);
 

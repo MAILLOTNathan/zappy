@@ -15,15 +15,13 @@ Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vect
 {
     this->_level = 1;
     memset(this->_quantity, 0, sizeof(this->_quantity));
-    if (Onyx::Player::_items.empty()) {
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::FOOD));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::LINEMATE));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::DERAUMERE));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::SIBUR));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::MENDIANE));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::PHIRAS));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::THYSTAME));
-    }
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::FOOD));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::LINEMATE));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::DERAUMERE));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::SIBUR));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::MENDIANE));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::PHIRAS));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::THYSTAME));
     if (Player::_colorMap[teamName] == 0) {
         Player::_colorMap[teamName] = static_cast<Color>(currentColor++);
     }
@@ -167,6 +165,15 @@ void Onyx::Player::setInventory(int quantity, Onyx::Item::TYPE type)
 {
     this->_quantity[type] = quantity;
 }
+
+
+
+// void Onyx::Player::getInventory()
+// {
+//     for (auto &item : this->_items) {
+//         this->_quantity[item->getType()] = item->getQuantity();
+//     }
+// }
 
 void Onyx::Player::_setColor(std::string &fileContent)
 {
