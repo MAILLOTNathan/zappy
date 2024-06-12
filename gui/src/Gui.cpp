@@ -129,6 +129,9 @@ void Onyx::Gui::loop()
         }
 
         this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], this->_timeUnit);
+        for (auto &player : this->_players) {
+            this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
+        }
         this->updateWorldPanel();
     });
 
@@ -221,8 +224,9 @@ void Onyx::Gui::loop()
         std::cout << "PIN passed" << std::endl;
         if (args.size() != 11)
             throw EGE::Error("[PIN] Wrong number of param.");
+        int id = std::stoi(args[1].erase(0, 1));
         for (auto &player : this->_players) {
-            if (player->getId() == std::stoi(args[1].erase(0, 1))) {
+            if (player->getId() == id) {
                 player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
                 player->setInventory(std::stoi(args[5]), Onyx::Item::TYPE::LINEMATE);
                 player->setInventory(std::stoi(args[6]), Onyx::Item::TYPE::DERAUMERE);
@@ -288,9 +292,6 @@ void Onyx::Gui::loop()
 
     while (this->isRunning()) {
         this->_client->waitEvent();
-        // for (auto &player : this->_players) {
-        //     this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
-        // }
         this->update();
     }
     this->_client->disconnect();
@@ -438,6 +439,7 @@ void Onyx::Gui::updateWorldPanel()
             if (player->getTeamName() == team) {
                 tmpTeam->add(new EGE::Button("Player #" + std::to_string(player->getId()), [this, player]() {
                     this->_camera->setPosition(EGE::Maths::Vector3<float>(player->getPos().x * CELL_SIZE, 3.0f, player->getPos().y * CELL_SIZE));
+                    this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
                 }), "Player #" + std::to_string(player->getId()));
             }
         }
