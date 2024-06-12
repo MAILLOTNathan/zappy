@@ -340,26 +340,26 @@ def launch_new_instance(self, map, conn):
         with open(os.devnull, 'w') as devnull:
             process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
             process.wait()
-    if map[0][1].count('food') == 0:
+    if map[0][1].count('food') == 0 and map[0][1].count("player") < 5:
         res = conn.send_request("Fork")
         self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    #elif map[0][1].count("player") < 4:
-    #    conn.send_request("Fork")
-    #    command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-    #    print("made an evolver child")
-    #    thread = threading.Thread(target=run_subprocess, args=(command,))
-    #    thread.start()
-    # elif self.collector < 1:
-    #     conn.send_request("Fork")
-    #     command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-    #     print("made a collector child")
-    #     self.collector += 1
-    #     thread = threading.Thread(target=run_subprocess, args=(command,))
-    #     thread.start()
+    elif map[0][1].count("player") < 4:
+        conn.send_request("Fork")
+        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made an evolver child")
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
+    elif self.collector < 1:
+        conn.send_request("Fork")
+        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made a collector child")
+        self.collector += 1
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
 
 def main():
     """
