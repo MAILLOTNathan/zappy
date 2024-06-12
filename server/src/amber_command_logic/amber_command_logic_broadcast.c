@@ -50,13 +50,9 @@ static int get_direction_message(amber_client_t *src, amber_client_t *des,
     pos_t end = plotline(&start_pos, &end_pos);
     pos_t vel = {0, 0};
 
-    printf("velocity x: %d, velocity y: %d\n", distance.x, distance.y);
-    printf("end distance x: %d, end distance y: %d\n", end_pos.x, end_pos.y);
-    printf("BEFORE CLAMP end x: %d, end y: %d\n", end.x, end.y);
     end.x = clamp(0, end.x, width);
     end.y = clamp(0, end.y, height);
     vel = (pos_t){end.x - des->_x, end.y -des->_y};
-    printf("end x: %d, end y: %d\n", end.x, end.y);
     return get_broadcast_angle(&vel, des);
 }
 

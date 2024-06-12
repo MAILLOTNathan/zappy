@@ -100,9 +100,8 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
     return true;
 }
 
-void check_ellapsed_time(amber_client_t *client, char *cmd, double freq)
+void check_ellapsed_time(amber_client_t *client, double freq)
 {
-    printf("[AMBER AI] Command recevei %s\n", cmd);
     if (queue_command_size(client->_queue_command) != 1)
         return;
     client->_ellapsed_time = get_new_time_in_microseconds(
@@ -128,6 +127,7 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
 {
     int i = 0;
 
+    printf("[AMBER AI] Command recevei %s\n", arg[0]);
     if (!check_command_queue_team_name(world, serv, client, arg))
         return;
     if (strcmp(arg[0], "Incantation") == 0 &&
@@ -142,7 +142,7 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
     if (ai_commands[i]._command == NULL)
         send_cli_msg(client, "ko");
     else
-        check_ellapsed_time(client, arg[0], world->_freq);
+        check_ellapsed_time(client, world->_freq);
 }
 
 const ai_command_t ai_commands[] = {

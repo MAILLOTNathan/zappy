@@ -63,6 +63,20 @@ void destroy_amber_world(amber_world_t *world)
     free(world);
 }
 
+static void fill_box_ext(amber_world_t *world)
+{
+    if (world->_deraumere_info._m_value > world->_deraumere_info._c_value)
+        world->_deraumere_info._c_value = world->_deraumere_info._m_value;
+    if (world->_phiras_info._m_value > world->_phiras_info._c_value)
+        world->_phiras_info._c_value = world->_phiras_info._m_value;
+    if (world->_sibur_info._m_value > world->_sibur_info._c_value)
+        world->_sibur_info._c_value = world->_sibur_info._m_value;
+    if (world->_mendiane_info._m_value > world->_mendiane_info._c_value)
+        world->_mendiane_info._c_value = world->_mendiane_info._m_value;
+    if (world->_thystame_info._m_value > world->_thystame_info._c_value)
+        world->_thystame_info._c_value = world->_thystame_info._m_value;
+}
+
 static void fill_box(box_t *box, amber_world_t *world)
 {
     box->_food = world->_food_info._m_value - world->_food_info._c_value;
@@ -76,13 +90,11 @@ static void fill_box(box_t *box, amber_world_t *world)
     box->_phiras = world->_phiras_info._m_value - world->_phiras_info._c_value;
     box->_thystame = world->_thystame_info._m_value -
     world->_thystame_info._c_value;
-    world->_food_info._c_value = world->_food_info._m_value;
-    world->_linemate_info._c_value = world->_linemate_info._m_value;
-    world->_deraumere_info._c_value = world->_deraumere_info._m_value;
-    world->_sibur_info._c_value = world->_sibur_info._m_value;
-    world->_mendiane_info._c_value = world->_mendiane_info._m_value;
-    world->_phiras_info._c_value = world->_phiras_info._m_value;
-    world->_thystame_info._c_value = world->_thystame_info._m_value;
+    if (world->_food_info._m_value > world->_food_info._c_value)
+        world->_food_info._c_value = world->_food_info._m_value;
+    if (world->_linemate_info._m_value > world->_linemate_info._c_value)
+        world->_linemate_info._c_value = world->_linemate_info._m_value;
+    return fill_box_ext(world);
 }
 
 void amber_refill_world(amber_world_t *world)

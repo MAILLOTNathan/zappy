@@ -89,7 +89,6 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
         return false;
     egg = amber_get_egg_by_team(world, arg[0]);
     if (!egg) {
-        printf("len_clients: %ld\n", list_len(serv->_clients));
         printf("[AMBER ERROR] No egg available for team %s\n", arg[0]);
         dprintf(client->_tcp._fd, "ko\n");
         client->_is_error = true;

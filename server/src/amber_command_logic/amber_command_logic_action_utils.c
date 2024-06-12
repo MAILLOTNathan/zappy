@@ -50,7 +50,6 @@ static pos_t line_low(pos_t *m, pos_t *m2, bool inverted)
         } else {
             D = D + 2 * dy;
         }
-        printf("pos x = %i\npos y = %f\n", x, y);
         if (inverted && (y != m->y || x != m->x))
             break;
     }
@@ -73,7 +72,6 @@ static pos_t line_high(pos_t *m, pos_t *m2, bool inverted)
         } else {
             D = D + 2 * dx;
         }
-        printf("pos x = %f\npos y = %d\n", x, y);
         if (inverted && (y != m->y || x != m->x))
             break;
     }
@@ -86,13 +84,11 @@ pos_t plotline(pos_t *m, pos_t *m2)
         return (pos_t){m->x, m->y};
     if (abs(m2->y - m->y) < abs(m2->x - m->x)) {
         if (m->x > m2->x) {
-            printf("INVERT m2 and m\n");
             return line_low(m2, m, true);
         } else
             return line_low(m, m2, false);
     } else {
         if (m->y > m2->y) {
-            printf("INVERT m2 and m\n");
             return line_high(m2, m, true);
         } else
             return line_high(m, m2, false);
