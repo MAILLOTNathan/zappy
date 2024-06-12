@@ -27,8 +27,8 @@ static const box_t *elevation_needs[] = {
 
 static bool ressource_available(box_t *world_case, const box_t *need)
 {
-    if (world_case->_food < need->_food)
-        return false;
+    // if (world_case->_food < need->_food)
+    //     return false;
     if (world_case->_linemate < need->_linemate)
         return false;
     if (world_case->_deraumere < need->_deraumere)
@@ -53,6 +53,8 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
 
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
+        if (tmp->_team_name == NULL)
+            continue;
         if (tmp->_level != client->_level)
             continue;
         if (tmp->_x == client->_x && tmp->_y == client->_y)

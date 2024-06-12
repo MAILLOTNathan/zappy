@@ -54,7 +54,7 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
         if (tmp->_level != client->_level)
             continue;
         if (tmp->_x == client->_x && tmp->_y == client->_y &&
-            tmp->_is_incantating == false)
+            tmp->_is_incantating)
             count++;
     }
     return count >= need_players;
