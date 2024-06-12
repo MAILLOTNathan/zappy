@@ -93,7 +93,9 @@ void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
     if (valread != 0)
         eval_command(world, server, client, buffer);
     if (valread == 0 || client->_is_error) {
-        printf("[AMBER INFO] Client disconnected\n");
+        if (client->_team_name != NULL)
+            world->_case[client->_y][client->_x]._players--;
+        printf("[AMBER INFO] Client %d died\n", client->_tcp._fd);
         remove_node(&clients, list_find_node(
         clients, client, cmp), true);
         fflush(stdout);

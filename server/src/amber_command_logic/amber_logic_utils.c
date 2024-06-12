@@ -69,10 +69,10 @@ static void check_clock_food(amber_client_t *client, amber_world_t *world,
     client->_inventory->_food--;
     if (client->_inventory->_food < 0) {
         drop_item(world, client->_x, client->_y, client->_inventory);
+        world->_case[client->_y][client->_x]._players--;
         printf("[AMBER INFO] Client %d died\n", client->_tcp._fd);
         dprintf(client->_tcp._fd, "dead\n");
         amber_event_pdi(client, server->_graphic_clients);
-        world->_case[client->_y][client->_x]._players--;
         remove_node(&server->_clients, node, true);
     } else
         world->_food_info._c_value--;
