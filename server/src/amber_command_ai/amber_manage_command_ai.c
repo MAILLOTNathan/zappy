@@ -65,11 +65,13 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
 {
     linked_list_t *clients = serv->_clients->nodes;
     amber_client_t *tmp = NULL;
-    int clients_id[list_len(serv->_clients)];
+    int clients_id[list_len(serv->_clients) + 1];
 
     memset(clients_id, -1, sizeof(clients_id));
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
+        if (tmp->_team_name == NULL)
+            continue;
         if (tmp->_level != client->_level)
             continue;
         if (tmp->_x == client->_x && tmp->_y == client->_y) {
