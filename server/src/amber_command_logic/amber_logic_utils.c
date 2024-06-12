@@ -44,6 +44,8 @@ void send_cli_msg(amber_client_t *client, const char *message)
 
 static void drop_item(amber_world_t *world, int x, int y, box_t *inv)
 {
+    if (inv->_food > 0)
+        world->_case[y][x]._food += inv->_food;
     world->_case[y][x]._linemate += inv->_linemate;
     world->_case[y][x]._deraumere += inv->_deraumere;
     world->_case[y][x]._sibur += inv->_sibur;

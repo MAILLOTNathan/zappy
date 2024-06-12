@@ -105,6 +105,7 @@ void amber_refill_world(amber_world_t *world)
     for (int i = 0; box._thystame > i; i++)
         world->_case[RAND(world->_height)][RAND(world->_width)]._thystame++;
     world->_clock = get_new_time_in_microseconds(20 / world->_freq);
+    printf("[AMBER INFO] World refilled\n");
 }
 
 static void display_box(int fd, amber_world_t *world)
