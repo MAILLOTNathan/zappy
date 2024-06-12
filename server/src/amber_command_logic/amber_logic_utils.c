@@ -76,7 +76,6 @@ static void check_clock_food(amber_client_t *client, amber_world_t *world,
         amber_event_pdi(client, server->_graphic_clients);
         remove_node(&server->_clients, node, true);
     } else {
-        world->_food_info._c_value--;
         client->_clock_food = get_new_time_in_microseconds(126 / world->_freq);
     }
 }
