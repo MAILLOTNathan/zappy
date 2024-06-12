@@ -60,10 +60,10 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
     return count >= need_players;
 }
 
-static void print_res_incantation(int fd, int level)
+static void print_res_incantation(amber_client_t *client, int level)
 {
-    dprintf(fd, "Elevation underway\n");
-    dprintf(fd, "Current level: %d\n", level);
+    send_cli_msg(client, "Elevation underway");
+    snprintfizer(client, "Current level: %d", level);
 }
 
 static void level_up_players(amber_client_t *client, amber_serv_t *server)
@@ -78,12 +78,12 @@ static void level_up_players(amber_client_t *client, amber_serv_t *server)
         if (tmp->_x == client->_x && tmp->_y == client->_y &&
             tmp->_is_incantating) {
             tmp->_level++;
-            print_res_incantation(tmp->_tcp._fd, tmp->_level);
+            print_res_incantation(tmp, tmp->_level);
         }
         tmp->_is_incantating = false;
     }
     client->_level++;
-    print_res_incantation(client->_tcp._fd, client->_level);
+    print_res_incantation(client, client->_level);
     client->_is_incantating = false;
     amber_event_pie(client, server->_graphic_clients, true);
 }
@@ -95,12 +95,12 @@ void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
 
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
-        dprintf(client->_tcp._fd, "ko\n");
+        send_cli_msg(client, "ko");
         amber_event_pie(client, serv->_graphic_clients, false);
         return;
     }
     if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
-        dprintf(client->_tcp._fd, "ko\n");
+        send_cli_msg(client, "ko");
         amber_event_pie(client, serv->_graphic_clients, false);
         return;
     }

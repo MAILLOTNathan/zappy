@@ -101,3 +101,23 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
     amber_event_pnw(client, serv->_graphic_clients);
     return true;
 }
+
+void snprintfizer(amber_client_t *client, char *format, ...)
+{
+    int len = 0;
+    char *str = NULL;
+    va_list args;
+    va_list args_copy;
+
+    va_start(args, format);
+    va_copy(args_copy, args);
+    len = vsnprintf(NULL, 0, format, args_copy);
+    str = malloc(sizeof(char) * (len + 1));
+    va_end(args_copy);
+    if (!str)
+        return;
+    vsnprintf(str, len + 1, format, args);
+    va_end(args);
+    send_cli_msg(client, str);
+    free(str);
+}

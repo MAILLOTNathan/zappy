@@ -7,6 +7,7 @@
 
 #include "amber_logic.h"
 #include "string_array.h"
+#include "amber_manage_client.h"
 
 static char *switch_string(amber_world_t *world, int y, int x)
 {
@@ -132,7 +133,7 @@ void amber_logic_look(amber_client_t *client, amber_world_t *world,
             result = amber_look_right(client, world);
     }
     response = string_array_to_string_separator(result, ',');
-    dprintf(client->_tcp._fd, "[%s]\n", response);
+    snprintfizer(client, "[%s]", response);
     free_string_array(result);
     free(response);
 }
@@ -142,9 +143,10 @@ void amber_logic_inventory(amber_client_t *client, UNUSED amber_world_t *world,
 {
     box_t *inv = client->_inventory;
 
-    dprintf(client->_tcp._fd, INVENTORY, inv->_food, inv->_linemate,
-    inv->_deraumere, inv->_sibur, inv->_mendiane,
-    inv->_phiras, inv->_thystame);
+    snprintfizer(client, "[food %d, linemate %d, deraumere %d, sibur %d, "
+        "mendiane %d, phiras %d, thystame %d]", inv->_food, inv->_linemate,
+        inv->_deraumere, inv->_sibur, inv->_mendiane, inv->_phiras,
+        inv->_thystame);
 }
 
 void amber_logic_connect_nbr(amber_client_t *client, amber_world_t *world,
@@ -152,5 +154,5 @@ void amber_logic_connect_nbr(amber_client_t *client, amber_world_t *world,
 {
     int count = amber_get_nbr_eggs_by_team(world, client->_team_name);
 
-    dprintf(client->_tcp._fd, "%d\n", count);
+    snprintfizer(client, "%d", count);
 }

@@ -66,9 +66,9 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
         tmp = (amber_client_t *)node->data;
         if (tmp->_id == client->_id)
             continue;
-        dprintf(tmp->_tcp._fd, "message %d, %s\n",
-        get_direction_message(client, tmp, world->_width, world->_height),
-        client->_queue_command->_command->_arg);
+        snprintfizer(tmp, "message %d, %s",
+            get_direction_message(client, tmp, world->_width, world->_height),
+            client->_queue_command->_command->_arg);
     }
     amber_event_pbc(client, serv->_graphic_clients);
     send_cli_msg(client, "ok");

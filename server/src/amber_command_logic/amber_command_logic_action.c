@@ -57,7 +57,7 @@ static void manage_eject_send(amber_client_t *client, amber_client_t *tmp,
         [(invert(client->_direction) - 1)* 2];
     } else
         dir = concave[tmp->_direction - 1][(client->_direction - 1) * 2];
-    dprintf(tmp->_tcp._fd, "eject: %d\n", dir);
+    snprintfizer(tmp, "eject: %d", dir);
     amber_event_pex(tmp, serv->_graphic_clients);
 }
 
@@ -78,9 +78,9 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
         manage_eject_send(client, tmp, world, serv);
     }
     if (is_eject)
-        dprintf(client->_tcp._fd, "ok\n");
+        send_cli_msg(client, "ok");
     else
-        dprintf(client->_tcp._fd, "ko\n");
+        send_cli_msg(client, "ko");
 }
 
 void amber_logic_fork(amber_client_t *client, amber_world_t *world,
@@ -91,5 +91,5 @@ void amber_logic_fork(amber_client_t *client, amber_world_t *world,
         client->_team_name, world->_last_egg_id);
     amber_event_enw(client, serv->_graphic_clients, world->_last_egg_id);
     world->_last_egg_id++;
-    dprintf(client->_tcp._fd, "ok\n");
+    send_cli_msg(client, "ok");
 }

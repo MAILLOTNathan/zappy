@@ -68,7 +68,9 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
     int clients_id[list_len(serv->_clients) + 1];
 
     memset(clients_id, -1, sizeof(clients_id));
+    printf("LEN LIST %ld\n", list_len(serv->_clients));
     for (linked_list_t *node = clients; node; node = node->next) {
+        printf("SIZE %zu\n", sizeof(tmp));
         tmp = (amber_client_t *)node->data;
         if (tmp->_team_name == NULL)
             continue;
