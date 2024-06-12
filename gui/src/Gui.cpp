@@ -128,7 +128,7 @@ void Onyx::Gui::loop()
             throw EGE::Error("[PNW] Invalid level received : |" + args[5] + "|.");
         }
 
-        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4]);
+        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], this->_timeUnit);
         this->updateWorldPanel();
     });
 
