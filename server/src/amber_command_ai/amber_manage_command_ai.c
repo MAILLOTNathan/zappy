@@ -27,8 +27,6 @@ static const box_t *elevation_needs[] = {
 
 static bool ressource_available(box_t *world_case, const box_t *need)
 {
-    // if (world_case->_food < need->_food)
-    //     return false;
     if (world_case->_linemate < need->_linemate)
         return false;
     if (world_case->_deraumere < need->_deraumere)
