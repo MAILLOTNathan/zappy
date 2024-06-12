@@ -80,18 +80,6 @@ static bool check_different_mode(amber_client_t *client, amber_serv_t *serv,
     return true;
 }
 
-static bool check_if_enough_places(amber_serv_t *serv, char *team,
-    int client_nb, amber_client_t *client)
-{
-    if (amber_get_nbr_clients_by_team(serv, team) >= client_nb) {
-        printf("[AMBER ERROR] Too many clients for team %s\n", team);
-        send_cli_msg(client, "ko");
-        return false;
-    }
-    printf("[AMBER INFO] New ai connected\n");
-    return true;
-}
-
 bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
     amber_world_t *world, char **arg)
 {
@@ -107,8 +95,6 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
         client->_is_error = true;
         return false;
     }
-    if (!check_if_enough_places(serv, arg[0], world->_clientsNb, client))
-        return false;
     client = amber_init_client_by_egg(client, egg, world->_freq);
     dprintf(client->_tcp._fd, "%d\n", world->_clientsNb -
     amber_get_nbr_clients_by_team(serv, arg[0]));

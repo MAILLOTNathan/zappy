@@ -13,9 +13,11 @@ void amber_init_egg(amber_world_t *world)
 
     world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
     for (int i = 0; world->_teams_name[i]; i++) {
-        push_back_list(world->_eggs, world, RAND(world->_width),
-        RAND(world->_height), world->_teams_name[i], id);
-        id++;
+        for (int j = 0; j < world->_clientsNb; j++) {
+            push_back_list(world->_eggs, world, RAND(world->_width),
+            RAND(world->_height), world->_teams_name[i], id);
+            id++;
+        }
     }
     world->_last_egg_id = id;
 }
