@@ -1,4 +1,4 @@
-# Blender 4.1.1 MTL File: 'None'
+# Blender 3.4.0 MTL File: 'None'
 # www.blender.org
 
 newmtl V_02.001
@@ -10,4 +10,4 @@ Ni 1.500000
 d 1.000000
 illum 2
 map_Kd textures/V_02_baseColor.png
-map_Bump -bm 1.000000 V_02_normal.png
+map_Bump -bm 1.000000 textures/V_02_normal.png
