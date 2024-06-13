@@ -35,9 +35,12 @@ class TuringAI:
             print(res)
             data = conn.read_line()
             print("LA DATA DE FDP", data)
-            while data.decode().find("level") or data.decode().find("ko"):
+            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
                 data = conn.read_line()
                 data = self.broadcast_parse(data)
+                if data.decode().find("level") >= 0:
+                    self.level += 1
+                    return data
             return data
         return response
 
@@ -152,7 +155,7 @@ class TuringAI:
                         self.do_incantation(conn)
                         continue
                     look = parse_look(res, self, "linemate")
-                    x,y,nb = get_obj(look, "linemate")
+                    x,y,nb = get_obj(look, "linemate") if look else (None, None, None)
                     if nb == 0:
                         take_action(self,"food", look, conn)
                     else:
@@ -160,21 +163,19 @@ class TuringAI:
                     conn.send_request("Right")
                 conn.send_request("Forward")
             else:
-                self.update_children(conn)
                 res = conn.send_request("Look")
                 self.elevate_parse(conn, res)
                 look = parse_look(res, self, "food")
-                if self.inventory['food'] < 5 and look[0][1].count('food') != 0:
+                if look and self.inventory['food'] < 5 and look[0][1].count('food') != 0:
                     res = conn.send_request("Take food")
                     self.elevate_parse(conn, res)
                 elif self.check_level_up(res) == True:
                     self.do_incantation(conn)
-                elif self.can_fork(conn) == True:
-                    conn.send_request("Broadcast " + broadcast_needed(self))
-                    self.elevate_parse(conn, res) 
-                    launch_new_instance(self, look, conn)
+                res = conn.send_request("Broadcast " + broadcast_needed(self))
+                self.elevate_parse(conn, res) 
+                launch_new_instance(self, look, conn)
                 if self.collector >= 1:
-                    conn.send_request("Broadcast " + broadcast_needed(self))
+                    res = conn.send_request("Broadcast " + broadcast_needed(self))
                     self.elevate_parse(conn, res)
                 self.get_food(conn)
 
@@ -298,6 +299,7 @@ def broadcast_needed(bot: TuringAI):
             for y in range(bot.level_requirements[bot.level][i]):
                 add += i
     return add
+
 def find_path(direction : list, quantity, obj : str, ai: TuringAI, conn):
     """
     Find the path to the tile with the most food.
@@ -340,20 +342,20 @@ def launch_new_instance(self, map, conn):
         with open(os.devnull, 'w') as devnull:
             process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
             process.wait()
-    if map[0][1].count('food') == 0 and map[0][1].count("player") < 5:
+    if map[0][1].count('food') == 0:
         res = conn.send_request("Fork")
         self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    elif map[0][1].count("player") < 4:
-        conn.send_request("Fork")
-        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made an evolver child")
-        thread = threading.Thread(target=run_subprocess, args=(command,))
-        thread.start()
-    elif self.collector < 1:
+    if map[0][1].count("player") < 4:
+       conn.send_request("Fork")
+       command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+       print("made an evolver child")
+       thread = threading.Thread(target=run_subprocess, args=(command,))
+       thread.start()
+    if self.collector < 1:
         conn.send_request("Fork")
         command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a collector child")

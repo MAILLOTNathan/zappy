@@ -86,11 +86,14 @@ class evolver:
         if "Elevation" in response.decode():
             response = response.decode()
             res = response.split('\n')
-            print(res)
+            print("EVOLVER RES IS", res)
             data = self.conn.read_line()
-            while data.decode().find("level") or data.decode().find("ko"):
+            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
                 data = self.conn.read_line()
                 data = self.broadcast_parse(data)
+                if data.decode().find("level") >= 0:
+                    self.level += 1
+                    return data
             return data
         return response
 
@@ -228,7 +231,8 @@ def main():
         print("2")
         if bot.check_level_up(map[0][1]) == True:
             res = bot.do_incantation(bot.conn)
-            print(res.decode(), "@@@@@@@@@@@@")
+            if res is not None:
+                print(res.decode(), "@@@@@@@@@@@@")
             res = bot.broadcast_parse(res)
             response = bot.elevation_parse(res)
             continue

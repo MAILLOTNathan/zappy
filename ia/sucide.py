@@ -254,7 +254,7 @@ def main():
         response = [int(component.split()[1]) for component in response]
         for i in range(response[0]):
             bot.conn.send_request("Set food")
-        return 0
+    return 0
 
 if __name__ == "__main__":
     main()

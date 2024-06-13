@@ -75,11 +75,14 @@ class food_collector:
         if "Elevation" in response.decode():
             response = response.decode()
             res = response.split('\n')
-            print(res)
+            print("THE RES IS", res)
             data = self.conn.read_line()
-            while data.decode().find("level") or data.decode().find("ko"):
+            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
                 data = self.conn.read_line()
                 data = self.broadcast_parse(data)
+                if data.decode().find("level") >= 0:
+                    self.level += 1
+                    return data
             return data
         return response
 
@@ -107,15 +110,13 @@ class food_collector:
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
-        #response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
-        response = [int(component.split()[1]) for component in response]
+        response = [int(component.split()[1]) if len(component.split()) > 1 and component.split()[1].isdigit() else 0 for component in response]
         x = 0
         for i in self.inventory:
             self.inventory[i] = response[x]
             x+=1
-        
 
     def objectif_done(self):
         for i in self.inventory:
@@ -260,7 +261,6 @@ def main():
     bot.conn.connect_to_server(bot.team_name)
 
     while True:
-        print("COLLECTOR LEVEL IS : ", bot.level)
         if a == 1:
             response = bot.elevate_parse(response)
         response = bot.conn.send_request('Look')
