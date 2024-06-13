@@ -64,7 +64,7 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
 
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_client_t *)node->data;
-        if (tmp->_id == client->_id)
+        if (tmp->_id == client->_id || tmp->_team_name == NULL)
             continue;
         snprintfizer(tmp, "message %d, %s",
             get_direction_message(client, tmp, world->_width, world->_height),

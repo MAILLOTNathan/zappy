@@ -62,7 +62,6 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
 
 static void print_res_incantation(amber_client_t *client, int level)
 {
-    send_cli_msg(client, "Elevation underway");
     snprintfizer(client, "Current level: %d", level);
 }
 
@@ -79,13 +78,49 @@ static void level_up_players(amber_client_t *client, amber_serv_t *server)
             tmp->_is_incantating) {
             tmp->_level++;
             print_res_incantation(tmp, tmp->_level);
+            tmp->_is_incantating = false;
         }
-        tmp->_is_incantating = false;
     }
     client->_level++;
     print_res_incantation(client, client->_level);
     client->_is_incantating = false;
     amber_event_pie(client, server->_graphic_clients, true);
+}
+
+static void remove_from_info_world(amber_world_t *world, amber_client_t *cli,
+    const box_t *needs)
+{
+    world->_case[cli->_y][cli->_x]._linemate -= needs->_linemate;
+    world->_case[cli->_y][cli->_x]._deraumere -= needs->_deraumere;
+    world->_case[cli->_y][cli->_x]._sibur -= needs->_sibur;
+    world->_case[cli->_y][cli->_x]._mendiane -= needs->_mendiane;
+    world->_case[cli->_y][cli->_x]._phiras -= needs->_phiras;
+    world->_case[cli->_y][cli->_x]._thystame -= needs->_thystame;
+    world->_food_info._c_value -= needs->_food;
+    world->_linemate_info._c_value -= needs->_linemate;
+    world->_deraumere_info._c_value -= needs->_deraumere;
+    world->_sibur_info._c_value -= needs->_sibur;
+    world->_mendiane_info._c_value -= needs->_mendiane;
+    world->_phiras_info._c_value -= needs->_phiras;
+    world->_thystame_info._c_value -= needs->_thystame;
+}
+
+static void incation_failed(amber_client_t *client, amber_serv_t *serv)
+{
+    linked_list_t *node = serv->_clients->nodes;
+    amber_client_t *tmp = NULL;
+
+    for (; node; node = node->next) {
+        tmp = (amber_client_t *)node->data;
+        if (tmp->_x != client->_x || tmp->_y != client->_y)
+            continue;
+        if (tmp->_level != client->_level || tmp->_id == client->_id ||
+            !tmp->_is_incantating || tmp->_team_name == NULL)
+            continue;
+        tmp->_is_incantating = false;
+    }
+    client->_is_incantating = false;
+    send_cli_msg(client, "ko");
 }
 
 void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
@@ -95,20 +130,11 @@ void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
 
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
-        send_cli_msg(client, "ko");
-        amber_event_pie(client, serv->_graphic_clients, false);
-        return;
+        return incation_failed(client, serv);
     }
     if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
-        send_cli_msg(client, "ko");
-        amber_event_pie(client, serv->_graphic_clients, false);
-        return;
+        return incation_failed(client, serv);
     }
-    world->_case[client->_y][client->_x]._linemate -= needs->_linemate;
-    world->_case[client->_y][client->_x]._deraumere -= needs->_deraumere;
-    world->_case[client->_y][client->_x]._sibur -= needs->_sibur;
-    world->_case[client->_y][client->_x]._mendiane -= needs->_mendiane;
-    world->_case[client->_y][client->_x]._phiras -= needs->_phiras;
-    world->_case[client->_y][client->_x]._thystame -= needs->_thystame;
+    remove_from_info_world(world, client, needs);
     level_up_players(client, serv);
 }

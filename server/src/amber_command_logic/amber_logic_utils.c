@@ -54,7 +54,7 @@ static void drop_item(amber_world_t *world, int x, int y, box_t *inv)
     world->_case[y][x]._mendiane += inv->_mendiane;
     world->_case[y][x]._phiras += inv->_phiras;
     world->_case[y][x]._thystame += inv->_thystame;
-    world->_food_info._c_value += inv->_linemate;
+    world->_linemate_info._c_value += inv->_linemate;
     world->_deraumere_info._c_value += inv->_deraumere;
     world->_sibur_info._c_value += inv->_sibur;
     world->_mendiane_info._c_value += inv->_mendiane;

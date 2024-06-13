@@ -78,6 +78,7 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
             continue;
         if (tmp->_x == client->_x && tmp->_y == client->_y) {
             tmp->_is_incantating = true;
+            send_cli_msg(tmp, "Elevation underway");
             // clients_id[tmp->_id] = tmp->_id;
         }
     }
@@ -138,13 +139,10 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
     for (i = 0; ai_commands[i]._command; i++) {
         if (strcmp(ai_commands[i]._command, arg[0]) == 0) {
             ai_commands[i]._func(client, arg);
-            break;
+            return check_ellapsed_time(client, world->_freq);
         }
     }
-    if (ai_commands[i]._command == NULL)
-        send_cli_msg(client, "ko");
-    else
-        check_ellapsed_time(client, world->_freq);
+    send_cli_msg(client, "ko");
 }
 
 const ai_command_t ai_commands[] = {
