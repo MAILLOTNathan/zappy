@@ -95,7 +95,7 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
         return false;
     }
     client = amber_init_client_by_egg(client, egg, world->_freq);
-    snprintfizer(client, "%d", amber_get_egg_by_team(world, arg[0]));
+    snprintfizer(client, "%d", amber_get_nbr_eggs_by_team(world, arg[0]));
     snprintfizer(client, "%d %d", world->_width, world->_height);
     amber_event_pnw(client, serv->_graphic_clients);
     return true;
