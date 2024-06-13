@@ -147,6 +147,8 @@ class TuringAI:
 
         The launched scripts are executed in the background and their output is redirected to os.devnull.
         """
+        if conn.conn_num == 1:
+            return
         def run_subprocess(command):
             with open(os.devnull, 'w') as devnull:
                 process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
@@ -158,6 +160,25 @@ class TuringAI:
             thread = threading.Thread(target=run_subprocess, args=(command,))
             thread.start()
 
+    def stay_alive(self, look, conn):
+        """
+        Checks if the player is alive and takes necessary actions to stay alive.
+
+        Args:
+            look (list): The items in the player's inventory.
+
+        Returns:
+            None
+        """
+        if look == None:
+            return
+        if look == "done":
+            return
+        food_qtt = look[0][1].count("food")
+        for i in range(0, food_qtt):
+            conn.send_request("Take food")
+        self.elevate_parse(conn, conn.send_request("Take food"))
+             
     def basic_ia(self, conn):
         self.destroy_random_eggs(conn)
         while True:
@@ -183,10 +204,8 @@ class TuringAI:
                 res = conn.send_request("Look")
                 self.elevate_parse(conn, res)
                 look = parse_look(res, self, "food")
-                if look and self.inventory['food'] < 5 and look[0][1].count('food') != 0:
-                    res = conn.send_request("Take food")
-                    self.elevate_parse(conn, res)
-                elif self.check_level_up(res) == True:
+                self.stay_alive(look, conn)
+                if self.check_level_up(res) == True:
                     self.do_incantation(conn)
                 res = conn.send_request("Broadcast " + broadcast_needed(self))
                 self.elevate_parse(conn, res) 
@@ -365,7 +384,7 @@ def launch_new_instance(self, map, conn):
     def decrement_collector():
         self.collector -= 1
 
-    if self.inventory["food"] < 3:
+    if self.inventory["food"] < 7:
         res = conn.send_request("Fork")
         self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
