@@ -19,13 +19,13 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_timeUnit = 1.0f;
     this->_interface = std::make_shared<UserInterface>();
 
-    this->_interface->init(this->_window.get());
     this->_interface->initPlaylist("./assets/musics/");
 
     this->_cameraMode = true;
     this->createMenuBar();
     this->createTutorial();
 
+    this->_interface->init(this->_window.get());
     this->_tileSelected = 0;
     this->_client = &client;
     this->_teams = {};
@@ -65,7 +65,8 @@ void Onyx::Gui::update()
     this->_camera->update(*this->_shader.get(), static_cast<float>(this->_window->getSize().x) / static_cast<float>(this->_window->getSize().y));
     this->_window->clear(EGE::Color(0.0f, 0.0f, 0.0f, 1.0f));
     this->_interface->clear();
-    this->_interface->draw();
+    if (this->_interface->_panels["Amber World"])
+        this->_interface->draw();
     for (const auto& entity : this->_entities) {
         entity->update(this->_shader);
     }
@@ -88,6 +89,7 @@ bool Onyx::Gui::isRunning() const
 void Onyx::Gui::loop()
 {
     this->_client->addCommand("msz", net::type_command_t::MSZ, [this](std::vector<std::string>& args) {
+        std::cout << "MSZ passed" << std::endl;
         if (args.size() != 3)
             throw EGE::Error("[MSZ] Wrong number of param.");
         this->createMap(std::stoi(args[1]), std::stoi(args[2]));
@@ -99,6 +101,7 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("pnw", net::type_command_t::PNW, [this](std::vector<std::string>& args) {
+        std::cout << "PNW passed" << std::endl;
         if (args.size() != 7)
             throw EGE::Error("[PNW] Wrong number of param.");
         // 1: player id (need to remove the #)
@@ -130,10 +133,14 @@ void Onyx::Gui::loop()
         }
 
         this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], this->_timeUnit);
-        // this->updatePlayerPanel();
+        for (auto &player : this->_players) {
+            this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
+        }
+        this->updateWorldPanel();
     });
 
     this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
+        std::cout << "BCT passed" << std::endl;
         if (args.size() != 10)
             throw EGE::Error("[BCT] Wrong number of param.");
         EGE::Maths::Vector2<int> position(std::stoi(args[1]), std::stoi(args[2]));
@@ -150,12 +157,14 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
+        std::cout << "SGT passed" << std::endl;
         if (args.size() != 2)
             throw EGE::Error("[SGT] Wrong number of param.");
         this->updateWorldSettings(std::stof(args[1]));
     });
 
     this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
+        std::cout << "IDM passed" << std::endl;
         if (args.size() != 3)
             throw EGE::Error("[IDM] Wrong number of param.");
         for (const auto& arg : args)
@@ -174,6 +183,7 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args) {
+        std::cout << "PPO passed" << std::endl;
         if (args.size() != 5)
             throw EGE::Error("[PPO] Wrong number of param.");
         for (const auto& arg : args)
@@ -283,10 +293,12 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("pin", net::type_command_t::PIN, [this](std::vector<std::string>& args) {
+        std::cout << "PIN passed" << std::endl;
         if (args.size() != 11)
             throw EGE::Error("[PIN] Wrong number of param.");
+        int id = std::stoi(args[1].erase(0, 1));
         for (auto &player : this->_players) {
-            if (player->getId() == std::stoi(args[1].erase(0, 1))) {
+            if (player->getId() == id) {
                 player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
                 player->setInventory(std::stoi(args[5]), Onyx::Item::TYPE::LINEMATE);
                 player->setInventory(std::stoi(args[6]), Onyx::Item::TYPE::DERAUMERE);
@@ -330,6 +342,7 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
+        std::cout << "TNA passed" << std::endl;
         if (args.size() != 2)
             throw EGE::Error("[TNA] Wrong number of param.");
         args.erase(args.begin());
@@ -343,7 +356,7 @@ void Onyx::Gui::loop()
     this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("msz\n");
     this->_client->sendRequest("sgt\n");
-    this->_client->sendRequest("bct\n");
+    this->_client->sendRequest("mct\n");
     this->_client->sendRequest("pnw\n");
     this->_client->sendRequest("pin\n");
     this->_client->sendRequest("tna\n");
@@ -352,9 +365,6 @@ void Onyx::Gui::loop()
 
     while (this->isRunning()) {
         this->_client->waitEvent();
-        // for (auto &player : this->_players) {
-        //     this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
-        // }
         this->update();
     }
     this->_client->disconnect();
@@ -470,6 +480,8 @@ void Onyx::Gui::createWorldPanel()
 
 void Onyx::Gui::updateWorldPanel()
 {
+    if (!this->_interface->_panels["Amber World"])
+        return;
     EGE::ListBox *dimensions = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("dimensions"));
     EGE::ListBox *content = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("content"));
     EGE::ListBox *teams = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Amber World"]->get("teams"));
@@ -494,15 +506,17 @@ void Onyx::Gui::updateWorldPanel()
         items["Thystame"] += floor->getQuantity(Onyx::Item::TYPE::THYSTAME);
     }
 
-    for (const auto& team : this->_teams) {
-        teams->add(new EGE::ListBox(team), team);
-        for (const auto& player : this->_players) {
+    for (auto &team : this->_teams) {
+        EGE::ListBox *tmpTeam = new EGE::ListBox(team);
+        for (auto &player : this->_players) {
             if (player->getTeamName() == team) {
-                teams->add(new EGE::Button("Player #" + std::to_string(player->getId()), [this, player]() {
-                    this->_camera->setPosition(EGE::Maths::Vector3<float>(player->getPosition().x, 3.0f, player->getPosition().y));
+                tmpTeam->add(new EGE::Button("Player #" + std::to_string(player->getId()), [this, player]() {
+                    this->_camera->setPosition(EGE::Maths::Vector3<float>(player->getPos().x * CELL_SIZE, 3.0f, player->getPos().y * CELL_SIZE));
+                    this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
                 }), "Player #" + std::to_string(player->getId()));
             }
         }
+        teams->add(tmpTeam, team);
     }
 
     dimensions->get("width")->setName("Width: " + std::to_string(size.x));
