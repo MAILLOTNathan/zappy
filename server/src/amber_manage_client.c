@@ -22,6 +22,16 @@ void *amber_create_client(va_list *ap)
     client->_tcp._fd = va_arg(*ap, int);
     client->_is_graphical = va_arg(*ap, int);
     client->_is_error = false;
+    client->_team_name = NULL;
+    client->_direction = UP;
+    client->_x = 0;
+    client->_y = 0;
+    client->_level = 1;
+    client->_inventory = NULL;
+    client->_is_incantating = false;
+    client->_clock_food = 0;
+    client->_ellapsed_time = 0;
+    client->_id = 0;
     return client;
 }
 
@@ -95,7 +105,8 @@ void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
     if (valread == 0 || client->_is_error) {
         if (client->_team_name != NULL)
             world->_case[client->_y][client->_x]._players--;
-        printf("[AMBER INFO] Client %d died\n", client->_tcp._fd);
+        printf("[AMBER INFO] Client %d died (lost connection)\n",
+            client->_tcp._fd);
         remove_node(&clients, list_find_node(
         clients, client, cmp), true);
         fflush(stdout);

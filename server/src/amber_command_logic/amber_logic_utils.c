@@ -55,11 +55,11 @@ static void drop_item(amber_world_t *world, int x, int y, box_t *inv)
     world->_case[y][x]._phiras += inv->_phiras;
     world->_case[y][x]._thystame += inv->_thystame;
     world->_food_info._c_value += inv->_linemate;
-    world->_food_info._c_value += inv->_deraumere;
-    world->_food_info._c_value += inv->_sibur;
-    world->_food_info._c_value += inv->_mendiane;
-    world->_food_info._c_value += inv->_phiras;
-    world->_food_info._c_value += inv->_thystame;
+    world->_deraumere._c_value += inv->_deraumere;
+    world->_sibur._c_value += inv->_sibur;
+    world->_mendiane._c_value += inv->_mendiane;
+    world->_phiras._c_value += inv->_phiras;
+    world->_thystame._c_value += inv->_thystame;
 }
 
 static void check_clock_food(amber_client_t *client, amber_world_t *world,

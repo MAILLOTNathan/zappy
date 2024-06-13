@@ -65,9 +65,9 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
 {
     linked_list_t *clients = serv->_clients->nodes;
     amber_client_t *tmp = NULL;
-    int clients_id[list_len(serv->_clients) + 1];
+    // int len = list_len(serv->_clients);
+    // int *clients_id = calloc(len, sizeof(int));
 
-    memset(clients_id, -1, sizeof(clients_id));
     printf("LEN LIST %ld\n", list_len(serv->_clients));
     for (linked_list_t *node = clients; node; node = node->next) {
         printf("SIZE %zu\n", sizeof(tmp));
@@ -78,10 +78,10 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
             continue;
         if (tmp->_x == client->_x && tmp->_y == client->_y) {
             tmp->_is_incantating = true;
-            clients_id[tmp->_id] = tmp->_id;
+            // clients_id[tmp->_id] = tmp->_id;
         }
     }
-    amber_event_pic(client, serv, clients_id);
+    // amber_event_pic(client, serv, clients_id);
 }
 
 static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
@@ -129,7 +129,7 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
 {
     int i = 0;
 
-    printf("[AMBER AI] Command recevei %s\n", arg[0]);
+    printf("[AMBER AI] Command recevei %s BY %d\n", arg[0], client->_id);
     if (!check_command_queue_team_name(world, serv, client, arg))
         return;
     if (strcmp(arg[0], "Incantation") == 0 &&
