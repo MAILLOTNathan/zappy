@@ -16,6 +16,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_camera = std::make_shared<EGE::Camera>(EGE::Maths::Vector3<float>(7.0f, 3.0f, 7.0f), EGE::Maths::Vector3<float>(0.0f, 1.0f, 0.0f), -135.0f, 0.0f);
     this->_camera->setSpeed(10.0f);
     this->_deltaTime = 0.0f;
+    this->_timeUnit = 1.0f;
     this->_interface = std::make_shared<UserInterface>();
 
     this->_interface->init(this->_window.get());
@@ -28,6 +29,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_tileSelected = 0;
     this->_client = &client;
     this->_teams = {};
+    this->_animator = Onyx::Animator();
 }
 
 Onyx::Gui::~Gui()
@@ -50,8 +52,9 @@ void Onyx::Gui::update()
 {
     static float lastFrame = 0.0f;
     static float timer = 0.0f;
-    this->_deltaTime = glfwGetTime() - lastFrame;
-    lastFrame = glfwGetTime();
+    double currentTime = glfwGetTime();
+    this->_deltaTime = currentTime - lastFrame;
+    lastFrame = currentTime;
     timer += this->_deltaTime;
     if (timer >= 1.0f) {
         std::cout << "FPS: " << 1 / this->_deltaTime << "\n";
@@ -66,8 +69,9 @@ void Onyx::Gui::update()
     for (const auto& entity : this->_entities) {
         entity->update(this->_shader);
     }
+    if (this->_timeUnit < 100.0f)
+        this->_animator.update(this->_deltaTime);
     for (const auto& player : this->_players) {
-        player->setDelta(this->_deltaTime);
         player->update(this->_shader);
     }
     this->_interface->display();
@@ -159,21 +163,9 @@ void Onyx::Gui::loop()
         int id = std::stoi(args[1]);
         switch (args[2][0]) {
             case 'F':
-                this->_client->sendRequest("ppo #" + args[1] + "\n");
-                break;
             case 'L':
-                for (const auto& player : this->_players) {
-                    if (player->getId() == id) {
-                        player->left();
-                    }
-                }
-                break;
             case 'R':
-                for (const auto& player : this->_players) {
-                    if (player->getId() == id) {
-                        player->right();
-                    }
-                }
+                this->_client->sendRequest("ppo #" + args[1] + "\n");
                 break;
             default:
                 throw EGE::Error("[IDM] Invalid change received : |" + args[2] + "|.");
@@ -187,6 +179,8 @@ void Onyx::Gui::loop()
         for (const auto& arg : args)
             std::cout << arg << std::endl;
         int id, x, y;
+        std::string rotation = args[4];
+        EGE::Maths::Vector2<int> pos;
         try {
             id = std::stoi(args[1].substr(1));
         } catch (std::exception &e) {
@@ -202,10 +196,88 @@ void Onyx::Gui::loop()
         } catch (std::exception &e) {
             throw EGE::Error("[PPO] Invalid y position : |" + args[3] + "|.");
         }
-        for (const auto& player : this->_players) {
+        if (rotation != "N" && rotation != "E" && rotation != "S" && rotation != "W")
+            throw EGE::Error("[PPO] Invalid rotation : |" + rotation + "|.");
+        for (auto& player : this->_players) {
             if (player->getId() == id) {
+                pos = player->getPos();
+                player->setPos(pos);
+                Onyx::Player::Animation animation = Onyx::Player::Animation::NONE;
+                if (pos.x != x || pos.y != y) {
+                    std::cout << "detected movement" << std::endl;
+                    std::string rstring = player->getRotationString();
+                    if (rstring == "N") {
+                        std::cout << "moving to north" << std::endl;
+                        animation = Onyx::Player::Animation::FORWARD_NORTH;
+                        std::cout << "got north : " << player->getRotationString() << std::endl;
+                    } else if (rstring == "E") {
+                        std::cout << "moving to east" << std::endl;
+                        animation = Onyx::Player::Animation::FORWARD_EAST;
+                        std::cout << "got east : " << player->getRotationString() << std::endl;
+                    } else if (rstring == "S") {
+                        std::cout << "moving to south" << std::endl;
+                        animation = Onyx::Player::Animation::FORWARD_SOUTH;
+                        std::cout << "got south : " << player->getRotationString() << std::endl;
+                    } else if (rstring == "W") {
+                        std::cout << "moving to west" << std::endl;
+                        animation = Onyx::Player::Animation::FORWARD_WEST;
+                        std::cout << "got west : " << player->getRotationString() << std::endl;
+                    } else {
+                        std::cout << "default from movement switch" << std::endl;
+                    }
+                } else {
+                    std::cout << "detected rotation" << std::endl;
+                    std::string rstring = player->getRotationString();
+                    if (rstring == "N") {
+                        std::cout << "rotating from north";
+                        if (rotation == "E") {
+                            animation = Onyx::Player::Animation::RIGHT;
+                            std::cout << " to east";
+                        } else if (rotation == "W") {
+                            animation = Onyx::Player::Animation::LEFT;
+                            std::cout << " to west";
+                        }
+                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
+                    } else if (rstring == "E") {
+                        std::cout << "rotating from east";
+                        if (rotation == "S") {
+                            animation = Onyx::Player::Animation::RIGHT;
+                            std::cout << " to south";
+                        } else if (rotation == "N") {
+                            animation = Onyx::Player::Animation::LEFT;
+                            std::cout << " to north";
+                        }
+                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
+                    } else if (rstring == "S") {
+                        std::cout << "rotating from south";
+                        if (rotation == "W") {
+                            animation = Onyx::Player::Animation::RIGHT;
+                            std::cout << " to west";
+                        } else if (rotation == "E") {
+                            animation = Onyx::Player::Animation::LEFT;
+                            std::cout << " to east";
+                        }
+                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
+                    } else if (rstring == "W") {
+                        std::cout << "rotating from west";
+                        if (rotation == "N") {
+                            animation = Onyx::Player::Animation::RIGHT;
+                            std::cout << " to north";
+                        } else if (rotation == "S") {
+                            animation = Onyx::Player::Animation::LEFT;
+                            std::cout << " to south";
+                        }
+                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
+                    } else {
+                        std::cout << "default from rotation switch" << std::endl;
+                    }
+                }
+                std::cout << "final animation : " << Onyx::Player::getAnimationString(animation) << std::endl;
+                player->setRotationString(rotation);
                 player->setPos(EGE::Maths::Vector2<int>(x, y));
-                player->setRotation(args[4]);
+                this->_animator.startAnimation(player, animation, [&player, x, y]() {
+                    player->setPos(EGE::Maths::Vector2<int>(x, y));
+                });
             }
         }
     });
@@ -254,6 +326,7 @@ void Onyx::Gui::loop()
         }
         std::cout << "Time unit received: " << timeUnit << std::endl;
         this->_timeUnit = timeUnit;
+        this->_animator.setTimeUnit(timeUnit);
     });
 
     this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {

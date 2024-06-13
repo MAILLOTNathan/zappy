@@ -50,6 +50,8 @@ namespace Onyx {
              * @return The floot position as a Vector3 of float
             */
             virtual EGE::Maths::Vector3<float> getPosition();
+
+            virtual std::shared_ptr<EGE::Model> getModel();
         protected:
             std::shared_ptr<EGE::Model> _model; /**< The model used for rendering the entity. */
             EGE::Maths::Vector3<float> _position; /**< The position of the entity in 3D space. */

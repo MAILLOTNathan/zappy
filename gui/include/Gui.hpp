@@ -10,6 +10,7 @@
 #include "Error.hpp"
 #include "Item.hpp"
 #include "Map.hpp"
+#include "OnyxAnimator.hpp"
 #include "Player.hpp"
 #include "Window.hpp"
 
@@ -165,19 +166,20 @@ namespace Onyx {
              */
             void _updateCamera();
 
-            std::shared_ptr<EGE::Window> _window;           /**< The window used for rendering the graphical user interface. */
-            std::vector<std::shared_ptr<Entity>> _entities; /**< The entities in the graphical user interface. */
-            std::shared_ptr<EGE::Shader> _shader;           /**< The shader used for rendering the entities. */
-            std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
-            float _deltaTime;                               /**< The time between frames. */
-            std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
-            int _tileSelected;                              /**< The selected tile. */
-            std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
-            bool _running;                                  /**< A boolean that indicates whether the application is running. */
-            net::TcpClient *_client;                        /**< The TCP client used for communication with the server. */
+            std::shared_ptr<EGE::Window> _window;                   /**< The window used for rendering the graphical user interface. */
+            std::vector<std::shared_ptr<Entity>> _entities;         /**< The entities in the graphical user interface. */
+            std::shared_ptr<EGE::Shader> _shader;                   /**< The shader used for rendering the entities. */
+            std::shared_ptr<EGE::Camera> _camera;                   /**< The camera used for rendering the entities. */
+            float _deltaTime;                                       /**< The time between frames. */
+            std::shared_ptr<Onyx::Map> _map;                        /**< The map in the graphical user interface. */
+            int _tileSelected;                                      /**< The selected tile. */
+            std::shared_ptr<UserInterface> _interface;              /**< The Interface which displays informations about the world. */
+            bool _running;                                          /**< A boolean that indicates whether the application is running. */
+            net::TcpClient *_client;                                /**< The TCP client used for communication with the server. */
             std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
-            std::vector<std::string> _teams;                /**< The names of all the teams. */
-            bool _cameraMode;                               /**< A boolean that indicates whether the camera mode is enabled. */
-            float _timeUnit;                                  /**< The time unit. */
+            std::vector<std::string> _teams;                        /**< The names of all the teams. */
+            bool _cameraMode;                                       /**< A boolean that indicates whether the camera mode is enabled. */
+            float _timeUnit;                                        /**< The time unit. */
+            Onyx::Animator _animator;                               /**< The animator used for animating the players. */
     };
 }

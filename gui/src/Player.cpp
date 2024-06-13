@@ -40,6 +40,7 @@ Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vect
         throw Onyx::PlayerError("Invalid rotation: " + rotation);
     this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
     this->setRotation(rotation);
+    this->isAnimated = false;
 }
 
 Onyx::Player::~Player()
@@ -237,6 +238,11 @@ EGE::Maths::Vector3<float> Onyx::Player::getRotation()
     return this->_rotation;
 }
 
+void Onyx::Player::setRotationString(const std::string& rotation)
+{
+    this->_rotationString = rotation;
+}
+
 std::string Onyx::Player::getRotationString()
 {
     return this->_rotationString;
@@ -256,4 +262,24 @@ EGE::Maths::Vector2<int> Onyx::Player::getPos()
 int Onyx::Player::getId()
 {
     return this->_id;
+}
+
+std::string Onyx::Player::getAnimationString(Onyx::Player::Animation animation)
+{
+    switch (animation) {
+        case Onyx::Player::Animation::FORWARD_NORTH:
+            return "FORWARD_NORTH";
+        case Onyx::Player::Animation::FORWARD_SOUTH:
+            return "FORWARD_SOUTH";
+        case Onyx::Player::Animation::FORWARD_EAST:
+            return "FORWARD_EAST";
+        case Onyx::Player::Animation::FORWARD_WEST:
+            return "FORWARD_WEST";
+        case Onyx::Player::Animation::LEFT:
+            return "LEFT";
+        case Onyx::Player::Animation::RIGHT:
+            return "RIGHT";
+        default:
+            return "UNKNOWN";
+    }
 }

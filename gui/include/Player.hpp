@@ -37,6 +37,7 @@ namespace Onyx {
                 LAST
             };
             enum Animation {
+                NONE = -1,
                 FORWARD_NORTH = 0,
                 LEFT,
                 RIGHT,
@@ -69,6 +70,7 @@ namespace Onyx {
 
             void setRotation(const std::string& rotation);
             EGE::Maths::Vector3<float> getRotation();
+            void setRotationString(const std::string& rotation);
             std::string getRotationString();
 
             void setPos(EGE::Maths::Vector2<int> pos);
@@ -85,6 +87,10 @@ namespace Onyx {
             int getQuantity(Onyx::Item::TYPE type);
 
             void setInventory(int quantity, Onyx::Item::TYPE type);
+
+            static std::string getAnimationString(Onyx::Player::Animation animation);
+
+            bool isAnimated;
 
         private:
             void _setColor(std::string &teamName);
