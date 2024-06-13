@@ -26,6 +26,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->createTutorial();
 
     this->_interface->init(this->_window.get());
+    this->_interface->defaultMode();
     this->_tileSelected = 0;
     this->_client = &client;
     this->_teams = {};
@@ -640,16 +641,23 @@ void Onyx::Gui::createMenuBar()
     EGE::Menu *settings = new EGE::Menu("Settings");
 
     EGE::Panel *world = new EGE::Panel("World settings");
+    EGE::CheckBox *darkMode = new EGE::CheckBox("Dark mode");
     EGE::Slider *frequency = new EGE::Slider("Frequency", 0.1, 2000);
     EGE::Button *worldApply = new EGE::Button("Apply", [this] () {
-    std::cout << "after" << std::endl;
         EGE::Slider *frequ = dynamic_cast<EGE::Slider *>(this->_interface->_panels["World settings"]->get("0 Frequency"));
+        EGE::CheckBox *dark = dynamic_cast<EGE::CheckBox *>(this->_interface->_panels["World settings"]->get("1 Dark mode"));
+
+        if (dark->isChecked())
+            this->_interface->darkMode();
+        else
+            this->_interface->defaultMode();
         this->_interface->_panels["World settings"]->setVisible(false);
         this->updateWorldSettings(frequ->getValue());
     });
 
     world->add(frequency, "0 Frequency");
-    world->add(worldApply, "1 Apply");
+    world->add(darkMode, "1 Dark mode");
+    world->add(worldApply, "2 Apply");
     world->setVisible(false);
     this->_interface->_panels["World settings"] = world;
 
