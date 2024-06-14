@@ -27,10 +27,10 @@ class GuiVR {
 
         void createMap(int width, int height);
 
+        std::shared_ptr<MapVR> _map;
     protected:
         std::shared_ptr<EGE::WindowVR> _window;
         std::vector<std::shared_ptr<EntityVR>> _entities;
-        std::shared_ptr<MapVR> _map;
         std::shared_ptr<EGE::Shader> _shader;
     private:
 };

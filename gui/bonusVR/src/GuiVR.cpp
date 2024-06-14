@@ -15,6 +15,7 @@ GuiVR::GuiVR(android_app *app)
     std::string fragmentSource = EGE::UtilsVR::readAssetFile("shaders/fragment.frag");
     this->_shader = std::make_shared<EGE::Shader>();
     this->_shader->compile(vertexSource, fragmentSource);
+    this->_window->addNewSlot("Map", this->_shader);
 }
 
 GuiVR::~GuiVR()

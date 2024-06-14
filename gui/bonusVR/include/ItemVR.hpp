@@ -12,7 +12,7 @@
 #include "WindowVR.hpp"
 #include "Maths/Vector2.hpp"
 
-#define CELL_SIZE 3
+#define CELL_SIZE 1
 
 
 class ItemVR : public EntityVR {

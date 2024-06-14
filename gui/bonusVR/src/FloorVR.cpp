@@ -13,8 +13,8 @@ FloorVR::FloorVR(const EGE::Maths::Vector2<int>& position, std::shared_ptr<EGE::
 {
     this->_pos = position;
     this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 0, position.y * CELL_SIZE);
-    this->_model = std::make_shared<EGE::ModelVR>("models/floor/floor.obj", this->_position, EGE::Maths::Vector3<float>(0.25f, 0.25f, 0.25f));
-    window->addModel("floor", this->_model, nullptr);
+    this->_model = std::make_shared<EGE::ModelVR>("models/floor/floor.obj", this->_position, EGE::Maths::Vector3<float>(0.5, 0.5, 0.5));
+    window->addModel("Map", this->_model);
     memset(this->_quantity, 0, sizeof(this->_quantity));
     __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Adding model floor");
     if (FloorVR::_items.empty()) {

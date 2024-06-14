@@ -16,6 +16,7 @@
 #include "imgui_internal.h"
 #include "imgui_impl_opengl3.h"
 #include "UtilsVR.hpp"
+#include "Maths/Vector2.hpp"
 
 MemoryIOSystem *gMemoryIOSystem;
 
@@ -44,6 +45,8 @@ extern "C" void android_main(android_app *app) {
     gMemoryIOSystem->addFile("models/items/6.mtl");
     __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Adding models");
     a.createMap(10, 10);
+
+    a._map->addItem(EGE::Maths::Vector2<int>(1,1), ItemVR::TYPE::FOOD, 1);
 
     while (a.isRunning()) {
         a.update();

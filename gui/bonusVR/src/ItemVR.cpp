@@ -38,7 +38,7 @@ ItemVR::ItemVR(const EGE::Maths::Vector2<int> &position, std::shared_ptr<EGE::Wi
             break;
     }
     __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Adding model item");
-    window->addModel("Item", this->_model, nullptr);
+    window->addModel("Map", this->_model);
 }
 
 ItemVR::~ItemVR()
