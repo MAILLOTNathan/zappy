@@ -1,7 +1,5 @@
 import sys
 import socket
-import zappy_ai
-import time
 
 class ServerConnection:
     def __init__(self, ai):
@@ -12,6 +10,11 @@ class ServerConnection:
         self.PORT = ai.port
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((self.HOST, self.PORT))
+        self.conn_num = 0
+
+    def get_con_num(self, data):
+        res = data.decode().split("\n")
+        self.conn_num = int(res[0])
 
     def connect_to_server_debug(self):
         """
@@ -30,6 +33,12 @@ class ServerConnection:
         """
         data = self.s.recv(1024)
         print(repr(data))
+        self.get_con_num(data)
+        # self.s.sendall(("team2"+ "\n").encode())
+        # data = self.s.recv(1024)
+        # print(repr(data))
+        # data = self.s.recv(1024)
+        # print(repr(data))        
         while True:
             input = sys.stdin.readline()
             if input == "quit\n":
@@ -57,6 +66,10 @@ class ServerConnection:
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
         print(repr(data))
+        self.get_con_num(data)
+        data = self.s.recv(1024)
+        print(repr(data)) 
+
 
     def send_request(self, request):
             """
@@ -74,12 +87,34 @@ class ServerConnection:
             print("AI request: ", request)
             try:
                 self.s.send((request + "\n").encode())
-                data = self.s.recv(1024)
+                buffer = []
+                while True:
+                    data = self.s.recv(1)
+                    if not data:
+                        break
+                    if data == b'\n':
+                        break
+                    buffer.append(data)
+                data = b''.join(buffer)
+
                 print(repr(data))
                 if data == b"dead\n":
                     print("AI is dead.")
-                    return "dead"
+                    return "done"
                 return data
             except:
                 print("Error: Connection to server lost.")
-                exit(84)
+    
+    def read_line(self):
+        buffer = []
+        while True:
+            data = self.s.recv(1)
+            if not data:
+                break
+            if data == b'\n':
+                break
+            buffer.append(data)
+        data = b''.join(buffer)
+        return data
+        
+    

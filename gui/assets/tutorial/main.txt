@@ -1,0 +1,5 @@
+Welcome to Onyx, the Graphical User Interface of the Zappy Project !
+
+Here you can see informations about the Amber World, like :
+    - the ressources on the world's tiles.
+    - the players and their team colors.
