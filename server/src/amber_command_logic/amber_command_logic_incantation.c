@@ -118,6 +118,7 @@ static void incation_failed(amber_client_t *client, amber_serv_t *serv)
             !tmp->_is_incantating || tmp->_team_name == NULL)
             continue;
         tmp->_is_incantating = false;
+        send_cli_msg(tmp, "ko");
     }
     client->_is_incantating = false;
     send_cli_msg(client, "ko");
