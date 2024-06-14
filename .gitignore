@@ -39,5 +39,6 @@
 unit_tests
 
 .vscode
+*.apk
 
 zappy_server

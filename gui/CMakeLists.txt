@@ -29,6 +29,6 @@ target_link_libraries(Onyx PUBLIC ${LIBS})
 
 # target_link_libraries(Onyx ${CMAKE_BINARY_DIR}/../etib-game-engine/build/libEGE-OpenGL.so)
 
-set_target_properties(Onyx PROPERTIES OUTPUT_NAME "onyx")
+set_target_properties(Onyx PROPERTIES OUTPUT_NAME "zappy_gui")
 
 set_target_properties(Onyx PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../")
