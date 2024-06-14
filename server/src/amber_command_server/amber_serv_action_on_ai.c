@@ -8,7 +8,16 @@
 #include "amber_command_server.h"
 #include "amber_manage_client.h"
 
-void amber_serv_tp(amber_serv_t *serv, UNUSED amber_world_t *world,
+static void update_world(amber_world_t *world, amber_client_t *client,
+    int x, int y)
+{
+    world->_case[client->_y][client->_x]._players--;
+    client->_x = x;
+    client->_y = y;
+    world->_case[client->_y][client->_x]._players++;
+}
+
+void amber_serv_tp(amber_serv_t *serv, amber_world_t *world,
     char **cmd)
 {
     amber_client_t *client = NULL;
@@ -26,8 +35,7 @@ void amber_serv_tp(amber_serv_t *serv, UNUSED amber_world_t *world,
         dprintf(FDDEBUG(serv), "Client %d not found\n", atoi(cmd[3]));
         return;
     }
-    client->_x = x;
-    client->_y = y;
+    update_world(world, client, x, y);
     dprintf(FDDEBUG(serv), "Client %d teleported to %d %d\n",
     client->_id, x, y);
 }

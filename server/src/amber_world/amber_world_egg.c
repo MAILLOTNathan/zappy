@@ -7,6 +7,21 @@
 
 #include "amber_world.h"
 
+void amber_init_egg(amber_world_t *world)
+{
+    int id = 0;
+
+    world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
+    for (int i = 0; world->_teams_name[i]; i++) {
+        for (int j = 0; j < world->_clientsNb; j++) {
+            push_back_list(world->_eggs, world, RAND(world->_width),
+            RAND(world->_height), world->_teams_name[i], id);
+            id++;
+        }
+    }
+    world->_last_egg_id = id;
+}
+
 void *amber_create_egg(va_list *ap)
 {
     egg_t *egg = calloc(1, sizeof(egg_t));

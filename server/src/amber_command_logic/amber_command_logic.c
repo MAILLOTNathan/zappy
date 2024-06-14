@@ -28,12 +28,14 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
     linked_list_t *clients = NULL;
     amber_client_t *tmp = NULL;
 
-    if (world->_clock >= get_time_in_microseconds())
+    if (world->_clock < get_time_in_microseconds())
         amber_refill_world(world);
     amber_check_client_alive(serv, world);
     clients = serv->_clients->nodes;
     for (; clients; clients = clients->next) {
         tmp = (amber_client_t *)clients->data;
+        if (tmp->_queue_command == NULL)
+            continue;
         if (tmp->_is_incantating &&
         tmp->_queue_command->_command->_id != T_INCANTATION)
             continue;

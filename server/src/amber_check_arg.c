@@ -9,9 +9,13 @@
 
 static bool add_team_name(args_t *args, char **av, int i, int ac)
 {
+    char *team_name = NULL;
+
     for (int j = i; j < ac; j++) {
         if (av[j][0] != '-') {
-            args->_teams = append_string_array(args->_teams, strdup(av[j]));
+            team_name = strdup(av[j]);
+            args->_teams = append_string_array(args->_teams, team_name);
+            free(team_name);
         } else {
             break;
         }

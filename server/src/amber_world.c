@@ -36,7 +36,6 @@ static void init_info_world(amber_world_t *world)
 amber_world_t *amber_create_world(args_t *arg)
 {
     amber_world_t *world = calloc(1, sizeof(amber_world_t));
-    int i = 0;
 
     if (!world)
         return NULL;
@@ -50,10 +49,7 @@ amber_world_t *amber_create_world(args_t *arg)
         world->_case[i] = calloc(arg->_width, sizeof(box_t));
     init_info_world(world);
     world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
-    for (i = 0; arg->_teams[i]; i++)
-        push_back_list(world->_eggs, world, RAND(arg->_width),
-        RAND(arg->_height), arg->_teams[i], i);
-    world->_last_egg_id = i;
+    amber_init_egg(world);
     return world;
 }
 
@@ -65,6 +61,20 @@ void destroy_amber_world(amber_world_t *world)
         free(world->_case[i]);
     free(world->_case);
     free(world);
+}
+
+static void fill_box_ext(amber_world_t *world)
+{
+    if (world->_deraumere_info._m_value > world->_deraumere_info._c_value)
+        world->_deraumere_info._c_value = world->_deraumere_info._m_value;
+    if (world->_phiras_info._m_value > world->_phiras_info._c_value)
+        world->_phiras_info._c_value = world->_phiras_info._m_value;
+    if (world->_sibur_info._m_value > world->_sibur_info._c_value)
+        world->_sibur_info._c_value = world->_sibur_info._m_value;
+    if (world->_mendiane_info._m_value > world->_mendiane_info._c_value)
+        world->_mendiane_info._c_value = world->_mendiane_info._m_value;
+    if (world->_thystame_info._m_value > world->_thystame_info._c_value)
+        world->_thystame_info._c_value = world->_thystame_info._m_value;
 }
 
 static void fill_box(box_t *box, amber_world_t *world)
@@ -80,13 +90,11 @@ static void fill_box(box_t *box, amber_world_t *world)
     box->_phiras = world->_phiras_info._m_value - world->_phiras_info._c_value;
     box->_thystame = world->_thystame_info._m_value -
     world->_thystame_info._c_value;
-    world->_food_info._c_value = world->_food_info._m_value;
-    world->_linemate_info._c_value = world->_linemate_info._m_value;
-    world->_deraumere_info._c_value = world->_deraumere_info._m_value;
-    world->_sibur_info._c_value = world->_sibur_info._m_value;
-    world->_mendiane_info._c_value = world->_mendiane_info._m_value;
-    world->_phiras_info._c_value = world->_phiras_info._m_value;
-    world->_thystame_info._c_value = world->_thystame_info._m_value;
+    if (world->_food_info._m_value > world->_food_info._c_value)
+        world->_food_info._c_value = world->_food_info._m_value;
+    if (world->_linemate_info._m_value > world->_linemate_info._c_value)
+        world->_linemate_info._c_value = world->_linemate_info._m_value;
+    return fill_box_ext(world);
 }
 
 void amber_refill_world(amber_world_t *world)
