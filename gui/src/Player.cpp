@@ -11,19 +11,17 @@ std::map<std::string, Onyx::Player::Color> Onyx::Player::_colorMap = {};
 std::vector<std::shared_ptr<Onyx::Item>> Onyx::Player::_items = {};
 static int currentColor = 1;
 
-Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation) : _teamName(teamName)
+Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, float timeUnit) : _teamName(teamName)
 {
     this->_level = 1;
     memset(this->_quantity, 0, sizeof(this->_quantity));
-    if (Onyx::Player::_items.empty()) {
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::FOOD));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::LINEMATE));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::DERAUMERE));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::SIBUR));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::MENDIANE));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::PHIRAS));
-        Onyx::Player::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::THYSTAME));
-    }
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::FOOD));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::LINEMATE));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::DERAUMERE));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::SIBUR));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::MENDIANE));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::PHIRAS));
+    this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::THYSTAME));
     if (Player::_colorMap[teamName] == 0) {
         Player::_colorMap[teamName] = static_cast<Color>(currentColor++);
     }
@@ -37,10 +35,12 @@ Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vect
     Utils::setFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl, false);
     this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 2, position.y * CELL_SIZE);
     this->_pos = position;
+    this->_deltaTime = 0.0f;
     if (rotation.size() != 1)
         throw Onyx::PlayerError("Invalid rotation: " + rotation);
     this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
     this->setRotation(rotation);
+    this->isAnimated = false;
 }
 
 Onyx::Player::~Player()
@@ -107,6 +107,16 @@ void Onyx::Player::right()
     }
 }
 
+void Onyx::Player::setDelta(float deltaTime)
+{
+    this->_deltaTime = deltaTime;
+}
+
+float Onyx::Player::getDelta()
+{
+    return this->_deltaTime;
+}
+
 void Onyx::Player::setLevel(int level)
 {
     this->_level = level;
@@ -137,6 +147,16 @@ std::string Onyx::Player::getTeamName()
     return this->_teamName;
 }
 
+void Onyx::Player::setTimeUnit(int timeUnit)
+{
+    this->_timeUnit = timeUnit;
+}
+
+int Onyx::Player::getTimeUnit()
+{
+    return this->_timeUnit;
+}
+
 int Onyx::Player::getQuantity(Onyx::Item::TYPE type)
 {
     return this->_quantity[type];
@@ -146,6 +166,15 @@ void Onyx::Player::setInventory(int quantity, Onyx::Item::TYPE type)
 {
     this->_quantity[type] = quantity;
 }
+
+
+
+// void Onyx::Player::getInventory()
+// {
+//     for (auto &item : this->_items) {
+//         this->_quantity[item->getType()] = item->getQuantity();
+//     }
+// }
 
 void Onyx::Player::_setColor(std::string &fileContent)
 {
@@ -209,6 +238,11 @@ EGE::Maths::Vector3<float> Onyx::Player::getRotation()
     return this->_rotation;
 }
 
+void Onyx::Player::setRotationString(const std::string& rotation)
+{
+    this->_rotationString = rotation;
+}
+
 std::string Onyx::Player::getRotationString()
 {
     return this->_rotationString;
@@ -228,4 +262,24 @@ EGE::Maths::Vector2<int> Onyx::Player::getPos()
 int Onyx::Player::getId()
 {
     return this->_id;
+}
+
+std::string Onyx::Player::getAnimationString(Onyx::Player::Animation animation)
+{
+    switch (animation) {
+        case Onyx::Player::Animation::FORWARD_NORTH:
+            return "FORWARD_NORTH";
+        case Onyx::Player::Animation::FORWARD_SOUTH:
+            return "FORWARD_SOUTH";
+        case Onyx::Player::Animation::FORWARD_EAST:
+            return "FORWARD_EAST";
+        case Onyx::Player::Animation::FORWARD_WEST:
+            return "FORWARD_WEST";
+        case Onyx::Player::Animation::LEFT:
+            return "LEFT";
+        case Onyx::Player::Animation::RIGHT:
+            return "RIGHT";
+        default:
+            return "UNKNOWN";
+    }
 }

@@ -15,9 +15,15 @@ void Onyx::Entity::setPosition(const EGE::Maths::Vector3<float>& position)
 {
     this->_position = position;
     this->_model->setPosition(position);
+    this->_model->setOriginalModelMatrix();
 }
 
 EGE::Maths::Vector3<float> Onyx::Entity::getPosition()
 {
     return this->_position;
+}
+
+std::shared_ptr<EGE::Model> Onyx::Entity::getModel()
+{
+    return this->_model;
 }

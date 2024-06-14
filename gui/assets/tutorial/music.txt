@@ -1,0 +1,9 @@
+At Etib Corp, we love music, and we can't imagine a software without music.
+So let's take a tour of our music player !
+
+You can play or pause music by clicking on [Play / Pause].
+If you want to pass the current music, just click on [Next].
+And if the last music was amazing and you want ot go back to it,
+just press [Previous]
+
+So we showed you many feature, but go back to the base.

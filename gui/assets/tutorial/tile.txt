@@ -1,0 +1,5 @@
+On the floor you can have many differents items that Trantorians can pick up.
+
+Here we list all items available on the last selected tile.
+
+And at the end we will show you the little last thing you have to know.

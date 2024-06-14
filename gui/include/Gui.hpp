@@ -1,9 +1,7 @@
-/*
-** EPITECH PROJECT, 2024
-** gui
-** File description:
-** Gui
-*/
+/**
+ * @file Gui.hpp
+ * @brief Contains the declaration of the Gui class.
+ */
 
 #pragma once
 
@@ -12,6 +10,7 @@
 #include "Error.hpp"
 #include "Item.hpp"
 #include "Map.hpp"
+#include "OnyxAnimator.hpp"
 #include "Player.hpp"
 #include "Window.hpp"
 
@@ -55,8 +54,20 @@ namespace Onyx {
             */
             void createMap(int width, int height);
 
-            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation);
+            /**
+             * @brief Adds a player to the graphical user interface.
+             * @param id The ID of the player.
+             * @param position The position of the player.
+             * @param teamName The name of the team the player belongs to.
+             * @param rotation The rotation of the player.
+             * @param timeUnit The time unit of the world.
+             */
+            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, float timeUnit);
 
+            /**
+             * @brief Gets the map.
+             * @return A shared pointer to the map object.
+             */
             std::shared_ptr<Onyx::Map> getMap();
 
             /**
@@ -65,10 +76,20 @@ namespace Onyx {
              */
             std::shared_ptr<EGE::Window> getWindow() const;
 
+            /**
+             * @brief Starts the main loop of the graphical user interface.
+             */
             void loop();
 
+            /**
+             * @brief Checks if the graphical user interface is running.
+             * @return True if the graphical user interface is running, false otherwise.
+             */
             bool isRunning() const;
 
+            /**
+             * @brief Creates the world panel.
+             */
             void createWorldPanel();
 
             /**
@@ -86,11 +107,21 @@ namespace Onyx {
              */
             void createMenuBar();
 
+            /**
+             * @brief Creates the tutorial.
+             */
             void createTutorial();
 
+            /**
+             * @brief Creates the player panel.
+             */
             void createPlayerPanel();
 
-            void updatePlayerPanel();
+            /**
+             * @brief Updates the player panel.
+             * @param player A shared pointer to the player object.
+             */
+            void updatePlayerPanel(std::shared_ptr<Onyx::Player> &player);
 
             /**
              * @brief Updates the world panel.
@@ -135,17 +166,20 @@ namespace Onyx {
              */
             void _updateCamera();
 
-            std::shared_ptr<EGE::Window> _window;           /**< The window used for rendering the graphical user interface. */
-            std::vector<std::shared_ptr<Entity>> _entities; /**< The entities in the graphical user interface. */
-            std::shared_ptr<EGE::Shader> _shader;           /**< The shader used for rendering the entities. */
-            std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
-            float _deltaTime;                               /**< The time between frames. */
-            std::shared_ptr<Onyx::Map> _map;                /**< The map in the graphical user interface. */
-            int _tileSelected;                              /**< The selected tile. */
-            std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays informations about the world. */
-            bool _running;                                  /**< A boolean that indicates whether the application is running. */
-            net::TcpClient *_client;
+            std::shared_ptr<EGE::Window> _window;                   /**< The window used for rendering the graphical user interface. */
+            std::vector<std::shared_ptr<Entity>> _entities;         /**< The entities in the graphical user interface. */
+            std::shared_ptr<EGE::Shader> _shader;                   /**< The shader used for rendering the entities. */
+            std::shared_ptr<EGE::Camera> _camera;                   /**< The camera used for rendering the entities. */
+            float _deltaTime;                                       /**< The time between frames. */
+            std::shared_ptr<Onyx::Map> _map;                        /**< The map in the graphical user interface. */
+            int _tileSelected;                                      /**< The selected tile. */
+            std::shared_ptr<UserInterface> _interface;              /**< The Interface which displays informations about the world. */
+            bool _running;                                          /**< A boolean that indicates whether the application is running. */
+            net::TcpClient *_client;                                /**< The TCP client used for communication with the server. */
             std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */
-            bool _cameraMode;                               /**< A boolean that indicates whether the camera mode is enabled. */
+            std::vector<std::string> _teams;                        /**< The names of all the teams. */
+            bool _cameraMode;                                       /**< A boolean that indicates whether the camera mode is enabled. */
+            float _timeUnit;                                        /**< The time unit. */
+            Onyx::Animator _animator;                               /**< The animator used for animating the players. */
     };
 }

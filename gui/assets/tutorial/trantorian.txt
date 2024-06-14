@@ -1,0 +1,9 @@
+By selecting a trantorian, you can see informations about him in this panel.
+
+We show you all items he had collected, it's his [Inventory].
+
+But you can also see his [ID], and in which [Team] he belongs.
+
+You can even see if your trantorian is growing by watching his [Level].
+
+But about the world, it remains a last information, about the floor.
