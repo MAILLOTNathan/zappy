@@ -22,3 +22,8 @@ EGE::Maths::Vector3<float> Onyx::Entity::getPosition()
 {
     return this->_position;
 }
+
+std::shared_ptr<EGE::Model> Onyx::Entity::getModel()
+{
+    return this->_model;
+}
