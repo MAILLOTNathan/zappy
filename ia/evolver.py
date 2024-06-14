@@ -74,6 +74,15 @@ class evolver:
         }
 
     def check_level_up(self, box_zero):
+        """
+        Checks if the player can level up based on the items in their inventory.
+
+        Args:
+            box_zero (list): The player's inventory.
+
+        Returns:
+            bool: True if the player can level up, False otherwise.
+        """
         requirements = self.level_requirements[self.level]
         for item in requirements:
             if box_zero.count(item) < requirements[item]:
@@ -81,6 +90,20 @@ class evolver:
         return True
     
     def elevation_parse(self, response):
+        """
+        Parses the response received from the server after attempting to elevate the player's level.
+
+        Args:
+            conn (connection): The connection object used to communicate with the server.
+            response (bytes): The response received from the server.
+
+        Returns:
+            bytes: The modified response after parsing.
+
+        Raises:
+            SystemExit: If the response is None.
+
+        """
         if response is None:
             exit(84)
         if "Elevation" in response.decode():
@@ -117,6 +140,19 @@ class evolver:
             return data
 
     def broadcast_parse(self, response):
+        """
+        Parses the response received from a broadcast message.
+
+        Args:
+            response (bytes): The response received from the server.
+
+        Returns:
+            bytes: The parsed response.
+
+        Raises:
+            None
+
+        """
         if response == None:
             exit(0)
         if "message" in response.decode():
@@ -149,6 +185,16 @@ def parse_look(response):
     return look
 
 def get_obj(map, obj):
+    """
+    Find the coordinates and count of the given object in the map.
+
+    Args:
+        map (list): A 2D list representing the map.
+        obj (str): The object to search for in the map.
+
+    Returns:
+        tuple: A tuple containing the x-coordinate, y-coordinate, and count of the object found.
+    """
     x = 0
     y = 0
     nb = 0
@@ -161,6 +207,20 @@ def get_obj(map, obj):
     return x,y,nb
 
 def get_direction(x,y):
+    """
+    Returns a list of directions based on the given x and y coordinates.
+
+    Args:
+        x (int): The x coordinate.
+        y (int): The y coordinate.
+
+    Returns:
+        list: A list of directions.
+
+    Example:
+        >>> get_direction(3, -2)
+        ['Forward', 'Forward', 'Forward', 'Left', 'Forward', 'Forward']
+    """
     dir = []
     y -= 1
     for i in range(x):
@@ -214,7 +274,6 @@ def main():
     bot.conn.connect_to_server(bot.team_name)
 
     while True:
-        print("EVOLVER LEVEL IS : ", bot.level)
         response = bot.conn.send_request('Look')
         response = bot.broadcast_parse(response)
         response = bot.elevation_parse(response)
@@ -239,7 +298,6 @@ def main():
             response = bot.conn.send_request('Take food')
             response = bot.broadcast_parse(response)
             response = bot.elevation_parse(response)
-    return 0
 
 if __name__ == "__main__":
     main()

@@ -27,17 +27,31 @@ class TuringAI:
     collector = 0
 
     def elevate_parse(self, conn, response):
+        """
+        Parses the response received from the server after attempting to elevate the player's level.
+
+        Args:
+            conn (connection): The connection object used to communicate with the server.
+            response (bytes): The response received from the server.
+
+        Returns:
+            bytes: The modified response after parsing.
+
+        Raises:
+            SystemExit: If the response is None.
+
+        """
         if response is None:
             exit(84)
         if "Elevation" in response.decode():
             response = response.decode()
             response.split('\n')
             data = conn.read_line()
-            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
+            while data.decode().find("Current") >= 0 or data.decode().find("ko") >= 0 or data.decode().find("ok") >= 0:
                 data = conn.read_line()
                 data = self.broadcast_parse(data)
                 print(data.decode(), "--------------")
-                if data.decode().find("level") >= 0:
+                if data.decode().find("Current") >= 0:
                     print("+1")
                     self.level += 1
                     return data
@@ -116,10 +130,24 @@ class TuringAI:
         Returns:
             None
         """
+
         data = conn.send_request("Incantation")
-        if "Elevation underway" in data.decode():
+        if "Elevation" in data.decode():
             self.level += 1
-            data = conn.s.recv(1024)
+            data = conn.read_line()
+
+    def do_incantation_other(self, conn):
+        """
+        Perform the incantation action.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        data = conn.send_request("Incantation")
+        self.elevate_parse(conn, data)
 
     def update_children(self, conn):
         """
@@ -176,14 +204,24 @@ class TuringAI:
             return
         if look == "done":
             return
-        food_qtt = look[0][1].count("food")
-        conn.send_request("Take food")
-        self.elevate_parse(conn, conn.send_request("Take food"))
+        if self.inventory["food"] > 5:
+            return
+        data = conn.send_request("Take food")
+        self.elevate_parse(conn, data)
              
     def basic_ia(self, conn):
+        """
+        Implements the basic logic for the AI behavior.
+
+        Args:
+            conn: The connection object used to communicate with the server.
+
+        Returns:
+            None
+        """
         self.destroy_random_eggs(conn)
         while True:
-            print("DARONNE LEVEL IS : ", self.level)
+            print("MOTHER LEVEL IS : ", self.level)
             if self.level == 1:
                 for i in range(0,4):
                     if self.level != 1:
@@ -207,13 +245,17 @@ class TuringAI:
                 look = parse_look(res, self, "food")
                 self.stay_alive(look, conn)
                 if self.check_level_up(res) == True:
-                    self.do_incantation(conn)
+                    self.do_incantation_other(conn)
                 res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
-                self.elevate_parse(conn, res) 
+                if res.decode().find("Elevation") >= 0:
+                    self.elevate_parse(conn, res)
+                    continue
                 launch_new_instance(self, look, conn)
                 if self.collector >= 1:
                     res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
-                    self.elevate_parse(conn, res)
+                    if res.decode().find("Elevation") >= 0:
+                        self.elevate_parse(conn, res)
+                        continue
                 self.get_food(conn)
 
     def __init__(self):
@@ -388,21 +430,33 @@ def launch_new_instance(self, map, conn):
 
     if map[0][1].count("food") == 0:
         res = conn.send_request("Fork")
-        self.elevate_parse(conn, res)
+        if res == None or res == "done":
+            return
+        print("THE RES", res.decode())
+        if "Elevation" in res.decode():
+            return self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
     if map[0][1].count("player") < 4:
-       res = conn.send_request("Fork")
-       self.elevate_parse(conn, res)
-       command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-       print("made an evolver child")
-       thread = threading.Thread(target=run_subprocess, args=(command,))
-       thread.start()
+        res = conn.send_request("Fork")
+        if res == None or res == "done":
+              return
+        print("THE RES", res.decode())
+        if "Elevation" in res.decode():
+            return self.elevate_parse(conn, res)
+        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made an evolver child")
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
     if self.collector < 3:
         res = conn.send_request("Fork")
-        self.elevate_parse(conn, res)
+        if res == None or res == "done":
+            return
+        print("THE RES", res.decode())
+        if "Elevation" in res.decode():
+            return self.elevate_parse(conn, res)
         command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a collector child")
         self.collector += 1
