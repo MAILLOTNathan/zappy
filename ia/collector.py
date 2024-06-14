@@ -70,6 +70,19 @@ class food_collector:
         self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
     
     def elevate_parse(self, response):
+        """
+        Parses the response received after sending an elevation command.
+
+        Args:
+            response (bytes): The response received from the server.
+
+        Returns:
+            bytes: The parsed response.
+
+        Raises:
+            SystemExit: If the response is None.
+
+        """
         if response is None:
             exit(84)
         if "Elevation" in response.decode():
@@ -87,6 +100,19 @@ class food_collector:
         return response
 
     def broadcast_parse(self, response):
+        """
+        Parses the response received from a broadcast message.
+
+        Args:
+            response (bytes): The response received from the server.
+
+        Returns:
+            bytes: The parsed response.
+
+        Raises:
+            None
+
+        """
         if response == None:
             exit(0)
         if "message" in response.decode():
@@ -103,28 +129,46 @@ class food_collector:
         return response
 
     def get_food(self):
-        response = self.conn.send_request('Inventory')
-        response = self.elevate_parse(response)
-        response = self.broadcast_parse(response)
-        response = self.elevate_parse(response)
-        if response == None or response == 'done':
-            return
-        response = response.decode().strip('[]')
-        response = response.split(',')
-        response = [component.strip() for component in response]
-        response = [int(component.split()[1]) if len(component.split()) > 1 and component.split()[1].isdigit() else 0 for component in response]
-        x = 0
-        for i in self.inventory:
-            self.inventory[i] = response[x]
-            x+=1
+            """
+            Retrieves the food items from the inventory.
+
+            Returns:
+                None: If the response is None or 'done'.
+            """
+            response = self.conn.send_request('Inventory')
+            response = self.elevate_parse(response)
+            response = self.broadcast_parse(response)
+            response = self.elevate_parse(response)
+            if response == None or response == 'done':
+                return
+            response = response.decode().strip('[]')
+            response = response.split(',')
+            response = [component.strip() for component in response]
+            response = [int(component.split()[1]) if len(component.split()) > 1 and component.split()[1].isdigit() else 0 for component in response]
+            x = 0
+            for i in self.inventory:
+                self.inventory[i] = response[x]
+                x+=1
 
     def objectif_done(self):
+        """
+        Check if the objectives are completed.
+
+        Returns:
+            bool: True if all objectives are completed, False otherwise.
+        """
         for i in self.inventory:
             if i != 'food' and self.objectif[i] != 0 and self.objectif[i] > self.inventory[i]:
                 return False
         return True
     
     def get_max_objectif(self):
+        """
+        Returns the element with the maximum objective value that has not been reached yet.
+
+        Returns:
+            str: The element with the maximum objective value.
+        """
         max = -1
         element = ''
         for i in self.objectif:
@@ -134,6 +178,17 @@ class food_collector:
         return element
     
     def go_to_broadcast(self):
+        """
+        Moves the collector to the broadcast location.
+
+        This method is responsible for moving the collector to the broadcast location
+        based on the current signal angle. It uses the `conn` object to send requests
+        to the server and parses the responses using the `elevate_parse` and `broadcast_parse`
+        methods.
+
+        Returns:
+            None
+        """
         self.wait = True
         if self.signal_angle == 0:
             for i in self.inventory:
@@ -202,6 +257,16 @@ def parse_look(response):
     return look
 
 def get_obj(map, obj):
+    """
+    Find the coordinates and count of the given object in the map.
+
+    Args:
+        map (list): A 2D list representing the map.
+        obj (str): The object to search for in the map.
+
+    Returns:
+        tuple: A tuple containing the x-coordinate, y-coordinate, and count of the object found.
+    """
     x = 0
     y = 0
     nb = 0
@@ -213,7 +278,21 @@ def get_obj(map, obj):
                 nb = map[i][e].count(obj)
     return x,y,nb
 
-def get_direction(x,y):
+def get_direction(x, y):
+    """
+    Returns a list of directions based on the given x and y coordinates.
+
+    Args:
+        x (int): The x coordinate.
+        y (int): The y coordinate.
+
+    Returns:
+        list: A list of directions.
+
+    Example:
+        >>> get_direction(3, -2)
+        ['Forward', 'Forward', 'Forward', 'Left', 'Forward', 'Forward']
+    """
     dir = []
     y -= 1
     for i in range(x):
