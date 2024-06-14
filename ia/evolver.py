@@ -124,11 +124,9 @@ class evolver:
             res = response.split('\n')
             self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
             result = res[0].split(' ')
-            print("-----------",result)
             self.signal_angle = int(result[1].split(',')[0])
             self.wait = False
             data = self.conn.read_line()
-            print(data.decode(),"------------")
             data = self.broadcast_parse(data)
             return data
         return response
@@ -190,7 +188,6 @@ def find_path(direction : list, quantity, obj : str, ai ):
         ai.conn.send_request(i)
     for i in range(0, quantity):
         ai.conn.send_request("Take " + obj)
-        print(obj + " taken")
         ai.inventory[obj] += 1
 
 def come_back(direction : list, ia):
@@ -218,34 +215,23 @@ def main():
 
     while True:
         print("EVOLVER LEVEL IS : ", bot.level)
-        print("0")
         response = bot.conn.send_request('Look')
         response = bot.broadcast_parse(response)
-        print("zzzz")
         response = bot.elevation_parse(response)
         if response == None or response == 'done':
             return
-        print("1", response)
         map = parse_look(response.decode())
-        print(map)
-        print("2")
         if bot.check_level_up(map[0][1]) == True:
             res = bot.do_incantation(bot.conn)
-            if res is not None:
-                print(res.decode(), "@@@@@@@@@@@@")
             res = bot.broadcast_parse(res)
             response = bot.elevation_parse(res)
             continue
-        print("3")
         response = bot.conn.send_request('Inventory')
         response = bot.broadcast_parse(response)
         response = bot.elevation_parse(response)
-        print("4")
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
-        print(response)
-        #response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
         response = [int(component.split()[1]) for component in response]

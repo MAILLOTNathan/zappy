@@ -31,14 +31,14 @@ class TuringAI:
             exit(84)
         if "Elevation" in response.decode():
             response = response.decode()
-            res = response.split('\n')
-            print(res)
+            response.split('\n')
             data = conn.read_line()
-            print("LA DATA DE FDP", data)
             while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
                 data = conn.read_line()
                 data = self.broadcast_parse(data)
+                print(data.decode(), "--------------")
                 if data.decode().find("level") >= 0:
+                    print("+1")
                     self.level += 1
                     return data
             return data
@@ -100,12 +100,9 @@ class TuringAI:
         response = self.elevate_parse(conn, response)
         if response == None or response == 'done':
             return
-        print(response)
         response = response.decode().strip('[]')
-        #response = response.split(']')[0]
         response = response.split(',')
         response = [component.strip() for component in response]
-        print(response)
         response = [int(component.split()[1]) for component in response]
         self.inventory['food'] = response[0]
 
@@ -142,7 +139,49 @@ class TuringAI:
         except:
             return
 
+    def destroy_random_eggs(self, conn):
+        """
+        Launches a new instance based on the current state of the agent.
+
+        If the agent's food inventory is less than 10, it launches the `sucide.py` script.
+        If the agent's level is 2 and the food inventory is greater than or equal to 10, it launches the `evolver.py` script.
+        Otherwise, it launches the `collector.py` script.
+
+        The launched scripts are executed in the background and their output is redirected to os.devnull.
+        """
+        if conn.conn_num == 1:
+            return
+        def run_subprocess(command):
+            with open(os.devnull, 'w') as devnull:
+                process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
+                process.wait()
+        
+        for i in range(0, conn.conn_num):
+            command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+            print("made a sucide child")
+            thread = threading.Thread(target=run_subprocess, args=(command,))
+            thread.start()
+
+    def stay_alive(self, look, conn):
+        """
+        Checks if the player is alive and takes necessary actions to stay alive.
+
+        Args:
+            look (list): The items in the player's inventory.
+
+        Returns:
+            None
+        """
+        if look == None:
+            return
+        if look == "done":
+            return
+        food_qtt = look[0][1].count("food")
+        conn.send_request("Take food")
+        self.elevate_parse(conn, conn.send_request("Take food"))
+             
     def basic_ia(self, conn):
+        self.destroy_random_eggs(conn)
         while True:
             print("DARONNE LEVEL IS : ", self.level)
             if self.level == 1:
@@ -166,16 +205,14 @@ class TuringAI:
                 res = conn.send_request("Look")
                 self.elevate_parse(conn, res)
                 look = parse_look(res, self, "food")
-                if look and self.inventory['food'] < 5 and look[0][1].count('food') != 0:
-                    res = conn.send_request("Take food")
-                    self.elevate_parse(conn, res)
-                elif self.check_level_up(res) == True:
+                self.stay_alive(look, conn)
+                if self.check_level_up(res) == True:
                     self.do_incantation(conn)
-                res = conn.send_request("Broadcast " + broadcast_needed(self))
+                res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
                 self.elevate_parse(conn, res) 
                 launch_new_instance(self, look, conn)
                 if self.collector >= 1:
-                    res = conn.send_request("Broadcast " + broadcast_needed(self))
+                    res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
                     self.elevate_parse(conn, res)
                 self.get_food(conn)
 
@@ -292,12 +329,13 @@ def get_direction(x,y):
             dir.append("Forward")
     return dir
 
-def broadcast_needed(bot: TuringAI):
+def broadcast_needed(bot: TuringAI, tile):
     add = ''
     for i in bot.level_requirements[bot.level]:
         if i != 'player':
             for y in range(bot.level_requirements[bot.level][i]):
-                add += i
+                if tile.count(i) < bot.level_requirements[bot.level][i]:
+                    add += i
     return add
 
 def find_path(direction : list, quantity, obj : str, ai: TuringAI, conn):
@@ -338,11 +376,17 @@ def launch_new_instance(self, map, conn):
 
     The launched scripts are executed in the background and their output is redirected to os.devnull.
     """
-    def run_subprocess(command):
+    def run_subprocess(command, callback=None):
         with open(os.devnull, 'w') as devnull:
             process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
             process.wait()
-    if map[0][1].count('food') == 0:
+            if callback:
+                callback()
+
+    def decrement_collector():
+        self.collector -= 1
+
+    if map[0][1].count("food") == 0:
         res = conn.send_request("Fork")
         self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
@@ -350,17 +394,19 @@ def launch_new_instance(self, map, conn):
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
     if map[0][1].count("player") < 4:
-       conn.send_request("Fork")
+       res = conn.send_request("Fork")
+       self.elevate_parse(conn, res)
        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
        print("made an evolver child")
        thread = threading.Thread(target=run_subprocess, args=(command,))
        thread.start()
-    if self.collector < 1:
-        conn.send_request("Fork")
+    if self.collector < 3:
+        res = conn.send_request("Fork")
+        self.elevate_parse(conn, res)
         command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a collector child")
         self.collector += 1
-        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
         thread.start()
 
 def main():
