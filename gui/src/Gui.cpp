@@ -337,13 +337,12 @@ void Onyx::Gui::loop()
         } catch (std::exception &e) {
             throw EGE::Error("Invalid time unit received in sgt command : |" + args[1] + "|.");
         }
-        std::cout << "Time unit received: " << timeUnit << std::endl;
         this->_timeUnit = timeUnit;
         this->_animator.setTimeUnit(timeUnit);
+        this->updateWorldSettings(timeUnit);
     });
 
     this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
-        std::cout << "TNA passed" << std::endl;
         if (args.size() != 2)
             throw EGE::Error("[TNA] Wrong number of param.");
         args.erase(args.begin());
@@ -353,10 +352,14 @@ void Onyx::Gui::loop()
         this->updateWorldPanel();
     });
 
+    this->_client->addCommand("sst", net::type_command_t::SST, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[SST] Wrong number of param.");
+    });
+
     this->_client->connection();
     this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("msz\n");
-    this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("mct\n");
     this->_client->sendRequest("pnw\n");
     this->_client->sendRequest("pin\n");
@@ -652,7 +655,7 @@ void Onyx::Gui::createMenuBar()
         else
             this->_interface->defaultMode();
         this->_interface->_panels["World settings"]->setVisible(false);
-        this->updateWorldSettings(frequ->getValue());
+        this->_client->sendRequest("sst " + std::to_string(frequ->getValue()) + "\n");
     });
 
     world->add(frequency, "0 Frequency");

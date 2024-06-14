@@ -40,6 +40,7 @@ namespace net {
         EBO,    ///< Get the notification of an egg being laid
         EDI,    ///< Get the notification of an egg dying
         SGT,    ///< Get the time unit value
+        SST,    ///< Set the time unit value
         SEG,    ///< Get the end of the game
         SMG,    ///< Get a server message
         IDM,    ///< Get the id of the player that moves or rotates
