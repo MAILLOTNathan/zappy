@@ -47,15 +47,19 @@ class TuringAI:
             response = response.decode()
             response.split('\n')
             data = conn.read_line()
-            while data.decode().find("Current") >= 0 or data.decode().find("ko") >= 0 or data.decode().find("ok") >= 0:
+            while data.decode().find("Current")  == -1:
                 data = conn.read_line()
                 data = self.broadcast_parse(data)
                 print(data.decode(), "--------------")
                 if data.decode().find("Current") >= 0:
                     print("+1")
                     self.level += 1
+                    print("LA DATA 1:" , data)
+                    data = conn.read_line()
                     return data
+            print("LA DEUXIEME DATA EST : ", data)
             return data
+        print("LA REPONSEEST : ", response)
         return response
 
     def check_level_up(self, res):
