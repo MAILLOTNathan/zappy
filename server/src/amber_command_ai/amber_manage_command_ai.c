@@ -65,12 +65,8 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
 {
     linked_list_t *clients = serv->_clients->nodes;
     amber_client_t *tmp = NULL;
-    // int len = list_len(serv->_clients);
-    // int *clients_id = calloc(len, sizeof(int));
 
-    printf("LEN LIST %ld\n", list_len(serv->_clients));
     for (linked_list_t *node = clients; node; node = node->next) {
-        printf("SIZE %zu\n", sizeof(tmp));
         tmp = (amber_client_t *)node->data;
         if (tmp->_team_name == NULL)
             continue;
@@ -79,10 +75,8 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
         if (tmp->_x == client->_x && tmp->_y == client->_y) {
             tmp->_is_incantating = true;
             send_cli_msg(tmp, "Elevation underway");
-            // clients_id[tmp->_id] = tmp->_id;
         }
     }
-    // amber_event_pic(client, serv, clients_id);
 }
 
 static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
