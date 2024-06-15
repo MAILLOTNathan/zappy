@@ -97,4 +97,20 @@ amber_client_t *amber_get_client_by_id(list_t *clients, int id);
 bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
     amber_world_t *world, char **arg);
 
+/**
+ * @brief Formats a string and sends it to the specified client.
+ *
+ * This function takes a variable number of arguments and formats them
+ * according to the specified format string.
+ * The resulting formatted string is then sent to the specified client.
+ *
+ * @param client A pointer to the `amber_client_t` structure representing the
+ * client.
+ * @param format The format string specifying how the arguments should be
+ * formatted.
+ * @param ... Additional arguments to be formatted according to the format
+ * string.
+ */
+void snprintfizer(amber_client_t *client, char *format, ...);
+
 #endif /* !AMBER_MANAGE_CLIENT_H_ */

@@ -27,8 +27,6 @@ static const box_t *elevation_needs[] = {
 
 static bool ressource_available(box_t *world_case, const box_t *need)
 {
-    if (world_case->_food < need->_food)
-        return false;
     if (world_case->_linemate < need->_linemate)
         return false;
     if (world_case->_deraumere < need->_deraumere)
@@ -55,10 +53,16 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
         tmp = (amber_client_t *)node->data;
         if (tmp->_level != client->_level)
             continue;
-        if (tmp->_x == client->_x && tmp->_y == client->_y)
+        if (tmp->_x == client->_x && tmp->_y == client->_y &&
+            tmp->_is_incantating)
             count++;
     }
     return count >= need_players;
+}
+
+static void print_res_incantation(amber_client_t *client, int level)
+{
+    snprintfizer(client, "Current level: %d", level);
 }
 
 static void level_up_players(amber_client_t *client, amber_serv_t *server)
@@ -70,18 +74,54 @@ static void level_up_players(amber_client_t *client, amber_serv_t *server)
         tmp = (amber_client_t *)node->data;
         if (tmp->_level != client->_level || tmp->_id == client->_id)
             continue;
-        if (tmp->_x == client->_x && tmp->_y == client->_y) {
+        if (tmp->_x == client->_x && tmp->_y == client->_y &&
+            tmp->_is_incantating) {
             tmp->_level++;
-            dprintf(tmp->_tcp._fd, "Elevation underway\n");
-            dprintf(tmp->_tcp._fd, "Current level: %d\n", tmp->_level);
+            print_res_incantation(tmp, tmp->_level);
+            tmp->_is_incantating = false;
         }
-        tmp->_is_incantating = false;
     }
     client->_level++;
-    dprintf(client->_tcp._fd, "Elevation underway\n");
-    dprintf(client->_tcp._fd, "Current level: %d\n", client->_level);
+    print_res_incantation(client, client->_level);
     client->_is_incantating = false;
     amber_event_pie(client, server->_graphic_clients, true);
+}
+
+static void remove_from_info_world(amber_world_t *world, amber_client_t *cli,
+    const box_t *needs)
+{
+    world->_case[cli->_y][cli->_x]._linemate -= needs->_linemate;
+    world->_case[cli->_y][cli->_x]._deraumere -= needs->_deraumere;
+    world->_case[cli->_y][cli->_x]._sibur -= needs->_sibur;
+    world->_case[cli->_y][cli->_x]._mendiane -= needs->_mendiane;
+    world->_case[cli->_y][cli->_x]._phiras -= needs->_phiras;
+    world->_case[cli->_y][cli->_x]._thystame -= needs->_thystame;
+    world->_food_info._c_value -= needs->_food;
+    world->_linemate_info._c_value -= needs->_linemate;
+    world->_deraumere_info._c_value -= needs->_deraumere;
+    world->_sibur_info._c_value -= needs->_sibur;
+    world->_mendiane_info._c_value -= needs->_mendiane;
+    world->_phiras_info._c_value -= needs->_phiras;
+    world->_thystame_info._c_value -= needs->_thystame;
+}
+
+static void incation_failed(amber_client_t *client, amber_serv_t *serv)
+{
+    linked_list_t *node = serv->_clients->nodes;
+    amber_client_t *tmp = NULL;
+
+    for (; node; node = node->next) {
+        tmp = (amber_client_t *)node->data;
+        if (tmp->_x != client->_x || tmp->_y != client->_y)
+            continue;
+        if (tmp->_level != client->_level || tmp->_id == client->_id ||
+            !tmp->_is_incantating || tmp->_team_name == NULL)
+            continue;
+        tmp->_is_incantating = false;
+        send_cli_msg(tmp, "ko");
+    }
+    client->_is_incantating = false;
+    send_cli_msg(client, "ko");
 }
 
 void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
@@ -91,20 +131,11 @@ void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
 
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
-        dprintf(client->_tcp._fd, "ko\n");
-        amber_event_pie(client, serv->_graphic_clients, false);
-        return;
+        return incation_failed(client, serv);
     }
     if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
-        dprintf(client->_tcp._fd, "ko\n");
-        amber_event_pie(client, serv->_graphic_clients, false);
-        return;
+        return incation_failed(client, serv);
     }
-    world->_case[client->_y][client->_x]._linemate -= needs->_linemate;
-    world->_case[client->_y][client->_x]._deraumere -= needs->_deraumere;
-    world->_case[client->_y][client->_x]._sibur -= needs->_sibur;
-    world->_case[client->_y][client->_x]._mendiane -= needs->_mendiane;
-    world->_case[client->_y][client->_x]._phiras -= needs->_phiras;
-    world->_case[client->_y][client->_x]._thystame -= needs->_thystame;
+    remove_from_info_world(world, client, needs);
     level_up_players(client, serv);
 }

@@ -1,0 +1,9 @@
+Logically, in a world there is many informations.
+
+In Amber world, you have items dropped on the floor, so we list them for you in
+the container [Content].
+
+But we also display basics informations like the size of the world in the container
+named [Dimensions].
+
+That was the informations about the world, let's see informations about natives.

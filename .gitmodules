@@ -1,3 +1,0 @@
-[submodule "gui/ege"]
-	path = gui/ege
-	url = git@github.com:etib-corp/etib-game-engine

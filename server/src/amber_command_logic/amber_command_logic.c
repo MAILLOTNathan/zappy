@@ -28,7 +28,7 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
     linked_list_t *clients = NULL;
     amber_client_t *tmp = NULL;
 
-    if (world->_clock >= get_time_in_microseconds())
+    if (world->_clock < get_time_in_microseconds())
         amber_refill_world(world);
     amber_check_client_alive(serv, world);
     clients = serv->_clients->nodes;

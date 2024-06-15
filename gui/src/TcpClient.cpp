@@ -132,3 +132,13 @@ void net::TcpClient::_initFdSet()
     FD_SET(this->_fd, &this->_writefds);
     FD_SET(0, &this->_readfds);
 }
+
+std::string net::TcpClient::getIP() const
+{
+    return this->_ip;
+}
+
+int net::TcpClient::getPort() const
+{
+    return this->_port;
+}

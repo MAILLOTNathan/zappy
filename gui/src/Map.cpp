@@ -63,3 +63,17 @@ std::vector<std::shared_ptr<Onyx::Floor>> Onyx::Map::getFloor() const
 {
     return this->_floor;
 }
+
+int Onyx::Map::getTileSelected(EGE::Maths::Vector3<float> cameraPositon, EGE::Maths::Vector3<float> cameraFront, EGE::Maths::Vector2<int> mousePosition)
+{
+    int tileSelected = -1;
+    float minDistance = 1000000;
+    for (int i = 0; i < this->_size.x * this->_size.y; i++) {
+        float distance = this->_floor[i]->getDistance(cameraPositon, cameraFront);
+        if (distance < minDistance) {
+            minDistance = distance;
+            tileSelected = i;
+        }
+    }
+    return tileSelected;
+}

@@ -79,3 +79,15 @@ void amber_event_pdr(amber_client_t *client, list_t *clients_gra,
         tmp = tmp->next;
     }
 }
+
+void amber_event_pfk(amber_client_t *client, amber_serv_t *serv)
+{
+    linked_list_t *tmp = serv->_graphic_clients->nodes;
+    amber_client_t *cli = NULL;
+
+    while (tmp) {
+        cli = (amber_client_t *)tmp->data;
+        dprintf(cli->_tcp._fd, "pfk #%d\n", client->_id);
+        tmp = tmp->next;
+    }
+}

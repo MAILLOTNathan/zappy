@@ -1,0 +1,11 @@
+state [
+    level 0,0,0,0,0,0,0,0,0
+    can levelup 0/1
+    looked item [look size]
+    looked nb item [0-10]...
+    inventory:
+        item1 [0...10]
+        ...
+]
+
+command [take item, set item, les autre]
