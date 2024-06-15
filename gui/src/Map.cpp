@@ -64,15 +64,19 @@ std::vector<std::shared_ptr<Onyx::Floor>> Onyx::Map::getFloor() const
     return this->_floor;
 }
 
-int Onyx::Map::getTileSelected(EGE::Maths::Vector3<float> cameraPositon, EGE::Maths::Vector3<float> cameraFront, EGE::Maths::Vector2<int> mousePosition)
+int Onyx::Map::getTileSelected(const EGE::Maths::Vector3<float>& cameraPosition, const EGE::Maths::Matrix<4, 4, float>& projection, const EGE::Maths::Matrix<4, 4, float>& view)
 {
     int tileSelected = -1;
-    float minDistance = 1000000;
-    for (int i = 0; i < this->_size.x * this->_size.y; i++) {
-        float distance = this->_floor[i]->getDistance(cameraPositon, cameraFront);
-        if (distance < minDistance) {
-            minDistance = distance;
+    float t, u, v;
+    glm::vec4 rayClip = glm::vec4(0.0f, 0.0f, -1.0f, 1.0f);
+    glm::vec4 rayEye = glm::inverse(projection.toGlm()) * rayClip;
+    rayEye = glm::vec4(rayEye.x, rayEye.y, -1.0f, 0.0f);
+    glm::vec3 rayWorld = glm::normalize(glm::vec3(glm::inverse(view.toGlm()) * rayEye));
+
+    for (int i = 0; i < this->_floor.size(); i++) {
+        if (this->_floor[i]->intersects(cameraPosition.toGlmVec3(), rayWorld, t, u, v)) {
             tileSelected = i;
+            break;
         }
     }
     return tileSelected;

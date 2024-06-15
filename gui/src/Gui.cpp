@@ -423,7 +423,7 @@ void Onyx::Gui::_bindEvents()
         this->_window->close();
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Mouse, EGE::Event::Mouse::MouseLeft, EGE::Event::Mode::JustPressed, [this]() {
-        this->_tileSelected = this->_map->getTileSelected(this->_camera->getPosition(), this->_camera->getFront(), this->_window->getMousePosition());
+        this->_tileSelected = this->_map->getTileSelected(this->_camera->getPosition(), this->_camera->_projection, this->_camera->_view);
         std::cout << "Tile selected: " << this->_tileSelected << std::endl;
         if (this->_tileSelected >= 0)
             this->updateTilePanel();
