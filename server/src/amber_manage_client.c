@@ -107,6 +107,7 @@ void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
             world->_case[client->_y][client->_x]._players--;
         printf("[AMBER INFO] Client %d died (lost connection)\n",
             client->_tcp._fd);
+        amber_event_pdi(client, server->_graphic_clients);
         remove_node(&clients, list_find_node(
         clients, client, cmp), true);
         fflush(stdout);
