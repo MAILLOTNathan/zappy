@@ -7,6 +7,8 @@
 
 #include "Gui.hpp"
 
+float speed = 4.0f;
+
 Onyx::Gui::Gui(net::TcpClient client)
 {
     this->_window = std::make_shared<EGE::Window>("Onyx", EGE::Maths::Vector2<int>(1920, 1080), EGE::Window::Styles::Close & EGE::Window::Styles::Titlebar);
@@ -584,6 +586,49 @@ void Onyx::Gui::_bindEvents()
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyEscape, EGE::Event::Mode::JustPressed, [this]() {
         this->_window->close();
     }));
+    // this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyF1, EGE::Event::Mode::JustPressed, [this]() {
+    //     this->_interface->toggle();
+    // }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickLX, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::RIGHT, value * this->_deltaTime * speed);
+        else if (value < -0.1f)
+            this->_camera->move(EGE::Camera::Movement::LEFT, -value * this->_deltaTime * speed);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickLY, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::FORWARD, -value * this->_deltaTime * speed);
+        else if (value < -0.1f)
+            this->_camera->move(EGE::Camera::Movement::BACKWARD, value * this->_deltaTime * speed);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickRX, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->rotate(value * 1.5f, 0, true);
+        else if (value < -0.1f)
+            this->_camera->rotate(value * 1.5f, 0, true);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickRY, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->rotate(0, -value * 1.5f, true);
+        else if (value < -0.1f)
+            this->_camera->rotate(0, -value * 1.5f, true);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickLT, EGE::Event::Mode::Pressed, [this](float value) {
+        value += 1.0f;
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::DOWN, value * this->_deltaTime);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickRT, EGE::Event::Mode::Pressed, [this](float value) {
+        value += 1.0f;
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::UP, value * this->_deltaTime);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickButton, EGE::Event::JoystickButton::JoystickLThumb, EGE::Event::Mode::JustPressed, [this]() {
+        speed = 8.0f;
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickButton, EGE::Event::JoystickButton::JoystickLThumb, EGE::Event::Mode::JustReleased, [this]() {
+        speed = 4.0f;
+    }, 0));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Mouse, EGE::Event::Mouse::MouseLeft, EGE::Event::Mode::JustPressed, [this]() {
         this->_tileSelected = this->_map->getTileSelected(this->_camera->getPosition(), this->_camera->_projection, this->_camera->_view);
         std::cout << "Tile selected: " << this->_tileSelected << std::endl;
