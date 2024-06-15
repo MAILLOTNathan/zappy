@@ -7,7 +7,6 @@
 
 #include "TcpClient.hpp"
 
-
 net::TcpClient::TcpClient(const std::string& ip, int port)
 {
     this->_ip = ip;
@@ -29,8 +28,9 @@ void net::TcpClient::connection()
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(this->_port);
     serv_addr.sin_addr.s_addr = inet_addr(this->_ip.c_str());
-    if (connect(this->_fd, (struct sockaddr *)&serv_addr, len) < 0)
+    if (connect(this->_fd, (struct sockaddr *)&serv_addr, len) < 0) {
         throw net::TcpClientError("Connection failed");
+    }
     this->_getheader();
     this->_sendTeamName();
 }
@@ -87,22 +87,41 @@ void net::TcpClient::addCommand(const std::string& command, net::type_command_t 
     this->_manager.addCommand(command, type, callback);
 }
 
+#ifndef VR
 void net::TcpClient::_readAll()
 {
-    char buffer[1000000] = {0};
+    char buffer[100000] = {0};
     std::string response;
     ssize_t valread;
 
     do {
-        valread = recv(this->_fd, buffer, 1000000, 0);
+        valread = recv(this->_fd, buffer, 100000, 0);
         if (valread == 0)
             break;
         response += buffer;
-        std::memset(buffer, 0, 1000000);
-    } while (valread == 1000000);
+        std::memset(buffer, 0, 100000);
+    } while (valread == 100000);
 
     this->_buffer += response;
 }
+#else
+void net::TcpClient::_readAll()
+{
+    char buffer[1024] = {0};
+    std::string response;
+    ssize_t valread;
+
+    do {
+        valread = recv(this->_fd, buffer, 1024, 0);
+        if (valread == 0)
+            break;
+        response += buffer;
+        std::memset(buffer, 0, 1024);
+    } while (valread == 1024);
+
+    this->_buffer += response;
+}
+#endif
 
 void net::TcpClient::_evalCommand()
 {
