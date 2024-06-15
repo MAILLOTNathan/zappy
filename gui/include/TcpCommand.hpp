@@ -43,6 +43,8 @@ namespace net {
         SST,    ///< Set the time unit value
         SEG,    ///< Get the end of the game
         SMG,    ///< Get a server message
+        SUC,   ///< Get the response to an unknown command
+        SBP,    ///< Get the response to a bad parameter
         IDM,    ///< Get the id of the player that moves or rotates
     } type_command_t;
 
