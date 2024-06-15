@@ -15,6 +15,7 @@
 
     #include "ItemVR.hpp"
     #include "MapVR.hpp"
+    #include "TcpClient.hpp"
 
 class GuiVR {
     public:
@@ -30,6 +31,7 @@ class GuiVR {
         std::shared_ptr<MapVR> _map;
     protected:
         std::shared_ptr<EGE::WindowVR> _window;
+        std::shared_ptr<net::TcpClient> _client;
         std::vector<std::shared_ptr<EntityVR>> _entities;
         std::shared_ptr<EGE::Shader> _shader;
     private:
