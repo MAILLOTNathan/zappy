@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 import sys
 import debug_lib
-import time
-import socket
-
+import base64
 
 def help_message():
     """
@@ -72,6 +70,8 @@ class evolver:
             6: {"player": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
             7: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
+        self.broadcast_key = None
+
 
     def check_level_up(self, box_zero):
         """
@@ -106,18 +106,30 @@ class evolver:
         """
         if response is None:
             exit(84)
+        print(response.decode(),"''''''''''''''''")
+        if "Elevation" not in response.decode():
+            return response
         if "Elevation" in response.decode():
-            response = response.decode()
-            res = response.split('\n')
-            print("EVOLVER RES IS", res)
-            data = self.conn.read_line()
-            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
-                data = self.conn.read_line()
-                data = self.broadcast_parse(data)
-                if data.decode().find("level") >= 0:
+            response = self.conn.read_line()
+            while response.decode().find("Current") == -1:
+                print("zeez")
+                print(response.decode(), "--------------")
+                response = self.broadcast_parse(response)
+                if 'dead' in response.decode():
+                    exit(84)
+                if 'ko' in response.decode():
+                    return self.conn.read_line()
+                if response.decode().find("Current") != -1:
+                    print("+1")
                     self.level += 1
-                    return data
-            return data
+                    print("LA response 1:" , response)
+                    response = self.conn.read_line()
+                    return response
+                response = self.conn.read_line()
+            print("LA DEUXIEME response EST : ", response)
+            self.level += 1
+            return self.conn.read_line()
+        print("LA REPONSEEST : ", response)
         return response
 
     def do_incantation(self, conn):
@@ -139,6 +151,25 @@ class evolver:
             data = self.broadcast_parse(data)
             return data
 
+    def decrypt_response(self, response):
+        """
+        Decrypt the response received from the server.
+
+        Args:
+            response (str): The response received from the server.
+
+        Returns:
+            str: The decrypted response.
+
+        Raises:
+            None
+        """
+        if response.find(self.broadcast_key) == -1:
+            return "pass"
+        skip_string = self.broadcast_key + ":"
+        response = response.split(skip_string)
+        return base64.b64decode(response[1].encode()).decode()
+        
     def broadcast_parse(self, response):
         """
         Parses the response received from a broadcast message.
@@ -156,7 +187,9 @@ class evolver:
         if response == None:
             exit(0)
         if "message" in response.decode():
-            response = response.decode()
+            response = self.decrypt_response(response.decode())
+            if response == "pass":
+                return response
             res = response.split('\n')
             self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
             result = res[0].split(' ')
@@ -272,7 +305,8 @@ def main():
     check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
-
+    bot.broadcast_key = base64.b64encode(bot.team_name.encode()).decode()
+    print("Connected to server")
     while True:
         response = bot.conn.send_request('Look')
         response = bot.broadcast_parse(response)

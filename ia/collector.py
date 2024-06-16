@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 import sys
 import debug_lib
-import time
-import socket
-
+import base64
 
 def help_message():
     """
@@ -68,6 +66,7 @@ class food_collector:
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+        self.broadcast_key = ""
     
     def elevate_parse(self, response):
         """
@@ -85,19 +84,50 @@ class food_collector:
         """
         if response is None:
             exit(84)
+        print(response.decode(),"''''''''''''''''")
+        if "Elevation" not in response.decode():
+            return response
         if "Elevation" in response.decode():
-            response = response.decode()
-            res = response.split('\n')
-            print("THE RES IS", res)
-            data = self.conn.read_line()
-            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
-                data = self.conn.read_line()
-                data = self.broadcast_parse(data)
-                if data.decode().find("level") >= 0:
+            response = self.conn.read_line()
+            while response.decode().find("Current") == -1:
+                print("zeez")
+                print(response.decode(), "--------------")
+                response = self.broadcast_parse(response)
+                if 'dead' in response.decode():
+                    exit(84)
+                if 'ko' in response.decode():
+                    return self.conn.read_line()
+                if response.decode().find("Current") != -1:
+                    print("+1")
                     self.level += 1
-                    return data
-            return data
+                    print("LA response 1:" , response)
+                    response = self.conn.read_line()
+                    return response
+                response = self.conn.read_line()
+            print("LA DEUXIEME response EST : ", response)
+            self.level += 1
+            return self.conn.read_line()
+        print("LA REPONSEEST : ", response)
         return response
+
+    def decrypt_response(self, response):
+        """
+        Decrypt the response received from the server.
+
+        Args:
+            response (str): The response received from the server.
+
+        Returns:
+            str: The decrypted response.
+
+        Raises:
+            None
+        """
+        if response.find(self.broadcast_key) == -1:
+            return "pass"
+        skip_string = self.broadcast_key + ":"
+        response = response.split(skip_string)
+        return base64.b64decode(response[1].encode()).decode()
 
     def broadcast_parse(self, response):
         """
@@ -116,14 +146,17 @@ class food_collector:
         if response == None:
             exit(0)
         if "message" in response.decode():
-            response = response.decode()
+            response = self.decrypt_response(response.decode())
+            if response == "pass":
+                return response
             res = response.split('\n')
+            print("RES HERRRRE: ", res)
             self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
-            print(res)
             result = res[0].split(' ')
+            print("RESULT HERRRRRRE : ", result)
             self.signal_angle = int(result[1].split(',')[0])
             self.wait = False
-            data = self.conn.s.recv(1024)
+            data = self.conn.read_line()
             data = self.broadcast_parse(data)
             return data
         return response
@@ -337,7 +370,8 @@ def main():
     check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
-
+    bot.broadcast_key = base64.b64encode(bot.team_name.encode()).decode()
+ 
     while True:
         if a == 1:
             response = bot.elevate_parse(response)

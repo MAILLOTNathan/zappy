@@ -4,6 +4,7 @@ import debug_lib
 import os
 import subprocess
 import threading
+import base64
 
 class TuringAI:
     """
@@ -229,6 +230,27 @@ class TuringAI:
         data = conn.send_request("Take food")
         self.elevate_parse(conn, data)
              
+    def crypted_broadcast(self, conn, look):
+        """
+        Broadcasts the necessary items to the other players.
+
+        Args:
+            look (list): The items in the player's inventory.
+
+        Returns:
+            None
+        """
+        if look is None or look == "done":
+            return
+
+        team_name_b64 = base64.b64encode(self.team_name.encode()).decode()
+        items_string = broadcast_needed(self, look[0][1])
+        b64items = base64.b64encode(items_string.encode()).decode()
+        concatenated_b64 = team_name_b64 + ":" + b64items
+        final_string = "Broadcast " + concatenated_b64
+        res = conn.send_request(final_string)
+        return res
+
     def basic_ia(self, conn):
         """
         Implements the basic logic for the AI behavior.
@@ -267,11 +289,13 @@ class TuringAI:
                 if self.check_level_up(res) == True:
                     self.do_incantation_other(conn)
                 print("look :", look)
-                res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
+                res = self.crypted_broadcast(conn, look)
+                # res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
                 self.elevate_parse(conn, res)
                 launch_new_instance(self, look, conn)
                 if self.collector >= 1:
-                    res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
+                    res = self.crypted_broadcast(conn, look)
+                    # res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
                     self.elevate_parse(conn, res)
                 self.get_food(conn)
 
@@ -294,6 +318,7 @@ class TuringAI:
             6: {"player": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
             7: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
+        self.broadcast_key = ""
 
 def help_message():
     """
@@ -453,21 +478,21 @@ def launch_new_instance(self, map, conn):
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    if map[0][1].count("player") < 4:
-        res = conn.send_request("Fork")
-        self.elevate_parse(conn, res)
-        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made an evolver child")
-        thread = threading.Thread(target=run_subprocess, args=(command,))
-        thread.start()
-    if self.collector < 3:
-        res = conn.send_request("Fork")
-        self.elevate_parse(conn, res)
-        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made a collector child")
-        self.collector += 1
-        thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
-        thread.start()
+    # if map[0][1].count("player") < 4:
+    #     res = conn.send_request("Fork")
+    #     self.elevate_parse(conn, res)
+    #     command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+    #     print("made an evolver child")
+    #     thread = threading.Thread(target=run_subprocess, args=(command,))
+    #     thread.start()
+    # if self.collector < 3:
+    #     res = conn.send_request("Fork")
+    #     self.elevate_parse(conn, res)
+    #     command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+    #     print("made a collector child")
+    #     self.collector += 1
+    #     thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
+    #     thread.start()
 
 def main():
     """
@@ -477,6 +502,7 @@ def main():
     ai : TuringAI = TuringAI()
     check_args(ai)
     conn = debug_lib.ServerConnection(ai)
+    ai.broadcast_key = base64.b64encode(ai.team_name.encode()).decode()
     if ai.debug:
         conn.connect_to_server_debug()
     conn.connect_to_server(ai.team_name)
