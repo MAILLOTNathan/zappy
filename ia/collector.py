@@ -225,7 +225,6 @@ class food_collector:
             find = self.get_max_objectif()
             self.take_action(find , map)
         elif self.objectif_done() == True and self.wait == False:
-            print("gogogog")
             self.go_to_broadcast()
         return
     
