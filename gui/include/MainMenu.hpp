@@ -66,6 +66,11 @@ namespace Onyx {
              */
             net::TcpClient *getClient() const;
 
+            /**
+             * @brief Get the window object.
+             *
+             * @return std::shared_ptr<EGE::Window> The window object.
+             */
             std::shared_ptr<EGE::Window> getWindow();
 
         protected:
