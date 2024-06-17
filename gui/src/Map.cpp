@@ -35,6 +35,8 @@ void Onyx::Map::update(std::shared_ptr<EGE::Shader> shader)
 {
     shader->use();
     for (const auto& pos : this->_eggPos) {
+        if (this->_egg == nullptr)
+            this->_egg = std::make_shared<EGE::Model>("./assets/models/egg/egg.obj");
         this->_egg->setPosition(EGE::Maths::Vector3<float>(pos.x * CELL_SIZE, 5.0f, pos.y * CELL_SIZE));
         this->_egg->draw(*shader.get());
     }
