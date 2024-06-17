@@ -188,12 +188,10 @@ class TuringAI:
         data = conn.send_request("Incantation")
         if "Elevation" in data.decode():
             data = conn.read_line()
-            print(data.decode(),"//////////////////")
             if data.decode().find('ko') != -1:
                 return
             while data.decode().find('Current') == -1:
                 data = conn.read_line()
-                print(data.decode(),'***************')
             self.level += 1
 
     def do_incantation_other(self, conn):
@@ -339,7 +337,6 @@ class TuringAI:
                 self.stay_alive(look, conn)
                 if self.check_level_up(res) == True:
                     self.do_incantation_other(conn)
-                print("look :", look)
                 res = self.crypted_broadcast(conn, look)
                 self.elevate_parse(conn, res)
                 launch_new_instance(self, look, conn)
@@ -519,7 +516,7 @@ def launch_new_instance(self, map, conn):
     def decrement_collector():
         self.collector -= 1
 
-    if map[0][1].count("food") == 0:
+    if map[0][1].count("food") < 3:
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
@@ -527,7 +524,8 @@ def launch_new_instance(self, map, conn):
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    if map[0][1].count("player") < 4:
+        return
+    if map[0][1].count("player") < 3:
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
@@ -544,6 +542,7 @@ def launch_new_instance(self, map, conn):
         self.collector += 1
         thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
         thread.start()
+        return
 
 def main():
     """
