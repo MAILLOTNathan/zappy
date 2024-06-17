@@ -578,6 +578,12 @@ void Onyx::Gui::_bindEvents()
         glfwSetCursorPos(this->_window->getWindow(), this->_window->getSize().x / 2, this->_window->getSize().y / 2);
         this->_cameraMode = !this->_cameraMode;
     }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyO, EGE::Event::Mode::JustPressed, [this]() {
+        this->_interface->hide();
+    }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyP, EGE::Event::Mode::JustPressed, [this]() {
+        this->_interface->show();
+    }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyLShift, EGE::Event::Mode::JustPressed, [this]() {
         this->_camera->setSpeed(this->_camera->getSpeed() * 2);
     }));
