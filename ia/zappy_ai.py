@@ -43,23 +43,18 @@ class TuringAI:
         """
         if response is None:
             exit(84)
-        print(response.decode(),"''''''''''''''''")
         if "Elevation" not in response.decode():
             return response
         if "Elevation" in response.decode():
             response = conn.read_line()
             while response.decode().find("Current") == -1:
-                print("zeez")
-                print(response.decode(), "--------------")
                 response = self.broadcast_parse(response)
                 if 'dead' in response.decode():
                     exit(84)
                 if 'ko' in response.decode():
                     return conn.read_line()
                 if response.decode().find("Current") != -1:
-                    print("+1")
                     self.level += 1
-                    print("LA response 1:" , response)
                     response = conn.read_line()
                     return response
                 response = conn.read_line()
@@ -266,7 +261,6 @@ class TuringAI:
                 self.stay_alive(look, conn)
                 if self.check_level_up(res) == True:
                     self.do_incantation_other(conn)
-                print("look :", look)
                 res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
                 self.elevate_parse(conn, res)
                 launch_new_instance(self, look, conn)
@@ -456,11 +450,11 @@ def launch_new_instance(self, map, conn):
     if map[0][1].count("player") < 4:
         res = conn.send_request("Fork")
         self.elevate_parse(conn, res)
-        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made an evolver child")
-        thread = threading.Thread(target=run_subprocess, args=(command,))
-        thread.start()
-    if self.collector < 3:
+       # command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+       # print("made an evolver child")
+       # thread = threading.Thread(target=run_subprocess, args=(command,))
+       # thread.start()
+    if self.collector < 5:
         res = conn.send_request("Fork")
         self.elevate_parse(conn, res)
         command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]

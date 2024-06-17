@@ -85,18 +85,25 @@ class food_collector:
         """
         if response is None:
             exit(84)
+        if "Elevation" not in response.decode():
+            return response
         if "Elevation" in response.decode():
-            response = response.decode()
-            res = response.split('\n')
-            print("THE RES IS", res)
-            data = self.conn.read_line()
-            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
-                data = self.conn.read_line()
-                data = self.broadcast_parse(data)
-                if data.decode().find("level") >= 0:
+            response = self.conn.read_line()
+            while response.decode().find("Current") == -1:
+                response = self.broadcast_parse(response)
+                if 'dead' in response.decode():
+                    exit(84)
+                if 'ko' in response.decode():
+                    return self.conn.read_line()
+                if response.decode().find("Current") != -1:
                     self.level += 1
-                    return data
-            return data
+                    response = self.conn.read_line()
+                    return response
+                response = self.conn.read_line()
+            print("LA DEUXIEME response EST : ", response)
+            self.level += 1
+            return self.conn.read_line()
+        print("LA REPONSEEST : ", response)
         return response
 
     def broadcast_parse(self, response):
@@ -275,6 +282,8 @@ def get_obj(map, obj):
                 x = i
                 y = e
                 nb = map[i][e].count(obj)
+                if map[i][e].count('player') > 2:
+                    nb = 1
     return x,y,nb
 
 def get_direction(x, y):

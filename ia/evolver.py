@@ -106,18 +106,30 @@ class evolver:
         """
         if response is None:
             exit(84)
+        print(response.decode(),"''''''''''''''''")
+        if "Elevation" not in response.decode():
+            return response
         if "Elevation" in response.decode():
-            response = response.decode()
-            res = response.split('\n')
-            print("EVOLVER RES IS", res)
-            data = self.conn.read_line()
-            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
-                data = self.conn.read_line()
-                data = self.broadcast_parse(data)
-                if data.decode().find("level") >= 0:
+            response = self.conn.read_line()
+            while response.decode().find("Current") == -1:
+                print("zeez")
+                print(response.decode(), "--------------")
+                response = self.broadcast_parse(response)
+                if 'dead' in response.decode():
+                    exit(84)
+                if 'ko' in response.decode():
+                    return self.conn.read_line()
+                if response.decode().find("Current") != -1:
+                    print("+1")
                     self.level += 1
-                    return data
-            return data
+                    print("LA response 1:" , response)
+                    response = self.conn.read_line()
+                    return response
+                response = self.conn.read_line()
+            print("LA DEUXIEME response EST : ", response)
+            self.level += 1
+            return self.conn.read_line()
+        print("LA REPONSEEST : ", response)
         return response
 
     def do_incantation(self, conn):
@@ -131,13 +143,15 @@ class evolver:
             None
         """
         data = conn.send_request("Incantation")
-        data = self.broadcast_parse(data)
-        if "Elevation underway" in data.decode():
+        if "Elevation" in data.decode():
+            data = conn.read_line()
+            print(data.decode(),"//////////////////")
+            if data.decode().find('ko') != -1:
+                return
+            while data.decode().find('Current') == -1:
+                data = conn.read_line()
+                print(data.decode(),'***************')
             self.level += 1
-            print(data.decode(),"apres inc")
-            data = conn.s.recv(1024)
-            data = self.broadcast_parse(data)
-            return data
 
     def broadcast_parse(self, response):
         """

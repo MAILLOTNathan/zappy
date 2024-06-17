@@ -70,6 +70,14 @@ class ServerConnection:
         data = self.s.recv(1024)
         print(repr(data)) 
 
+    def broad_cast(self,response, bot):
+        response = response.decode()
+        res = response.split('\n')
+        bot.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
+        result = res[0].split(' ')
+        bot.signal_angle = int(result[1].split(',')[0])
+        bot.wait = False
+        bot.data = bot.conn.s.recv(1024)
 
     def send_request(self, request):
             """
