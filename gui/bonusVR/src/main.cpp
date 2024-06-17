@@ -43,7 +43,7 @@ extern "C" void android_main(android_app *app) {
     gMemoryIOSystem->addFile("models/items/5.mtl");
     gMemoryIOSystem->addFile("models/items/6.obj");
     gMemoryIOSystem->addFile("models/items/6.mtl");
-    __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Adding models");
+    gMemoryIOSystem->addFile("models/player/lvl1/lvl1.obj");
 
     GuiVR a(app);
 

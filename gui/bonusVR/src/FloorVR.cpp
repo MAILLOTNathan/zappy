@@ -12,21 +12,19 @@ std::vector<std::shared_ptr<ItemVR>> FloorVR::_items = {};
 FloorVR::FloorVR(const EGE::Maths::Vector2<int>& position, std::shared_ptr<EGE::WindowVR> window)
 {
     this->_pos = position;
-    this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 0, position.y * CELL_SIZE);
-    this->_model = std::make_shared<EGE::ModelVR>("models/floor/floor.obj", this->_position, EGE::Maths::Vector3<float>(0.5, 0.5, 0.5));
+    this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, -0.9, position.y * CELL_SIZE);
+    this->_model = std::make_shared<EGE::ModelVR>("models/floor/floor.obj", this->_position, EGE::Maths::Vector3<float>(0.0f, 0.0f, 0.0f), EGE::Maths::Vector3<float>(CELL_SIZE / 3.0f, CELL_SIZE / 3.0f, CELL_SIZE / 3.0f));
     window->addModel("Map", this->_model);
     memset(this->_quantity, 0, sizeof(this->_quantity));
-    __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Adding model floor");
     if (FloorVR::_items.empty()) {
-        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), window));
-        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), window));
-        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), window));
-        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), window));
-        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), window));
-        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), window));
-        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), window));
+        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::FOOD, window));
+        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::LINEMATE, window));
+        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::DERAUMERE, window));
+        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::SIBUR, window));
+        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::MENDIANE, window));
+        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::PHIRAS, window));
+        FloorVR::_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::THYSTAME, window));
     }
-    __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Adding items");
 }
 
 FloorVR::~FloorVR()

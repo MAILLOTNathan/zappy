@@ -12,7 +12,8 @@
 #include "WindowVR.hpp"
 #include "Maths/Vector2.hpp"
 
-#define CELL_SIZE 1
+#define CELL_SIZE 2
+#define foodPosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE - CELL_SIZE / 4.0f, 1, position.y * CELL_SIZE - CELL_SIZE / 4.0f) ///< The position of the food item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
 
 
 class ItemVR : public EntityVR {
@@ -28,7 +29,7 @@ class ItemVR : public EntityVR {
             MAX
         };
 
-        ItemVR(const EGE::Maths::Vector2<int>& position, std::shared_ptr<EGE::WindowVR> window);
+        ItemVR(const EGE::Maths::Vector2<int>& position, ItemVR::TYPE type, std::shared_ptr<EGE::WindowVR> window);
         ~ItemVR();
 
         void update(std::shared_ptr<EGE::Shader> shader);
