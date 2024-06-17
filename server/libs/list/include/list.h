@@ -205,7 +205,6 @@ linked_list_t *list_find_node(list_t *l, void *data,
  */
 linked_list_t *list_find_node_p(list_t *l, void *ref);
 
-
     /**
      * @brief Macro to move the list pointer forward to the next element.
      *

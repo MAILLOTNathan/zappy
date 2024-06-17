@@ -15,7 +15,6 @@
 
     #define ABS(n) (n < 0) ? -n : n
 
-
 typedef struct pos_s {
     int x;
     int y;

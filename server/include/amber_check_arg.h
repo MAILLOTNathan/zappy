@@ -8,7 +8,6 @@
 #ifndef AMBER_CHECK_ARG_H_
     #define AMBER_CHECK_ARG_H_
 
-
     #include <stdbool.h>
     #include <stdio.h>
     #include <stdlib.h>
@@ -39,7 +38,6 @@ typedef struct args_s {
     double _freq;           /** The frequency of game cycles. */
 } args_t;
 
-
 /**
  * @brief Checks the command line arguments for the Amber application.
  *
@@ -52,7 +50,6 @@ typedef struct args_s {
  * @return true if the arguments are valid, false otherwise.
  */
 bool amber_check_arg(int ac, char **av, args_t *args);
-
 
 /**
  * @brief Retrieves the value of a specific flag from the command
@@ -87,6 +84,5 @@ void amber_display_args(args_t *args);
  * @return true if the team name was successfully retrieved, false otherwise.
  */
 bool amber_get_team_name(int ac, char **av, args_t *args);
-
 
 #endif /* !AMBER_CHECK_ARG_H_ */
