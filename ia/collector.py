@@ -127,7 +127,8 @@ class food_collector:
             return "pass"
         skip_string = self.broadcast_key + ":"
         response = response.split(skip_string)
-        return base64.b64decode(response[1].encode()).decode()
+        decoded_string =  base64.b64decode(response[1].encode()).decode()
+        return response[0] + decoded_string
 
     def broadcast_parse(self, response):
         """
@@ -150,10 +151,8 @@ class food_collector:
             if response == "pass":
                 return response
             res = response.split('\n')
-            print("RES HERRRRE: ", res)
             self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
             result = res[0].split(' ')
-            print("RESULT HERRRRRRE : ", result)
             self.signal_angle = int(result[1].split(',')[0])
             self.wait = False
             data = self.conn.read_line()

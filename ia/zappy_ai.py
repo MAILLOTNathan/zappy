@@ -43,31 +43,24 @@ class TuringAI:
 
         """
         if response is None:
-            exit(84)
-        print(response.decode(),"''''''''''''''''")
+            exit(81)
         if "Elevation" not in response.decode():
             return response
         if "Elevation" in response.decode():
             response = conn.read_line()
             while response.decode().find("Current") == -1:
-                print("zeez")
-                print(response.decode(), "--------------")
-                response = self.broadcast_parse(response)
+                response = self.broadcast_parse(response, conn)
                 if 'dead' in response.decode():
-                    exit(84)
+                    exit(82)
                 if 'ko' in response.decode():
                     return conn.read_line()
                 if response.decode().find("Current") != -1:
-                    print("+1")
                     self.level += 1
-                    print("LA response 1:" , response)
                     response = conn.read_line()
                     return response
                 response = conn.read_line()
-            print("LA DEUXIEME response EST : ", response)
             self.level += 1
             return conn.read_line()
-        print("LA REPONSEEST : ", response)
         return response
 
     def check_level_up(self, res):
@@ -106,13 +99,56 @@ class TuringAI:
             return False
         return True
 
-    def broadcast_parse(self, response):
+    def decrypt_response(self, response):
+        """
+        Decrypt the response received from the server.
+
+        Args:
+            response (str): The response received from the server.
+
+        Returns:
+            str: The decrypted response.
+
+        Raises:
+            None
+        """
+        if response.find(self.broadcast_key) == -1:
+            return "pass"
+        skip_string = self.broadcast_key + ":"
+        response = response.split(skip_string)
+        decoded_string =  base64.b64decode(response[1].encode()).decode()
+        return response[0] + decoded_string
+
+    def broadcast_parse(self, response, conn):
+        """
+        Parses the response received from a broadcast message.
+
+        Args:
+            response (bytes): The response received from the server.
+
+        Returns:
+            bytes: The parsed response.
+
+        Raises:
+            None
+
+        """
         if response == None:
             exit(0)
         if "message" in response.decode():
-            response = response.decode()
-            self.objectif = {"linemate": response.count("linemate"), "deraumere":  response.count("deraumere"), "sibur": response.count("sibur"), "mendiane": response.count("mendiane"), "phiras": response.count("phiras"), "thystame": response.count("thystame")}
-            return self.conn.s.recv(1024)
+            response = self.decrypt_response(response.decode())
+            if response == "pass":
+                data = conn.read_line()
+                data = self.broadcast_parse(data, conn)
+                return data
+            res = response.split('\n')
+            self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
+            result = res[0].split(' ')
+            self.signal_angle = int(result[1].split(',')[0])
+            self.wait = False
+            data = conn.read_line()
+            data = self.broadcast_parse(data, conn)
+            return data
         return response
 
     def get_food(self, conn):
@@ -123,12 +159,18 @@ class TuringAI:
             int: The amount of food in the inventory.
         """
         response = conn.send_request('Inventory')
+        response = self.broadcast_parse(response, conn)
         response = self.elevate_parse(conn, response)
         if response == None or response == 'done':
             return
         response = response.decode().strip('[]')
         response = response.split(',')
         response = [component.strip() for component in response]
+        print("la reponse here", response)
+        if "ok" in response:
+            return
+        if len(response) == 0:
+            return
         response = [int(component.split()[1]) for component in response]
         self.inventory['food'] = response[0]
 
@@ -145,8 +187,14 @@ class TuringAI:
 
         data = conn.send_request("Incantation")
         if "Elevation" in data.decode():
-            self.level += 1
             data = conn.read_line()
+            print(data.decode(),"//////////////////")
+            if data.decode().find('ko') != -1:
+                return
+            while data.decode().find('Current') == -1:
+                data = conn.read_line()
+                print(data.decode(),'***************')
+            self.level += 1
 
     def do_incantation_other(self, conn):
         """
@@ -161,12 +209,10 @@ class TuringAI:
         data = conn.send_request("Incantation")
         if "Elevation" in data.decode():
             data = conn.read_line()
-            print(data.decode(),"//////////////////")
             if data.decode().find('ko') != -1:
                 return
             while data.decode().find('Current') == -1:
                 data = conn.read_line()
-                print(data.decode(),'***************')
             self.level += 1
         
 
@@ -249,6 +295,7 @@ class TuringAI:
         concatenated_b64 = team_name_b64 + ":" + b64items
         final_string = "Broadcast " + concatenated_b64
         res = conn.send_request(final_string)
+        res = self.broadcast_parse(res, conn)
         return res
 
     def basic_ia(self, conn):
@@ -270,8 +317,9 @@ class TuringAI:
                         break
                     self.get_food(conn)
                     res = conn.send_request("Look")
+                    res = self.broadcast_parse(res, conn)
                     if self.check_level_up(res) == True:
-                        self.do_incantation_other(conn)
+                        self.do_incantation(conn)
                         continue
                     look = parse_look(res, self, "linemate")
                     x,y,nb = get_obj(look, "linemate") if look else (None, None, None)
@@ -279,10 +327,13 @@ class TuringAI:
                         take_action(self,"food", look, conn)
                     else:
                         take_action(self,"linemate", look, conn)
-                    conn.send_request("Right")
-                conn.send_request("Forward")
+                    res = conn.send_request("Right")
+                    self.broadcast_parse(res, conn)
+                res = conn.send_request("Forward")
+                self.broadcast_parse(res,conn)
             else:
                 res = conn.send_request("Look")
+                res = self.broadcast_parse(res, conn)
                 res = self.elevate_parse(conn, res)
                 look = parse_look(res, self, "food")
                 self.stay_alive(look, conn)
@@ -290,12 +341,10 @@ class TuringAI:
                     self.do_incantation_other(conn)
                 print("look :", look)
                 res = self.crypted_broadcast(conn, look)
-                # res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
                 self.elevate_parse(conn, res)
                 launch_new_instance(self, look, conn)
                 if self.collector >= 1:
                     res = self.crypted_broadcast(conn, look)
-                    # res = conn.send_request("Broadcast " + broadcast_needed(self, look[0][1]))
                     self.elevate_parse(conn, res)
                 self.get_food(conn)
 
@@ -347,7 +396,7 @@ def check_args(TuringAI):
             TuringAI.team_name = sys.argv[i + 1]
             if TuringAI.team_name == "GRAPHIC":
                 print("Error: Team name cannot be GRAPHIC.")
-                exit(84)
+                exit(83)
         elif sys.argv[i] == "-h":
             TuringAI.host = sys.argv[i + 1]
     if (len(sys.argv) < 2) or sys.argv[1] == "-help":
@@ -434,18 +483,18 @@ def find_path(direction : list, quantity, obj : str, ai: TuringAI, conn):
     """
     for i in direction:
         res = conn.send_request(i)
-        ai.broadcast_parse(res)
+        ai.broadcast_parse(res, conn)
     if obj == "linemate":
         return
     for i in range(0, quantity):
         res = conn.send_request("Take " + obj)
-        ai.broadcast_parse(res)
+        ai.broadcast_parse(res, conn)
 
 def take_action(self, obj, map, conn):
     x,y,nb = get_obj(map, obj)
     if nb <= 0:
         res = conn.send_request("Forward")
-        self.broadcast_parse(res)
+        self.broadcast_parse(res, conn)
         return
     dir = get_direction(x,y)
     find_path(dir, nb, obj, self, conn)
@@ -473,26 +522,29 @@ def launch_new_instance(self, map, conn):
     if map[0][1].count("food") == 0:
         res = conn.send_request("Fork")
         print("THE RES f", res.decode())
+        res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
         print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
-    # if map[0][1].count("player") < 4:
-    #     res = conn.send_request("Fork")
-    #     self.elevate_parse(conn, res)
-    #     command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-    #     print("made an evolver child")
-    #     thread = threading.Thread(target=run_subprocess, args=(command,))
-    #     thread.start()
-    # if self.collector < 3:
-    #     res = conn.send_request("Fork")
-    #     self.elevate_parse(conn, res)
-    #     command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-    #     print("made a collector child")
-    #     self.collector += 1
-    #     thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
-    #     thread.start()
+    if map[0][1].count("player") < 4:
+        res = conn.send_request("Fork")
+        res = self.broadcast_parse(res, conn)
+        self.elevate_parse(conn, res)
+        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made an evolver child")
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
+    if self.collector < 3:
+        res = conn.send_request("Fork")
+        res = self.broadcast_parse(res, conn)
+        self.elevate_parse(conn, res)
+        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made a collector child")
+        self.collector += 1
+        thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
+        thread.start()
 
 def main():
     """

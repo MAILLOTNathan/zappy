@@ -168,7 +168,8 @@ class evolver:
             return "pass"
         skip_string = self.broadcast_key + ":"
         response = response.split(skip_string)
-        return base64.b64decode(response[1].encode()).decode()
+        decoded_string =  base64.b64decode(response[1].encode()).decode()
+        return response[0] + decoded_string
         
     def broadcast_parse(self, response):
         """
