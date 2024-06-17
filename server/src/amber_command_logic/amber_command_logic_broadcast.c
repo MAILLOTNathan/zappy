@@ -50,9 +50,11 @@ static int get_direction_message(amber_client_t *src, amber_client_t *des,
     pos_t end = plotline(&start_pos, &end_pos);
     pos_t vel = {0, 0};
 
-    end.x = clamp(0, end.x, width);
-    end.y = clamp(0, end.y, height);
-    vel = (pos_t){end.x - des->_x, end.y -des->_y};
+    if (end.x == 0 && des->_x == width - 1)
+        end.x = width;
+    if (end.y == 0 && des->_y == height - 1)
+        end.y = height;
+    vel = (pos_t){end.x - des->_x, end.y - des->_y};
     return get_broadcast_angle(&vel, des);
 }
 
