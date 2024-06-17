@@ -105,7 +105,7 @@ class evolver:
 
         """
         if response is None:
-            exit(84)
+            exit(81)
         print(response.decode(),"''''''''''''''''")
         if "Elevation" not in response.decode():
             return response
@@ -116,7 +116,7 @@ class evolver:
                 print(response.decode(), "--------------")
                 response = self.broadcast_parse(response)
                 if 'dead' in response.decode():
-                    exit(84)
+                    exit(82)
                 if 'ko' in response.decode():
                     return self.conn.read_line()
                 if response.decode().find("Current") != -1:
@@ -147,11 +147,13 @@ class evolver:
             data = conn.read_line()
             print(data.decode(),"//////////////////")
             if data.decode().find('ko') != -1:
-                return
+                return data
             while data.decode().find('Current') == -1:
                 data = conn.read_line()
                 print(data.decode(),'***************')
             self.level += 1
+            return data
+        return data
 
     def decrypt_response(self, response):
         """
@@ -188,7 +190,7 @@ class evolver:
 
         """
         if response == None:
-            exit(0)
+            exit(83)
         if "message" in response.decode():
             response = self.decrypt_response(response.decode())
             if response == "pass":
