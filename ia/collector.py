@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 import sys
 import debug_lib
-import time
-import socket
-
+import base64
 
 def help_message():
     """
@@ -68,6 +66,7 @@ class food_collector:
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+        self.broadcast_key = ""
     
     def elevate_parse(self, response):
         """
@@ -106,6 +105,26 @@ class food_collector:
         print("LA REPONSEEST : ", response)
         return response
 
+    def decrypt_response(self, response):
+        """
+        Decrypt the response received from the server.
+
+        Args:
+            response (str): The response received from the server.
+
+        Returns:
+            str: The decrypted response.
+
+        Raises:
+            None
+        """
+        if response.find(self.broadcast_key) == -1:
+            return "pass"
+        skip_string = self.broadcast_key + ":"
+        response = response.split(skip_string)
+        decoded_string =  base64.b64decode(response[1].encode()).decode()
+        return response[0] + decoded_string
+
     def broadcast_parse(self, response):
         """
         Parses the response received from a broadcast message.
@@ -123,14 +142,15 @@ class food_collector:
         if response == None:
             exit(0)
         if "message" in response.decode():
-            response = response.decode()
+            response = self.decrypt_response(response.decode())
+            if response == "pass":
+                return response
             res = response.split('\n')
             self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
-            print(res)
             result = res[0].split(' ')
             self.signal_angle = int(result[1].split(',')[0])
             self.wait = False
-            data = self.conn.s.recv(1024)
+            data = self.conn.read_line()
             data = self.broadcast_parse(data)
             return data
         return response
@@ -346,20 +366,17 @@ def main():
     check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
-
+    bot.broadcast_key = base64.b64encode(bot.team_name.encode()).decode()
+ 
     while True:
-        if a == 1:
-            response = bot.elevate_parse(response)
         response = bot.conn.send_request('Look')
         response = bot.elevate_parse(response)
         response = bot.broadcast_parse(response)
-        response = bot.elevate_parse(response)
         if response == None or response == 'done':
             return
         map = parse_look(response.decode())
         bot.get_food()
         bot.priority_guide(map)
-        a = 1
 
 if __name__ == "__main__":
     main()

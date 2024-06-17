@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 import sys
 import debug_lib
-import time
-import socket
-
+import base64
 
 def help_message():
     """
@@ -72,6 +70,8 @@ class evolver:
             6: {"player": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
             7: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
+        self.broadcast_key = None
+
 
     def check_level_up(self, box_zero):
         """
@@ -153,6 +153,26 @@ class evolver:
                 print(data.decode(),'***************')
             self.level += 1
 
+    def decrypt_response(self, response):
+        """
+        Decrypt the response received from the server.
+
+        Args:
+            response (str): The response received from the server.
+
+        Returns:
+            str: The decrypted response.
+
+        Raises:
+            None
+        """
+        if response.find(self.broadcast_key) == -1:
+            return "pass"
+        skip_string = self.broadcast_key + ":"
+        response = response.split(skip_string)
+        decoded_string =  base64.b64decode(response[1].encode()).decode()
+        return response[0] + decoded_string
+        
     def broadcast_parse(self, response):
         """
         Parses the response received from a broadcast message.
@@ -170,7 +190,9 @@ class evolver:
         if response == None:
             exit(0)
         if "message" in response.decode():
-            response = response.decode()
+            response = self.decrypt_response(response.decode())
+            if response == "pass":
+                return response
             res = response.split('\n')
             self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
             result = res[0].split(' ')
@@ -286,7 +308,8 @@ def main():
     check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
-
+    bot.broadcast_key = base64.b64encode(bot.team_name.encode()).decode()
+    print("Connected to server")
     while True:
         response = bot.conn.send_request('Look')
         response = bot.broadcast_parse(response)
