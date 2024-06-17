@@ -134,7 +134,7 @@ class Sucide:
             if i != 'food' and self.objectif[i] != 0 and self.inventory[i] >= self.objectif[i]:
                 return True
         return False
-    
+
     def get_max_objectif(self):
         """
         Returns the element with the maximum value in the 'objectif' dictionary.
@@ -149,7 +149,7 @@ class Sucide:
                 element = i
                 max = self.objectif[i]
         return element
-    
+
     def go_to_broadcast(self):
         """
         Recover a broadcast signal based on the signal angle.
@@ -202,7 +202,7 @@ class Sucide:
         elif self.wait == False:
             self.go_to_broadcast()
         return
-    
+
     def take_action(self, obj, map):
         """
         Takes an action based on the given object and map.

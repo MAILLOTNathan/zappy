@@ -95,6 +95,19 @@ class TuringAI:
         return True
 
     def broadcast_parse(self, response):
+        """
+        Parses the response received from a broadcast message.
+
+        Args:
+            response (bytes): The response received from the server.
+
+        Returns:
+            bytes: The parsed response.
+
+        Raises:
+            None
+
+        """
         if response == None:
             exit(0)
         if "message" in response.decode():
@@ -183,7 +196,7 @@ class TuringAI:
             with open(os.devnull, 'w') as devnull:
                 process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
                 process.wait()
-        
+
         for i in range(0, conn.conn_num):
             command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
             print("made a sucide child")
@@ -208,7 +221,7 @@ class TuringAI:
             return
         data = conn.send_request("Take food")
         self.elevate_parse(conn, data)
-             
+
     def basic_ia(self, conn):
         """
         Implements the basic logic for the AI behavior.
@@ -317,6 +330,16 @@ def check_args(TuringAI):
         help_message()
 
 def get_obj(map, obj):
+    """
+    Get the coordinates and count of a specific object in a map.
+
+    Args:
+        map (list): The map to search for the object.
+        obj (str): The object to search for.
+
+    Returns:
+        tuple: A tuple containing the x and y coordinates of the object, and the count of the object in the map.
+    """
     x = 0
     y = 0
     nb = 0
@@ -345,19 +368,17 @@ def parse_look(response, ai, obj):
     look = [['',tiles[0],''], [tiles[1],tiles[2],tiles[3]]]
     return look
 
-def get_obj(map, obj):
-    x = 0
-    y = 0
-    nb = 0
-    for i in range(len(map)):
-        for e in range(len(map[0])):
-            if map[i][e].count(obj) > nb:
-                x = i
-                y = e
-                nb = map[i][e].count(obj)
-    return x,y,nb
+def get_direction(x, y):
+    """
+    Returns a list of directions to reach a specific coordinate (x, y).
 
-def get_direction(x,y):
+    Args:
+        x (int): The x-coordinate.
+        y (int): The y-coordinate.
+
+    Returns:
+        list: A list of directions to reach the given coordinate.
+    """
     dir = []
     y -= 1
     for i in range(x):
@@ -372,6 +393,16 @@ def get_direction(x,y):
     return dir
 
 def broadcast_needed(bot: TuringAI, tile):
+    """
+    Determines the resources that need to be broadcasted based on the bot's level requirements.
+
+    Args:
+        bot (TuringAI): The bot object representing the AI.
+        tile: The tile object representing the current tile.
+
+    Returns:
+        str: A string containing the resources that need to be broadcasted.
+    """
     add = ''
     for i in bot.level_requirements[bot.level]:
         if i != 'player':
@@ -400,12 +431,23 @@ def find_path(direction : list, quantity, obj : str, ai: TuringAI, conn):
         ai.broadcast_parse(res)
 
 def take_action(self, obj, map, conn):
-    x,y,nb = get_obj(map, obj)
+    """
+    Takes an action based on the given object, map, and connection.
+
+    Args:
+        obj: The object to take action on.
+        map: The map containing the object.
+        conn: The connection to the server.
+
+    Returns:
+        None
+    """
+    x, y, nb = get_obj(map, obj)
     if nb <= 0:
         res = conn.send_request("Forward")
         self.broadcast_parse(res)
         return
-    dir = get_direction(x,y)
+    dir = get_direction(x, y)
     find_path(dir, nb, obj, self, conn)
 
 def launch_new_instance(self, map, conn):
@@ -426,6 +468,9 @@ def launch_new_instance(self, map, conn):
                 callback()
 
     def decrement_collector():
+        """
+        Decrements the value of the collector attribute by 1.
+        """
         self.collector -= 1
 
     if map[0][1].count("food") == 0:

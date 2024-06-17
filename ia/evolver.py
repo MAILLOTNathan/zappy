@@ -46,6 +46,29 @@ def check_args(TuringAI):
 
 
 class evolver:
+    """
+    The `evolver` class represents a player in the Zappy game that can evolve to higher levels.
+
+    Attributes:
+        debug (bool): Indicates whether debug mode is enabled or not.
+        port (int): The port number for the connection.
+        team_name (str): The name of the player's team.
+        host (str): The host address for the connection.
+        food_quantity (int): The quantity of food in the player's inventory.
+        level (int): The current level of the player.
+        elapsed_time (int): The elapsed time since the start of the game.
+        conn (connection): The connection object used to communicate with the server.
+        inventory (dict): The player's inventory containing the quantity of each item.
+        level_requirements (dict): The requirements for each level in order to level up.
+
+    Methods:
+        __init__: Initializes the `evolver` object.
+        check_level_up: Checks if the player can level up based on the items in their inventory.
+        elevation_parse: Parses the response received from the server after attempting to elevate the player's level.
+        do_incantation: Performs the incantation action.
+        broadcast_parse: Parses the response received from a broadcast message.
+    """
+
     debug = False
     port = None
     team_name = ""
@@ -54,7 +77,17 @@ class evolver:
     level = 1
     elapsed_time = 0
     conn = None
+
     def __init__(self):
+        """
+        Initializes the `evolver` object.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
         print("EVOLVER INIT")
         self.debug = False
         self.port = None
@@ -88,13 +121,12 @@ class evolver:
             if box_zero.count(item) < requirements[item]:
                 return False
         return True
-    
+
     def elevation_parse(self, response):
         """
         Parses the response received from the server after attempting to elevate the player's level.
 
         Args:
-            conn (connection): The connection object used to communicate with the server.
             response (bytes): The response received from the server.
 
         Returns:

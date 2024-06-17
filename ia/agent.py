@@ -7,7 +7,7 @@ import time
 import os
 
 MAX_MEMORY = 100_000
-BATCH_SIZE = 1000   
+BATCH_SIZE = 1000
 LR = 0.5
 
 def generate_sring():
@@ -30,7 +30,7 @@ class TuringAI:
         self.conn = None
         self.team_name = ""
         self.host = "localhost"
-        self.command  = ['Forward', 'Left', 'Right', 'Take food', 'Take linemate', 'Take deraumere', 'Take sibur', 'Take mendiane', 'Take phiras', 'Take thystame', 
+        self.command  = ['Forward', 'Left', 'Right', 'Take food', 'Take linemate', 'Take deraumere', 'Take sibur', 'Take mendiane', 'Take phiras', 'Take thystame',
                   'Set food', 'Set linemate', 'Set deraumere', 'Set sibur', 'Set mendiane', 'Set phiras', 'Set thystame',
                   'Incantation', 'Fork', 'Eject', 'Broadcast', 'Connect_nbr']
         self.ngames = 0
@@ -39,7 +39,7 @@ class TuringAI:
         self.memory = deque(maxlen=MAX_MEMORY)
         self.team_number = 0
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        
+
         self.model = Linear_QNet(618, 1233, 22).to(self.device)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
         self.level = 1
@@ -162,7 +162,7 @@ class TuringAI:
             if box_zero.count(item) < requirements[item]:
                 return False
         return True
-        
+
     def remember(self, state, action, reward, next_state, done):
         """
         Store the experience tuple (state, action, reward, next_state, done) in the agent's memory.

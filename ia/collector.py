@@ -46,6 +46,35 @@ def check_args(TuringAI):
 
 
 class food_collector:
+    """
+    Represents a food collector in the game.
+
+    Attributes:
+        debug (bool): Indicates whether debug mode is enabled or not.
+        port (None or int): The port number.
+        team_name (str): The name of the team.
+        host (str): The host address.
+        signal_angle (list): The signal angle.
+        food_quantity (int): The quantity of food.
+        level (int): The level of the collector.
+        elapsed_time (int): The elapsed time.
+        conn (None or Connection): The connection object.
+        wait (bool): Indicates whether the collector is waiting or not.
+        inventory (dict): The inventory of the collector.
+        objectif (dict): The objectives of the collector.
+
+    Methods:
+        __init__: Initializes the food_collector object.
+        elevate_parse: Parses the response received after sending an elevation command.
+        broadcast_parse: Parses the response received from a broadcast message.
+        get_food: Retrieves the food items from the inventory.
+        objectif_done: Checks if the objectives are completed.
+        get_max_objectif: Returns the element with the maximum objective value that has not been reached yet.
+        go_to_broadcast: Moves the collector to the broadcast location.
+        priority_guide: Guides the collector based on priority.
+        take_action: Takes action based on the given object and map.
+
+    """
     print("COLLECTOR INIT")
     debug = False
     port = None
@@ -68,7 +97,7 @@ class food_collector:
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
-    
+
     def elevate_parse(self, response):
         """
         Parses the response received after sending an elevation command.
@@ -161,7 +190,7 @@ class food_collector:
             if i != 'food' and self.objectif[i] != 0 and self.objectif[i] > self.inventory[i]:
                 return False
         return True
-    
+
     def get_max_objectif(self):
         """
         Returns the element with the maximum objective value that has not been reached yet.
@@ -176,7 +205,7 @@ class food_collector:
                 element = i
                 max = self.objectif[i]
         return element
-    
+
     def go_to_broadcast(self):
         """
         Moves the collector to the broadcast location.
@@ -218,25 +247,44 @@ class food_collector:
             self.broadcast_parse(res)
         return
 
-    def priority_guide(self, map : list): 
+    def priority_guide(self, map: list):
+        """
+        Determines the priority action for the collector based on its current state.
+
+        Args:
+            map (list): The map representing the game environment.
+
+        Returns:
+            None
+        """
         if self.inventory['food'] < 6:
             self.take_action('food', map)
         elif self.objectif_done() == False:
             find = self.get_max_objectif()
-            self.take_action(find , map)
+            self.take_action(find, map)
         elif self.objectif_done() == True and self.wait == False:
             print("gogogog")
             self.go_to_broadcast()
         return
-    
+
     def take_action(self, obj, map):
-        x,y,nb = get_obj(map, obj)
+        """
+        Takes an action based on the given object and map.
+
+        Args:
+            obj: The object to be collected.
+            map: The map containing the object.
+
+        Returns:
+            None
+        """
+        x, y, nb = get_obj(map, obj)
         if nb == 0:
             res = self.conn.send_request("Forward")
             res = self.elevate_parse(res)
             self.broadcast_parse(res)
             return
-        dir = get_direction(x,y)
+        dir = get_direction(x, y)
         find_path(dir, nb, obj, self)
 
 def parse_look(response):
