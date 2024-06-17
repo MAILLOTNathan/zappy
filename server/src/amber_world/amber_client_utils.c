@@ -58,12 +58,13 @@ static void send_graphical_players(amber_client_t *gra, list_t *client_ai)
 }
 
 static bool check_different_mode(amber_client_t *client, amber_serv_t *serv,
-    char **arg)
+    char **arg, amber_world_t *world)
 {
     if (length_string_array(arg) != 1)
         return false;
     if (strncmp(arg[0], "GRAPHIC", 8) == 0) {
         push_back_list(serv->_graphic_clients, client->_tcp._fd, true);
+        amber_send_egg_on_connection(client, world->_eggs);
         send_graphical_players(client, serv->_clients);
         remove_node(&serv->_clients, list_find_node_p(serv->_clients, client),
         false);
@@ -85,7 +86,7 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
 {
     egg_t *egg = NULL;
 
-    if (!check_different_mode(client, serv, arg))
+    if (!check_different_mode(client, serv, arg, world))
         return false;
     egg = amber_get_egg_by_team(world, arg[0]);
     if (!egg) {
@@ -94,6 +95,7 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
         client->_is_error = true;
         return false;
     }
+    amber_event_edi(server->_graphic_clients, egg);
     client = amber_init_client_by_egg(client, egg, world->_freq);
     snprintfizer(client, "%d", amber_get_nbr_eggs_by_team(world, arg[0]));
     snprintfizer(client, "%d %d", world->_width, world->_height);

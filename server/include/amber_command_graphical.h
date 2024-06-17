@@ -471,4 +471,25 @@ void amber_event_enw(amber_client_t *client, list_t *gra_client, int id_egg);
  */
 void amber_event_pfk(amber_client_t *client, amber_serv_t *serv);
 
+/**
+ * Sends an egg on the connection for a given client.
+ *
+ * @param client The client to send the egg to.
+ * @param egg The egg to be sent.
+ */
+void amber_send_egg_on_connection(amber_client_t *client, list_t *egg);
+
+
+/**
+ * @brief Handles the EDI event for a graphical client in the Amber server.
+ *
+ * This function is responsible for handling the EDI event, which
+ * occurs when an egg is hatched.
+ * It updates the graphical client's state based on the event.
+ *
+ * @param gra_client The list of graphical clients in the server.
+ * @param egg The egg that hatched.
+ */
+void amber_event_edi(list_t *gra_client, egg_t *egg);
+
 #endif /* !AMBER_COMMAND_GRAPHICAL_H_ */
