@@ -39,7 +39,6 @@ Onyx::Gui::Gui(net::TcpClient client)
 
 Onyx::Gui::~Gui()
 {
-    this->_window->close();
 }
 
 void Onyx::Gui::createMap(int width, int height)
@@ -386,6 +385,7 @@ void Onyx::Gui::loop()
         for (auto &player : this->_players) {
             if (player->getId() == id) {
                 this->_players.erase(std::remove(this->_players.begin(), this->_players.end(), player), this->_players.end());
+                break;
             }
         }
     });
@@ -575,13 +575,15 @@ void Onyx::Gui::_bindEvents()
         this->_camera->move(EGE::Camera::Movement::UP, this->_deltaTime);
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyC, EGE::Event::Mode::JustPressed, [this]() {
+        glfwSetCursorPos(this->_window->getWindow(), this->_window->getSize().x / 2, this->_window->getSize().y / 2);
         this->_cameraMode = !this->_cameraMode;
+        if (!this->_cameraMode)
+            this->_interface->show();
     }));
-    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyO, EGE::Event::Mode::JustPressed, [this]() {
-        this->_interface->hide();
-    }));
-    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyP, EGE::Event::Mode::JustPressed, [this]() {
-        this->_interface->show();
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyI, EGE::Event::Mode::JustPressed, [this]() {
+        this->_interface->toggle();
+        if (!this->_interface->isVisible())
+            this->_cameraMode = true;
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyLShift, EGE::Event::Mode::JustPressed, [this]() {
         this->_camera->setSpeed(this->_camera->getSpeed() * 2);
@@ -590,7 +592,7 @@ void Onyx::Gui::_bindEvents()
         this->_camera->setSpeed(this->_camera->getSpeed() / 2);
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyEscape, EGE::Event::Mode::JustPressed, [this]() {
-        this->_window->close();
+        exit(0);
     }));
     // this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyF1, EGE::Event::Mode::JustPressed, [this]() {
     //     this->_interface->toggle();
