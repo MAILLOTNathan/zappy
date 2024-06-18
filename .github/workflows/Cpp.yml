@@ -40,7 +40,9 @@ jobs:
         uses: actions/checkout@v3.4.0
         with:
           fetch-depth: 0
-      - run: check.sh $(pwd) $(pwd)
+      - run: |
+          cd "$(pwd)/server"
+          check.sh $(pwd) $(pwd)
       - run: cat coding-style-reports.log
       - run: |
           if [ -s coding-style-reports.log ]
