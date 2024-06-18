@@ -6,6 +6,7 @@
 */
 
 #include "amber_world.h"
+#include "amber_manage_incantation.h"
 
 static void init_pair(pair_t *pair, int width, int height, double density)
 {
@@ -49,6 +50,8 @@ amber_world_t *amber_create_world(args_t *arg)
         world->_case[i] = calloc(arg->_width, sizeof(box_t));
     init_info_world(world);
     world->_eggs = create_list(amber_create_egg, amber_destroy_egg);
+    world->_incantation_grp = create_list(amber_create_incantation_grp,
+    amber_destroy_incantation_grp);
     amber_init_egg(world);
     return world;
 }

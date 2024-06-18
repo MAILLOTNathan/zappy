@@ -90,7 +90,7 @@ static void eval_command(amber_world_t *world, amber_serv_t *server,
         client->_buffer[strlen(client->_buffer)] = '\0';
         choose_handler(world, server, client, cmd);
         free(cmd);
-    } while (match && !client->_is_error);
+    } while ((match && !client->_is_error));
 }
 
 void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
