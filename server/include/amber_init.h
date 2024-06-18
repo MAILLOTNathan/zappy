@@ -5,8 +5,7 @@
 ** amber_init
 */
 
-#ifndef AMBER_INIT_H_
-    #define AMBER_INIT_H_
+#pragma once
 
     #include <stdlib.h>
     #include <stdio.h>
@@ -136,5 +135,3 @@ void amber_destroy_server(amber_serv_t *server);
  * @brief Pointer to the amber_serv_t server instance.
  */
 extern amber_serv_t *server;
-
-#endif /* !AMBER_INIT_H_ */

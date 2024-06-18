@@ -5,9 +5,7 @@
 ** amber_world
 */
 
-#ifndef AMBER_WORLD_H_
-    #define AMBER_WORLD_H_
-
+#pragma once
     #include <stdlib.h>
     #include <stdio.h>
     #include <string.h>
@@ -111,6 +109,7 @@ typedef struct amber_world_s {
     double _freq;
     unsigned long _clock;
     int _last_egg_id;
+    list_t *_incantation_grp;
 } amber_world_t;
 
 /**
@@ -227,5 +226,3 @@ box_t *amber_world_case_init(void);
  * @param world The Amber world to initialize the egg in.
  */
 void amber_init_egg(amber_world_t *world);
-
-#endif /* !AMBER_WORLD_H_ */
