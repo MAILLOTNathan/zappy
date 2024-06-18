@@ -12,6 +12,10 @@
     #include "amber_init.h"
     #include "string_array.h"
 
+    #define FDDEBUG(serv) serv->_debug_client._fd
+    #define INFO_CLIENT_TMP  "Position: y=%d x=%d | Level: %d | "
+    #define INFO_CLIENT "Client ID: %d | Team: %s | " INFO_CLIENT_TMP
+
 /**
  * @brief Handles the clients connected to the Amber server.
  *

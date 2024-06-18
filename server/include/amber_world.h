@@ -16,6 +16,7 @@
     #include "list.h"
     #include "string_array.h"
     #include "amber_check_arg.h"
+    #include "amber_clock.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -108,7 +109,7 @@ typedef struct amber_world_s {
     pair_t _thystame_info;
     list_t *_eggs;
     double _freq;
-    int _clock;
+    unsigned long _clock;
     int _last_egg_id;
 } amber_world_t;
 
@@ -148,11 +149,12 @@ void amber_refill_world(amber_world_t *world);
  * It can optionally display the world
  * inside a box.
  *
+ * @param fd    The file descriptor to write the output to.
  * @param world The amber world to be displayed.
  * @param box   A boolean value indicating whether
  * to display the world inside a box.
  */
-void amber_display_world(amber_world_t *world, bool box);
+void amber_display_world(int fd, amber_world_t *world, bool box);
 
 /**
  * @brief Creates a new egg in the Amber World.
@@ -217,5 +219,12 @@ int amber_get_nbr_eggs_by_team(amber_world_t *world, char *team);
  * @return A pointer to the newly created box.
  */
 box_t *amber_world_case_init(void);
+
+/**
+ * Initializes an egg in the Amber world.
+ *
+ * @param world The Amber world to initialize the egg in.
+ */
+void amber_init_egg(amber_world_t *world);
 
 #endif /* !AMBER_WORLD_H_ */

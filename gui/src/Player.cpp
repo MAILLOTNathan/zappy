@@ -11,9 +11,9 @@ std::map<std::string, Onyx::Player::Color> Onyx::Player::_colorMap = {};
 std::vector<std::shared_ptr<Onyx::Item>> Onyx::Player::_items = {};
 static int currentColor = 1;
 
-Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, float timeUnit) : _teamName(teamName)
+Onyx::Player::Player(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, int level, float timeUnit) : _teamName(teamName)
 {
-    this->_level = 1;
+    this->_level = level;
     memset(this->_quantity, 0, sizeof(this->_quantity));
     this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::FOOD));
     this->_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::LINEMATE));
@@ -120,6 +120,10 @@ float Onyx::Player::getDelta()
 void Onyx::Player::setLevel(int level)
 {
     this->_level = level;
+    std::string mtl = Utils::getFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
+    this->_setColor(mtl);
+    Utils::setFileContent("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl, false);
+    this->_model = std::make_shared<EGE::Model>("./assets/models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
 }
 
 int Onyx::Player::getLevel()

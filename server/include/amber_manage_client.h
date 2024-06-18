@@ -78,4 +78,39 @@ int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team);
  */
 amber_client_t *amber_get_client_by_id(list_t *clients, int id);
 
+/**
+ * Initializes an Amber client.
+ *
+ * This function initializes an Amber client by setting up the necessary
+ * connections and resources. It takes a pointer to an `amber_client_t`
+ * structure, a pointer to an `amber_serv_t` structure, a pointer to an
+ * `amber_world_t` structure, and a double pointer to a character array.
+ *
+ * @param client A pointer to the `amber_client_t` structure to be initialized.
+ * @param serv A pointer to the `amber_serv_t` structure representing
+ * the server.
+ * @param world A pointer to the `amber_world_t` structure representing
+ * the world.
+ * @param arg A double pointer to a character array representing the arguments.
+ * @return `true` if the client is successfully initialized, `false` otherwise.
+ */
+bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
+    amber_world_t *world, char **arg);
+
+/**
+ * @brief Formats a string and sends it to the specified client.
+ *
+ * This function takes a variable number of arguments and formats them
+ * according to the specified format string.
+ * The resulting formatted string is then sent to the specified client.
+ *
+ * @param client A pointer to the `amber_client_t` structure representing the
+ * client.
+ * @param format The format string specifying how the arguments should be
+ * formatted.
+ * @param ... Additional arguments to be formatted according to the format
+ * string.
+ */
+void snprintfizer(amber_client_t *client, char *format, ...);
+
 #endif /* !AMBER_MANAGE_CLIENT_H_ */

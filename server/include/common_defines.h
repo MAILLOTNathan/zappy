@@ -27,6 +27,28 @@
      */
     #define UNUSED __attribute__((unused))
 
+    /**
+     * @brief Macro to calculate the minimum of two values.
+     *
+     * This macro takes two values and returns the smaller of the two.
+     *
+     * @param a The first value.
+     * @param b The second value.
+     * @return The smaller of the two values.
+     */
+    #define MIN(a, b) ((a) < (b) ? (a) : (b))
+
+    /**
+     * @brief Macro to calculate the maximum of two values.
+     *
+     * This macro takes two values and returns the larger of the two.
+     *
+     * @param a The first value.
+     * @param b The second value.
+     * @return The larger of the two values.
+     */
+    #define MAX(a, b) ((a) > (b) ? (a) : (b))
+
 /**
  * @enum direction_s
  * @brief Represents the possible directions.

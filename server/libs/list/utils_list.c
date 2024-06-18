@@ -31,3 +31,15 @@ linked_list_t *list_find_node(list_t *l, void *data,
     }
     return NULL;
 }
+
+linked_list_t *list_find_node_p(list_t *l, void *ref)
+{
+    linked_list_t *tmp = l->nodes;
+
+    while (tmp) {
+        if (ref == tmp->data)
+            return tmp;
+        LIST_FORWARD(tmp);
+    }
+    return NULL;
+}

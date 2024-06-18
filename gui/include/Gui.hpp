@@ -62,7 +62,7 @@ namespace Onyx {
              * @param rotation The rotation of the player.
              * @param timeUnit The time unit of the world.
              */
-            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, float timeUnit);
+            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, int level, float timeUnit);
 
             /**
              * @brief Gets the map.

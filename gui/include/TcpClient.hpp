@@ -22,8 +22,19 @@
     #define COMMAND_VALIDE
 
 namespace net {
+    /**
+     * @brief An exception class for TCP client errors.
+     *
+     * This class is used to represent errors that occur during TCP client operations.
+     * It inherits from the EGE::Error class.
+     */
     class TcpClientError : public EGE::Error {
         public:
+            /**
+             * @brief Constructs a TcpClientError object with the given error message.
+             *
+             * @param message The error message associated with the exception.
+             */
             TcpClientError(const std::string& message) : Error(message) {}
     };
 
