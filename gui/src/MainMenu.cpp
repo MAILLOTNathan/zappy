@@ -13,7 +13,7 @@ Onyx::MainMenu::MainMenu(const std::string& ip, int port)
     this->_window->create();
     this->_camera = std::make_shared<EGE::Camera>(EGE::Maths::Vector3<float>(7.0f, 3.0f, 7.0f), EGE::Maths::Vector3<float>(0.0f, 1.0f, 0.0f), -135.0f, 0.0f);
     this->_deltaTime = 0.0f;
-    this->_interface = std::make_shared<UserInterface>();
+    this->_interface = std::make_shared<Onyx::UserInterface>();
     if (ip == "")
         this->_ip = "127.0.0.1";
     else

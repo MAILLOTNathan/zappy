@@ -1,0 +1,389 @@
+\doxysection{Event.\+hpp}
+\hypertarget{Event_8hpp_source}{}\label{Event_8hpp_source}\index{ege/include/Event.hpp@{ege/include/Event.hpp}}
+\mbox{\hyperlink{Event_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Event}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{GlfwCallback_8hpp}{GlfwCallback.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{OpenGL_8hpp}{OpenGL.hpp}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <cstdarg>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Event}{Event}}\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Event_1_1EventError}{EventError}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_1_1EventError_ada4a4e61734ae71b58a31d4a771f98d1}{EventError}}(std::string\ \textcolor{keyword}{const}\ \&message)\ :\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}{Type}}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaecaee265b925e75c7f19c2aaff752d60}{Keyboard}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaf4c2b31979459be54a972c32ba2a5b5f}{Mouse}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea85886d3e02a8381e26de1cdae2b671a0}{JoystickButton}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea1feef105f6181fa41785f62d68bbaffe}{JoystickAxis}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window}{Window}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}{Mode}}\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a08df458c1217cb14351eb151349c0329}{Moved}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5aa58216208099a81e78f913cd814b0733}{Changed}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a2f9174846516f3800094238695a066ef}{Pressed}}\ =\ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5ace5ef62d3792706cda17c4952d560061}{JustPressed}}\ =\ 2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a30046fd545b5a9c4385060323317169a}{Released}}\ =\ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a5341dcb4ec0f403709f7e99979dce92c}{JustReleased}}\ =\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844}{Key}}\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1801af6b53b240b6c0e4f780ae872e66}{KeyA}}\ =\ GLFW\_KEY\_A,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a33d4e9aee9b2c9f6bd019cfefe66d135}{KeyB}}\ =\ GLFW\_KEY\_B,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a858eed91c2a8424f60d7d24d40c542d6}{KeyC}}\ =\ GLFW\_KEY\_C,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7b638f2341da5191199c485c62de4064}{KeyD}}\ =\ GLFW\_KEY\_D,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3091685465e3df2093f2900478421ae7}{KeyE}}\ =\ GLFW\_KEY\_E,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa22f36a22e685a883cbe4f171459a5bd}{KeyF}}\ =\ GLFW\_KEY\_F,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4116925f22a4ca4e3545df997b58b7b8}{KeyG}}\ =\ GLFW\_KEY\_G,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa0fc4c2a02190c75866e9b124762f8a9}{KeyH}}\ =\ GLFW\_KEY\_H,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a024918e90a4da4de861c3312e429bf5e}{KeyI}}\ =\ GLFW\_KEY\_I,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a55f0a46be43767ed8685d6e6b260f5f1}{KeyJ}}\ =\ GLFW\_KEY\_J,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1b95e3fa8a9a0a1bc43b99c8cf05f02e}{KeyK}}\ =\ GLFW\_KEY\_K,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af0761fd2a08cb6ad69fef35b03f53a22}{KeyL}}\ =\ GLFW\_KEY\_L,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa454fc7271a6441162381a6908ea0a9d}{KeyM}}\ =\ GLFW\_KEY\_M,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2539a622fb2856b33fe49a94b4159ee8}{KeyN}}\ =\ GLFW\_KEY\_N,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4ef3957ad0af611c49aabd39a716bb86}{KeyO}}\ =\ GLFW\_KEY\_O,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a344f23cab1453458e84560d5877d7d79}{KeyP}}\ =\ GLFW\_KEY\_P,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a30d5c9065f17ef1fc8b955307719e779}{KeyQ}}\ =\ GLFW\_KEY\_Q,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac40429deee16d776ffa873d75cc78d85}{KeyR}}\ =\ GLFW\_KEY\_R,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acb1cf3b7703abf89a93860606f2ce6bb}{KeyS}}\ =\ GLFW\_KEY\_S,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac3e40c9e3ff873cd10477ffb7e7fcb6e}{KeyT}}\ =\ GLFW\_KEY\_T,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7fc8e230dc1667aea617241f45f5a132}{KeyU}}\ =\ GLFW\_KEY\_U,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a02ab33c7ce96af95f7591369524fd4a0}{KeyV}}\ =\ GLFW\_KEY\_V,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9b2360f5a761601d6dc4d7a123209d4d}{KeyW}}\ =\ GLFW\_KEY\_W,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6dec42e51ed9e115fbc2f3469a6cf768}{KeyX}}\ =\ GLFW\_KEY\_X,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a844a6d5ecfcfbf570af041b94cfa8546}{KeyY}}\ =\ GLFW\_KEY\_Y,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1a87624c8d0bbc34819b1e6c619d79c9}{KeyZ}}\ =\ GLFW\_KEY\_Z,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8906e0af1625f5731d91d28db5e572a9}{KeyBacktick}}\ =\ GLFW\_KEY\_GRAVE\_ACCENT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a91665bf9bf7d5d9cdac47f1c1d4ec0d0}{Key0}}\ =\ GLFW\_KEY\_0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aef861d8aa30afec70e4c1d2b21479e1e}{Key1}}\ =\ GLFW\_KEY\_1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae5b90621d3ab9c92f91d63e3acf3d104}{Key2}}\ =\ GLFW\_KEY\_2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af46d4eb6fc7fbad049ad67db2097f4e7}{Key3}}\ =\ GLFW\_KEY\_3,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a233d370adc5d5b1f2af80362c4c80b80}{Key4}}\ =\ GLFW\_KEY\_4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9c2816887323f6cbacc7124939d56198}{Key5}}\ =\ GLFW\_KEY\_5,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8e8de6fb9936087e5f3d71d295c7d27}{Key6}}\ =\ GLFW\_KEY\_6,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a11ed66c402baed1e1784aa924943e858}{Key7}}\ =\ GLFW\_KEY\_7,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a18c1cb8412df5a551808ae103be93d67}{Key8}}\ =\ GLFW\_KEY\_8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1c79d1e5f46571aa1c84cf492b19379}{Key9}}\ =\ GLFW\_KEY\_9,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1a20bf7a109dd1b5e3332880cf3f183}{KeyMinus}}\ =\ GLFW\_KEY\_MINUS,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a71b161133c50c78f8da759f3ce8bb8b9}{KeyEqual}}\ =\ GLFW\_KEY\_EQUAL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a56ad91ba5553a71f9f6102efd427616d}{KeyLeftBracket}}\ =\ GLFW\_KEY\_LEFT\_BRACKET,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a76f543d16c326340f2cd448768658d59}{KeyRightBracket}}\ =\ GLFW\_KEY\_RIGHT\_BRACKET,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c4ff98a12f1783e47df15063c30e7d}{KeyBackslash}}\ =\ GLFW\_KEY\_BACKSLASH,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a841c1c109510d01502466da07b098c98}{KeySemicolon}}\ =\ GLFW\_KEY\_SEMICOLON,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a302d53467aeb59c430257dbd98f2e05b}{KeyApostrophe}}\ =\ GLFW\_KEY\_APOSTROPHE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a68e2bde8e9bc3aac39a81933d0ef6fcb}{KeyComma}}\ =\ GLFW\_KEY\_COMMA,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae360440ad592710f037e33c7a6c8ef6e}{KeyPeriod}}\ =\ GLFW\_KEY\_PERIOD,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac0e0802f3925788e2eab0c7bfdef930e}{KeySlash}}\ =\ GLFW\_KEY\_SLASH,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1fa9a17f6e0d07e58c0e4e8235e5dd7a}{KeyCapsLock}}\ =\ GLFW\_KEY\_CAPS\_LOCK,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3847a73355493d5fcc799f6d156f51eb}{KeyWorld1}}\ =\ GLFW\_KEY\_WORLD\_1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6fe8984a8d1f236dd248764c14dd0082}{KeyWorld2}}\ =\ GLFW\_KEY\_WORLD\_2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a729228b02251198d60b0318a28ea43d9}{KeySuper}}\ =\ GLFW\_KEY\_LEFT\_SUPER,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945a28a38cb5635f16fb4d58b537239f}{KeyNumLock}}\ =\ GLFW\_KEY\_NUM\_LOCK,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a31310d70a8e9b4b8c7bde2c14eb8b90a}{KeyPadDivide}}\ =\ GLFW\_KEY\_KP\_DIVIDE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acc2eb3588dc74ab86fbee0a8f10da6fb}{KeyPadMultiply}}\ =\ GLFW\_KEY\_KP\_MULTIPLY,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad243f5b89be32b9973f19dc837d9a881}{KeyPadSubtract}}\ =\ GLFW\_KEY\_KP\_SUBTRACT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aee29a4445bd4e2b67c7cc7b8f26bd004}{KeyPadAdd}}\ =\ GLFW\_KEY\_KP\_ADD,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afcbde62c97938bad6501c57573158c2c}{KeyPadDecimal}}\ =\ GLFW\_KEY\_KP\_DECIMAL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1f86edcf711187b5aa8254c34c7e1eb7}{KeyPadEnter}}\ =\ GLFW\_KEY\_KP\_ENTER,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8d7ef2df0787dbc525a75b8d34bb67a}{KeyPad0}}\ =\ GLFW\_KEY\_KP\_0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844abffec6336529991316cbd7ac996250ad}{KeyPad1}}\ =\ GLFW\_KEY\_KP\_1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6409e78ff26cd3450a3bb674d42f12d3}{KeyPad2}}\ =\ GLFW\_KEY\_KP\_2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a75e414047e840dc64e6e4eb174812505}{KeyPad3}}\ =\ GLFW\_KEY\_KP\_3,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1564274dd550e86d0042536f580dc05c}{KeyPad4}}\ =\ GLFW\_KEY\_KP\_4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab7acb2f66955bc5576fcf30ba718dda5}{KeyPad5}}\ =\ GLFW\_KEY\_KP\_5,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a041f04420cfabfea4598c4f133dd94f7}{KeyPad6}}\ =\ GLFW\_KEY\_KP\_6,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a66bf358baa83a0026bcb99668bc2d85d}{KeyPad7}}\ =\ GLFW\_KEY\_KP\_7,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afc16ac3fa589e4c85c10f2cd6a697104}{KeyPad8}}\ =\ GLFW\_KEY\_KP\_8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a04dc859bddfb32d41cf1b014cf623ad6}{KeyPad9}}\ =\ GLFW\_KEY\_KP\_9,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae603d69ec87dced0917eb48519530397}{KeySpace}}\ =\ GLFW\_KEY\_SPACE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af6d803fb8956c761f920a380d225b9c8}{KeyLShift}}\ =\ GLFW\_KEY\_LEFT\_SHIFT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1989deaaf6aca7fdb18e012cacbb19c9}{KeyRShift}}\ =\ GLFW\_KEY\_RIGHT\_SHIFT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3d32df90cab48c83ada4525d28f01832}{KeyLCtrl}}\ =\ GLFW\_KEY\_LEFT\_CONTROL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a13b5a19b0d47d8cf7832b586852245f6}{KeyRCtrl}}\ =\ GLFW\_KEY\_RIGHT\_CONTROL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7e8e3cd9455a230f46fa5e66e84c7649}{KeyLAlt}}\ =\ GLFW\_KEY\_LEFT\_ALT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1d342b747e743d264f49491a4770adad}{KeyRAlt}}\ =\ GLFW\_KEY\_RIGHT\_ALT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae81dab7e2d63afe344d3c4d9de5d6b75}{KeyTab}}\ =\ GLFW\_KEY\_TAB,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af5dda6ee4928218b3a5a49d770e914fe}{KeyEnter}}\ =\ GLFW\_KEY\_ENTER,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c1bb7ac5d780eea0fa222a5df73fb1}{KeyBackspace}}\ =\ GLFW\_KEY\_BACKSPACE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b77b051f99a8df7310b0b0b6a2ab2dc}{KeyEscape}}\ =\ GLFW\_KEY\_ESCAPE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945778af5a62a425293fa62fd6c66ca2}{KeyDelete}}\ =\ GLFW\_KEY\_DELETE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4cc32794b085a062069e3b2fbbc81087}{KeyInsert}}\ =\ GLFW\_KEY\_INSERT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a5b2113466a326c96ba9c51c5b0127b77}{KeyHome}}\ =\ GLFW\_KEY\_HOME,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad1f706436e964ad30a7137bbce15c666}{KeyPause}}\ =\ GLFW\_KEY\_PAUSE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad36f39a457717a9ccc17f98963fe4bff}{KeyPrntScrn}}\ =\ GLFW\_KEY\_PRINT\_SCREEN,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a53052adb5edae0764d2b97deb679059b}{KeyUp}}\ =\ GLFW\_KEY\_UP,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af540d17cc494fefd2e65f130e31aa216}{KeyDown}}\ =\ GLFW\_KEY\_DOWN,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa9fc4a6770735ce2921698166fa0b9b3}{KeyLeft}}\ =\ GLFW\_KEY\_LEFT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a63d32539b61632abafcb53bedda19056}{KeyRight}}\ =\ GLFW\_KEY\_RIGHT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a28dfbbd3176632a0bb1ba16bf1f1f04c}{KeyF1}}\ =\ GLFW\_KEY\_F1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab4d80537d3df6bbe7c19656107411bfc}{KeyF2}}\ =\ GLFW\_KEY\_F2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a904cd8fc0a2f429783e38be1a2e2bf8b}{KeyF3}}\ =\ GLFW\_KEY\_F3,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afca8e27a3b63cd0c34ad1b12ebd4cfd4}{KeyF4}}\ =\ GLFW\_KEY\_F4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1573837d82d602fc0378671d5a405a97}{KeyF5}}\ =\ GLFW\_KEY\_F5,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a681576610b0da8bf4bff5de3a758b817}{KeyF6}}\ =\ GLFW\_KEY\_F6,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a49583e7ed7cf51652c731d8e7e1e2d3a}{KeyF7}}\ =\ GLFW\_KEY\_F7,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8910a8e5e65b16f29ed49ad1c9fe9ea6}{KeyF8}}\ =\ GLFW\_KEY\_F8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aaad7d4a0e11b527fbbc014c686f3d66d}{KeyF9}}\ =\ GLFW\_KEY\_F9,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2e56c439a3883d11339fbb8700e8c64c}{KeyF10}}\ =\ GLFW\_KEY\_F10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a64ef2f53e4361a8a18531738a0b15254}{KeyF11}}\ =\ GLFW\_KEY\_F11,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4a56dfa9c9bc6ece7ff4557331043595}{KeyF12}}\ =\ GLFW\_KEY\_F12,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a70ec2ce69ed397553a6811daf75457b7}{KeySpecial1}}\ =\ GLFW\_KEY\_F13,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afae3410c97d419d8d067d62815e9619e}{KeySpecial2}}\ =\ GLFW\_KEY\_F14,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a09b4d5301728fe8999f2c448bd6521a4}{KeySpecial3}}\ =\ GLFW\_KEY\_F15,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a45a4f353e0a052e4f3c0e2ffb6946f27}{KeySpecial4}}\ =\ GLFW\_KEY\_F16,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac97c25edf3ee00ea937e6e3323135371}{KeySpecial5}}\ =\ GLFW\_KEY\_F17,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4d4f0a2c424ad64b23f63105e9a52edc}{KeySpecial6}}\ =\ GLFW\_KEY\_F18,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a23b4eee44cd3ae27a7290301536db620}{KeySpecial7}}\ =\ GLFW\_KEY\_F19,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aedb54642e948cbdbe3aa93a30e299f42}{KeySpecial8}}\ =\ GLFW\_KEY\_F20,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a651d74704926447d6a52b17d84579e9a}{KeySpecial9}}\ =\ GLFW\_KEY\_F21,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9e19e312cf1da3cbd152c18c6464a364}{KeySpecial10}}\ =\ GLFW\_KEY\_F22,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae350d239320f019df0da70e591ae0cef}{KeySpecial11}}\ =\ GLFW\_KEY\_F23,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b52d97e1308b69faa00530f0fffe32c}{KeySpecial12}}\ =\ GLFW\_KEY\_F24,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9007adc81b7cf1829351b7e1ed347165}{KeySpecial13}}\ =\ GLFW\_KEY\_F25,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acf27c0459f72c2ff7d4651a4ad55afc9}{KeyPageUp}}\ =\ GLFW\_KEY\_PAGE\_UP,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1c19bdbd560a7118c91b72a856b35d5d}{KeyPageDown}}\ =\ GLFW\_KEY\_PAGE\_DOWN,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3ad21a6e3b20e864a20c97e97dbaf1ad}{KeyScrollLock}}\ =\ GLFW\_KEY\_SCROLL\_LOCK,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae1bdc7f9b72e87134631db93e9852d4e}{KeyEnd}}\ =\ GLFW\_KEY\_END,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae967ead800e1f0759982faebd8acb2af}{KeyMenu}}\ =\ GLFW\_KEY\_MENU,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21}{Mouse}}\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a7c3cab1156451526299c8101f2188ef7}{MouseLeft}}\ =\ GLFW\_MOUSE\_BUTTON\_LEFT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ad8011084bf876edcd68e0516be4c2cdd}{MouseRight}}\ =\ GLFW\_MOUSE\_BUTTON\_RIGHT,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ab54b17475726b26e20e924042bd9653d}{MouseMiddle}}\ =\ GLFW\_MOUSE\_BUTTON\_MIDDLE,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a6e1294ff2613fa9f5b4f2b2efc23f25d}{Mouse1}}\ =\ GLFW\_MOUSE\_BUTTON\_1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a0176613df07180e581408cf6cbefe4ef}{Mouse2}}\ =\ GLFW\_MOUSE\_BUTTON\_2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a33de25841a5b0ef8aa15238a4cb1a48b}{Mouse3}}\ =\ GLFW\_MOUSE\_BUTTON\_3,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aaf85ef3a9eb73d355eeb09c21fa8f5ff}{Mouse4}}\ =\ GLFW\_MOUSE\_BUTTON\_4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aa9007ecc043a65d117ff3433fdaa3c97}{Mouse5}}\ =\ GLFW\_MOUSE\_BUTTON\_5,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ae1e89f90f7ce5c458e2d18b61a46e300}{Mouse6}}\ =\ GLFW\_MOUSE\_BUTTON\_6,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a217c625a6c8d843dd216e13fad649afa}{Mouse7}}\ =\ GLFW\_MOUSE\_BUTTON\_7,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21abdd93c152b45cbb7794e626ef57b43f0}{Mouse8}}\ =\ GLFW\_MOUSE\_BUTTON\_8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a3e5125329f335fec2f55e6866204abf4}{Cursor}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0}{JoystickButton}}\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a886c17a7a21981a7c8561f5e45560024}{JoystickA}}\ =\ GLFW\_GAMEPAD\_BUTTON\_A,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ad533c98800b61ca07b901ba92722e6ff}{JoystickCross}}\ =\ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a886c17a7a21981a7c8561f5e45560024}{JoystickA}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc941f545e0d297463b66bd85dba4c7e}{JoystickB}}\ =\ GLFW\_GAMEPAD\_BUTTON\_B,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a435d29b86545c48c74b3aefb9bf35860}{JoystickCircle}}\ =\ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc941f545e0d297463b66bd85dba4c7e}{JoystickB}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae914fd198d8a1bf691931bafc129f1d7}{JoystickX}}\ =\ GLFW\_GAMEPAD\_BUTTON\_X,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a207eebf73dfeb4673642af670e70bf16}{JoystickSquare}}\ =\ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae914fd198d8a1bf691931bafc129f1d7}{JoystickX}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aff1fea9b718b99ac93cd9aa7c9bd1236}{JoystickY}}\ =\ GLFW\_GAMEPAD\_BUTTON\_Y,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a96327ba4b3a34fe9a0cd4dc727c53c72}{JoystickTriangle}}\ =\ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aff1fea9b718b99ac93cd9aa7c9bd1236}{JoystickY}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a713c380ff4920328172c8d0fea9f98ee}{JoystickLB}}\ =\ GLFW\_GAMEPAD\_BUTTON\_LEFT\_BUMPER,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae043c15a40b27130a95961dff30f02d9}{JoystickRB}}\ =\ GLFW\_GAMEPAD\_BUTTON\_RIGHT\_BUMPER,\ \ \ \ \ \ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a73b3a490933d9cf4b678923d13d2da38}{JoystickBack}}\ =\ GLFW\_GAMEPAD\_BUTTON\_BACK,\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a69e85214b49239b24ecb3c9a04fc8ca3}{JoystickStart}}\ =\ GLFW\_GAMEPAD\_BUTTON\_START,\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a06d5f34f04fefea2b5ac659f819c74ee}{JoystickGuide}}\ =\ GLFW\_GAMEPAD\_BUTTON\_GUIDE,\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9a3ba115c28fa00387959626fcf36159}{JoystickLThumb}}\ =\ GLFW\_GAMEPAD\_BUTTON\_LEFT\_THUMB,\ \ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a50fee4a05f536e94157d20cd0f160729}{JoystickRThumb}}\ =\ GLFW\_GAMEPAD\_BUTTON\_RIGHT\_THUMB,\ \ \ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc71b5bef536ac4188b5bfb46f932e06}{JoystickUp}}\ =\ GLFW\_GAMEPAD\_BUTTON\_DPAD\_UP,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aa71720ba98ffa56ef7c13de78f76d443}{JoystickRight}}\ =\ GLFW\_GAMEPAD\_BUTTON\_DPAD\_RIGHT,\ \ \ \ \ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a4306ab0fb9bd1bba1cf9745f03ccd23a}{JoystickDown}}\ =\ GLFW\_GAMEPAD\_BUTTON\_DPAD\_DOWN,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9c14ee5cca3665952f0ac321147b9607}{JoystickLeft}}\ =\ GLFW\_GAMEPAD\_BUTTON\_DPAD\_LEFT,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7}{JoystickAxis}}\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7ad404bcdaaffce090ba85450c2b2a7604}{JoystickLX}}\ =\ GLFW\_GAMEPAD\_AXIS\_LEFT\_X,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a95188f3f5dd4c3e5696ae26c4c8b5bd7}{JoystickLY}}\ =\ GLFW\_GAMEPAD\_AXIS\_LEFT\_Y,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7af3fd2c96e474ac7545c55bdb25a06b99}{JoystickLT}}\ =\ GLFW\_GAMEPAD\_AXIS\_RIGHT\_X,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a6ff41a81468cdacdec3659a93053869c}{JoystickRX}}\ =\ GLFW\_GAMEPAD\_AXIS\_RIGHT\_Y,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a4f948c709e8cda272275c7a2e4f6fcd4}{JoystickRY}}\ =\ GLFW\_GAMEPAD\_AXIS\_LEFT\_TRIGGER,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a66481ac444e14ecd65dacf8b1740af4f}{JoystickRT}}\ =\ GLFW\_GAMEPAD\_AXIS\_RIGHT\_TRIGGER,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{WindowTrigger}}\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a0218a41d1468bec5c0f6c79ba052d270}{WindowClose}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a220f849f2fab172c0a34a03e9be7fa3a}{WindowFocus}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4ec9d952fc2132ae202dfe2e09720579}{WindowLostFocus}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9ec393cb779f6de6c4a178b6b54762d2}{WindowFileDrop}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a7f479458d2e38de0e214ecc28d4d56ea}{WindowScroll}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aa0c513e66dc4f44002315e760cf0123f}{WindowContentScaleChanged}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ae54daa5a9d0b1f8c9f94bdc0fa94a990}{WindowFramebufferResized}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aecb6115be2a17cb41cd48353d4831ed5}{WindowIconified}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9d22ecf615f4e771875e5e0fbb4d771b}{WindowMaximized}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aefd6d496059953b05872862efde79ff9}{WindowMoved}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a16fec00c87314844baae767ef333d729}{WindowResized}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4f4eaa5454c67136fc806b5f0e85a82d}{WindowRefreshed}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ab810ae9f1084ebdcec3b4d68f9085fca}{WindowCursorMoved}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}}\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_a463a46786f5c2abca39b14a879594e14}{Trigger}}(\mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}{Type}}\ type,\ std::uint32\_t\ trigger,\ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}{Mode}}\ mode,\ std::function<\textcolor{keywordtype}{void}()>\ callback,\ std::uint8\_t\ joystickId\ =\ -\/1);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_addcb5350b4b1db295dd0f23ded68bc24}{Trigger}}(\mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}{Type}}\ type,\ std::uint32\_t\ trigger,\ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}{Mode}}\ mode,\ std::function<\textcolor{keywordtype}{void}(\textcolor{keywordtype}{float})>\ callback,\ std::uint8\_t\ joystickId\ =\ -\/1);}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_afbb3404be4c27ac01b28d4580dce008d}{\string~Trigger}}();}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint32\_t\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_abfa0b9f47374fad9c35aeeefd31ea774}{getTrigger}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}{Type}}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_ad14009488d796114694f1197d6eb25b4}{getType}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::int8\_t\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_a99cc6576235c557a07dd6c85b4bddcf9}{getJoystickId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}{Mode}}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_aad504973cbe121cbf98d487b295b9493}{getMode}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void()>\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_ac70d7c46460252ea70e8889548c2ea13}{getCallback}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(\textcolor{keywordtype}{float})>\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_ae8139e22445b93ff236d82313890954e}{getJoystickAxisCallback}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_a07e10ad30cbb3a43dc603320500cfec5}{isPressed}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_afe9f67ed69ac2cce9e281140091ab774}{setPressed}}(\textcolor{keywordtype}{bool}\ pressed);}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_a9fd713f0ee653070559a2076c380843f}{setCallback}}(std::function<\textcolor{keywordtype}{void}()>\ callback);}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_af0af0cc67094514e6dc4cad5efcf555e}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}}\ \&other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{EGE::Event::Trigger}}\&\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger_a1a21bfaa0ec88762522d0c3f752b1e54}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}}\ \&other);}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::uint32\_t\ \_trigger;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}{Type}}\ \_type;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void()>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(\textcolor{keywordtype}{float})>\ \_joystickAxisCallback;\ \ \ }
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::int8\_t\ \_joystickId;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}{Mode}}\ \_mode;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_pressed;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a44e82dc6bcd80838bc2071dadd4a78cd}{Event}}(GLFWwindow\ *window);}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Event_a9420a188a30abd18dc9c690e50d44f63}{\string~Event}}();}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Event_ad45dec2c5757d21dc7eff140a6b34627}{bindTrigger}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}}\&\ trigger);}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ \_ArgTypes,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ \_ArgTypes...>}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Event_a822a1e56de94a694b4fa478ab6900228}{bindWindowTrigger}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{EGE::Event::WindowTrigger}}\ \&trigger,\ F\ \&\&callback)}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (trigger)}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a0218a41d1468bec5c0f6c79ba052d270}{EGE::Event::WindowTrigger::WindowClose}}:}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_ac3c6b8e371d0c43e830a5a482c90a15a}{EGE::GlfwWindowCloseCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowCloseCallback(this-\/>\_window,\ [](GLFWwindow\ *window)\ \{}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowShouldClose(window,\ GL\_FALSE);}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_ac3c6b8e371d0c43e830a5a482c90a15a}{EGE::GlfwWindowCloseCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_adb099dda620ec1c75f48054a4ee037e4}{call}}(window);}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a220f849f2fab172c0a34a03e9be7fa3a}{EGE::Event::WindowTrigger::WindowFocus}}:}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a01afdb24fc6465e94ab32c4cc165fa50}{EGE::GlfwWindowFocusCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowFocusCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ focused)\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (focused)}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a01afdb24fc6465e94ab32c4cc165fa50}{EGE::GlfwWindowFocusCallbackFunction::getInstance}}()-\/>call(window,\ focused);}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!focused)}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_aa465ca17a013951fe0f73450ea692d70}{EGE::GlfwWindowLostFocusCallbackFunction::getInstance}}()-\/>call(window,\ focused);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4ec9d952fc2132ae202dfe2e09720579}{EGE::Event::WindowTrigger::WindowLostFocus}}:}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_aa465ca17a013951fe0f73450ea692d70}{EGE::GlfwWindowLostFocusCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowFocusCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ focused)\ \{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (focused)}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a01afdb24fc6465e94ab32c4cc165fa50}{EGE::GlfwWindowFocusCallbackFunction::getInstance}}()-\/>call(window,\ focused);}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!focused)}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_aa465ca17a013951fe0f73450ea692d70}{EGE::GlfwWindowLostFocusCallbackFunction::getInstance}}()-\/>call(window,\ focused);}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9ec393cb779f6de6c4a178b6b54762d2}{EGE::Event::WindowTrigger::WindowFileDrop}}:}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_ac139eacbc000820f3d16549bacb1d525}{EGE::GlfwWindowFileDropCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetDropCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ nb,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ paths[])\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_ac139eacbc000820f3d16549bacb1d525}{EGE::GlfwWindowFileDropCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_aa15aa41f1c9caf22e039a558fadaeafa}{call}}(window,\ nb,\ paths);}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a7f479458d2e38de0e214ecc28d4d56ea}{EGE::Event::WindowTrigger::WindowScroll}}:}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a62c928ab76cab8c046434e8ea8281fb9}{EGE::GlfwWindowScrollCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetScrollCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{double}\ xoffset,\ \textcolor{keywordtype}{double}\ yoffset)\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a62c928ab76cab8c046434e8ea8281fb9}{EGE::GlfwWindowScrollCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_af206d7d198f7008c9ad233f1eff05d6c}{call}}(window,\ xoffset,\ yoffset);}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aa0c513e66dc4f44002315e760cf0123f}{EGE::Event::WindowTrigger::WindowContentScaleChanged}}:}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_ab6d0a0498c43a3deda3dad9a3967abdf}{EGE::GlfwWindowContentScaleChangedCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowContentScaleCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_ab6d0a0498c43a3deda3dad9a3967abdf}{EGE::GlfwWindowContentScaleChangedCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_aa6ea6e81297616fdcfde374a4085b90f}{call}}(window,\ x,\ y);}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ae54daa5a9d0b1f8c9f94bdc0fa94a990}{EGE::Event::WindowTrigger::WindowFramebufferResized}}:}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a17de13319fbe6c14c91bc10afa783d6a}{EGE::GlfwWindowFramebufferResizedCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetFramebufferSizeCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a17de13319fbe6c14c91bc10afa783d6a}{EGE::GlfwWindowFramebufferResizedCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_aabc3dffa54929c348192511960b3f5b0}{call}}(window,\ width,\ height);}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aecb6115be2a17cb41cd48353d4831ed5}{EGE::Event::WindowTrigger::WindowIconified}}:}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a09141b69ac35691220e9c1380b271347}{EGE::GlfwWindowIconifiedCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowIconifyCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ iconified)\ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a09141b69ac35691220e9c1380b271347}{EGE::GlfwWindowIconifiedCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_af88794c88399131ff8016d5e84eb1adb}{call}}(window,\ iconified);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9d22ecf615f4e771875e5e0fbb4d771b}{EGE::Event::WindowTrigger::WindowMaximized}}:}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a8d549e921741d17f8e69dc7dad31f347}{EGE::GlfwWindowMaximizedCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowMaximizeCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ maximized)\ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a8d549e921741d17f8e69dc7dad31f347}{EGE::GlfwWindowMaximizedCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a9f64fcf38ddcf8f817f974a29a09f137}{call}}(window,\ maximized);}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aefd6d496059953b05872862efde79ff9}{EGE::Event::WindowTrigger::WindowMoved}}:}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_adb4041586a62707539fa26752feb14cf}{EGE::GlfwWindowMovedCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowPosCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_adb4041586a62707539fa26752feb14cf}{EGE::GlfwWindowMovedCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_a3d1218892e9e87dee79bcfec8e1a88b5}{call}}(window,\ x,\ y);}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a16fec00c87314844baae767ef333d729}{EGE::Event::WindowTrigger::WindowResized}}:}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_ae83b436c13dbb61c85ba9c9257da843a}{EGE::GlfwWindowResizedCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowSizeCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_ae83b436c13dbb61c85ba9c9257da843a}{EGE::GlfwWindowResizedCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a03653542f364fb8da6d5514a8b658a8b}{call}}(window,\ width,\ height);}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4f4eaa5454c67136fc806b5f0e85a82d}{EGE::Event::WindowTrigger::WindowRefreshed}}:}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_ad19348292e6c9ceeb00580699284aa38}{EGE::GlfwWindowRefreshedCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetWindowRefreshCallback(this-\/>\_window,\ [](GLFWwindow\ *window)\ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_ad19348292e6c9ceeb00580699284aa38}{EGE::GlfwWindowRefreshedCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_a31dba873e396008efd5b08d97749134c}{call}}(window);}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ab810ae9f1084ebdcec3b4d68f9085fca}{EGE::Event::WindowTrigger::WindowCursorMoved}}:}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a1b869b210c93287bea6914648247fdcc}{EGE::GlfwCursorCallbackFunction::getInstance}}(callback,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glfwSetCursorPosCallback(this-\/>\_window,\ [](GLFWwindow\ *window,\ \textcolor{keywordtype}{double}\ xpos,\ \textcolor{keywordtype}{double}\ ypos)\ \{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a1b869b210c93287bea6914648247fdcc}{EGE::GlfwCursorCallbackFunction::getInstance}}()-\/>\mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a3740d8df7544cebb9b4707ab0540265b}{call}}(window,\ xpos,\ ypos);}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Event_a8571ae4d771f4514f505e5cf9c8a9baf}{unbindTrigger}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}}\&\ trigger);}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Event_a1158bef46c11f0e60606e45ccdce4120}{pollEvents}}();}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Trigger>\ \_triggers;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ GLFWwindow\ *\_window;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_joystickEnabled;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00565\ \ \ \ \ \};}
+\DoxyCodeLine{00566\ \}}
+
+\end{DoxyCode}

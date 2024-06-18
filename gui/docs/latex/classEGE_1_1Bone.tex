@@ -1,0 +1,187 @@
+\doxysection{EGE\+::Bone Class Reference}
+\hypertarget{classEGE_1_1Bone}{}\label{classEGE_1_1Bone}\index{EGE::Bone@{EGE::Bone}}
+
+
+Represents a bone in a skeletal animation.  
+
+
+
+
+{\ttfamily \#include $<$Bone.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Bone\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Bone_a3c9867e32b6402680001f50306ac9933}{Bone}} (const std\+::string \&name, int id, const ai\+Node\+Anim \texorpdfstring{$\ast$}{*}channel)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Bone}{Bone} object with the given name, ID, and animation channel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Bone_a2a8089b7b093e9b207043c420165cde7}{\texorpdfstring{$\sim$}{\string~}\+Bone}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the \doxylink{classEGE_1_1Bone}{Bone} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Bone_ab418ddae8038d439be692d0a2aadf5c7}{update}} (float time)
+\begin{DoxyCompactList}\small\item\em Updates the bone\textquotesingle{}s state at the given time. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classEGE_1_1Bone_aa091c36069bcf0abb6c4ff43b58768d3}{get\+Local\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Gets the local transform matrix of the bone. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1Bone_a3b34a21f25214763489da38031c3e026}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the bone. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Bone_a39ffb58443df8958b8c2b0183b887b83}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ID of the bone. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Bone_a003cd8435f675756fe2e7b8772dd47ac}{get\+Position\+Index}} (float time)
+\begin{DoxyCompactList}\small\item\em Gets the index of the position keyframe at the given time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Bone_a748b7e83ca03adbd00ce293272ce325c}{get\+Rotation\+Index}} (float time)
+\begin{DoxyCompactList}\small\item\em Gets the index of the rotation keyframe at the given time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Bone_a6a49f4c869428149c90d687e8a0be154}{get\+Scale\+Index}} (float time)
+\begin{DoxyCompactList}\small\item\em Gets the index of the scale keyframe at the given time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a bone in a skeletal animation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Bone_a3c9867e32b6402680001f50306ac9933}\label{classEGE_1_1Bone_a3c9867e32b6402680001f50306ac9933} 
+\index{EGE::Bone@{EGE::Bone}!Bone@{Bone}}
+\index{Bone@{Bone}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{Bone()}{Bone()}}
+{\footnotesize\ttfamily EGE\+::\+Bone\+::\+Bone (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{int}]{id,  }\item[{const ai\+Node\+Anim \texorpdfstring{$\ast$}{*}}]{channel }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classEGE_1_1Bone}{Bone} object with the given name, ID, and animation channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the bone. \\
+\hline
+{\em id} & The ID of the bone. \\
+\hline
+{\em channel} & The animation channel for the bone. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Bone_a2a8089b7b093e9b207043c420165cde7}\label{classEGE_1_1Bone_a2a8089b7b093e9b207043c420165cde7} 
+\index{EGE::Bone@{EGE::Bone}!````~Bone@{\texorpdfstring{$\sim$}{\string~}Bone}}
+\index{````~Bone@{\texorpdfstring{$\sim$}{\string~}Bone}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Bone()}{\string~Bone()}}
+{\footnotesize\ttfamily EGE\+::\+Bone\+::\texorpdfstring{$\sim$}{\string~}\+Bone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor for the \doxylink{classEGE_1_1Bone}{Bone} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Bone_a39ffb58443df8958b8c2b0183b887b83}\label{classEGE_1_1Bone_a39ffb58443df8958b8c2b0183b887b83} 
+\index{EGE::Bone@{EGE::Bone}!getId@{getId}}
+\index{getId@{getId}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily int EGE\+::\+Bone\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the ID of the bone. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the bone. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Bone_aa091c36069bcf0abb6c4ff43b58768d3}\label{classEGE_1_1Bone_aa091c36069bcf0abb6c4ff43b58768d3} 
+\index{EGE::Bone@{EGE::Bone}!getLocalTransform@{getLocalTransform}}
+\index{getLocalTransform@{getLocalTransform}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{getLocalTransform()}{getLocalTransform()}}
+{\footnotesize\ttfamily glm\+::mat4 EGE\+::\+Bone\+::get\+Local\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the local transform matrix of the bone. 
+
+\begin{DoxyReturn}{Returns}
+The local transform matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Bone_a3b34a21f25214763489da38031c3e026}\label{classEGE_1_1Bone_a3b34a21f25214763489da38031c3e026} 
+\index{EGE::Bone@{EGE::Bone}!getName@{getName}}
+\index{getName@{getName}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string EGE\+::\+Bone\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the name of the bone. 
+
+\begin{DoxyReturn}{Returns}
+The name of the bone. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Bone_a003cd8435f675756fe2e7b8772dd47ac}\label{classEGE_1_1Bone_a003cd8435f675756fe2e7b8772dd47ac} 
+\index{EGE::Bone@{EGE::Bone}!getPositionIndex@{getPositionIndex}}
+\index{getPositionIndex@{getPositionIndex}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{getPositionIndex()}{getPositionIndex()}}
+{\footnotesize\ttfamily int EGE\+::\+Bone\+::get\+Position\+Index (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption})}
+
+
+
+Gets the index of the position keyframe at the given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The time at which to find the position keyframe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the position keyframe. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Bone_a748b7e83ca03adbd00ce293272ce325c}\label{classEGE_1_1Bone_a748b7e83ca03adbd00ce293272ce325c} 
+\index{EGE::Bone@{EGE::Bone}!getRotationIndex@{getRotationIndex}}
+\index{getRotationIndex@{getRotationIndex}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{getRotationIndex()}{getRotationIndex()}}
+{\footnotesize\ttfamily int EGE\+::\+Bone\+::get\+Rotation\+Index (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption})}
+
+
+
+Gets the index of the rotation keyframe at the given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The time at which to find the rotation keyframe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the rotation keyframe. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Bone_a6a49f4c869428149c90d687e8a0be154}\label{classEGE_1_1Bone_a6a49f4c869428149c90d687e8a0be154} 
+\index{EGE::Bone@{EGE::Bone}!getScaleIndex@{getScaleIndex}}
+\index{getScaleIndex@{getScaleIndex}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{getScaleIndex()}{getScaleIndex()}}
+{\footnotesize\ttfamily int EGE\+::\+Bone\+::get\+Scale\+Index (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption})}
+
+
+
+Gets the index of the scale keyframe at the given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The time at which to find the scale keyframe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the scale keyframe. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Bone_ab418ddae8038d439be692d0a2aadf5c7}\label{classEGE_1_1Bone_ab418ddae8038d439be692d0a2aadf5c7} 
+\index{EGE::Bone@{EGE::Bone}!update@{update}}
+\index{update@{update}!EGE::Bone@{EGE::Bone}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void EGE\+::\+Bone\+::update (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption})}
+
+
+
+Updates the bone\textquotesingle{}s state at the given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The time at which to update the bone. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Bone_8hpp}{Bone.\+hpp}}\end{DoxyCompactItemize}

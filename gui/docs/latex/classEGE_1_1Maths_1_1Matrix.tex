@@ -1,0 +1,549 @@
+\doxysection{EGE\+::Maths\+::Matrix\texorpdfstring{$<$}{<} WIDTH, HEIGHT, T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classEGE_1_1Maths_1_1Matrix}{}\label{classEGE_1_1Maths_1_1Matrix}\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+
+
+A class for representing a matrix.  
+
+
+
+
+{\ttfamily \#include $<$Matrix.\+hpp$>$}
+
+
+
+Inheritance diagram for EGE\+::Maths\+::Matrix\texorpdfstring{$<$}{<} WIDTH, HEIGHT, T \texorpdfstring{$>$}{>}\+:
+% FIG 0
+
+
+Collaboration diagram for EGE\+::Maths\+::Matrix\texorpdfstring{$<$}{<} WIDTH, HEIGHT, T \texorpdfstring{$>$}{>}\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_1_1MatrixError}{Matrix\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents an error that can occur in the \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a57be6c6b5f8152475eedec977e9d1028}{Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object with all elements set to 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_aa2cc5ac72c8a6173535f752ce4532213}{Matrix}} (std\+::array$<$ std\+::array$<$ T, WIDTH $>$, HEIGHT $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object with the specified elements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a8d9bbf51f4a974cf8f0f5b5033238dec}{Matrix}} (glm\+::mat$<$ WIDTH, HEIGHT, T $>$ matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object from a glm\+::mat. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a4ced68fbeef9042ac4400f7be6fc2562}{Matrix}} (T f)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object with all elements set to the specified value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_adc852dde7d8f3039e992d2ef2fa99d0a}{\texorpdfstring{$\sim$}{\string~}\+Matrix}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_aee50b30a09cf9dc4e6a9f185badae9f5}{get\+Width}} () const
+\begin{DoxyCompactList}\small\item\em Returns the width of the matrix. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_abb4ebcd74a9c825e9fdc94327aca7825}{get\+Height}} () const
+\begin{DoxyCompactList}\small\item\em Returns the height of the matrix. \end{DoxyCompactList}\item 
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a189736403f7a388ccae99f76b51907da}{value\+\_\+ptr}} () const
+\begin{DoxyCompactList}\small\item\em Returns the values of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ HEIGHT, WIDTH, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a9df0c51d7250c234236178d575ada829}{transpose}} () const
+\begin{DoxyCompactList}\small\item\em Returns the transpose of the matrix. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_afae9a6db76493615f0829736062edacd}{determinant}} () const
+\begin{DoxyCompactList}\small\item\em Returns the determinant of the matrix. \end{DoxyCompactList}\item 
+glm\+::mat$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a7ff02194f44a791ae9d194a17bd2d8ba}{to\+Glm}} () const
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} as a glm\+::mat. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_afd7c1ff0d843c90d5ebb92e0766df306}{operator+}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the sum of all elements in the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a6d8e950e3425ba2347ef2e7c68279b81}{operator+=}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Adds the specified matrix to this matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a54d9454ae07090e2883aa778078bee4c}{operator-\/}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the difference of all elements in the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a078e6ce13009ce5bb1c33d320d7aa421}{operator-\/}} () const
+\begin{DoxyCompactList}\small\item\em Returns a matrix with all elements negated. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a2891c384d6fe30dd52cd8980973d067b}{operator-\/=}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Subtracts the specified matrix from this matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_ac99c3dc4019f72f2b5ae26e8d59811f1}{operator\texorpdfstring{$\ast$}{*}}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the product of all elements in the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_ac66cf97a6ca913221018b26ff375be02}{operator\texorpdfstring{$\ast$}{*}=}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Multiplies the specified matrix with this matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a1e549144c3a18a458356523fbf56f46b}{operator\texorpdfstring{$\ast$}{*}}} (double scalar) const
+\begin{DoxyCompactList}\small\item\em Returns the product of all elements in the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a7d86fe659b580330a6f10452a84f21fb}{operator\texorpdfstring{$\ast$}{*}=}} (double scalar)
+\begin{DoxyCompactList}\small\item\em Multiplies the specified scalar with this matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a047873bf9a3e6578f29e2ba79be8223b}{operator/}} (double scalar) const
+\begin{DoxyCompactList}\small\item\em Returns the quotient of all elements in the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_ae45f576928bfcf33e768ecbd5f2ac2a7}{operator/=}} (double scalar)
+\begin{DoxyCompactList}\small\item\em Divides the specified scalar with this matrix. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_ab5fe7382c38d8820f3dcdc92c8c22f19}{operator==}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Checks if the matrix is equal to the specified matrix. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a8696fea835ed6560d56427cc640793a1}{operator!=}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Checks if the matrix is not equal to the specified matrix. \end{DoxyCompactList}\item 
+std\+::array$<$ T, WIDTH $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a80443e4cbcc956face6ecc7857ccee09}{operator\mbox{[}$\,$\mbox{]}}} (int pos) const
+\begin{DoxyCompactList}\small\item\em Returns the element at the specified position. \end{DoxyCompactList}\item 
+std\+::array$<$ T, WIDTH $>$ \& \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a9b397250ee049286e23a09d2b8cd899a}{operator\mbox{[}$\,$\mbox{]}}} (int pos)
+\begin{DoxyCompactList}\small\item\em Returns the element at the specified position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_acf7d31eb8795630380b047d023b3ae41}{identity}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int WIDTH, int HEIGHT, typename T$>$\newline
+class EGE\+::\+Maths\+::\+Matrix$<$ WIDTH, HEIGHT, T $>$}
+A class for representing a matrix. 
+
+The \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} class represents a matrix with the specified width and height. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em WIDTH} & The width of the matrix. \\
+\hline
+{\em HEIGHT} & The height of the matrix. \\
+\hline
+{\em T} & The type of the elements in the matrix. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+The width and height must be greater than 0. 
+
+The type T must be an arithmetic type. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a57be6c6b5f8152475eedec977e9d1028}\label{classEGE_1_1Maths_1_1Matrix_a57be6c6b5f8152475eedec977e9d1028} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object with all elements set to 0. 
+
+The constructor initializes all elements of the matrix to 0. \Hypertarget{classEGE_1_1Maths_1_1Matrix_aa2cc5ac72c8a6173535f752ce4532213}\label{classEGE_1_1Maths_1_1Matrix_aa2cc5ac72c8a6173535f752ce4532213} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::\+Matrix (\begin{DoxyParamCaption}\item[{std\+::array$<$ std\+::array$<$ T, WIDTH $>$, HEIGHT $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object with the specified elements. 
+
+The constructor initializes the matrix with the specified elements. 
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The elements to initialize the matrix with. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a8d9bbf51f4a974cf8f0f5b5033238dec}\label{classEGE_1_1Maths_1_1Matrix_a8d9bbf51f4a974cf8f0f5b5033238dec} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::\+Matrix (\begin{DoxyParamCaption}\item[{glm\+::mat$<$ WIDTH, HEIGHT, T $>$}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object from a glm\+::mat. 
+
+The constructor initializes the matrix from a glm\+::mat. 
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The glm\+::mat to initialize the matrix with. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a4ced68fbeef9042ac4400f7be6fc2562}\label{classEGE_1_1Maths_1_1Matrix_a4ced68fbeef9042ac4400f7be6fc2562} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::\+Matrix (\begin{DoxyParamCaption}\item[{T}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object with all elements set to the specified value. 
+
+The constructor initializes all elements of the matrix to the specified value. 
+\begin{DoxyParams}{Parameters}
+{\em f} & The value to initialize the matrix with. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_adc852dde7d8f3039e992d2ef2fa99d0a}\label{classEGE_1_1Maths_1_1Matrix_adc852dde7d8f3039e992d2ef2fa99d0a} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!````~Matrix@{\texorpdfstring{$\sim$}{\string~}Matrix}}
+\index{````~Matrix@{\texorpdfstring{$\sim$}{\string~}Matrix}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Matrix()}{\string~Matrix()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroys the \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_afae9a6db76493615f0829736062edacd}\label{classEGE_1_1Maths_1_1Matrix_afae9a6db76493615f0829736062edacd} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!determinant@{determinant}}
+\index{determinant@{determinant}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the determinant of the matrix. 
+
+The function returns the determinant of the matrix. \begin{DoxyReturn}{Returns}
+The determinant of the matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_abb4ebcd74a9c825e9fdc94327aca7825}\label{classEGE_1_1Maths_1_1Matrix_abb4ebcd74a9c825e9fdc94327aca7825} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+int \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the height of the matrix. 
+
+The function returns the height of the matrix. \Hypertarget{classEGE_1_1Maths_1_1Matrix_aee50b30a09cf9dc4e6a9f185badae9f5}\label{classEGE_1_1Maths_1_1Matrix_aee50b30a09cf9dc4e6a9f185badae9f5} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+int \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the width of the matrix. 
+
+The function returns the width of the matrix. \Hypertarget{classEGE_1_1Maths_1_1Matrix_acf7d31eb8795630380b047d023b3ae41}\label{classEGE_1_1Maths_1_1Matrix_acf7d31eb8795630380b047d023b3ae41} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!identity@{identity}}
+\index{identity@{identity}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{identity()}{identity()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+static \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a8696fea835ed6560d56427cc640793a1}\label{classEGE_1_1Maths_1_1Matrix_a8696fea835ed6560d56427cc640793a1} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the matrix is not equal to the specified matrix. 
+
+The function checks if the matrix is not equal to the specified matrix. 
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the matrix is not equal to the specified matrix, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_ac99c3dc4019f72f2b5ae26e8d59811f1}\label{classEGE_1_1Maths_1_1Matrix_ac99c3dc4019f72f2b5ae26e8d59811f1} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the product of all elements in the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to multiply with this matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The product of all elements in the matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a1e549144c3a18a458356523fbf56f46b}\label{classEGE_1_1Maths_1_1Matrix_a1e549144c3a18a458356523fbf56f46b} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{double}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the product of all elements in the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply with this matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The product of all elements in the matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_ac66cf97a6ca913221018b26ff375be02}\label{classEGE_1_1Maths_1_1Matrix_ac66cf97a6ca913221018b26ff375be02} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}}
+\index{operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator\texorpdfstring{$\ast$}{*}= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiplies the specified matrix with this matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to multiply with this matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a7d86fe659b580330a6f10452a84f21fb}\label{classEGE_1_1Maths_1_1Matrix_a7d86fe659b580330a6f10452a84f21fb} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}}
+\index{operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator\texorpdfstring{$\ast$}{*}= (\begin{DoxyParamCaption}\item[{double}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiplies the specified scalar with this matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply with this matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_afd7c1ff0d843c90d5ebb92e0766df306}\label{classEGE_1_1Maths_1_1Matrix_afd7c1ff0d843c90d5ebb92e0766df306} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the sum of all elements in the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to add to this matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of all elements in the matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a6d8e950e3425ba2347ef2e7c68279b81}\label{classEGE_1_1Maths_1_1Matrix_a6d8e950e3425ba2347ef2e7c68279b81} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds the specified matrix to this matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to add to this matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a078e6ce13009ce5bb1c33d320d7aa421}\label{classEGE_1_1Maths_1_1Matrix_a078e6ce13009ce5bb1c33d320d7aa421} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a matrix with all elements negated. 
+
+\begin{DoxyReturn}{Returns}
+A matrix with all elements negated. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a54d9454ae07090e2883aa778078bee4c}\label{classEGE_1_1Maths_1_1Matrix_a54d9454ae07090e2883aa778078bee4c} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the difference of all elements in the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to subtract from this matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The difference of all elements in the matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a2891c384d6fe30dd52cd8980973d067b}\label{classEGE_1_1Maths_1_1Matrix_a2891c384d6fe30dd52cd8980973d067b} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtracts the specified matrix from this matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to subtract from this matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a047873bf9a3e6578f29e2ba79be8223b}\label{classEGE_1_1Maths_1_1Matrix_a047873bf9a3e6578f29e2ba79be8223b} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator/ (\begin{DoxyParamCaption}\item[{double}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the quotient of all elements in the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to divide with this matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The quotient of all elements in the matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_ae45f576928bfcf33e768ecbd5f2ac2a7}\label{classEGE_1_1Maths_1_1Matrix_ae45f576928bfcf33e768ecbd5f2ac2a7} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator/= (\begin{DoxyParamCaption}\item[{double}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Divides the specified scalar with this matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to divide with this matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_ab5fe7382c38d8820f3dcdc92c8c22f19}\label{classEGE_1_1Maths_1_1Matrix_ab5fe7382c38d8820f3dcdc92c8c22f19} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the matrix is equal to the specified matrix. 
+
+The function checks if the matrix is equal to the specified matrix. 
+\begin{DoxyParams}{Parameters}
+{\em other} & The matrix to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the matrix is equal to the specified matrix, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a9b397250ee049286e23a09d2b8cd899a}\label{classEGE_1_1Maths_1_1Matrix_a9b397250ee049286e23a09d2b8cd899a} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+std\+::array$<$ T, WIDTH $>$ \& \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the element at the specified position. 
+
+The function returns the element at the specified position. 
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position of the element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The element at the specified position. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classEGE_1_1Maths_1_1Matrix_1_1MatrixError}{Matrix\+Error}} & if the position is out of bounds. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a80443e4cbcc956face6ecc7857ccee09}\label{classEGE_1_1Maths_1_1Matrix_a80443e4cbcc956face6ecc7857ccee09} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+std\+::array$<$ T, WIDTH $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the element at the specified position. 
+
+The function returns the element at the specified position. 
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position of the element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The element at the specified position. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classEGE_1_1Maths_1_1Matrix_1_1MatrixError}{Matrix\+Error}} & if the position is out of bounds. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a7ff02194f44a791ae9d194a17bd2d8ba}\label{classEGE_1_1Maths_1_1Matrix_a7ff02194f44a791ae9d194a17bd2d8ba} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!toGlm@{toGlm}}
+\index{toGlm@{toGlm}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{toGlm()}{toGlm()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+glm\+::mat$<$ WIDTH, HEIGHT, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::to\+Glm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} as a glm\+::mat. 
+
+\begin{DoxyReturn}{Returns}
+The \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} as a glm\+::mat. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a9df0c51d7250c234236178d575ada829}\label{classEGE_1_1Maths_1_1Matrix_a9df0c51d7250c234236178d575ada829} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!transpose@{transpose}}
+\index{transpose@{transpose}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Matrix}}$<$ HEIGHT, WIDTH, T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the transpose of the matrix. 
+
+The function returns the transpose of the matrix. \begin{DoxyReturn}{Returns}
+The transpose of the matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Matrix_a189736403f7a388ccae99f76b51907da}\label{classEGE_1_1Maths_1_1Matrix_a189736403f7a388ccae99f76b51907da} 
+\index{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}!value\_ptr@{value\_ptr}}
+\index{value\_ptr@{value\_ptr}!EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$@{EGE::Maths::Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\doxysubsubsection{\texorpdfstring{value\_ptr()}{value\_ptr()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$\+::value\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the values of the matrix. 
+
+The function returns the values of the matrix as a pointer to a C-\/style array. \begin{DoxyReturn}{Returns}
+The values of the matrix. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The caller is responsible for freeing the memory allocated for the array using delete\mbox{[}\mbox{]}. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+Maths/\mbox{\hyperlink{Matrix_8hpp}{Matrix.\+hpp}}\end{DoxyCompactItemize}

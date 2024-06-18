@@ -1,0 +1,170 @@
+\doxysection{Onyx\+::Entity Class Reference}
+\hypertarget{classOnyx_1_1Entity}{}\label{classOnyx_1_1Entity}\index{Onyx::Entity@{Onyx::Entity}}
+
+
+Represents an entity in the game.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+hpp$>$}
+
+
+
+Inheritance diagram for Onyx\+::Entity\+:
+% FIG 0
+
+
+Collaboration diagram for Onyx\+::Entity\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Entity_a47be073bf8779a1124af6a701fb8a044}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classOnyx_1_1Entity_a09b1bdfb3e956502c8655ac6ae804542}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$ shader)
+\begin{DoxyCompactList}\small\item\em Updates the entity. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classOnyx_1_1Entity_a67e681449da07ac93e97847b3d25201e}{set\+Position}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Set the new position of the floor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_ae928728d710f4077d7dd248584977946}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position of the floor. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aca7177d514ff29ab8b48b62932735835}{get\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Returns the model associated with the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOnyx_1_1Entity_a1858604460a02213435e6961e975993b}{intersects}} (const glm\+::vec3 \&ray\+Origin, const glm\+::vec3 \&ray\+Position, float \&t, float \&u, float \&v)
+\begin{DoxyCompactList}\small\item\em Checks if the entity intersects with a ray. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aded44b3834c06aad8f88193caa3419bd}{\+\_\+model}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_a114bf724ad20e45425d7c19473bc6ce3}{\+\_\+position}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an entity in the game. 
+
+This class provides a base for all entities in the game. It contains common attributes and methods that are shared among different types of entities. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1Entity_a47be073bf8779a1124af6a701fb8a044}\label{classOnyx_1_1Entity_a47be073bf8779a1124af6a701fb8a044} 
+\index{Onyx::Entity@{Onyx::Entity}!````~Entity@{\texorpdfstring{$\sim$}{\string~}Entity}}
+\index{````~Entity@{\texorpdfstring{$\sim$}{\string~}Entity}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Entity()}{\string~Entity()}}
+{\footnotesize\ttfamily Onyx\+::\+Entity\+::\texorpdfstring{$\sim$}{\string~}\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1Entity_aca7177d514ff29ab8b48b62932735835}\label{classOnyx_1_1Entity_aca7177d514ff29ab8b48b62932735835} 
+\index{Onyx::Entity@{Onyx::Entity}!getModel@{getModel}}
+\index{getModel@{getModel}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{getModel()}{getModel()}}
+{\footnotesize\ttfamily virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ Onyx\+::\+Entity\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the model associated with the entity. 
+
+\begin{DoxyReturn}{Returns}
+A shared pointer to the \doxylink{classEGE_1_1Model}{EGE\+::\+Model} object representing the entity\textquotesingle{}s model. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Entity_ae928728d710f4077d7dd248584977946}\label{classOnyx_1_1Entity_ae928728d710f4077d7dd248584977946} 
+\index{Onyx::Entity@{Onyx::Entity}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ Onyx\+::\+Entity\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the position of the floor. 
+
+\begin{DoxyReturn}{Returns}
+The floor position as a Vector3 of float 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Entity_a1858604460a02213435e6961e975993b}\label{classOnyx_1_1Entity_a1858604460a02213435e6961e975993b} 
+\index{Onyx::Entity@{Onyx::Entity}!intersects@{intersects}}
+\index{intersects@{intersects}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{intersects()}{intersects()}}
+{\footnotesize\ttfamily bool Onyx\+::\+Entity\+::intersects (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{ray\+Origin,  }\item[{const glm\+::vec3 \&}]{ray\+Position,  }\item[{float \&}]{t,  }\item[{float \&}]{u,  }\item[{float \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Checks if the entity intersects with a ray. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray\+Origin} & The origin of the ray. \\
+\hline
+{\em ray\+Position} & The position of the ray. \\
+\hline
+{\em t} & The distance from the ray origin to the intersection point. \\
+\hline
+{\em u} & The barycentric coordinate u of the intersection point. \\
+\hline
+{\em v} & The barycentric coordinate v of the intersection point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the entity intersects with the ray, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Entity_a67e681449da07ac93e97847b3d25201e}\label{classOnyx_1_1Entity_a67e681449da07ac93e97847b3d25201e} 
+\index{Onyx::Entity@{Onyx::Entity}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily virtual void Onyx\+::\+Entity\+::set\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the new position of the floor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The new position as a Vector3 of float \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Entity_a09b1bdfb3e956502c8655ac6ae804542}\label{classOnyx_1_1Entity_a09b1bdfb3e956502c8655ac6ae804542} 
+\index{Onyx::Entity@{Onyx::Entity}!update@{update}}
+\index{update@{update}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void Onyx\+::\+Entity\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$}]{shader }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the entity. 
+
+This method is called to update the entity\textquotesingle{}s state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader used for rendering the entity. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classOnyx_1_1Map_a5b65381481e8011fd076cc5f8d24de0a}{Onyx\+::\+Map}}, \mbox{\hyperlink{classOnyx_1_1Floor_adef280c8b76f95aa8e128070a754fec6}{Onyx\+::\+Floor}}, \mbox{\hyperlink{classOnyx_1_1Item_ab31519a010def941745e18fd1e6c47a3}{Onyx\+::\+Item}}, and \mbox{\hyperlink{classOnyx_1_1Player_a9ee95a9dad78eb31230f303d3bdb7c06}{Onyx\+::\+Player}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classOnyx_1_1Entity_aded44b3834c06aad8f88193caa3419bd}\label{classOnyx_1_1Entity_aded44b3834c06aad8f88193caa3419bd} 
+\index{Onyx::Entity@{Onyx::Entity}!\_model@{\_model}}
+\index{\_model@{\_model}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{\_model}{\_model}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}}$>$ Onyx\+::\+Entity\+::\+\_\+model\hspace{0.3cm}{\ttfamily [protected]}}
+
+The model used for rendering the entity. \Hypertarget{classOnyx_1_1Entity_a114bf724ad20e45425d7c19473bc6ce3}\label{classOnyx_1_1Entity_a114bf724ad20e45425d7c19473bc6ce3} 
+\index{Onyx::Entity@{Onyx::Entity}!\_position@{\_position}}
+\index{\_position@{\_position}!Onyx::Entity@{Onyx::Entity}}
+\doxysubsubsection{\texorpdfstring{\_position}{\_position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$ Onyx\+::\+Entity\+::\+\_\+position\hspace{0.3cm}{\ttfamily [protected]}}
+
+The position of the entity in 3D space. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Entity_8hpp}{Entity.\+hpp}}\end{DoxyCompactItemize}

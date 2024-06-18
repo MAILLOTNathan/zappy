@@ -1,0 +1,22 @@
+\doxysection{ege/include/\+Animation.hpp File Reference}
+\hypertarget{Animation_8hpp}{}\label{Animation_8hpp}\index{ege/include/Animation.hpp@{ege/include/Animation.hpp}}
+{\ttfamily \#include "{}Bone.\+hpp"{}}\newline
+{\ttfamily \#include "{}Model.\+hpp"{}}\newline
+Include dependency graph for Animation.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structEGE_1_1AssimpNodeData}{EGE\+::\+Assimp\+Node\+Data}}
+\begin{DoxyCompactList}\small\item\em Struct representing data of a node in the Assimp scene graph. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEGE_1_1AnimationError}{EGE\+::\+Animation\+Error}}
+\begin{DoxyCompactList}\small\item\em Custom exception class for animation errors. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEGE_1_1Animation}{EGE\+::\+Animation}}
+\begin{DoxyCompactList}\small\item\em Class representing an animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceEGE}{EGE}}
+\begin{DoxyCompactList}\small\item\em Namespace \doxylink{namespaceEGE}{EGE} contains classes and structs related to the \doxylink{namespaceEGE}{EGE} library. \end{DoxyCompactList}\end{DoxyCompactItemize}

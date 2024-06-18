@@ -1,0 +1,139 @@
+\doxysection{include/\+Item.hpp File Reference}
+\hypertarget{include_2Item_8hpp}{}\label{include_2Item_8hpp}\index{include/Item.hpp@{include/Item.hpp}}
+{\ttfamily \#include "{}Entity.\+hpp"{}}\newline
+{\ttfamily \#include "{}Error.\+hpp"{}}\newline
+Include dependency graph for Item.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classOnyx_1_1Item}{Onyx\+::\+Item}}
+\begin{DoxyCompactList}\small\item\em This class represents an item in the \doxylink{namespaceOnyx}{Onyx} game engine. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classOnyx_1_1Item_1_1ItemError}{Onyx\+::\+Item\+::\+Item\+Error}}
+\begin{DoxyCompactList}\small\item\em This class represents an error related to the \doxylink{classOnyx_1_1Item}{Item} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceOnyx}{Onyx}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}}~9
+\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_aeeac03e0cfb8e9a2ddbadb4c81933cd4}{food\+Position}}~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)
+\begin{DoxyCompactList}\small\item\em The position of the food item in the game grid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_a3eda57dc08445404cb5d1bb58f6776fe}{linemate\+Position}}~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}}, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)
+\begin{DoxyCompactList}\small\item\em The position of the linemate item in the game grid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_ab331df40083560bc612aff5f9f95e882}{deraumere\+Position}}~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)
+\begin{DoxyCompactList}\small\item\em The position of the deraumere item in the game grid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_a64b12af9ada4316e0842dcf5afd512a1}{sibur\+Position}}~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}})
+\begin{DoxyCompactList}\small\item\em The position of the sibur item in the game grid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_ad9996135080e631a91d44cb1575906da}{mendiane\+Position}}~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}})
+\begin{DoxyCompactList}\small\item\em The position of the mendiane item in the game grid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_a2be5706ff9972af721fea0ecbc5acc3e}{phiras\+Position}}~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)
+\begin{DoxyCompactList}\small\item\em The position of the phiras item in the game grid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{include_2Item_8hpp_a7e319905d61e70bf78283d9ad0f6a1fe}{thystame\+Position}}~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)
+\begin{DoxyCompactList}\small\item\em The position of the thystame item in the game grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}\label{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f} 
+\index{Item.hpp@{Item.hpp}!CELL\_SIZE@{CELL\_SIZE}}
+\index{CELL\_SIZE@{CELL\_SIZE}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{CELL\_SIZE}{CELL\_SIZE}}
+{\footnotesize\ttfamily \#define CELL\+\_\+\+SIZE~9}
+
+\Hypertarget{include_2Item_8hpp_ab331df40083560bc612aff5f9f95e882}\label{include_2Item_8hpp_ab331df40083560bc612aff5f9f95e882} 
+\index{Item.hpp@{Item.hpp}!deraumerePosition@{deraumerePosition}}
+\index{deraumerePosition@{deraumerePosition}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{deraumerePosition}{deraumerePosition}}
+{\footnotesize\ttfamily \#define deraumere\+Position~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)}
+
+
+
+The position of the deraumere item in the game grid. 
+
+\begin{DoxyNote}{Note}
+use only if a EGE\+::\+Maths\+::\+Vector2$<$int$>$ position is defined in the current scope. 
+\end{DoxyNote}
+\Hypertarget{include_2Item_8hpp_aeeac03e0cfb8e9a2ddbadb4c81933cd4}\label{include_2Item_8hpp_aeeac03e0cfb8e9a2ddbadb4c81933cd4} 
+\index{Item.hpp@{Item.hpp}!foodPosition@{foodPosition}}
+\index{foodPosition@{foodPosition}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{foodPosition}{foodPosition}}
+{\footnotesize\ttfamily \#define food\+Position~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)}
+
+
+
+The position of the food item in the game grid. 
+
+\begin{DoxyNote}{Note}
+use only if a EGE\+::\+Maths\+::\+Vector2$<$int$>$ position is defined in the current scope. 
+\end{DoxyNote}
+\Hypertarget{include_2Item_8hpp_a3eda57dc08445404cb5d1bb58f6776fe}\label{include_2Item_8hpp_a3eda57dc08445404cb5d1bb58f6776fe} 
+\index{Item.hpp@{Item.hpp}!linematePosition@{linematePosition}}
+\index{linematePosition@{linematePosition}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{linematePosition}{linematePosition}}
+{\footnotesize\ttfamily \#define linemate\+Position~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}}, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)}
+
+
+
+The position of the linemate item in the game grid. 
+
+\begin{DoxyNote}{Note}
+use only if a EGE\+::\+Maths\+::\+Vector2$<$int$>$ position is defined in the current scope. 
+\end{DoxyNote}
+\Hypertarget{include_2Item_8hpp_ad9996135080e631a91d44cb1575906da}\label{include_2Item_8hpp_ad9996135080e631a91d44cb1575906da} 
+\index{Item.hpp@{Item.hpp}!mendianePosition@{mendianePosition}}
+\index{mendianePosition@{mendianePosition}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{mendianePosition}{mendianePosition}}
+{\footnotesize\ttfamily \#define mendiane\+Position~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}})}
+
+
+
+The position of the mendiane item in the game grid. 
+
+\begin{DoxyNote}{Note}
+use only if a EGE\+::\+Maths\+::\+Vector2$<$int$>$ position is defined in the current scope. 
+\end{DoxyNote}
+\Hypertarget{include_2Item_8hpp_a2be5706ff9972af721fea0ecbc5acc3e}\label{include_2Item_8hpp_a2be5706ff9972af721fea0ecbc5acc3e} 
+\index{Item.hpp@{Item.hpp}!phirasPosition@{phirasPosition}}
+\index{phirasPosition@{phirasPosition}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{phirasPosition}{phirasPosition}}
+{\footnotesize\ttfamily \#define phiras\+Position~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)}
+
+
+
+The position of the phiras item in the game grid. 
+
+\begin{DoxyNote}{Note}
+use only if a EGE\+::\+Maths\+::\+Vector2$<$int$>$ position is defined in the current scope. 
+\end{DoxyNote}
+\Hypertarget{include_2Item_8hpp_a64b12af9ada4316e0842dcf5afd512a1}\label{include_2Item_8hpp_a64b12af9ada4316e0842dcf5afd512a1} 
+\index{Item.hpp@{Item.hpp}!siburPosition@{siburPosition}}
+\index{siburPosition@{siburPosition}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{siburPosition}{siburPosition}}
+{\footnotesize\ttfamily \#define sibur\+Position~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}})}
+
+
+
+The position of the sibur item in the game grid. 
+
+\begin{DoxyNote}{Note}
+use only if a EGE\+::\+Maths\+::\+Vector2$<$int$>$ position is defined in the current scope. 
+\end{DoxyNote}
+\Hypertarget{include_2Item_8hpp_a7e319905d61e70bf78283d9ad0f6a1fe}\label{include_2Item_8hpp_a7e319905d61e70bf78283d9ad0f6a1fe} 
+\index{Item.hpp@{Item.hpp}!thystamePosition@{thystamePosition}}
+\index{thystamePosition@{thystamePosition}!Item.hpp@{Item.hpp}}
+\doxysubsubsection{\texorpdfstring{thystamePosition}{thystamePosition}}
+{\footnotesize\ttfamily \#define thystame\+Position~\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$float$>$(position.\+x \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f, 3.\+0f, position.\+y \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} + \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\+\_\+\+SIZE}} / 4.\+0f)}
+
+
+
+The position of the thystame item in the game grid. 
+
+\begin{DoxyNote}{Note}
+use only if a EGE\+::\+Maths\+::\+Vector2$<$int$>$ position is defined in the current scope. 
+\end{DoxyNote}

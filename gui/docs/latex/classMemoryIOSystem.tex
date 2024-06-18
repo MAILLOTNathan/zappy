@@ -1,0 +1,175 @@
+\doxysection{Memory\+IOSystem Class Reference}
+\hypertarget{classMemoryIOSystem}{}\label{classMemoryIOSystem}\index{MemoryIOSystem@{MemoryIOSystem}}
+
+
+The \doxylink{classMemoryIOSystem}{Memory\+IOSystem} class is a custom implementation of the Assimp\+::\+IOSystem interface. It provides functionality to add files to a memory buffer and retrieve them when needed.  
+
+
+
+
+{\ttfamily \#include $<$Memory\+IOSystem.\+hpp$>$}
+
+
+
+Inheritance diagram for Memory\+IOSystem\+:
+% FIG 0
+
+
+Collaboration diagram for Memory\+IOSystem\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classMemoryIOSystem_a1dd3cb21486d9e778ed22015907a194d}{add\+File}} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Adds a file to the memory buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMemoryIOSystem_af1e0d2853077a3062201098f0b35ef30}{add\+File}} (const std\+::string \&path, const std\+::string \&buffer)
+\begin{DoxyCompactList}\small\item\em Adds a file to the memory buffer with a specified buffer content. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMemoryIOSystem_a2145617f9e6891f0148033a26ec1956e}{Exists}} (const char \texorpdfstring{$\ast$}{*}p\+File) const override
+\begin{DoxyCompactList}\small\item\em Checks if a file exists in the memory buffer. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{classMemoryIOSystem_a4c1df8b235085d5d011fb1899ae04bd4}{get\+Os\+Separator}} () const override
+\begin{DoxyCompactList}\small\item\em Retrieves the operating system separator character. \end{DoxyCompactList}\item 
+Assimp\+::\+IOStream \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classMemoryIOSystem_ac0813bfa23f65dc09b2cc997e21a87f1}{Open}} (const char \texorpdfstring{$\ast$}{*}p\+File, const char \texorpdfstring{$\ast$}{*}p\+Mode) override
+\begin{DoxyCompactList}\small\item\em Opens a file from the memory buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMemoryIOSystem_a2ed35844799a83579cfc1f1436ab9c7c}{Close}} (Assimp\+::\+IOStream \texorpdfstring{$\ast$}{*}p\+File) override
+\begin{DoxyCompactList}\small\item\em Closes a file stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMemoryIOSystem_aca228a74b398f2b112e4ab2caa773a20}{set\+Asset\+Manager}} (AAsset\+Manager \texorpdfstring{$\ast$}{*}mgr)
+\begin{DoxyCompactList}\small\item\em Sets the asset manager for accessing Android assets. \end{DoxyCompactList}\item 
+AAsset\+Manager \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classMemoryIOSystem_ad7a7e2353fe619d43128b97c557919d9}{get\+Asset\+Manager}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the asset manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classMemoryIOSystem}{Memory\+IOSystem} class is a custom implementation of the Assimp\+::\+IOSystem interface. It provides functionality to add files to a memory buffer and retrieve them when needed. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMemoryIOSystem_a1dd3cb21486d9e778ed22015907a194d}\label{classMemoryIOSystem_a1dd3cb21486d9e778ed22015907a194d} 
+\index{MemoryIOSystem@{MemoryIOSystem}!addFile@{addFile}}
+\index{addFile@{addFile}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{addFile()}{addFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Memory\+IOSystem\+::add\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Adds a file to the memory buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the file to be added. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMemoryIOSystem_af1e0d2853077a3062201098f0b35ef30}\label{classMemoryIOSystem_af1e0d2853077a3062201098f0b35ef30} 
+\index{MemoryIOSystem@{MemoryIOSystem}!addFile@{addFile}}
+\index{addFile@{addFile}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{addFile()}{addFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Memory\+IOSystem\+::add\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const std\+::string \&}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Adds a file to the memory buffer with a specified buffer content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the file to be added. \\
+\hline
+{\em buffer} & The content of the file to be added. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMemoryIOSystem_a2ed35844799a83579cfc1f1436ab9c7c}\label{classMemoryIOSystem_a2ed35844799a83579cfc1f1436ab9c7c} 
+\index{MemoryIOSystem@{MemoryIOSystem}!Close@{Close}}
+\index{Close@{Close}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void Memory\+IOSystem\+::\+Close (\begin{DoxyParamCaption}\item[{Assimp\+::\+IOStream \texorpdfstring{$\ast$}{*}}]{p\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Closes a file stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+File} & A pointer to the file stream to close. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMemoryIOSystem_a2145617f9e6891f0148033a26ec1956e}\label{classMemoryIOSystem_a2145617f9e6891f0148033a26ec1956e} 
+\index{MemoryIOSystem@{MemoryIOSystem}!Exists@{Exists}}
+\index{Exists@{Exists}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{Exists()}{Exists()}}
+{\footnotesize\ttfamily bool Memory\+IOSystem\+::\+Exists (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{p\+File }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Checks if a file exists in the memory buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+File} & The path of the file to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the file exists, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOSystem_ad7a7e2353fe619d43128b97c557919d9}\label{classMemoryIOSystem_ad7a7e2353fe619d43128b97c557919d9} 
+\index{MemoryIOSystem@{MemoryIOSystem}!getAssetManager@{getAssetManager}}
+\index{getAssetManager@{getAssetManager}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{getAssetManager()}{getAssetManager()}}
+{\footnotesize\ttfamily AAsset\+Manager \texorpdfstring{$\ast$}{*} Memory\+IOSystem\+::get\+Asset\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the asset manager. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the asset manager. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOSystem_a4c1df8b235085d5d011fb1899ae04bd4}\label{classMemoryIOSystem_a4c1df8b235085d5d011fb1899ae04bd4} 
+\index{MemoryIOSystem@{MemoryIOSystem}!getOsSeparator@{getOsSeparator}}
+\index{getOsSeparator@{getOsSeparator}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{getOsSeparator()}{getOsSeparator()}}
+{\footnotesize\ttfamily char Memory\+IOSystem\+::get\+Os\+Separator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Retrieves the operating system separator character. 
+
+\begin{DoxyReturn}{Returns}
+The operating system separator character. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOSystem_ac0813bfa23f65dc09b2cc997e21a87f1}\label{classMemoryIOSystem_ac0813bfa23f65dc09b2cc997e21a87f1} 
+\index{MemoryIOSystem@{MemoryIOSystem}!Open@{Open}}
+\index{Open@{Open}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{Open()}{Open()}}
+{\footnotesize\ttfamily Assimp\+::\+IOStream \texorpdfstring{$\ast$}{*} Memory\+IOSystem\+::\+Open (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{p\+File,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{p\+Mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Opens a file from the memory buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+File} & The path of the file to open. \\
+\hline
+{\em p\+Mode} & The mode in which to open the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the opened file stream. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOSystem_aca228a74b398f2b112e4ab2caa773a20}\label{classMemoryIOSystem_aca228a74b398f2b112e4ab2caa773a20} 
+\index{MemoryIOSystem@{MemoryIOSystem}!setAssetManager@{setAssetManager}}
+\index{setAssetManager@{setAssetManager}!MemoryIOSystem@{MemoryIOSystem}}
+\doxysubsubsection{\texorpdfstring{setAssetManager()}{setAssetManager()}}
+{\footnotesize\ttfamily void Memory\+IOSystem\+::set\+Asset\+Manager (\begin{DoxyParamCaption}\item[{AAsset\+Manager \texorpdfstring{$\ast$}{*}}]{mgr }\end{DoxyParamCaption})}
+
+
+
+Sets the asset manager for accessing Android assets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mgr} & A pointer to the asset manager. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{MemoryIOSystem_8hpp}{Memory\+IOSystem.\+hpp}}\end{DoxyCompactItemize}

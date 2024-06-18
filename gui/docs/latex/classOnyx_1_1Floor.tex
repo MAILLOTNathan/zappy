@@ -1,0 +1,195 @@
+\doxysection{Onyx\+::Floor Class Reference}
+\hypertarget{classOnyx_1_1Floor}{}\label{classOnyx_1_1Floor}\index{Onyx::Floor@{Onyx::Floor}}
+
+
+The \doxylink{classOnyx_1_1Floor}{Floor} class represents a floor entity in the game.  
+
+
+
+
+{\ttfamily \#include $<$Floor.\+hpp$>$}
+
+
+
+Inheritance diagram for Onyx\+::Floor\+:
+% FIG 0
+
+
+Collaboration diagram for Onyx\+::Floor\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Floor_a36b200404ca856b552c1d90af7182213}{Floor}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classOnyx_1_1Floor}{Floor} object with the given position. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1Floor_a610bde6e577aa6f390c9d02d8244498f}{\texorpdfstring{$\sim$}{\string~}\+Floor}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classOnyx_1_1Floor}{Floor} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Floor_adef280c8b76f95aa8e128070a754fec6}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$ shader) override
+\begin{DoxyCompactList}\small\item\em Updates the floor entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Floor_a364feee53a0bfd8638ba6d2f5a8ae421}{add\+Item}} (\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}} type, int number)
+\begin{DoxyCompactList}\small\item\em Adds an item to the floor entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Floor_a34192d49281460448f97084474aaab31}{remove\+Item}} (\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}} type)
+\begin{DoxyCompactList}\small\item\em Removes an item from the floor entity. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOnyx_1_1Floor_ac6b2cd4d680111e0fd12d508eb066553}{get\+Quantity}} (\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}} type) const
+\begin{DoxyCompactList}\small\item\em Gets the items on the floor entity. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classOnyx_1_1Floor_aba10fb6d7449a67d7874e409cef1404a}{get\+Distance}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&camera\+Position, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&camera\+Front) const
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \mbox{\hyperlink{classOnyx_1_1Floor_abff1e1f1893e51e388fc4672aca9ff2e}{get\+Pos}} () const
+\begin{DoxyCompactList}\small\item\em Gets the position of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOnyx_1_1Entity}{Onyx\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Entity_a47be073bf8779a1124af6a701fb8a044}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classOnyx_1_1Entity_a67e681449da07ac93e97847b3d25201e}{set\+Position}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Set the new position of the floor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_ae928728d710f4077d7dd248584977946}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position of the floor. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aca7177d514ff29ab8b48b62932735835}{get\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Returns the model associated with the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOnyx_1_1Entity_a1858604460a02213435e6961e975993b}{intersects}} (const glm\+::vec3 \&ray\+Origin, const glm\+::vec3 \&ray\+Position, float \&t, float \&u, float \&v)
+\begin{DoxyCompactList}\small\item\em Checks if the entity intersects with a ray. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOnyx_1_1Entity}{Onyx\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aded44b3834c06aad8f88193caa3419bd}{\+\_\+model}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_a114bf724ad20e45425d7c19473bc6ce3}{\+\_\+position}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classOnyx_1_1Floor}{Floor} class represents a floor entity in the game. 
+
+This class inherits from the \doxylink{classOnyx_1_1Entity}{Onyx\+::\+Entity} class and provides functionality to update and render the floor entity. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1Floor_a36b200404ca856b552c1d90af7182213}\label{classOnyx_1_1Floor_a36b200404ca856b552c1d90af7182213} 
+\index{Onyx::Floor@{Onyx::Floor}!Floor@{Floor}}
+\index{Floor@{Floor}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{Floor()}{Floor()}}
+{\footnotesize\ttfamily Onyx\+::\+Floor\+::\+Floor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classOnyx_1_1Floor}{Floor} object with the given position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the floor entity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Floor_a610bde6e577aa6f390c9d02d8244498f}\label{classOnyx_1_1Floor_a610bde6e577aa6f390c9d02d8244498f} 
+\index{Onyx::Floor@{Onyx::Floor}!````~Floor@{\texorpdfstring{$\sim$}{\string~}Floor}}
+\index{````~Floor@{\texorpdfstring{$\sim$}{\string~}Floor}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Floor()}{\string~Floor()}}
+{\footnotesize\ttfamily Onyx\+::\+Floor\+::\texorpdfstring{$\sim$}{\string~}\+Floor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classOnyx_1_1Floor}{Floor} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1Floor_a364feee53a0bfd8638ba6d2f5a8ae421}\label{classOnyx_1_1Floor_a364feee53a0bfd8638ba6d2f5a8ae421} 
+\index{Onyx::Floor@{Onyx::Floor}!addItem@{addItem}}
+\index{addItem@{addItem}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily void Onyx\+::\+Floor\+::add\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}}}]{type,  }\item[{int}]{number }\end{DoxyParamCaption})}
+
+
+
+Adds an item to the floor entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the item to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Floor_aba10fb6d7449a67d7874e409cef1404a}\label{classOnyx_1_1Floor_aba10fb6d7449a67d7874e409cef1404a} 
+\index{Onyx::Floor@{Onyx::Floor}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}}
+{\footnotesize\ttfamily float Onyx\+::\+Floor\+::get\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{camera\+Position,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{camera\+Front }\end{DoxyParamCaption}) const}
+
+Calculates the distance between the camera position and the camera front.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+Position} & The position of the camera. \\
+\hline
+{\em camera\+Front} & The front direction of the camera. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance between the camera position and the camera front. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Floor_abff1e1f1893e51e388fc4672aca9ff2e}\label{classOnyx_1_1Floor_abff1e1f1893e51e388fc4672aca9ff2e} 
+\index{Onyx::Floor@{Onyx::Floor}!getPos@{getPos}}
+\index{getPos@{getPos}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ Onyx\+::\+Floor\+::get\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the position of the object. 
+
+\begin{DoxyReturn}{Returns}
+The position of the object as a 2D vector. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Floor_ac6b2cd4d680111e0fd12d508eb066553}\label{classOnyx_1_1Floor_ac6b2cd4d680111e0fd12d508eb066553} 
+\index{Onyx::Floor@{Onyx::Floor}!getQuantity@{getQuantity}}
+\index{getQuantity@{getQuantity}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{getQuantity()}{getQuantity()}}
+{\footnotesize\ttfamily int Onyx\+::\+Floor\+::get\+Quantity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}}}]{type }\end{DoxyParamCaption}) const}
+
+
+
+Gets the items on the floor entity. 
+
+\begin{DoxyReturn}{Returns}
+A vector of shared pointers to the items on the floor entity. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Floor_a34192d49281460448f97084474aaab31}\label{classOnyx_1_1Floor_a34192d49281460448f97084474aaab31} 
+\index{Onyx::Floor@{Onyx::Floor}!removeItem@{removeItem}}
+\index{removeItem@{removeItem}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{removeItem()}{removeItem()}}
+{\footnotesize\ttfamily void Onyx\+::\+Floor\+::remove\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Removes an item from the floor entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the item to remove. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Floor_adef280c8b76f95aa8e128070a754fec6}\label{classOnyx_1_1Floor_adef280c8b76f95aa8e128070a754fec6} 
+\index{Onyx::Floor@{Onyx::Floor}!update@{update}}
+\index{update@{update}!Onyx::Floor@{Onyx::Floor}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Onyx\+::\+Floor\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$}]{shader }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the floor entity. 
+
+This function is called to update the floor entity\textquotesingle{}s state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & A shared pointer to the shader used for rendering. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classOnyx_1_1Entity_a09b1bdfb3e956502c8655ac6ae804542}{Onyx\+::\+Entity}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Floor_8hpp}{Floor.\+hpp}}\end{DoxyCompactItemize}

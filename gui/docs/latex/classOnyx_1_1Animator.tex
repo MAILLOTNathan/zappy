@@ -1,0 +1,120 @@
+\doxysection{Onyx\+::Animator Class Reference}
+\hypertarget{classOnyx_1_1Animator}{}\label{classOnyx_1_1Animator}\index{Onyx::Animator@{Onyx::Animator}}
+
+
+The \doxylink{classOnyx_1_1Animator}{Animator} class is responsible for managing animations for a player.  
+
+
+
+
+{\ttfamily \#include $<$Onyx\+Animator.\+hpp$>$}
+
+
+
+Collaboration diagram for Onyx\+::Animator\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Animator_a8e5ead3d12b3b1d98fd33ff78b07533b}{Animator}} (float time\+Unit=1.\+0f)
+\begin{DoxyCompactList}\small\item\em Constructs an instance of the \doxylink{classOnyx_1_1Animator}{Animator} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1Animator_a8237a6cf8121e4398afbba7ef5c12aaa}{\texorpdfstring{$\sim$}{\string~}\+Animator}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classOnyx_1_1Animator}{Animator} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Animator_a854d06c0e790ccf9e49bc98a9901728a}{update}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the animator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Animator_a9f3effef8af4be1a2134ae2f660a446e}{start\+Animation}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Player}{Onyx\+::\+Player}} $>$ \&player, const \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}{Onyx\+::\+Player\+::\+Animation}} \&type, const std\+::function$<$ void()$>$ \&callback)
+\item 
+void \mbox{\hyperlink{classOnyx_1_1Animator_a9aa3eca7c81db34af1aa7a8b0ebef195}{set\+Time\+Unit}} (float time\+Unit)
+\begin{DoxyCompactList}\small\item\em Sets the time unit for the animator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classOnyx_1_1Animator}{Animator} class is responsible for managing animations for a player. 
+
+The \doxylink{classOnyx_1_1Animator}{Animator} class provides methods to start and update animations for a player. It supports different types of animations and allows setting the time unit for animation updates. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1Animator_a8e5ead3d12b3b1d98fd33ff78b07533b}\label{classOnyx_1_1Animator_a8e5ead3d12b3b1d98fd33ff78b07533b} 
+\index{Onyx::Animator@{Onyx::Animator}!Animator@{Animator}}
+\index{Animator@{Animator}!Onyx::Animator@{Onyx::Animator}}
+\doxysubsubsection{\texorpdfstring{Animator()}{Animator()}}
+{\footnotesize\ttfamily Onyx\+::\+Animator\+::\+Animator (\begin{DoxyParamCaption}\item[{float}]{time\+Unit = {\ttfamily 1.0f} }\end{DoxyParamCaption})}
+
+
+
+Constructs an instance of the \doxylink{classOnyx_1_1Animator}{Animator} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Unit} & The time unit used for animation (default is 1.\+0f). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Animator_a8237a6cf8121e4398afbba7ef5c12aaa}\label{classOnyx_1_1Animator_a8237a6cf8121e4398afbba7ef5c12aaa} 
+\index{Onyx::Animator@{Onyx::Animator}!````~Animator@{\texorpdfstring{$\sim$}{\string~}Animator}}
+\index{````~Animator@{\texorpdfstring{$\sim$}{\string~}Animator}!Onyx::Animator@{Onyx::Animator}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Animator()}{\string~Animator()}}
+{\footnotesize\ttfamily Onyx\+::\+Animator\+::\texorpdfstring{$\sim$}{\string~}\+Animator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classOnyx_1_1Animator}{Animator} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1Animator_a9aa3eca7c81db34af1aa7a8b0ebef195}\label{classOnyx_1_1Animator_a9aa3eca7c81db34af1aa7a8b0ebef195} 
+\index{Onyx::Animator@{Onyx::Animator}!setTimeUnit@{setTimeUnit}}
+\index{setTimeUnit@{setTimeUnit}!Onyx::Animator@{Onyx::Animator}}
+\doxysubsubsection{\texorpdfstring{setTimeUnit()}{setTimeUnit()}}
+{\footnotesize\ttfamily void Onyx\+::\+Animator\+::set\+Time\+Unit (\begin{DoxyParamCaption}\item[{float}]{time\+Unit }\end{DoxyParamCaption})}
+
+
+
+Sets the time unit for the animator. 
+
+This function sets the time unit for the animator. The time unit determines the speed at which the animation plays.
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Unit} & The time unit to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Animator_a9f3effef8af4be1a2134ae2f660a446e}\label{classOnyx_1_1Animator_a9f3effef8af4be1a2134ae2f660a446e} 
+\index{Onyx::Animator@{Onyx::Animator}!startAnimation@{startAnimation}}
+\index{startAnimation@{startAnimation}!Onyx::Animator@{Onyx::Animator}}
+\doxysubsubsection{\texorpdfstring{startAnimation()}{startAnimation()}}
+{\footnotesize\ttfamily void Onyx\+::\+Animator\+::start\+Animation (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Player}{Onyx\+::\+Player}} $>$ \&}]{player,  }\item[{const \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}{Onyx\+::\+Player\+::\+Animation}} \&}]{type,  }\item[{const std\+::function$<$ void()$>$ \&}]{callback }\end{DoxyParamCaption})}
+
+Starts an animation for a player.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The player to animate. \\
+\hline
+{\em type} & The type of animation to start. \\
+\hline
+{\em callback} & The callback function to be called when the animation is finished. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Animator_a854d06c0e790ccf9e49bc98a9901728a}\label{classOnyx_1_1Animator_a854d06c0e790ccf9e49bc98a9901728a} 
+\index{Onyx::Animator@{Onyx::Animator}!update@{update}}
+\index{update@{update}!Onyx::Animator@{Onyx::Animator}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Onyx\+::\+Animator\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Updates the animator. 
+
+This function is called to update the animator\textquotesingle{}s state based on the elapsed time since the last update.
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & The time elapsed since the last update, in seconds. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{OnyxAnimator_8hpp}{Onyx\+Animator.\+hpp}}\end{DoxyCompactItemize}

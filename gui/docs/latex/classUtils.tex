@@ -1,0 +1,228 @@
+\doxysection{Utils Class Reference}
+\hypertarget{classUtils}{}\label{classUtils}\index{Utils@{Utils}}
+
+
+A utility class that provides various helper functions.  
+
+
+
+
+{\ttfamily \#include $<$Utils.\+hpp$>$}
+
+
+
+Collaboration diagram for Utils\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classUtils_1_1FileNotFoundException}{File\+Not\+Found\+Exception}}
+\begin{DoxyCompactList}\small\item\em Exception class for file not found errors. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classUtils_1_1InvalidArgumentsException}{Invalid\+Arguments\+Exception}}
+\begin{DoxyCompactList}\small\item\em Exception class for invalid arguments. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classUtils_1_1IsDirectoryException}{Is\+Directory\+Exception}}
+\begin{DoxyCompactList}\small\item\em Exception class thrown when attempting to parse a directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classUtils_a36fffc1f5236dd40560b8d3ef9e0e457}{split}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Splits a string into a vector of substrings based on a delimiter. \end{DoxyCompactList}\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classUtils_a3007648c8475cad4c6b7c67e2d1b432a}{split}} (const std\+::string \&str, char sep)
+\begin{DoxyCompactList}\small\item\em Splits a string into a vector of substrings based on a separator character. \end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classUtils_a1759d6361e17639b50420f2c435d9387}{get\+File\+Content}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Retrieves the content of a file. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classUtils_a8df5a8f70af35eac416c5d082c54e3e4}{set\+File\+Content}} (const std\+::string \&filename, const std\+::string \&content, bool append=false)
+\begin{DoxyCompactList}\small\item\em Writes content to a file. \end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classUtils_aba9d012050a0c73e87a3879a5f4b1327}{vector\+To\+String}} (const std\+::vector$<$ std\+::string $>$ \&container)
+\begin{DoxyCompactList}\small\item\em Converts a vector of strings to a single string. \end{DoxyCompactList}\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classUtils_a74407a979712fc5f5ed458353a7ac248}{get\+Directory\+Files}} (const std\+::string \&directory)
+\begin{DoxyCompactList}\small\item\em Retrieves the files in a directory. \end{DoxyCompactList}\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classUtils_a13d4f796072986e62993e8f7d7d7571e}{get\+Directory\+Files}} (const std\+::string \&directory, const std\+::string \&extension)
+\begin{DoxyCompactList}\small\item\em Retrieves the files in a directory with a specific extension. \end{DoxyCompactList}\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classUtils_a6aebda6b85fbd84bdfb78547409d1aea}{get\+Directory\+Sub\+Directories}} (const std\+::string \&directory)
+\begin{DoxyCompactList}\small\item\em Retrieves the subdirectories in a directory. \end{DoxyCompactList}\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classUtils_abf05c46548cc0644201a209abcdc2764}{get\+Directory\+Content}} (const std\+::string \&directory)
+\begin{DoxyCompactList}\small\item\em Retrieves the content of a directory (files and subdirectories). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A utility class that provides various helper functions. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classUtils_abf05c46548cc0644201a209abcdc2764}\label{classUtils_abf05c46548cc0644201a209abcdc2764} 
+\index{Utils@{Utils}!getDirectoryContent@{getDirectoryContent}}
+\index{getDirectoryContent@{getDirectoryContent}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{getDirectoryContent()}{getDirectoryContent()}}
+{\footnotesize\ttfamily static std\+::vector$<$ std\+::string $>$ Utils\+::get\+Directory\+Content (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{directory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves the content of a directory (files and subdirectories). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em directory} & The directory path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ A vector containing the names of the files and subdirectories in the directory. 
+\end{DoxyReturn}
+\Hypertarget{classUtils_a74407a979712fc5f5ed458353a7ac248}\label{classUtils_a74407a979712fc5f5ed458353a7ac248} 
+\index{Utils@{Utils}!getDirectoryFiles@{getDirectoryFiles}}
+\index{getDirectoryFiles@{getDirectoryFiles}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{getDirectoryFiles()}{getDirectoryFiles()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static std\+::vector$<$ std\+::string $>$ Utils\+::get\+Directory\+Files (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{directory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves the files in a directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em directory} & The directory path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ A vector containing the names of the files in the directory. 
+\end{DoxyReturn}
+\Hypertarget{classUtils_a13d4f796072986e62993e8f7d7d7571e}\label{classUtils_a13d4f796072986e62993e8f7d7d7571e} 
+\index{Utils@{Utils}!getDirectoryFiles@{getDirectoryFiles}}
+\index{getDirectoryFiles@{getDirectoryFiles}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{getDirectoryFiles()}{getDirectoryFiles()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static std\+::vector$<$ std\+::string $>$ Utils\+::get\+Directory\+Files (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{directory,  }\item[{const std\+::string \&}]{extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves the files in a directory with a specific extension. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em directory} & The directory path. \\
+\hline
+{\em extension} & The file extension to filter by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ A vector containing the names of the files with the specified extension in the directory. 
+\end{DoxyReturn}
+\Hypertarget{classUtils_a6aebda6b85fbd84bdfb78547409d1aea}\label{classUtils_a6aebda6b85fbd84bdfb78547409d1aea} 
+\index{Utils@{Utils}!getDirectorySubDirectories@{getDirectorySubDirectories}}
+\index{getDirectorySubDirectories@{getDirectorySubDirectories}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{getDirectorySubDirectories()}{getDirectorySubDirectories()}}
+{\footnotesize\ttfamily static std\+::vector$<$ std\+::string $>$ Utils\+::get\+Directory\+Sub\+Directories (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{directory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves the subdirectories in a directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em directory} & The directory path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ A vector containing the names of the subdirectories in the directory. 
+\end{DoxyReturn}
+\Hypertarget{classUtils_a1759d6361e17639b50420f2c435d9387}\label{classUtils_a1759d6361e17639b50420f2c435d9387} 
+\index{Utils@{Utils}!getFileContent@{getFileContent}}
+\index{getFileContent@{getFileContent}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{getFileContent()}{getFileContent()}}
+{\footnotesize\ttfamily static std\+::string Utils\+::get\+File\+Content (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves the content of a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The content of the file as a string. 
+\end{DoxyReturn}
+\Hypertarget{classUtils_a8df5a8f70af35eac416c5d082c54e3e4}\label{classUtils_a8df5a8f70af35eac416c5d082c54e3e4} 
+\index{Utils@{Utils}!setFileContent@{setFileContent}}
+\index{setFileContent@{setFileContent}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{setFileContent()}{setFileContent()}}
+{\footnotesize\ttfamily static void Utils\+::set\+File\+Content (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const std\+::string \&}]{content,  }\item[{bool}]{append = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Writes content to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to write to. \\
+\hline
+{\em content} & The content to write to the file. \\
+\hline
+{\em append} & If true, the content will be appended to the file. Otherwise, the file will be overwritten. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::exception} & if the file cannot be opened. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classUtils_a36fffc1f5236dd40560b8d3ef9e0e457}\label{classUtils_a36fffc1f5236dd40560b8d3ef9e0e457} 
+\index{Utils@{Utils}!split@{split}}
+\index{split@{split}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static std\+::vector$<$ std\+::string $>$ Utils\+::split (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Splits a string into a vector of substrings based on a delimiter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to be split. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ A vector containing the substrings. 
+\end{DoxyReturn}
+\Hypertarget{classUtils_a3007648c8475cad4c6b7c67e2d1b432a}\label{classUtils_a3007648c8475cad4c6b7c67e2d1b432a} 
+\index{Utils@{Utils}!split@{split}}
+\index{split@{split}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static std\+::vector$<$ std\+::string $>$ Utils\+::split (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str,  }\item[{char}]{sep }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Splits a string into a vector of substrings based on a separator character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to be split. \\
+\hline
+{\em sep} & The separator character. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ A vector containing the substrings. 
+\end{DoxyReturn}
+\Hypertarget{classUtils_aba9d012050a0c73e87a3879a5f4b1327}\label{classUtils_aba9d012050a0c73e87a3879a5f4b1327} 
+\index{Utils@{Utils}!vectorToString@{vectorToString}}
+\index{vectorToString@{vectorToString}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{vectorToString()}{vectorToString()}}
+{\footnotesize\ttfamily static std\+::string Utils\+::vector\+To\+String (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{container }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a vector of strings to a single string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container} & The vector of strings to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The concatenated string. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Utils_8hpp}{Utils.\+hpp}}\end{DoxyCompactItemize}

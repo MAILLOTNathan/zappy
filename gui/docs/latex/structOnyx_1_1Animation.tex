@@ -1,0 +1,114 @@
+\doxysection{Onyx\+::Animation Struct Reference}
+\hypertarget{structOnyx_1_1Animation}{}\label{structOnyx_1_1Animation}\index{Onyx::Animation@{Onyx::Animation}}
+
+
+Represents an animation for the Onyx\+Animator class.  
+
+
+
+
+{\ttfamily \#include $<$Onyx\+Animator.\+hpp$>$}
+
+
+
+Collaboration diagram for Onyx\+::Animation\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structOnyx_1_1Animation_ac25240d86aa4c87a9665c507bc8501a5}{operator==}} (const \mbox{\hyperlink{structOnyx_1_1Animation}{Animation}} \&other) const
+\begin{DoxyCompactList}\small\item\em Overloaded equality operator for comparing animations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structOnyx_1_1Animation_ae368314ceedfe58ccb56046e6c275a85}{id}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Player}{Onyx\+::\+Player}} $>$ \mbox{\hyperlink{structOnyx_1_1Animation_afce8c52f45d7d9c85dba1b1107365363}{player}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \mbox{\hyperlink{structOnyx_1_1Animation_af2e994fa804c7256b21cdcea8eb16f7c}{movement}}
+\item 
+std\+::function$<$ void()$>$ \mbox{\hyperlink{structOnyx_1_1Animation_ac37019257fe14261e96ab8a705889b63}{callback}}
+\item 
+float \mbox{\hyperlink{structOnyx_1_1Animation_acf25742e986f61f5bb0c0ab6948d43e7}{time}}
+\item 
+float \mbox{\hyperlink{structOnyx_1_1Animation_ac20190851e114b6b8b1fa8e37b2a64e8}{elapsed\+Time}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{structOnyx_1_1Animation_a74d4db2256411f134a6eeea333f491b8}{global\+Id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an animation for the Onyx\+Animator class. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structOnyx_1_1Animation_ac25240d86aa4c87a9665c507bc8501a5}\label{structOnyx_1_1Animation_ac25240d86aa4c87a9665c507bc8501a5} 
+\index{Onyx::Animation@{Onyx::Animation}!operator==@{operator==}}
+\index{operator==@{operator==}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Onyx\+::\+Animation\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structOnyx_1_1Animation}{Animation}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overloaded equality operator for comparing animations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other animation to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the animations are equal, false otherwise. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structOnyx_1_1Animation_ac37019257fe14261e96ab8a705889b63}\label{structOnyx_1_1Animation_ac37019257fe14261e96ab8a705889b63} 
+\index{Onyx::Animation@{Onyx::Animation}!callback@{callback}}
+\index{callback@{callback}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{callback}{callback}}
+{\footnotesize\ttfamily std\+::function$<$void()$>$ Onyx\+::\+Animation\+::callback}
+
+The callback function to be executed after the animation is completed. \Hypertarget{structOnyx_1_1Animation_ac20190851e114b6b8b1fa8e37b2a64e8}\label{structOnyx_1_1Animation_ac20190851e114b6b8b1fa8e37b2a64e8} 
+\index{Onyx::Animation@{Onyx::Animation}!elapsedTime@{elapsedTime}}
+\index{elapsedTime@{elapsedTime}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{elapsedTime}{elapsedTime}}
+{\footnotesize\ttfamily float Onyx\+::\+Animation\+::elapsed\+Time}
+
+The elapsed time since the animation started. \Hypertarget{structOnyx_1_1Animation_a74d4db2256411f134a6eeea333f491b8}\label{structOnyx_1_1Animation_a74d4db2256411f134a6eeea333f491b8} 
+\index{Onyx::Animation@{Onyx::Animation}!globalId@{globalId}}
+\index{globalId@{globalId}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{globalId}{globalId}}
+{\footnotesize\ttfamily int Onyx\+::\+Animation\+::global\+Id\hspace{0.3cm}{\ttfamily [static]}}
+
+The global ID of the animation. \Hypertarget{structOnyx_1_1Animation_ae368314ceedfe58ccb56046e6c275a85}\label{structOnyx_1_1Animation_ae368314ceedfe58ccb56046e6c275a85} 
+\index{Onyx::Animation@{Onyx::Animation}!id@{id}}
+\index{id@{id}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int Onyx\+::\+Animation\+::id}
+
+The ID of the animation. \Hypertarget{structOnyx_1_1Animation_af2e994fa804c7256b21cdcea8eb16f7c}\label{structOnyx_1_1Animation_af2e994fa804c7256b21cdcea8eb16f7c} 
+\index{Onyx::Animation@{Onyx::Animation}!movement@{movement}}
+\index{movement@{movement}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{movement}{movement}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} Onyx\+::\+Animation\+::movement}
+
+The movement of the animation. \Hypertarget{structOnyx_1_1Animation_afce8c52f45d7d9c85dba1b1107365363}\label{structOnyx_1_1Animation_afce8c52f45d7d9c85dba1b1107365363} 
+\index{Onyx::Animation@{Onyx::Animation}!player@{player}}
+\index{player@{player}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classOnyx_1_1Player}{Onyx\+::\+Player}}$>$ Onyx\+::\+Animation\+::player}
+
+The player associated with the animation. \Hypertarget{structOnyx_1_1Animation_acf25742e986f61f5bb0c0ab6948d43e7}\label{structOnyx_1_1Animation_acf25742e986f61f5bb0c0ab6948d43e7} 
+\index{Onyx::Animation@{Onyx::Animation}!time@{time}}
+\index{time@{time}!Onyx::Animation@{Onyx::Animation}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily float Onyx\+::\+Animation\+::time}
+
+The total duration of the animation. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{OnyxAnimator_8hpp}{Onyx\+Animator.\+hpp}}\end{DoxyCompactItemize}

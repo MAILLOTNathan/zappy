@@ -19,7 +19,7 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_camera->setSpeed(10.0f);
     this->_deltaTime = 0.0f;
     this->_timeUnit = 1.0f;
-    this->_interface = std::make_shared<UserInterface>();
+    this->_interface = std::make_shared<Onyx::UserInterface>();
 
     this->_interface->initPlaylist("./assets/musics/");
 

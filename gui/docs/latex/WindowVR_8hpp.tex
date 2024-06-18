@@ -1,0 +1,88 @@
+\doxysection{ege/include/\+Window\+VR.hpp File Reference}
+\hypertarget{WindowVR_8hpp}{}\label{WindowVR_8hpp}\index{ege/include/WindowVR.hpp@{ege/include/WindowVR.hpp}}
+{\ttfamily \#include $<$EGL/egl.\+h$>$}\newline
+{\ttfamily \#include $<$GLES3/gl3.\+h$>$}\newline
+{\ttfamily \#include "{}external/vr/include/android\+\_\+native\+\_\+app\+\_\+glue.\+h"{}}\newline
+{\ttfamily \#include $<$jni.\+h$>$}\newline
+{\ttfamily \#include $<$android/log.\+h$>$}\newline
+{\ttfamily \#include $<$android/native\+\_\+activity.\+h$>$}\newline
+{\ttfamily \#include "{}Model\+VR.\+hpp"{}}\newline
+{\ttfamily \#include "{}Shader.\+hpp"{}}\newline
+{\ttfamily \#include "{}Maths/\+Vector3.\+hpp"{}}\newline
+{\ttfamily \#include "{}Maths/\+Matrix.\+hpp"{}}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include "{}Error.\+hpp"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+{\ttfamily \#include "{}openxr/openxr.\+h"{}}\newline
+{\ttfamily \#include "{}openxr/openxr\+\_\+platform.\+h"{}}\newline
+Include dependency graph for Window\+VR.\+hpp\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1WindowVRError}{EGE\+::\+Window\+VRError}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classEGE_1_1WindowVRError}{Window\+VRError} class represents an error that can occur during \doxylink{classEGE_1_1WindowVR}{Window\+VR} operations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEGE_1_1WindowVR}{EGE\+::\+Window\+VR}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classEGE_1_1WindowVR}{Window\+VR} class represents a window for virtual reality rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceEGE}{EGE}}
+\begin{DoxyCompactList}\small\item\em Namespace \doxylink{namespaceEGE}{EGE} contains classes and structs related to the \doxylink{namespaceEGE}{EGE} library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\+\_\+\+COUNT}}~(2)
+\item 
+\#define \mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\+\_\+\+VIEWS}}~(4)
+\item 
+\#define \mbox{\hyperlink{WindowVR_8hpp_a410699dbf3f2e978b9c731e6fb92eeda}{MAX\+\_\+\+SWAPCHAIN\+\_\+\+LENGTH}}~(3)
+\item 
+\#define \mbox{\hyperlink{WindowVR_8hpp_a83540cf910652360facea0ad7a793d31}{XR\+\_\+\+USE\+\_\+\+PLATFORM\+\_\+\+ANDROID}}
+\item 
+\#define \mbox{\hyperlink{WindowVR_8hpp_a366d28ffb447ea4bc01eabe9e0fb4a18}{XR\+\_\+\+USE\+\_\+\+GRAPHICS\+\_\+\+API\+\_\+\+OPENGL\+\_\+\+ES}}
+\item 
+\#define \mbox{\hyperlink{WindowVR_8hpp_ab78bd305488c62caf8515ee765b1ed49}{LOGV}}(...)~\+\_\+\+\_\+android\+\_\+log\+\_\+print(ANDROID\+\_\+\+LOG\+\_\+\+VERBOSE, "{}tag"{}, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}\label{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280} 
+\index{WindowVR.hpp@{WindowVR.hpp}!HAND\_COUNT@{HAND\_COUNT}}
+\index{HAND\_COUNT@{HAND\_COUNT}!WindowVR.hpp@{WindowVR.hpp}}
+\doxysubsubsection{\texorpdfstring{HAND\_COUNT}{HAND\_COUNT}}
+{\footnotesize\ttfamily \#define HAND\+\_\+\+COUNT~(2)}
+
+\Hypertarget{WindowVR_8hpp_ab78bd305488c62caf8515ee765b1ed49}\label{WindowVR_8hpp_ab78bd305488c62caf8515ee765b1ed49} 
+\index{WindowVR.hpp@{WindowVR.hpp}!LOGV@{LOGV}}
+\index{LOGV@{LOGV}!WindowVR.hpp@{WindowVR.hpp}}
+\doxysubsubsection{\texorpdfstring{LOGV}{LOGV}}
+{\footnotesize\ttfamily \#define LOGV(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\+\_\+\+\_\+android\+\_\+log\+\_\+print(ANDROID\+\_\+\+LOG\+\_\+\+VERBOSE, "{}tag"{}, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{WindowVR_8hpp_a410699dbf3f2e978b9c731e6fb92eeda}\label{WindowVR_8hpp_a410699dbf3f2e978b9c731e6fb92eeda} 
+\index{WindowVR.hpp@{WindowVR.hpp}!MAX\_SWAPCHAIN\_LENGTH@{MAX\_SWAPCHAIN\_LENGTH}}
+\index{MAX\_SWAPCHAIN\_LENGTH@{MAX\_SWAPCHAIN\_LENGTH}!WindowVR.hpp@{WindowVR.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_SWAPCHAIN\_LENGTH}{MAX\_SWAPCHAIN\_LENGTH}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+SWAPCHAIN\+\_\+\+LENGTH~(3)}
+
+\Hypertarget{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}\label{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308} 
+\index{WindowVR.hpp@{WindowVR.hpp}!MAX\_VIEWS@{MAX\_VIEWS}}
+\index{MAX\_VIEWS@{MAX\_VIEWS}!WindowVR.hpp@{WindowVR.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_VIEWS}{MAX\_VIEWS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+VIEWS~(4)}
+
+\Hypertarget{WindowVR_8hpp_a366d28ffb447ea4bc01eabe9e0fb4a18}\label{WindowVR_8hpp_a366d28ffb447ea4bc01eabe9e0fb4a18} 
+\index{WindowVR.hpp@{WindowVR.hpp}!XR\_USE\_GRAPHICS\_API\_OPENGL\_ES@{XR\_USE\_GRAPHICS\_API\_OPENGL\_ES}}
+\index{XR\_USE\_GRAPHICS\_API\_OPENGL\_ES@{XR\_USE\_GRAPHICS\_API\_OPENGL\_ES}!WindowVR.hpp@{WindowVR.hpp}}
+\doxysubsubsection{\texorpdfstring{XR\_USE\_GRAPHICS\_API\_OPENGL\_ES}{XR\_USE\_GRAPHICS\_API\_OPENGL\_ES}}
+{\footnotesize\ttfamily \#define XR\+\_\+\+USE\+\_\+\+GRAPHICS\+\_\+\+API\+\_\+\+OPENGL\+\_\+\+ES}
+
+\Hypertarget{WindowVR_8hpp_a83540cf910652360facea0ad7a793d31}\label{WindowVR_8hpp_a83540cf910652360facea0ad7a793d31} 
+\index{WindowVR.hpp@{WindowVR.hpp}!XR\_USE\_PLATFORM\_ANDROID@{XR\_USE\_PLATFORM\_ANDROID}}
+\index{XR\_USE\_PLATFORM\_ANDROID@{XR\_USE\_PLATFORM\_ANDROID}!WindowVR.hpp@{WindowVR.hpp}}
+\doxysubsubsection{\texorpdfstring{XR\_USE\_PLATFORM\_ANDROID}{XR\_USE\_PLATFORM\_ANDROID}}
+{\footnotesize\ttfamily \#define XR\+\_\+\+USE\+\_\+\+PLATFORM\+\_\+\+ANDROID}
+

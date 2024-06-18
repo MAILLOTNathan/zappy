@@ -1,0 +1,113 @@
+\doxysection{EGE\+::Vertex Struct Reference}
+\hypertarget{structEGE_1_1Vertex}{}\label{structEGE_1_1Vertex}\index{EGE::Vertex@{EGE::Vertex}}
+
+
+Struct representing a vertex in 3D space.  
+
+
+
+
+{\ttfamily \#include $<$Vertex.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Vertex\+:
+% FIG 0
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{structEGE_1_1Vertex_a4694e7053472ec4ae3e8c601edcaa4d3}{\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em The position of the vertex in 3D space. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{structEGE_1_1Vertex_a6a41fc2e4f22cb6db25344fb5f257a98}{\+\_\+normal}}
+\begin{DoxyCompactList}\small\item\em The normal vector of the vertex. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{structEGE_1_1Vertex_a0d603edaec1e571a7ab6929acef290ee}{\+\_\+tex\+Coords}}
+\begin{DoxyCompactList}\small\item\em The texture coordinates of the vertex. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{structEGE_1_1Vertex_a944cbb3efaa3ac3b6a76e07ba4f11a4f}{\+\_\+tangent}}
+\begin{DoxyCompactList}\small\item\em The tangent vector at the vertex. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{structEGE_1_1Vertex_ac9783611cd11323963e27f125ba75372}{\+\_\+bitangent}}
+\begin{DoxyCompactList}\small\item\em The bitangent vector at the vertex. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structEGE_1_1Vertex_a9e057a91e93043ee00b8c521696960a9}{\+\_\+bone\+IDs}} \mbox{[}\mbox{\hyperlink{Vertex_8hpp_a42361d87778b6e7945eeb7d8a7490f9d}{MAX\+\_\+\+BONE}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The IDs of the bones that influence this vertex. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structEGE_1_1Vertex_a1711b2aaee27e5950d56ab64b998d05f}{\+\_\+bone\+Weights}} \mbox{[}\mbox{\hyperlink{Vertex_8hpp_a42361d87778b6e7945eeb7d8a7490f9d}{MAX\+\_\+\+BONE}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The weights of the influences of the bones on this vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct representing a vertex in 3D space. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structEGE_1_1Vertex_ac9783611cd11323963e27f125ba75372}\label{structEGE_1_1Vertex_ac9783611cd11323963e27f125ba75372} 
+\index{EGE::Vertex@{EGE::Vertex}!\_bitangent@{\_bitangent}}
+\index{\_bitangent@{\_bitangent}!EGE::Vertex@{EGE::Vertex}}
+\doxysubsubsection{\texorpdfstring{\_bitangent}{\_bitangent}}
+{\footnotesize\ttfamily glm\+::vec3 EGE\+::\+Vertex\+::\+\_\+bitangent}
+
+
+
+The bitangent vector at the vertex. 
+
+\Hypertarget{structEGE_1_1Vertex_a9e057a91e93043ee00b8c521696960a9}\label{structEGE_1_1Vertex_a9e057a91e93043ee00b8c521696960a9} 
+\index{EGE::Vertex@{EGE::Vertex}!\_boneIDs@{\_boneIDs}}
+\index{\_boneIDs@{\_boneIDs}!EGE::Vertex@{EGE::Vertex}}
+\doxysubsubsection{\texorpdfstring{\_boneIDs}{\_boneIDs}}
+{\footnotesize\ttfamily int EGE\+::\+Vertex\+::\+\_\+bone\+IDs\mbox{[}\mbox{\hyperlink{Vertex_8hpp_a42361d87778b6e7945eeb7d8a7490f9d}{MAX\+\_\+\+BONE}}\mbox{]}}
+
+
+
+The IDs of the bones that influence this vertex. 
+
+\Hypertarget{structEGE_1_1Vertex_a1711b2aaee27e5950d56ab64b998d05f}\label{structEGE_1_1Vertex_a1711b2aaee27e5950d56ab64b998d05f} 
+\index{EGE::Vertex@{EGE::Vertex}!\_boneWeights@{\_boneWeights}}
+\index{\_boneWeights@{\_boneWeights}!EGE::Vertex@{EGE::Vertex}}
+\doxysubsubsection{\texorpdfstring{\_boneWeights}{\_boneWeights}}
+{\footnotesize\ttfamily float EGE\+::\+Vertex\+::\+\_\+bone\+Weights\mbox{[}\mbox{\hyperlink{Vertex_8hpp_a42361d87778b6e7945eeb7d8a7490f9d}{MAX\+\_\+\+BONE}}\mbox{]}}
+
+
+
+The weights of the influences of the bones on this vertex. 
+
+\Hypertarget{structEGE_1_1Vertex_a6a41fc2e4f22cb6db25344fb5f257a98}\label{structEGE_1_1Vertex_a6a41fc2e4f22cb6db25344fb5f257a98} 
+\index{EGE::Vertex@{EGE::Vertex}!\_normal@{\_normal}}
+\index{\_normal@{\_normal}!EGE::Vertex@{EGE::Vertex}}
+\doxysubsubsection{\texorpdfstring{\_normal}{\_normal}}
+{\footnotesize\ttfamily glm\+::vec3 EGE\+::\+Vertex\+::\+\_\+normal}
+
+
+
+The normal vector of the vertex. 
+
+\Hypertarget{structEGE_1_1Vertex_a4694e7053472ec4ae3e8c601edcaa4d3}\label{structEGE_1_1Vertex_a4694e7053472ec4ae3e8c601edcaa4d3} 
+\index{EGE::Vertex@{EGE::Vertex}!\_position@{\_position}}
+\index{\_position@{\_position}!EGE::Vertex@{EGE::Vertex}}
+\doxysubsubsection{\texorpdfstring{\_position}{\_position}}
+{\footnotesize\ttfamily glm\+::vec3 EGE\+::\+Vertex\+::\+\_\+position}
+
+
+
+The position of the vertex in 3D space. 
+
+\Hypertarget{structEGE_1_1Vertex_a944cbb3efaa3ac3b6a76e07ba4f11a4f}\label{structEGE_1_1Vertex_a944cbb3efaa3ac3b6a76e07ba4f11a4f} 
+\index{EGE::Vertex@{EGE::Vertex}!\_tangent@{\_tangent}}
+\index{\_tangent@{\_tangent}!EGE::Vertex@{EGE::Vertex}}
+\doxysubsubsection{\texorpdfstring{\_tangent}{\_tangent}}
+{\footnotesize\ttfamily glm\+::vec3 EGE\+::\+Vertex\+::\+\_\+tangent}
+
+
+
+The tangent vector at the vertex. 
+
+\Hypertarget{structEGE_1_1Vertex_a0d603edaec1e571a7ab6929acef290ee}\label{structEGE_1_1Vertex_a0d603edaec1e571a7ab6929acef290ee} 
+\index{EGE::Vertex@{EGE::Vertex}!\_texCoords@{\_texCoords}}
+\index{\_texCoords@{\_texCoords}!EGE::Vertex@{EGE::Vertex}}
+\doxysubsubsection{\texorpdfstring{\_texCoords}{\_texCoords}}
+{\footnotesize\ttfamily glm\+::vec2 EGE\+::\+Vertex\+::\+\_\+tex\+Coords}
+
+
+
+The texture coordinates of the vertex. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Vertex_8hpp}{Vertex.\+hpp}}\end{DoxyCompactItemize}

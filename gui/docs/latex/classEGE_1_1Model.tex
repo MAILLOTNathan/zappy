@@ -1,0 +1,309 @@
+\doxysection{EGE\+::Model Class Reference}
+\hypertarget{classEGE_1_1Model}{}\label{classEGE_1_1Model}\index{EGE::Model@{EGE::Model}}
+
+
+Class representing a 3D model.  
+
+
+
+
+{\ttfamily \#include $<$Model.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Model\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Model_1_1ModelError}{Model\+Error}}
+\begin{DoxyCompactList}\small\item\em Exception class for \doxylink{classEGE_1_1Model}{Model} related errors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Model_a410321f4ced65ab2c7025a06c42efeee}{Model}} (const std\+::string \&path, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$(0.\+0f, 0.\+0f, 0.\+0f), const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&rotation=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$(0.\+0f, 0.\+0f, 0.\+0f), const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&scale=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$(1.\+0f, 1.\+0f, 1.\+0f), bool flip\+Texture=false, bool force\+Reload=false)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classEGE_1_1Model}{Model}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Model_a0e6f5dc64d29c6b9f5fd00fbea473580}{\texorpdfstring{$\sim$}{\string~}\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classEGE_1_1Model}{Model}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Model_a5bfbf38be09880a1f2287d9a516169d4}{draw}} (\mbox{\hyperlink{classEGE_1_1Shader}{Shader}} \&shader)
+\begin{DoxyCompactList}\small\item\em Draws the model using a shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Model_a46343fc33a34a718ecda1b6df44cba94}{set\+Original\+Model\+Matrix}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&original\+Model\+Matrix)
+\begin{DoxyCompactList}\small\item\em Set the original model matrix of the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Model_a3e0b7fb72ffedc736a34dbb4d7558bab}{set\+Original\+Model\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Set the original model matrix of the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \mbox{\hyperlink{classEGE_1_1Model_a94ee96d8ff1678ba55fa046ea496e712}{get\+Original\+Model\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns the original model matrix of the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Model_a9d8fd5b8a993f48daec88da328184aca}{set\+Position}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Set the position og the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Model_aeec85d908e0c66b322dc10aaea12939e}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Returns the position of the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Model_a05cc33930f46918006a71cd52b50be0e}{set\+Rotation}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&rotation)
+\begin{DoxyCompactList}\small\item\em Set the rotation of the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Model_a607a9875b9bd2170a8d3377b7b0ffae3}{get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em Returns the rotation of the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Model_a1759586a8bf5b173797ff13362678506}{set\+Scale}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&scale)
+\begin{DoxyCompactList}\small\item\em Set the scale of the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Model_a32a6bb3a92b449a628a8f0eebe0f583b}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Returns the scale of the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Model_aa9c5b7eed57c3c16ff36a15522b101c3}{set\+Shear}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&shear)
+\begin{DoxyCompactList}\small\item\em Set the shear of the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Model_a1f55d610b22114f657d071f52d5dbde9}{get\+Shear}} () const
+\begin{DoxyCompactList}\small\item\em Returns the shear of the model. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{structEGE_1_1BoneInfo}{Bone\+Info}} $>$ \& \mbox{\hyperlink{classEGE_1_1Model_a77dde49fd1c5ac738ca2157ad56b3f55}{get\+Bone\+Info\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Returns the map of bone\+Info of the model. \end{DoxyCompactList}\item 
+int \& \mbox{\hyperlink{classEGE_1_1Model_ab8dadf4c59032e8a6bb98329d458e0be}{get\+Bone\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of bones in the model. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Mesh}{Mesh}} $>$ \mbox{\hyperlink{classEGE_1_1Model_a5f256e94e1d3c40b0ad2e0c972ab5562}{get\+Meshes}} () const
+\begin{DoxyCompactList}\small\item\em Returns the vector of meshes of the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a 3D model. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Model_a410321f4ced65ab2c7025a06c42efeee}\label{classEGE_1_1Model_a410321f4ced65ab2c7025a06c42efeee} 
+\index{EGE::Model@{EGE::Model}!Model@{Model}}
+\index{Model@{Model}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{Model()}{Model()}}
+{\footnotesize\ttfamily EGE\+::\+Model\+::\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{position = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$~float~$>$(0.0f,~0.0f,~0.0f)},  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{rotation = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$~float~$>$(0.0f,~0.0f,~0.0f)},  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{scale = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$~float~$>$(1.0f,~1.0f,~1.0f)},  }\item[{bool}]{flip\+Texture = {\ttfamily false},  }\item[{bool}]{force\+Reload = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classEGE_1_1Model}{Model}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the model file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Model_a0e6f5dc64d29c6b9f5fd00fbea473580}\label{classEGE_1_1Model_a0e6f5dc64d29c6b9f5fd00fbea473580} 
+\index{EGE::Model@{EGE::Model}!````~Model@{\texorpdfstring{$\sim$}{\string~}Model}}
+\index{````~Model@{\texorpdfstring{$\sim$}{\string~}Model}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Model()}{\string~Model()}}
+{\footnotesize\ttfamily EGE\+::\+Model\+::\texorpdfstring{$\sim$}{\string~}\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for \doxylink{classEGE_1_1Model}{Model}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Model_a5bfbf38be09880a1f2287d9a516169d4}\label{classEGE_1_1Model_a5bfbf38be09880a1f2287d9a516169d4} 
+\index{EGE::Model@{EGE::Model}!draw@{draw}}
+\index{draw@{draw}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+::draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Shader}{Shader}} \&}]{shader }\end{DoxyParamCaption})}
+
+
+
+Draws the model using a shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader to use for drawing. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Model_a77dde49fd1c5ac738ca2157ad56b3f55}\label{classEGE_1_1Model_a77dde49fd1c5ac738ca2157ad56b3f55} 
+\index{EGE::Model@{EGE::Model}!getBoneInfoMap@{getBoneInfoMap}}
+\index{getBoneInfoMap@{getBoneInfoMap}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getBoneInfoMap()}{getBoneInfoMap()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, \mbox{\hyperlink{structEGE_1_1BoneInfo}{Bone\+Info}} $>$ \& EGE\+::\+Model\+::get\+Bone\+Info\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the map of bone\+Info of the model. 
+
+\begin{DoxyReturn}{Returns}
+std\+::map$<$std\+::string, Bone\+Info$>$ that is the bone\+Info of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Model_ab8dadf4c59032e8a6bb98329d458e0be}\label{classEGE_1_1Model_ab8dadf4c59032e8a6bb98329d458e0be} 
+\index{EGE::Model@{EGE::Model}!getBoneNumber@{getBoneNumber}}
+\index{getBoneNumber@{getBoneNumber}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getBoneNumber()}{getBoneNumber()}}
+{\footnotesize\ttfamily int \& EGE\+::\+Model\+::get\+Bone\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the number of bones in the model. 
+
+\begin{DoxyReturn}{Returns}
+int\& that is the number of bones in the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Model_a5f256e94e1d3c40b0ad2e0c972ab5562}\label{classEGE_1_1Model_a5f256e94e1d3c40b0ad2e0c972ab5562} 
+\index{EGE::Model@{EGE::Model}!getMeshes@{getMeshes}}
+\index{getMeshes@{getMeshes}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getMeshes()}{getMeshes()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Mesh}{Mesh}} $>$ EGE\+::\+Model\+::get\+Meshes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the vector of meshes of the model. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Mesh$>$ that is the vector of meshes of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Model_a94ee96d8ff1678ba55fa046ea496e712}\label{classEGE_1_1Model_a94ee96d8ff1678ba55fa046ea496e712} 
+\index{EGE::Model@{EGE::Model}!getOriginalModelMatrix@{getOriginalModelMatrix}}
+\index{getOriginalModelMatrix@{getOriginalModelMatrix}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getOriginalModelMatrix()}{getOriginalModelMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ EGE\+::\+Model\+::get\+Original\+Model\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the original model matrix of the model. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix$<$4, 4, float$>$} that is the original model matrix of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Model_aeec85d908e0c66b322dc10aaea12939e}\label{classEGE_1_1Model_aeec85d908e0c66b322dc10aaea12939e} 
+\index{EGE::Model@{EGE::Model}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Model\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the position of the model. 
+
+\begin{DoxyReturn}{Returns}
+Vector3 of float that is the position of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Model_a607a9875b9bd2170a8d3377b7b0ffae3}\label{classEGE_1_1Model_a607a9875b9bd2170a8d3377b7b0ffae3} 
+\index{EGE::Model@{EGE::Model}!getRotation@{getRotation}}
+\index{getRotation@{getRotation}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getRotation()}{getRotation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Model\+::get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the rotation of the model. 
+
+\begin{DoxyReturn}{Returns}
+Vector3 of float that is the rotation of the model 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The rotation is in degrees 
+\end{DoxyNote}
+\Hypertarget{classEGE_1_1Model_a32a6bb3a92b449a628a8f0eebe0f583b}\label{classEGE_1_1Model_a32a6bb3a92b449a628a8f0eebe0f583b} 
+\index{EGE::Model@{EGE::Model}!getScale@{getScale}}
+\index{getScale@{getScale}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Model\+::get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the scale of the model. 
+
+\begin{DoxyReturn}{Returns}
+Vector3 of float that is the scale of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Model_a1f55d610b22114f657d071f52d5dbde9}\label{classEGE_1_1Model_a1f55d610b22114f657d071f52d5dbde9} 
+\index{EGE::Model@{EGE::Model}!getShear@{getShear}}
+\index{getShear@{getShear}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{getShear()}{getShear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Model\+::get\+Shear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the shear of the model. 
+
+\begin{DoxyReturn}{Returns}
+Vector3 of float that is the shear of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Model_a3e0b7fb72ffedc736a34dbb4d7558bab}\label{classEGE_1_1Model_a3e0b7fb72ffedc736a34dbb4d7558bab} 
+\index{EGE::Model@{EGE::Model}!setOriginalModelMatrix@{setOriginalModelMatrix}}
+\index{setOriginalModelMatrix@{setOriginalModelMatrix}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{setOriginalModelMatrix()}{setOriginalModelMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+::set\+Original\+Model\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the original model matrix of the model. 
+
+\begin{DoxyNote}{Note}
+The current rotation, scale, shear and position of the model will be used 
+\end{DoxyNote}
+\Hypertarget{classEGE_1_1Model_a46343fc33a34a718ecda1b6df44cba94}\label{classEGE_1_1Model_a46343fc33a34a718ecda1b6df44cba94} 
+\index{EGE::Model@{EGE::Model}!setOriginalModelMatrix@{setOriginalModelMatrix}}
+\index{setOriginalModelMatrix@{setOriginalModelMatrix}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{setOriginalModelMatrix()}{setOriginalModelMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+::set\+Original\+Model\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{original\+Model\+Matrix }\end{DoxyParamCaption})}
+
+
+
+Set the original model matrix of the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Model\+Matrix} & \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix$<$4, 4, float$>$} that is the new original model matrix of the model \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Model_a9d8fd5b8a993f48daec88da328184aca}\label{classEGE_1_1Model_a9d8fd5b8a993f48daec88da328184aca} 
+\index{EGE::Model@{EGE::Model}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+::set\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Set the position og the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Vector3 of float that is the new position of the model \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Model_a05cc33930f46918006a71cd52b50be0e}\label{classEGE_1_1Model_a05cc33930f46918006a71cd52b50be0e} 
+\index{EGE::Model@{EGE::Model}!setRotation@{setRotation}}
+\index{setRotation@{setRotation}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{setRotation()}{setRotation()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+::set\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{rotation }\end{DoxyParamCaption})}
+
+
+
+Set the rotation of the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & Vector3 of float that is the new rotation of the model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The rotation is in degrees 
+\end{DoxyNote}
+\Hypertarget{classEGE_1_1Model_a1759586a8bf5b173797ff13362678506}\label{classEGE_1_1Model_a1759586a8bf5b173797ff13362678506} 
+\index{EGE::Model@{EGE::Model}!setScale@{setScale}}
+\index{setScale@{setScale}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{setScale()}{setScale()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+::set\+Scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{scale }\end{DoxyParamCaption})}
+
+
+
+Set the scale of the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & Vector3 of float that is the new scale of the model \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Model_aa9c5b7eed57c3c16ff36a15522b101c3}\label{classEGE_1_1Model_aa9c5b7eed57c3c16ff36a15522b101c3} 
+\index{EGE::Model@{EGE::Model}!setShear@{setShear}}
+\index{setShear@{setShear}!EGE::Model@{EGE::Model}}
+\doxysubsubsection{\texorpdfstring{setShear()}{setShear()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+::set\+Shear (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{shear }\end{DoxyParamCaption})}
+
+
+
+Set the shear of the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shear} & Vector3 of float that is the new shear of the model \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Model_8hpp}{Model.\+hpp}}\end{DoxyCompactItemize}

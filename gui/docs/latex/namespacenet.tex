@@ -1,0 +1,193 @@
+\doxysection{net Namespace Reference}
+\hypertarget{namespacenet}{}\label{namespacenet}\index{net@{net}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classnet_1_1TcpClient}{Tcp\+Client}}
+\begin{DoxyCompactList}\small\item\em Represents a TCP client that connects to a server and sends/receives data. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnet_1_1TcpClientError}{Tcp\+Client\+Error}}
+\begin{DoxyCompactList}\small\item\em An exception class for TCP client errors. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnet_1_1TcpCommand}{Tcp\+Command}}
+\begin{DoxyCompactList}\small\item\em Class representing a TCP command. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classnet_1_1TcpManagerCmd}{Tcp\+Manager\+Cmd}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89f}{net\+::type\+\_\+command\+\_\+s}} \mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{type\+\_\+command\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Enumeration of the supported TCP command types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89f}{type\+\_\+command\+\_\+s}} \{ \newline
+\mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89faa0da01f48490f07c3011d345ea6fab59}{MSZ}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa75cfd566c201d3f3c5a0fa4d0c535e85}{BCT}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fad70593437751bd587a2580f34b7fbdfd}{MCT}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa42292aff330be2ee37297f760ee6c7ed}{TNA}}
+, \newline
+\mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89faa971728e60d5441ad0a8d6fd63fc25f8}{PNW}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fac39ada66fb4e5a1e35556382cb4176be}{PPO}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2eac220117babdb271d10b70ce5b0605}{PLV}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa3f9ec5e62d89f7738ddfd804c269dc68}{PIN}}
+, \newline
+\mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa14ebe3266eb6f3c130de656ba274e656}{PEX}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa7395144a8e1ff8668527d6b4651686fb}{PBC}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa31519f65aa58c59378553b46e966ae29}{PIC}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa68e67c596d0346f2ae3e2da88b75d480}{PIE}}
+, \newline
+\mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa4a1ba5986a19780cf4bc62c225c5e7df}{PFK}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2fd78b4846b6d301c1b4f114b70d9e2f}{PDR}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa1693aded78a3cdefd43769abbe4557e1}{PGT}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fae9f96ab2a7f04a835f78f8ee4bc53b4b}{PDI}}
+, \newline
+\mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fad3a8fb0cc890279b99e1296135e6513f}{ENW}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa8fa69443e5360670d6b190296d3e3e71}{EHT}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa362a68f6aefdcf6b1151c631075d4f71}{EBO}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fad1416216253d2957eb62ea859f928713}{EDI}}
+, \newline
+\mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa06988e74b7926b2bf4dd108ec23b1242}{SGT}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa5462bab30d6d9583ef0a872be0756695}{SST}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fade1c37650de11e8d363e2ba4b6d802ca}{SEG}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fae59cac63ff5460a51f4e534bfda707bb}{SMG}}
+, \newline
+\mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fae86f872373b5fee4fbaa5d4264e7fd59}{SUC}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89facef9dbbb94df21bf189a0f88722a779d}{SBP}}
+, \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fac1132f22af581a83f8be026a09a5e271}{IDM}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of the supported TCP command types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{namespacenet_acfd69685aa30431a4b60cac163e561df}\label{namespacenet_acfd69685aa30431a4b60cac163e561df} 
+\index{net@{net}!type\_command\_t@{type\_command\_t}}
+\index{type\_command\_t@{type\_command\_t}!net@{net}}
+\doxysubsubsection{\texorpdfstring{type\_command\_t}{type\_command\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89f}{net\+::type\+\_\+command\+\_\+s}} \mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{net\+::type\+\_\+command\+\_\+t}}}
+
+
+
+Enumeration of the supported TCP command types. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89f}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89f} 
+\index{net@{net}!type\_command\_s@{type\_command\_s}}
+\index{type\_command\_s@{type\_command\_s}!net@{net}}
+\doxysubsubsection{\texorpdfstring{type\_command\_s}{type\_command\_s}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89f}{net\+::type\+\_\+command\+\_\+s}}}
+
+
+
+Enumeration of the supported TCP command types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MSZ@{MSZ}!net@{net}}\index{net@{net}!MSZ@{MSZ}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89faa0da01f48490f07c3011d345ea6fab59}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89faa0da01f48490f07c3011d345ea6fab59} 
+MSZ&Get the size of the map. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BCT@{BCT}!net@{net}}\index{net@{net}!BCT@{BCT}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa75cfd566c201d3f3c5a0fa4d0c535e85}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa75cfd566c201d3f3c5a0fa4d0c535e85} 
+BCT&Get the content of a tile. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCT@{MCT}!net@{net}}\index{net@{net}!MCT@{MCT}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fad70593437751bd587a2580f34b7fbdfd}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fad70593437751bd587a2580f34b7fbdfd} 
+MCT&Get the content of the whole map. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TNA@{TNA}!net@{net}}\index{net@{net}!TNA@{TNA}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa42292aff330be2ee37297f760ee6c7ed}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa42292aff330be2ee37297f760ee6c7ed} 
+TNA&Get the names of all the teams. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PNW@{PNW}!net@{net}}\index{net@{net}!PNW@{PNW}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89faa971728e60d5441ad0a8d6fd63fc25f8}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89faa971728e60d5441ad0a8d6fd63fc25f8} 
+PNW&Get the information of a new player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PPO@{PPO}!net@{net}}\index{net@{net}!PPO@{PPO}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fac39ada66fb4e5a1e35556382cb4176be}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fac39ada66fb4e5a1e35556382cb4176be} 
+PPO&Get the position of a player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLV@{PLV}!net@{net}}\index{net@{net}!PLV@{PLV}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2eac220117babdb271d10b70ce5b0605}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2eac220117babdb271d10b70ce5b0605} 
+PLV&Get the level of a player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PIN@{PIN}!net@{net}}\index{net@{net}!PIN@{PIN}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa3f9ec5e62d89f7738ddfd804c269dc68}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa3f9ec5e62d89f7738ddfd804c269dc68} 
+PIN&Get the inventory of a player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PEX@{PEX}!net@{net}}\index{net@{net}!PEX@{PEX}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa14ebe3266eb6f3c130de656ba274e656}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa14ebe3266eb6f3c130de656ba274e656} 
+PEX&Get the player\textquotesingle{}s expulsion. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PBC@{PBC}!net@{net}}\index{net@{net}!PBC@{PBC}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa7395144a8e1ff8668527d6b4651686fb}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa7395144a8e1ff8668527d6b4651686fb} 
+PBC&Get the player\textquotesingle{}s broadcast. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PIC@{PIC}!net@{net}}\index{net@{net}!PIC@{PIC}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa31519f65aa58c59378553b46e966ae29}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa31519f65aa58c59378553b46e966ae29} 
+PIC&Get the start of an incantation. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PIE@{PIE}!net@{net}}\index{net@{net}!PIE@{PIE}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa68e67c596d0346f2ae3e2da88b75d480}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa68e67c596d0346f2ae3e2da88b75d480} 
+PIE&Get the end of an incantation. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PFK@{PFK}!net@{net}}\index{net@{net}!PFK@{PFK}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa4a1ba5986a19780cf4bc62c225c5e7df}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa4a1ba5986a19780cf4bc62c225c5e7df} 
+PFK&Get the player\textquotesingle{}s fork. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PDR@{PDR}!net@{net}}\index{net@{net}!PDR@{PDR}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2fd78b4846b6d301c1b4f114b70d9e2f}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2fd78b4846b6d301c1b4f114b70d9e2f} 
+PDR&Get the player\textquotesingle{}s drop. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PGT@{PGT}!net@{net}}\index{net@{net}!PGT@{PGT}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa1693aded78a3cdefd43769abbe4557e1}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa1693aded78a3cdefd43769abbe4557e1} 
+PGT&Get the player\textquotesingle{}s take. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PDI@{PDI}!net@{net}}\index{net@{net}!PDI@{PDI}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fae9f96ab2a7f04a835f78f8ee4bc53b4b}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fae9f96ab2a7f04a835f78f8ee4bc53b4b} 
+PDI&Get the player\textquotesingle{}s death. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENW@{ENW}!net@{net}}\index{net@{net}!ENW@{ENW}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fad3a8fb0cc890279b99e1296135e6513f}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fad3a8fb0cc890279b99e1296135e6513f} 
+ENW&Get the notification of a new player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EHT@{EHT}!net@{net}}\index{net@{net}!EHT@{EHT}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa8fa69443e5360670d6b190296d3e3e71}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa8fa69443e5360670d6b190296d3e3e71} 
+EHT&Get the notification of an egg hatching. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EBO@{EBO}!net@{net}}\index{net@{net}!EBO@{EBO}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa362a68f6aefdcf6b1151c631075d4f71}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa362a68f6aefdcf6b1151c631075d4f71} 
+EBO&Get the notification of an egg being laid. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDI@{EDI}!net@{net}}\index{net@{net}!EDI@{EDI}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fad1416216253d2957eb62ea859f928713}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fad1416216253d2957eb62ea859f928713} 
+EDI&Get the notification of an egg dying. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SGT@{SGT}!net@{net}}\index{net@{net}!SGT@{SGT}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa06988e74b7926b2bf4dd108ec23b1242}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa06988e74b7926b2bf4dd108ec23b1242} 
+SGT&Get the time unit value. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SST@{SST}!net@{net}}\index{net@{net}!SST@{SST}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fa5462bab30d6d9583ef0a872be0756695}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fa5462bab30d6d9583ef0a872be0756695} 
+SST&Set the time unit value. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEG@{SEG}!net@{net}}\index{net@{net}!SEG@{SEG}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fade1c37650de11e8d363e2ba4b6d802ca}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fade1c37650de11e8d363e2ba4b6d802ca} 
+SEG&Get the end of the game. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SMG@{SMG}!net@{net}}\index{net@{net}!SMG@{SMG}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fae59cac63ff5460a51f4e534bfda707bb}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fae59cac63ff5460a51f4e534bfda707bb} 
+SMG&Get a server message. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUC@{SUC}!net@{net}}\index{net@{net}!SUC@{SUC}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fae86f872373b5fee4fbaa5d4264e7fd59}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fae86f872373b5fee4fbaa5d4264e7fd59} 
+SUC&Get the response to an unknown command. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SBP@{SBP}!net@{net}}\index{net@{net}!SBP@{SBP}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89facef9dbbb94df21bf189a0f88722a779d}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89facef9dbbb94df21bf189a0f88722a779d} 
+SBP&Get the response to a bad parameter. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDM@{IDM}!net@{net}}\index{net@{net}!IDM@{IDM}}}\Hypertarget{namespacenet_aa67f0227070752a0ca88d5a43902f89fac1132f22af581a83f8be026a09a5e271}\label{namespacenet_aa67f0227070752a0ca88d5a43902f89fac1132f22af581a83f8be026a09a5e271} 
+IDM&Get the id of the player that moves or rotates. \\
+\hline
+
+\end{DoxyEnumFields}

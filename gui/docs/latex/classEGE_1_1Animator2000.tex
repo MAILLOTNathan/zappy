@@ -1,0 +1,129 @@
+\doxysection{EGE\+::Animator2000 Class Reference}
+\hypertarget{classEGE_1_1Animator2000}{}\label{classEGE_1_1Animator2000}\index{EGE::Animator2000@{EGE::Animator2000}}
+
+
+The \doxylink{classEGE_1_1Animator2000}{Animator2000} class is responsible for managing animations and calculating bone transformations.  
+
+
+
+
+{\ttfamily \#include $<$Animator.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Animator2000\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Animator2000_af5db41fda4e58585c9d9b8f3e066cfdc}{Animator2000}} (\mbox{\hyperlink{classEGE_1_1Animation}{Animation}} \texorpdfstring{$\ast$}{*}animation)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classEGE_1_1Animator2000}{Animator2000} object with the given \doxylink{classEGE_1_1Animation}{Animation}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Animator2000_a739479d82ddd6d85a68ef515e46b81da}{\texorpdfstring{$\sim$}{\string~}\+Animator2000}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Animator2000}{Animator2000} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Animator2000_a20a9d323359e09804f75de55038ad7e4}{update\+Animation}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the animation based on the elapsed time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Animator2000_ac1bb0c92aeec1119ba91f31853e35eed}{play\+Animation}} (\mbox{\hyperlink{classEGE_1_1Animation}{Animation}} \texorpdfstring{$\ast$}{*}animation)
+\item 
+void \mbox{\hyperlink{classEGE_1_1Animator2000_aa167739824f779b853cc94dd3ce4b09f}{calculate\+Bone\+Transform}} (const \mbox{\hyperlink{structEGE_1_1AssimpNodeData}{Assimp\+Node\+Data}} \texorpdfstring{$\ast$}{*}node, glm\+::mat4 parent\+Transform)
+\item 
+std\+::vector$<$ glm\+::mat4 $>$ \mbox{\hyperlink{classEGE_1_1Animator2000_aab10e341803f2361a8649a378efe79c3}{get\+Final\+Bone\+Matrices}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the final bone matrices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1Animator2000}{Animator2000} class is responsible for managing animations and calculating bone transformations. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Animator2000_af5db41fda4e58585c9d9b8f3e066cfdc}\label{classEGE_1_1Animator2000_af5db41fda4e58585c9d9b8f3e066cfdc} 
+\index{EGE::Animator2000@{EGE::Animator2000}!Animator2000@{Animator2000}}
+\index{Animator2000@{Animator2000}!EGE::Animator2000@{EGE::Animator2000}}
+\doxysubsubsection{\texorpdfstring{Animator2000()}{Animator2000()}}
+{\footnotesize\ttfamily EGE\+::\+Animator2000\+::\+Animator2000 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Animation}{Animation}} \texorpdfstring{$\ast$}{*}}]{animation }\end{DoxyParamCaption})}
+
+
+
+Constructs an \doxylink{classEGE_1_1Animator2000}{Animator2000} object with the given \doxylink{classEGE_1_1Animation}{Animation}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation} & The \doxylink{classEGE_1_1Animation}{Animation} object to be associated with the \doxylink{classEGE_1_1Animator2000}{Animator2000}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Animator2000_a739479d82ddd6d85a68ef515e46b81da}\label{classEGE_1_1Animator2000_a739479d82ddd6d85a68ef515e46b81da} 
+\index{EGE::Animator2000@{EGE::Animator2000}!````~Animator2000@{\texorpdfstring{$\sim$}{\string~}Animator2000}}
+\index{````~Animator2000@{\texorpdfstring{$\sim$}{\string~}Animator2000}!EGE::Animator2000@{EGE::Animator2000}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Animator2000()}{\string~Animator2000()}}
+{\footnotesize\ttfamily EGE\+::\+Animator2000\+::\texorpdfstring{$\sim$}{\string~}\+Animator2000 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Animator2000}{Animator2000} class. 
+
+This destructor is set to default, meaning it will perform the default destruction behavior for the \doxylink{classEGE_1_1Animator2000}{Animator2000} class. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Animator2000_aa167739824f779b853cc94dd3ce4b09f}\label{classEGE_1_1Animator2000_aa167739824f779b853cc94dd3ce4b09f} 
+\index{EGE::Animator2000@{EGE::Animator2000}!calculateBoneTransform@{calculateBoneTransform}}
+\index{calculateBoneTransform@{calculateBoneTransform}!EGE::Animator2000@{EGE::Animator2000}}
+\doxysubsubsection{\texorpdfstring{calculateBoneTransform()}{calculateBoneTransform()}}
+{\footnotesize\ttfamily void EGE\+::\+Animator2000\+::calculate\+Bone\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structEGE_1_1AssimpNodeData}{Assimp\+Node\+Data}} \texorpdfstring{$\ast$}{*}}]{node,  }\item[{glm\+::mat4}]{parent\+Transform }\end{DoxyParamCaption})}
+
+Calculates the bone transform for a given node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The \doxylink{structEGE_1_1AssimpNodeData}{Assimp\+Node\+Data} representing the node. \\
+\hline
+{\em parent\+Transform} & The parent transform matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Animator2000_aab10e341803f2361a8649a378efe79c3}\label{classEGE_1_1Animator2000_aab10e341803f2361a8649a378efe79c3} 
+\index{EGE::Animator2000@{EGE::Animator2000}!getFinalBoneMatrices@{getFinalBoneMatrices}}
+\index{getFinalBoneMatrices@{getFinalBoneMatrices}!EGE::Animator2000@{EGE::Animator2000}}
+\doxysubsubsection{\texorpdfstring{getFinalBoneMatrices()}{getFinalBoneMatrices()}}
+{\footnotesize\ttfamily std\+::vector$<$ glm\+::mat4 $>$ EGE\+::\+Animator2000\+::get\+Final\+Bone\+Matrices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the final bone matrices. 
+
+This function returns a vector of {\ttfamily glm\+::mat4} representing the final bone matrices. These matrices are typically used for skeletal animation.
+
+\begin{DoxyReturn}{Returns}
+A vector of {\ttfamily glm\+::mat4} representing the final bone matrices. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Animator2000_ac1bb0c92aeec1119ba91f31853e35eed}\label{classEGE_1_1Animator2000_ac1bb0c92aeec1119ba91f31853e35eed} 
+\index{EGE::Animator2000@{EGE::Animator2000}!playAnimation@{playAnimation}}
+\index{playAnimation@{playAnimation}!EGE::Animator2000@{EGE::Animator2000}}
+\doxysubsubsection{\texorpdfstring{playAnimation()}{playAnimation()}}
+{\footnotesize\ttfamily void EGE\+::\+Animator2000\+::play\+Animation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Animation}{Animation}} \texorpdfstring{$\ast$}{*}}]{animation }\end{DoxyParamCaption})}
+
+Plays the specified animation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation} & A pointer to the \doxylink{classEGE_1_1Animation}{Animation} object to be played. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Animator2000_a20a9d323359e09804f75de55038ad7e4}\label{classEGE_1_1Animator2000_a20a9d323359e09804f75de55038ad7e4} 
+\index{EGE::Animator2000@{EGE::Animator2000}!updateAnimation@{updateAnimation}}
+\index{updateAnimation@{updateAnimation}!EGE::Animator2000@{EGE::Animator2000}}
+\doxysubsubsection{\texorpdfstring{updateAnimation()}{updateAnimation()}}
+{\footnotesize\ttfamily void EGE\+::\+Animator2000\+::update\+Animation (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Updates the animation based on the elapsed time. 
+
+This function is responsible for updating the animation based on the elapsed time. It takes the delta\+Time as a parameter, which represents the time elapsed since the last update. This function should be called in the game loop to ensure smooth animation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Animator_8hpp}{Animator.\+hpp}}\end{DoxyCompactItemize}

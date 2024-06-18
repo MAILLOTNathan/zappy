@@ -1,0 +1,17 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="Onyx::Entity",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classOnyx_1_1Entity.html",tooltip="Represents an entity in the game."];
+  Node0 -> Node1 [id="edge25_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 [id="Node000001",label="Onyx::Floor",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classOnyx_1_1Floor.html",tooltip="The Floor class represents a floor entity in the game."];
+  Node0 -> Node2 [id="edge26_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Onyx::Item",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classOnyx_1_1Item.html",tooltip="This class represents an item in the Onyx game engine."];
+  Node0 -> Node3 [id="edge27_Node000000_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Onyx::Map",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classOnyx_1_1Map.html",tooltip="Represents a map in the game."];
+  Node0 -> Node4 [id="edge28_Node000000_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Onyx::Player",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classOnyx_1_1Player.html",tooltip="Represents a player in the game."];
+}

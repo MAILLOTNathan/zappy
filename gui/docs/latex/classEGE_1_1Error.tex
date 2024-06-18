@@ -1,0 +1,96 @@
+\doxysection{EGE\+::Error Class Reference}
+\hypertarget{classEGE_1_1Error}{}\label{classEGE_1_1Error}\index{EGE::Error@{EGE::Error}}
+
+
+The \doxylink{classEGE_1_1Error}{Error} class represents an exception that can be thrown in the \doxylink{namespaceEGE}{EGE} game engine.  
+
+
+
+
+{\ttfamily \#include $<$Error.\+hpp$>$}
+
+
+
+Inheritance diagram for EGE\+::Error\+:
+% FIG 0
+
+
+Collaboration diagram for EGE\+::Error\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f}{Error}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classEGE_1_1Error}{Error} object with the specified error message. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Error_abb34aadafc09de8c6476584d8efc19e8}{\texorpdfstring{$\sim$}{\string~}\+Error}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Error}{Error} object. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Error_a8c99c9e9f9608777041f20d55c941f23}{what}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Returns a C-\/style string representing the error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1Error_ad7dfbcf78e5dac04aa92baa41c215d1c}{\+\_\+message}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1Error}{Error} class represents an exception that can be thrown in the \doxylink{namespaceEGE}{EGE} game engine. 
+
+This class inherits from std\+::exception and provides a custom error message. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f}\label{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f} 
+\index{EGE::Error@{EGE::Error}!Error@{Error}}
+\index{Error@{Error}!EGE::Error@{EGE::Error}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily EGE\+::\+Error\+::\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{classEGE_1_1Error}{Error} object with the specified error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Error_abb34aadafc09de8c6476584d8efc19e8}\label{classEGE_1_1Error_abb34aadafc09de8c6476584d8efc19e8} 
+\index{EGE::Error@{EGE::Error}!````~Error@{\texorpdfstring{$\sim$}{\string~}Error}}
+\index{````~Error@{\texorpdfstring{$\sim$}{\string~}Error}!EGE::Error@{EGE::Error}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Error()}{\string~Error()}}
+{\footnotesize\ttfamily EGE\+::\+Error\+::\texorpdfstring{$\sim$}{\string~}\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Error}{Error} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Error_a8c99c9e9f9608777041f20d55c941f23}\label{classEGE_1_1Error_a8c99c9e9f9608777041f20d55c941f23} 
+\index{EGE::Error@{EGE::Error}!what@{what}}
+\index{what@{what}!EGE::Error@{EGE::Error}}
+\doxysubsubsection{\texorpdfstring{what()}{what()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} EGE\+::\+Error\+::what (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [noexcept]}}
+
+
+
+Returns a C-\/style string representing the error message. 
+
+\begin{DoxyReturn}{Returns}
+A C-\/style string representing the error message. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Error_ad7dfbcf78e5dac04aa92baa41c215d1c}\label{classEGE_1_1Error_ad7dfbcf78e5dac04aa92baa41c215d1c} 
+\index{EGE::Error@{EGE::Error}!\_message@{\_message}}
+\index{\_message@{\_message}!EGE::Error@{EGE::Error}}
+\doxysubsubsection{\texorpdfstring{\_message}{\_message}}
+{\footnotesize\ttfamily std\+::string EGE\+::\+Error\+::\+\_\+message\hspace{0.3cm}{\ttfamily [protected]}}
+
+The error message. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Error_8hpp}{Error.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,61 @@
+\doxysection{Utils.\+hpp}
+\hypertarget{Utils_8hpp_source}{}\label{Utils_8hpp_source}\index{ege/include/Utils.hpp@{ege/include/Utils.hpp}}
+\mbox{\hyperlink{Utils_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ EGE}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Utils}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUtils}{Utils}}\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUtils_1_1IsDirectoryException}{IsDirectoryException}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{EGE::Error}}\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUtils_1_1IsDirectoryException_ade36be5f51655dfbe5fdbb9b30e4b1a3}{IsDirectoryException}}(\textcolor{keyword}{const}\ std::string\&\ msg)\ :\ \mbox{\hyperlink{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f}{Error}}(msg)\ \{\}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUtils_1_1FileNotFoundException}{FileNotFoundException}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{EGE::Error}}\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUtils_1_1FileNotFoundException_acc677aad54d817aedb22ecefd62121d0}{FileNotFoundException}}(\textcolor{keyword}{const}\ std::string\&\ msg\ =\ \textcolor{stringliteral}{"{}File\ not\ found"{}})\ :\ \mbox{\hyperlink{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f}{Error}}(msg)\ \{\};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUtils_1_1InvalidArgumentsException}{InvalidArgumentsException}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{EGE::Error}}\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUtils_1_1InvalidArgumentsException_a9e7633b3e232f4f4a8ebbcaa70063c2b}{InvalidArgumentsException}}(\textcolor{keyword}{const}\ std::string\&\ msg)\ :\ \mbox{\hyperlink{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f}{Error}}(msg)\ \{\}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{classUtils_a36fffc1f5236dd40560b8d3ef9e0e457}{split}}(\textcolor{keyword}{const}\ std::string\ \&str);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{classUtils_a3007648c8475cad4c6b7c67e2d1b432a}{split}}(\textcolor{keyword}{const}\ std::string\ \&str,\ \textcolor{keywordtype}{char}\ sep);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{classUtils_a1759d6361e17639b50420f2c435d9387}{getFileContent}}(\textcolor{keyword}{const}\ std::string\ \&filename);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUtils_a8df5a8f70af35eac416c5d082c54e3e4}{setFileContent}}(\textcolor{keyword}{const}\ std::string\ \&filename,\ \textcolor{keyword}{const}\ std::string\ \&content,\ \textcolor{keywordtype}{bool}\ append\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{classUtils_aba9d012050a0c73e87a3879a5f4b1327}{vectorToString}}(\textcolor{keyword}{const}\ std::vector<std::string>\ \&container);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{classUtils_a74407a979712fc5f5ed458353a7ac248}{getDirectoryFiles}}(\textcolor{keyword}{const}\ std::string\ \&directory);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{classUtils_a13d4f796072986e62993e8f7d7d7571e}{getDirectoryFiles}}(\textcolor{keyword}{const}\ std::string\ \&directory,\ \textcolor{keyword}{const}\ std::string\ \&extension);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{classUtils_a6aebda6b85fbd84bdfb78547409d1aea}{getDirectorySubDirectories}}(\textcolor{keyword}{const}\ std::string\ \&directory);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{classUtils_abf05c46548cc0644201a209abcdc2764}{getDirectoryContent}}(\textcolor{keyword}{const}\ std::string\ \&directory);}
+\DoxyCodeLine{00158\ \};}
+\DoxyCodeLine{00159\ }
+
+\end{DoxyCode}

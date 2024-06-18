@@ -1,0 +1,268 @@
+\doxysection{Onyx\+::Map Class Reference}
+\hypertarget{classOnyx_1_1Map}{}\label{classOnyx_1_1Map}\index{Onyx::Map@{Onyx::Map}}
+
+
+Represents a map in the game.  
+
+
+
+
+{\ttfamily \#include $<$Map.\+hpp$>$}
+
+
+
+Inheritance diagram for Onyx\+::Map\+:
+% FIG 0
+
+
+Collaboration diagram for Onyx\+::Map\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Map_a2baf0e73768d1c3716e89a684921e59f}{Map}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classOnyx_1_1Map}{Map} object with (1, 1) size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1Map_a9787556ed708a18d170c201a229c8881}{Map}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&size)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classOnyx_1_1Map}{Map} object with the specified size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1Map_aa2931860f1cd10d2428db1e5fa861244}{\texorpdfstring{$\sim$}{\string~}\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classOnyx_1_1Map}{Map} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Map_a5b65381481e8011fd076cc5f8d24de0a}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$ shader)
+\begin{DoxyCompactList}\small\item\em Updates the map using the specified shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Map_a07899ddcb982281487f5b9c1e8140f0a}{create\+Map}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&size)
+\begin{DoxyCompactList}\small\item\em Creates a map with the specified size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Map_ab165b5d76d9569b22fabe292c0c8af01}{add\+Item}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&position, \mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}} type, int number=1)
+\begin{DoxyCompactList}\small\item\em Adds an item to the map at the specified position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Map_a74e9da13854e1ec43d8987ed63f5ed1d}{remove\+Item}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&position, \mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}} type)
+\begin{DoxyCompactList}\small\item\em Removes an item of a specific type from the map at the given position. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \mbox{\hyperlink{classOnyx_1_1Map_a3be71902d702dd97a16d9ff2402d0077}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Gets the size of the map. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Floor}{Floor}} $>$ $>$ \mbox{\hyperlink{classOnyx_1_1Map_ab784718951c46ca8672e391736b59862}{get\+Floor}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the vector of shared pointers to \doxylink{classOnyx_1_1Floor}{Floor} objects. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOnyx_1_1Map_adc24632e9fec05de9cd53c218eb28250}{get\+Tile\+Selected}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&camera\+Position, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&projection, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&view)
+\begin{DoxyCompactList}\small\item\em Gets the tile selected by the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Map_abee6c39639c8aeb7badcac4ece7d5658}{add\+Egg}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ int $>$ pos)
+\begin{DoxyCompactList}\small\item\em Adds an egg to the map at the specified position. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ int $>$ $>$ \& \mbox{\hyperlink{classOnyx_1_1Map_a023c8f6785bb7f923fa3adc6a7785885}{get\+Egg\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position vector of the eggs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOnyx_1_1Entity}{Onyx\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Entity_a47be073bf8779a1124af6a701fb8a044}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classOnyx_1_1Entity_a67e681449da07ac93e97847b3d25201e}{set\+Position}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Set the new position of the floor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_ae928728d710f4077d7dd248584977946}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position of the floor. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aca7177d514ff29ab8b48b62932735835}{get\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Returns the model associated with the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOnyx_1_1Entity_a1858604460a02213435e6961e975993b}{intersects}} (const glm\+::vec3 \&ray\+Origin, const glm\+::vec3 \&ray\+Position, float \&t, float \&u, float \&v)
+\begin{DoxyCompactList}\small\item\em Checks if the entity intersects with a ray. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOnyx_1_1Entity}{Onyx\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aded44b3834c06aad8f88193caa3419bd}{\+\_\+model}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_a114bf724ad20e45425d7c19473bc6ce3}{\+\_\+position}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a map in the game. 
+
+The \doxylink{classOnyx_1_1Map}{Map} class is a derived class of the \doxylink{classOnyx_1_1Entity}{Onyx\+::\+Entity} class and represents a map in the game. It contains a collection of floor objects and provides functionality to update the map using a shader. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1Map_a2baf0e73768d1c3716e89a684921e59f}\label{classOnyx_1_1Map_a2baf0e73768d1c3716e89a684921e59f} 
+\index{Onyx::Map@{Onyx::Map}!Map@{Map}}
+\index{Map@{Map}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{Map()}{Map()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Onyx\+::\+Map\+::\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classOnyx_1_1Map}{Map} object with (1, 1) size. 
+
+\Hypertarget{classOnyx_1_1Map_a9787556ed708a18d170c201a229c8881}\label{classOnyx_1_1Map_a9787556ed708a18d170c201a229c8881} 
+\index{Onyx::Map@{Onyx::Map}!Map@{Map}}
+\index{Map@{Map}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{Map()}{Map()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Onyx\+::\+Map\+::\+Map (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{size }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classOnyx_1_1Map}{Map} object with the specified size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size of the map. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Map_aa2931860f1cd10d2428db1e5fa861244}\label{classOnyx_1_1Map_aa2931860f1cd10d2428db1e5fa861244} 
+\index{Onyx::Map@{Onyx::Map}!````~Map@{\texorpdfstring{$\sim$}{\string~}Map}}
+\index{````~Map@{\texorpdfstring{$\sim$}{\string~}Map}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Map()}{\string~Map()}}
+{\footnotesize\ttfamily Onyx\+::\+Map\+::\texorpdfstring{$\sim$}{\string~}\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classOnyx_1_1Map}{Map} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1Map_abee6c39639c8aeb7badcac4ece7d5658}\label{classOnyx_1_1Map_abee6c39639c8aeb7badcac4ece7d5658} 
+\index{Onyx::Map@{Onyx::Map}!addEgg@{addEgg}}
+\index{addEgg@{addEgg}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{addEgg()}{addEgg()}}
+{\footnotesize\ttfamily void Onyx\+::\+Map\+::add\+Egg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ int $>$}]{pos }\end{DoxyParamCaption})}
+
+
+
+Adds an egg to the map at the specified position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position where the egg should be added. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Map_ab165b5d76d9569b22fabe292c0c8af01}\label{classOnyx_1_1Map_ab165b5d76d9569b22fabe292c0c8af01} 
+\index{Onyx::Map@{Onyx::Map}!addItem@{addItem}}
+\index{addItem@{addItem}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily void Onyx\+::\+Map\+::add\+Item (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{position,  }\item[{\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}}}]{type,  }\item[{int}]{number = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Adds an item to the map at the specified position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position where the item should be added. \\
+\hline
+{\em type} & The type of the item to be added. \\
+\hline
+{\em number} & The number of items to be added (default is 1). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Map_a07899ddcb982281487f5b9c1e8140f0a}\label{classOnyx_1_1Map_a07899ddcb982281487f5b9c1e8140f0a} 
+\index{Onyx::Map@{Onyx::Map}!createMap@{createMap}}
+\index{createMap@{createMap}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{createMap()}{createMap()}}
+{\footnotesize\ttfamily void Onyx\+::\+Map\+::create\+Map (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{size }\end{DoxyParamCaption})}
+
+
+
+Creates a map with the specified size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size of the map. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Map_a023c8f6785bb7f923fa3adc6a7785885}\label{classOnyx_1_1Map_a023c8f6785bb7f923fa3adc6a7785885} 
+\index{Onyx::Map@{Onyx::Map}!getEggPos@{getEggPos}}
+\index{getEggPos@{getEggPos}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{getEggPos()}{getEggPos()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ int $>$ $>$ \& Onyx\+::\+Map\+::get\+Egg\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the position vector of the eggs. 
+
+\begin{DoxyReturn}{Returns}
+The position vector of the eggs. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Map_ab784718951c46ca8672e391736b59862}\label{classOnyx_1_1Map_ab784718951c46ca8672e391736b59862} 
+\index{Onyx::Map@{Onyx::Map}!getFloor@{getFloor}}
+\index{getFloor@{getFloor}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{getFloor()}{getFloor()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Floor}{Floor}} $>$ $>$ Onyx\+::\+Map\+::get\+Floor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the vector of shared pointers to \doxylink{classOnyx_1_1Floor}{Floor} objects. 
+
+This function returns a vector containing shared pointers to \doxylink{classOnyx_1_1Floor}{Floor} objects. Each shared pointer represents a floor tile on the map.
+
+\begin{DoxyReturn}{Returns}
+A vector of shared pointers to \doxylink{classOnyx_1_1Floor}{Floor} objects. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Map_a3be71902d702dd97a16d9ff2402d0077}\label{classOnyx_1_1Map_a3be71902d702dd97a16d9ff2402d0077} 
+\index{Onyx::Map@{Onyx::Map}!getSize@{getSize}}
+\index{getSize@{getSize}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ Onyx\+::\+Map\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the size of the map. 
+
+\begin{DoxyReturn}{Returns}
+The size of the map as a 2D vector. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Map_adc24632e9fec05de9cd53c218eb28250}\label{classOnyx_1_1Map_adc24632e9fec05de9cd53c218eb28250} 
+\index{Onyx::Map@{Onyx::Map}!getTileSelected@{getTileSelected}}
+\index{getTileSelected@{getTileSelected}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{getTileSelected()}{getTileSelected()}}
+{\footnotesize\ttfamily int Onyx\+::\+Map\+::get\+Tile\+Selected (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{camera\+Position,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{projection,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{view }\end{DoxyParamCaption})}
+
+
+
+Gets the tile selected by the player. 
+
+This function returns the index of the tile selected by the player. The index is calculated based on the camera position, projection matrix, and view matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+Position} & The position of the camera. \\
+\hline
+{\em projection} & The projection matrix. \\
+\hline
+{\em view} & The view matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the tile selected by the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Map_a74e9da13854e1ec43d8987ed63f5ed1d}\label{classOnyx_1_1Map_a74e9da13854e1ec43d8987ed63f5ed1d} 
+\index{Onyx::Map@{Onyx::Map}!removeItem@{removeItem}}
+\index{removeItem@{removeItem}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{removeItem()}{removeItem()}}
+{\footnotesize\ttfamily void Onyx\+::\+Map\+::remove\+Item (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{position,  }\item[{\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Removes an item of a specific type from the map at the given position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the item to be removed. \\
+\hline
+{\em type} & The type of the item to be removed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Map_a5b65381481e8011fd076cc5f8d24de0a}\label{classOnyx_1_1Map_a5b65381481e8011fd076cc5f8d24de0a} 
+\index{Onyx::Map@{Onyx::Map}!update@{update}}
+\index{update@{update}!Onyx::Map@{Onyx::Map}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Onyx\+::\+Map\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$}]{shader }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Updates the map using the specified shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader used to update the map. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classOnyx_1_1Entity_a09b1bdfb3e956502c8655ac6ae804542}{Onyx\+::\+Entity}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Map_8hpp}{Map.\+hpp}}\end{DoxyCompactItemize}

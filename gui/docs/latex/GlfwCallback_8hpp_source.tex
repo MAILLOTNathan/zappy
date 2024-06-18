@@ -1,0 +1,574 @@
+\doxysection{Glfw\+Callback.\+hpp}
+\hypertarget{GlfwCallback_8hpp_source}{}\label{GlfwCallback_8hpp_source}\index{ege/include/GlfwCallback.hpp@{ege/include/GlfwCallback.hpp}}
+\mbox{\hyperlink{GlfwCallback_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ GlfwCallback}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{OpenGL_8hpp}{OpenGL.hpp}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstdarg>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{GlfwWindowCloseCallbackFunction}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_a02f8f9b3234392889f56bff76153a351}{GlfwWindowCloseCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{GlfwWindowCloseCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{GlfwWindowCloseCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_abf447a671b6a10a7b315be60f92d20e3}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{GlfwWindowCloseCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{GlfwWindowCloseCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_a6c900838f622a582c8691bbb3e359579}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *>)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_a02f8f9b3234392889f56bff76153a351}{GlfwWindowCloseCallbackFunction}}(callback);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{GlfwWindowCloseCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_ac3c6b8e371d0c43e830a5a482c90a15a}{getInstance}}()}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_adb099dda620ec1c75f48054a4ee037e4}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *>}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_a02f8f9b3234392889f56bff76153a351}{GlfwWindowCloseCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowCloseCallbackFunction()\ \{\}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_a02f8f9b3234392889f56bff76153a351}{GlfwWindowCloseCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *)>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction}{GlfwWindowFocusCallbackFunction}}\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a1c14cac8365151827836e5229eb1cf1e}{GlfwWindowFocusCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction}{GlfwWindowFocusCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction}{GlfwWindowFocusCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_ab2768b66bffb6c7141e370eb4b5236aa}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction}{GlfwWindowFocusCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction}{GlfwWindowFocusCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a19c962cf6a2391c51a03e91dff94b63d}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int>)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a1c14cac8365151827836e5229eb1cf1e}{GlfwWindowFocusCallbackFunction}}(callback);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction}{GlfwWindowFocusCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a01afdb24fc6465e94ab32c4cc165fa50}{getInstance}}()}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a0df2f216c7fd311a05825ecaaadbea16}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int>}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a1c14cac8365151827836e5229eb1cf1e}{GlfwWindowFocusCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowFocusCallbackFunction()\ \{\}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFocusCallbackFunction_a1c14cac8365151827836e5229eb1cf1e}{GlfwWindowFocusCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00199\ \ \ \ \ \};}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction}{GlfwWindowLostFocusCallbackFunction}}\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_a8c4dce2e5807456527dff0f5fb2b7a8b}{GlfwWindowLostFocusCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction}{GlfwWindowLostFocusCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction}{GlfwWindowLostFocusCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_a7382930223d86b842a2d88e2e9495447}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction}{GlfwWindowLostFocusCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction}{GlfwWindowLostFocusCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_abfdc24f5339c88e30f6313179238beea}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int>)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_a8c4dce2e5807456527dff0f5fb2b7a8b}{GlfwWindowLostFocusCallbackFunction}}(callback);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction}{GlfwWindowLostFocusCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_aa465ca17a013951fe0f73450ea692d70}{getInstance}}()}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_a7ca78104c14b84eb9fff35428947359f}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int>}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_a8c4dce2e5807456527dff0f5fb2b7a8b}{GlfwWindowLostFocusCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowLostFocusCallbackFunction()\ \{\}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowLostFocusCallbackFunction_a8c4dce2e5807456527dff0f5fb2b7a8b}{GlfwWindowLostFocusCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00293\ \ \ \ \ \};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction}{GlfwWindowFileDropCallbackFunction}}\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_aa7eed17c00fe5087e1260bbea72e06fa}{GlfwWindowFileDropCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction}{GlfwWindowFileDropCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction}{GlfwWindowFileDropCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_a9c7fdb92497598aa213dc27737353e45}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction}{GlfwWindowFileDropCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction}{GlfwWindowFileDropCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_a6b28af0c74daf83c650c780c10754f8a}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int,\ const\ char*[]>)\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_aa7eed17c00fe5087e1260bbea72e06fa}{GlfwWindowFileDropCallbackFunction}}(callback);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction}{GlfwWindowFileDropCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_ac139eacbc000820f3d16549bacb1d525}{getInstance}}()}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_aa15aa41f1c9caf22e039a558fadaeafa}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int,\ const\ char*[]>}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_aa7eed17c00fe5087e1260bbea72e06fa}{GlfwWindowFileDropCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowFileDropCallbackFunction()\ \{\}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFileDropCallbackFunction_aa7eed17c00fe5087e1260bbea72e06fa}{GlfwWindowFileDropCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*[])>\ \_callback;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00386\ \ \ \ \ \};}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction}{GlfwWindowScrollCallbackFunction}}\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a8a7f8ad3b92ac7bc5eea0fd15aacc1e7}{GlfwWindowScrollCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction}{GlfwWindowScrollCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction}{GlfwWindowScrollCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_ab860d9e2c78013c7e2d94b859babe2c7}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction}{GlfwWindowScrollCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction}{GlfwWindowScrollCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a0ac2cb4dc9053be30a8660a83e1c9b5f}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ double,\ double>)\ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a8a7f8ad3b92ac7bc5eea0fd15aacc1e7}{GlfwWindowScrollCallbackFunction}}(callback);}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction}{GlfwWindowScrollCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a62c928ab76cab8c046434e8ea8281fb9}{getInstance}}()}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_af206d7d198f7008c9ad233f1eff05d6c}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ double,\ double>}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a8a7f8ad3b92ac7bc5eea0fd15aacc1e7}{GlfwWindowScrollCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowScrollCallbackFunction()\ \{\}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowScrollCallbackFunction_a8a7f8ad3b92ac7bc5eea0fd15aacc1e7}{GlfwWindowScrollCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{double},\ \textcolor{keywordtype}{double})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00479\ \ \ \ \ \};}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction}{GlfwWindowContentScaleChangedCallbackFunction}}\ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_a90075e6d37099b73d057052c2ae8933f}{GlfwWindowContentScaleChangedCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction}{GlfwWindowContentScaleChangedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction}{GlfwWindowContentScaleChangedCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_ac8267de4021c587d2bcd3813ce57ab23}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction}{GlfwWindowContentScaleChangedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction}{GlfwWindowContentScaleChangedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_ac11addcfbe340f51d5b18d2f57391346}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ float,\ float>)\ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_a90075e6d37099b73d057052c2ae8933f}{GlfwWindowContentScaleChangedCallbackFunction}}(callback);}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction}{GlfwWindowContentScaleChangedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_ab6d0a0498c43a3deda3dad9a3967abdf}{getInstance}}()}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_aa6ea6e81297616fdcfde374a4085b90f}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ float,\ float>}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_a90075e6d37099b73d057052c2ae8933f}{GlfwWindowContentScaleChangedCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowContentScaleChangedCallbackFunction()\ \{\}}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowContentScaleChangedCallbackFunction_a90075e6d37099b73d057052c2ae8933f}{GlfwWindowContentScaleChangedCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{float},\ \textcolor{keywordtype}{float})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00572\ \ \ \ \ \};}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction}{GlfwWindowFramebufferResizedCallbackFunction}}\ \{}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a074998110175aca92ba44d890a1c337a}{GlfwWindowFramebufferResizedCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction}{GlfwWindowFramebufferResizedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction}{GlfwWindowFramebufferResizedCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a2e50f32e50bbf21616bbf24c1681b03a}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction}{GlfwWindowFramebufferResizedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction}{GlfwWindowFramebufferResizedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_aeeb92b2627f698b18c613b7a4c9f84cc}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int,\ int>)\ \{}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a074998110175aca92ba44d890a1c337a}{GlfwWindowFramebufferResizedCallbackFunction}}(callback);}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00618\ }
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction}{GlfwWindowFramebufferResizedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a17de13319fbe6c14c91bc10afa783d6a}{getInstance}}()}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_aabc3dffa54929c348192511960b3f5b0}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int,\ int>}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a074998110175aca92ba44d890a1c337a}{GlfwWindowFramebufferResizedCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowFramebufferResizedCallbackFunction()\ \{\}}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowFramebufferResizedCallbackFunction_a074998110175aca92ba44d890a1c337a}{GlfwWindowFramebufferResizedCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00665\ \ \ \ \ \};}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction}{GlfwWindowIconifiedCallbackFunction}}\ \{}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a161a73300737cc1a6416b7d8d92438c7}{GlfwWindowIconifiedCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction}{GlfwWindowIconifiedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction}{GlfwWindowIconifiedCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a94a1d995cf4a5c3140d7cef808afc9eb}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction}{GlfwWindowIconifiedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction}{GlfwWindowIconifiedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_affe2df1ff0ddee91ef1fa2c8b611c425}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int>)\ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a161a73300737cc1a6416b7d8d92438c7}{GlfwWindowIconifiedCallbackFunction}}(callback);}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction}{GlfwWindowIconifiedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a09141b69ac35691220e9c1380b271347}{getInstance}}()}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00721\ }
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_af88794c88399131ff8016d5e84eb1adb}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int>}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a161a73300737cc1a6416b7d8d92438c7}{GlfwWindowIconifiedCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowIconifiedCallbackFunction()\ \{\}}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowIconifiedCallbackFunction_a161a73300737cc1a6416b7d8d92438c7}{GlfwWindowIconifiedCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00758\ \ \ \ \ \};}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction}{GlfwWindowMaximizedCallbackFunction}}\ \{}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a70bd5738928dfddaa89e14e4747fdedd}{GlfwWindowMaximizedCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction}{GlfwWindowMaximizedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00774\ }
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction}{GlfwWindowMaximizedCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_afded6c894a27c075bb5cac971b759be3}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction}{GlfwWindowMaximizedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00779\ }
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction}{GlfwWindowMaximizedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_ae33b2a9cc61cce4eae1c2296f63c469f}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int>)\ \{}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a70bd5738928dfddaa89e14e4747fdedd}{GlfwWindowMaximizedCallbackFunction}}(callback);}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction}{GlfwWindowMaximizedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a8d549e921741d17f8e69dc7dad31f347}{getInstance}}()}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00814\ }
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a9f64fcf38ddcf8f817f974a29a09f137}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int>}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a70bd5738928dfddaa89e14e4747fdedd}{GlfwWindowMaximizedCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00841\ }
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowMaximizedCallbackFunction()\ \{\}}
+\DoxyCodeLine{00848\ }
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMaximizedCallbackFunction_a70bd5738928dfddaa89e14e4747fdedd}{GlfwWindowMaximizedCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00851\ \ \ \ \ \};}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00861\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{GlfwWindowMovedCallbackFunction}}\ \{}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_aafe58917a6872d269f5f652a0f662e7c}{GlfwWindowMovedCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{GlfwWindowMovedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00867\ }
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{GlfwWindowMovedCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_a2c02f237f967b2f4c5a5bc73527a0d77}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{GlfwWindowMovedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00872\ }
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{GlfwWindowMovedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_a7d648da4b06fe3e5c7a00e2eae42cf59}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int,\ int>)\ \{}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_aafe58917a6872d269f5f652a0f662e7c}{GlfwWindowMovedCallbackFunction}}(callback);}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00897\ }
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{GlfwWindowMovedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_adb4041586a62707539fa26752feb14cf}{getInstance}}()}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00907\ }
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_a3d1218892e9e87dee79bcfec8e1a88b5}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int,\ int>}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_aafe58917a6872d269f5f652a0f662e7c}{GlfwWindowMovedCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{00934\ }
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowMovedCallbackFunction()\ \{\}}
+\DoxyCodeLine{00941\ }
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_aafe58917a6872d269f5f652a0f662e7c}{GlfwWindowMovedCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00944\ \ \ \ \ \};}
+\DoxyCodeLine{00945\ }
+\DoxyCodeLine{00954\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction}{GlfwWindowResizedCallbackFunction}}\ \{}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a7838f7e2e20b3ddfe0b0f80259cce2a7}{GlfwWindowResizedCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction}{GlfwWindowResizedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00960\ }
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction}{GlfwWindowResizedCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a577b4770a3b36cd450cae2f291e88064}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction}{GlfwWindowResizedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00965\ }
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction}{GlfwWindowResizedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a3ecb238d1abdaecb4fb4b15167ffa2b4}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ int,\ int>)\ \{}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a7838f7e2e20b3ddfe0b0f80259cce2a7}{GlfwWindowResizedCallbackFunction}}(callback);}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00990\ }
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction}{GlfwWindowResizedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_ae83b436c13dbb61c85ba9c9257da843a}{getInstance}}()}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01000\ }
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a03653542f364fb8da6d5514a8b658a8b}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ int,\ int>}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a7838f7e2e20b3ddfe0b0f80259cce2a7}{GlfwWindowResizedCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{01027\ }
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowResizedCallbackFunction()\ \{\}}
+\DoxyCodeLine{01034\ }
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowResizedCallbackFunction_a7838f7e2e20b3ddfe0b0f80259cce2a7}{GlfwWindowResizedCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01037\ \ \ \ \ \};}
+\DoxyCodeLine{01038\ }
+\DoxyCodeLine{01047\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction}{GlfwWindowRefreshedCallbackFunction}}\ \{}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_a969f1f5757740f156323719642708e50}{GlfwWindowRefreshedCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction}{GlfwWindowRefreshedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{01053\ }
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction}{GlfwWindowRefreshedCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_a7a57e87db5171d6d6069d08686be4751}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction}{GlfwWindowRefreshedCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{01058\ }
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction}{GlfwWindowRefreshedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_acfa7dee4e12a5d222fcd15a5d0188ab3}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *>)\ \{}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_a969f1f5757740f156323719642708e50}{GlfwWindowRefreshedCallbackFunction}}(callback);}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01083\ }
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction}{GlfwWindowRefreshedCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_ad19348292e6c9ceeb00580699284aa38}{getInstance}}()}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01093\ }
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_a31dba873e396008efd5b08d97749134c}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{01106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{01107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{01118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *>}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_a969f1f5757740f156323719642708e50}{GlfwWindowRefreshedCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{01120\ }
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwWindowRefreshedCallbackFunction()\ \{\}}
+\DoxyCodeLine{01127\ }
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwWindowRefreshedCallbackFunction_a969f1f5757740f156323719642708e50}{GlfwWindowRefreshedCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *)>\ \_callback;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01130\ \ \ \ \ \};}
+\DoxyCodeLine{01131\ }
+\DoxyCodeLine{01141\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction}{GlfwCursorCallbackFunction}}\ \{}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{01146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a821f707259bfdf196a999aadd32727a9}{GlfwCursorCallbackFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction}{GlfwCursorCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{01147\ }
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction}{GlfwCursorCallbackFunction}}\ \&\mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_af3300f6db3b8621105b6ad027e58b829}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction}{GlfwCursorCallbackFunction}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{01152\ }
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{01162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction}{GlfwCursorCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_ae984e33e9c4c78bc2dbe848a95019f68}{getInstance}}(F\ \&\&callback,\ \textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::invocable<F,\ GLFWwindow\ *,\ double,\ double>)\ \{}
+\DoxyCodeLine{01165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (force\ \&\&\ \_instance)\ \{}
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \_instance;}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{01168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_instance)}
+\DoxyCodeLine{01170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_instance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a821f707259bfdf196a999aadd32727a9}{GlfwCursorCallbackFunction}}(callback);}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{01173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01174\ }
+\DoxyCodeLine{01180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction}{GlfwCursorCallbackFunction}}\ *\mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a1b869b210c93287bea6914648247fdcc}{getInstance}}()}
+\DoxyCodeLine{01181\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_instance;}
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01184\ }
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \_ArgTypes>}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a3740d8df7544cebb9b4707ab0540265b}{call}}(\_ArgTypes...\ args)}
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_callback)}
+\DoxyCodeLine{01197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_callback(args...);}
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ GLFWwindow\ *,\ double,\ double>}
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a821f707259bfdf196a999aadd32727a9}{GlfwCursorCallbackFunction}}(F\ \&\&callback)\ :\ \_callback(callback)\ \{\}}
+\DoxyCodeLine{01212\ }
+\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ \ \ \ \ \string~GlfwCursorCallbackFunction()\ \{\}}
+\DoxyCodeLine{01217\ }
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classEGE_1_1GlfwCursorCallbackFunction_a821f707259bfdf196a999aadd32727a9}{GlfwCursorCallbackFunction}}\ *\_instance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(GLFWwindow\ *,\ \textcolor{keywordtype}{double},\ \textcolor{keywordtype}{double})>\ \_callback;\ \ \ \ \ \ \ }
+\DoxyCodeLine{01220\ \ \ \ \ \};}
+\DoxyCodeLine{01221\ \}}
+
+\end{DoxyCode}

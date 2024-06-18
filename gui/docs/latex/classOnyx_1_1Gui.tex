@@ -1,0 +1,340 @@
+\doxysection{Onyx\+::Gui Class Reference}
+\hypertarget{classOnyx_1_1Gui}{}\label{classOnyx_1_1Gui}\index{Onyx::Gui@{Onyx::Gui}}
+
+
+The \doxylink{classOnyx_1_1Gui}{Gui} class represents the graphical user interface for the application.  
+
+
+
+
+{\ttfamily \#include $<$Gui.\+hpp$>$}
+
+
+
+Collaboration diagram for Onyx\+::Gui\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Gui_a918bb9b209dbce7d4a54f8c5756421ba}{Gui}} (\mbox{\hyperlink{classnet_1_1TcpClient}{net\+::\+Tcp\+Client}} client)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classOnyx_1_1Gui}{Gui} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1Gui_acfee79736015870e5da16b51f856613a}{\texorpdfstring{$\sim$}{\string~}\+Gui}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classOnyx_1_1Gui}{Gui} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_aabdb45cbc2bc47a96cad58855e3ff7df}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the graphical user interface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a5ea0af127efb11c4141e29426c0371c6}{create\+Map}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Creates a map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_aef717a48669a9339604329dd7be5d11d}{add\+Player}} (int id, \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ position, std\+::string team\+Name, const std\+::string \&rotation, int level, float time\+Unit)
+\begin{DoxyCompactList}\small\item\em Adds a player to the graphical user interface. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Map}{Onyx\+::\+Map}} $>$ \mbox{\hyperlink{classOnyx_1_1Gui_affcd3e99ce4fc4f3bc18e104ad433a25}{get\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Gets the map. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Window}{EGE\+::\+Window}} $>$ \mbox{\hyperlink{classOnyx_1_1Gui_a13f9be82a2a94a0bf0973e8f4592708e}{get\+Window}} () const
+\begin{DoxyCompactList}\small\item\em Gets the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_acaa256e634f1d48f258adb0a968e0d3f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Starts the main loop of the graphical user interface. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOnyx_1_1Gui_ae5aca9502cddece6a9ffe2392eef9f33}{is\+Running}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the graphical user interface is running. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a42653f74f903a932f530400e96a8041c}{create\+World\+Panel}} ()
+\begin{DoxyCompactList}\small\item\em Creates the world panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a6e66cb7efd030350c531270039082b1b}{create\+Tile\+Panel}} ()
+\begin{DoxyCompactList}\small\item\em Creates the tile panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a463495322ea53cc5a02146ebfe553bda}{create\+Console\+Panel}} ()
+\begin{DoxyCompactList}\small\item\em Creates the console panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_af695452a12a252d26fcb9c83c867dd88}{create\+Menu\+Bar}} ()
+\begin{DoxyCompactList}\small\item\em Creates the menu bar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a3334382fe63284e54579244f898ce2ae}{create\+Tutorial}} ()
+\begin{DoxyCompactList}\small\item\em Creates the tutorial. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a9143256c392575317584a83b8ac6a827}{create\+Player\+Panel}} ()
+\begin{DoxyCompactList}\small\item\em Creates the player panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_ac516a48fbeea26161bcf150ee94ae27f}{update\+Player\+Panel}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Player}{Onyx\+::\+Player}} $>$ \&player)
+\begin{DoxyCompactList}\small\item\em Updates the player panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a3eb8f7e267f319c5b6b49712422a1ede}{update\+World\+Panel}} ()
+\begin{DoxyCompactList}\small\item\em Updates the world panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a41bfe97e1a6fe4eece00e3268d985511}{update\+Tile\+Panel}} ()
+\begin{DoxyCompactList}\small\item\em Updates the tile panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_ac7e067b42ee51b405ce9f27ab7e3bbc1}{update\+Console\+Panel}} (std\+::vector$<$ std\+::string $>$ \&args)
+\begin{DoxyCompactList}\small\item\em Updates the console panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_abcc7d9c5020e217ace3ab59cf2a39f09}{update\+World\+Settings}} (float value)
+\begin{DoxyCompactList}\small\item\em Updates the world settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Gui_a4fbbc239cfb8f1bac58e40d9d4f52971}{update\+Sensitivities}} (float value)
+\begin{DoxyCompactList}\small\item\em Updates the sensitivities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classOnyx_1_1Gui}{Gui} class represents the graphical user interface for the application. 
+
+This class is responsible for managing the graphical elements and rendering them on the screen. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1Gui_a918bb9b209dbce7d4a54f8c5756421ba}\label{classOnyx_1_1Gui_a918bb9b209dbce7d4a54f8c5756421ba} 
+\index{Onyx::Gui@{Onyx::Gui}!Gui@{Gui}}
+\index{Gui@{Gui}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{Gui()}{Gui()}}
+{\footnotesize\ttfamily Onyx\+::\+Gui\+::\+Gui (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classnet_1_1TcpClient}{net\+::\+Tcp\+Client}}}]{client }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classOnyx_1_1Gui}{Gui} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & The TCP client used for communication with the server. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Gui_acfee79736015870e5da16b51f856613a}\label{classOnyx_1_1Gui_acfee79736015870e5da16b51f856613a} 
+\index{Onyx::Gui@{Onyx::Gui}!````~Gui@{\texorpdfstring{$\sim$}{\string~}Gui}}
+\index{````~Gui@{\texorpdfstring{$\sim$}{\string~}Gui}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Gui()}{\string~Gui()}}
+{\footnotesize\ttfamily Onyx\+::\+Gui\+::\texorpdfstring{$\sim$}{\string~}\+Gui (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classOnyx_1_1Gui}{Gui} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1Gui_aef717a48669a9339604329dd7be5d11d}\label{classOnyx_1_1Gui_aef717a48669a9339604329dd7be5d11d} 
+\index{Onyx::Gui@{Onyx::Gui}!addPlayer@{addPlayer}}
+\index{addPlayer@{addPlayer}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{addPlayer()}{addPlayer()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::add\+Player (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$}]{position,  }\item[{std\+::string}]{team\+Name,  }\item[{const std\+::string \&}]{rotation,  }\item[{int}]{level,  }\item[{float}]{time\+Unit }\end{DoxyParamCaption})}
+
+
+
+Adds a player to the graphical user interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the player. \\
+\hline
+{\em position} & The position of the player. \\
+\hline
+{\em team\+Name} & The name of the team the player belongs to. \\
+\hline
+{\em rotation} & The rotation of the player. \\
+\hline
+{\em time\+Unit} & The time unit of the world. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Gui_a463495322ea53cc5a02146ebfe553bda}\label{classOnyx_1_1Gui_a463495322ea53cc5a02146ebfe553bda} 
+\index{Onyx::Gui@{Onyx::Gui}!createConsolePanel@{createConsolePanel}}
+\index{createConsolePanel@{createConsolePanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{createConsolePanel()}{createConsolePanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::create\+Console\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the console panel. 
+
+\Hypertarget{classOnyx_1_1Gui_a5ea0af127efb11c4141e29426c0371c6}\label{classOnyx_1_1Gui_a5ea0af127efb11c4141e29426c0371c6} 
+\index{Onyx::Gui@{Onyx::Gui}!createMap@{createMap}}
+\index{createMap@{createMap}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{createMap()}{createMap()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::create\+Map (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Creates a map. 
+
+This method is called to create a map with the specified width and height. 
+\begin{DoxyParams}{Parameters}
+{\em width} & The width of the map. \\
+\hline
+{\em height} & The height of the map. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Gui_af695452a12a252d26fcb9c83c867dd88}\label{classOnyx_1_1Gui_af695452a12a252d26fcb9c83c867dd88} 
+\index{Onyx::Gui@{Onyx::Gui}!createMenuBar@{createMenuBar}}
+\index{createMenuBar@{createMenuBar}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{createMenuBar()}{createMenuBar()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::create\+Menu\+Bar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the menu bar. 
+
+\Hypertarget{classOnyx_1_1Gui_a9143256c392575317584a83b8ac6a827}\label{classOnyx_1_1Gui_a9143256c392575317584a83b8ac6a827} 
+\index{Onyx::Gui@{Onyx::Gui}!createPlayerPanel@{createPlayerPanel}}
+\index{createPlayerPanel@{createPlayerPanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{createPlayerPanel()}{createPlayerPanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::create\+Player\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the player panel. 
+
+\Hypertarget{classOnyx_1_1Gui_a6e66cb7efd030350c531270039082b1b}\label{classOnyx_1_1Gui_a6e66cb7efd030350c531270039082b1b} 
+\index{Onyx::Gui@{Onyx::Gui}!createTilePanel@{createTilePanel}}
+\index{createTilePanel@{createTilePanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{createTilePanel()}{createTilePanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::create\+Tile\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the tile panel. 
+
+\Hypertarget{classOnyx_1_1Gui_a3334382fe63284e54579244f898ce2ae}\label{classOnyx_1_1Gui_a3334382fe63284e54579244f898ce2ae} 
+\index{Onyx::Gui@{Onyx::Gui}!createTutorial@{createTutorial}}
+\index{createTutorial@{createTutorial}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{createTutorial()}{createTutorial()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::create\+Tutorial (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the tutorial. 
+
+\Hypertarget{classOnyx_1_1Gui_a42653f74f903a932f530400e96a8041c}\label{classOnyx_1_1Gui_a42653f74f903a932f530400e96a8041c} 
+\index{Onyx::Gui@{Onyx::Gui}!createWorldPanel@{createWorldPanel}}
+\index{createWorldPanel@{createWorldPanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{createWorldPanel()}{createWorldPanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::create\+World\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the world panel. 
+
+\Hypertarget{classOnyx_1_1Gui_affcd3e99ce4fc4f3bc18e104ad433a25}\label{classOnyx_1_1Gui_affcd3e99ce4fc4f3bc18e104ad433a25} 
+\index{Onyx::Gui@{Onyx::Gui}!getMap@{getMap}}
+\index{getMap@{getMap}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{getMap()}{getMap()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Map}{Onyx\+::\+Map}} $>$ Onyx\+::\+Gui\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the map. 
+
+\begin{DoxyReturn}{Returns}
+A shared pointer to the map object. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Gui_a13f9be82a2a94a0bf0973e8f4592708e}\label{classOnyx_1_1Gui_a13f9be82a2a94a0bf0973e8f4592708e} 
+\index{Onyx::Gui@{Onyx::Gui}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Window}{EGE\+::\+Window}} $>$ Onyx\+::\+Gui\+::get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the window. 
+
+\begin{DoxyReturn}{Returns}
+A shared pointer to the window object. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Gui_ae5aca9502cddece6a9ffe2392eef9f33}\label{classOnyx_1_1Gui_ae5aca9502cddece6a9ffe2392eef9f33} 
+\index{Onyx::Gui@{Onyx::Gui}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{isRunning()}{isRunning()}}
+{\footnotesize\ttfamily bool Onyx\+::\+Gui\+::is\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the graphical user interface is running. 
+
+\begin{DoxyReturn}{Returns}
+True if the graphical user interface is running, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Gui_acaa256e634f1d48f258adb0a968e0d3f}\label{classOnyx_1_1Gui_acaa256e634f1d48f258adb0a968e0d3f} 
+\index{Onyx::Gui@{Onyx::Gui}!loop@{loop}}
+\index{loop@{loop}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts the main loop of the graphical user interface. 
+
+\Hypertarget{classOnyx_1_1Gui_aabdb45cbc2bc47a96cad58855e3ff7df}\label{classOnyx_1_1Gui_aabdb45cbc2bc47a96cad58855e3ff7df} 
+\index{Onyx::Gui@{Onyx::Gui}!update@{update}}
+\index{update@{update}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the graphical user interface. 
+
+This method is called to update the graphical user interface. \Hypertarget{classOnyx_1_1Gui_ac7e067b42ee51b405ce9f27ab7e3bbc1}\label{classOnyx_1_1Gui_ac7e067b42ee51b405ce9f27ab7e3bbc1} 
+\index{Onyx::Gui@{Onyx::Gui}!updateConsolePanel@{updateConsolePanel}}
+\index{updateConsolePanel@{updateConsolePanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{updateConsolePanel()}{updateConsolePanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::update\+Console\+Panel (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$ \&}]{args }\end{DoxyParamCaption})}
+
+
+
+Updates the console panel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The arguments to be displayed in the console panel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Gui_ac516a48fbeea26161bcf150ee94ae27f}\label{classOnyx_1_1Gui_ac516a48fbeea26161bcf150ee94ae27f} 
+\index{Onyx::Gui@{Onyx::Gui}!updatePlayerPanel@{updatePlayerPanel}}
+\index{updatePlayerPanel@{updatePlayerPanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{updatePlayerPanel()}{updatePlayerPanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::update\+Player\+Panel (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1Player}{Onyx\+::\+Player}} $>$ \&}]{player }\end{DoxyParamCaption})}
+
+
+
+Updates the player panel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & A shared pointer to the player object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Gui_a4fbbc239cfb8f1bac58e40d9d4f52971}\label{classOnyx_1_1Gui_a4fbbc239cfb8f1bac58e40d9d4f52971} 
+\index{Onyx::Gui@{Onyx::Gui}!updateSensitivities@{updateSensitivities}}
+\index{updateSensitivities@{updateSensitivities}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{updateSensitivities()}{updateSensitivities()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::update\+Sensitivities (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Updates the sensitivities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value of the sensitivities. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Gui_a41bfe97e1a6fe4eece00e3268d985511}\label{classOnyx_1_1Gui_a41bfe97e1a6fe4eece00e3268d985511} 
+\index{Onyx::Gui@{Onyx::Gui}!updateTilePanel@{updateTilePanel}}
+\index{updateTilePanel@{updateTilePanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{updateTilePanel()}{updateTilePanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::update\+Tile\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the tile panel. 
+
+\Hypertarget{classOnyx_1_1Gui_a3eb8f7e267f319c5b6b49712422a1ede}\label{classOnyx_1_1Gui_a3eb8f7e267f319c5b6b49712422a1ede} 
+\index{Onyx::Gui@{Onyx::Gui}!updateWorldPanel@{updateWorldPanel}}
+\index{updateWorldPanel@{updateWorldPanel}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{updateWorldPanel()}{updateWorldPanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::update\+World\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the world panel. 
+
+\Hypertarget{classOnyx_1_1Gui_abcc7d9c5020e217ace3ab59cf2a39f09}\label{classOnyx_1_1Gui_abcc7d9c5020e217ace3ab59cf2a39f09} 
+\index{Onyx::Gui@{Onyx::Gui}!updateWorldSettings@{updateWorldSettings}}
+\index{updateWorldSettings@{updateWorldSettings}!Onyx::Gui@{Onyx::Gui}}
+\doxysubsubsection{\texorpdfstring{updateWorldSettings()}{updateWorldSettings()}}
+{\footnotesize\ttfamily void Onyx\+::\+Gui\+::update\+World\+Settings (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Updates the world settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value of the world settings. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Gui_8hpp}{Gui.\+hpp}}\end{DoxyCompactItemize}

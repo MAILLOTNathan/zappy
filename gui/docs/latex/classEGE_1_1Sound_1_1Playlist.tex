@@ -1,0 +1,177 @@
+\doxysection{EGE\+::Sound\+::Playlist Class Reference}
+\hypertarget{classEGE_1_1Sound_1_1Playlist}{}\label{classEGE_1_1Sound_1_1Playlist}\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+
+
+Represents a playlist of music tracks.  
+
+
+
+
+{\ttfamily \#include $<$Playlist.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Sound\+::Playlist\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a387007ddcb1f85956059829aa18c1709}{Playlist}} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Sound_1_1Playlist}{Playlist} object with the specified path. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a6cb1da7049d20c84b149eb2332c8b88f}{\texorpdfstring{$\sim$}{\string~}\+Playlist}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classEGE_1_1Sound_1_1Playlist}{Playlist} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a13fa1b8edb2486faba35c4a68fc9cc40}{play}} ()
+\begin{DoxyCompactList}\small\item\em Plays the current music track. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a5edec90323139bb02e50fb3b2496cbb7}{pause}} ()
+\begin{DoxyCompactList}\small\item\em Pauses the currently playing music track. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a2bde6a2349f43c5ee2ec8212422548f7}{play\+Pause}} ()
+\begin{DoxyCompactList}\small\item\em Plays or pauses the currently playing music track, depending on its current state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_adb26f7a183d361ba299187cbd053c97c}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Stops the currently playing music track. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a395049caeaa0342c38d5dd1802e1040b}{next}} ()
+\begin{DoxyCompactList}\small\item\em Skips to the next music track in the playlist. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_ad8f5c5e5db73814cb6635275bf3b807c}{previous}} ()
+\begin{DoxyCompactList}\small\item\em Skips to the previous music track in the playlist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound}{EGE\+::\+Sound\+::\+Sound}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a82ec98b819f5369aed7b181429174e1e}{\+\_\+musics}}
+\begin{DoxyCompactList}\small\item\em The collection of music tracks in the playlist. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_afc578f9f2ebffc0eed4f4c4eca55b823}{\+\_\+current\+Music}}
+\begin{DoxyCompactList}\small\item\em The index of the currently playing music track. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a8a876ec87392900998ef18f0b8f968e6}{\+\_\+is\+Playing}}
+\begin{DoxyCompactList}\small\item\em A flag indicating whether the playlist is currently playing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a playlist of music tracks. 
+
+The \doxylink{classEGE_1_1Sound_1_1Playlist}{Playlist} class allows you to manage a collection of music tracks and perform operations such as playing, pausing, stopping, and navigating between tracks. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a387007ddcb1f85956059829aa18c1709}\label{classEGE_1_1Sound_1_1Playlist_a387007ddcb1f85956059829aa18c1709} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!Playlist@{Playlist}}
+\index{Playlist@{Playlist}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{Playlist()}{Playlist()}}
+{\footnotesize\ttfamily EGE\+::\+Sound\+::\+Playlist\+::\+Playlist (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classEGE_1_1Sound_1_1Playlist}{Playlist} object with the specified path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the playlist file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a6cb1da7049d20c84b149eb2332c8b88f}\label{classEGE_1_1Sound_1_1Playlist_a6cb1da7049d20c84b149eb2332c8b88f} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!````~Playlist@{\texorpdfstring{$\sim$}{\string~}Playlist}}
+\index{````~Playlist@{\texorpdfstring{$\sim$}{\string~}Playlist}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Playlist()}{\string~Playlist()}}
+{\footnotesize\ttfamily EGE\+::\+Sound\+::\+Playlist\+::\texorpdfstring{$\sim$}{\string~}\+Playlist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classEGE_1_1Sound_1_1Playlist}{Playlist} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a395049caeaa0342c38d5dd1802e1040b}\label{classEGE_1_1Sound_1_1Playlist_a395049caeaa0342c38d5dd1802e1040b} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!next@{next}}
+\index{next@{next}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Playlist\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Skips to the next music track in the playlist. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a5edec90323139bb02e50fb3b2496cbb7}\label{classEGE_1_1Sound_1_1Playlist_a5edec90323139bb02e50fb3b2496cbb7} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!pause@{pause}}
+\index{pause@{pause}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Playlist\+::pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pauses the currently playing music track. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a13fa1b8edb2486faba35c4a68fc9cc40}\label{classEGE_1_1Sound_1_1Playlist_a13fa1b8edb2486faba35c4a68fc9cc40} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!play@{play}}
+\index{play@{play}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Playlist\+::play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Plays the current music track. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a2bde6a2349f43c5ee2ec8212422548f7}\label{classEGE_1_1Sound_1_1Playlist_a2bde6a2349f43c5ee2ec8212422548f7} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!playPause@{playPause}}
+\index{playPause@{playPause}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{playPause()}{playPause()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Playlist\+::play\+Pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Plays or pauses the currently playing music track, depending on its current state. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_ad8f5c5e5db73814cb6635275bf3b807c}\label{classEGE_1_1Sound_1_1Playlist_ad8f5c5e5db73814cb6635275bf3b807c} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!previous@{previous}}
+\index{previous@{previous}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{previous()}{previous()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Playlist\+::previous (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Skips to the previous music track in the playlist. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_adb26f7a183d361ba299187cbd053c97c}\label{classEGE_1_1Sound_1_1Playlist_adb26f7a183d361ba299187cbd053c97c} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!stop@{stop}}
+\index{stop@{stop}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Playlist\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stops the currently playing music track. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_afc578f9f2ebffc0eed4f4c4eca55b823}\label{classEGE_1_1Sound_1_1Playlist_afc578f9f2ebffc0eed4f4c4eca55b823} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!\_currentMusic@{\_currentMusic}}
+\index{\_currentMusic@{\_currentMusic}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{\_currentMusic}{\_currentMusic}}
+{\footnotesize\ttfamily size\+\_\+t EGE\+::\+Sound\+::\+Playlist\+::\+\_\+current\+Music\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The index of the currently playing music track. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a8a876ec87392900998ef18f0b8f968e6}\label{classEGE_1_1Sound_1_1Playlist_a8a876ec87392900998ef18f0b8f968e6} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!\_isPlaying@{\_isPlaying}}
+\index{\_isPlaying@{\_isPlaying}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{\_isPlaying}{\_isPlaying}}
+{\footnotesize\ttfamily bool EGE\+::\+Sound\+::\+Playlist\+::\+\_\+is\+Playing\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A flag indicating whether the playlist is currently playing. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Playlist_a82ec98b819f5369aed7b181429174e1e}\label{classEGE_1_1Sound_1_1Playlist_a82ec98b819f5369aed7b181429174e1e} 
+\index{EGE::Sound::Playlist@{EGE::Sound::Playlist}!\_musics@{\_musics}}
+\index{\_musics@{\_musics}!EGE::Sound::Playlist@{EGE::Sound::Playlist}}
+\doxysubsubsection{\texorpdfstring{\_musics}{\_musics}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound}{EGE\+::\+Sound\+::\+Sound}} \texorpdfstring{$\ast$}{*}$>$ EGE\+::\+Sound\+::\+Playlist\+::\+\_\+musics\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The collection of music tracks in the playlist. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+Sound/\mbox{\hyperlink{Playlist_8hpp}{Playlist.\+hpp}}\end{DoxyCompactItemize}

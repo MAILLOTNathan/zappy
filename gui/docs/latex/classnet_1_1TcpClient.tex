@@ -1,0 +1,246 @@
+\doxysection{net\+::Tcp\+Client Class Reference}
+\hypertarget{classnet_1_1TcpClient}{}\label{classnet_1_1TcpClient}\index{net::TcpClient@{net::TcpClient}}
+
+
+Represents a TCP client that connects to a server and sends/receives data.  
+
+
+
+
+{\ttfamily \#include $<$Tcp\+Client.\+hpp$>$}
+
+
+
+Collaboration diagram for net\+::Tcp\+Client\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnet_1_1TcpClient_a5a0eaad1206c242926e177b3692d74b7}{Tcp\+Client}} (const std\+::string \&ip, int port)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classnet_1_1TcpClient}{Tcp\+Client} object with the specified IP address and port number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnet_1_1TcpClient_ab1dd44c460e6b2c978de0177b409f742}{\texorpdfstring{$\sim$}{\string~}\+Tcp\+Client}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classnet_1_1TcpClient}{Tcp\+Client} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnet_1_1TcpClient_aad338e67f9952249433a0f7f94a77041}{connection}} ()
+\begin{DoxyCompactList}\small\item\em Connects to the server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnet_1_1TcpClient_aae86498883e9adb9353d34d989baeb7e}{disconnect}} ()
+\begin{DoxyCompactList}\small\item\em Disconnects the TCP client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnet_1_1TcpClient_a0dcfe4f6b7c5d146b2fe6a74649fc887}{send\+Request}} (const std\+::string \&request)
+\begin{DoxyCompactList}\small\item\em Sends a request over the TCP connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnet_1_1TcpClient_a350ef0f6ab9fe4cd88af9a1b470796f8}{wait\+Event}} ()
+\begin{DoxyCompactList}\small\item\em Waits for an event on the TCP client socket. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classnet_1_1TcpClient_a41c6f00d76ff34259d9576ae0787f8b9}{add\+Command}} (const std\+::string \&command, \mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{net\+::type\+\_\+command\+\_\+t}} type, std\+::function$<$ void(std\+::vector$<$ std\+::string $>$ \&args)$>$ callback)
+\begin{DoxyCompactList}\small\item\em Adds a command to the TCP client. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classnet_1_1TcpClient_ac3a7159b26cdd662a4febe01a6033de4}{get\+IP}} () const
+\begin{DoxyCompactList}\small\item\em Gets the IP address of the server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classnet_1_1TcpClient_a83e883ae3e738e1acf25ded5cc8fdcd2}{get\+Port}} () const
+\begin{DoxyCompactList}\small\item\em Gets the port number of the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classnet_1_1TcpClient_a7d8cb133d77834830f217ea8d5bcd63f}{\+\_\+ip}}
+\item 
+int \mbox{\hyperlink{classnet_1_1TcpClient_aa2bb55f4192292f5c1a6d196c7b07f65}{\+\_\+port}}
+\item 
+int \mbox{\hyperlink{classnet_1_1TcpClient_aca57bb5436ebab4f3d0f97508e16c64d}{\+\_\+fd}}
+\item 
+struct sockaddr\+\_\+in \mbox{\hyperlink{classnet_1_1TcpClient_adb82356fe6e92e286bc984211cb5d0c3}{\+\_\+serv\+\_\+addr}}
+\item 
+\mbox{\hyperlink{classnet_1_1TcpManagerCmd}{Tcp\+Manager\+Cmd}} \mbox{\hyperlink{classnet_1_1TcpClient_abcf011b17e4c7f47c5cc6c61909ee0db}{\+\_\+manager}}
+\item 
+fd\+\_\+set \mbox{\hyperlink{classnet_1_1TcpClient_a9f2585d7db4b0aa308d9f5fa520482a7}{\+\_\+readfds}}
+\item 
+std\+::string \mbox{\hyperlink{classnet_1_1TcpClient_a865b96fd785fb1b7ded9c52d2298e8ee}{\+\_\+buffer}}
+\item 
+fd\+\_\+set \mbox{\hyperlink{classnet_1_1TcpClient_a1b6a06ca23767d1e8d1fa5fd7e6a396a}{\+\_\+writefds}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a TCP client that connects to a server and sends/receives data. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classnet_1_1TcpClient_a5a0eaad1206c242926e177b3692d74b7}\label{classnet_1_1TcpClient_a5a0eaad1206c242926e177b3692d74b7} 
+\index{net::TcpClient@{net::TcpClient}!TcpClient@{TcpClient}}
+\index{TcpClient@{TcpClient}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{TcpClient()}{TcpClient()}}
+{\footnotesize\ttfamily net\+::\+Tcp\+Client\+::\+Tcp\+Client (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classnet_1_1TcpClient}{Tcp\+Client} object with the specified IP address and port number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & The IP address of the server to connect to. \\
+\hline
+{\em port} & The port number of the server to connect to. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classnet_1_1TcpClient_ab1dd44c460e6b2c978de0177b409f742}\label{classnet_1_1TcpClient_ab1dd44c460e6b2c978de0177b409f742} 
+\index{net::TcpClient@{net::TcpClient}!````~TcpClient@{\texorpdfstring{$\sim$}{\string~}TcpClient}}
+\index{````~TcpClient@{\texorpdfstring{$\sim$}{\string~}TcpClient}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}TcpClient()}{\string~TcpClient()}}
+{\footnotesize\ttfamily net\+::\+Tcp\+Client\+::\texorpdfstring{$\sim$}{\string~}\+Tcp\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classnet_1_1TcpClient}{Tcp\+Client} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classnet_1_1TcpClient_a41c6f00d76ff34259d9576ae0787f8b9}\label{classnet_1_1TcpClient_a41c6f00d76ff34259d9576ae0787f8b9} 
+\index{net::TcpClient@{net::TcpClient}!addCommand@{addCommand}}
+\index{addCommand@{addCommand}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{addCommand()}{addCommand()}}
+{\footnotesize\ttfamily void net\+::\+Tcp\+Client\+::add\+Command (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{command,  }\item[{\mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{net\+::type\+\_\+command\+\_\+t}}}]{type,  }\item[{std\+::function$<$ void(std\+::vector$<$ std\+::string $>$ \&args)$>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+Adds a command to the TCP client. 
+
+This function adds a command to the TCP client\textquotesingle{}s command manager. The command is identified by a string {\ttfamily command}, and its type is specified by the {\ttfamily type} parameter. The {\ttfamily callback} parameter is a function that will be called when the command is executed, and it takes a vector of strings as its argument.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The command to be added. \\
+\hline
+{\em type} & The type of the command. \\
+\hline
+{\em callback} & The callback function to be called when the command is executed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classnet_1_1TcpClient_aad338e67f9952249433a0f7f94a77041}\label{classnet_1_1TcpClient_aad338e67f9952249433a0f7f94a77041} 
+\index{net::TcpClient@{net::TcpClient}!connection@{connection}}
+\index{connection@{connection}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{connection()}{connection()}}
+{\footnotesize\ttfamily void net\+::\+Tcp\+Client\+::connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Connects to the server. 
+
+Establishes a connection with the server. Initializes the socket, sets up the server address, and connects to the server. Throws a \doxylink{classnet_1_1TcpClientError}{net\+::\+Tcp\+Client\+Error} exception if the connection fails. Retrieves the header from the server and sends the team name. \Hypertarget{classnet_1_1TcpClient_aae86498883e9adb9353d34d989baeb7e}\label{classnet_1_1TcpClient_aae86498883e9adb9353d34d989baeb7e} 
+\index{net::TcpClient@{net::TcpClient}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily void net\+::\+Tcp\+Client\+::disconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disconnects the TCP client. 
+
+This function closes the file descriptor associated with the TCP client. \Hypertarget{classnet_1_1TcpClient_ac3a7159b26cdd662a4febe01a6033de4}\label{classnet_1_1TcpClient_ac3a7159b26cdd662a4febe01a6033de4} 
+\index{net::TcpClient@{net::TcpClient}!getIP@{getIP}}
+\index{getIP@{getIP}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{getIP()}{getIP()}}
+{\footnotesize\ttfamily std\+::string net\+::\+Tcp\+Client\+::get\+IP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the IP address of the server. 
+
+\begin{DoxyReturn}{Returns}
+The IP address of the server. 
+\end{DoxyReturn}
+\Hypertarget{classnet_1_1TcpClient_a83e883ae3e738e1acf25ded5cc8fdcd2}\label{classnet_1_1TcpClient_a83e883ae3e738e1acf25ded5cc8fdcd2} 
+\index{net::TcpClient@{net::TcpClient}!getPort@{getPort}}
+\index{getPort@{getPort}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{getPort()}{getPort()}}
+{\footnotesize\ttfamily int net\+::\+Tcp\+Client\+::get\+Port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the port number of the server. 
+
+\begin{DoxyReturn}{Returns}
+The port number of the server. 
+\end{DoxyReturn}
+\Hypertarget{classnet_1_1TcpClient_a0dcfe4f6b7c5d146b2fe6a74649fc887}\label{classnet_1_1TcpClient_a0dcfe4f6b7c5d146b2fe6a74649fc887} 
+\index{net::TcpClient@{net::TcpClient}!sendRequest@{sendRequest}}
+\index{sendRequest@{sendRequest}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{sendRequest()}{sendRequest()}}
+{\footnotesize\ttfamily void net\+::\+Tcp\+Client\+::send\+Request (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{request }\end{DoxyParamCaption})}
+
+
+
+Sends a request over the TCP connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & The request to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classnet_1_1TcpClient_a350ef0f6ab9fe4cd88af9a1b470796f8}\label{classnet_1_1TcpClient_a350ef0f6ab9fe4cd88af9a1b470796f8} 
+\index{net::TcpClient@{net::TcpClient}!waitEvent@{waitEvent}}
+\index{waitEvent@{waitEvent}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{waitEvent()}{waitEvent()}}
+{\footnotesize\ttfamily void net\+::\+Tcp\+Client\+::wait\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Waits for an event on the TCP client socket. 
+
+Waits for an event on the TCP client socket. This function initializes the file descriptor set, performs a select operation, and checks if the socket is ready for reading. If the socket is ready, it reads all available data and evaluates the received command.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classnet_1_1TcpClientError}{net\+::\+Tcp\+Client\+Error}} & if the select operation fails. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classnet_1_1TcpClient_a865b96fd785fb1b7ded9c52d2298e8ee}\label{classnet_1_1TcpClient_a865b96fd785fb1b7ded9c52d2298e8ee} 
+\index{net::TcpClient@{net::TcpClient}!\_buffer@{\_buffer}}
+\index{\_buffer@{\_buffer}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_buffer}{\_buffer}}
+{\footnotesize\ttfamily std\+::string net\+::\+Tcp\+Client\+::\+\_\+buffer\hspace{0.3cm}{\ttfamily [protected]}}
+
+The buffer for storing received data. \Hypertarget{classnet_1_1TcpClient_aca57bb5436ebab4f3d0f97508e16c64d}\label{classnet_1_1TcpClient_aca57bb5436ebab4f3d0f97508e16c64d} 
+\index{net::TcpClient@{net::TcpClient}!\_fd@{\_fd}}
+\index{\_fd@{\_fd}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_fd}{\_fd}}
+{\footnotesize\ttfamily int net\+::\+Tcp\+Client\+::\+\_\+fd\hspace{0.3cm}{\ttfamily [protected]}}
+
+The file descriptor associated with the TCP client. \Hypertarget{classnet_1_1TcpClient_a7d8cb133d77834830f217ea8d5bcd63f}\label{classnet_1_1TcpClient_a7d8cb133d77834830f217ea8d5bcd63f} 
+\index{net::TcpClient@{net::TcpClient}!\_ip@{\_ip}}
+\index{\_ip@{\_ip}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_ip}{\_ip}}
+{\footnotesize\ttfamily std\+::string net\+::\+Tcp\+Client\+::\+\_\+ip\hspace{0.3cm}{\ttfamily [protected]}}
+
+The IP address of the server. \Hypertarget{classnet_1_1TcpClient_abcf011b17e4c7f47c5cc6c61909ee0db}\label{classnet_1_1TcpClient_abcf011b17e4c7f47c5cc6c61909ee0db} 
+\index{net::TcpClient@{net::TcpClient}!\_manager@{\_manager}}
+\index{\_manager@{\_manager}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_manager}{\_manager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnet_1_1TcpManagerCmd}{Tcp\+Manager\+Cmd}} net\+::\+Tcp\+Client\+::\+\_\+manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+The command manager for the TCP client. \Hypertarget{classnet_1_1TcpClient_aa2bb55f4192292f5c1a6d196c7b07f65}\label{classnet_1_1TcpClient_aa2bb55f4192292f5c1a6d196c7b07f65} 
+\index{net::TcpClient@{net::TcpClient}!\_port@{\_port}}
+\index{\_port@{\_port}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_port}{\_port}}
+{\footnotesize\ttfamily int net\+::\+Tcp\+Client\+::\+\_\+port\hspace{0.3cm}{\ttfamily [protected]}}
+
+The port number of the server. \Hypertarget{classnet_1_1TcpClient_a9f2585d7db4b0aa308d9f5fa520482a7}\label{classnet_1_1TcpClient_a9f2585d7db4b0aa308d9f5fa520482a7} 
+\index{net::TcpClient@{net::TcpClient}!\_readfds@{\_readfds}}
+\index{\_readfds@{\_readfds}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_readfds}{\_readfds}}
+{\footnotesize\ttfamily fd\+\_\+set net\+::\+Tcp\+Client\+::\+\_\+readfds\hspace{0.3cm}{\ttfamily [protected]}}
+
+The file descriptor set for the select operation. \Hypertarget{classnet_1_1TcpClient_adb82356fe6e92e286bc984211cb5d0c3}\label{classnet_1_1TcpClient_adb82356fe6e92e286bc984211cb5d0c3} 
+\index{net::TcpClient@{net::TcpClient}!\_serv\_addr@{\_serv\_addr}}
+\index{\_serv\_addr@{\_serv\_addr}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_serv\_addr}{\_serv\_addr}}
+{\footnotesize\ttfamily struct sockaddr\+\_\+in net\+::\+Tcp\+Client\+::\+\_\+serv\+\_\+addr\hspace{0.3cm}{\ttfamily [protected]}}
+
+The server address structure. \Hypertarget{classnet_1_1TcpClient_a1b6a06ca23767d1e8d1fa5fd7e6a396a}\label{classnet_1_1TcpClient_a1b6a06ca23767d1e8d1fa5fd7e6a396a} 
+\index{net::TcpClient@{net::TcpClient}!\_writefds@{\_writefds}}
+\index{\_writefds@{\_writefds}!net::TcpClient@{net::TcpClient}}
+\doxysubsubsection{\texorpdfstring{\_writefds}{\_writefds}}
+{\footnotesize\ttfamily fd\+\_\+set net\+::\+Tcp\+Client\+::\+\_\+writefds\hspace{0.3cm}{\ttfamily [protected]}}
+
+The file descriptor set for the select operation. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{TcpClient_8hpp}{Tcp\+Client.\+hpp}}\end{DoxyCompactItemize}

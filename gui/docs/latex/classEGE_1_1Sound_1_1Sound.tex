@@ -1,0 +1,213 @@
+\doxysection{EGE\+::Sound\+::Sound Class Reference}
+\hypertarget{classEGE_1_1Sound_1_1Sound}{}\label{classEGE_1_1Sound_1_1Sound}\index{EGE::Sound::Sound@{EGE::Sound::Sound}}
+
+
+The \doxylink{classEGE_1_1Sound_1_1Sound}{Sound} class represents a sound object that can be played, paused, stopped, and replayed.  
+
+
+
+
+{\ttfamily \#include $<$Sound.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Sound\+::Sound\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_1_1SoundError}{Sound\+Error}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classEGE_1_1Sound_1_1Sound_1_1SoundError}{Sound\+Error} class represents an error that can occur during sound operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{File\+Type}} \{ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea460aff0b3ff8b669de13ec8707b285a5}{WAV}}
+, \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea28c4618a765f1118c7c4e91110fa19b8}{MP3}}
+, \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4deaf0adbf0927da873fa5b38bf437adbcfe}{UNKNOWN}}
+ \}
+\begin{DoxyCompactList}\small\item\em The File\+Type enum represents the type of sound file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a792272819433a2bf2a214e3a9b4bd597}{Sound}} (const std\+::string \&path, \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{File\+Type}} type=\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea28c4618a765f1118c7c4e91110fa19b8}{File\+Type\+::\+MP3}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Sound_1_1Sound}{Sound} object with the specified file path and type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ae1b1f3f163517c981607994a0f94a19f}{\texorpdfstring{$\sim$}{\string~}\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Sound_1_1Sound}{Sound} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a18db1cdd131902fa87bacff6bc37e4fb}{play}} ()
+\begin{DoxyCompactList}\small\item\em Plays the sound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a2971622e5d75a124774102075fdb77f1}{pause}} ()
+\begin{DoxyCompactList}\small\item\em Pauses the sound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a5b1fc14b880c63cbb9504a62b980a79d}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Stops the sound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac3844311dc5b422641597fbeaa7f0500}{replay}} ()
+\begin{DoxyCompactList}\small\item\em Restarts the sound from the beginning. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ALuint \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_afe0912844cb7aa97f428c9247da0d36a}{\+\_\+buffer}}
+\item 
+ALuint \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a87c3380d70d1f4284ef9750698558bbb}{\+\_\+source}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{File\+Type}} \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a1e3c7cd52bcb903d8a0815ae0dadd4f9}{\+\_\+type}}
+\item 
+drwav \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac3a3c7568e471a7d082b95742c887f3e}{\+\_\+wav}}
+\item 
+drmp3 \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a003295e97795f82a833874393d7a2b03}{\+\_\+mp3}}
+\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a989ed1d36bc70a115ad6e3a57ffd2939}{\+\_\+path}}
+\item 
+std\+::thread \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ad8cd5dd22c5c3890b8bf6b80922c27be}{\+\_\+stream}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1Sound_1_1Sound}{Sound} class represents a sound object that can be played, paused, stopped, and replayed. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}\label{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!FileType@{FileType}}
+\index{FileType@{FileType}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{FileType}{FileType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{EGE\+::\+Sound\+::\+Sound\+::\+File\+Type}}}
+
+
+
+The File\+Type enum represents the type of sound file. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WAV@{WAV}!EGE::Sound::Sound@{EGE::Sound::Sound}}\index{EGE::Sound::Sound@{EGE::Sound::Sound}!WAV@{WAV}}}\Hypertarget{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea460aff0b3ff8b669de13ec8707b285a5}\label{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea460aff0b3ff8b669de13ec8707b285a5} 
+WAV&WAV file type \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MP3@{MP3}!EGE::Sound::Sound@{EGE::Sound::Sound}}\index{EGE::Sound::Sound@{EGE::Sound::Sound}!MP3@{MP3}}}\Hypertarget{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea28c4618a765f1118c7c4e91110fa19b8}\label{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea28c4618a765f1118c7c4e91110fa19b8} 
+MP3&MP3 file type \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!EGE::Sound::Sound@{EGE::Sound::Sound}}\index{EGE::Sound::Sound@{EGE::Sound::Sound}!UNKNOWN@{UNKNOWN}}}\Hypertarget{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4deaf0adbf0927da873fa5b38bf437adbcfe}\label{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4deaf0adbf0927da873fa5b38bf437adbcfe} 
+UNKNOWN&Unknown file type \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Sound_a792272819433a2bf2a214e3a9b4bd597}\label{classEGE_1_1Sound_1_1Sound_a792272819433a2bf2a214e3a9b4bd597} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!Sound@{Sound}}
+\index{Sound@{Sound}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{Sound()}{Sound()}}
+{\footnotesize\ttfamily EGE\+::\+Sound\+::\+Sound\+::\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{File\+Type}}}]{type = {\ttfamily \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea28c4618a765f1118c7c4e91110fa19b8}{File\+Type\+::\+MP3}}} }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classEGE_1_1Sound_1_1Sound}{Sound} object with the specified file path and type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the sound file. \\
+\hline
+{\em type} & The type of the sound file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Sound_1_1Sound_ae1b1f3f163517c981607994a0f94a19f}\label{classEGE_1_1Sound_1_1Sound_ae1b1f3f163517c981607994a0f94a19f} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!````~Sound@{\texorpdfstring{$\sim$}{\string~}Sound}}
+\index{````~Sound@{\texorpdfstring{$\sim$}{\string~}Sound}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Sound()}{\string~Sound()}}
+{\footnotesize\ttfamily EGE\+::\+Sound\+::\+Sound\+::\texorpdfstring{$\sim$}{\string~}\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Sound_1_1Sound}{Sound} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Sound_a2971622e5d75a124774102075fdb77f1}\label{classEGE_1_1Sound_1_1Sound_a2971622e5d75a124774102075fdb77f1} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!pause@{pause}}
+\index{pause@{pause}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Sound\+::pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pauses the sound. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Sound_a18db1cdd131902fa87bacff6bc37e4fb}\label{classEGE_1_1Sound_1_1Sound_a18db1cdd131902fa87bacff6bc37e4fb} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!play@{play}}
+\index{play@{play}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Sound\+::play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Plays the sound. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Sound_ac3844311dc5b422641597fbeaa7f0500}\label{classEGE_1_1Sound_1_1Sound_ac3844311dc5b422641597fbeaa7f0500} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!replay@{replay}}
+\index{replay@{replay}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{replay()}{replay()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Sound\+::replay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Restarts the sound from the beginning. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Sound_a5b1fc14b880c63cbb9504a62b980a79d}\label{classEGE_1_1Sound_1_1Sound_a5b1fc14b880c63cbb9504a62b980a79d} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!stop@{stop}}
+\index{stop@{stop}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Sound\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stops the sound. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Sound_afe0912844cb7aa97f428c9247da0d36a}\label{classEGE_1_1Sound_1_1Sound_afe0912844cb7aa97f428c9247da0d36a} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!\_buffer@{\_buffer}}
+\index{\_buffer@{\_buffer}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\_buffer}{\_buffer}}
+{\footnotesize\ttfamily ALuint EGE\+::\+Sound\+::\+Sound\+::\+\_\+buffer\hspace{0.3cm}{\ttfamily [protected]}}
+
+Open\+AL buffer ID \Hypertarget{classEGE_1_1Sound_1_1Sound_a003295e97795f82a833874393d7a2b03}\label{classEGE_1_1Sound_1_1Sound_a003295e97795f82a833874393d7a2b03} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!\_mp3@{\_mp3}}
+\index{\_mp3@{\_mp3}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\_mp3}{\_mp3}}
+{\footnotesize\ttfamily drmp3 EGE\+::\+Sound\+::\+Sound\+::\+\_\+mp3\hspace{0.3cm}{\ttfamily [protected]}}
+
+MP3 file object \Hypertarget{classEGE_1_1Sound_1_1Sound_a989ed1d36bc70a115ad6e3a57ffd2939}\label{classEGE_1_1Sound_1_1Sound_a989ed1d36bc70a115ad6e3a57ffd2939} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!\_path@{\_path}}
+\index{\_path@{\_path}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\_path}{\_path}}
+{\footnotesize\ttfamily std\+::string EGE\+::\+Sound\+::\+Sound\+::\+\_\+path\hspace{0.3cm}{\ttfamily [protected]}}
+
+Path to the sound file \Hypertarget{classEGE_1_1Sound_1_1Sound_a87c3380d70d1f4284ef9750698558bbb}\label{classEGE_1_1Sound_1_1Sound_a87c3380d70d1f4284ef9750698558bbb} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!\_source@{\_source}}
+\index{\_source@{\_source}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\_source}{\_source}}
+{\footnotesize\ttfamily ALuint EGE\+::\+Sound\+::\+Sound\+::\+\_\+source\hspace{0.3cm}{\ttfamily [protected]}}
+
+Open\+AL source ID \Hypertarget{classEGE_1_1Sound_1_1Sound_ad8cd5dd22c5c3890b8bf6b80922c27be}\label{classEGE_1_1Sound_1_1Sound_ad8cd5dd22c5c3890b8bf6b80922c27be} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!\_stream@{\_stream}}
+\index{\_stream@{\_stream}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\_stream}{\_stream}}
+{\footnotesize\ttfamily std\+::thread EGE\+::\+Sound\+::\+Sound\+::\+\_\+stream\hspace{0.3cm}{\ttfamily [protected]}}
+
+Thread for streaming sound data \Hypertarget{classEGE_1_1Sound_1_1Sound_a1e3c7cd52bcb903d8a0815ae0dadd4f9}\label{classEGE_1_1Sound_1_1Sound_a1e3c7cd52bcb903d8a0815ae0dadd4f9} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!\_type@{\_type}}
+\index{\_type@{\_type}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\_type}{\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{File\+Type}} EGE\+::\+Sound\+::\+Sound\+::\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
+
+Type of the sound file \Hypertarget{classEGE_1_1Sound_1_1Sound_ac3a3c7568e471a7d082b95742c887f3e}\label{classEGE_1_1Sound_1_1Sound_ac3a3c7568e471a7d082b95742c887f3e} 
+\index{EGE::Sound::Sound@{EGE::Sound::Sound}!\_wav@{\_wav}}
+\index{\_wav@{\_wav}!EGE::Sound::Sound@{EGE::Sound::Sound}}
+\doxysubsubsection{\texorpdfstring{\_wav}{\_wav}}
+{\footnotesize\ttfamily drwav EGE\+::\+Sound\+::\+Sound\+::\+\_\+wav\hspace{0.3cm}{\ttfamily [protected]}}
+
+WAV file object 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+Sound/\mbox{\hyperlink{Sound_8hpp}{Sound.\+hpp}}\end{DoxyCompactItemize}
