@@ -21,7 +21,7 @@ jobs:
          sudo apt-get -y install g++ cmake build-essential libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew-dev libjpeg-dev libsndfile1-dev libopenal-dev
     - name: Install OpenGL deps
       run: |
-        sudo apt-get install libgl-dev libglfw3-dev libglm-dev
+        sudo apt-get install libgl-dev libglfw3-dev libglm-dev libassimp-dev
     - name: Install Python
       run: |
         sudo apt-get install python3 python3-pip
