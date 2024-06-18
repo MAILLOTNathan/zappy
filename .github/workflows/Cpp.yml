@@ -43,8 +43,11 @@ jobs:
       - run: |
           cd "$(pwd)/server"
           check.sh $(pwd) $(pwd)
-      - run: cat coding-style-reports.log
       - run: |
+          cd "$(pwd)/server"
+          cat coding-style-reports.log
+      - run: |
+          cd "$(pwd)/server"
           if [ -s coding-style-reports.log ]
           then
             echo "::group::Annotation"
