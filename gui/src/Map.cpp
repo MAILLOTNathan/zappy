@@ -64,7 +64,10 @@ void Onyx::Map::createMap(const EGE::Maths::Vector2<int>& size)
 
 void Onyx::Map::addItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type, int number)
 {
-    this->_floor[this->_size.x * position.y + position.x]->addItem(type, number);
+    int index = this->_size.x * position.y + position.x;
+    if (this->_floor.size() <= index || this->_floor[index] == nullptr)
+        throw EGE::Error("The map has failed to initialize. Restart the game.");
+    this->_floor[index]->addItem(type, number);
 }
 
 void Onyx::Map::removeItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type)

@@ -101,4 +101,10 @@ void Onyx::Animator::setTimeUnit(float timeUnit)
     if (timeUnit < 0.0f)
         throw EGE::Movement::MovementError("Time unit cannot be negative");
     this->_timeUnit = timeUnit;
+    for (auto& animation : this->_animations) {
+        animation.time = 7000 / this->_timeUnit;
+    }
+    for (auto& animation : this->_queuedAnimations) {
+        animation.time = 7000 / this->_timeUnit;
+    }
 }

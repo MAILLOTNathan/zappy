@@ -90,17 +90,17 @@ void net::TcpClient::addCommand(const std::string& command, net::type_command_t 
 #ifndef VR
 void net::TcpClient::_readAll()
 {
-    char buffer[100000] = {0};
+    char buffer[1025] = {0};
     std::string response;
     ssize_t valread;
 
     do {
-        valread = recv(this->_fd, buffer, 100000, 0);
+        valread = recv(this->_fd, buffer, 1024, 0);
         if (valread == 0)
             break;
         response += buffer;
-        std::memset(buffer, 0, 100000);
-    } while (valread == 100000);
+        std::memset(buffer, 0, 1025);
+    } while (valread == 1024);
 
     this->_buffer += response;
 }
@@ -138,6 +138,11 @@ void net::TcpClient::_evalCommand()
             throw net::TcpClientError("Dead");
         }
         args = Utils::split(command, ' ');
+        std::cout << "got command: ";
+        for (const auto& arg : args) {
+            std::cout << "|" << arg << "| ";
+        }
+        std::cout << std::endl;
         this->_manager.getCommand(args[0]) ? this->_manager.getCommand(args[0])->exec(args) : void();
     }
 }
