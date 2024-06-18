@@ -121,14 +121,14 @@ namespace net {
             int getPort() const;
 
         protected:
-            std::string _ip; /**< The IP address of the server. */
-            int _port; /**< The port number of the server. */
-            int _fd; /**< The file descriptor associated with the TCP client. */
-            struct sockaddr_in _serv_addr; /**< The server address structure. */
-            TcpManagerCmd _manager; /**< The command manager for the TCP client. */
-            fd_set _readfds; /**< The file descriptor set for the select operation. */
-            std::string _buffer; /**< The buffer for storing received data. */
-            fd_set _writefds; /**< The file descriptor set for the select operation. */
+            std::string _ip;                    /**< The IP address of the server. */
+            int _port;                          /**< The port number of the server. */
+            int _fd;                            /**< The file descriptor associated with the TCP client. */
+            struct sockaddr_in _serv_addr;      /**< The server address structure. */
+            TcpManagerCmd _manager;             /**< The command manager for the TCP client. */
+            fd_set _readfds;                    /**< The file descriptor set for the select operation. */
+            std::string _buffer;                /**< The buffer for storing received data. */
+            fd_set _writefds;                   /**< The file descriptor set for the select operation. */
 
         private:
             /**

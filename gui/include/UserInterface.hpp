@@ -41,6 +41,6 @@ class UserInterface : public EGE::GUIManager {
         EGE::Sound::Playlist *getPlaylist();
 
     protected:
-        EGE::Sound::Device *_soundDevice; /**< The sound device. */
-        EGE::Sound::Playlist *_playlist; /**< The playlist. */
+        EGE::Sound::Device *_soundDevice;   /**< The sound device. */
+        EGE::Sound::Playlist *_playlist;    /**< The playlist. */
 };

@@ -79,10 +79,7 @@ namespace net {
             void exec(std::vector<std::string>& args);
 
         protected:
-            /**
-             * @brief The type of the command.
-             */
-            type_command_t _type;
+            type_command_t _type;       ///< The type of the command.
 
             /**
              * @brief A callable object that can hold and invoke a function with the signature:
