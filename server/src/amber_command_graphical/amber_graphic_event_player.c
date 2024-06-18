@@ -29,7 +29,7 @@ void amber_event_pnw(amber_client_t *client, list_t *clients_gra)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pnw #%d %d %d %c %d %s\n",
+        snprintfizer(gra, "pnw #%d %d %d %c %d %s",
         client->_id, client->_x, client->_y, get_direction(client->_direction),
         client->_level, client->_team_name);
         tmp = tmp->next;
@@ -43,7 +43,7 @@ void amber_event_pex(amber_client_t *client, list_t *clients_gra)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pex #%d\n", client->_id);
+        snprintfizer(gra, "pex #%d", client->_id);
         tmp = tmp->next;
     }
 }
@@ -55,7 +55,7 @@ void amber_event_pbc(amber_client_t *client, list_t *clients_gra)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pbc #%d %s\n", client->_id,
+        snprintfizer(gra, "pbc #%d %s", client->_id,
             client->_queue_command->_command->_arg);
         tmp = tmp->next;
     }
@@ -68,7 +68,7 @@ void amber_event_idmoved(amber_client_t *client, list_t *clients_gra, char c)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "idm %d %c\n", client->_id, c);
+        snprintfizer(gra, "idm %d %c", client->_id, c);
         tmp = tmp->next;
     }
 }

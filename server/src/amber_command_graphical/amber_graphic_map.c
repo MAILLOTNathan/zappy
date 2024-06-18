@@ -18,7 +18,7 @@ void amber_graphic_bct(amber_client_t *client, UNUSED char **arg)
     char *str = NULL;
 
     if (length_string_array(arg) != 3) {
-        dprintf(client->_tcp._fd, "sbp bct\n");
+        snprintfizer(client, "sbp bct");
         return;
     }
     str = strdup(arg[1]);
@@ -41,7 +41,7 @@ void amber_graphic_sgt(amber_client_t *client, UNUSED char **arg)
 void amber_graphic_sst(amber_client_t *client, char **arg)
 {
     if (length_string_array(arg) != 2) {
-        dprintf(client->_tcp._fd, "sbp sst\n");
+        snprintfizer(client, "sbp sst");
         return;
     }
     queue_push_back_d(&client->_queue_command, strdup(arg[1]), 0, T_SST);

@@ -14,7 +14,7 @@ void amber_send_egg_on_connection(amber_client_t *client, list_t *egg)
 
     while (tmp) {
         egg_tmp = (egg_t *)tmp->data;
-        dprintf(client->_tcp._fd, "enw #%d #-1 %d %d\n", egg_tmp->_id,
+        snprintfizer(client, "enw #%d #-1 %d %d", egg_tmp->_id,
             egg_tmp->_x, egg_tmp->_y);
         tmp = tmp->next;
     }
@@ -27,7 +27,7 @@ void amber_event_enw(amber_client_t *client, list_t *gra_client, int id_egg)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "enw #%d #%d %d %d\n", id_egg, client->_id,
+        snprintfizer(gra, "enw #%d #%d %d %d", id_egg, client->_id,
             client->_x, client->_y);
         tmp = tmp->next;
     }
@@ -40,7 +40,7 @@ void amber_event_edi(list_t *gra_client, egg_t *egg)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "edi #%d\n", egg->_id);
+        snprintfizer(gra, "edi #%d", egg->_id);
         tmp = tmp->next;
     }
 }

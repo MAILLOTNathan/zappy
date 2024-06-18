@@ -26,7 +26,7 @@ void amber_graphic_execute_tna(UNUSED command_t *cmd, amber_client_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
     for (int i = 0; world->_teams_name[i]; i++) {
-        dprintf(client->_tcp._fd, "tna %s\n", world->_teams_name[i]);
+        snprintfizer(client, "tna %s", world->_teams_name[i]);
     }
 }
 
@@ -37,10 +37,10 @@ void amber_graphic_execute_ppo(command_t *cmd, amber_client_t *client,
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp ppo\n");
+        snprintfizer(client, "sbp ppo");
         return;
     }
-    dprintf(client->_tcp._fd, "ppo #%d %d %d %c\n", tmp->_id, tmp->_x, tmp->_y,
+    snprintfizer(client, "ppo #%d %d %d %c", tmp->_id, tmp->_x, tmp->_y,
         get_direction(tmp->_direction));
 }
 
@@ -51,10 +51,10 @@ void amber_graphic_execute_plv(command_t *cmd, amber_client_t *client,
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp plv\n");
+        snprintfizer(client, "sbp plv");
         return;
     }
-    dprintf(client->_tcp._fd, "plv #%d %d\n", tmp->_id, tmp->_level);
+    snprintfizer(client, "plv #%d %d", tmp->_id, tmp->_level);
 }
 
 void amber_graphic_execute_pin(command_t *cmd, amber_client_t *client,
@@ -64,10 +64,11 @@ void amber_graphic_execute_pin(command_t *cmd, amber_client_t *client,
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp pin\n");
+        snprintfizer(client, "sbp pin");
         return;
     }
-    dprintf(client->_tcp._fd, "pin #%d %d %d %d %d %d %d %d %d %d\n", tmp->_id,
+    snprintfizer(client, "pin #%d %d %d %d %d %d %d %d %d %d",
+        tmp->_id,
         tmp->_x, tmp->_y, tmp->_inventory->_food, tmp->_inventory->_linemate,
         tmp->_inventory->_deraumere, tmp->_inventory->_sibur,
         tmp->_inventory->_mendiane, tmp->_inventory->_phiras,

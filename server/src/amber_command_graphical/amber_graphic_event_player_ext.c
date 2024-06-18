@@ -34,7 +34,7 @@ void amber_event_pie(amber_client_t *client, list_t *clients_gra, bool success)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pie #%d %d %s\n", client->_x, client->_y,
+        snprintfizer(gra, "pie #%d %d %s", client->_x, client->_y,
             message);
         tmp = tmp->next;
     }
@@ -47,7 +47,7 @@ void amber_event_pdi(amber_client_t *client, list_t *clients_gra)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pdi #%d\n", client->_id);
+        snprintfizer(gra, "pdi #%d", client->_id);
         tmp = tmp->next;
     }
 }
@@ -60,7 +60,7 @@ void amber_event_pgt(amber_client_t *client, list_t *clients_gra,
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pgt #%d %d\n", client->_id,
+        snprintfizer(gra, "pgt #%d %d", client->_id,
         get_id_ressource(ressource));
         tmp = tmp->next;
     }
@@ -74,7 +74,7 @@ void amber_event_pdr(amber_client_t *client, list_t *clients_gra,
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pdr #%d %d\n", client->_id,
+        snprintfizer(gra, "pdr #%d %d", client->_id,
         get_id_ressource(ressource));
         tmp = tmp->next;
     }
@@ -87,7 +87,7 @@ void amber_event_pfk(amber_client_t *client, amber_serv_t *serv)
 
     while (tmp) {
         cli = (amber_client_t *)tmp->data;
-        dprintf(cli->_tcp._fd, "pfk #%d\n", client->_id);
+        snprintfizer(cli, "pfk #%d", client->_id);
         tmp = tmp->next;
     }
 }

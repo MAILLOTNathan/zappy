@@ -51,7 +51,7 @@ static void send_graphical_players(amber_client_t *gra, list_t *client_ai)
         client = (amber_client_t *)tmp->data;
         if (client->_team_name == NULL)
             continue;
-        dprintf(gra->_tcp._fd, "pnw #%d %d %d %c %d %s\n", client->_id,
+        snprintfizer(gra, "pnw #%d %d %d %c %d %s", client->_id,
         client->_x, client->_y, get_direction(client->_direction),
         client->_level, client->_team_name);
     }
