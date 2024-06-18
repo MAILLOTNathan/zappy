@@ -13,7 +13,7 @@ Onyx::Floor::Floor(const EGE::Maths::Vector2<int>& position)
 {
     this->_pos = position;
     this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 0, position.y * CELL_SIZE);
-    this->_model = std::make_shared<EGE::Model>("./assets/models/floor/floor.obj", this->_position, EGE::Maths::Vector3<float>(1.0f, 1.0f, 1.0f));
+    this->_model = std::make_shared<EGE::Model>("./assets/models/floor/floor.obj", this->_position, EGE::Maths::Vector3<float>(0.0f, 0.0f, 0.0f), EGE::Maths::Vector3<float>(CELL_SIZE / 3.0f, 1.0f, CELL_SIZE / 3.0f));
     memset(this->_quantity, 0, sizeof(this->_quantity));
     if (Onyx::Floor::_items.empty()) {
         Onyx::Floor::_items.push_back(std::make_shared<Onyx::Item>(EGE::Maths::Vector2<int>(0, 0), Onyx::Item::TYPE::FOOD));

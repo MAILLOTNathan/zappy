@@ -10,7 +10,6 @@
 
     #include <iostream>
     #include <sys/socket.h>
-    #include <netinet/in.h>
     #include <arpa/inet.h>
     #include <unistd.h>
     #include <string>
@@ -18,7 +17,6 @@
     #include <array>
     #include <cstring>
     #include "Error.hpp"
-    #include "TcpCommand.hpp"
     #include "TcpManagerCmd.hpp"
 
     #define COMMAND_VALIDE

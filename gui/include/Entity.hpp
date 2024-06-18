@@ -57,6 +57,8 @@ namespace Onyx {
              * @return A shared pointer to the EGE::Model object representing the entity's model.
              */
             virtual std::shared_ptr<EGE::Model> getModel();
+
+            bool intersects(const glm::vec3& rayOrigin, const glm::vec3& rayPosition, float& t, float& u, float& v);
         protected:
             std::shared_ptr<EGE::Model> _model; /**< The model used for rendering the entity. */
             EGE::Maths::Vector3<float> _position; /**< The position of the entity in 3D space. */

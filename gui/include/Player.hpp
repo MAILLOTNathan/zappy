@@ -83,9 +83,10 @@ namespace Onyx {
              * @param teamName The name of the team the player belongs to.
              * @param position The position of the player.
              * @param rotation The rotation of the player.
+             * @param level The level of the player.
              * @param timeUnit The time unit of the player.
              */
-            Player(int id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, float timeUnit);
+            Player(int id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, int levev, float timeUnit);
 
             /**
              * @brief Destructor for the Player object.

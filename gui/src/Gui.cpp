@@ -7,6 +7,8 @@
 
 #include "Gui.hpp"
 
+float speed = 4.0f;
+
 Onyx::Gui::Gui(net::TcpClient client)
 {
     this->_window = std::make_shared<EGE::Window>("Onyx", EGE::Maths::Vector2<int>(1920, 1080), EGE::Window::Styles::Close & EGE::Window::Styles::Titlebar);
@@ -31,22 +33,22 @@ Onyx::Gui::Gui(net::TcpClient client)
     this->_client = &client;
     this->_teams = {};
     this->_animator = Onyx::Animator();
+    this->_map = std::make_shared<Onyx::Map>();
+    this->_entities.push_back(this->_map);
 }
 
 Onyx::Gui::~Gui()
 {
-    this->_window->close();
 }
 
 void Onyx::Gui::createMap(int width, int height)
 {
-    this->_map = std::make_shared<Onyx::Map>(EGE::Maths::Vector2(width, height));
-    this->_entities.push_back(this->_map);
+    this->_map->createMap(EGE::Maths::Vector2<int>(width, height));
 }
 
-void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, float timeUnit)
+void Onyx::Gui::addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, int level, float timeUnit)
 {
-    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation, timeUnit));
+    this->_players.push_back(std::make_shared<Onyx::Player>(id, teamName, position, rotation, level, timeUnit));
 }
 
 void Onyx::Gui::update()
@@ -73,13 +75,15 @@ void Onyx::Gui::update()
     }
     if (this->_timeUnit < 100.0f)
         this->_animator.update(this->_deltaTime);
-    for (const auto& player : this->_players) {
+    for (auto& player : this->_players) {
         player->update(this->_shader);
+        this->updatePlayerPanel(player);
     }
     this->_interface->display();
     this->_window->display();
     if (!this->_window->isOpen())
         this->_running = false;
+    this->_client->sendRequest("mct\n");
 }
 
 bool Onyx::Gui::isRunning() const
@@ -90,9 +94,19 @@ bool Onyx::Gui::isRunning() const
 void Onyx::Gui::loop()
 {
     this->_client->addCommand("msz", net::type_command_t::MSZ, [this](std::vector<std::string>& args) {
-        std::cout << "MSZ passed" << std::endl;
         if (args.size() != 3)
             throw EGE::Error("[MSZ] Wrong number of param.");
+        int x, y;
+        try {
+            x = std::stoi(args[1]);
+        } catch (const std::exception& e) {
+            std::cout << "[MSZ] Invalid x size : |" << args[1] << "|" <<  std::endl;
+        }
+        try {
+            y = std::stoi(args[2]);
+        } catch (const std::exception& e) {
+            std::cout << "[MSZ] Invalid y size : |" << args[1] << "|" <<  std::endl;
+        }
         this->createMap(std::stoi(args[1]), std::stoi(args[2]));
         this->createWorldPanel();
         this->createTilePanel();
@@ -101,8 +115,44 @@ void Onyx::Gui::loop()
         this->updateConsolePanel(args);
     });
 
+    this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
+        if (args.size() != 10)
+            throw EGE::Error("[BCT] Wrong number of param.");
+        int x, y;
+        try {
+            x = std::stoi(args[1]);
+        } catch (const std::exception& e) {
+            std::cout << "[BCT] Invalid x position : |" << args[1] << "|" <<  std::endl;
+        }
+        try {
+            y = std::stoi(args[2]);
+        } catch (const std::exception& e) {
+            std::cout << "[BCT] Invalid y position : |" << args[1] << "|" <<  std::endl;
+        }
+        EGE::Maths::Vector2<int> position(x, y);
+        this->_map->addItem(position, Onyx::Item::TYPE::FOOD, std::stoi(args[3]));
+        this->_map->addItem(position, Onyx::Item::TYPE::LINEMATE, std::stoi(args[4]));
+        this->_map->addItem(position, Onyx::Item::TYPE::DERAUMERE, std::stoi(args[5]));
+        this->_map->addItem(position, Onyx::Item::TYPE::SIBUR, std::stoi(args[6]));
+        this->_map->addItem(position, Onyx::Item::TYPE::MENDIANE, std::stoi(args[7]));
+        this->_map->addItem(position, Onyx::Item::TYPE::PHIRAS, std::stoi(args[8]));
+        this->_map->addItem(position, Onyx::Item::TYPE::THYSTAME, std::stoi(args[9]));
+        this->updateWorldPanel();
+        this->updateTilePanel();
+        this->updateConsolePanel(args);
+    });
+
+    this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[TNA] Wrong number of param.");
+        args.erase(args.begin());
+        for (auto &teams: args) {
+            this->_teams.push_back(teams);
+        }
+        this->updateWorldPanel();
+    });
+
     this->_client->addCommand("pnw", net::type_command_t::PNW, [this](std::vector<std::string>& args) {
-        std::cout << "PNW passed" << std::endl;
         if (args.size() != 7)
             throw EGE::Error("[PNW] Wrong number of param.");
         // 1: player id (need to remove the #)
@@ -133,62 +183,16 @@ void Onyx::Gui::loop()
             throw EGE::Error("[PNW] Invalid level received : |" + args[5] + "|.");
         }
 
-        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], this->_timeUnit);
+        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], level, this->_timeUnit);
         for (auto &player : this->_players) {
             this->_client->sendRequest("pin #" + std::to_string(player->getId()) + "\n");
         }
         this->updateWorldPanel();
     });
 
-    this->_client->addCommand("bct", net::type_command_t::MCT, [this](std::vector<std::string>& args) {
-        std::cout << "BCT passed" << std::endl;
-        if (args.size() != 10)
-            throw EGE::Error("[BCT] Wrong number of param.");
-        EGE::Maths::Vector2<int> position(std::stoi(args[1]), std::stoi(args[2]));
-        this->_map->addItem(position, Onyx::Item::TYPE::FOOD, std::stoi(args[3]));
-        this->_map->addItem(position, Onyx::Item::TYPE::LINEMATE, std::stoi(args[4]));
-        this->_map->addItem(position, Onyx::Item::TYPE::DERAUMERE, std::stoi(args[5]));
-        this->_map->addItem(position, Onyx::Item::TYPE::SIBUR, std::stoi(args[6]));
-        this->_map->addItem(position, Onyx::Item::TYPE::MENDIANE, std::stoi(args[7]));
-        this->_map->addItem(position, Onyx::Item::TYPE::PHIRAS, std::stoi(args[8]));
-        this->_map->addItem(position, Onyx::Item::TYPE::THYSTAME, std::stoi(args[9]));
-        this->updateWorldPanel();
-        this->updateTilePanel();
-        this->updateConsolePanel(args);
-    });
-
-    this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
-        std::cout << "SGT passed" << std::endl;
-        if (args.size() != 2)
-            throw EGE::Error("[SGT] Wrong number of param.");
-        this->updateWorldSettings(std::stof(args[1]));
-    });
-
-    this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
-        std::cout << "IDM passed" << std::endl;
-        if (args.size() != 3)
-            throw EGE::Error("[IDM] Wrong number of param.");
-        for (const auto& arg : args)
-            std::cout << arg << std::endl;
-        int id = std::stoi(args[1]);
-        switch (args[2][0]) {
-            case 'F':
-            case 'L':
-            case 'R':
-                this->_client->sendRequest("ppo #" + args[1] + "\n");
-                break;
-            default:
-                throw EGE::Error("[IDM] Invalid change received : |" + args[2] + "|.");
-                break;
-        }
-    });
-
     this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args) {
-        std::cout << "PPO passed" << std::endl;
         if (args.size() != 5)
             throw EGE::Error("[PPO] Wrong number of param.");
-        for (const auto& arg : args)
-            std::cout << arg << std::endl;
         int id, x, y;
         std::string rotation = args[4];
         EGE::Maths::Vector2<int> pos;
@@ -211,93 +215,98 @@ void Onyx::Gui::loop()
             throw EGE::Error("[PPO] Invalid rotation : |" + rotation + "|.");
         for (auto& player : this->_players) {
             if (player->getId() == id) {
-                pos = player->getPos();
-                player->setPos(pos);
-                Onyx::Player::Animation animation = Onyx::Player::Animation::NONE;
-                if (pos.x != x || pos.y != y) {
-                    std::cout << "detected movement" << std::endl;
-                    std::string rstring = player->getRotationString();
-                    if (rstring == "N") {
-                        std::cout << "moving to north" << std::endl;
-                        animation = Onyx::Player::Animation::FORWARD_NORTH;
-                        std::cout << "got north : " << player->getRotationString() << std::endl;
-                    } else if (rstring == "E") {
-                        std::cout << "moving to east" << std::endl;
-                        animation = Onyx::Player::Animation::FORWARD_EAST;
-                        std::cout << "got east : " << player->getRotationString() << std::endl;
-                    } else if (rstring == "S") {
-                        std::cout << "moving to south" << std::endl;
-                        animation = Onyx::Player::Animation::FORWARD_SOUTH;
-                        std::cout << "got south : " << player->getRotationString() << std::endl;
-                    } else if (rstring == "W") {
-                        std::cout << "moving to west" << std::endl;
-                        animation = Onyx::Player::Animation::FORWARD_WEST;
-                        std::cout << "got west : " << player->getRotationString() << std::endl;
-                    } else {
-                        std::cout << "default from movement switch" << std::endl;
+                if (this->_timeUnit < 100.0f) {
+                    pos = player->getPos();
+                    player->setPos(pos);
+                    Onyx::Player::Animation animation = Onyx::Player::Animation::NONE;
+                    if (pos.x != x || pos.y != y) {
+                        std::string rstring = player->getRotationString();
+                        if (rstring == "N") {
+                            animation = Onyx::Player::Animation::FORWARD_NORTH;
+                        } else if (rstring == "E") {
+                            animation = Onyx::Player::Animation::FORWARD_EAST;
+                        } else if (rstring == "S") {
+                            animation = Onyx::Player::Animation::FORWARD_SOUTH;
+                        } else if (rstring == "W") {
+                            animation = Onyx::Player::Animation::FORWARD_WEST;
+                        }
+                    } else if (rotation != player->getRotationString()) {
+                        std::string rstring = player->getRotationString();
+                        if (rstring == "N") {
+                            if (rotation == "E") {
+                                animation = Onyx::Player::Animation::RIGHT;
+                            } else if (rotation == "W") {
+                                animation = Onyx::Player::Animation::LEFT;
+                            }
+                        } else if (rstring == "E") {
+                            if (rotation == "S") {
+                                animation = Onyx::Player::Animation::RIGHT;
+                            } else if (rotation == "N") {
+                                animation = Onyx::Player::Animation::LEFT;
+                            }
+                        } else if (rstring == "S") {
+                            if (rotation == "W") {
+                                animation = Onyx::Player::Animation::RIGHT;
+                            } else if (rotation == "E") {
+                                animation = Onyx::Player::Animation::LEFT;
+                            }
+                        } else if (rstring == "W") {
+                            if (rotation == "N") {
+                                animation = Onyx::Player::Animation::RIGHT;
+                            } else if (rotation == "S") {
+                                animation = Onyx::Player::Animation::LEFT;
+                            }
+                        }
                     }
+                    if (animation == Onyx::Player::Animation::NONE) {
+                        player->setPos(EGE::Maths::Vector2<int>(x, y));
+                        player->setRotationString(rotation);
+                    }
+                    this->_animator.startAnimation(player, animation, [&player, x, y, rotation]() {
+                        player->setPos(EGE::Maths::Vector2<int>(x, y));
+                        player->setRotationString(rotation);
+                    });
                 } else {
-                    std::cout << "detected rotation" << std::endl;
-                    std::string rstring = player->getRotationString();
-                    if (rstring == "N") {
-                        std::cout << "rotating from north";
-                        if (rotation == "E") {
-                            animation = Onyx::Player::Animation::RIGHT;
-                            std::cout << " to east";
-                        } else if (rotation == "W") {
-                            animation = Onyx::Player::Animation::LEFT;
-                            std::cout << " to west";
-                        }
-                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
-                    } else if (rstring == "E") {
-                        std::cout << "rotating from east";
-                        if (rotation == "S") {
-                            animation = Onyx::Player::Animation::RIGHT;
-                            std::cout << " to south";
-                        } else if (rotation == "N") {
-                            animation = Onyx::Player::Animation::LEFT;
-                            std::cout << " to north";
-                        }
-                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
-                    } else if (rstring == "S") {
-                        std::cout << "rotating from south";
-                        if (rotation == "W") {
-                            animation = Onyx::Player::Animation::RIGHT;
-                            std::cout << " to west";
-                        } else if (rotation == "E") {
-                            animation = Onyx::Player::Animation::LEFT;
-                            std::cout << " to east";
-                        }
-                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
-                    } else if (rstring == "W") {
-                        std::cout << "rotating from west";
-                        if (rotation == "N") {
-                            animation = Onyx::Player::Animation::RIGHT;
-                            std::cout << " to north";
-                        } else if (rotation == "S") {
-                            animation = Onyx::Player::Animation::LEFT;
-                            std::cout << " to south";
-                        }
-                        std::cout << " (with given rotation : " << rotation << ")" << std::endl;
-                    } else {
-                        std::cout << "default from rotation switch" << std::endl;
-                    }
-                }
-                std::cout << "final animation : " << Onyx::Player::getAnimationString(animation) << std::endl;
-                player->setRotationString(rotation);
-                player->setPos(EGE::Maths::Vector2<int>(x, y));
-                this->_animator.startAnimation(player, animation, [&player, x, y]() {
                     player->setPos(EGE::Maths::Vector2<int>(x, y));
-                });
+                    player->setRotationString(rotation);
+                }
+            }
+        }
+    });
+
+    this->_client->addCommand("plv", net::type_command_t::PLV, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("[PLV] Wrong number of param.");
+        int id = 0;
+        int level = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PLV] Invalid id received : |" + args[1] + "|.");
+        }
+        try {
+            level = std::stoi(args[2]);
+        } catch (std::exception &e) {
+            throw EGE::Error("[PLV] Invalid level received : |" + args[2] + "|.");
+        }
+        for (auto &player : this->_players) {
+            if (player->getId() == id) {
+                std::cout << "set player " << id << " to level " << level << std::endl;
+                player->setLevel(level);
+                this->updatePlayerPanel(player);
             }
         }
     });
 
     this->_client->addCommand("pin", net::type_command_t::PIN, [this](std::vector<std::string>& args) {
-        std::cout << "PIN passed" << std::endl;
         if (args.size() != 11)
             throw EGE::Error("[PIN] Wrong number of param.");
-        int id = std::stoi(args[1].erase(0, 1));
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PIN] Invalid id received : |" + args[1] + "|.");
+        }
         for (auto &player : this->_players) {
             if (player->getId() == id) {
                 player->setInventory(std::stoi(args[4]), Onyx::Item::TYPE::FOOD);
@@ -310,58 +319,257 @@ void Onyx::Gui::loop()
             }
         }
         for (auto &player : this->_players) {
-            if (player->getId() == std::stoi(args[1])) {
+            if (player->getId() == id) {
                 this->updatePlayerPanel(player);
             }
         }
     });
+
     this->_client->addCommand("pex", net::type_command_t::PEX, [this](std::vector<std::string>& args) {
         if (args.size() != 2)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[PEX] Wrong number of param.");
         int id = 0;
         try {
             id = std::stoi(args[1].substr(1));
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid id received in pex command : |" + args[1] + "|.");
-        }
-        for (auto &player : this->_players) {
-            // if (player->getId() == id)
+            throw EGE::Error("[PEX] Invalid id received : |" + args[1] + "|.");
         }
     });
-    this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
+
+    this->_client->addCommand("pbc", net::type_command_t::PBC, [this](std::vector<std::string>& args) {
+        if (args.size() != 2 && args.size() != 3)
+            throw EGE::Error("[PBC] Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PBC] Invalid id received : |" + args[1] + "|.");
+        }
+    });
+
+    this->_client->addCommand("pic", net::type_command_t::PIC, [this](std::vector<std::string>& args) {
+        if (args.size() < 5)
+            throw EGE::Error("[PIC] Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PIC] Invalid id received in : |" + args[1] + "|.");
+        }
+    });
+
+    this->_client->addCommand("pie", net::type_command_t::PIE, [this](std::vector<std::string>& args) {
+        if (args.size() != 4)
+            throw EGE::Error("[PIE] Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PIE] Invalid id received : |" + args[1] + "|.");
+        }
+    });
+
+    this->_client->addCommand("pfk", net::type_command_t::PFK, [this](std::vector<std::string>& args) {
         if (args.size() != 2)
-            throw EGE::Error("Wrong number of param.");
+            throw EGE::Error("[PFK] Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PFK] Invalid id received : |" + args[1] + "|.");
+        }
+        // do not manage this command
+    });
+
+    this->_client->addCommand("pdr", net::type_command_t::PDR, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("[PDR] Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PDR] Invalid id received : |" + args[1] + "|.");
+        }
+    });
+
+    this->_client->addCommand("pgt", net::type_command_t::PGT, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("[PGT] Wrong number of param.");
+        int id, i;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PGT] Invalid id received : |" + args[1] + "|.");
+        }
+        try {
+            i = std::stoi(args[2]);
+        } catch (std::exception &e) {
+            throw EGE::Error("[PGT] Invalid item received : |" + args[2] + "|.");
+        }
+        EGE::Maths::Vector2<int> pos;
+        for (auto &player : this->_players) {
+            if (player->getId() == id) {
+                pos = player->getPos();
+                this->_map->removeItem(pos, static_cast<Onyx::Item::TYPE>(i));
+                player->setInventory(1, Onyx::Item::TYPE::FOOD);
+                this->updatePlayerPanel(player);
+            }
+        }
+    });
+
+    this->_client->addCommand("pdi", net::type_command_t::PDI, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[PDI] Wrong number of param.");
+        int id = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PDI] Invalid id received : |" + args[1] + "|.");
+        }
+        for (auto &player : this->_players) {
+            if (player->getId() == id) {
+                this->_players.erase(std::remove(this->_players.begin(), this->_players.end(), player), this->_players.end());
+                break;
+            }
+        }
+    });
+
+    this->_client->addCommand("enw", net::type_command_t::ENW, [this](std::vector<std::string>& args) {
+        if (args.size() != 5)
+            throw EGE::Error("[ENW] Wrong number of param.");
+        int eggId = 0;
+        int id = 0;
+        int x = 0;
+        int y = 0;
+        try {
+            eggId = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid egg id received : |" + args[1] + "|.");
+        }
+        try {
+            id = std::stoi(args[2].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid id received : |" + args[2] + "|.");
+        }
+        try {
+            x = std::atoi(args[3].c_str());
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid x position received : |" + args[3] + "|.");
+        }
+        try {
+            y = std::atoi(args[4].c_str());
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid y position received : |" + args[4] + "|.");
+        }
+
+        this->_map->addEgg(EGE::Maths::Vector3<int>(x, y, eggId));
+    });
+
+    this->_client->addCommand("ebo", net::type_command_t::EBO, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[EBO] Wrong number of param.");
+        int eggId = 0;
+        try {
+            eggId = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[EBO] Invalid egg id received : |" + args[1] + "|.");
+        }
+        std::vector<EGE::Maths::Vector3<int>>& eggPos = this->_map->getEggPos();
+        std::erase_if(eggPos, [eggId](const EGE::Maths::Vector3<int>& pos) {
+            return pos.z == eggId;
+        });
+    });
+
+    this->_client->addCommand("edi" , net::type_command_t::EDI, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[EDI] Wrong number of param.");
+        int eggId = 0;
+        try {
+            eggId = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[EDI] Invalid egg id received : |" + args[1] + "|.");
+        }
+        std::vector<EGE::Maths::Vector3<int>>& eggPos = this->_map->getEggPos();
+        std::erase_if(eggPos, [eggId](const EGE::Maths::Vector3<int>& pos) {
+            return pos.z == eggId;
+        });
+    });
+
+     this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[SGT] Wrong number of param.");
         float timeUnit;
         try {
             timeUnit = std::stof(args[1]);
         } catch (std::exception &e) {
-            throw EGE::Error("Invalid time unit received in sgt command : |" + args[1] + "|.");
+            throw EGE::Error("[SGT] Invalid time unit received : |" + args[1] + "|.");
         }
-        std::cout << "Time unit received: " << timeUnit << std::endl;
         this->_timeUnit = timeUnit;
         this->_animator.setTimeUnit(timeUnit);
+        this->updateWorldSettings(timeUnit);
     });
 
-    this->_client->addCommand("tna", net::type_command_t::TNA, [this](std::vector<std::string>& args) {
-        std::cout << "TNA passed" << std::endl;
+    this->_client->addCommand("sst", net::type_command_t::SST, [this](std::vector<std::string>& args) {
         if (args.size() != 2)
-            throw EGE::Error("[TNA] Wrong number of param.");
-        args.erase(args.begin());
-        for (auto &teams: args) {
-            this->_teams.push_back(teams);
+            throw EGE::Error("[SST] Wrong number of param.");
+    });
+
+    this->_client->addCommand("seg", net::type_command_t::SEG, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[SEG] Wrong number of param.");
+        std::string winner;
+        try {
+            winner = args[1];
+        } catch (std::exception &e) {
+            throw EGE::Error("[SEG] Invalid winner received : |" + args[1] + "|.");
         }
-        this->updateWorldPanel();
+    });
+
+    this->_client->addCommand("smg", net::type_command_t::SMG, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[SMG] Wrong number of param.");
+        std::string message;
+        try {
+            message = args[1];
+        } catch (std::exception &e) {
+            throw EGE::Error("[SMG] Invalid message received : |" + args[1] + "|.");
+        }
+    });
+
+    this->_client->addCommand("suc", net::type_command_t::SUC, [this](std::vector<std::string>& args) {
+        // if (args.size() != 1)
+        //     throw EGE::Error("[SUC] Wrong number of param.");
+    });
+
+    this->_client->addCommand("sbp", net::type_command_t::SBP, [this](std::vector<std::string>& args) {
+        // if (args.size() != 1)
+        //     throw EGE::Error("[SBP] Wrong number of param.");
+    });
+
+    this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("[IDM] Wrong number of param.");
+        int id = std::stoi(args[1]);
+        switch (args[2][0]) {
+            case 'F':
+            case 'L':
+            case 'R':
+                this->_client->sendRequest("ppo #" + args[1] + "\n");
+            case 'I':
+                this->_client->sendRequest("plv #" + args[1] + "\n");
+                break;
+            default:
+                throw EGE::Error("[IDM] Invalid change received : |" + args[2] + "|.");
+                break;
+        }
     });
 
     this->_client->connection();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("msz\n");
-    this->_client->sendRequest("sgt\n");
     this->_client->sendRequest("mct\n");
-    this->_client->sendRequest("pnw\n");
-    this->_client->sendRequest("pin\n");
     this->_client->sendRequest("tna\n");
-    this->_client->sendRequest("ppo\n");
     this->_client->sendRequest("idm\n");
 
     while (this->isRunning()) {
@@ -407,8 +615,16 @@ void Onyx::Gui::_bindEvents()
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyE, EGE::Event::Mode::Pressed, [this]() {
         this->_camera->move(EGE::Camera::Movement::UP, this->_deltaTime);
     }));
-    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyC, EGE::Event::Mode::Pressed, [this]() {
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyC, EGE::Event::Mode::JustPressed, [this]() {
+        glfwSetCursorPos(this->_window->getWindow(), this->_window->getSize().x / 2, this->_window->getSize().y / 2);
         this->_cameraMode = !this->_cameraMode;
+        if (!this->_cameraMode)
+            this->_interface->show();
+    }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyI, EGE::Event::Mode::JustPressed, [this]() {
+        this->_interface->toggle();
+        if (!this->_interface->isVisible())
+            this->_cameraMode = true;
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyLShift, EGE::Event::Mode::JustPressed, [this]() {
         this->_camera->setSpeed(this->_camera->getSpeed() * 2);
@@ -417,10 +633,53 @@ void Onyx::Gui::_bindEvents()
         this->_camera->setSpeed(this->_camera->getSpeed() / 2);
     }));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyEscape, EGE::Event::Mode::JustPressed, [this]() {
-        this->_window->close();
+        exit(0);
     }));
+    // this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Keyboard, EGE::Event::Key::KeyF1, EGE::Event::Mode::JustPressed, [this]() {
+    //     this->_interface->toggle();
+    // }));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickLX, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::RIGHT, value * this->_deltaTime * speed);
+        else if (value < -0.1f)
+            this->_camera->move(EGE::Camera::Movement::LEFT, -value * this->_deltaTime * speed);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickLY, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::FORWARD, -value * this->_deltaTime * speed);
+        else if (value < -0.1f)
+            this->_camera->move(EGE::Camera::Movement::BACKWARD, value * this->_deltaTime * speed);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickRX, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->rotate(value * 1.5f, 0, true);
+        else if (value < -0.1f)
+            this->_camera->rotate(value * 1.5f, 0, true);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickRY, EGE::Event::Mode::Pressed, [this](float value) {
+        if (value > 0.1f)
+            this->_camera->rotate(0, -value * 1.5f, true);
+        else if (value < -0.1f)
+            this->_camera->rotate(0, -value * 1.5f, true);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickLT, EGE::Event::Mode::Pressed, [this](float value) {
+        value += 1.0f;
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::DOWN, value * this->_deltaTime);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickAxis, EGE::Event::JoystickAxis::JoystickRT, EGE::Event::Mode::Pressed, [this](float value) {
+        value += 1.0f;
+        if (value > 0.1f)
+            this->_camera->move(EGE::Camera::Movement::UP, value * this->_deltaTime);
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickButton, EGE::Event::JoystickButton::JoystickLThumb, EGE::Event::Mode::JustPressed, [this]() {
+        speed = 8.0f;
+    }, 0));
+    this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::JoystickButton, EGE::Event::JoystickButton::JoystickLThumb, EGE::Event::Mode::JustReleased, [this]() {
+        speed = 4.0f;
+    }, 0));
     this->_window->bindTrigger(EGE::Event::Trigger(EGE::Event::Mouse, EGE::Event::Mouse::MouseLeft, EGE::Event::Mode::JustPressed, [this]() {
-        this->_tileSelected = this->_map->getTileSelected(this->_camera->getPosition(), this->_camera->getFront(), this->_window->getMousePosition());
+        this->_tileSelected = this->_map->getTileSelected(this->_camera->getPosition(), this->_camera->_projection, this->_camera->_view);
         std::cout << "Tile selected: " << this->_tileSelected << std::endl;
         if (this->_tileSelected >= 0)
             this->updateTilePanel();
@@ -557,6 +816,8 @@ void Onyx::Gui::createPlayerPanel()
 
 void Onyx::Gui::updatePlayerPanel(std::shared_ptr<Onyx::Player> &player)
 {
+    if (this->_interface->_panels["Trantorian"] == nullptr)
+        this->createPlayerPanel();
     EGE::Text *team = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Team"));
     EGE::Text *level = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("Level"));
     EGE::Text *id = dynamic_cast<EGE::Text *>(this->_interface->_panels["Trantorian"]->get("ID"));
@@ -595,6 +856,8 @@ void Onyx::Gui::createTilePanel()
 
 void Onyx::Gui::updateTilePanel()
 {
+    if (this->_tileSelected < 0)
+        return;
     EGE::ListBox *content = dynamic_cast<EGE::ListBox *>(this->_interface->_panels["Content"]->get("Content"));
     Onyx::Floor *floor = this->_map->getFloor().at(this->_tileSelected).get();
 
@@ -633,7 +896,7 @@ void Onyx::Gui::updateSensitivities(float value)
 {
     EGE::Slider *sensivity = dynamic_cast<EGE::Slider *>(this->_interface->_panels["Camera settings"]->get("0 Sensivity"));
     sensivity->setValue(value);
-    this->_camera->setSpeed(value);
+    this->_camera->setSensitivity(value);
 }
 
 void Onyx::Gui::createMenuBar()
@@ -652,7 +915,7 @@ void Onyx::Gui::createMenuBar()
         else
             this->_interface->defaultMode();
         this->_interface->_panels["World settings"]->setVisible(false);
-        this->updateWorldSettings(frequ->getValue());
+        this->_client->sendRequest("sst " + std::to_string(frequ->getValue()) + "\n");
     });
 
     world->add(frequency, "0 Frequency");
@@ -668,17 +931,22 @@ void Onyx::Gui::createMenuBar()
 
     EGE::Panel *cam = new EGE::Panel("Camera settings");
     EGE::Slider *sensivity = new EGE::Slider("Sensivity", 1, 100);
-    sensivity->setValue(10);
+    sensivity->setValue(this->_camera->getSensitivity());
+    EGE::Slider *speed = new EGE::Slider("Speed", 1, 100);
+    speed->setValue(this->_camera->getSpeed());
     EGE::CheckBox *cinematicMode = new EGE::CheckBox("Cinematic mode");
     EGE::Button *camApply = new EGE::Button("Apply", [this] () {
-        EGE::Slider *sens = dynamic_cast<EGE::Slider *>(this->_interface->_panels["Camera settings"]->get("0 Sensivity"));
+        EGE::Slider *tmp = dynamic_cast<EGE::Slider *>(this->_interface->_panels["Camera settings"]->get("0 Sensivity"));
         this->_interface->_panels["Camera settings"]->setVisible(false);
-        this->updateSensitivities(sens->getValue());
+        this->updateSensitivities(tmp->getValue());
+        tmp = dynamic_cast<EGE::Slider *>(this->_interface->_panels["Camera settings"]->get("1 Speed"));
+        this->_camera->setSpeed(tmp->getValue());
     });
 
     cam->add(sensivity, "0 Sensivity");
-    cam->add(cinematicMode, "1 Cinematic mode");
-    cam->add(camApply, "2 Apply");
+    cam->add(speed, "1 Speed");
+    cam->add(cinematicMode, "2 Cinematic mode");
+    cam->add(camApply, "3 Apply");
     cam->setVisible(false);
     this->_interface->_panels["Camera settings"] = cam;
 

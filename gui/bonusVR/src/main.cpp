@@ -26,7 +26,7 @@ extern "C" void android_main(android_app *app) {
     EGE::UtilsVR::app = app;
     gMemoryIOSystem = new MemoryIOSystem();
     gMemoryIOSystem->setAssetManager(app->activity->assetManager);
-    GuiVR a(app);
+
     gMemoryIOSystem->addFile("models/floor/floor.obj");
     gMemoryIOSystem->addFile("models/floor/floor.mtl");
     gMemoryIOSystem->addFile("models/food/steak.obj");
@@ -43,10 +43,9 @@ extern "C" void android_main(android_app *app) {
     gMemoryIOSystem->addFile("models/items/5.mtl");
     gMemoryIOSystem->addFile("models/items/6.obj");
     gMemoryIOSystem->addFile("models/items/6.mtl");
-    __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Adding models");
-    a.createMap(10, 10);
+    gMemoryIOSystem->addFile("models/player/lvl1/lvl1.obj");
 
-    a._map->addItem(EGE::Maths::Vector2<int>(1,1), ItemVR::TYPE::FOOD, 1);
+    GuiVR a(app);
 
     while (a.isRunning()) {
         a.update();

@@ -32,6 +32,7 @@ Onyx::MainMenu::MainMenu(const std::string& ip, int port)
 
     this->createMainPanel();
     this->_interface->init(this->_window.get());
+    this->_interface->defaultMode();
 }
 
 Onyx::MainMenu::~MainMenu()
@@ -72,7 +73,7 @@ void Onyx::MainMenu::update()
     lastFrame = glfwGetTime();
     timer += this->_deltaTime;
     this->_window->pollEvents();
-    this->_window->clear(EGE::Color(0.0f, 1.0f, 0.0f, 1.0f));
+    this->_window->clear(EGE::Color(0.0f, 0.0f, 0.0f, 1.0f));
     this->_interface->clear();
     this->_interface->draw();
     this->_interface->display();

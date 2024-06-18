@@ -25,9 +25,7 @@ namespace Onyx {
     class Map : public Onyx::Entity {
         public:
             /**
-             * @brief Constructs a Map object with the specified size.
-             *
-             * @param size The size of the map.
+             * @brief Constructs a Map object with (1, 1) size.
              */
             Map();
 
@@ -49,6 +47,8 @@ namespace Onyx {
              * @param shader The shader used to update the map.
              */
             void update(std::shared_ptr<EGE::Shader> shader);
+
+            void createMap(const EGE::Maths::Vector2<int>& size);
 
             /**
              * @brief Adds an item to the map at the specified position.
@@ -84,22 +84,16 @@ namespace Onyx {
              */
             std::vector<std::shared_ptr<Floor>> getFloor() const;
 
-            /**
-             * @brief Gets the tile selected by the mouse on the map.
-             *
-             * This function takes the camera position, camera front direction, and mouse position as parameters
-             * and returns the index of the tile selected on the map.
-             *
-             * @param cameraPosition The position of the camera in 3D space.
-             * @param cameraFront The front direction of the camera.
-             * @param mousePos The position of the mouse on the screen.
-             * @return The index of the tile selected on the map.
-             */
-            int getTileSelected(EGE::Maths::Vector3<float> cameraPositon, EGE::Maths::Vector3<float> cameraFront, EGE::Maths::Vector2<int> mousePos);
+            int getTileSelected(const EGE::Maths::Vector3<float>& cameraPosition, const EGE::Maths::Matrix<4, 4, float>& projection, const EGE::Maths::Matrix<4, 4, float>& view);
 
+            void addEgg(EGE::Maths::Vector3<int> pos);
+
+            std::vector<EGE::Maths::Vector3<int>>& getEggPos();
         private:
             std::vector<std::shared_ptr<Floor>> _floor; /**< The collection of floor models in the map. */
             std::shared_ptr<EGE::Shader> _shader;       /**< The shader used to update the map. */
             EGE::Maths::Vector2<int> _size;             /**< The size of the map. */
+            std::shared_ptr<EGE::Model> _egg;           /**< The egg model. */
+            std::vector<EGE::Maths::Vector3<int>> _eggPos; /**< The positions of the egg models on the map. */
     };
 }
