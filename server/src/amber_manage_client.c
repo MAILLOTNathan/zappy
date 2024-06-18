@@ -11,37 +11,27 @@
 #include "amber_manage_command_ai.h"
 #include "amber_command_graphical.h"
 
-static void *init_client_ai(amber_client_t *client, egg_t *egg)
-{
-    client->_team_name = strdup(egg->_team);
-    client->_direction = egg->_direction;
-    client->_x = egg->_x;
-    client->_y = egg->_y;
-    client->_level = 1;
-    client->_id = egg->_id;
-    client->_inventory = amber_world_case_init();
-    client->_inventory->_food = 10;
-    client->_elapsed_time = 0;
-    client->_is_incantating = false;
-    return client;
-}
-
 void *amber_create_client(va_list *ap)
 {
     amber_client_t *client = calloc(1, sizeof(amber_client_t));
-    egg_t *egg = NULL;
 
     if (!client)
         return NULL;
-    client->_tcp._fd = va_arg(*ap, int);
-    egg = va_arg(*ap, egg_t *);
-    client->_is_graphical = va_arg(*ap, int);
     client->_buffer = NULL;
     client->_queue_command = NULL;
-    if (client->_is_graphical)
-        return client;
-    init_client_ai(client, egg);
-    amber_destroy_egg(egg);
+    client->_tcp._fd = va_arg(*ap, int);
+    client->_is_graphical = va_arg(*ap, int);
+    client->_is_error = false;
+    client->_team_name = NULL;
+    client->_direction = UP;
+    client->_x = 0;
+    client->_y = 0;
+    client->_level = 1;
+    client->_inventory = NULL;
+    client->_is_incantating = false;
+    client->_clock_food = 0;
+    client->_ellapsed_time = 0;
+    client->_id = 0;
     return client;
 }
 
@@ -54,6 +44,8 @@ void amber_destroy_client(void *client)
         free(tmp->_buffer);
     if (tmp->_team_name)
         free(tmp->_team_name);
+    if (tmp->_queue_command)
+        queue_destroy(&tmp->_queue_command);
     free(tmp);
 }
 
@@ -82,9 +74,9 @@ static void eval_command(amber_world_t *world, amber_serv_t *server,
     char *match = NULL;
     char *cmd = NULL;
 
-    if (client->_buffer == NULL)
+    if (client->_buffer == NULL) {
         client->_buffer = strdup(buffer);
-    else {
+    } else {
         client->_buffer = realloc(client->_buffer,
             strlen(client->_buffer) + strlen(buffer) + 1);
         strcat(client->_buffer, buffer);
@@ -98,23 +90,28 @@ static void eval_command(amber_world_t *world, amber_serv_t *server,
         client->_buffer[strlen(client->_buffer)] = '\0';
         choose_handler(world, server, client, cmd);
         free(cmd);
-    } while (match);
+    } while (match && !client->_is_error);
 }
 
 void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
     amber_client_t *client, list_t *clients)
 {
-    char buffer[1024] = {0};
+    char buffer[1025] = {0};
     int valread = read(client->_tcp._fd, buffer, 1024);
 
-    if (valread == 0) {
-        printf("[AMBER INFO] Client disconnected\n");
+    buffer[valread] = '\0';
+    if (valread != 0)
+        eval_command(world, server, client, buffer);
+    if (valread == 0 || client->_is_error) {
+        if (client->_team_name != NULL)
+            world->_case[client->_y][client->_x]._players--;
+        printf("[AMBER INFO] Client %d died (lost connection)\n",
+            client->_tcp._fd);
         remove_node(&clients, list_find_node(
         clients, client, cmp), true);
         fflush(stdout);
         return;
     }
-    eval_command(world, server, client, buffer);
 }
 
 int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team)
@@ -123,6 +120,10 @@ int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team)
     int count = 0;
 
     while (tmp) {
+        if (((amber_client_t *)tmp->data)->_team_name == NULL) {
+            tmp = tmp->next;
+            continue;
+        }
         if (!strcmp(((amber_client_t *)tmp->data)->_team_name, team))
             count++;
         tmp = tmp->next;

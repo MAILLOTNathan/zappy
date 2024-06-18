@@ -47,10 +47,15 @@ namespace Onyx {
             /**
              * @brief Returns the position of the floor
              *
-             * @return The floot position as a Vector3 of float
+             * @return The floor position as a Vector3 of float
             */
             virtual EGE::Maths::Vector3<float> getPosition();
 
+            /**
+             * @brief Returns the model associated with the entity.
+             *
+             * @return A shared pointer to the EGE::Model object representing the entity's model.
+             */
             virtual std::shared_ptr<EGE::Model> getModel();
 
             bool intersects(const glm::vec3& rayOrigin, const glm::vec3& rayPosition, float& t, float& u, float& v);

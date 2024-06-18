@@ -26,11 +26,21 @@ class UserInterface : public EGE::GUIManager {
          */
         ~UserInterface(){};
 
+        /**
+         * @brief Initializes the playlist with the given path.
+         *
+         * @param path The path to the playlist.
+         */
         void initPlaylist(const std::string &path);
 
+        /**
+         * @brief Retrieves the playlist.
+         *
+         * @return A pointer to the playlist.
+         */
         EGE::Sound::Playlist *getPlaylist();
 
     protected:
-        EGE::Sound::Device *_soundDevice;
-        EGE::Sound::Playlist *_playlist;
+        EGE::Sound::Device *_soundDevice; /**< The sound device. */
+        EGE::Sound::Playlist *_playlist; /**< The playlist. */
 };

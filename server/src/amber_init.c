@@ -31,6 +31,8 @@ static bool listen_server(amber_serv_t *server)
 
 amber_serv_t *init_server_tcp(amber_serv_t *server)
 {
+    int optval = 1;
+
     server->_tcp._fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server->_tcp._fd == -1) {
         perror("socket");
@@ -40,6 +42,9 @@ amber_serv_t *init_server_tcp(amber_serv_t *server)
     server->_tcp._addr.sin_family = AF_INET;
     server->_tcp._addr.sin_addr.s_addr = INADDR_ANY;
     server->_tcp._addr.sin_port = htons(server->_tcp._port);
+    if (setsockopt(server->_tcp._fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
+        &optval, sizeof(optval)) != 0)
+        exit(84);
     if (bind_server(server) == false)
         exit(84);
     if (listen_server(server) == false)
@@ -57,6 +62,7 @@ amber_serv_t *amber_create_server(args_t *args)
     server->_tcp._port = args->_port;
     server->_is_running = true;
     server->_teams_name = args->_teams;
+    server->_debug_client._fd = -1;
     server->_clients = create_list(&amber_create_client,
     &amber_destroy_client);
     server->_graphic_clients = create_list(&amber_create_client,
@@ -72,6 +78,9 @@ void amber_destroy_server(amber_serv_t *server)
     if (server->_tcp._fd != -1)
         close(server->_tcp._fd);
     destroy_list(&server->_clients);
+    destroy_list(&server->_graphic_clients);
+    if (server->_debug_client._fd != -1)
+        close(server->_debug_client._fd);
     free_string_array(server->_teams_name);
     free(server);
     printf("[AMBER INFO] Server stopped\n");

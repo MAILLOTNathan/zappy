@@ -64,8 +64,20 @@ namespace Onyx {
              */
             int getQuantity(Onyx::Item::TYPE type) const;
 
-            float getDistance(const EGE::Maths::Vector3<float>& cameraPositon, const EGE::Maths::Vector3<float>& cameraFront) const;
+            /**
+             * Calculates the distance between the camera position and the camera front.
+             *
+             * @param cameraPosition The position of the camera.
+             * @param cameraFront The front direction of the camera.
+             * @return The distance between the camera position and the camera front.
+             */
+            float getDistance(const EGE::Maths::Vector3<float>& cameraPosition, const EGE::Maths::Vector3<float>& cameraFront) const;
 
+            /**
+             * @brief Gets the position of the object.
+             *
+             * @return The position of the object as a 2D vector.
+             */
             EGE::Maths::Vector2<int> getPos() const;
 
         private:

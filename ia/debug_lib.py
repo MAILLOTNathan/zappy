@@ -1,10 +1,36 @@
 import sys
 import socket
-import zappy_ai
-import time
 
 class ServerConnection:
+    """
+    Represents a connection to the server.
+
+    This class provides methods to establish a connection to the server, send and receive data,
+    and handle errors in the connection.
+
+    Attributes:
+        HOST (str): The host address of the server.
+        PORT (int): The port number of the server.
+        s (socket.socket): The socket object used for the connection.
+        conn_num (int): The connection number received from the server.
+
+    Methods:
+        __init__(self, ai): Initializes a new instance of the ServerConnection class.
+        get_con_num(self, data): Extracts the connection number from the received data.
+        connect_to_server_debug(self): Connects to the server in debug mode.
+        connect_to_server(self, team_name): Connects to the server and sends the team name.
+        send_request(self, request): Sends a request to the server and returns the response.
+        read_line(self): Reads a line from the server.
+
+    """
     def __init__(self, ai):
+        """
+        Initializes a new instance of the ServerConnection class.
+
+        Args:
+            ai (AI): The AI object containing the host and port information.
+
+        """
         if ai.host == "localhost":
             self.HOST = "127.0.0.1"
         else:
@@ -12,6 +38,21 @@ class ServerConnection:
         self.PORT = ai.port
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((self.HOST, self.PORT))
+        self.conn_num = 0
+
+    def get_con_num(self, data):
+        """
+        Extracts the connection number from the received data.
+
+        Args:
+            data (bytes): The data received from the server.
+
+        Returns:
+            None
+
+        """
+        res = data.decode().split("\n")
+        self.conn_num = int(res[0])
 
     def connect_to_server_debug(self):
         """
@@ -27,9 +68,16 @@ class ServerConnection:
 
         Returns:
             None
+
         """
         data = self.s.recv(1024)
         print(repr(data))
+        self.get_con_num(data)
+        # self.s.sendall(("team2"+ "\n").encode())
+        # data = self.s.recv(1024)
+        # print(repr(data))
+        # data = self.s.recv(1024)
+        # print(repr(data))        
         while True:
             input = sys.stdin.readline()
             if input == "quit\n":
@@ -51,35 +99,68 @@ class ServerConnection:
 
         Returns:
             None
+
         """
         data = self.s.recv(1024)
         print(repr(data))
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
         print(repr(data))
+        self.get_con_num(data)
+        data = self.s.recv(1024)
+        print(repr(data)) 
+
 
     def send_request(self, request):
-            """
-            Sends a request to the server and returns the response.
+        """
+        Sends a request to the server and returns the response.
 
-            Args:
-                request (str): The request to send to the server.
+        Args:
+            request (str): The request to send to the server.
 
-            Returns:
-                bytes: The response received from the server.
+        Returns:
+            bytes: The response received from the server.
 
-            Raises:
-                SystemExit: If there is an error in the connection to the server.
-            """
-            print("AI request: ", request)
-            try:
-                self.s.send((request + "\n").encode())
-                data = self.s.recv(1024)
-                print(repr(data))
-                if data == b"dead\n":
-                    print("AI is dead.")
-                    return "dead"
-                return data
-            except:
-                print("Error: Connection to server lost.")
-                exit(84)
+        Raises:
+            SystemExit: If there is an error in the connection to the server.
+
+        """
+        print("AI request: ", request)
+        try:
+            self.s.send((request + "\n").encode())
+            buffer = []
+            while True:
+                data = self.s.recv(1)
+                if not data:
+                    break
+                if data == b'\n':
+                    break
+                buffer.append(data)
+            data = b''.join(buffer)
+
+            print(repr(data))
+            if data == b"dead\n":
+                print("AI is dead.")
+                return "done"
+            return data
+        except:
+            print("Error: Connection to server lost.")
+
+    def read_line(self):
+        """
+        Reads a line from the server.
+
+        Returns:
+            bytes: The line received from the server.
+
+        """
+        buffer = []
+        while True:
+            data = self.s.recv(1)
+            if not data:
+                break
+            if data == b'\n':
+                break
+            buffer.append(data)
+        data = b''.join(buffer)
+        return data

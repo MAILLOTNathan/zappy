@@ -44,6 +44,7 @@ void net::TcpClient::_getheader()
     header = buffer;
     if (header.find("WELCOME") == std::string::npos)
         throw net::TcpClientError("Connection failed");
+    std::cout << header << std::endl;
 }
 
 void net::TcpClient::_sendTeamName()

@@ -11,6 +11,7 @@
     #include "amber_init.h"
     #include "amber_queue_command.h"
     #include "string_array.h"
+    #include "amber_manage_client.h"
     #include "amber_logic.h"
 
 /**

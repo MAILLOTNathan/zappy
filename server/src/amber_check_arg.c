@@ -9,9 +9,13 @@
 
 static bool add_team_name(args_t *args, char **av, int i, int ac)
 {
+    char *team_name = NULL;
+
     for (int j = i; j < ac; j++) {
         if (av[j][0] != '-') {
-            args->_teams = append_string_array(args->_teams, strdup(av[j]));
+            team_name = strdup(av[j]);
+            args->_teams = append_string_array(args->_teams, team_name);
+            free(team_name);
         } else {
             break;
         }
@@ -54,13 +58,13 @@ double amber_get_flags(int ac, char **av, char *flag)
 
 static void display_help(void)
 {
-    printf(HELP);
-    printf("port\tis the port number\n");
-    printf("width\tis the width of the world\n");
-    printf("height\tis the height of the world\n");
-    printf("nameX\tis the name of the team X\n");
-    printf("clientsNb\tis the number of authorized clients per team\n");
-    printf("freq\tis the reciprocal of time unit for execution of actions\n");
+    printf(HELP"\n");
+    printf("\tport: is the port number (0-65535)\n");
+    printf("\twidth: is the width of the world\n");
+    printf("\theight: is the height of the world\n");
+    printf("\tnameX: is the name of the team X\n");
+    printf("\tclientsNb: is the number of authorized clients per team\n");
+    printf(HELP_FREQ);
 }
 
 bool amber_check_arg(int ac, char **av, args_t *args)
@@ -74,10 +78,12 @@ bool amber_check_arg(int ac, char **av, args_t *args)
     args->_height = amber_get_flags(ac, av, "-y");
     args->_freq = amber_get_flags(ac, av, "-f");
     args->_clientsNb = amber_get_flags(ac, av, "-c");
-    if (args->_port == -1 || args->_width <= 0 || args->_height <= 0
-        || args->_clientsNb <= 0)
+    if (args->_port <= 0 || args->_port > 65535 || args->_width <= 0 ||
+        args->_height <= 0 || args->_clientsNb <= 0)
         return false;
     args->_freq = args->_freq == -1 ? 100 : args->_freq;
+    if (args->_freq <= 0)
+        return false;
     if (amber_get_team_name(ac, av, args) == false)
         return false;
     return true;

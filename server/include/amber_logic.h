@@ -11,8 +11,14 @@
     #include "amber_queue_command.h"
     #include "amber_init.h"
     #include "amber_clock.h"
+    #include <math.h>
 
     #define ABS(n) (n < 0) ? -n : n
+
+typedef struct pos_s {
+    int x;
+    int y;
+} pos_t;
 
 /**
  * @brief Structure representing a logic command.
@@ -72,7 +78,7 @@ void amber_check_client_alive(amber_serv_t *server, amber_world_t *world);
  * @param client The client to send the message to.
  * @param message The message to send.
  */
-void send_client_message(amber_client_t *client, const char *message);
+void send_cli_msg(amber_client_t *client, const char *message);
 
 /**
  * @brief Turns the client to the left in the world.
@@ -202,7 +208,7 @@ int get_distance(int src, int dest, int max);
  * @param max The maximum value of the grid.
  * @return The direction from the source to the destination point.
  */
-int get_direction_action(int src, int dest, int max);
+// int get_direction_action(int src, int dest, int max);
 
 /**
  * Initializes a boolean array representing the perimeter of a grid.
@@ -225,6 +231,8 @@ bool *initialize_perimeter(int *directions);
  * @return The direction calculated based on the perimeter and client.
  */
 int get_direction_by_perimeter(bool *perimeter, amber_client_t *client);
+
+pos_t plotline(pos_t *m, pos_t *m2);
 
 /**
  * @brief Calculates the precise perimeter based on the given perimeter

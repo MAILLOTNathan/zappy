@@ -9,6 +9,7 @@
 
 void amber_manage_command_grahical(amber_client_t *client, char **arg)
 {
+    printf("[AMBER INFO] GRAPHICAL COMMAND: %s\n", arg[0]);
     for (int i = 0; graphical_commands[i]._command; i++) {
         if (strcmp(graphical_commands[i]._command, arg[0]) == 0) {
             graphical_commands[i]._func(client, arg);

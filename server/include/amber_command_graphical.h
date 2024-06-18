@@ -319,6 +319,17 @@ void amber_graphic_pin(amber_client_t *client, char **arg);
 void amber_graphic_loop(amber_serv_t *server, amber_world_t *world);
 
 /**
+ * @brief Sends the PNW event to a graphical client.
+ *
+ * This function sends the PNW event to a graphical client, providing
+ * information about a newly connected player.
+ *
+ * @param client The graphical client to send the event to.
+ * @param clients_gra The list of graphical clients.
+ */
+void amber_event_pnw(amber_client_t *client, list_t *clients_gra);
+
+/**
  * @file amber_command_graphical.h
  * @brief Header file containing the declaration of the
  * graphical_commands array.
@@ -329,5 +340,135 @@ void amber_graphic_loop(amber_serv_t *server, amber_world_t *world);
  * commands in the server.
  */
 extern const graphical_command_t graphical_commands[];
+
+/**
+ * @brief Handles the event when an ID is moved.
+ *
+ * This function is responsible for handling the event when an ID is moved in
+ * the graphical client.
+ * It takes the client, the list of graphical clients, and the character
+ * representing the ID as parameters.
+ *
+ * @param client The client triggering the event.
+ * @param clients_gra The list of graphical clients.
+ * @param c The character representing the ID that was moved.
+ */
+void amber_event_idmoved(amber_client_t *client, list_t *clients_gra, char c);
+
+/**
+ * @brief Handles the PCB event for the Amber graphical client.
+ *
+ * This function is responsible for handling the PCB event for the
+ * Amber graphical client.
+ * It takes in a pointer to the client and a list of graphical
+ * clients as parameters.
+ *
+ * @param client A pointer to the Amber graphical client.
+ * @param clients_gra A list of graphical clients.
+ */
+void amber_event_pbc(amber_client_t *client, list_t *clients_gra);
+
+/**
+ * @brief Sends a PEX event to a graphical client.
+ *
+ * This function sends a PEX event to a graphical client, indicating that a
+ * player has joined or left the game.
+ *
+ * @param client The client to send the event to.
+ * @param clients_gra The list of graphical clients.
+ */
+void amber_event_pex(amber_client_t *client, list_t *clients_gra);
+
+/**
+ * @brief Handles the "pie" event for the graphical client.
+ *
+ * This function is responsible for processing the "pie" event received from
+ * the server.
+ * It updates the graphical client's state based on the event information.
+ *
+ * @param client The graphical client receiving the event.
+ * @param clients_gra The list of graphical clients.
+ * @param success A boolean indicating whether the event was successful or not.
+ */
+void amber_event_pie(amber_client_t *client,
+    list_t *clients_gra, bool success);
+/**
+ * @brief Handles the "pic" event for the graphical client.
+ *
+ * This function is responsible for processing the "pic" event received from
+ * the server
+ * and updating the graphical client accordingly.
+ *
+ * @param client A pointer to the graphical client.
+ * @param clients_gra A pointer to the server structure.
+ */
+void amber_event_pic(amber_client_t *client, amber_serv_t *serv, int *ids);
+
+/**
+ * @brief Handles the PDI event for a graphical client.
+ *
+ * This function is called when a PDI event is received from a client.
+ * It updates the graphical representation of the game state by removing
+ * the specified client from the list of graphical clients.
+ *
+ * @param client The graphical client that triggered the event.
+ * @param clients_gra The list of graphical clients.
+ */
+void amber_event_pdi(amber_client_t *client, list_t *clients_gra);
+
+/**
+ * @brief Handles the "pgt" event for the graphical client.
+ *
+ * This function is responsible for processing the "pgt" event received from
+ * a graphical client.
+ * It updates the graphical client's state based on the provided parameters.
+ *
+ * @param client The graphical client that triggered the event.
+ * @param clients_gra The list of graphical clients.
+ * @param ressource The resource box associated with the event.
+ */
+void amber_event_pgt(amber_client_t *client, list_t *clients_gra,
+    box_t *ressource);
+
+/**
+ * @brief Handles the PDR (Player Drop Resource) event for a graphical client.
+ *
+ * This function is responsible for handling the PDR event, which occurs
+ * when a player
+ * drops a resource. It updates the graphical client's state and sends
+ * the necessary
+ * information to all graphical clients.
+ *
+ * @param client The graphical client that triggered the event.
+ * @param clients_gra The list of all graphical clients.
+ * @param ressource The box containing the dropped resource.
+ */
+void amber_event_pdr(amber_client_t *client, list_t *clients_gra,
+    box_t *ressource);
+
+/**
+ * @brief Notifies the graphical clients about the creation of a new egg.
+ *
+ * This function sends an ENW (Egg New) event to the graphical clients,
+ * informing them about the creation of a new egg.
+ *
+ * @param client The client who triggered the event.
+ * @param gra_client The list of graphical clients.
+ * @param id_egg The ID of the newly created egg.
+ */
+void amber_event_enw(amber_client_t *client, list_t *gra_client, int id_egg);
+
+/**
+ * @brief Handles the PFK event for a graphical client.
+ *
+ * This function is responsible for handling the PFK event, which is triggered
+ * when a player
+ * successfully lays an egg. It takes in a pointer to the client and server
+ * structures.
+ *
+ * @param client A pointer to the graphical client structure.
+ * @param serv A pointer to the server structure.
+ */
+void amber_event_pfk(amber_client_t *client, amber_serv_t *serv);
 
 #endif /* !AMBER_COMMAND_GRAPHICAL_H_ */

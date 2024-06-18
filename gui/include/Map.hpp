@@ -50,12 +50,38 @@ namespace Onyx {
 
             void createMap(const EGE::Maths::Vector2<int>& size);
 
+            /**
+             * @brief Adds an item to the map at the specified position.
+             *
+             * @param position The position where the item should be added.
+             * @param type The type of the item to be added.
+             * @param number The number of items to be added (default is 1).
+             */
             void addItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type, int number = 1);
 
+            /**
+             * @brief Removes an item of a specific type from the map at the given position.
+             *
+             * @param position The position of the item to be removed.
+             * @param type The type of the item to be removed.
+             */
             void removeItem(const EGE::Maths::Vector2<int>& position, Onyx::Item::TYPE type);
 
+            /**
+             * @brief Gets the size of the map.
+             *
+             * @return The size of the map as a 2D vector.
+             */
             EGE::Maths::Vector2<int> getSize() const;
 
+            /**
+             * @brief Retrieves the vector of shared pointers to Floor objects.
+             *
+             * This function returns a vector containing shared pointers to Floor objects.
+             * Each shared pointer represents a floor tile on the map.
+             *
+             * @return A vector of shared pointers to Floor objects.
+             */
             std::vector<std::shared_ptr<Floor>> getFloor() const;
 
             int getTileSelected(const EGE::Maths::Vector3<float>& cameraPosition, const EGE::Maths::Matrix<4, 4, float>& projection, const EGE::Maths::Matrix<4, 4, float>& view);
@@ -63,7 +89,6 @@ namespace Onyx {
             void addEgg(EGE::Maths::Vector3<int> pos);
 
             std::vector<EGE::Maths::Vector3<int>>& getEggPos();
-
         private:
             std::vector<std::shared_ptr<Floor>> _floor; /**< The collection of floor models in the map. */
             std::shared_ptr<EGE::Shader> _shader;       /**< The shader used to update the map. */
