@@ -516,7 +516,7 @@ def launch_new_instance(self, map, conn):
     def decrement_collector():
         self.collector -= 1
 
-    if map[0][1].count("food") < 3:
+    if map[0][1].count("food") < 4:
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
@@ -525,7 +525,7 @@ def launch_new_instance(self, map, conn):
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
         return
-    if map[0][1].count("player") < 3:
+    if map[0][1].count("player") < 4:
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
