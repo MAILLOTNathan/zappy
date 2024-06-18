@@ -55,7 +55,7 @@ void amber_event_pbc(amber_client_t *client, list_t *clients_gra)
 
     while (tmp) {
         gra = (amber_client_t *)tmp->data;
-        dprintf(gra->_tcp._fd, "pcb #%d %s\n", client->_id,
+        dprintf(gra->_tcp._fd, "pbc #%d %s\n", client->_id,
             client->_queue_command->_command->_arg);
         tmp = tmp->next;
     }

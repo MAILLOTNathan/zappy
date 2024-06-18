@@ -37,7 +37,7 @@ void amber_graphic_execute_ppo(command_t *cmd, amber_client_t *client,
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp\n");
+        dprintf(client->_tcp._fd, "sbp ppo\n");
         return;
     }
     dprintf(client->_tcp._fd, "ppo #%d %d %d %c\n", tmp->_id, tmp->_x, tmp->_y,
@@ -51,7 +51,7 @@ void amber_graphic_execute_plv(command_t *cmd, amber_client_t *client,
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp\n");
+        dprintf(client->_tcp._fd, "sbp plv\n");
         return;
     }
     dprintf(client->_tcp._fd, "plv #%d %d\n", tmp->_id, tmp->_level);
@@ -64,7 +64,7 @@ void amber_graphic_execute_pin(command_t *cmd, amber_client_t *client,
     amber_client_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp\n");
+        dprintf(client->_tcp._fd, "sbp pin\n");
         return;
     }
     dprintf(client->_tcp._fd, "pin #%d %d %d %d %d %d %d %d %d %d\n", tmp->_id,
