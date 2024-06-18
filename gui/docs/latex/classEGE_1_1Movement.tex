@@ -1,0 +1,541 @@
+\doxysection{EGE\+::Movement Class Reference}
+\hypertarget{classEGE_1_1Movement}{}\label{classEGE_1_1Movement}\index{EGE::Movement@{EGE::Movement}}
+
+
+The \doxylink{classEGE_1_1Movement}{Movement} class represents a movement animation.  
+
+
+
+
+{\ttfamily \#include $<$Movement.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Movement\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Movement_1_1MovementError}{Movement\+Error}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classEGE_1_1Movement_1_1MovementError}{Movement\+Error} class represents an error that can occur during movement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Movement_aa332c6c530f07bd6f840be193632707f}{Movement}} (int duration=1000, bool loop=false)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Movement}{Movement} object with the specified duration and loop flag. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Movement_a7d84af98abbb9fdd1730b130308b86ca}{\texorpdfstring{$\sim$}{\string~}\+Movement}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classEGE_1_1Movement}{Movement} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Movement_a3508b17a43bc5cbfaa2d3234b29586ee}{move}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Moves the animation by the specified delta time. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& \mbox{\hyperlink{classEGE_1_1Movement_a02dfd2a22dfe724db4ddac92cf3c0642}{add\+Model}} (const std\+::string \&name, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \&model)
+\begin{DoxyCompactList}\small\item\em Adds a model to the movement animation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& \mbox{\hyperlink{classEGE_1_1Movement_a856a7c949692857c59855242324fd562}{remove\+Model}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Removes a model from the movement animation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Movement_a3f4916ba425b818bc5e07badcca37b31}{has\+Model}} (const std\+::string \&name) const
+\begin{DoxyCompactList}\small\item\em Checks if a model with the specified name exists in the movement animation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Movement_a4abf18abccd823f4a8f93b65eafedfd2}{get\+Models\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of models in the movement animation. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classEGE_1_1Movement_aee973c7382c0078b43f96ee2153f4124}{get\+Models\+Names}} () const
+\begin{DoxyCompactList}\small\item\em Gets the names of all the models in the movement animation. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ $>$ \mbox{\hyperlink{classEGE_1_1Movement_a04aee304198bba83ef46a74ec715e5b9}{get\+Models}} () const
+\begin{DoxyCompactList}\small\item\em Gets a map of all the models in the movement animation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Movement_a07e6aa5c960b06f072255ccde54212c6}{set\+Key\+Frames}} (const std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ $>$ \&key\+Frames)
+\begin{DoxyCompactList}\small\item\em Sets the key frames for the movement animation. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ $>$ \mbox{\hyperlink{classEGE_1_1Movement_a87020967302428207856d812edc41636}{get\+Key\+Frames}} () const
+\begin{DoxyCompactList}\small\item\em Gets the key frames of the movement animation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Movement_aa53bf7e45bda00c43c7c95e8a333968d}{set\+Current\+Key\+Frame}} (int key\+Frame)
+\begin{DoxyCompactList}\small\item\em Sets the current key frame index. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Movement_abc9372a577d3dd6288678b3976a974e7}{get\+Current\+Key\+Frame}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current key frame index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Movement_afe515bf27a61e902ba17abbbe8f3dc09}{set\+Duration}} (int duration)
+\begin{DoxyCompactList}\small\item\em Sets the duration of the movement animation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEGE_1_1Movement_ab4bb66397feb4e1fc3721ebfd0db865f}{get\+Duration}} () const
+\begin{DoxyCompactList}\small\item\em Gets the duration of the movement animation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& \mbox{\hyperlink{classEGE_1_1Movement_a22663b5903b18cc9c779d5c57f4f542a}{push\+Front\+Key\+Frame}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame)
+\begin{DoxyCompactList}\small\item\em Adds a key frame to the front of the key frames vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& \mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{push\+Back\+Key\+Frame}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame)
+\begin{DoxyCompactList}\small\item\em Adds a key frame to the back of the key frames vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Movement_a65f6c70498a344dc114bbe0362ded810}{insert\+Key\+Frame}} (int ind, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame)
+\begin{DoxyCompactList}\small\item\em Inserts a key frame at the specified index in the key frames vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Movement_a60f4f8daa5168428251c43b68b30d8e3}{replace\+Key\+Frame}} (int ind, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame)
+\begin{DoxyCompactList}\small\item\em Replaces the key frame at the specified index in the key frames vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& \mbox{\hyperlink{classEGE_1_1Movement_ac66f4b80572971816e95a7c57f880f00}{remove\+Key\+Frame}} (int ind)
+\begin{DoxyCompactList}\small\item\em Removes the key frame at the specified index from the key frames vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Movement_a40d2da38496cbd8873496c06ec9491fc}{get\+Rotation}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame) const
+\begin{DoxyCompactList}\small\item\em Gets the rotation vector from a key frame matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Movement_ae0a3a5a533497605fbec097e191c6c86}{get\+Scale}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame) const
+\begin{DoxyCompactList}\small\item\em Gets the scale vector from a key frame matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Movement_af224cf4b3fefc71709d0d83248b44026}{get\+Shear}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame) const
+\begin{DoxyCompactList}\small\item\em Gets the shear vector from a key frame matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Movement_aae08f38eaba8d3a77381aec04a87dba1}{get\+Translation}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&key\+Frame) const
+\begin{DoxyCompactList}\small\item\em Gets the translation vector from a key frame matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ $>$ \mbox{\hyperlink{classEGE_1_1Movement_ad58551b8d061103b498ed82bbb383c27}{\+\_\+key\+Frames}}
+\item 
+int \mbox{\hyperlink{classEGE_1_1Movement_abf3d21c7bbe0321d396c4b7e59359541}{\+\_\+current\+Key\+Frame}}
+\item 
+int \mbox{\hyperlink{classEGE_1_1Movement_a355c732f2b5deaba16cce9841786997b}{\+\_\+last\+Key\+Frame}}
+\item 
+std\+::map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ $>$ \mbox{\hyperlink{classEGE_1_1Movement_a968b87a879bf2a14e08c4c279cad5388}{\+\_\+models}}
+\item 
+int \mbox{\hyperlink{classEGE_1_1Movement_a93864c706b02065639dcd0bde305e03e}{\+\_\+duration}}
+\item 
+int \mbox{\hyperlink{classEGE_1_1Movement_a0b335a4fd5f063564dbf82aaabf340c6}{\+\_\+duration\+Per\+Key\+Frame}}
+\item 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock \mbox{\hyperlink{classEGE_1_1Movement_a575c1c9a3b3e84eeab67ec8eab8394d8}{\+\_\+clock}}
+\item 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classEGE_1_1Movement_a37e7827e60d13be2b3019bb7f6d793bc}{\+\_\+last\+Time}}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1Movement_ad889ab632b2f4d98deb939e0aa5e1cec}{\+\_\+loop}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1Movement}{Movement} class represents a movement animation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Movement_aa332c6c530f07bd6f840be193632707f}\label{classEGE_1_1Movement_aa332c6c530f07bd6f840be193632707f} 
+\index{EGE::Movement@{EGE::Movement}!Movement@{Movement}}
+\index{Movement@{Movement}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{Movement()}{Movement()}}
+{\footnotesize\ttfamily EGE\+::\+Movement\+::\+Movement (\begin{DoxyParamCaption}\item[{int}]{duration = {\ttfamily 1000},  }\item[{bool}]{loop = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classEGE_1_1Movement}{Movement} object with the specified duration and loop flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em duration} & The duration of the movement animation in milliseconds. \\
+\hline
+{\em loop} & Flag indicating whether the movement animation should loop. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Movement_a7d84af98abbb9fdd1730b130308b86ca}\label{classEGE_1_1Movement_a7d84af98abbb9fdd1730b130308b86ca} 
+\index{EGE::Movement@{EGE::Movement}!````~Movement@{\texorpdfstring{$\sim$}{\string~}Movement}}
+\index{````~Movement@{\texorpdfstring{$\sim$}{\string~}Movement}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Movement()}{\string~Movement()}}
+{\footnotesize\ttfamily EGE\+::\+Movement\+::\texorpdfstring{$\sim$}{\string~}\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classEGE_1_1Movement}{Movement} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Movement_a02dfd2a22dfe724db4ddac92cf3c0642}\label{classEGE_1_1Movement_a02dfd2a22dfe724db4ddac92cf3c0642} 
+\index{EGE::Movement@{EGE::Movement}!addModel@{addModel}}
+\index{addModel@{addModel}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{addModel()}{addModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& EGE\+::\+Movement\+::add\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \&}]{model }\end{DoxyParamCaption})}
+
+
+
+Adds a model to the movement animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the model. \\
+\hline
+{\em model} & The shared pointer to the model object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \doxylink{classEGE_1_1Movement}{Movement} object. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_abc9372a577d3dd6288678b3976a974e7}\label{classEGE_1_1Movement_abc9372a577d3dd6288678b3976a974e7} 
+\index{EGE::Movement@{EGE::Movement}!getCurrentKeyFrame@{getCurrentKeyFrame}}
+\index{getCurrentKeyFrame@{getCurrentKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getCurrentKeyFrame()}{getCurrentKeyFrame()}}
+{\footnotesize\ttfamily int EGE\+::\+Movement\+::get\+Current\+Key\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current key frame index. 
+
+\begin{DoxyReturn}{Returns}
+The index of the current key frame. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_ab4bb66397feb4e1fc3721ebfd0db865f}\label{classEGE_1_1Movement_ab4bb66397feb4e1fc3721ebfd0db865f} 
+\index{EGE::Movement@{EGE::Movement}!getDuration@{getDuration}}
+\index{getDuration@{getDuration}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getDuration()}{getDuration()}}
+{\footnotesize\ttfamily int EGE\+::\+Movement\+::get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the duration of the movement animation. 
+
+\begin{DoxyReturn}{Returns}
+The duration of the movement animation in milliseconds. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a87020967302428207856d812edc41636}\label{classEGE_1_1Movement_a87020967302428207856d812edc41636} 
+\index{EGE::Movement@{EGE::Movement}!getKeyFrames@{getKeyFrames}}
+\index{getKeyFrames@{getKeyFrames}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getKeyFrames()}{getKeyFrames()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ $>$ EGE\+::\+Movement\+::get\+Key\+Frames (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the key frames of the movement animation. 
+
+\begin{DoxyReturn}{Returns}
+The vector of key frames. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a04aee304198bba83ef46a74ec715e5b9}\label{classEGE_1_1Movement_a04aee304198bba83ef46a74ec715e5b9} 
+\index{EGE::Movement@{EGE::Movement}!getModels@{getModels}}
+\index{getModels@{getModels}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getModels()}{getModels()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ $>$ EGE\+::\+Movement\+::get\+Models (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets a map of all the models in the movement animation. 
+
+\begin{DoxyReturn}{Returns}
+A map of model names to model objects. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a4abf18abccd823f4a8f93b65eafedfd2}\label{classEGE_1_1Movement_a4abf18abccd823f4a8f93b65eafedfd2} 
+\index{EGE::Movement@{EGE::Movement}!getModelsCount@{getModelsCount}}
+\index{getModelsCount@{getModelsCount}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getModelsCount()}{getModelsCount()}}
+{\footnotesize\ttfamily int EGE\+::\+Movement\+::get\+Models\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of models in the movement animation. 
+
+\begin{DoxyReturn}{Returns}
+The number of models. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_aee973c7382c0078b43f96ee2153f4124}\label{classEGE_1_1Movement_aee973c7382c0078b43f96ee2153f4124} 
+\index{EGE::Movement@{EGE::Movement}!getModelsNames@{getModelsNames}}
+\index{getModelsNames@{getModelsNames}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getModelsNames()}{getModelsNames()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ EGE\+::\+Movement\+::get\+Models\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the names of all the models in the movement animation. 
+
+\begin{DoxyReturn}{Returns}
+A vector of model names. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a40d2da38496cbd8873496c06ec9491fc}\label{classEGE_1_1Movement_a40d2da38496cbd8873496c06ec9491fc} 
+\index{EGE::Movement@{EGE::Movement}!getRotation@{getRotation}}
+\index{getRotation@{getRotation}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getRotation()}{getRotation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Movement\+::get\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the rotation vector from a key frame matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frame} & The key frame matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The rotation vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_ae0a3a5a533497605fbec097e191c6c86}\label{classEGE_1_1Movement_ae0a3a5a533497605fbec097e191c6c86} 
+\index{EGE::Movement@{EGE::Movement}!getScale@{getScale}}
+\index{getScale@{getScale}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Movement\+::get\+Scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the scale vector from a key frame matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frame} & The key frame matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scale vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_af224cf4b3fefc71709d0d83248b44026}\label{classEGE_1_1Movement_af224cf4b3fefc71709d0d83248b44026} 
+\index{EGE::Movement@{EGE::Movement}!getShear@{getShear}}
+\index{getShear@{getShear}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getShear()}{getShear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Movement\+::get\+Shear (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the shear vector from a key frame matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frame} & The key frame matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The shear vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_aae08f38eaba8d3a77381aec04a87dba1}\label{classEGE_1_1Movement_aae08f38eaba8d3a77381aec04a87dba1} 
+\index{EGE::Movement@{EGE::Movement}!getTranslation@{getTranslation}}
+\index{getTranslation@{getTranslation}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{getTranslation()}{getTranslation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Movement\+::get\+Translation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the translation vector from a key frame matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frame} & The key frame matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The translation vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a3f4916ba425b818bc5e07badcca37b31}\label{classEGE_1_1Movement_a3f4916ba425b818bc5e07badcca37b31} 
+\index{EGE::Movement@{EGE::Movement}!hasModel@{hasModel}}
+\index{hasModel@{hasModel}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{hasModel()}{hasModel()}}
+{\footnotesize\ttfamily bool EGE\+::\+Movement\+::has\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const}
+
+
+
+Checks if a model with the specified name exists in the movement animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the model. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the model exists, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a65f6c70498a344dc114bbe0362ded810}\label{classEGE_1_1Movement_a65f6c70498a344dc114bbe0362ded810} 
+\index{EGE::Movement@{EGE::Movement}!insertKeyFrame@{insertKeyFrame}}
+\index{insertKeyFrame@{insertKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{insertKeyFrame()}{insertKeyFrame()}}
+{\footnotesize\ttfamily void EGE\+::\+Movement\+::insert\+Key\+Frame (\begin{DoxyParamCaption}\item[{int}]{ind,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption})}
+
+
+
+Inserts a key frame at the specified index in the key frames vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind} & The index at which to insert the key frame. \\
+\hline
+{\em key\+Frame} & The key frame to insert. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Movement_a3508b17a43bc5cbfaa2d3234b29586ee}\label{classEGE_1_1Movement_a3508b17a43bc5cbfaa2d3234b29586ee} 
+\index{EGE::Movement@{EGE::Movement}!move@{move}}
+\index{move@{move}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void EGE\+::\+Movement\+::move (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Moves the animation by the specified delta time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & The time elapsed since the last frame in seconds. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}\label{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c} 
+\index{EGE::Movement@{EGE::Movement}!pushBackKeyFrame@{pushBackKeyFrame}}
+\index{pushBackKeyFrame@{pushBackKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{pushBackKeyFrame()}{pushBackKeyFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& EGE\+::\+Movement\+::push\+Back\+Key\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption})}
+
+
+
+Adds a key frame to the back of the key frames vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frame} & The key frame to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \doxylink{classEGE_1_1Movement}{Movement} object. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a22663b5903b18cc9c779d5c57f4f542a}\label{classEGE_1_1Movement_a22663b5903b18cc9c779d5c57f4f542a} 
+\index{EGE::Movement@{EGE::Movement}!pushFrontKeyFrame@{pushFrontKeyFrame}}
+\index{pushFrontKeyFrame@{pushFrontKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{pushFrontKeyFrame()}{pushFrontKeyFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& EGE\+::\+Movement\+::push\+Front\+Key\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption})}
+
+
+
+Adds a key frame to the front of the key frames vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frame} & The key frame to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \doxylink{classEGE_1_1Movement}{Movement} object. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_ac66f4b80572971816e95a7c57f880f00}\label{classEGE_1_1Movement_ac66f4b80572971816e95a7c57f880f00} 
+\index{EGE::Movement@{EGE::Movement}!removeKeyFrame@{removeKeyFrame}}
+\index{removeKeyFrame@{removeKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{removeKeyFrame()}{removeKeyFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& EGE\+::\+Movement\+::remove\+Key\+Frame (\begin{DoxyParamCaption}\item[{int}]{ind }\end{DoxyParamCaption})}
+
+
+
+Removes the key frame at the specified index from the key frames vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind} & The index of the key frame to remove. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Movement_a856a7c949692857c59855242324fd562}\label{classEGE_1_1Movement_a856a7c949692857c59855242324fd562} 
+\index{EGE::Movement@{EGE::Movement}!removeModel@{removeModel}}
+\index{removeModel@{removeModel}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{removeModel()}{removeModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Movement}{EGE\+::\+Movement}} \& EGE\+::\+Movement\+::remove\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Removes a model from the movement animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the model to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \doxylink{classEGE_1_1Movement}{Movement} object. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Movement_a60f4f8daa5168428251c43b68b30d8e3}\label{classEGE_1_1Movement_a60f4f8daa5168428251c43b68b30d8e3} 
+\index{EGE::Movement@{EGE::Movement}!replaceKeyFrame@{replaceKeyFrame}}
+\index{replaceKeyFrame@{replaceKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{replaceKeyFrame()}{replaceKeyFrame()}}
+{\footnotesize\ttfamily void EGE\+::\+Movement\+::replace\+Key\+Frame (\begin{DoxyParamCaption}\item[{int}]{ind,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \&}]{key\+Frame }\end{DoxyParamCaption})}
+
+
+
+Replaces the key frame at the specified index in the key frames vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind} & The index of the key frame to replace. \\
+\hline
+{\em key\+Frame} & The new key frame. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Movement_aa53bf7e45bda00c43c7c95e8a333968d}\label{classEGE_1_1Movement_aa53bf7e45bda00c43c7c95e8a333968d} 
+\index{EGE::Movement@{EGE::Movement}!setCurrentKeyFrame@{setCurrentKeyFrame}}
+\index{setCurrentKeyFrame@{setCurrentKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{setCurrentKeyFrame()}{setCurrentKeyFrame()}}
+{\footnotesize\ttfamily void EGE\+::\+Movement\+::set\+Current\+Key\+Frame (\begin{DoxyParamCaption}\item[{int}]{key\+Frame }\end{DoxyParamCaption})}
+
+
+
+Sets the current key frame index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frame} & The index of the current key frame. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Movement_afe515bf27a61e902ba17abbbe8f3dc09}\label{classEGE_1_1Movement_afe515bf27a61e902ba17abbbe8f3dc09} 
+\index{EGE::Movement@{EGE::Movement}!setDuration@{setDuration}}
+\index{setDuration@{setDuration}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{setDuration()}{setDuration()}}
+{\footnotesize\ttfamily void EGE\+::\+Movement\+::set\+Duration (\begin{DoxyParamCaption}\item[{int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Sets the duration of the movement animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em duration} & The duration of the movement animation in milliseconds. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Movement_a07e6aa5c960b06f072255ccde54212c6}\label{classEGE_1_1Movement_a07e6aa5c960b06f072255ccde54212c6} 
+\index{EGE::Movement@{EGE::Movement}!setKeyFrames@{setKeyFrames}}
+\index{setKeyFrames@{setKeyFrames}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{setKeyFrames()}{setKeyFrames()}}
+{\footnotesize\ttfamily void EGE\+::\+Movement\+::set\+Key\+Frames (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ 4, 4, float $>$ $>$ \&}]{key\+Frames }\end{DoxyParamCaption})}
+
+
+
+Sets the key frames for the movement animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Frames} & The vector of key frames. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Movement_a575c1c9a3b3e84eeab67ec8eab8394d8}\label{classEGE_1_1Movement_a575c1c9a3b3e84eeab67ec8eab8394d8} 
+\index{EGE::Movement@{EGE::Movement}!\_clock@{\_clock}}
+\index{\_clock@{\_clock}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_clock}{\_clock}}
+{\footnotesize\ttfamily std\+::chrono\+::high\+\_\+resolution\+\_\+clock EGE\+::\+Movement\+::\+\_\+clock\hspace{0.3cm}{\ttfamily [protected]}}
+
+The high resolution clock used for timing. \Hypertarget{classEGE_1_1Movement_abf3d21c7bbe0321d396c4b7e59359541}\label{classEGE_1_1Movement_abf3d21c7bbe0321d396c4b7e59359541} 
+\index{EGE::Movement@{EGE::Movement}!\_currentKeyFrame@{\_currentKeyFrame}}
+\index{\_currentKeyFrame@{\_currentKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_currentKeyFrame}{\_currentKeyFrame}}
+{\footnotesize\ttfamily int EGE\+::\+Movement\+::\+\_\+current\+Key\+Frame\hspace{0.3cm}{\ttfamily [protected]}}
+
+The index of the current key frame. \Hypertarget{classEGE_1_1Movement_a93864c706b02065639dcd0bde305e03e}\label{classEGE_1_1Movement_a93864c706b02065639dcd0bde305e03e} 
+\index{EGE::Movement@{EGE::Movement}!\_duration@{\_duration}}
+\index{\_duration@{\_duration}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_duration}{\_duration}}
+{\footnotesize\ttfamily int EGE\+::\+Movement\+::\+\_\+duration\hspace{0.3cm}{\ttfamily [protected]}}
+
+The duration of the movement animation in milliseconds. \Hypertarget{classEGE_1_1Movement_a0b335a4fd5f063564dbf82aaabf340c6}\label{classEGE_1_1Movement_a0b335a4fd5f063564dbf82aaabf340c6} 
+\index{EGE::Movement@{EGE::Movement}!\_durationPerKeyFrame@{\_durationPerKeyFrame}}
+\index{\_durationPerKeyFrame@{\_durationPerKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_durationPerKeyFrame}{\_durationPerKeyFrame}}
+{\footnotesize\ttfamily int EGE\+::\+Movement\+::\+\_\+duration\+Per\+Key\+Frame\hspace{0.3cm}{\ttfamily [protected]}}
+
+The duration per key frame in milliseconds. \Hypertarget{classEGE_1_1Movement_ad58551b8d061103b498ed82bbb383c27}\label{classEGE_1_1Movement_ad58551b8d061103b498ed82bbb383c27} 
+\index{EGE::Movement@{EGE::Movement}!\_keyFrames@{\_keyFrames}}
+\index{\_keyFrames@{\_keyFrames}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_keyFrames}{\_keyFrames}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$4, 4, float$>$ $>$ EGE\+::\+Movement\+::\+\_\+key\+Frames\hspace{0.3cm}{\ttfamily [protected]}}
+
+The key frames of the movement animation. \Hypertarget{classEGE_1_1Movement_a355c732f2b5deaba16cce9841786997b}\label{classEGE_1_1Movement_a355c732f2b5deaba16cce9841786997b} 
+\index{EGE::Movement@{EGE::Movement}!\_lastKeyFrame@{\_lastKeyFrame}}
+\index{\_lastKeyFrame@{\_lastKeyFrame}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_lastKeyFrame}{\_lastKeyFrame}}
+{\footnotesize\ttfamily int EGE\+::\+Movement\+::\+\_\+last\+Key\+Frame\hspace{0.3cm}{\ttfamily [protected]}}
+
+The index of the last key frame. \Hypertarget{classEGE_1_1Movement_a37e7827e60d13be2b3019bb7f6d793bc}\label{classEGE_1_1Movement_a37e7827e60d13be2b3019bb7f6d793bc} 
+\index{EGE::Movement@{EGE::Movement}!\_lastTime@{\_lastTime}}
+\index{\_lastTime@{\_lastTime}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_lastTime}{\_lastTime}}
+{\footnotesize\ttfamily std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point EGE\+::\+Movement\+::\+\_\+last\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+The time point of the last frame. \Hypertarget{classEGE_1_1Movement_ad889ab632b2f4d98deb939e0aa5e1cec}\label{classEGE_1_1Movement_ad889ab632b2f4d98deb939e0aa5e1cec} 
+\index{EGE::Movement@{EGE::Movement}!\_loop@{\_loop}}
+\index{\_loop@{\_loop}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_loop}{\_loop}}
+{\footnotesize\ttfamily bool EGE\+::\+Movement\+::\+\_\+loop\hspace{0.3cm}{\ttfamily [protected]}}
+
+Flag indicating whether the movement animation should loop. \Hypertarget{classEGE_1_1Movement_a968b87a879bf2a14e08c4c279cad5388}\label{classEGE_1_1Movement_a968b87a879bf2a14e08c4c279cad5388} 
+\index{EGE::Movement@{EGE::Movement}!\_models@{\_models}}
+\index{\_models@{\_models}!EGE::Movement@{EGE::Movement}}
+\doxysubsubsection{\texorpdfstring{\_models}{\_models}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}}$>$ $>$ EGE\+::\+Movement\+::\+\_\+models\hspace{0.3cm}{\ttfamily [protected]}}
+
+The models in the movement animation. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Movement_8hpp}{Movement.\+hpp}}\end{DoxyCompactItemize}

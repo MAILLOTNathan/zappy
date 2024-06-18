@@ -1,0 +1,73 @@
+\doxysection{Tcp\+Command.\+hpp}
+\hypertarget{TcpCommand_8hpp_source}{}\label{TcpCommand_8hpp_source}\index{include/TcpCommand.hpp@{include/TcpCommand.hpp}}
+\mbox{\hyperlink{TcpCommand_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ zappy}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ TcpCommand}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ TCPCOMMAND\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ TCPCOMMAND\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{Utils_8hpp}{Utils.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#include\ <functional>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacenet}{net}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89f}{type\_command\_s}}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89faa0da01f48490f07c3011d345ea6fab59}{MSZ}},\ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa75cfd566c201d3f3c5a0fa4d0c535e85}{BCT}},\ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fad70593437751bd587a2580f34b7fbdfd}{MCT}},\ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa42292aff330be2ee37297f760ee6c7ed}{TNA}},\ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89faa971728e60d5441ad0a8d6fd63fc25f8}{PNW}},\ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fac39ada66fb4e5a1e35556382cb4176be}{PPO}},\ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2eac220117babdb271d10b70ce5b0605}{PLV}},\ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa3f9ec5e62d89f7738ddfd804c269dc68}{PIN}},\ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa14ebe3266eb6f3c130de656ba274e656}{PEX}},\ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa7395144a8e1ff8668527d6b4651686fb}{PBC}},\ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa31519f65aa58c59378553b46e966ae29}{PIC}},\ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa68e67c596d0346f2ae3e2da88b75d480}{PIE}},\ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa4a1ba5986a19780cf4bc62c225c5e7df}{PFK}},\ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa2fd78b4846b6d301c1b4f114b70d9e2f}{PDR}},\ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa1693aded78a3cdefd43769abbe4557e1}{PGT}},\ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fae9f96ab2a7f04a835f78f8ee4bc53b4b}{PDI}},\ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fad3a8fb0cc890279b99e1296135e6513f}{ENW}},\ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa8fa69443e5360670d6b190296d3e3e71}{EHT}},\ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa362a68f6aefdcf6b1151c631075d4f71}{EBO}},\ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fad1416216253d2957eb62ea859f928713}{EDI}},\ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa06988e74b7926b2bf4dd108ec23b1242}{SGT}},\ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fa5462bab30d6d9583ef0a872be0756695}{SST}},\ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fade1c37650de11e8d363e2ba4b6d802ca}{SEG}},\ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fae59cac63ff5460a51f4e534bfda707bb}{SMG}},\ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fae86f872373b5fee4fbaa5d4264e7fd59}{SUC}},\ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89facef9dbbb94df21bf189a0f88722a779d}{SBP}},\ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_aa67f0227070752a0ca88d5a43902f89fac1132f22af581a83f8be026a09a5e271}{IDM}},\ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \}\ \mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{type\_command\_t}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classnet_1_1TcpCommand}{TcpCommand}}\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpCommand_a762771227586b68c4f2ea25c02f6f6b6}{TcpCommand}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpCommand_a2aade124d5c07655b5a4fa7972e1e842}{TcpCommand}}(\mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{type\_command\_t}}\ type,\ std::function<\textcolor{keywordtype}{void}(std::vector<std::string>\&\ args)>\ callback);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpCommand_a8e2fd8a4ee9ef3f2c56945ab230988cc}{\string~TcpCommand}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classnet_1_1TcpCommand_aaa941af7feeb7a95372c334347a3f599}{exec}}(std::vector<std::string>\&\ args);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{type\_command\_t}}\ \mbox{\hyperlink{classnet_1_1TcpCommand_a008222d5348f717c35825bc753c28034}{\_type}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void(std::vector<std::string>\&\ args)>\ \mbox{\hyperlink{classnet_1_1TcpCommand_ad35ad71a15b65533f795380f1124562d}{\_callback}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ \}\ \textcolor{comment}{//\ namespace\ net}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !TCPCOMMAND\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

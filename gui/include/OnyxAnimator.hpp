@@ -48,6 +48,10 @@ namespace Onyx {
              * @param timeUnit The time unit used for animation (default is 1.0f).
              */
             Animator(float timeUnit = 1.0f);
+
+            /**
+             * @brief Destroys the Animator object.
+             */
             ~Animator();
 
             /**
@@ -81,7 +85,8 @@ namespace Onyx {
             std::vector<Onyx::Animation> _animations;           /**< Vector of animation frames. */
             std::vector<Onyx::Animation> _queuedAnimations;     /**< Vector of animations which is waiting to be played. */
             float _timeUnit;                                    /**< Time unit of a frame. */
-            EGE::Movement forwardNorth = EGE::Movement()
+
+            EGE::Movement forwardNorth = EGE::Movement()        /**< Movement for moving forward north. */
             .pushBackKeyFrame(EGE::Maths::Matrix<4, 4, float>({
                 {0.0f, 0.0f, 0.0f, 0.0f},
                 {0.0f, 0.0f, 0.0f, 0.0f},
@@ -95,7 +100,7 @@ namespace Onyx {
                 {0.0f, 0.0f, 0.0f, 0.0f}
             }));
 
-            EGE::Movement forwardSouth = EGE::Movement()
+            EGE::Movement forwardSouth = EGE::Movement()        /**< Movement for moving forward south. */
             .pushBackKeyFrame(EGE::Maths::Matrix<4, 4, float>({
                 {0.0f, 0.0f, 0.0f, 0.0f},
                 {0.0f, 0.0f, 0.0f, 0.0f},
@@ -109,7 +114,7 @@ namespace Onyx {
                 {0.0f, 0.0f, 0.0f, 0.0f}
             }));
 
-            EGE::Movement forwardEast = EGE::Movement()
+            EGE::Movement forwardEast = EGE::Movement()         /**< Movement for moving forward east. */
             .pushBackKeyFrame(EGE::Maths::Matrix<4, 4, float>({
                 {0.0f, 0.0f, 0.0f, 0.0f},
                 {0.0f, 0.0f, 0.0f, 0.0f},
@@ -123,7 +128,7 @@ namespace Onyx {
                 {0.0f, 0.0f, 0.0f, 0.0f}
             }));
 
-            EGE::Movement forwardWest = EGE::Movement()
+            EGE::Movement forwardWest = EGE::Movement()         /**< Movement for moving forward west. */
             .pushBackKeyFrame(EGE::Maths::Matrix<4, 4, float>({
                 {0.0f, 0.0f, 0.0f, 0.0f},
                 {0.0f, 0.0f, 0.0f, 0.0f},
@@ -137,7 +142,7 @@ namespace Onyx {
                 {0.0f, 0.0f, 0.0f, 0.0f}
             }));
 
-            EGE::Movement left = EGE::Movement()
+            EGE::Movement left = EGE::Movement()                /**< Movement for turning left. */
             .pushBackKeyFrame(EGE::Maths::Matrix<4, 4, float>({
                 {0.0f, 0.0f, 0.0f, 0.0f},
                 {0.0f, 0.0f, 0.0f, 0.0f},
@@ -151,7 +156,7 @@ namespace Onyx {
                 {0.0f, 0.0f, 0.0f, 0.0f}
             }));
 
-            EGE::Movement right = EGE::Movement()
+            EGE::Movement right = EGE::Movement()               /**< Movement for turning right. */
             .pushBackKeyFrame(EGE::Maths::Matrix<4, 4, float>({
                 {0.0f, 0.0f, 0.0f, 0.0f},
                 {0.0f, 0.0f, 0.0f, 0.0f},

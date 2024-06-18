@@ -1,0 +1,131 @@
+\doxysection{EGE\+::Glfw\+Window\+Close\+Callback\+Function Class Reference}
+\hypertarget{classEGE_1_1GlfwWindowCloseCallbackFunction}{}\label{classEGE_1_1GlfwWindowCloseCallbackFunction}\index{EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}}
+
+
+A class that represents a callback function for the GLFW window close event.  
+
+
+
+
+{\ttfamily \#include $<$Glfw\+Callback.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Glfw\+Window\+Close\+Callback\+Function\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_a02f8f9b3234392889f56bff76153a351}{Glfw\+Window\+Close\+Callback\+Function}} (const \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \& \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_abf447a671b6a10a7b315be60f92d20e3}{operator=}} (const \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... \+\_\+\+Arg\+Types$>$ }\\void \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_adb099dda620ec1c75f48054a4ee037e4}{call}} (\+\_\+\+Arg\+Types... args)
+\begin{DoxyCompactList}\small\item\em Call the callback function with the specified arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename F $>$ }\\static \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_a6c900838f622a582c8691bbb3e359579}{get\+Instance}} (F \&\&callback, bool force=false)
+\begin{DoxyCompactList}\small\item\em Get the instance of the \doxylink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function} class. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction_ac3c6b8e371d0c43e830a5a482c90a15a}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the instance of the \doxylink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that represents a callback function for the GLFW window close event. 
+
+This class provides a way to register a callback function that will be called when the GLFW window is closed. Only one instance of this class can exist at a time, and it can be accessed using the \doxylink{classEGE_1_1GlfwWindowCloseCallbackFunction_ac3c6b8e371d0c43e830a5a482c90a15a}{get\+Instance()} method. The callback function must be invocable with a GLFWwindow\texorpdfstring{$\ast$}{*} parameter. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1GlfwWindowCloseCallbackFunction_a02f8f9b3234392889f56bff76153a351}\label{classEGE_1_1GlfwWindowCloseCallbackFunction_a02f8f9b3234392889f56bff76153a351} 
+\index{EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}!GlfwWindowCloseCallbackFunction@{GlfwWindowCloseCallbackFunction}}
+\index{GlfwWindowCloseCallbackFunction@{GlfwWindowCloseCallbackFunction}!EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{GlfwWindowCloseCallbackFunction()}{GlfwWindowCloseCallbackFunction()}}
+{\footnotesize\ttfamily EGE\+::\+Glfw\+Window\+Close\+Callback\+Function\+::\+Glfw\+Window\+Close\+Callback\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1GlfwWindowCloseCallbackFunction_adb099dda620ec1c75f48054a4ee037e4}\label{classEGE_1_1GlfwWindowCloseCallbackFunction_adb099dda620ec1c75f48054a4ee037e4} 
+\index{EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}!call@{call}}
+\index{call@{call}!EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{call()}{call()}}
+{\footnotesize\ttfamily template$<$typename... \+\_\+\+Arg\+Types$>$ \\
+void EGE\+::\+Glfw\+Window\+Close\+Callback\+Function\+::call (\begin{DoxyParamCaption}\item[{\+\_\+\+Arg\+Types...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Call the callback function with the specified arguments. 
+
+If a callback function is registered, it will be called with the specified arguments.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Arg\+Types} & The types of the arguments. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The arguments to be passed to the callback function. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1GlfwWindowCloseCallbackFunction_ac3c6b8e371d0c43e830a5a482c90a15a}\label{classEGE_1_1GlfwWindowCloseCallbackFunction_ac3c6b8e371d0c43e830a5a482c90a15a} 
+\index{EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \texorpdfstring{$\ast$}{*} EGE\+::\+Glfw\+Window\+Close\+Callback\+Function\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the instance of the \doxylink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function} class. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the instance of the \doxylink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function} class. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GlfwWindowCloseCallbackFunction_a6c900838f622a582c8691bbb3e359579}\label{classEGE_1_1GlfwWindowCloseCallbackFunction_a6c900838f622a582c8691bbb3e359579} 
+\index{EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename F $>$ \\
+static \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \texorpdfstring{$\ast$}{*} EGE\+::\+Glfw\+Window\+Close\+Callback\+Function\+::get\+Instance (\begin{DoxyParamCaption}\item[{F \&\&}]{callback,  }\item[{bool}]{force = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the instance of the \doxylink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function} class. 
+
+If an instance already exists and the \textquotesingle{}force\textquotesingle{} parameter is set to true, the existing instance will be deleted and a new one will be created. If an instance does not exist, a new one will be created.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em F} & The type of the callback function. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback function to be registered. \\
+\hline
+{\em force} & Whether to force the creation of a new instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the instance of the \doxylink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function} class. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GlfwWindowCloseCallbackFunction_abf447a671b6a10a7b315be60f92d20e3}\label{classEGE_1_1GlfwWindowCloseCallbackFunction_abf447a671b6a10a7b315be60f92d20e3} 
+\index{EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}!operator=@{operator=}}
+\index{operator=@{operator=}!EGE::GlfwWindowCloseCallbackFunction@{EGE::GlfwWindowCloseCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \& EGE\+::\+Glfw\+Window\+Close\+Callback\+Function\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1GlfwWindowCloseCallbackFunction}{Glfw\+Window\+Close\+Callback\+Function}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{GlfwCallback_8hpp}{Glfw\+Callback.\+hpp}}\end{DoxyCompactItemize}

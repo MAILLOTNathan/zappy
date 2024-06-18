@@ -1,0 +1,659 @@
+\doxysection{Onyx\+::Player Class Reference}
+\hypertarget{classOnyx_1_1Player}{}\label{classOnyx_1_1Player}\index{Onyx::Player@{Onyx::Player}}
+
+
+Represents a player in the game.  
+
+
+
+
+{\ttfamily \#include $<$Player.\+hpp$>$}
+
+
+
+Inheritance diagram for Onyx\+::Player\+:
+% FIG 0
+
+
+Collaboration diagram for Onyx\+::Player\+:
+% FIG 1
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495}{Color}} \{ \newline
+\mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495ace4c2ead342c2075332053feca33f295}{UNDEFINED}} = 0
+, \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a06afecab6a84ccb7ff8515a89d1cfc84}{RED}}
+, \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495acc6e385129b7125644c7a18ecc18f2c7}{GREEN}}
+, \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a495abbc039e232deaa2700d76dd32c4f}{BLUE}}
+, \newline
+\mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a0244f0c46c630209a6a720ca049aaf0c}{PINK}}
+, \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495ad870ff20ddb100ab6e8afd4f1ec24e69}{YELLOW}}
+, \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a6662208866bc41df6a96b908d78b2b7a}{ORANGE}}
+, \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495afbe30dd7619f3dfe2f413e1863f8959b}{PURPLE}}
+, \newline
+\mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a2a96506d09f3269a9dbf93e78d6e47da}{CYAN}}
+, \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a74dba77a0b7736e29ed86e428b7f2731}{LAST}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the color of a player. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}{Animation}} \{ \newline
+\mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda02ed5fcd874fd0131c16a1b3c4d2ed34}{NONE}} = -\/1
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdacea23f0ec86b9d2e503eb2888ef6e76a}{FORWARD\+\_\+\+NORTH}} = 0
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdaf98567d3b2c74c64132541636b64eb9a}{LEFT}}
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda1135d155dd6bc60a50703d19a2b8e599}{RIGHT}}
+, \newline
+\mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdae049dee0dee5e5ec0b6cb1833290705c}{BROADCAST}}
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdacecab06e5486772dca9d310e9fb83b1c}{INCANTATION}}
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda2be130b5af028c65f1c0c5efcddd1e4a}{EXPULSE}}
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda04eed0f4c417d24b89dbe408e9420801}{FORWARD\+\_\+\+EAST}}
+, \newline
+\mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdac0a9787b7e931c207f130a051851651a}{FORWARD\+\_\+\+SOUTH}}
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda994a5ca6eb00c4f6a7eb92bd8c0472a0}{FORWARD\+\_\+\+WEST}}
+, \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda9623533f82a5bce5259aa36dd1f1f068}{MAX}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the animation of a player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Player_a1d5d29cead2df4bee26521882afcc937}{Player}} (int id, const std\+::string \&team\+Name, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&position, const std\+::string \&rotation, int levev, float time\+Unit)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classOnyx_1_1Player}{Player} object with the specified parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1Player_a50533dcefc529280884d78e47d63f408}{\texorpdfstring{$\sim$}{\string~}\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classOnyx_1_1Player}{Player} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a9ee95a9dad78eb31230f303d3bdb7c06}{update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$ shader) override
+\begin{DoxyCompactList}\small\item\em Updates the player\textquotesingle{}s state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_ae7474561e4aead209d7f5d038844626a}{evolve}} ()
+\begin{DoxyCompactList}\small\item\em Evolves the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a7d3fbadf34e79e311dcf5fe4d20c06b6}{forward}} ()
+\begin{DoxyCompactList}\small\item\em Moves the player forward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a7bdf671fbbadac5dd33215c5d43a809b}{left}} ()
+\begin{DoxyCompactList}\small\item\em Rotates the player to the left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a92c90977dc4cf0f9d902fe98bdb838f8}{right}} ()
+\begin{DoxyCompactList}\small\item\em Rotates the player to the right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_abab9c8fd4e25e69f83deeb9cf6ed04ee}{set\+Level}} (int level)
+\begin{DoxyCompactList}\small\item\em Sets the level of the player. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOnyx_1_1Player_a25315a8648866eec8e79d092ae9f4986}{get\+Level}} ()
+\begin{DoxyCompactList}\small\item\em Gets the level of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a77486a8731598faf016b8687c814fa40}{set\+Color}} (const \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495}{Color}} \&color)
+\begin{DoxyCompactList}\small\item\em Sets the color of the player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495}{Color}} \mbox{\hyperlink{classOnyx_1_1Player_a657fd00ce4bca54be76fc17c0ba02bd3}{get\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Gets the color of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a0fdb1a3308e9b3b9f2b9b33a8d9f454c}{set\+Team\+Name}} (const std\+::string \&team\+Name)
+\begin{DoxyCompactList}\small\item\em Sets the team name of the player. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classOnyx_1_1Player_ab220da858ea8f73eefb2db4bcb23df4f}{get\+Team\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the team name of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a3d824b419458f80d43e29e93d75cb4b7}{set\+Rotation}} (const std\+::string \&rotation)
+\begin{DoxyCompactList}\small\item\em Sets the rotation of the player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Player_a26a5f1c7e4dbe8de82603d55ce131ffa}{get\+Rotation}} ()
+\begin{DoxyCompactList}\small\item\em Gets the rotation of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_ab106a87b9b7e0e6a736a222644f552b5}{set\+Rotation\+String}} (const std\+::string \&rotation)
+\begin{DoxyCompactList}\small\item\em Sets the rotation string of the player. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classOnyx_1_1Player_a5e3ed0844d1ce8cf6741094f1f6130e8}{get\+Rotation\+String}} ()
+\begin{DoxyCompactList}\small\item\em Gets the rotation string of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_ab1044381d873186c4ea20ddf53fc5ad9}{set\+Pos}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ pos)
+\begin{DoxyCompactList}\small\item\em Sets the position of the player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \mbox{\hyperlink{classOnyx_1_1Player_ac0fa9f2aecf9fe4d34f978f1662ec5c2}{get\+Pos}} ()
+\begin{DoxyCompactList}\small\item\em Gets the position of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a9d53a95c1601198c6608094aeee32297}{set\+Time\+Unit}} (int time\+Unit)
+\begin{DoxyCompactList}\small\item\em Sets the time unit of the player. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOnyx_1_1Player_a640d33cca7a60ff9e8f1c7c3833c3cc4}{get\+Time\+Unit}} ()
+\begin{DoxyCompactList}\small\item\em Gets the time unit of the player. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOnyx_1_1Player_afa9b4b67fdd1ff61ec6dfccec9ab6caa}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Gets the ID of the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a76610fa5ccb1d87408d38754e023e079}{set\+Delta}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Sets the delta time of the player. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classOnyx_1_1Player_a2aa7f4ba8d07c7617fe5b0d9c666d58d}{get\+Delta}} ()
+\begin{DoxyCompactList}\small\item\em Gets the delta time of the player. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOnyx_1_1Player_ab80c63e09886353de4b0878907ec6e55}{get\+Quantity}} (\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}} type)
+\begin{DoxyCompactList}\small\item\em Gets the quantity of a specific item in the player\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1Player_a83b35498686689535213fdb73cce0017}{set\+Inventory}} (int quantity, \mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}} type)
+\begin{DoxyCompactList}\small\item\em Sets the quantity of a specific item in the player\textquotesingle{}s inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classOnyx_1_1Entity}{Onyx\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1Entity_a47be073bf8779a1124af6a701fb8a044}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classOnyx_1_1Entity_a67e681449da07ac93e97847b3d25201e}{set\+Position}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Set the new position of the floor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_ae928728d710f4077d7dd248584977946}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Returns the position of the floor. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aca7177d514ff29ab8b48b62932735835}{get\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Returns the model associated with the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOnyx_1_1Entity_a1858604460a02213435e6961e975993b}{intersects}} (const glm\+::vec3 \&ray\+Origin, const glm\+::vec3 \&ray\+Position, float \&t, float \&u, float \&v)
+\begin{DoxyCompactList}\small\item\em Checks if the entity intersects with a ray. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{classOnyx_1_1Player_aaca9f44c35d3cfd07185f5252bf8f202}{get\+Animation\+String}} (\mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}{Onyx\+::\+Player\+::\+Animation}} animation)
+\begin{DoxyCompactList}\small\item\em Gets the string representation of an animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classOnyx_1_1Player_af99232c42e1bb8b8322718e1f16743b9}{is\+Animated}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classOnyx_1_1Entity}{Onyx\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Model}{EGE\+::\+Model}} $>$ \mbox{\hyperlink{classOnyx_1_1Entity_aded44b3834c06aad8f88193caa3419bd}{\+\_\+model}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classOnyx_1_1Entity_a114bf724ad20e45425d7c19473bc6ce3}{\+\_\+position}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a player in the game. 
+
+This class is derived from the \doxylink{classOnyx_1_1Entity}{Onyx\+::\+Entity} class and provides functionality to manipulate and retrieve information about a player in the game. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd} 
+\index{Onyx::Player@{Onyx::Player}!Animation@{Animation}}
+\index{Animation@{Animation}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{Animation}{Animation}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}{Onyx\+::\+Player\+::\+Animation}}}
+
+
+
+Represents the animation of a player. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!NONE@{NONE}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda02ed5fcd874fd0131c16a1b3c4d2ed34}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda02ed5fcd874fd0131c16a1b3c4d2ed34} 
+NONE&No animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FORWARD\_NORTH@{FORWARD\_NORTH}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!FORWARD\_NORTH@{FORWARD\_NORTH}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdacea23f0ec86b9d2e503eb2888ef6e76a}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdacea23f0ec86b9d2e503eb2888ef6e76a} 
+FORWARD\+\_\+\+NORTH&Forward north animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!LEFT@{LEFT}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdaf98567d3b2c74c64132541636b64eb9a}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdaf98567d3b2c74c64132541636b64eb9a} 
+LEFT&Left animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!RIGHT@{RIGHT}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda1135d155dd6bc60a50703d19a2b8e599}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda1135d155dd6bc60a50703d19a2b8e599} 
+RIGHT&Right animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BROADCAST@{BROADCAST}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!BROADCAST@{BROADCAST}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdae049dee0dee5e5ec0b6cb1833290705c}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdae049dee0dee5e5ec0b6cb1833290705c} 
+BROADCAST&Broadcast animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INCANTATION@{INCANTATION}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!INCANTATION@{INCANTATION}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdacecab06e5486772dca9d310e9fb83b1c}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdacecab06e5486772dca9d310e9fb83b1c} 
+INCANTATION&Incantation animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPULSE@{EXPULSE}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!EXPULSE@{EXPULSE}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda2be130b5af028c65f1c0c5efcddd1e4a}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda2be130b5af028c65f1c0c5efcddd1e4a} 
+EXPULSE&Expulse animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FORWARD\_EAST@{FORWARD\_EAST}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!FORWARD\_EAST@{FORWARD\_EAST}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda04eed0f4c417d24b89dbe408e9420801}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda04eed0f4c417d24b89dbe408e9420801} 
+FORWARD\+\_\+\+EAST&Forward east animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FORWARD\_SOUTH@{FORWARD\_SOUTH}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!FORWARD\_SOUTH@{FORWARD\_SOUTH}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdac0a9787b7e931c207f130a051851651a}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcdac0a9787b7e931c207f130a051851651a} 
+FORWARD\+\_\+\+SOUTH&Forward south animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FORWARD\_WEST@{FORWARD\_WEST}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!FORWARD\_WEST@{FORWARD\_WEST}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda994a5ca6eb00c4f6a7eb92bd8c0472a0}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda994a5ca6eb00c4f6a7eb92bd8c0472a0} 
+FORWARD\+\_\+\+WEST&Forward west animation \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX@{MAX}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!MAX@{MAX}}}\Hypertarget{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda9623533f82a5bce5259aa36dd1f1f068}\label{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcda9623533f82a5bce5259aa36dd1f1f068} 
+MAX&Maximum animation \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495} 
+\index{Onyx::Player@{Onyx::Player}!Color@{Color}}
+\index{Color@{Color}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{Color}{Color}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495}{Onyx\+::\+Player\+::\+Color}}}
+
+
+
+Represents the color of a player. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNDEFINED@{UNDEFINED}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!UNDEFINED@{UNDEFINED}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495ace4c2ead342c2075332053feca33f295}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495ace4c2ead342c2075332053feca33f295} 
+UNDEFINED&Undefined color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!RED@{RED}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a06afecab6a84ccb7ff8515a89d1cfc84}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a06afecab6a84ccb7ff8515a89d1cfc84} 
+RED&Red color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREEN@{GREEN}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!GREEN@{GREEN}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495acc6e385129b7125644c7a18ecc18f2c7}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495acc6e385129b7125644c7a18ecc18f2c7} 
+GREEN&Green color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLUE@{BLUE}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!BLUE@{BLUE}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a495abbc039e232deaa2700d76dd32c4f}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a495abbc039e232deaa2700d76dd32c4f} 
+BLUE&Blue color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PINK@{PINK}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!PINK@{PINK}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a0244f0c46c630209a6a720ca049aaf0c}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a0244f0c46c630209a6a720ca049aaf0c} 
+PINK&Pink color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{YELLOW@{YELLOW}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!YELLOW@{YELLOW}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495ad870ff20ddb100ab6e8afd4f1ec24e69}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495ad870ff20ddb100ab6e8afd4f1ec24e69} 
+YELLOW&Yellow color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ORANGE@{ORANGE}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!ORANGE@{ORANGE}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a6662208866bc41df6a96b908d78b2b7a}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a6662208866bc41df6a96b908d78b2b7a} 
+ORANGE&Orange color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PURPLE@{PURPLE}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!PURPLE@{PURPLE}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495afbe30dd7619f3dfe2f413e1863f8959b}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495afbe30dd7619f3dfe2f413e1863f8959b} 
+PURPLE&Purple color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CYAN@{CYAN}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!CYAN@{CYAN}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a2a96506d09f3269a9dbf93e78d6e47da}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a2a96506d09f3269a9dbf93e78d6e47da} 
+CYAN&Cyan color \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LAST@{LAST}!Onyx::Player@{Onyx::Player}}\index{Onyx::Player@{Onyx::Player}!LAST@{LAST}}}\Hypertarget{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a74dba77a0b7736e29ed86e428b7f2731}\label{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495a74dba77a0b7736e29ed86e428b7f2731} 
+LAST&Last color \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1Player_a1d5d29cead2df4bee26521882afcc937}\label{classOnyx_1_1Player_a1d5d29cead2df4bee26521882afcc937} 
+\index{Onyx::Player@{Onyx::Player}!Player@{Player}}
+\index{Player@{Player}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily Onyx\+::\+Player\+::\+Player (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{const std\+::string \&}]{team\+Name,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{position,  }\item[{const std\+::string \&}]{rotation,  }\item[{int}]{levev,  }\item[{float}]{time\+Unit }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classOnyx_1_1Player}{Player} object with the specified parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the player. \\
+\hline
+{\em team\+Name} & The name of the team the player belongs to. \\
+\hline
+{\em position} & The position of the player. \\
+\hline
+{\em rotation} & The rotation of the player. \\
+\hline
+{\em level} & The level of the player. \\
+\hline
+{\em time\+Unit} & The time unit of the player. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_a50533dcefc529280884d78e47d63f408}\label{classOnyx_1_1Player_a50533dcefc529280884d78e47d63f408} 
+\index{Onyx::Player@{Onyx::Player}!````~Player@{\texorpdfstring{$\sim$}{\string~}Player}}
+\index{````~Player@{\texorpdfstring{$\sim$}{\string~}Player}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Player()}{\string~Player()}}
+{\footnotesize\ttfamily Onyx\+::\+Player\+::\texorpdfstring{$\sim$}{\string~}\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classOnyx_1_1Player}{Player} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1Player_ae7474561e4aead209d7f5d038844626a}\label{classOnyx_1_1Player_ae7474561e4aead209d7f5d038844626a} 
+\index{Onyx::Player@{Onyx::Player}!evolve@{evolve}}
+\index{evolve@{evolve}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{evolve()}{evolve()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::evolve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Evolves the player. 
+
+\Hypertarget{classOnyx_1_1Player_a7d3fbadf34e79e311dcf5fe4d20c06b6}\label{classOnyx_1_1Player_a7d3fbadf34e79e311dcf5fe4d20c06b6} 
+\index{Onyx::Player@{Onyx::Player}!forward@{forward}}
+\index{forward@{forward}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::forward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves the player forward. 
+
+\Hypertarget{classOnyx_1_1Player_aaca9f44c35d3cfd07185f5252bf8f202}\label{classOnyx_1_1Player_aaca9f44c35d3cfd07185f5252bf8f202} 
+\index{Onyx::Player@{Onyx::Player}!getAnimationString@{getAnimationString}}
+\index{getAnimationString@{getAnimationString}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getAnimationString()}{getAnimationString()}}
+{\footnotesize\ttfamily static std\+::string Onyx\+::\+Player\+::get\+Animation\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}{Onyx\+::\+Player\+::\+Animation}}}]{animation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the string representation of an animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation} & The animation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the animation. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_a657fd00ce4bca54be76fc17c0ba02bd3}\label{classOnyx_1_1Player_a657fd00ce4bca54be76fc17c0ba02bd3} 
+\index{Onyx::Player@{Onyx::Player}!getColor@{getColor}}
+\index{getColor@{getColor}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getColor()}{getColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495}{Color}} Onyx\+::\+Player\+::get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the color of the player. 
+
+\begin{DoxyReturn}{Returns}
+The color of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_a2aa7f4ba8d07c7617fe5b0d9c666d58d}\label{classOnyx_1_1Player_a2aa7f4ba8d07c7617fe5b0d9c666d58d} 
+\index{Onyx::Player@{Onyx::Player}!getDelta@{getDelta}}
+\index{getDelta@{getDelta}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getDelta()}{getDelta()}}
+{\footnotesize\ttfamily float Onyx\+::\+Player\+::get\+Delta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the delta time of the player. 
+
+\begin{DoxyReturn}{Returns}
+The delta time of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_afa9b4b67fdd1ff61ec6dfccec9ab6caa}\label{classOnyx_1_1Player_afa9b4b67fdd1ff61ec6dfccec9ab6caa} 
+\index{Onyx::Player@{Onyx::Player}!getId@{getId}}
+\index{getId@{getId}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily int Onyx\+::\+Player\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the ID of the player. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_a25315a8648866eec8e79d092ae9f4986}\label{classOnyx_1_1Player_a25315a8648866eec8e79d092ae9f4986} 
+\index{Onyx::Player@{Onyx::Player}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getLevel()}{getLevel()}}
+{\footnotesize\ttfamily int Onyx\+::\+Player\+::get\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the level of the player. 
+
+\begin{DoxyReturn}{Returns}
+The level of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_ac0fa9f2aecf9fe4d34f978f1662ec5c2}\label{classOnyx_1_1Player_ac0fa9f2aecf9fe4d34f978f1662ec5c2} 
+\index{Onyx::Player@{Onyx::Player}!getPos@{getPos}}
+\index{getPos@{getPos}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ Onyx\+::\+Player\+::get\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the position of the player. 
+
+\begin{DoxyReturn}{Returns}
+The position of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_ab80c63e09886353de4b0878907ec6e55}\label{classOnyx_1_1Player_ab80c63e09886353de4b0878907ec6e55} 
+\index{Onyx::Player@{Onyx::Player}!getQuantity@{getQuantity}}
+\index{getQuantity@{getQuantity}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getQuantity()}{getQuantity()}}
+{\footnotesize\ttfamily int Onyx\+::\+Player\+::get\+Quantity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Gets the quantity of a specific item in the player\textquotesingle{}s inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The quantity of the item. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_a26a5f1c7e4dbe8de82603d55ce131ffa}\label{classOnyx_1_1Player_a26a5f1c7e4dbe8de82603d55ce131ffa} 
+\index{Onyx::Player@{Onyx::Player}!getRotation@{getRotation}}
+\index{getRotation@{getRotation}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getRotation()}{getRotation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ Onyx\+::\+Player\+::get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the rotation of the player. 
+
+\begin{DoxyReturn}{Returns}
+The rotation of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_a5e3ed0844d1ce8cf6741094f1f6130e8}\label{classOnyx_1_1Player_a5e3ed0844d1ce8cf6741094f1f6130e8} 
+\index{Onyx::Player@{Onyx::Player}!getRotationString@{getRotationString}}
+\index{getRotationString@{getRotationString}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getRotationString()}{getRotationString()}}
+{\footnotesize\ttfamily std\+::string Onyx\+::\+Player\+::get\+Rotation\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the rotation string of the player. 
+
+\begin{DoxyReturn}{Returns}
+The rotation string of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_ab220da858ea8f73eefb2db4bcb23df4f}\label{classOnyx_1_1Player_ab220da858ea8f73eefb2db4bcb23df4f} 
+\index{Onyx::Player@{Onyx::Player}!getTeamName@{getTeamName}}
+\index{getTeamName@{getTeamName}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getTeamName()}{getTeamName()}}
+{\footnotesize\ttfamily std\+::string Onyx\+::\+Player\+::get\+Team\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the team name of the player. 
+
+\begin{DoxyReturn}{Returns}
+The team name of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_a640d33cca7a60ff9e8f1c7c3833c3cc4}\label{classOnyx_1_1Player_a640d33cca7a60ff9e8f1c7c3833c3cc4} 
+\index{Onyx::Player@{Onyx::Player}!getTimeUnit@{getTimeUnit}}
+\index{getTimeUnit@{getTimeUnit}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{getTimeUnit()}{getTimeUnit()}}
+{\footnotesize\ttfamily int Onyx\+::\+Player\+::get\+Time\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the time unit of the player. 
+
+\begin{DoxyReturn}{Returns}
+The time unit of the player. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1Player_a7bdf671fbbadac5dd33215c5d43a809b}\label{classOnyx_1_1Player_a7bdf671fbbadac5dd33215c5d43a809b} 
+\index{Onyx::Player@{Onyx::Player}!left@{left}}
+\index{left@{left}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{left()}{left()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Rotates the player to the left. 
+
+\Hypertarget{classOnyx_1_1Player_a92c90977dc4cf0f9d902fe98bdb838f8}\label{classOnyx_1_1Player_a92c90977dc4cf0f9d902fe98bdb838f8} 
+\index{Onyx::Player@{Onyx::Player}!right@{right}}
+\index{right@{right}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{right()}{right()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Rotates the player to the right. 
+
+\Hypertarget{classOnyx_1_1Player_a77486a8731598faf016b8687c814fa40}\label{classOnyx_1_1Player_a77486a8731598faf016b8687c814fa40} 
+\index{Onyx::Player@{Onyx::Player}!setColor@{setColor}}
+\index{setColor@{setColor}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setColor()}{setColor()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Color (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classOnyx_1_1Player_a41ce8a90903f07fc1c886ecfdcec1495}{Color}} \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Sets the color of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & The color to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_a76610fa5ccb1d87408d38754e023e079}\label{classOnyx_1_1Player_a76610fa5ccb1d87408d38754e023e079} 
+\index{Onyx::Player@{Onyx::Player}!setDelta@{setDelta}}
+\index{setDelta@{setDelta}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setDelta()}{setDelta()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Delta (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Sets the delta time of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & The delta time to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_a83b35498686689535213fdb73cce0017}\label{classOnyx_1_1Player_a83b35498686689535213fdb73cce0017} 
+\index{Onyx::Player@{Onyx::Player}!setInventory@{setInventory}}
+\index{setInventory@{setInventory}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setInventory()}{setInventory()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Inventory (\begin{DoxyParamCaption}\item[{int}]{quantity,  }\item[{\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx\+::\+Item\+::\+TYPE}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Sets the quantity of a specific item in the player\textquotesingle{}s inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quantity} & The quantity to set. \\
+\hline
+{\em type} & The type of the item. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_abab9c8fd4e25e69f83deeb9cf6ed04ee}\label{classOnyx_1_1Player_abab9c8fd4e25e69f83deeb9cf6ed04ee} 
+\index{Onyx::Player@{Onyx::Player}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Level (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Sets the level of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_ab1044381d873186c4ea20ddf53fc5ad9}\label{classOnyx_1_1Player_ab1044381d873186c4ea20ddf53fc5ad9} 
+\index{Onyx::Player@{Onyx::Player}!setPos@{setPos}}
+\index{setPos@{setPos}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$}]{pos }\end{DoxyParamCaption})}
+
+
+
+Sets the position of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_a3d824b419458f80d43e29e93d75cb4b7}\label{classOnyx_1_1Player_a3d824b419458f80d43e29e93d75cb4b7} 
+\index{Onyx::Player@{Onyx::Player}!setRotation@{setRotation}}
+\index{setRotation@{setRotation}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setRotation()}{setRotation()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Rotation (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{rotation }\end{DoxyParamCaption})}
+
+
+
+Sets the rotation of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & The rotation to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_ab106a87b9b7e0e6a736a222644f552b5}\label{classOnyx_1_1Player_ab106a87b9b7e0e6a736a222644f552b5} 
+\index{Onyx::Player@{Onyx::Player}!setRotationString@{setRotationString}}
+\index{setRotationString@{setRotationString}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setRotationString()}{setRotationString()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Rotation\+String (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{rotation }\end{DoxyParamCaption})}
+
+
+
+Sets the rotation string of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & The rotation string to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_a0fdb1a3308e9b3b9f2b9b33a8d9f454c}\label{classOnyx_1_1Player_a0fdb1a3308e9b3b9f2b9b33a8d9f454c} 
+\index{Onyx::Player@{Onyx::Player}!setTeamName@{setTeamName}}
+\index{setTeamName@{setTeamName}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setTeamName()}{setTeamName()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Team\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{team\+Name }\end{DoxyParamCaption})}
+
+
+
+Sets the team name of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+Name} & The team name to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_a9d53a95c1601198c6608094aeee32297}\label{classOnyx_1_1Player_a9d53a95c1601198c6608094aeee32297} 
+\index{Onyx::Player@{Onyx::Player}!setTimeUnit@{setTimeUnit}}
+\index{setTimeUnit@{setTimeUnit}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{setTimeUnit()}{setTimeUnit()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::set\+Time\+Unit (\begin{DoxyParamCaption}\item[{int}]{time\+Unit }\end{DoxyParamCaption})}
+
+
+
+Sets the time unit of the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Unit} & The time unit to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOnyx_1_1Player_a9ee95a9dad78eb31230f303d3bdb7c06}\label{classOnyx_1_1Player_a9ee95a9dad78eb31230f303d3bdb7c06} 
+\index{Onyx::Player@{Onyx::Player}!update@{update}}
+\index{update@{update}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Onyx\+::\+Player\+::update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} $>$}]{shader }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the player\textquotesingle{}s state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader used for rendering. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classOnyx_1_1Entity_a09b1bdfb3e956502c8655ac6ae804542}{Onyx\+::\+Entity}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classOnyx_1_1Player_af99232c42e1bb8b8322718e1f16743b9}\label{classOnyx_1_1Player_af99232c42e1bb8b8322718e1f16743b9} 
+\index{Onyx::Player@{Onyx::Player}!isAnimated@{isAnimated}}
+\index{isAnimated@{isAnimated}!Onyx::Player@{Onyx::Player}}
+\doxysubsubsection{\texorpdfstring{isAnimated}{isAnimated}}
+{\footnotesize\ttfamily bool Onyx\+::\+Player\+::is\+Animated}
+
+Flag indicating if the player is animated. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Player_8hpp}{Player.\+hpp}}\end{DoxyCompactItemize}

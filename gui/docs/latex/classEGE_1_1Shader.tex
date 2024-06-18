@@ -1,0 +1,299 @@
+\doxysection{EGE\+::Shader Class Reference}
+\hypertarget{classEGE_1_1Shader}{}\label{classEGE_1_1Shader}\index{EGE::Shader@{EGE::Shader}}
+
+
+{\ttfamily \#include $<$Shader.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Shader\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Shader_1_1ShaderError}{Shader\+Error}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classEGE_1_1Shader_1_1ShaderError}{Shader\+Error} class represents an error that can occur during shader compilation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Shader_ac56cf04aab27a179e2a7a22187356cd9}{Shader}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classEGE_1_1Shader}{Shader} object This constructor will create a default shader and then call the compile method. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Shader_a05dd09e3525673126f290ee68e6d60e4}{Shader}} (const std\+::string \&vertex\+Path, const std\+::string \&fragment\+Path)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classEGE_1_1Shader}{Shader} object This constructor will call the compile method with the content of the files. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Shader_abb71bddb2e4d7e9615d9278a894a5110}{\texorpdfstring{$\sim$}{\string~}\+Shader}} ()
+\item 
+void \mbox{\hyperlink{classEGE_1_1Shader_a2e55846b4dbf1b0bbbf0c2aaa67af1fa}{use}} ()
+\begin{DoxyCompactList}\small\item\em Use the shader This method will call gl\+Use\+Program with the shader ID. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classEGE_1_1Shader_a31cde12d6f2f34b6069b1cb0e32d56fd}{get\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Get the ID of the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Shader_a1c91d04f3dc0f6beb4aee9805a5919e1}{set\+Bool}} (const std\+::string \&name, bool value) const
+\begin{DoxyCompactList}\small\item\em Set a bool uniform value in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Shader_ab6aced6742948a8a52a34aa62944972f}{set\+Double}} (const std\+::string \&name, double value) const
+\begin{DoxyCompactList}\small\item\em Set a double uniform value in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Shader_ac52770fe2ba753598ca75e89b0e08e3e}{set\+Float}} (const std\+::string \&name, float value) const
+\begin{DoxyCompactList}\small\item\em Set a float uniform value in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Shader_a2fe20c7c2753bba12e3d0d8730e86514}{set\+Int}} (const std\+::string \&name, int value) const
+\begin{DoxyCompactList}\small\item\em Set a signed int uniform value in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Shader_a560b6ecd4ccfcf47f23414ec48df8b00}{set\+UInt}} (const std\+::string \&name, unsigned int value) const
+\begin{DoxyCompactList}\small\item\em Set a unsigned int uniform value in the shader. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classEGE_1_1Shader_a584e8907e1942520a72dfafbdb858de3}{set\+Vec2}} (const std\+::string \&name, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ T $>$ \&value) const
+\begin{DoxyCompactList}\small\item\em Set a vec2 uniform value in the shader. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classEGE_1_1Shader_aad8c44629e46411c3e4fd8eee8eda19a}{set\+Vec3}} (const std\+::string \&name, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ T $>$ \&value) const
+\begin{DoxyCompactList}\small\item\em Set a vec3 uniform value in the shader. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classEGE_1_1Shader_a6003dc3158749e99ab640127fb713409}{set\+Vec4}} (const std\+::string \&name, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$ \&value) const
+\begin{DoxyCompactList}\small\item\em Set a vec4 uniform value in the shader. \end{DoxyCompactList}\item 
+{\footnotesize template$<$int DIMENSION$>$ }\\void \mbox{\hyperlink{classEGE_1_1Shader_a329843331f603e3ac97e5392abf3906f}{set\+Mat}} (const std\+::string \&name, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ DIMENSION, DIMENSION, float $>$ \&value) const
+\begin{DoxyCompactList}\small\item\em Set a mat uniform value in the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Shader_a434f8810b7da82610a2212aa734b3814}{compile}} (const std\+::string \&vertex\+Source, const std\+::string \&fragment\+Source)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Shader_ac56cf04aab27a179e2a7a22187356cd9}\label{classEGE_1_1Shader_ac56cf04aab27a179e2a7a22187356cd9} 
+\index{EGE::Shader@{EGE::Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily EGE\+::\+Shader\+::\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{classEGE_1_1Shader}{Shader} object This constructor will create a default shader and then call the compile method. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classEGE_1_1Shader_1_1ShaderError}{Shader\+Error}} & if the shader compilation or linking failed. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classEGE_1_1Shader_a05dd09e3525673126f290ee68e6d60e4}\label{classEGE_1_1Shader_a05dd09e3525673126f290ee68e6d60e4} 
+\index{EGE::Shader@{EGE::Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily EGE\+::\+Shader\+::\+Shader (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{vertex\+Path,  }\item[{const std\+::string \&}]{fragment\+Path }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{classEGE_1_1Shader}{Shader} object This constructor will call the compile method with the content of the files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Path} & Path to the vertex shader file \\
+\hline
+{\em fragment\+Path} & Path to the fragment shader file \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classEGE_1_1Shader_1_1ShaderError}{Shader\+Error}} & if the shader compilation or linking failed. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classEGE_1_1Shader_abb71bddb2e4d7e9615d9278a894a5110}\label{classEGE_1_1Shader_abb71bddb2e4d7e9615d9278a894a5110} 
+\index{EGE::Shader@{EGE::Shader}!````~Shader@{\texorpdfstring{$\sim$}{\string~}Shader}}
+\index{````~Shader@{\texorpdfstring{$\sim$}{\string~}Shader}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Shader()}{\string~Shader()}}
+{\footnotesize\ttfamily EGE\+::\+Shader\+::\texorpdfstring{$\sim$}{\string~}\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Shader_a434f8810b7da82610a2212aa734b3814}\label{classEGE_1_1Shader_a434f8810b7da82610a2212aa734b3814} 
+\index{EGE::Shader@{EGE::Shader}!compile@{compile}}
+\index{compile@{compile}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{compile()}{compile()}}
+{\footnotesize\ttfamily void EGE\+::\+Shader\+::compile (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{vertex\+Source,  }\item[{const std\+::string \&}]{fragment\+Source }\end{DoxyParamCaption})}
+
+\Hypertarget{classEGE_1_1Shader_a31cde12d6f2f34b6069b1cb0e32d56fd}\label{classEGE_1_1Shader_a31cde12d6f2f34b6069b1cb0e32d56fd} 
+\index{EGE::Shader@{EGE::Shader}!getID@{getID}}
+\index{getID@{getID}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily unsigned int EGE\+::\+Shader\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the ID of the shader. 
+
+\begin{DoxyReturn}{Returns}
+unsigned int The ID of the shader 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Shader_a1c91d04f3dc0f6beb4aee9805a5919e1}\label{classEGE_1_1Shader_a1c91d04f3dc0f6beb4aee9805a5919e1} 
+\index{EGE::Shader@{EGE::Shader}!setBool@{setBool}}
+\index{setBool@{setBool}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setBool()}{setBool()}}
+{\footnotesize\ttfamily void EGE\+::\+Shader\+::set\+Bool (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{bool}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a bool uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_ab6aced6742948a8a52a34aa62944972f}\label{classEGE_1_1Shader_ab6aced6742948a8a52a34aa62944972f} 
+\index{EGE::Shader@{EGE::Shader}!setDouble@{setDouble}}
+\index{setDouble@{setDouble}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setDouble()}{setDouble()}}
+{\footnotesize\ttfamily void EGE\+::\+Shader\+::set\+Double (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{double}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a double uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_ac52770fe2ba753598ca75e89b0e08e3e}\label{classEGE_1_1Shader_ac52770fe2ba753598ca75e89b0e08e3e} 
+\index{EGE::Shader@{EGE::Shader}!setFloat@{setFloat}}
+\index{setFloat@{setFloat}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setFloat()}{setFloat()}}
+{\footnotesize\ttfamily void EGE\+::\+Shader\+::set\+Float (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{float}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a float uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_a2fe20c7c2753bba12e3d0d8730e86514}\label{classEGE_1_1Shader_a2fe20c7c2753bba12e3d0d8730e86514} 
+\index{EGE::Shader@{EGE::Shader}!setInt@{setInt}}
+\index{setInt@{setInt}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setInt()}{setInt()}}
+{\footnotesize\ttfamily void EGE\+::\+Shader\+::set\+Int (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{int}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a signed int uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_a329843331f603e3ac97e5392abf3906f}\label{classEGE_1_1Shader_a329843331f603e3ac97e5392abf3906f} 
+\index{EGE::Shader@{EGE::Shader}!setMat@{setMat}}
+\index{setMat@{setMat}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setMat()}{setMat()}}
+{\footnotesize\ttfamily template$<$int DIMENSION$>$ \\
+void EGE\+::\+Shader\+::set\+Mat (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ DIMENSION, DIMENSION, float $>$ \&}]{value }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set a mat uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em DIMENSION} & The dimension of the matrix \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+The matrix must be square 
+\end{DoxyNote}
+\Hypertarget{classEGE_1_1Shader_a560b6ecd4ccfcf47f23414ec48df8b00}\label{classEGE_1_1Shader_a560b6ecd4ccfcf47f23414ec48df8b00} 
+\index{EGE::Shader@{EGE::Shader}!setUInt@{setUInt}}
+\index{setUInt@{setUInt}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setUInt()}{setUInt()}}
+{\footnotesize\ttfamily void EGE\+::\+Shader\+::set\+UInt (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{unsigned int}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a unsigned int uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_a584e8907e1942520a72dfafbdb858de3}\label{classEGE_1_1Shader_a584e8907e1942520a72dfafbdb858de3} 
+\index{EGE::Shader@{EGE::Shader}!setVec2@{setVec2}}
+\index{setVec2@{setVec2}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setVec2()}{setVec2()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void EGE\+::\+Shader\+::set\+Vec2 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ T $>$ \&}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a vec2 uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_aad8c44629e46411c3e4fd8eee8eda19a}\label{classEGE_1_1Shader_aad8c44629e46411c3e4fd8eee8eda19a} 
+\index{EGE::Shader@{EGE::Shader}!setVec3@{setVec3}}
+\index{setVec3@{setVec3}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setVec3()}{setVec3()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void EGE\+::\+Shader\+::set\+Vec3 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ T $>$ \&}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a vec3 uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_a6003dc3158749e99ab640127fb713409}\label{classEGE_1_1Shader_a6003dc3158749e99ab640127fb713409} 
+\index{EGE::Shader@{EGE::Shader}!setVec4@{setVec4}}
+\index{setVec4@{setVec4}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{setVec4()}{setVec4()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void EGE\+::\+Shader\+::set\+Vec4 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$ \&}]{value }\end{DoxyParamCaption}) const}
+
+
+
+Set a vec4 uniform value in the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the uniform \\
+\hline
+{\em value} & The value of the uniform \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Shader_a2e55846b4dbf1b0bbbf0c2aaa67af1fa}\label{classEGE_1_1Shader_a2e55846b4dbf1b0bbbf0c2aaa67af1fa} 
+\index{EGE::Shader@{EGE::Shader}!use@{use}}
+\index{use@{use}!EGE::Shader@{EGE::Shader}}
+\doxysubsubsection{\texorpdfstring{use()}{use()}}
+{\footnotesize\ttfamily void EGE\+::\+Shader\+::use (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Use the shader This method will call gl\+Use\+Program with the shader ID. 
+
+\begin{DoxyNote}{Note}
+This method should be called before drawing anything. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Shader_8hpp}{Shader.\+hpp}}\end{DoxyCompactItemize}

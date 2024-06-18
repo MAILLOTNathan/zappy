@@ -1,0 +1,125 @@
+\doxysection{EGE\+::Interactable Class Reference}
+\hypertarget{classEGE_1_1Interactable}{}\label{classEGE_1_1Interactable}\index{EGE::Interactable@{EGE::Interactable}}
+
+
+The base class for interactable \doxylink{classEGE_1_1GUI}{GUI} elements.  
+
+
+
+
+{\ttfamily \#include $<$Interactable.\+hpp$>$}
+
+
+
+Inheritance diagram for EGE\+::Interactable\+:
+% FIG 0
+
+
+Collaboration diagram for EGE\+::Interactable\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classEGE_1_1Interactable_a09a896c707f84ef5657e7892a1433a46}{\texorpdfstring{$\sim$}{\string~}\+Interactable}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Interactable}{Interactable} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Interactable_ae752c4a52994bd0315e491e59db26f91}{perform}} ()
+\begin{DoxyCompactList}\small\item\em Perform the interaction action. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Interactable_af30c960bc56d9171b65452e76e7b278a}{set\+Callback}} (std\+::function$<$ void()$>$ callback)
+\begin{DoxyCompactList}\small\item\em Set the callback function for the interaction action. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEGE_1_1GUI}{EGE\+::\+GUI}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classEGE_1_1GUI_a1c6a6065e39ac7ebffb80f2e110e9a07}{\texorpdfstring{$\sim$}{\string~}\+GUI}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1GUI}{GUI} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEGE_1_1GUI_a2f327ccb324db64d91a5d8643263c7b5}{draw}} ()=0
+\begin{DoxyCompactList}\small\item\em Draws the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a53108c7e906ec4b2698424460dbfdad5}{init}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{classEGE_1_1GUI}{GUI} with a window. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_a2b9ebc4bc477127a26bd817c9e15071b}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a2e2e1da784eeae10a19527806ee85b5b}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_abef37bc1d78289a4039bae35d5ca5732}{set\+Window}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Sets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a95a018779bfd9414768209eb3c2ff516}{get\+Window}} () const
+\begin{DoxyCompactList}\small\item\em Gets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_af7cafc6d2a24cbeac515f388cb35d459}{set\+Visible}} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_a1b6a7ee168d21bf17973303d45856dd5}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the \doxylink{classEGE_1_1GUI}{GUI} is visible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ void()$>$ \mbox{\hyperlink{classEGE_1_1Interactable_a61fbd772d4a53bc57e7a4778b50cb247}{\+\_\+callback}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEGE_1_1GUI}{EGE\+::\+GUI}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a8e9db67256da924a7a19878e1eb04cbd}{\+\_\+window}}
+\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_aa70e32e7457f4dd7f17e6be70da0b758}{\+\_\+name}}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_abc5afa48d51ac54bf3bc1b29b3ffc902}{\+\_\+visible}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The base class for interactable \doxylink{classEGE_1_1GUI}{GUI} elements. 
+
+This class provides a common interface for \doxylink{classEGE_1_1GUI}{GUI} elements that can be interacted with, such as buttons. It inherits from the \doxylink{classEGE_1_1GUI}{GUI} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Interactable_a09a896c707f84ef5657e7892a1433a46}\label{classEGE_1_1Interactable_a09a896c707f84ef5657e7892a1433a46} 
+\index{EGE::Interactable@{EGE::Interactable}!````~Interactable@{\texorpdfstring{$\sim$}{\string~}Interactable}}
+\index{````~Interactable@{\texorpdfstring{$\sim$}{\string~}Interactable}!EGE::Interactable@{EGE::Interactable}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Interactable()}{\string~Interactable()}}
+{\footnotesize\ttfamily virtual EGE\+::\+Interactable\+::\texorpdfstring{$\sim$}{\string~}\+Interactable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Interactable}{Interactable} class. 
+
+This is a virtual destructor to ensure proper cleanup when derived classes are destroyed. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Interactable_ae752c4a52994bd0315e491e59db26f91}\label{classEGE_1_1Interactable_ae752c4a52994bd0315e491e59db26f91} 
+\index{EGE::Interactable@{EGE::Interactable}!perform@{perform}}
+\index{perform@{perform}!EGE::Interactable@{EGE::Interactable}}
+\doxysubsubsection{\texorpdfstring{perform()}{perform()}}
+{\footnotesize\ttfamily void EGE\+::\+Interactable\+::perform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Perform the interaction action. 
+
+This function is called when the interactable \doxylink{classEGE_1_1GUI}{GUI} element is interacted with. Derived classes should override this function to define their specific interaction behavior. \Hypertarget{classEGE_1_1Interactable_af30c960bc56d9171b65452e76e7b278a}\label{classEGE_1_1Interactable_af30c960bc56d9171b65452e76e7b278a} 
+\index{EGE::Interactable@{EGE::Interactable}!setCallback@{setCallback}}
+\index{setCallback@{setCallback}!EGE::Interactable@{EGE::Interactable}}
+\doxysubsubsection{\texorpdfstring{setCallback()}{setCallback()}}
+{\footnotesize\ttfamily void EGE\+::\+Interactable\+::set\+Callback (\begin{DoxyParamCaption}\item[{std\+::function$<$ void()$>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+Set the callback function for the interaction action. 
+
+This function sets the callback function that will be called when the interactable \doxylink{classEGE_1_1GUI}{GUI} element is interacted with. The callback function should have no parameters and no return value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback function to set. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Interactable_a61fbd772d4a53bc57e7a4778b50cb247}\label{classEGE_1_1Interactable_a61fbd772d4a53bc57e7a4778b50cb247} 
+\index{EGE::Interactable@{EGE::Interactable}!\_callback@{\_callback}}
+\index{\_callback@{\_callback}!EGE::Interactable@{EGE::Interactable}}
+\doxysubsubsection{\texorpdfstring{\_callback}{\_callback}}
+{\footnotesize\ttfamily std\+::function$<$void()$>$ EGE\+::\+Interactable\+::\+\_\+callback\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+GUI/\mbox{\hyperlink{Interactable_8hpp}{Interactable.\+hpp}}\end{DoxyCompactItemize}

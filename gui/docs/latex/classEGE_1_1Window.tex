@@ -1,0 +1,518 @@
+\doxysection{EGE\+::Window Class Reference}
+\hypertarget{classEGE_1_1Window}{}\label{classEGE_1_1Window}\index{EGE::Window@{EGE::Window}}
+
+
+Represents a window in the game engine.  
+
+
+
+
+{\ttfamily \#include $<$Window.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Window\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Window_1_1WindowError}{Window\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents an error that occurs in the \doxylink{classEGE_1_1Window}{Window} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3}{Styles}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ada20e7b6caea61123ffa7247b463633b}{None}} = 0
+, \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3aec78efe959a5b4608ac9d37f7686bf18}{Titlebar}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0
+, \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ae5335efc4c6f683ddd4b114bf3911782}{Resize}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a75f1463f970bede091c97fde08de6238}{Close}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2
+, \newline
+\mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a8779fd8caa99ab60eb34c78cb0fb3487}{Fullscreen}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3
+, \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa}{Default}} = Titlebar \texorpdfstring{$\vert$}{|} Resize \texorpdfstring{$\vert$}{|} Close
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates the different styles that a window can have. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Window_a64214c384d043032ebce0d9af62b18e2}{Window}} (const std\+::string \&title, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&size, const std\+::uint8\+\_\+t \&style=\mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa}{Styles\+::\+Default}})
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classEGE_1_1Window}{Window} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Window_af0ce46a7f994fe64a356fabcf0ea81e9}{\texorpdfstring{$\sim$}{\string~}\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Window}{Window} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_ad726d81b0b701a786d4162f7033e4c9a}{create}} ()
+\begin{DoxyCompactList}\small\item\em Creates the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a0699425d0b6249e1007c67fd612a3ceb}{destroy}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_ac72682bfc681e0c4add904c4335c457d}{clear}} (\mbox{\hyperlink{classEGE_1_1Color}{EGE\+::\+Color}} color=\mbox{\hyperlink{classEGE_1_1Color}{EGE\+::\+Color}}(0.\+0f, 0.\+0f, 0.\+0f, 1.\+0f))
+\begin{DoxyCompactList}\small\item\em Clears the window with a specified color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a8d62d1927379647fac4561d382cff432}{display}} ()
+\begin{DoxyCompactList}\small\item\em Displays the content of the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a2426a403e0c8f2fe929cc483b4a5cdde}{poll\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Polls events from the window. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Window_a00883616de25797521e37e2910520d55}{is\+Open}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the window is open. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a9eb0f2deb0c1a7ece182ff14e56ef7b8}{close}} ()
+\begin{DoxyCompactList}\small\item\em Closes the window. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Window_acc563a69f52a47846308da28959423f4}{bind\+Trigger}} (const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{EGE\+::\+Event\+::\+Trigger}} \&trigger)
+\item 
+{\footnotesize template$<$typename... \+\_\+\+Arg\+Types, typename F $>$ \newline
+requires std\+::invocable$<$F, \+\_\+\+Arg\+Types...$>$}\\bool \mbox{\hyperlink{classEGE_1_1Window_ab3fe1e23d5aadf06219bfe99fa6d1a02}{bind\+Window\+Trigger}} (\mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{EGE\+::\+Event\+::\+Window\+Trigger}} trigger, F \&\&callback)
+\begin{DoxyCompactList}\small\item\em Binds a trigger to the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_aa1004f78a6b74d937ae0b3e376e8bfe0}{unbind\+Trigger}} (const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{EGE\+::\+Event\+::\+Trigger}} \&trigger)
+\begin{DoxyCompactList}\small\item\em Unbinds a trigger from the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_aa9c6d0e4d52b4dc2d0a4afd213edca8e}{set\+Title}} (const std\+::string \&title)
+\begin{DoxyCompactList}\small\item\em Sets the title of the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a5ba240683c3a7e417b64413c489356f0}{set\+Size}} (const int \&width, const int \&height)
+\begin{DoxyCompactList}\small\item\em Sets the size of the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_acca896ceba08127e4af8d7584ac625eb}{set\+Size}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&size)
+\begin{DoxyCompactList}\small\item\em Sets the size of the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a6522a2c2bbbc1fc47f91c0c1719cd122}{set\+Position}} (const int \&x, const int \&y)
+\begin{DoxyCompactList}\small\item\em Sets the position of the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a1192323d738eddf67a106c75a1532eb9}{set\+Position}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Sets the position of the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a83fed67588b8490b3b71a86eb5211d94}{set\+Framerate\+Limit}} (const int \&limit)
+\begin{DoxyCompactList}\small\item\em Sets the framerate limit of the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_a903c5e651a5a50bc2f7a16ffcc5ac160}{set\+Cursor\+Visible}} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of the cursor in the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Window_aa0183f0292aeb4a58def96d45ea4a455}{set\+Active}} (bool active)
+\begin{DoxyCompactList}\small\item\em Sets the activity state of the window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \mbox{\hyperlink{classEGE_1_1Window_aa1ff3169b172a041545e456f36907dd9}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Gets the position of the window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \mbox{\hyperlink{classEGE_1_1Window_aa833fec35fbd2e0d8e02d7a26fcf661e}{get\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Gets the size of the window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \mbox{\hyperlink{classEGE_1_1Window_a2e9d0dd179b1c4963015f0577bb38bfc}{get\+Mouse\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Gets the position of the mouse relative to the window. \end{DoxyCompactList}\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Window_a09ea56a81098d5ee09081bb878f073ad}{get\+Window}} () const
+\begin{DoxyCompactList}\small\item\em Gets the GLFW window object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a window in the game engine. 
+
+The \doxylink{classEGE_1_1Window}{Window} class is responsible for creating and managing a window for the game engine. It provides functions to control the window properties, such as title, size, position, and style. The class also handles window events and provides functions to interact with the window, such as clearing the window, displaying the content, and polling events. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3}\label{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3} 
+\index{EGE::Window@{EGE::Window}!Styles@{Styles}}
+\index{Styles@{Styles}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{Styles}{Styles}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3}{EGE\+::\+Window\+::\+Styles}}}
+
+
+
+Enumerates the different styles that a window can have. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!EGE::Window@{EGE::Window}}\index{EGE::Window@{EGE::Window}!None@{None}}}\Hypertarget{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ada20e7b6caea61123ffa7247b463633b}\label{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ada20e7b6caea61123ffa7247b463633b} 
+None&No style. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Titlebar@{Titlebar}!EGE::Window@{EGE::Window}}\index{EGE::Window@{EGE::Window}!Titlebar@{Titlebar}}}\Hypertarget{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3aec78efe959a5b4608ac9d37f7686bf18}\label{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3aec78efe959a5b4608ac9d37f7686bf18} 
+Titlebar&The window has a title bar. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Resize@{Resize}!EGE::Window@{EGE::Window}}\index{EGE::Window@{EGE::Window}!Resize@{Resize}}}\Hypertarget{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ae5335efc4c6f683ddd4b114bf3911782}\label{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ae5335efc4c6f683ddd4b114bf3911782} 
+Resize&The window can be resized. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Close@{Close}!EGE::Window@{EGE::Window}}\index{EGE::Window@{EGE::Window}!Close@{Close}}}\Hypertarget{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a75f1463f970bede091c97fde08de6238}\label{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a75f1463f970bede091c97fde08de6238} 
+Close&The window has a close button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Fullscreen@{Fullscreen}!EGE::Window@{EGE::Window}}\index{EGE::Window@{EGE::Window}!Fullscreen@{Fullscreen}}}\Hypertarget{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a8779fd8caa99ab60eb34c78cb0fb3487}\label{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a8779fd8caa99ab60eb34c78cb0fb3487} 
+Fullscreen&The window is fullscreen. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Default@{Default}!EGE::Window@{EGE::Window}}\index{EGE::Window@{EGE::Window}!Default@{Default}}}\Hypertarget{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa}\label{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa} 
+Default&The default window style. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Window_a64214c384d043032ebce0d9af62b18e2}\label{classEGE_1_1Window_a64214c384d043032ebce0d9af62b18e2} 
+\index{EGE::Window@{EGE::Window}!Window@{Window}}
+\index{Window@{Window}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{Window()}{Window()}}
+{\footnotesize\ttfamily EGE\+::\+Window\+::\+Window (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{title,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{size,  }\item[{const std\+::uint8\+\_\+t \&}]{style = {\ttfamily \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa}{Styles\+::\+Default}}} }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{classEGE_1_1Window}{Window} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & The title of the window. \\
+\hline
+{\em size} & The size of the window. \\
+\hline
+{\em style} & The style of the window (optional, default is \doxylink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa}{Styles\+::\+Default}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_af0ce46a7f994fe64a356fabcf0ea81e9}\label{classEGE_1_1Window_af0ce46a7f994fe64a356fabcf0ea81e9} 
+\index{EGE::Window@{EGE::Window}!````~Window@{\texorpdfstring{$\sim$}{\string~}Window}}
+\index{````~Window@{\texorpdfstring{$\sim$}{\string~}Window}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Window()}{\string~Window()}}
+{\footnotesize\ttfamily EGE\+::\+Window\+::\texorpdfstring{$\sim$}{\string~}\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Window}{Window} class. 
+
+This destructor is responsible for cleaning up any resources allocated by the \doxylink{classEGE_1_1Window}{Window} class. It is automatically called when an instance of the \doxylink{classEGE_1_1Window}{Window} class goes out of scope or is explicitly deleted. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Window_acc563a69f52a47846308da28959423f4}\label{classEGE_1_1Window_acc563a69f52a47846308da28959423f4} 
+\index{EGE::Window@{EGE::Window}!bindTrigger@{bindTrigger}}
+\index{bindTrigger@{bindTrigger}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{bindTrigger()}{bindTrigger()}}
+{\footnotesize\ttfamily bool EGE\+::\+Window\+::bind\+Trigger (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{EGE\+::\+Event\+::\+Trigger}} \&}]{trigger }\end{DoxyParamCaption})}
+
+Binds a trigger to the window.
+
+This function binds the specified trigger to the window. When the trigger is activated, the window will respond accordingly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em trigger} & The trigger to bind. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the trigger was successfully bound, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Window_ab3fe1e23d5aadf06219bfe99fa6d1a02}\label{classEGE_1_1Window_ab3fe1e23d5aadf06219bfe99fa6d1a02} 
+\index{EGE::Window@{EGE::Window}!bindWindowTrigger@{bindWindowTrigger}}
+\index{bindWindowTrigger@{bindWindowTrigger}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{bindWindowTrigger()}{bindWindowTrigger()}}
+{\footnotesize\ttfamily template$<$typename... \+\_\+\+Arg\+Types, typename F $>$ \newline
+requires std\+::invocable$<$F, \+\_\+\+Arg\+Types...$>$\\
+bool EGE\+::\+Window\+::bind\+Window\+Trigger (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{EGE\+::\+Event\+::\+Window\+Trigger}}}]{trigger,  }\item[{F \&\&}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binds a trigger to the window. 
+
+This function binds the specified trigger to the window. When the trigger is activated, the window will respond accordingly.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Arg\+Types} & The argument types of the callback function. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em trigger} & The trigger to bind. \\
+\hline
+{\em callback} & The callback function to bind to the trigger. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the trigger was successfully bound, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Window_ac72682bfc681e0c4add904c4335c457d}\label{classEGE_1_1Window_ac72682bfc681e0c4add904c4335c457d} 
+\index{EGE::Window@{EGE::Window}!clear@{clear}}
+\index{clear@{clear}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Color}{EGE\+::\+Color}}}]{color = {\ttfamily \mbox{\hyperlink{classEGE_1_1Color}{EGE\+::\+Color}}(0.0f,~0.0f,~0.0f,~1.0f)} }\end{DoxyParamCaption})}
+
+
+
+Clears the window with a specified color. 
+
+This function clears the window with the specified color. If no color is provided, it clears the window with black color by default.
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & The color to clear the window with (optional, default is black). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_a9eb0f2deb0c1a7ece182ff14e56ef7b8}\label{classEGE_1_1Window_a9eb0f2deb0c1a7ece182ff14e56ef7b8} 
+\index{EGE::Window@{EGE::Window}!close@{close}}
+\index{close@{close}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Closes the window. 
+
+This function closes the window. It releases any resources associated with the window and destroys the window. \Hypertarget{classEGE_1_1Window_ad726d81b0b701a786d4162f7033e4c9a}\label{classEGE_1_1Window_ad726d81b0b701a786d4162f7033e4c9a} 
+\index{EGE::Window@{EGE::Window}!create@{create}}
+\index{create@{create}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the window. 
+
+This function is responsible for creating the window. It initializes the necessary resources and sets up the window properties.
+
+\begin{DoxyNote}{Note}
+This function should be called before any other window-\/related operations. 
+\end{DoxyNote}
+\Hypertarget{classEGE_1_1Window_a0699425d0b6249e1007c67fd612a3ceb}\label{classEGE_1_1Window_a0699425d0b6249e1007c67fd612a3ceb} 
+\index{EGE::Window@{EGE::Window}!destroy@{destroy}}
+\index{destroy@{destroy}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{destroy()}{destroy()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::destroy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the window. 
+
+This function is responsible for destroying the window. It releases any resources associated with the window. \Hypertarget{classEGE_1_1Window_a8d62d1927379647fac4561d382cff432}\label{classEGE_1_1Window_a8d62d1927379647fac4561d382cff432} 
+\index{EGE::Window@{EGE::Window}!display@{display}}
+\index{display@{display}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the content of the window. 
+
+This function displays the content of the window. It updates the window\textquotesingle{}s display buffer and shows the updated content on the screen. \Hypertarget{classEGE_1_1Window_a2e9d0dd179b1c4963015f0577bb38bfc}\label{classEGE_1_1Window_a2e9d0dd179b1c4963015f0577bb38bfc} 
+\index{EGE::Window@{EGE::Window}!getMousePosition@{getMousePosition}}
+\index{getMousePosition@{getMousePosition}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{getMousePosition()}{getMousePosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ EGE\+::\+Window\+::get\+Mouse\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the position of the mouse relative to the window. 
+
+This function gets the position of the mouse relative to the window. It returns a vector containing the x and y coordinates of the mouse.
+
+\begin{DoxyReturn}{Returns}
+The position of the mouse relative to the window. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Window_aa1ff3169b172a041545e456f36907dd9}\label{classEGE_1_1Window_aa1ff3169b172a041545e456f36907dd9} 
+\index{EGE::Window@{EGE::Window}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ EGE\+::\+Window\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the position of the window. 
+
+This function gets the position of the window. It returns a vector containing the x and y coordinates of the window.
+
+\begin{DoxyReturn}{Returns}
+The position of the window. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Window_aa833fec35fbd2e0d8e02d7a26fcf661e}\label{classEGE_1_1Window_aa833fec35fbd2e0d8e02d7a26fcf661e} 
+\index{EGE::Window@{EGE::Window}!getSize@{getSize}}
+\index{getSize@{getSize}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ EGE\+::\+Window\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the size of the window. 
+
+This function gets the size of the window. It returns a vector containing the width and height of the window.
+
+\begin{DoxyReturn}{Returns}
+The size of the window. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Window_a09ea56a81098d5ee09081bb878f073ad}\label{classEGE_1_1Window_a09ea56a81098d5ee09081bb878f073ad} 
+\index{EGE::Window@{EGE::Window}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily GLFWwindow \texorpdfstring{$\ast$}{*} EGE\+::\+Window\+::get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the GLFW window object. 
+
+\begin{DoxyReturn}{Returns}
+The GLFWwindow pointer representing the window object. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Window_a00883616de25797521e37e2910520d55}\label{classEGE_1_1Window_a00883616de25797521e37e2910520d55} 
+\index{EGE::Window@{EGE::Window}!isOpen@{isOpen}}
+\index{isOpen@{isOpen}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{isOpen()}{isOpen()}}
+{\footnotesize\ttfamily bool EGE\+::\+Window\+::is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the window is open. 
+
+This function checks if the window is open. It returns true if the window is open, false otherwise.
+
+\begin{DoxyReturn}{Returns}
+True if the window is open, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Window_a2426a403e0c8f2fe929cc483b4a5cdde}\label{classEGE_1_1Window_a2426a403e0c8f2fe929cc483b4a5cdde} 
+\index{EGE::Window@{EGE::Window}!pollEvents@{pollEvents}}
+\index{pollEvents@{pollEvents}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{pollEvents()}{pollEvents()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::poll\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Polls events from the window. 
+
+This function polls events from the window. It checks for any user input or system events and processes them. \Hypertarget{classEGE_1_1Window_aa0183f0292aeb4a58def96d45ea4a455}\label{classEGE_1_1Window_aa0183f0292aeb4a58def96d45ea4a455} 
+\index{EGE::Window@{EGE::Window}!setActive@{setActive}}
+\index{setActive@{setActive}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setActive()}{setActive()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Active (\begin{DoxyParamCaption}\item[{bool}]{active }\end{DoxyParamCaption})}
+
+
+
+Sets the activity state of the window. 
+
+This function sets the activity state of the window. If set to true, the window will be active and receive user input. If set to false, the window will be inactive and not receive user input.
+
+
+\begin{DoxyParams}{Parameters}
+{\em active} & True to make the window active, false to make it inactive. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_a903c5e651a5a50bc2f7a16ffcc5ac160}\label{classEGE_1_1Window_a903c5e651a5a50bc2f7a16ffcc5ac160} 
+\index{EGE::Window@{EGE::Window}!setCursorVisible@{setCursorVisible}}
+\index{setCursorVisible@{setCursorVisible}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setCursorVisible()}{setCursorVisible()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Cursor\+Visible (\begin{DoxyParamCaption}\item[{bool}]{visible }\end{DoxyParamCaption})}
+
+
+
+Sets the visibility of the cursor in the window. 
+
+This function sets the visibility of the cursor in the window. If set to true, the cursor will be visible in the window. If set to false, the cursor will be hidden in the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em visible} & True to make the cursor visible, false to hide the cursor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_a83fed67588b8490b3b71a86eb5211d94}\label{classEGE_1_1Window_a83fed67588b8490b3b71a86eb5211d94} 
+\index{EGE::Window@{EGE::Window}!setFramerateLimit@{setFramerateLimit}}
+\index{setFramerateLimit@{setFramerateLimit}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setFramerateLimit()}{setFramerateLimit()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Framerate\+Limit (\begin{DoxyParamCaption}\item[{const int \&}]{limit }\end{DoxyParamCaption})}
+
+
+
+Sets the framerate limit of the window. 
+
+This function sets the framerate limit of the window. It limits the maximum number of frames per second that the window can render.
+
+
+\begin{DoxyParams}{Parameters}
+{\em limit} & The new framerate limit of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_a1192323d738eddf67a106c75a1532eb9}\label{classEGE_1_1Window_a1192323d738eddf67a106c75a1532eb9} 
+\index{EGE::Window@{EGE::Window}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Sets the position of the window. 
+
+This function sets the position of the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The new position of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_a6522a2c2bbbc1fc47f91c0c1719cd122}\label{classEGE_1_1Window_a6522a2c2bbbc1fc47f91c0c1719cd122} 
+\index{EGE::Window@{EGE::Window}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Position (\begin{DoxyParamCaption}\item[{const int \&}]{x,  }\item[{const int \&}]{y }\end{DoxyParamCaption})}
+
+
+
+Sets the position of the window. 
+
+This function sets the position of the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The new x-\/coordinate of the window. \\
+\hline
+{\em y} & The new y-\/coordinate of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_acca896ceba08127e4af8d7584ac625eb}\label{classEGE_1_1Window_acca896ceba08127e4af8d7584ac625eb} 
+\index{EGE::Window@{EGE::Window}!setSize@{setSize}}
+\index{setSize@{setSize}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE\+::\+Maths\+::\+Vector2}}$<$ int $>$ \&}]{size }\end{DoxyParamCaption})}
+
+
+
+Sets the size of the window. 
+
+This function sets the size of the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The new size of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_a5ba240683c3a7e417b64413c489356f0}\label{classEGE_1_1Window_a5ba240683c3a7e417b64413c489356f0} 
+\index{EGE::Window@{EGE::Window}!setSize@{setSize}}
+\index{setSize@{setSize}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Size (\begin{DoxyParamCaption}\item[{const int \&}]{width,  }\item[{const int \&}]{height }\end{DoxyParamCaption})}
+
+
+
+Sets the size of the window. 
+
+This function sets the size of the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new width of the window. \\
+\hline
+{\em height} & The new height of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_aa9c6d0e4d52b4dc2d0a4afd213edca8e}\label{classEGE_1_1Window_aa9c6d0e4d52b4dc2d0a4afd213edca8e} 
+\index{EGE::Window@{EGE::Window}!setTitle@{setTitle}}
+\index{setTitle@{setTitle}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{setTitle()}{setTitle()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::set\+Title (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{title }\end{DoxyParamCaption})}
+
+
+
+Sets the title of the window. 
+
+This function sets the title of the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & The new title of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Window_aa1004f78a6b74d937ae0b3e376e8bfe0}\label{classEGE_1_1Window_aa1004f78a6b74d937ae0b3e376e8bfe0} 
+\index{EGE::Window@{EGE::Window}!unbindTrigger@{unbindTrigger}}
+\index{unbindTrigger@{unbindTrigger}!EGE::Window@{EGE::Window}}
+\doxysubsubsection{\texorpdfstring{unbindTrigger()}{unbindTrigger()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+::unbind\+Trigger (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{EGE\+::\+Event\+::\+Trigger}} \&}]{trigger }\end{DoxyParamCaption})}
+
+
+
+Unbinds a trigger from the window. 
+
+This function removes the specified trigger from the window\textquotesingle{}s event system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em trigger} & The trigger to unbind. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Window_8hpp}{Window.\+hpp}}\end{DoxyCompactItemize}

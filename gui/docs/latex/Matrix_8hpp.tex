@@ -1,0 +1,64 @@
+\doxysection{ege/include/\+Maths/\+Matrix.hpp File Reference}
+\hypertarget{Matrix_8hpp}{}\label{Matrix_8hpp}\index{ege/include/Maths/Matrix.hpp@{ege/include/Maths/Matrix.hpp}}
+
+
+Defines the Matrix class for representing 4D vectors.  
+
+
+{\ttfamily \#include "{}Error.\+hpp"{}}\newline
+{\ttfamily \#include "{}glm.\+hpp"{}}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+Include dependency graph for Matrix.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix$<$ WIDTH, HEIGHT, T $>$}}
+\begin{DoxyCompactList}\small\item\em A class for representing a matrix. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_1_1MatrixError}{EGE\+::\+Maths\+::\+Matrix$<$ WIDTH, HEIGHT, T $>$\+::\+Matrix\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents an error that can occur in the \doxylink{classEGE_1_1Maths_1_1Matrix}{Matrix} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceEGE}{EGE}}
+\begin{DoxyCompactList}\small\item\em Namespace \doxylink{namespaceEGE}{EGE} contains classes and structs related to the \doxylink{namespaceEGE}{EGE} library. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceEGE_1_1Maths}{EGE\+::\+Maths}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$int WIDTH, int HEIGHT, typename T $>$ }\\std\+::ostream \& \mbox{\hyperlink{Matrix_8hpp_a9f565d39ba47a9a523875fc0817bd4f5}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Outputs the matrix to the specified output stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the Matrix class for representing 4D vectors. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Matrix_8hpp_a9f565d39ba47a9a523875fc0817bd4f5}\label{Matrix_8hpp_a9f565d39ba47a9a523875fc0817bd4f5} 
+\index{Matrix.hpp@{Matrix.hpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Matrix.hpp@{Matrix.hpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$int WIDTH, int HEIGHT, typename T $>$ \\
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE\+::\+Maths\+::\+Matrix}}$<$ WIDTH, HEIGHT, T $>$ \&}]{matrix }\end{DoxyParamCaption})}
+
+
+
+Outputs the matrix to the specified output stream. 
+
+The function outputs the matrix to the specified output stream. 
+\begin{DoxyParams}{Parameters}
+{\em os} & The output stream. \\
+\hline
+{\em matrix} & The matrix to output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output stream. 
+\end{DoxyReturn}

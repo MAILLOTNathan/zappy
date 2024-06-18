@@ -1,0 +1,90 @@
+\doxysection{Bone.\+hpp}
+\hypertarget{Bone_8hpp_source}{}\label{Bone_8hpp_source}\index{ege/include/Bone.hpp@{ege/include/Bone.hpp}}
+\mbox{\hyperlink{Bone_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Bone}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{OpenGL_8hpp}{OpenGL.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Matrix_8hpp}{Maths/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <assimp/Importer.hpp>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <assimp/scene.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <assimp/postprocess.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEGE_1_1KeyPosition}{KeyPosition}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structEGE_1_1KeyPosition_ae581169caac87c56d96d26282f56046b}{position}};\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEGE_1_1KeyPosition_a62351169521d54b02128d8cf7c8b5044}{time}};\ }
+\DoxyCodeLine{00029\ \ \ \ \ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEGE_1_1KeyRotation}{KeyRotation}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ glm::quat\ \mbox{\hyperlink{structEGE_1_1KeyRotation_a2c8844a0127c8a4d08c05fedb15ae4e9}{rotation}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEGE_1_1KeyRotation_a9df9a770769e433052145de505635b65}{time}};\ }
+\DoxyCodeLine{00037\ \ \ \ \ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEGE_1_1KeyScale}{KeyScale}}\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structEGE_1_1KeyScale_a85470523d7458194b5adc8ab1b4f8f0a}{scale}};\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEGE_1_1KeyScale_a610d9af245e116b9b2f8062f36e75f80}{time}};\ }
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1BoneError}{BoneError}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{EGE::Error}}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1BoneError_a92aa5c6003102e4e81f81821921c4f5c}{BoneError}}(\textcolor{keyword}{const}\ std::string\&\ message)\ :\ \mbox{\hyperlink{namespaceEGE}{EGE}}::\mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00057\ \ \ \ \ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Bone}{Bone}}\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Bone_a3c9867e32b6402680001f50306ac9933}{Bone}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ aiNodeAnim*\ channel);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Bone_a2a8089b7b093e9b207043c420165cde7}{\string~Bone}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Bone_ab418ddae8038d439be692d0a2aadf5c7}{update}}(\textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{classEGE_1_1Bone_aa091c36069bcf0abb6c4ff43b58768d3}{getLocalTransform}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classEGE_1_1Bone_a3b34a21f25214763489da38031c3e026}{getName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEGE_1_1Bone_a39ffb58443df8958b8c2b0183b887b83}{getId}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_id;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEGE_1_1Bone_a003cd8435f675756fe2e7b8772dd47ac}{getPositionIndex}}(\textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEGE_1_1Bone_a748b7e83ca03adbd00ce293272ce325c}{getRotationIndex}}(\textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEGE_1_1Bone_a6a49f4c869428149c90d687e8a0be154}{getScaleIndex}}(\textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ getScaleFactor(\textcolor{keywordtype}{float}\ last,\ \textcolor{keywordtype}{float}\ next,\ \textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ interpolatePosition(\textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ interpolateRotation(\textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ interpolateScale(\textcolor{keywordtype}{float}\ time);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<KeyPosition>\ \_positions;\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<KeyRotation>\ \_rotations;\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<KeyScale>\ \_scales;\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_numPositions;\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_numRotations;\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_numScales;\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \_localTransform;\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \_name;\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_id;\ }
+\DoxyCodeLine{00165\ \ \ \ \ \};}
+\DoxyCodeLine{00166\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,257 @@
+\doxysection{EGE\+::Window\+VR Class Reference}
+\hypertarget{classEGE_1_1WindowVR}{}\label{classEGE_1_1WindowVR}\index{EGE::WindowVR@{EGE::WindowVR}}
+
+
+The \doxylink{classEGE_1_1WindowVR}{Window\+VR} class represents a window for virtual reality rendering.  
+
+
+
+
+{\ttfamily \#include $<$Window\+VR.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Window\+VR\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1WindowVR_a91fb65c7cdde774a8141afa0f3d84838}{Window\+VR}} (android\+\_\+app \texorpdfstring{$\ast$}{*}app)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1WindowVR}{Window\+VR} object with the specified android app. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1WindowVR_aa06829866b0fb88c83dc9d530f531785}{\texorpdfstring{$\sim$}{\string~}\+Window\+VR}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classEGE_1_1WindowVR}{Window\+VR} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_a19eb20dc2688c32e2d079a66f24b765c}{create}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_a4eba85ef5528ca4a0f7736496d09b4c9}{set\+Window\+Init}} (bool is\+\_\+init)
+\begin{DoxyCompactList}\small\item\em Sets the window initialization flag. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1WindowVR_a9af37fa892952ece97e49f0dce422b39}{get\+Is\+Window\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Gets the window initialization flag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_a67b3a95114d73fcee7682e6d05849c2c}{app\+Update\+Pump\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Processes the android app events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_a3bf981de258bc4955d26567fc6caa572}{app\+Update\+Begin\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Begins the frame rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_ab8235722b59e9f4e1bf4f9c2ae8a3edf}{app\+Update\+End\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Ends the frame rendering. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1WindowVR_ab29272734921bc6625becd5a49af22c9}{is\+Running}} ()
+\begin{DoxyCompactList}\small\item\em Indicates whether the window is running. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1WindowVR_ad4a7bf8202ed2b3d5f0b39710c3fb398}{is\+Session\+Ready}} ()
+\begin{DoxyCompactList}\small\item\em Indicates whether the session is ready. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1WindowVR_a8179bb6c82f8d1eb186241954aaa8582}{is\+Should\+Render}} ()
+\begin{DoxyCompactList}\small\item\em Indicates whether the window should render. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_a2339b5729b3d704c33237b33a5ac9b53}{add\+Model}} (const std\+::string \&key, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1ModelVR}{Model\+VR}} $>$ \&model)
+\begin{DoxyCompactList}\small\item\em Adds a model to render on the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_ae8e7790a4f4f6e37586dbc1bd9339025}{remove\+Model}} (const std\+::string \&key, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1ModelVR}{Model\+VR}} $>$ \&model)
+\begin{DoxyCompactList}\small\item\em Removes a model from the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_a2aa9ca80fc96b07719eace07d7e72493}{add\+New\+Slot}} (const std\+::string \&key, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{Shader}} $>$ \&shader)
+\begin{DoxyCompactList}\small\item\em Adds a shader to the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1WindowVR_a3ad9fd7fe4208fbac5a45c3074152940}{display}} ()
+\begin{DoxyCompactList}\small\item\em Displays the window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1WindowVR}{Window\+VR} class represents a window for virtual reality rendering. 
+
+This class provides functionality for creating and managing a window for virtual reality rendering. It handles the initialization of the window, rendering of models, and interaction with the virtual reality system. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1WindowVR_a91fb65c7cdde774a8141afa0f3d84838}\label{classEGE_1_1WindowVR_a91fb65c7cdde774a8141afa0f3d84838} 
+\index{EGE::WindowVR@{EGE::WindowVR}!WindowVR@{WindowVR}}
+\index{WindowVR@{WindowVR}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{WindowVR()}{WindowVR()}}
+{\footnotesize\ttfamily EGE\+::\+Window\+VR\+::\+Window\+VR (\begin{DoxyParamCaption}\item[{android\+\_\+app \texorpdfstring{$\ast$}{*}}]{app }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classEGE_1_1WindowVR}{Window\+VR} object with the specified android app. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em app} & The android app. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1WindowVR_aa06829866b0fb88c83dc9d530f531785}\label{classEGE_1_1WindowVR_aa06829866b0fb88c83dc9d530f531785} 
+\index{EGE::WindowVR@{EGE::WindowVR}!````~WindowVR@{\texorpdfstring{$\sim$}{\string~}WindowVR}}
+\index{````~WindowVR@{\texorpdfstring{$\sim$}{\string~}WindowVR}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}WindowVR()}{\string~WindowVR()}}
+{\footnotesize\ttfamily EGE\+::\+Window\+VR\+::\texorpdfstring{$\sim$}{\string~}\+Window\+VR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classEGE_1_1WindowVR}{Window\+VR} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1WindowVR_a2339b5729b3d704c33237b33a5ac9b53}\label{classEGE_1_1WindowVR_a2339b5729b3d704c33237b33a5ac9b53} 
+\index{EGE::WindowVR@{EGE::WindowVR}!addModel@{addModel}}
+\index{addModel@{addModel}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{addModel()}{addModel()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::add\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1ModelVR}{Model\+VR}} $>$ \&}]{model }\end{DoxyParamCaption})}
+
+
+
+Adds a model to render on the window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key of the model. \\
+\hline
+{\em model} & The shared pointer to the model object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1WindowVR_a2aa9ca80fc96b07719eace07d7e72493}\label{classEGE_1_1WindowVR_a2aa9ca80fc96b07719eace07d7e72493} 
+\index{EGE::WindowVR@{EGE::WindowVR}!addNewSlot@{addNewSlot}}
+\index{addNewSlot@{addNewSlot}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{addNewSlot()}{addNewSlot()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::add\+New\+Slot (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Shader}{Shader}} $>$ \&}]{shader }\end{DoxyParamCaption})}
+
+
+
+Adds a shader to the window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key of the shader. \\
+\hline
+{\em shader} & The shared pointer to the shader object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1WindowVR_a3bf981de258bc4955d26567fc6caa572}\label{classEGE_1_1WindowVR_a3bf981de258bc4955d26567fc6caa572} 
+\index{EGE::WindowVR@{EGE::WindowVR}!appUpdateBeginFrame@{appUpdateBeginFrame}}
+\index{appUpdateBeginFrame@{appUpdateBeginFrame}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{appUpdateBeginFrame()}{appUpdateBeginFrame()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::app\+Update\+Begin\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Begins the frame rendering. 
+
+\Hypertarget{classEGE_1_1WindowVR_ab8235722b59e9f4e1bf4f9c2ae8a3edf}\label{classEGE_1_1WindowVR_ab8235722b59e9f4e1bf4f9c2ae8a3edf} 
+\index{EGE::WindowVR@{EGE::WindowVR}!appUpdateEndFrame@{appUpdateEndFrame}}
+\index{appUpdateEndFrame@{appUpdateEndFrame}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{appUpdateEndFrame()}{appUpdateEndFrame()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::app\+Update\+End\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ends the frame rendering. 
+
+\Hypertarget{classEGE_1_1WindowVR_a67b3a95114d73fcee7682e6d05849c2c}\label{classEGE_1_1WindowVR_a67b3a95114d73fcee7682e6d05849c2c} 
+\index{EGE::WindowVR@{EGE::WindowVR}!appUpdatePumpEvents@{appUpdatePumpEvents}}
+\index{appUpdatePumpEvents@{appUpdatePumpEvents}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{appUpdatePumpEvents()}{appUpdatePumpEvents()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::app\+Update\+Pump\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Processes the android app events. 
+
+\Hypertarget{classEGE_1_1WindowVR_a19eb20dc2688c32e2d079a66f24b765c}\label{classEGE_1_1WindowVR_a19eb20dc2688c32e2d079a66f24b765c} 
+\index{EGE::WindowVR@{EGE::WindowVR}!create@{create}}
+\index{create@{create}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the window. 
+
+\Hypertarget{classEGE_1_1WindowVR_a3ad9fd7fe4208fbac5a45c3074152940}\label{classEGE_1_1WindowVR_a3ad9fd7fe4208fbac5a45c3074152940} 
+\index{EGE::WindowVR@{EGE::WindowVR}!display@{display}}
+\index{display@{display}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the window. 
+
+This method will display the window and render the models. \Hypertarget{classEGE_1_1WindowVR_a9af37fa892952ece97e49f0dce422b39}\label{classEGE_1_1WindowVR_a9af37fa892952ece97e49f0dce422b39} 
+\index{EGE::WindowVR@{EGE::WindowVR}!getIsWindowInit@{getIsWindowInit}}
+\index{getIsWindowInit@{getIsWindowInit}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{getIsWindowInit()}{getIsWindowInit()}}
+{\footnotesize\ttfamily bool EGE\+::\+Window\+VR\+::get\+Is\+Window\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the window initialization flag. 
+
+\begin{DoxyReturn}{Returns}
+bool The window initialization flag. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1WindowVR_ab29272734921bc6625becd5a49af22c9}\label{classEGE_1_1WindowVR_ab29272734921bc6625becd5a49af22c9} 
+\index{EGE::WindowVR@{EGE::WindowVR}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{isRunning()}{isRunning()}}
+{\footnotesize\ttfamily bool EGE\+::\+Window\+VR\+::is\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Indicates whether the window is running. 
+
+\begin{DoxyReturn}{Returns}
+bool True if the window is running, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1WindowVR_ad4a7bf8202ed2b3d5f0b39710c3fb398}\label{classEGE_1_1WindowVR_ad4a7bf8202ed2b3d5f0b39710c3fb398} 
+\index{EGE::WindowVR@{EGE::WindowVR}!isSessionReady@{isSessionReady}}
+\index{isSessionReady@{isSessionReady}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{isSessionReady()}{isSessionReady()}}
+{\footnotesize\ttfamily bool EGE\+::\+Window\+VR\+::is\+Session\+Ready (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Indicates whether the session is ready. 
+
+\begin{DoxyReturn}{Returns}
+bool True if the session is ready, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1WindowVR_a8179bb6c82f8d1eb186241954aaa8582}\label{classEGE_1_1WindowVR_a8179bb6c82f8d1eb186241954aaa8582} 
+\index{EGE::WindowVR@{EGE::WindowVR}!isShouldRender@{isShouldRender}}
+\index{isShouldRender@{isShouldRender}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{isShouldRender()}{isShouldRender()}}
+{\footnotesize\ttfamily bool EGE\+::\+Window\+VR\+::is\+Should\+Render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Indicates whether the window should render. 
+
+\begin{DoxyReturn}{Returns}
+bool True if the window should render, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1WindowVR_ae8e7790a4f4f6e37586dbc1bd9339025}\label{classEGE_1_1WindowVR_ae8e7790a4f4f6e37586dbc1bd9339025} 
+\index{EGE::WindowVR@{EGE::WindowVR}!removeModel@{removeModel}}
+\index{removeModel@{removeModel}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{removeModel()}{removeModel()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::remove\+Model (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1ModelVR}{Model\+VR}} $>$ \&}]{model }\end{DoxyParamCaption})}
+
+
+
+Removes a model from the window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key of the model. \\
+\hline
+{\em model} & The shared pointer to the model object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1WindowVR_a4eba85ef5528ca4a0f7736496d09b4c9}\label{classEGE_1_1WindowVR_a4eba85ef5528ca4a0f7736496d09b4c9} 
+\index{EGE::WindowVR@{EGE::WindowVR}!setWindowInit@{setWindowInit}}
+\index{setWindowInit@{setWindowInit}!EGE::WindowVR@{EGE::WindowVR}}
+\doxysubsubsection{\texorpdfstring{setWindowInit()}{setWindowInit()}}
+{\footnotesize\ttfamily void EGE\+::\+Window\+VR\+::set\+Window\+Init (\begin{DoxyParamCaption}\item[{bool}]{is\+\_\+init }\end{DoxyParamCaption})}
+
+
+
+Sets the window initialization flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+\_\+init} & The window initialization flag. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{WindowVR_8hpp}{Window\+VR.\+hpp}}\end{DoxyCompactItemize}

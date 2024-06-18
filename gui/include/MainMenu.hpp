@@ -79,7 +79,7 @@ namespace Onyx {
             std::shared_ptr<EGE::Window> _window;           /**< The window used for rendering the graphical user interface. */
             std::shared_ptr<EGE::Camera> _camera;           /**< The camera used for rendering the entities. */
             float _deltaTime;                               /**< The time between frames. */
-            std::shared_ptr<UserInterface> _interface;      /**< The Interface which displays information about the world. */
+            std::shared_ptr<Onyx::UserInterface> _interface;      /**< The Interface which displays information about the world. */
             std::string _ip;                                /**< The IP address of the server. */
             int _port;                                      /**< The port number of the server. */
     };

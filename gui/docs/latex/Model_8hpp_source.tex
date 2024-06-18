@@ -1,0 +1,100 @@
+\doxysection{Model.\+hpp}
+\hypertarget{Model_8hpp_source}{}\label{Model_8hpp_source}\index{ege/include/Model.hpp@{ege/include/Model.hpp}}
+\mbox{\hyperlink{Model_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Model}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Mesh_8hpp}{Mesh.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector3_8hpp}{Maths/Vector3.hpp}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <assimp/Importer.hpp>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <assimp/scene.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <assimp/postprocess.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Model}{Model}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Model_1_1ModelError}{ModelError}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{EGE::Error}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Model_1_1ModelError_aad8c9ca6faa10eae2733a80c29f08ca2}{ModelError}}(\textcolor{keyword}{const}\ std::string\ \&message)\ :\ \mbox{\hyperlink{namespaceEGE}{EGE}}::\mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Model_a410321f4ced65ab2c7025a06c42efeee}{Model}}(\textcolor{keyword}{const}\ std::string\&\ path,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ position\ =\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}(0.0f,\ 0.0f,\ 0.0f),\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \&rotation\ =\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}(0.0f,\ 0.0f,\ 0.0f),\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ scale\ =\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}(1.0f,\ 1.0f,\ 1.0f),\ \textcolor{keywordtype}{bool}\ flipTexture\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ forceReload\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Model_a0e6f5dc64d29c6b9f5fd00fbea473580}{\string~Model}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Model_a5bfbf38be09880a1f2287d9a516169d4}{draw}}(\mbox{\hyperlink{classEGE_1_1Shader}{Shader}}\&\ shader);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Model_a46343fc33a34a718ecda1b6df44cba94}{setOriginalModelMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}\&\ originalModelMatrix);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Model_a3e0b7fb72ffedc736a34dbb4d7558bab}{setOriginalModelMatrix}}();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}\ \mbox{\hyperlink{classEGE_1_1Model_a94ee96d8ff1678ba55fa046ea496e712}{getOriginalModelMatrix}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Model_a9d8fd5b8a993f48daec88da328184aca}{setPosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ position);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \mbox{\hyperlink{classEGE_1_1Model_aeec85d908e0c66b322dc10aaea12939e}{getPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Model_a05cc33930f46918006a71cd52b50be0e}{setRotation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ rotation);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \mbox{\hyperlink{classEGE_1_1Model_a607a9875b9bd2170a8d3377b7b0ffae3}{getRotation}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Model_a1759586a8bf5b173797ff13362678506}{setScale}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ scale);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \mbox{\hyperlink{classEGE_1_1Model_a32a6bb3a92b449a628a8f0eebe0f583b}{getScale}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Model_aa9c5b7eed57c3c16ff36a15522b101c3}{setShear}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ shear);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \mbox{\hyperlink{classEGE_1_1Model_a1f55d610b22114f657d071f52d5dbde9}{getShear}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ BoneInfo>\&\ \mbox{\hyperlink{classEGE_1_1Model_a77dde49fd1c5ac738ca2157ad56b3f55}{getBoneInfoMap}}();}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ \mbox{\hyperlink{classEGE_1_1Model_ab8dadf4c59032e8a6bb98329d458e0be}{getBoneNumber}}();}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Mesh>\ \mbox{\hyperlink{classEGE_1_1Model_a5f256e94e1d3c40b0ad2e0c972ab5562}{getMeshes}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\_meshes;\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ loadModel(\textcolor{keyword}{const}\ std::string\&\ path,\ \textcolor{keywordtype}{bool}\ flipTexture\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ processNode(aiNode\ *node,\ \textcolor{keyword}{const}\ aiScene\ *scene,\ \textcolor{keywordtype}{bool}\ flipTexture\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Mesh}{Mesh}}\ processMesh(aiMesh\ *mesh,\ \textcolor{keyword}{const}\ aiScene\ *scene,\ \textcolor{keywordtype}{bool}\ flipTexture\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Texture>\ loadMaterialTextures(aiMaterial\ *mat,\ aiTextureType\ type,\ \textcolor{keyword}{const}\ std::string\&\ typeName,\ \textcolor{keywordtype}{bool}\ flipTexture\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setVertexBoneDataToDefault(\mbox{\hyperlink{structEGE_1_1Vertex}{Vertex}}\&\ vertex);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setVertexBoneData(\mbox{\hyperlink{structEGE_1_1Vertex}{Vertex}}\&\ vertex,\ \textcolor{keywordtype}{int}\ boneID,\ \textcolor{keywordtype}{float}\ weight);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ extractBoneWeightForVertices(std::vector<Vertex>\&\ vertices,\ aiMesh\ *mesh,\ \textcolor{keyword}{const}\ aiScene\ *scene);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Mesh>\ \_meshes;\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \_directory;\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Texture>\ \_texturesLoaded;\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \_position;\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \_rotation;\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \_shear;\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\ \_scale;\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::map<std::string,\ Model\ *>\ \_modelsLoaded;\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ BoneInfo>\ \_boneInfoMap;\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_boneNumber;\ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}\ \_originalModelMatrix;\ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \};}
+\DoxyCodeLine{00234\ \}}
+
+\end{DoxyCode}

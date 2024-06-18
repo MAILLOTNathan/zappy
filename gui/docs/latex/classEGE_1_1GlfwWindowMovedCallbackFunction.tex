@@ -1,0 +1,131 @@
+\doxysection{EGE\+::Glfw\+Window\+Moved\+Callback\+Function Class Reference}
+\hypertarget{classEGE_1_1GlfwWindowMovedCallbackFunction}{}\label{classEGE_1_1GlfwWindowMovedCallbackFunction}\index{EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}}
+
+
+Represents a singleton callback function for handling key events in a GLFW window.  
+
+
+
+
+{\ttfamily \#include $<$Glfw\+Callback.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Glfw\+Window\+Moved\+Callback\+Function\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_aafe58917a6872d269f5f652a0f662e7c}{Glfw\+Window\+Moved\+Callback\+Function}} (const \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \& \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_a2c02f237f967b2f4c5a5bc73527a0d77}{operator=}} (const \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... \+\_\+\+Arg\+Types$>$ }\\void \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_a3d1218892e9e87dee79bcfec8e1a88b5}{call}} (\+\_\+\+Arg\+Types... args)
+\begin{DoxyCompactList}\small\item\em Call the callback function with the provided arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename F $>$ }\\static \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_a7d648da4b06fe3e5c7a00e2eae42cf59}{get\+Instance}} (F \&\&callback, bool force=false)
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of the \doxylink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction_adb4041586a62707539fa26752feb14cf}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of the \doxylink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a singleton callback function for handling key events in a GLFW window. 
+
+The \doxylink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function} class provides a singleton instance of a callback function that can be used to handle moved events of a GLFW window. It ensures that only one instance of the callback function exists at a time. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1GlfwWindowMovedCallbackFunction_aafe58917a6872d269f5f652a0f662e7c}\label{classEGE_1_1GlfwWindowMovedCallbackFunction_aafe58917a6872d269f5f652a0f662e7c} 
+\index{EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}!GlfwWindowMovedCallbackFunction@{GlfwWindowMovedCallbackFunction}}
+\index{GlfwWindowMovedCallbackFunction@{GlfwWindowMovedCallbackFunction}!EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{GlfwWindowMovedCallbackFunction()}{GlfwWindowMovedCallbackFunction()}}
+{\footnotesize\ttfamily EGE\+::\+Glfw\+Window\+Moved\+Callback\+Function\+::\+Glfw\+Window\+Moved\+Callback\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1GlfwWindowMovedCallbackFunction_a3d1218892e9e87dee79bcfec8e1a88b5}\label{classEGE_1_1GlfwWindowMovedCallbackFunction_a3d1218892e9e87dee79bcfec8e1a88b5} 
+\index{EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}!call@{call}}
+\index{call@{call}!EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{call()}{call()}}
+{\footnotesize\ttfamily template$<$typename... \+\_\+\+Arg\+Types$>$ \\
+void EGE\+::\+Glfw\+Window\+Moved\+Callback\+Function\+::call (\begin{DoxyParamCaption}\item[{\+\_\+\+Arg\+Types...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Call the callback function with the provided arguments. 
+
+If the callback function is valid, it will be called with the provided arguments.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Arg\+Types} & The types of the arguments. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The arguments to be passed to the callback function. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1GlfwWindowMovedCallbackFunction_adb4041586a62707539fa26752feb14cf}\label{classEGE_1_1GlfwWindowMovedCallbackFunction_adb4041586a62707539fa26752feb14cf} 
+\index{EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \texorpdfstring{$\ast$}{*} EGE\+::\+Glfw\+Window\+Moved\+Callback\+Function\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the singleton instance of the \doxylink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}. 
+
+\begin{DoxyReturn}{Returns}
+The singleton instance of the \doxylink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GlfwWindowMovedCallbackFunction_a7d648da4b06fe3e5c7a00e2eae42cf59}\label{classEGE_1_1GlfwWindowMovedCallbackFunction_a7d648da4b06fe3e5c7a00e2eae42cf59} 
+\index{EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename F $>$ \\
+static \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \texorpdfstring{$\ast$}{*} EGE\+::\+Glfw\+Window\+Moved\+Callback\+Function\+::get\+Instance (\begin{DoxyParamCaption}\item[{F \&\&}]{callback,  }\item[{bool}]{force = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the singleton instance of the \doxylink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}. 
+
+If the instance does not exist, it will be created with the provided callback function. If the instance already exists and the \textquotesingle{}force\textquotesingle{} parameter is set to true, the existing instance will be deleted and a new one will be created.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em F} & The type of the callback function. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback function to be registered. \\
+\hline
+{\em force} & Whether to force the creation of a new instance even if one already exists. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The singleton instance of the \doxylink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GlfwWindowMovedCallbackFunction_a2c02f237f967b2f4c5a5bc73527a0d77}\label{classEGE_1_1GlfwWindowMovedCallbackFunction_a2c02f237f967b2f4c5a5bc73527a0d77} 
+\index{EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}!operator=@{operator=}}
+\index{operator=@{operator=}!EGE::GlfwWindowMovedCallbackFunction@{EGE::GlfwWindowMovedCallbackFunction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \& EGE\+::\+Glfw\+Window\+Moved\+Callback\+Function\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1GlfwWindowMovedCallbackFunction}{Glfw\+Window\+Moved\+Callback\+Function}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{GlfwCallback_8hpp}{Glfw\+Callback.\+hpp}}\end{DoxyCompactItemize}

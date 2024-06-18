@@ -1,0 +1,156 @@
+\doxysection{Onyx\+::User\+Interface Class Reference}
+\hypertarget{classOnyx_1_1UserInterface}{}\label{classOnyx_1_1UserInterface}\index{Onyx::UserInterface@{Onyx::UserInterface}}
+
+
+Represents the user interface for the zappy game.  
+
+
+
+
+{\ttfamily \#include $<$User\+Interface.\+hpp$>$}
+
+
+
+Inheritance diagram for Onyx\+::User\+Interface\+:
+% FIG 0
+
+
+Collaboration diagram for Onyx\+::User\+Interface\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1UserInterface_a40df1f49961ddea48f8de641a4bc871e}{User\+Interface}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{classOnyx_1_1UserInterface}{User\+Interface} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1UserInterface_a5cc763cd855c729aa93973dbd358e1d7}{\texorpdfstring{$\sim$}{\string~}\+User\+Interface}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classOnyx_1_1UserInterface}{User\+Interface} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1UserInterface_a7d8c18c6d3f69e83e41756147368ee63}{init\+Playlist}} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Initializes the playlist with the given path. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist}{EGE\+::\+Sound\+::\+Playlist}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classOnyx_1_1UserInterface_a623f33c37a72000cdf2907d3866330d9}{get\+Playlist}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the playlist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEGE_1_1GUIManager}{EGE\+::\+GUIManager}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1GUIManager_ae09a09ae88520b6d36c936df467712a8}{\texorpdfstring{$\sim$}{\string~}\+GUIManager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1GUIManager}{GUIManager} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_ab11d4dca7f81ac2cc8e3d01f46137551}{init}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}win)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{classEGE_1_1GUIManager}{GUIManager} with the specified window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_acdab68a94189e77c48915da91e9cadde}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clears all \doxylink{classEGE_1_1GUI}{GUI} elements from the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a09b584ca0b149031e0e8fed63357ba70}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws all \doxylink{classEGE_1_1GUI}{GUI} elements on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a673c23f207d458d666c256892b983f4e}{display}} ()
+\begin{DoxyCompactList}\small\item\em Displays the rendered \doxylink{classEGE_1_1GUI}{GUI} elements on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_ad97d238542a6aeebbcdb632d45d18b6a}{default\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Sets the default mode for the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_aa951c60e6cf784ab817b07ff81cc1345}{dark\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Sets the dark mode for the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a39ffd10c1fd25815aa70cfff31ab0e9c}{show}} ()
+\begin{DoxyCompactList}\small\item\em Shows the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a47d59d65ac29da02a724516519e54100}{hide}} ()
+\begin{DoxyCompactList}\small\item\em Hides the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_aca1ddedf078689d8a9881890b3f68bf7}{toggle}} ()
+\begin{DoxyCompactList}\small\item\em Toggles the visibility of the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1GUIManager_a081214ee90127eb79904f8f4c396049d}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the \doxylink{classEGE_1_1GUIManager}{GUIManager} is hidden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Device}{EGE\+::\+Sound\+::\+Device}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classOnyx_1_1UserInterface_adef3dfba144d897167f8da80833c1c30}{\+\_\+sound\+Device}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist}{EGE\+::\+Sound\+::\+Playlist}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classOnyx_1_1UserInterface_a20811b36ef91088aa59ee2192ca9adf3}{\+\_\+playlist}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEGE_1_1GUIManager}{EGE\+::\+GUIManager}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1GUIManager_a1ee889923464305b994516abbeb87c1f}{\+\_\+hidden}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEGE_1_1GUIManager}{EGE\+::\+GUIManager}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classEGE_1_1Panel}{Panel}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classEGE_1_1GUIManager_a1df4317ed1a41a7ad0a59bc4deed957d}{\+\_\+panels}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Main}{Main}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUIManager_a06149582632ee54d840697412d0c7c08}{\+\_\+menu\+Bar}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUIManager_a6c7431990fbdc7cbda617de8b490b86e}{\+\_\+window}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the user interface for the zappy game. 
+
+This class inherits from the \doxylink{classEGE_1_1GUIManager}{EGE\+::\+GUIManager} class and provides functionality for managing the graphical user interface of the game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1UserInterface_a40df1f49961ddea48f8de641a4bc871e}\label{classOnyx_1_1UserInterface_a40df1f49961ddea48f8de641a4bc871e} 
+\index{Onyx::UserInterface@{Onyx::UserInterface}!UserInterface@{UserInterface}}
+\index{UserInterface@{UserInterface}!Onyx::UserInterface@{Onyx::UserInterface}}
+\doxysubsubsection{\texorpdfstring{UserInterface()}{UserInterface()}}
+{\footnotesize\ttfamily Onyx\+::\+User\+Interface\+::\+User\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for the \doxylink{classOnyx_1_1UserInterface}{User\+Interface} class. 
+
+\Hypertarget{classOnyx_1_1UserInterface_a5cc763cd855c729aa93973dbd358e1d7}\label{classOnyx_1_1UserInterface_a5cc763cd855c729aa93973dbd358e1d7} 
+\index{Onyx::UserInterface@{Onyx::UserInterface}!````~UserInterface@{\texorpdfstring{$\sim$}{\string~}UserInterface}}
+\index{````~UserInterface@{\texorpdfstring{$\sim$}{\string~}UserInterface}!Onyx::UserInterface@{Onyx::UserInterface}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}UserInterface()}{\string~UserInterface()}}
+{\footnotesize\ttfamily Onyx\+::\+User\+Interface\+::\texorpdfstring{$\sim$}{\string~}\+User\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor for the \doxylink{classOnyx_1_1UserInterface}{User\+Interface} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1UserInterface_a623f33c37a72000cdf2907d3866330d9}\label{classOnyx_1_1UserInterface_a623f33c37a72000cdf2907d3866330d9} 
+\index{Onyx::UserInterface@{Onyx::UserInterface}!getPlaylist@{getPlaylist}}
+\index{getPlaylist@{getPlaylist}!Onyx::UserInterface@{Onyx::UserInterface}}
+\doxysubsubsection{\texorpdfstring{getPlaylist()}{getPlaylist()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist}{EGE\+::\+Sound\+::\+Playlist}} \texorpdfstring{$\ast$}{*} Onyx\+::\+User\+Interface\+::get\+Playlist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the playlist. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the playlist. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1UserInterface_a7d8c18c6d3f69e83e41756147368ee63}\label{classOnyx_1_1UserInterface_a7d8c18c6d3f69e83e41756147368ee63} 
+\index{Onyx::UserInterface@{Onyx::UserInterface}!initPlaylist@{initPlaylist}}
+\index{initPlaylist@{initPlaylist}!Onyx::UserInterface@{Onyx::UserInterface}}
+\doxysubsubsection{\texorpdfstring{initPlaylist()}{initPlaylist()}}
+{\footnotesize\ttfamily void Onyx\+::\+User\+Interface\+::init\+Playlist (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Initializes the playlist with the given path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the playlist. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classOnyx_1_1UserInterface_a20811b36ef91088aa59ee2192ca9adf3}\label{classOnyx_1_1UserInterface_a20811b36ef91088aa59ee2192ca9adf3} 
+\index{Onyx::UserInterface@{Onyx::UserInterface}!\_playlist@{\_playlist}}
+\index{\_playlist@{\_playlist}!Onyx::UserInterface@{Onyx::UserInterface}}
+\doxysubsubsection{\texorpdfstring{\_playlist}{\_playlist}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist}{EGE\+::\+Sound\+::\+Playlist}}\texorpdfstring{$\ast$}{*} Onyx\+::\+User\+Interface\+::\+\_\+playlist\hspace{0.3cm}{\ttfamily [protected]}}
+
+The playlist. \Hypertarget{classOnyx_1_1UserInterface_adef3dfba144d897167f8da80833c1c30}\label{classOnyx_1_1UserInterface_adef3dfba144d897167f8da80833c1c30} 
+\index{Onyx::UserInterface@{Onyx::UserInterface}!\_soundDevice@{\_soundDevice}}
+\index{\_soundDevice@{\_soundDevice}!Onyx::UserInterface@{Onyx::UserInterface}}
+\doxysubsubsection{\texorpdfstring{\_soundDevice}{\_soundDevice}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Sound_1_1Device}{EGE\+::\+Sound\+::\+Device}}\texorpdfstring{$\ast$}{*} Onyx\+::\+User\+Interface\+::\+\_\+sound\+Device\hspace{0.3cm}{\ttfamily [protected]}}
+
+The sound device. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{UserInterface_8hpp}{User\+Interface.\+hpp}}\end{DoxyCompactItemize}

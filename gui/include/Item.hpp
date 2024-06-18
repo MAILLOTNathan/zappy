@@ -107,14 +107,7 @@ namespace Onyx {
             */
             void setPos(EGE::Maths::Vector2<int> position);
         private:
-            /**
-             * @brief The type of the item.
-             */
-            TYPE _type;
-
-            /**
-             * @brief The position of the item.
-             */
-            EGE::Maths::Vector2<int> _position;
+            TYPE _type;                             ///< The type of the item.
+            EGE::Maths::Vector2<int> _position;     ///< The position of the item in the grid of the game.
     };
 }

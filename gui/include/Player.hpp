@@ -251,18 +251,18 @@ namespace Onyx {
              */
             void _setColor(std::string &teamName);
 
-            int _id; /**< The ID of the player. */
-            Color _color; /**< The color of the player. */
-            int _level; /**< The level of the player. */
-            std::string _teamName; /**< The team name of the player. */
-            int _quantity[Onyx::Item::TYPE::MAX]; /**< The quantity of items in the player's inventory. */
-            static std::vector<std::shared_ptr<Onyx::Item>> _items; /**< The items in the game. */
-            static std::map<std::string, Color> _colorMap; /**< The color map. */
-            EGE::Maths::Vector2<int> _pos; /**< The position of the player. */
-            EGE::Maths::Vector3<float> _rotation; /**< The rotation of the player. */
-            std::string _rotationString; /**< The rotation string of the player. */
-            const EGE::Maths::Vector3<float> _scale = {0.2f, 0.2f, 0.2f}; /**< The scale of the player. */
-            float _timeUnit; /**< The time unit of the player. */
-            float _deltaTime; /**< The delta time of the player. */
+            int _id;                                                        /**< The ID of the player. */
+            Color _color;                                                   /**< The color of the player. */
+            int _level;                                                     /**< The level of the player. */
+            std::string _teamName;                                          /**< The team name of the player. */
+            int _quantity[Onyx::Item::TYPE::MAX];                           /**< The quantity of items in the player's inventory. */
+            static std::vector<std::shared_ptr<Onyx::Item>> _items;         /**< The items in the game. */
+            static std::map<std::string, Color> _colorMap;                  /**< The color map. */
+            EGE::Maths::Vector2<int> _pos;                                  /**< The position of the player. */
+            EGE::Maths::Vector3<float> _rotation;                           /**< The rotation of the player. */
+            std::string _rotationString;                                    /**< The rotation string of the player. */
+            const EGE::Maths::Vector3<float> _scale = {0.2f, 0.2f, 0.2f};   /**< The scale of the player. */
+            float _timeUnit;                                                /**< The time unit of the player. */
+            float _deltaTime;                                               /**< The delta time of the player. */
     };
 }

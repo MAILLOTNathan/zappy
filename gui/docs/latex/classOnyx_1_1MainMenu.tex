@@ -1,0 +1,209 @@
+\doxysection{Onyx\+::Main\+Menu Class Reference}
+\hypertarget{classOnyx_1_1MainMenu}{}\label{classOnyx_1_1MainMenu}\index{Onyx::MainMenu@{Onyx::MainMenu}}
+
+
+The \doxylink{classOnyx_1_1MainMenu}{Main\+Menu} class represents the main menu of the application.  
+
+
+
+
+{\ttfamily \#include $<$Main\+Menu.\+hpp$>$}
+
+
+
+Collaboration diagram for Onyx\+::Main\+Menu\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOnyx_1_1MainMenu_a05363d23ffc4d663f9cb610246591307}{Main\+Menu}} (const std\+::string \&ip, int port)
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classOnyx_1_1MainMenu}{Main\+Menu}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOnyx_1_1MainMenu_a51c7d11fcc698c2a7d9a271b5347466b}{\texorpdfstring{$\sim$}{\string~}\+Main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classOnyx_1_1MainMenu}{Main\+Menu}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1MainMenu_a626683548508d3b6d7918460887f02f6}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the main menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1MainMenu_a42152a1d5bd077ca75c23911d3e2a26f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Loops the main menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOnyx_1_1MainMenu_a14f38cea6e30954f7e2531a2e07d91ca}{is\+Running}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the application is running. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOnyx_1_1MainMenu_ae9ab3c22c7f8c2babe6e60ecfa58e9c4}{create\+Main\+Panel}} ()
+\begin{DoxyCompactList}\small\item\em Creates the main panel of the menu. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classnet_1_1TcpClient}{net\+::\+Tcp\+Client}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classOnyx_1_1MainMenu_a14034ab0b408c102b71ca71c172ae214}{get\+Client}} () const
+\begin{DoxyCompactList}\small\item\em Gets the TCP client. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Window}{EGE\+::\+Window}} $>$ \mbox{\hyperlink{classOnyx_1_1MainMenu_a4955e3f88318b3df8902e80d1e01bad2}{get\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Get the window object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classOnyx_1_1MainMenu_a112501a52efd32b6c2c308a4f8ff3050}{\+\_\+running}}
+\item 
+\mbox{\hyperlink{classnet_1_1TcpClient}{net\+::\+Tcp\+Client}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classOnyx_1_1MainMenu_a992ca3ef2f4e31325ef798c820b10504}{\+\_\+client}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Window}{EGE\+::\+Window}} $>$ \mbox{\hyperlink{classOnyx_1_1MainMenu_a9ca071ce914f2691f953527c4d3404f9}{\+\_\+window}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Camera}{EGE\+::\+Camera}} $>$ \mbox{\hyperlink{classOnyx_1_1MainMenu_a2a89a748686196c3782cf82e34a889bb}{\+\_\+camera}}
+\item 
+float \mbox{\hyperlink{classOnyx_1_1MainMenu_a5405c9631069b525a545a9d68e5e714f}{\+\_\+delta\+Time}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classOnyx_1_1UserInterface}{Onyx\+::\+User\+Interface}} $>$ \mbox{\hyperlink{classOnyx_1_1MainMenu_ad5f4bf05c3394161c53d1d3da6823cca}{\+\_\+interface}}
+\item 
+std\+::string \mbox{\hyperlink{classOnyx_1_1MainMenu_accd1f94e58fa6a3a23383ef717e17448}{\+\_\+ip}}
+\item 
+int \mbox{\hyperlink{classOnyx_1_1MainMenu_a59445b8967dbe7603cf8adcd5a83979a}{\+\_\+port}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classOnyx_1_1MainMenu}{Main\+Menu} class represents the main menu of the application. 
+
+The \doxylink{classOnyx_1_1MainMenu}{Main\+Menu} class is responsible for managing the main menu of the application. It provides functions for updating and looping the menu, checking if the application is running, creating the main panel, and getting the TCP client. It also contains member variables for storing the running state, TCP client, window, camera, delta time, and user interface. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOnyx_1_1MainMenu_a05363d23ffc4d663f9cb610246591307}\label{classOnyx_1_1MainMenu_a05363d23ffc4d663f9cb610246591307} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!MainMenu@{MainMenu}}
+\index{MainMenu@{MainMenu}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{MainMenu()}{MainMenu()}}
+{\footnotesize\ttfamily Onyx\+::\+Main\+Menu\+::\+Main\+Menu (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Default constructor for \doxylink{classOnyx_1_1MainMenu}{Main\+Menu}. 
+
+\Hypertarget{classOnyx_1_1MainMenu_a51c7d11fcc698c2a7d9a271b5347466b}\label{classOnyx_1_1MainMenu_a51c7d11fcc698c2a7d9a271b5347466b} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!````~MainMenu@{\texorpdfstring{$\sim$}{\string~}MainMenu}}
+\index{````~MainMenu@{\texorpdfstring{$\sim$}{\string~}MainMenu}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MainMenu()}{\string~MainMenu()}}
+{\footnotesize\ttfamily Onyx\+::\+Main\+Menu\+::\texorpdfstring{$\sim$}{\string~}\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for \doxylink{classOnyx_1_1MainMenu}{Main\+Menu}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOnyx_1_1MainMenu_ae9ab3c22c7f8c2babe6e60ecfa58e9c4}\label{classOnyx_1_1MainMenu_ae9ab3c22c7f8c2babe6e60ecfa58e9c4} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!createMainPanel@{createMainPanel}}
+\index{createMainPanel@{createMainPanel}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{createMainPanel()}{createMainPanel()}}
+{\footnotesize\ttfamily void Onyx\+::\+Main\+Menu\+::create\+Main\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates the main panel of the menu. 
+
+\Hypertarget{classOnyx_1_1MainMenu_a14034ab0b408c102b71ca71c172ae214}\label{classOnyx_1_1MainMenu_a14034ab0b408c102b71ca71c172ae214} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!getClient@{getClient}}
+\index{getClient@{getClient}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{getClient()}{getClient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnet_1_1TcpClient}{net\+::\+Tcp\+Client}} \texorpdfstring{$\ast$}{*} Onyx\+::\+Main\+Menu\+::get\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the TCP client. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the TCP client. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1MainMenu_a4955e3f88318b3df8902e80d1e01bad2}\label{classOnyx_1_1MainMenu_a4955e3f88318b3df8902e80d1e01bad2} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classEGE_1_1Window}{EGE\+::\+Window}} $>$ Onyx\+::\+Main\+Menu\+::get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the window object. 
+
+\begin{DoxyReturn}{Returns}
+std\+::shared\+\_\+ptr$<$\+EGE\+::\+Window$>$ The window object. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1MainMenu_a14f38cea6e30954f7e2531a2e07d91ca}\label{classOnyx_1_1MainMenu_a14f38cea6e30954f7e2531a2e07d91ca} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{isRunning()}{isRunning()}}
+{\footnotesize\ttfamily bool Onyx\+::\+Main\+Menu\+::is\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the application is running. 
+
+\begin{DoxyReturn}{Returns}
+true if the application is running, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classOnyx_1_1MainMenu_a42152a1d5bd077ca75c23911d3e2a26f}\label{classOnyx_1_1MainMenu_a42152a1d5bd077ca75c23911d3e2a26f} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!loop@{loop}}
+\index{loop@{loop}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void Onyx\+::\+Main\+Menu\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Loops the main menu. 
+
+\Hypertarget{classOnyx_1_1MainMenu_a626683548508d3b6d7918460887f02f6}\label{classOnyx_1_1MainMenu_a626683548508d3b6d7918460887f02f6} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!update@{update}}
+\index{update@{update}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Onyx\+::\+Main\+Menu\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the main menu. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classOnyx_1_1MainMenu_a2a89a748686196c3782cf82e34a889bb}\label{classOnyx_1_1MainMenu_a2a89a748686196c3782cf82e34a889bb} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_camera@{\_camera}}
+\index{\_camera@{\_camera}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_camera}{\_camera}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classEGE_1_1Camera}{EGE\+::\+Camera}}$>$ Onyx\+::\+Main\+Menu\+::\+\_\+camera\hspace{0.3cm}{\ttfamily [protected]}}
+
+The camera used for rendering the entities. \Hypertarget{classOnyx_1_1MainMenu_a992ca3ef2f4e31325ef798c820b10504}\label{classOnyx_1_1MainMenu_a992ca3ef2f4e31325ef798c820b10504} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_client@{\_client}}
+\index{\_client@{\_client}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_client}{\_client}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classnet_1_1TcpClient}{net\+::\+Tcp\+Client}}\texorpdfstring{$\ast$}{*} Onyx\+::\+Main\+Menu\+::\+\_\+client\hspace{0.3cm}{\ttfamily [protected]}}
+
+The TCP client used for communication. \Hypertarget{classOnyx_1_1MainMenu_a5405c9631069b525a545a9d68e5e714f}\label{classOnyx_1_1MainMenu_a5405c9631069b525a545a9d68e5e714f} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_deltaTime@{\_deltaTime}}
+\index{\_deltaTime@{\_deltaTime}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_deltaTime}{\_deltaTime}}
+{\footnotesize\ttfamily float Onyx\+::\+Main\+Menu\+::\+\_\+delta\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+The time between frames. \Hypertarget{classOnyx_1_1MainMenu_ad5f4bf05c3394161c53d1d3da6823cca}\label{classOnyx_1_1MainMenu_ad5f4bf05c3394161c53d1d3da6823cca} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_interface@{\_interface}}
+\index{\_interface@{\_interface}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_interface}{\_interface}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classOnyx_1_1UserInterface}{Onyx\+::\+User\+Interface}}$>$ Onyx\+::\+Main\+Menu\+::\+\_\+interface\hspace{0.3cm}{\ttfamily [protected]}}
+
+The Interface which displays information about the world. \Hypertarget{classOnyx_1_1MainMenu_accd1f94e58fa6a3a23383ef717e17448}\label{classOnyx_1_1MainMenu_accd1f94e58fa6a3a23383ef717e17448} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_ip@{\_ip}}
+\index{\_ip@{\_ip}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_ip}{\_ip}}
+{\footnotesize\ttfamily std\+::string Onyx\+::\+Main\+Menu\+::\+\_\+ip\hspace{0.3cm}{\ttfamily [protected]}}
+
+The IP address of the server. \Hypertarget{classOnyx_1_1MainMenu_a59445b8967dbe7603cf8adcd5a83979a}\label{classOnyx_1_1MainMenu_a59445b8967dbe7603cf8adcd5a83979a} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_port@{\_port}}
+\index{\_port@{\_port}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_port}{\_port}}
+{\footnotesize\ttfamily int Onyx\+::\+Main\+Menu\+::\+\_\+port\hspace{0.3cm}{\ttfamily [protected]}}
+
+The port number of the server. \Hypertarget{classOnyx_1_1MainMenu_a112501a52efd32b6c2c308a4f8ff3050}\label{classOnyx_1_1MainMenu_a112501a52efd32b6c2c308a4f8ff3050} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_running@{\_running}}
+\index{\_running@{\_running}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily bool Onyx\+::\+Main\+Menu\+::\+\_\+running\hspace{0.3cm}{\ttfamily [protected]}}
+
+A boolean that indicates whether the application is running. \Hypertarget{classOnyx_1_1MainMenu_a9ca071ce914f2691f953527c4d3404f9}\label{classOnyx_1_1MainMenu_a9ca071ce914f2691f953527c4d3404f9} 
+\index{Onyx::MainMenu@{Onyx::MainMenu}!\_window@{\_window}}
+\index{\_window@{\_window}!Onyx::MainMenu@{Onyx::MainMenu}}
+\doxysubsubsection{\texorpdfstring{\_window}{\_window}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classEGE_1_1Window}{EGE\+::\+Window}}$>$ Onyx\+::\+Main\+Menu\+::\+\_\+window\hspace{0.3cm}{\ttfamily [protected]}}
+
+The window used for rendering the graphical user interface. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{MainMenu_8hpp}{Main\+Menu.\+hpp}}\end{DoxyCompactItemize}

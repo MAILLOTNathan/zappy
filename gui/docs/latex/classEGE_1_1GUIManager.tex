@@ -1,0 +1,217 @@
+\doxysection{EGE\+::GUIManager Class Reference}
+\hypertarget{classEGE_1_1GUIManager}{}\label{classEGE_1_1GUIManager}\index{EGE::GUIManager@{EGE::GUIManager}}
+
+
+The \doxylink{classEGE_1_1GUIManager}{GUIManager} class handles the management and rendering of \doxylink{classEGE_1_1GUI}{GUI} elements.  
+
+
+
+
+{\ttfamily \#include $<$GUIManager.\+hpp$>$}
+
+
+
+Inheritance diagram for EGE\+::GUIManager\+:
+% FIG 0
+
+
+Collaboration diagram for EGE\+::GUIManager\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1GUIManager_ae09a09ae88520b6d36c936df467712a8}{\texorpdfstring{$\sim$}{\string~}\+GUIManager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1GUIManager}{GUIManager} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_ab11d4dca7f81ac2cc8e3d01f46137551}{init}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}win)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{classEGE_1_1GUIManager}{GUIManager} with the specified window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_acdab68a94189e77c48915da91e9cadde}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clears all \doxylink{classEGE_1_1GUI}{GUI} elements from the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a09b584ca0b149031e0e8fed63357ba70}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws all \doxylink{classEGE_1_1GUI}{GUI} elements on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a673c23f207d458d666c256892b983f4e}{display}} ()
+\begin{DoxyCompactList}\small\item\em Displays the rendered \doxylink{classEGE_1_1GUI}{GUI} elements on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_ad97d238542a6aeebbcdb632d45d18b6a}{default\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Sets the default mode for the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_aa951c60e6cf784ab817b07ff81cc1345}{dark\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Sets the dark mode for the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a39ffd10c1fd25815aa70cfff31ab0e9c}{show}} ()
+\begin{DoxyCompactList}\small\item\em Shows the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_a47d59d65ac29da02a724516519e54100}{hide}} ()
+\begin{DoxyCompactList}\small\item\em Hides the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUIManager_aca1ddedf078689d8a9881890b3f68bf7}{toggle}} ()
+\begin{DoxyCompactList}\small\item\em Toggles the visibility of the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1GUIManager_a081214ee90127eb79904f8f4c396049d}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the \doxylink{classEGE_1_1GUIManager}{GUIManager} is hidden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classEGE_1_1Panel}{Panel}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classEGE_1_1GUIManager_a1df4317ed1a41a7ad0a59bc4deed957d}{\+\_\+panels}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Main}{Main}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUIManager_a06149582632ee54d840697412d0c7c08}{\+\_\+menu\+Bar}}
+\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUIManager_a6c7431990fbdc7cbda617de8b490b86e}{\+\_\+window}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1GUIManager_a1ee889923464305b994516abbeb87c1f}{\+\_\+hidden}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1GUIManager}{GUIManager} class handles the management and rendering of \doxylink{classEGE_1_1GUI}{GUI} elements. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1GUIManager_ae09a09ae88520b6d36c936df467712a8}\label{classEGE_1_1GUIManager_ae09a09ae88520b6d36c936df467712a8} 
+\index{EGE::GUIManager@{EGE::GUIManager}!````~GUIManager@{\texorpdfstring{$\sim$}{\string~}GUIManager}}
+\index{````~GUIManager@{\texorpdfstring{$\sim$}{\string~}GUIManager}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GUIManager()}{\string~GUIManager()}}
+{\footnotesize\ttfamily EGE\+::\+GUIManager\+::\texorpdfstring{$\sim$}{\string~}\+GUIManager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classEGE_1_1GUIManager}{GUIManager} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1GUIManager_acdab68a94189e77c48915da91e9cadde}\label{classEGE_1_1GUIManager_acdab68a94189e77c48915da91e9cadde} 
+\index{EGE::GUIManager@{EGE::GUIManager}!clear@{clear}}
+\index{clear@{clear}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears all \doxylink{classEGE_1_1GUI}{GUI} elements from the \doxylink{classEGE_1_1GUIManager}{GUIManager}. 
+
+\Hypertarget{classEGE_1_1GUIManager_aa951c60e6cf784ab817b07ff81cc1345}\label{classEGE_1_1GUIManager_aa951c60e6cf784ab817b07ff81cc1345} 
+\index{EGE::GUIManager@{EGE::GUIManager}!darkMode@{darkMode}}
+\index{darkMode@{darkMode}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{darkMode()}{darkMode()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::dark\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets the dark mode for the \doxylink{classEGE_1_1GUIManager}{GUIManager}. 
+
+\Hypertarget{classEGE_1_1GUIManager_ad97d238542a6aeebbcdb632d45d18b6a}\label{classEGE_1_1GUIManager_ad97d238542a6aeebbcdb632d45d18b6a} 
+\index{EGE::GUIManager@{EGE::GUIManager}!defaultMode@{defaultMode}}
+\index{defaultMode@{defaultMode}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{defaultMode()}{defaultMode()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::default\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets the default mode for the \doxylink{classEGE_1_1GUIManager}{GUIManager}. 
+
+\Hypertarget{classEGE_1_1GUIManager_a673c23f207d458d666c256892b983f4e}\label{classEGE_1_1GUIManager_a673c23f207d458d666c256892b983f4e} 
+\index{EGE::GUIManager@{EGE::GUIManager}!display@{display}}
+\index{display@{display}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the rendered \doxylink{classEGE_1_1GUI}{GUI} elements on the screen. 
+
+\Hypertarget{classEGE_1_1GUIManager_a09b584ca0b149031e0e8fed63357ba70}\label{classEGE_1_1GUIManager_a09b584ca0b149031e0e8fed63357ba70} 
+\index{EGE::GUIManager@{EGE::GUIManager}!draw@{draw}}
+\index{draw@{draw}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draws all \doxylink{classEGE_1_1GUI}{GUI} elements on the screen. 
+
+\Hypertarget{classEGE_1_1GUIManager_a47d59d65ac29da02a724516519e54100}\label{classEGE_1_1GUIManager_a47d59d65ac29da02a724516519e54100} 
+\index{EGE::GUIManager@{EGE::GUIManager}!hide@{hide}}
+\index{hide@{hide}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{hide()}{hide()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::hide (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Hides the \doxylink{classEGE_1_1GUIManager}{GUIManager}. 
+
+\Hypertarget{classEGE_1_1GUIManager_ab11d4dca7f81ac2cc8e3d01f46137551}\label{classEGE_1_1GUIManager_ab11d4dca7f81ac2cc8e3d01f46137551} 
+\index{EGE::GUIManager@{EGE::GUIManager}!init@{init}}
+\index{init@{init}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}}]{win }\end{DoxyParamCaption})}
+
+
+
+Initializes the \doxylink{classEGE_1_1GUIManager}{GUIManager} with the specified window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win} & The window to be associated with the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1GUIManager_a081214ee90127eb79904f8f4c396049d}\label{classEGE_1_1GUIManager_a081214ee90127eb79904f8f4c396049d} 
+\index{EGE::GUIManager@{EGE::GUIManager}!isVisible@{isVisible}}
+\index{isVisible@{isVisible}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{isVisible()}{isVisible()}}
+{\footnotesize\ttfamily bool EGE\+::\+GUIManager\+::is\+Visible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the \doxylink{classEGE_1_1GUIManager}{GUIManager} is hidden. 
+
+\begin{DoxyReturn}{Returns}
+True if the \doxylink{classEGE_1_1GUIManager}{GUIManager} is visible, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GUIManager_a39ffd10c1fd25815aa70cfff31ab0e9c}\label{classEGE_1_1GUIManager_a39ffd10c1fd25815aa70cfff31ab0e9c} 
+\index{EGE::GUIManager@{EGE::GUIManager}!show@{show}}
+\index{show@{show}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::show (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shows the \doxylink{classEGE_1_1GUIManager}{GUIManager}. 
+
+\Hypertarget{classEGE_1_1GUIManager_aca1ddedf078689d8a9881890b3f68bf7}\label{classEGE_1_1GUIManager_aca1ddedf078689d8a9881890b3f68bf7} 
+\index{EGE::GUIManager@{EGE::GUIManager}!toggle@{toggle}}
+\index{toggle@{toggle}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{toggle()}{toggle()}}
+{\footnotesize\ttfamily void EGE\+::\+GUIManager\+::toggle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Toggles the visibility of the \doxylink{classEGE_1_1GUIManager}{GUIManager}. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1GUIManager_a1ee889923464305b994516abbeb87c1f}\label{classEGE_1_1GUIManager_a1ee889923464305b994516abbeb87c1f} 
+\index{EGE::GUIManager@{EGE::GUIManager}!\_hidden@{\_hidden}}
+\index{\_hidden@{\_hidden}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{\_hidden}{\_hidden}}
+{\footnotesize\ttfamily bool EGE\+::\+GUIManager\+::\+\_\+hidden\hspace{0.3cm}{\ttfamily [protected]}}
+
+The hidden state of the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \Hypertarget{classEGE_1_1GUIManager_a06149582632ee54d840697412d0c7c08}\label{classEGE_1_1GUIManager_a06149582632ee54d840697412d0c7c08} 
+\index{EGE::GUIManager@{EGE::GUIManager}!\_menuBar@{\_menuBar}}
+\index{\_menuBar@{\_menuBar}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{\_menuBar}{\_menuBar}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Main}{Main}}\texorpdfstring{$\ast$}{*} EGE\+::\+GUIManager\+::\+\_\+menu\+Bar}
+
+The main menu bar managed by the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \Hypertarget{classEGE_1_1GUIManager_a1df4317ed1a41a7ad0a59bc4deed957d}\label{classEGE_1_1GUIManager_a1df4317ed1a41a7ad0a59bc4deed957d} 
+\index{EGE::GUIManager@{EGE::GUIManager}!\_panels@{\_panels}}
+\index{\_panels@{\_panels}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{\_panels}{\_panels}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, \mbox{\hyperlink{classEGE_1_1Panel}{Panel}} \texorpdfstring{$\ast$}{*}$>$ EGE\+::\+GUIManager\+::\+\_\+panels}
+
+The vector of panels managed by the \doxylink{classEGE_1_1GUIManager}{GUIManager}. \Hypertarget{classEGE_1_1GUIManager_a6c7431990fbdc7cbda617de8b490b86e}\label{classEGE_1_1GUIManager_a6c7431990fbdc7cbda617de8b490b86e} 
+\index{EGE::GUIManager@{EGE::GUIManager}!\_window@{\_window}}
+\index{\_window@{\_window}!EGE::GUIManager@{EGE::GUIManager}}
+\doxysubsubsection{\texorpdfstring{\_window}{\_window}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Window}{Window}}\texorpdfstring{$\ast$}{*} EGE\+::\+GUIManager\+::\+\_\+window}
+
+The window associated with the \doxylink{classEGE_1_1GUIManager}{GUIManager}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+GUI/\mbox{\hyperlink{GUIManager_8hpp}{GUIManager.\+hpp}}\end{DoxyCompactItemize}

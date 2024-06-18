@@ -1,0 +1,50 @@
+\doxysection{Memory\+IOStream.\+hpp}
+\hypertarget{MemoryIOStream_8hpp_source}{}\label{MemoryIOStream_8hpp_source}\index{ege/include/MemoryIOStream.hpp@{ege/include/MemoryIOStream.hpp}}
+\mbox{\hyperlink{MemoryIOStream_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ MemoryIOStream}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ MEMORYIOSTREAM\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ MEMORYIOSTREAM\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <assimp/IOStream.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <android/asset\_manager.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <android/asset\_manager\_jni.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <android/log.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMemoryIOStream}{MemoryIOStream}}\ :\ \textcolor{keyword}{public}\ Assimp::IOStream\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMemoryIOStream_afdeb2c2f43245b3021ee7950d20d5dd6}{MemoryIOStream}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ buffer,\ \textcolor{keywordtype}{size\_t}\ length)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ :\ buffer(buffer),\ length(length),\ pos(0)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMemoryIOStream_a7772769932588f7d0b6ff33e5367695d}{\string~MemoryIOStream}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classMemoryIOStream_a960e73ea0fd444deb5c06c772cb8e038}{Read}}(\textcolor{keywordtype}{void}*\ outBuffer,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ count)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classMemoryIOStream_a45a5fed767cfc4bc153b85886bb888ad}{Write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ buffer,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ count)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ aiReturn\ \mbox{\hyperlink{classMemoryIOStream_aa8295fafc9420f43a680422b1d7a3e84}{Seek}}(\textcolor{keywordtype}{size\_t}\ offset,\ aiOrigin\ origin)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classMemoryIOStream_a7f9b2d1187e3367bbb1e9f00b8c61d0c}{Tell}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classMemoryIOStream_afcceee34745ef637a1ecc5959e363fb6}{FileSize}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryIOStream_ab15a9e77ab59c655c34b204898ae47c5}{Flush}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ buffer;\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ length;\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pos;\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ AAssetManager\ *\_mgr;\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !MEMORYIOSTREAM\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

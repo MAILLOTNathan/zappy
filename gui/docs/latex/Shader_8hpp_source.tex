@@ -1,0 +1,96 @@
+\doxysection{Shader.\+hpp}
+\hypertarget{Shader_8hpp_source}{}\label{Shader_8hpp_source}\index{ege/include/Shader.hpp@{ege/include/Shader.hpp}}
+\mbox{\hyperlink{Shader_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Shader}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Matrix_8hpp}{Maths/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector2_8hpp}{Maths/Vector2.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector3_8hpp}{Maths/Vector3.hpp}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector4_8hpp}{Maths/Vector4.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{OpenGL_8hpp}{OpenGL.hpp}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Shader}{Shader}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Shader_1_1ShaderError}{ShaderError}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Shader_1_1ShaderError_af4965bcb6ce5c8e80767e255e08a00fe}{ShaderError}}(\textcolor{keyword}{const}\ std::string\ \&message)\ :\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Shader_ac56cf04aab27a179e2a7a22187356cd9}{Shader}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Shader_a05dd09e3525673126f290ee68e6d60e4}{Shader}}(\textcolor{keyword}{const}\ std::string\ \&vertexPath,\ \textcolor{keyword}{const}\ std::string\ \&fragmentPath);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Shader_abb71bddb2e4d7e9615d9278a894a5110}{\string~Shader}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a2e55846b4dbf1b0bbbf0c2aaa67af1fa}{use}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEGE_1_1Shader_a31cde12d6f2f34b6069b1cb0e32d56fd}{getID}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a1c91d04f3dc0f6beb4aee9805a5919e1}{setBool}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{bool}\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_ab6aced6742948a8a52a34aa62944972f}{setDouble}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{double}\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_ac52770fe2ba753598ca75e89b0e08e3e}{setFloat}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{float}\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a2fe20c7c2753bba12e3d0d8730e86514}{setInt}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{int}\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a560b6ecd4ccfcf47f23414ec48df8b00}{setUInt}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a584e8907e1942520a72dfafbdb858de3}{setVec2}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<T>}}\ \&value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_aad8c44629e46411c3e4fd8eee8eda19a}{setVec3}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<T>}}\ \&value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a6003dc3158749e99ab640127fb713409}{setVec4}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE::Maths::Vector4<T>}}\ \&value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ DIMENSION>}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a329843331f603e3ac97e5392abf3906f}{setMat}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<DIMENSION,\ DIMENSION,\ float>}}\ \&value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00150\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ location\ =\ glGetUniformLocation(this-\/>\_ID,\ name.c\_str());}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ *values\ =\ value.\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix_a189736403f7a388ccae99f76b51907da}{value\_ptr}}();}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (location\ ==\ -\/1)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classEGE_1_1Shader_1_1ShaderError}{ShaderError}}(\textcolor{stringliteral}{"{}ERROR\(\backslash\)n\(\backslash\)tUNIFORM\ NOT\ FOUND\(\backslash\)n\(\backslash\)t\(\backslash\)twhile\ trying\ to\ set\ "{}}\ +\ name\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (DIMENSION)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glUniformMatrix2fv(location,\ 1,\ GL\_FALSE,\ values);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glUniformMatrix3fv(location,\ 1,\ GL\_FALSE,\ values);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glUniformMatrix4fv(location,\ 1,\ GL\_FALSE,\ values);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classEGE_1_1Shader_1_1ShaderError}{ShaderError}}(\textcolor{stringliteral}{"{}ERROR\(\backslash\)n\(\backslash\)tINVALID\ MATRIX\ DIMENSION\(\backslash\)n\(\backslash\)t\(\backslash\)twhile\ trying\ to\ set\ "{}}\ +\ name\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Shader_a434f8810b7da82610a2212aa734b3814}{compile}}(\textcolor{keyword}{const}\ std::string\ \&vertexSource,\ \textcolor{keyword}{const}\ std::string\ \&fragmentSource);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ GLuint\ \_ID;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ GLuint\ \_vertex;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ GLuint\ \_fragment;\ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \};}
+\DoxyCodeLine{00186\ \}}
+
+\end{DoxyCode}
