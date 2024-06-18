@@ -356,9 +356,9 @@ extern const graphical_command_t graphical_commands[];
 void amber_event_idmoved(amber_client_t *client, list_t *clients_gra, char c);
 
 /**
- * @brief Handles the PCB event for the Amber graphical client.
+ * @brief Handles the PBC event for the Amber graphical client.
  *
- * This function is responsible for handling the PCB event for the
+ * This function is responsible for handling the PBC event for the
  * Amber graphical client.
  * It takes in a pointer to the client and a list of graphical
  * clients as parameters.
