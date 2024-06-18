@@ -70,7 +70,7 @@ static void update_players_on_case(amber_serv_t *serv, amber_client_t *client)
         tmp = (amber_client_t *)node->data;
         if (tmp->_team_name == NULL)
             continue;
-        if (tmp->_level != client->_level)
+        if (tmp->_level != client->_level || tmp->_is_incantating)
             continue;
         if (tmp->_x == client->_x && tmp->_y == client->_y) {
             tmp->_is_incantating = true;
