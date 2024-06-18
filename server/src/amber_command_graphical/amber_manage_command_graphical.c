@@ -7,7 +7,7 @@
 
 #include "amber_command_graphical.h"
 
-void amber_manage_command_grahical(amber_client_t *client, char **arg)
+void amber_manage_command_graphical(amber_client_t *client, char **arg)
 {
     printf("[AMBER INFO] GRAPHICAL COMMAND: %s\n", arg[0]);
     for (int i = 0; graphical_commands[i]._command; i++) {

@@ -60,9 +60,11 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
     return count >= need_players;
 }
 
-static void print_res_incantation(amber_client_t *client, int level)
+static void print_res_incantation(amber_client_t *client, int level,
+    amber_serv_t *server)
 {
     snprintfizer(client, "Current level: %d", level);
+    amber_event_idmoved(client, server->_graphic_clients, 'I');
 }
 
 static void level_up_players(amber_client_t *client, amber_serv_t *server)
@@ -77,12 +79,12 @@ static void level_up_players(amber_client_t *client, amber_serv_t *server)
         if (tmp->_x == client->_x && tmp->_y == client->_y &&
             tmp->_is_incantating) {
             tmp->_level++;
-            print_res_incantation(tmp, tmp->_level);
+            print_res_incantation(tmp, tmp->_level, server);
             tmp->_is_incantating = false;
         }
     }
     client->_level++;
-    print_res_incantation(client, client->_level);
+    print_res_incantation(client, client->_level, server);
     client->_is_incantating = false;
     amber_event_pie(client, server->_graphic_clients, true);
 }
@@ -105,7 +107,7 @@ static void remove_from_info_world(amber_world_t *world, amber_client_t *cli,
     world->_thystame_info._c_value -= needs->_thystame;
 }
 
-static void incation_failed(amber_client_t *client, amber_serv_t *serv)
+static void incantion_failed(amber_client_t *client, amber_serv_t *serv)
 {
     linked_list_t *node = serv->_clients->nodes;
     amber_client_t *tmp = NULL;
@@ -131,10 +133,10 @@ void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
 
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
-        return incation_failed(client, serv);
+        return incantion_failed(client, serv);
     }
     if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
-        return incation_failed(client, serv);
+        return incantion_failed(client, serv);
     }
     remove_from_info_world(world, client, needs);
     level_up_players(client, serv);

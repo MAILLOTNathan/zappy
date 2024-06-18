@@ -62,7 +62,7 @@ static void choose_handler(amber_world_t *world, amber_serv_t *server,
     if (arg == NULL)
         return;
     if (client->_is_graphical)
-        amber_manage_command_grahical(client, arg);
+        amber_manage_command_graphical(client, arg);
     else
         amber_manage_command_ai(world, server, client, arg);
     free_string_array(arg);

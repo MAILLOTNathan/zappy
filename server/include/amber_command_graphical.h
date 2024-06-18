@@ -39,7 +39,7 @@ typedef struct graphical_command_s {
  * @param arg The arguments passed with the command.
  */
 
-void amber_manage_command_grahical(amber_client_t *client, char **arg);
+void amber_manage_command_graphical(amber_client_t *client, char **arg);
 
 /**
  * Executes the 'msz' command for the graphical client.
