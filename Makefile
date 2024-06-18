@@ -12,6 +12,7 @@ zappy_server:
 	mv server/zappy_server .
 
 zappy_gui:
+	cd gui && git submodule init && git pull --recurse-submodules
 	cd gui && ./build.sh
 	mv gui/zappy_gui .
 
