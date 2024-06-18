@@ -12,9 +12,7 @@ zappy_server:
 	mv server/zappy_server .
 
 zappy_gui:
-	cd gui
-	./build.sh
-	cd ..
+	cd gui && ./build.sh
 	mv gui/zappy_gui .
 
 zappy_ai:
