@@ -11,7 +11,7 @@
 void amber_graphic_execute_msz(UNUSED command_t *cmd, amber_client_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
-    dprintf(client->_tcp._fd, "msz %d %d\n", world->_width, world->_height);
+    snprintfizer(client, "msz %d %d", world->_width, world->_height);
 }
 
 void amber_graphic_execute_mct(UNUSED command_t *cmd, amber_client_t *client,
@@ -19,7 +19,7 @@ void amber_graphic_execute_mct(UNUSED command_t *cmd, amber_client_t *client,
 {
     for (int i = 0; world->_height > i; i++) {
         for (int j = 0; world->_width > j; j++) {
-            dprintf(client->_tcp._fd, CONTANT_MAP, j, i,
+            snprintfizer(client, CONTANT_MAP, j, i,
                 world->_case[i][j]._food,
                 world->_case[i][j]._linemate, world->_case[i][j]._deraumere,
                 world->_case[i][j]._sibur, world->_case[i][j]._mendiane,
@@ -39,7 +39,7 @@ void amber_graphic_execute_bct(command_t *cmd, amber_client_t *client,
     x = x == world->_width ? 0 : x;
     y = clamp(0, y, world->_height);
     y = y == world->_height ? 0 : y;
-    dprintf(client->_tcp._fd, CONTANT_MAP, x, y,
+    snprintfizer(client, CONTANT_MAP, x, y,
         world->_case[y][x]._food,
         world->_case[y][x]._linemate, world->_case[y][x]._deraumere,
         world->_case[y][x]._sibur, world->_case[y][x]._mendiane,
@@ -49,7 +49,7 @@ void amber_graphic_execute_bct(command_t *cmd, amber_client_t *client,
 void amber_graphic_execute_sgt(UNUSED command_t *cmd, amber_client_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
-    dprintf(client->_tcp._fd, "sgt %f\n", world->_freq);
+    snprintfizer(client, "sgt %f", world->_freq);
 }
 
 void amber_graphic_execute_sst(command_t *cmd, amber_client_t *client,
@@ -60,5 +60,5 @@ void amber_graphic_execute_sst(command_t *cmd, amber_client_t *client,
     if (freq <= 0)
         return;
     world->_freq = freq;
-    dprintf(client->_tcp._fd, "sst %f\n", world->_freq);
+    snprintfizer(client, "sst %f", world->_freq);
 }

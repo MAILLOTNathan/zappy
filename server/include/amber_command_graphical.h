@@ -11,7 +11,7 @@
     #include "amber_init.h"
     #include "amber_manage_client.h"
 
-    #define CONTANT_MAP "bct %d %d %d %d %d %d %d %d %d\n"
+    #define CONTANT_MAP "bct %d %d %d %d %d %d %d %d %d"
 
 /**
  * @brief Struct representing a graphical command.
