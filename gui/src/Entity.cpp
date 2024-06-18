@@ -35,7 +35,7 @@ bool Onyx::Entity::intersects(const glm::vec3& rayOrigin, const glm::vec3& rayPo
 
     for (auto& mesh : this->_model->getMeshes()) {
         std::vector<EGE::Vertex> vertices = mesh.getVertices();
-        for (int i = 0; i < vertices.size(); i += 3) {
+        for (int i = 0; i < vertices.size(); i++) {
             v0 = vertices[i]._position;
             v1 = vertices[i + 1]._position;
             v2 = vertices[i + 2]._position;
@@ -64,9 +64,12 @@ bool Onyx::Entity::intersects(const glm::vec3& rayOrigin, const glm::vec3& rayPo
 
             t = f * glm::dot(edge2, q);
 
-            if (t > EPSILON)
+            if (t > EPSILON) {
+                std::cout << "touch" << std::endl;
                 return true;
+            }
         }
     }
+    std::cout << "can't touch this" << std::endl;
     return false;
 }

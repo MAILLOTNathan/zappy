@@ -498,7 +498,7 @@ void Onyx::Gui::loop()
     });
 
     this->_client->addCommand("sbp", net::type_command_t::SBP, [this](std::vector<std::string>& args) {
-        if (args.size() != 1)
+        if (args.size() != 2)
             throw EGE::Error("[SBP] Wrong number of param.");
     });
 
