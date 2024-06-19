@@ -17,7 +17,7 @@ amber_client_t *amber_init_client_by_egg(amber_client_t *client, egg_t *egg,
     client->_direction = egg->_direction;
     client->_x = egg->_x;
     client->_y = egg->_y;
-    client->_level = 1;
+    client->_level = 8;
     client->_id = egg->_id;
     client->_inventory = amber_world_case_init();
     client->_inventory->_food = 10;

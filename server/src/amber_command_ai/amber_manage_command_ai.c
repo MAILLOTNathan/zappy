@@ -93,6 +93,8 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
     const box_t *needs = elevation_needs[client->_level - 1];
     info_incantation_t *info = NULL;
 
+    if (client->_level == 8)
+        return false;
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
         send_cli_msg(client, "ko 3");
