@@ -39,13 +39,11 @@ PlayerVR::PlayerVR(int id, const std::string &teamName, const EGE::Maths::Vector
     this->_deltaTime = 0.0f;
     if (rotation.size() != 1)
         throw PlayerVRError("Invalid rotation: " + rotation);
-    __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Player created");
     this->_model = std::make_shared<EGE::ModelVR>("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
     window->addModel("Map", this->_model);
     this->_window = window;
     this->setRotation(rotation);
     this->isAnimated = false;
-    __android_log_print(ANDROID_LOG_INFO, "MYTAG", "Player created");
 }
 
 PlayerVR::~PlayerVR()
@@ -132,6 +130,7 @@ int PlayerVR::getTimeUnit() const
 void PlayerVR::setPos(EGE::Maths::Vector2<int> pos)
 {
     this->_pos = pos;
+    this->setPosition(EGE::Maths::Vector3<float>(pos.x * CELL_SIZE, 0.8, pos.y * CELL_SIZE));
 }
 
 EGE::Maths::Vector2<int> PlayerVR::getPos() const
@@ -170,6 +169,7 @@ std::string PlayerVR::getRotation() const
 void PlayerVR::setRotationString(const std::string &rotation)
 {
     this->_rotationString = rotation;
+    this->setRotation(this->_rotationString);
 }
 
 std::string PlayerVR::getRotationString() const
