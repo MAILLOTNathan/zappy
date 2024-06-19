@@ -525,14 +525,14 @@ def launch_new_instance(self, map, conn):
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
         return
-    if map[0][1].count("player") < 4:
+    if map[0][1].count("player") < 6:
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
-        #command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        #print("made an evolver child")
-        #thread = threading.Thread(target=run_subprocess, args=(command,))
-        #thread.start()
+        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made an evolver child")
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
         return
     if self.collector < 5:
         res = conn.send_request("Fork")

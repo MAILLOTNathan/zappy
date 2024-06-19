@@ -158,10 +158,11 @@ class evolver:
             while data.decode().find('Current') == -1:
                 data = conn.read_line()
                 print(data.decode(), "$$$$$$$$")
-                if 'ok' in data.decode():
+                if 'ko' in data.decode():
                     return data
             self.level += 1
             print("test")
+            print(data.decode())
         return data
 
     def decrypt_response(self, response):
@@ -201,14 +202,6 @@ class evolver:
         if response == None:
             exit(83)
         if "message" in response.decode():
-            response = self.decrypt_response(response.decode())
-            if response == "pass":
-                return response
-            res = response.split('\n')
-            self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
-            result = res[0].split(' ')
-            self.signal_angle = int(result[1].split(',')[0])
-            self.wait = False
             data = self.conn.read_line()
             data = self.broadcast_parse(data)
             return data
@@ -351,6 +344,7 @@ def main():
     while True:
         print("level evoler: ", bot.level)
         response = bot.conn.send_request('Look')
+        response = bot.elevation_parse(response)
         response = bot.broadcast_parse(response)
         response = bot.elevation_parse(response)
         if response == None or response == 'done':
@@ -360,8 +354,11 @@ def main():
         launch_new_instance(bot, map, bot.conn)
         if bot.check_level_up(map[0][1]) == True:
             res = bot.do_incantation(bot.conn)
-            res = bot.elevation_parse(res)
-            res = bot.broadcast_parse(res)
+            print(response.decode(), '1')
+            response = bot.broadcast_parse(response)
+            print(response.decode(), '2')
+            response = bot.elevation_parse(response)
+            print(response.decode(), '3')
             print(res, 'incan res')
         response = bot.conn.send_request('Inventory')
         print(response.decode(), "just after")
@@ -373,8 +370,11 @@ def main():
         if 'food' not in response.decode():
             print(response.decode(), 'no food')
             response = bot.conn.read_line()
+            print(response.decode(), '1')
             response = bot.broadcast_parse(response)
+            print(response.decode(), '2')
             response = bot.elevation_parse(response)
+            print(response.decode(), '3')
         print(response.decode(), "invent")
         response = response.decode().strip('[]')
         response = response.split(',')
@@ -382,8 +382,8 @@ def main():
         response = [int(component.split()[1]) for component in response]
         if response[0] < 5 :
             response = bot.conn.send_request('Take food')
-            response = bot.broadcast_parse(response)
             response = bot.elevation_parse(response)
+            response = bot.broadcast_parse(response)
 
 if __name__ == "__main__":
     main()
