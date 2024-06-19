@@ -308,6 +308,8 @@ class TuringAI:
         """
         self.destroy_random_eggs(conn)
         while True:
+            if self.level == 8:
+                print("THATS WHY HE IS THE GOAT !")
             print("MOTHER LEVEL IS : ", self.level)
             if self.level == 1:
                 for i in range(0,4):
@@ -363,6 +365,7 @@ class TuringAI:
             5: {"player": 4, "linemate": 1, "deraumere": 2, "sibur": 1, "mendiane": 3, "phiras": 0, "thystame": 0},
             6: {"player": 6, "linemate": 1, "deraumere": 2, "sibur": 3, "mendiane": 0, "phiras": 1, "thystame": 0},
             7: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
+            8: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
         self.broadcast_key = ""
 
