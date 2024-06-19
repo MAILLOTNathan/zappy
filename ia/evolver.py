@@ -2,6 +2,9 @@
 import sys
 import debug_lib
 import base64
+import os
+import subprocess
+import threading
 
 def help_message():
     """
@@ -104,25 +107,28 @@ class evolver:
             SystemExit: If the response is None.
 
         """
+        print("here")
         if response is None:
-            exit(81)
-        print(response.decode(),"''''''''''''''''")
+            exit(84)
+        if 'Current level:' in response.decode():
+            self.level += 1
+            response = self.conn.read_line()
+            return response
         if "Elevation" not in response.decode():
+            print("not good")
             return response
         if "Elevation" in response.decode():
+            print(response.decode())
             response = self.conn.read_line()
             while response.decode().find("Current") == -1:
-                print("zeez")
-                print(response.decode(), "--------------")
                 response = self.broadcast_parse(response)
+                print(response.decode(),'*$*$*$*$')
                 if 'dead' in response.decode():
-                    exit(82)
+                    exit(84)
                 if 'ko' in response.decode():
                     return self.conn.read_line()
                 if response.decode().find("Current") != -1:
-                    print("+1")
                     self.level += 1
-                    print("LA response 1:" , response)
                     response = self.conn.read_line()
                     return response
                 response = self.conn.read_line()
@@ -144,15 +150,18 @@ class evolver:
         """
         data = conn.send_request("Incantation")
         if "Elevation" in data.decode():
+            print(data.decode(),"-------------")
             data = conn.read_line()
-            print(data.decode(),"//////////////////")
+            print(data.decode(), "++++++++++++++++")
             if data.decode().find('ko') != -1:
                 return data
             while data.decode().find('Current') == -1:
                 data = conn.read_line()
-                print(data.decode(),'***************')
+                print(data.decode(), "$$$$$$$$")
+                if 'ok' in data.decode():
+                    return data
             self.level += 1
-            return data
+            print("test")
         return data
 
     def decrypt_response(self, response):
@@ -305,6 +314,33 @@ def come_back(direction : list, ia):
         ia.inventory["food"] -= 1
 
 
+def launch_new_instance(self, map, conn):
+    """
+    Launches a new instance based on the current state of the agent.
+
+    If the agent's food inventory is less than 10, it launches the `sucide.py` script.
+    If the agent's level is 2 and the food inventory is greater than or equal to 10, it launches the `evolver.py` script.
+    Otherwise, it launches the `collector.py` script.
+
+    The launched scripts are executed in the background and their output is redirected to os.devnull.
+    """
+    def run_subprocess(command, callback=None):
+        with open(os.devnull, 'w') as devnull:
+            process = subprocess.Popen(command, stdout=devnull, stderr=devnull)
+            process.wait()
+            if callback:
+                callback()
+
+    if map[0][1].count("food") == 0:
+        res = conn.send_request("Fork")
+        res = self.broadcast_parse(res)
+        self.elevation_parse(res)
+        command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        print("made a sucide child")
+        thread = threading.Thread(target=run_subprocess, args=(command,))
+        thread.start()
+        return
+
 def main():
     bot : evolver = evolver()
     check_args(bot)
@@ -313,22 +349,33 @@ def main():
     bot.broadcast_key = base64.b64encode(bot.team_name.encode()).decode()
     print("Connected to server")
     while True:
+        print("level evoler: ", bot.level)
         response = bot.conn.send_request('Look')
         response = bot.broadcast_parse(response)
         response = bot.elevation_parse(response)
         if response == None or response == 'done':
             return
+        print(response, 'afer look')
         map = parse_look(response.decode())
+        launch_new_instance(bot, map, bot.conn)
         if bot.check_level_up(map[0][1]) == True:
             res = bot.do_incantation(bot.conn)
+            res = bot.elevation_parse(res)
             res = bot.broadcast_parse(res)
-            response = bot.elevation_parse(res)
-            continue
+            print(res, 'incan res')
         response = bot.conn.send_request('Inventory')
+        print(response.decode(), "just after")
+        response = bot.elevation_parse(response)
         response = bot.broadcast_parse(response)
         response = bot.elevation_parse(response)
         if response == None or response == 'done':
             return
+        if 'food' not in response.decode():
+            print(response.decode(), 'no food')
+            response = bot.conn.read_line()
+            response = bot.broadcast_parse(response)
+            response = bot.elevation_parse(response)
+        print(response.decode(), "invent")
         response = response.decode().strip('[]')
         response = response.split(',')
         response = [component.strip() for component in response]

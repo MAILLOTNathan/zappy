@@ -8,9 +8,12 @@ class ServerConnection:
         else:
             self.HOST = ai.host
         self.PORT = ai.port
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.connect((self.HOST, self.PORT))
-        self.conn_num = 0
+        try :
+            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.s.connect((self.HOST, self.PORT))
+            self.conn_num = 0
+        except ConnectionRefusedError:
+            exit(84)
 
     def get_con_num(self, data):
         res = data.decode().split("\n")
@@ -62,13 +65,10 @@ class ServerConnection:
             None
         """
         data = self.s.recv(1024)
-        print(repr(data))
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
-        print(repr(data))
         self.get_con_num(data)
         data = self.s.recv(1024)
-        print(repr(data)) 
 
     def broad_cast(self,response, bot):
         response = response.decode()
@@ -105,9 +105,7 @@ class ServerConnection:
                     buffer.append(data)
                 data = b''.join(buffer)
 
-                print(repr(data))
                 if data == b"dead\n":
-                    print("AI is dead.")
                     return "done"
                 return data
             except:
