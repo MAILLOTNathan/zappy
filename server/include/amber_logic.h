@@ -31,7 +31,7 @@ typedef struct pos_s {
 typedef struct logic_command_s {
     type_command_t _command; /**< The command type. */
     void (*_func)
-        (amber_client_t *cli, amber_world_t *wrld,
+        (amber_net_cli_t *cli, amber_world_t *wrld,
         amber_serv_t *srv); /**< Function pointer to the logic function. */
 } logic_command_t;
 
@@ -79,7 +79,7 @@ void amber_check_client_alive(amber_serv_t *server, amber_world_t *world);
  * @param client The client to send the message to.
  * @param message The message to send.
  */
-void send_cli_msg(amber_client_t *client, const char *message);
+void send_cli_msg(amber_net_cli_t *client, const char *message);
 
 /**
  * @brief Turns the client to the left in the world.
@@ -88,7 +88,7 @@ void send_cli_msg(amber_client_t *client, const char *message);
  * @param world The world instance.
  * @param serv The server instance.
  */
-void amber_logic_forward(amber_client_t *client, amber_world_t *world,
+void amber_logic_forward(amber_net_cli_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -98,7 +98,7 @@ void amber_logic_forward(amber_client_t *client, amber_world_t *world,
  * @param world The world instance.
  * @param serv The server instance.
  */
-void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
+void amber_logic_right(amber_net_cli_t *client, UNUSED amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -108,7 +108,7 @@ void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
  * @param world The world instance.
  * @param serv The server instance.
  */
-void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
+void amber_logic_left(amber_net_cli_t *client, UNUSED amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -118,7 +118,7 @@ void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
  * @param world The world instance.
  * @param serv The server instance.
  */
-void amber_logic_look(amber_client_t *client, amber_world_t *world,
+void amber_logic_look(amber_net_cli_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -128,7 +128,7 @@ void amber_logic_look(amber_client_t *client, amber_world_t *world,
  * @param world The world instance.
  * @param serv The server instance.
  */
-void amber_logic_inventory(amber_client_t *client,
+void amber_logic_inventory(amber_net_cli_t *client,
     UNUSED amber_world_t *world, UNUSED amber_serv_t *serv);
 
 /**
@@ -138,7 +138,7 @@ void amber_logic_inventory(amber_client_t *client,
  * @param world The world instance.
  * @param serv The server instance.
  */
-void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
+void amber_logic_broadcast(amber_net_cli_t *client, amber_world_t *world,
     amber_serv_t *serv);
 
 /**
@@ -148,7 +148,7 @@ void amber_logic_broadcast(amber_client_t *client, amber_world_t *world,
  * @param world The world in which the client is located.
  * @param serv The server instance.
  */
-void amber_logic_eject(amber_client_t *client, amber_world_t *world,
+void amber_logic_eject(amber_net_cli_t *client, amber_world_t *world,
     amber_serv_t *serv);
 
 /**
@@ -158,7 +158,7 @@ void amber_logic_eject(amber_client_t *client, amber_world_t *world,
  * @param world The world in which the client exists.
  * @param serv The server instance.
  */
-void amber_logic_fork(amber_client_t *client, amber_world_t *world,
+void amber_logic_fork(amber_net_cli_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -166,20 +166,20 @@ void amber_logic_fork(amber_client_t *client, amber_world_t *world,
  *
  * This function is responsible for establishing a connection between
  * the client and the world.
- * It takes a pointer to the `amber_client_t` structure representing the
+ * It takes a pointer to the `amber_net_cli_t` structure representing the
  * client and a pointer to
  * the `amber_world_t` structure representing the world. The `amber_serv_t`
  * structure is not used
  * in this function and is marked as `UNUSED`.
  *
- * @param client A pointer to the `amber_client_t` structure representing
+ * @param client A pointer to the `amber_net_cli_t` structure representing
  * the client.
  * @param world A pointer to the `amber_world_t` structure representing
  * the world.
  * @param serv A pointer to the `amber_serv_t` structure representing
  * the server (UNUSED).
  */
-void amber_logic_connect_nbr(amber_client_t *client, amber_world_t *world,
+void amber_logic_connect_nbr(amber_net_cli_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -223,15 +223,15 @@ bool *initialize_perimeter(int *directions);
  * @brief Retrieves the direction based on the given perimeter and client.
  *
  * This function takes a boolean array representing the perimeter and a
- * pointer to an amber_client_t structure.
+ * pointer to an amber_net_cli_t structure.
  * It calculates and returns the direction based on the given perimeter
  * and client.
  *
  * @param perimeter A boolean array representing the perimeter.
- * @param client A pointer to an amber_client_t structure.
+ * @param client A pointer to an amber_net_cli_t structure.
  * @return The direction calculated based on the perimeter and client.
  */
-int get_direction_by_perimeter(bool *perimeter, amber_client_t *client);
+int get_direction_by_perimeter(bool *perimeter, amber_net_cli_t *client);
 
 pos_t plotline(pos_t *m, pos_t *m2);
 
@@ -258,7 +258,7 @@ bool *precise_perimeter(bool *perim, int *distances);
  * @param world The world in which the action is being performed.
  * @param serv The server on which the action is being performed.
  */
-void amber_logic_take(amber_client_t *client, amber_world_t *world,
+void amber_logic_take(amber_net_cli_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -269,7 +269,7 @@ void amber_logic_take(amber_client_t *client, amber_world_t *world,
  * @param world The Amber world information.
  * @param serv The Amber server information (unused).
  */
-void amber_logic_set(amber_client_t *client, amber_world_t *world,
+void amber_logic_set(amber_net_cli_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv);
 
 /**
@@ -285,7 +285,7 @@ void amber_logic_set(amber_client_t *client, amber_world_t *world,
  * @param world A pointer to the world structure.
  * @param serv A pointer to the server structure (UNUSED).
  */
-void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
+void amber_logic_incantation(amber_net_cli_t *client, amber_world_t *world,
     amber_serv_t *serv);
 
 #endif /* !AMBER_LOGIC_H_ */

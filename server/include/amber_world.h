@@ -76,6 +76,7 @@ typedef struct amber_trantor_s {
     int _level;
     int _id;
     direction_t _direction;
+    char *_team_name;
     box_t *_inventory;
     bool _is_graphical;
     bool _is_incantating;

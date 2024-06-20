@@ -89,13 +89,14 @@ void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
 {
     char buffer[1025] = {0};
     int valread = read(client->_tcp._fd, buffer, 1024);
+    amber_trantor_t *trantor = TRANTOR(client);
 
     buffer[valread] = '\0';
     if (valread != 0)
         eval_command(world, server, client, buffer);
     if (valread == 0 || client->_is_error) {
         if (client->_type == AI) {
-            world->_case[client->_y][client->_x]._players--;
+            world->_case[trantor->_y][trantor->_x]._players--;
             amber_event_pdi(client, server->_graphic_clients);
         }
         printf("[AMBER INFO] Client %d died (lost connection)\n",

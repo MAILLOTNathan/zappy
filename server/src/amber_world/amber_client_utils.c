@@ -9,20 +9,23 @@
 #include "amber_command_graphical.h"
 #include "amber_logic.h"
 
-amber_client_t *amber_init_client_by_egg(amber_client_t *client, egg_t *egg,
+amber_net_cli_t *amber_init_client_by_egg(amber_net_cli_t *client, egg_t *egg,
     double freq)
 {
-    client->_is_graphical = false;
-    client->_team_name = strdup(egg->_team);
-    client->_direction = egg->_direction;
-    client->_x = egg->_x;
-    client->_y = egg->_y;
-    client->_level = 1;
-    client->_id = egg->_id;
-    client->_inventory = amber_world_case_init();
-    client->_inventory->_food = 10;
-    client->_is_incantating = false;
-    client->_clock_food = get_new_time_in_microseconds(126 / freq);
+    amber_trantor_t *trantor = calloc(1, sizeof(amber_trantor_t));
+
+    trantor->_is_graphical = false;
+    trantor->_team_name = strdup(egg->_team);
+    trantor->_direction = egg->_direction;
+    trantor->_x = egg->_x;
+    trantor->_y = egg->_y;
+    trantor->_level = 1;
+    trantor->_id = egg->_id;
+    trantor->_inventory = amber_world_case_init();
+    trantor->_inventory->_food = 10;
+    trantor->_is_incantating = false;
+    trantor->_clock_food = get_new_time_in_microseconds(126 / freq);
+    client->_data = trantor;
     amber_destroy_egg(egg);
     return client;
 }
@@ -42,22 +45,24 @@ static char get_direction(direction_t direction)
     return 'N';
 }
 
-static void send_graphical_players(amber_client_t *gra, list_t *client_ai)
+static void send_graphical_players(amber_net_cli_t *gra, list_t *client_ai)
 {
     linked_list_t *tmp = client_ai->nodes;
-    amber_client_t *client = NULL;
+    amber_net_cli_t *client = NULL;
+    amber_trantor_t *trantor = NULL;
 
     for (; tmp; tmp = tmp->next) {
-        client = (amber_client_t *)tmp->data;
-        if (client->_team_name == NULL)
+        client = (amber_net_cli_t *)tmp->data;
+        if (client->_type != AI)
             continue;
-        snprintfizer(gra, "pnw #%d %d %d %c %d %s", client->_id,
-        client->_x, client->_y, get_direction(client->_direction),
-        client->_level, client->_team_name);
+        trantor = TRANTOR(client);
+        snprintfizer(gra, "pnw #%d %d %d %c %d %s", trantor->_id,
+        trantor->_x, trantor->_y, get_direction(trantor->_direction),
+        trantor->_level, trantor->_team_name);
     }
 }
 
-static bool check_different_mode(amber_client_t *client, amber_serv_t *serv,
+static bool check_different_mode(amber_net_cli_t *client, amber_serv_t *serv,
     char **arg, amber_world_t *world)
 {
     if (length_string_array(arg) != 1)
@@ -81,7 +86,7 @@ static bool check_different_mode(amber_client_t *client, amber_serv_t *serv,
     return true;
 }
 
-bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
+bool amber_init_client(amber_net_cli_t *client, amber_serv_t *serv,
     amber_world_t *world, char **arg)
 {
     egg_t *egg = NULL;
@@ -102,7 +107,7 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
     return true;
 }
 
-void snprintfizer(amber_client_t *client, char *format, ...)
+void snprintfizer(amber_net_cli_t *client, char *format, ...)
 {
     int len = 0;
     char *str = NULL;

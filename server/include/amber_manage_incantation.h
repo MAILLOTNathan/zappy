@@ -19,7 +19,7 @@ typedef struct info_incantation_s {
 } info_incantation_t;
 
 
-info_incantation_t *amber_init_info_incantation(amber_net_cli_t *client);
+info_incantation_t *amber_init_info_incantation(amber_trantor_t *trantor);
 
 void *amber_create_incantation_grp(va_list *ap);
 
