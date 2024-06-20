@@ -79,6 +79,14 @@ typedef struct amber_client_s {
     bool _is_error;
 } amber_client_t;
 
+typedef struct amber_net_client_s {
+    bool _is_error;
+    int _id;
+    tcp_t _tcp;
+    char *_buffer;
+    bool _is_graphical;
+} amber_net_client_t;
+
 /**
  * @brief Structure representing the Amber server.
  *
