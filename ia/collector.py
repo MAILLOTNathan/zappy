@@ -1,50 +1,9 @@
 #!/usr/bin/python3
-import sys
 import debug_lib
+import setup_utils
 import base64
 
-def help_message():
-    """
-    Prints the usage message for the zappy_ai script.
-    """
-    print("USAGE: ./zappy_ai -p port -n name -h machine")
-    exit(0)
-
-def check_args(TuringAI):
-    """
-    Check the command line arguments and perform necessary actions based on the arguments.
-
-    If the number of arguments is less than 2 or the first argument is "-help", it calls the help_message function.
-    If the first argument is "--debug", it sets the debug flag to True and sends a debug request.
-
-    Args:
-        None
-
-    Returns:
-        None
-    """
-    for i in range(1, len(sys.argv)):
-        if sys.argv[i] == "-p":
-            TuringAI.port = int(sys.argv[i + 1])
-        elif sys.argv[i] == "-n":
-            TuringAI.team_name = sys.argv[i + 1]
-            if TuringAI.team_name == "GRAPHIC":
-                print("Error: Team name cannot be GRAPHIC.")
-                exit(84)
-        elif sys.argv[i] == "-h":
-            TuringAI.host = sys.argv[i + 1]
-    if (len(sys.argv) < 2) or sys.argv[1] == "-help":
-        help_message()
-    if sys.argv[1] == "--debug":
-        TuringAI.debug = True
-        return
-    if TuringAI.port == None or TuringAI.team_name == "":
-        help_message()
-
-
-
 class food_collector:
-    print("COLLECTOR INIT")
     debug = False
     port = None
     team_name = ""
@@ -99,10 +58,8 @@ class food_collector:
                     response = self.conn.read_line()
                     return response
                 response = self.conn.read_line()
-            print("LA DEUXIEME response EST : ", response)
             self.level += 1
             return self.conn.read_line()
-        print("LA REPONSEEST : ", response)
         return response
 
     def decrypt_response(self, response):
@@ -275,7 +232,6 @@ def parse_look(response):
     Returns:
         str: The direction where there is the most food.
     """
-    print(response)
     tiles = response.strip('[]').split(',')
     if len(tiles) == 1:
         return []
@@ -357,13 +313,12 @@ def find_path(direction : list, quantity, obj : str, ai: food_collector):
         res = ai.conn.send_request("Take " + obj)
         res = ai.elevate_parse(res)
         ai.broadcast_parse(res)
-        print(obj + " taken")
         ai.inventory[obj] = ai.inventory[obj] + 1
 
 def main():
     a = 0
     bot : food_collector = food_collector()
-    check_args(bot)
+    setup_utils.check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
     bot.broadcast_key = base64.b64encode(bot.team_name.encode()).decode()

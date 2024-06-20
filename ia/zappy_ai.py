@@ -166,7 +166,6 @@ class TuringAI:
         response = response.decode().strip('[]')
         response = response.split(',')
         response = [component.strip() for component in response]
-        print("la reponse here", response)
         if "ok" in response:
             return
         if len(response) == 0:
@@ -184,53 +183,16 @@ class TuringAI:
         Returns:
             None
         """
-
-        data = conn.send_request("Incantation")
-        if "Elevation" in data.decode():
-            data = conn.read_line()
-            if data.decode().find('ko') != -1:
-                return
-            while data.decode().find('Current') == -1:
-                data = conn.read_line()
-            self.level += 1
-
-    def do_incantation_other(self, conn):
-        """
-        Perform the incantation action.
-
-        Args:
-            None
-
-        Returns:
-            None
-        """
-        data = conn.send_request("Incantation")
-        if "Elevation" in data.decode():
-            data = conn.read_line()
-            if data.decode().find('ko') != -1:
-                return
-            while data.decode().find('Current') == -1:
-                data = conn.read_line()
-            self.level += 1
-        
-
-    def update_children(self, conn):
-        """
-        Updates the number of children based on the number of connections.
-
-        Args:
-            None
-
-        Returns:
-            None
-        """
-        try:
-            available_conn = conn.send_request("Connect_nbr")
-            available_conn = self.elevate_parse(conn, available_conn)
-            self.children = conn.conn_num - int(available_conn.decode())
-            print("apres con_nb")
-        except:
+        if self.level == 8:
             return
+        data = conn.send_request("Incantation")
+        if "Elevation" in data.decode():
+            data = conn.read_line()
+            if data.decode().find('ko') != -1:
+                return
+            while data.decode().find('Current') == -1:
+                data = conn.read_line()
+            self.level += 1
 
     def destroy_random_eggs(self, conn):
         """
@@ -251,7 +213,6 @@ class TuringAI:
         
         for i in range(0, conn.conn_num):
             command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-            print("made a sucide child")
             thread = threading.Thread(target=run_subprocess, args=(command,))
             thread.start()
 
@@ -308,8 +269,6 @@ class TuringAI:
         """
         self.destroy_random_eggs(conn)
         while True:
-            if self.level == 8:
-                print("THATS WHY HE IS THE GOAT !")
             print("MOTHER LEVEL IS : ", self.level)
             if self.level == 1:
                 for i in range(0,4):
@@ -321,7 +280,7 @@ class TuringAI:
                     if self.check_level_up(res) == True:
                         self.do_incantation(conn)
                         continue
-                    look = parse_look(res, self, "linemate")
+                    look = parse_look(res)
                     x,y,nb = get_obj(look, "linemate") if look else (None, None, None)
                     if nb == 0:
                         take_action(self,"food", look, conn)
@@ -335,10 +294,10 @@ class TuringAI:
                 res = conn.send_request("Look")
                 res = self.broadcast_parse(res, conn)
                 res = self.elevate_parse(conn, res)
-                look = parse_look(res, self, "food")
+                look = parse_look(res)
                 self.stay_alive(look, conn)
                 if self.check_level_up(res) == True:
-                    self.do_incantation_other(conn)
+                    self.do_incantation(conn)
                 res = self.crypted_broadcast(conn, look)
                 self.elevate_parse(conn, res)
                 launch_new_instance(self, look, conn)
@@ -419,7 +378,7 @@ def get_obj(map, obj):
                 nb = map[i][e].count(obj)
     return x,y,nb
 
-def parse_look(response, ai, obj):
+def parse_look(response):
     """
     Parse the look response from the server and return the tile where there is the most food.
 
@@ -524,7 +483,6 @@ def launch_new_instance(self, map, conn):
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
         command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made a sucide child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
         return
@@ -533,7 +491,6 @@ def launch_new_instance(self, map, conn):
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
         command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made an evolver child")
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
         return
@@ -542,7 +499,6 @@ def launch_new_instance(self, map, conn):
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
         command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
-        print("made a collector child")
         self.collector += 1
         thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
         thread.start()
