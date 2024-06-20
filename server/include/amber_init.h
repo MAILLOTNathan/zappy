@@ -84,7 +84,8 @@ typedef struct amber_net_client_s {
     int _id;
     tcp_t _tcp;
     char *_buffer;
-    bool _is_graphical;
+    void *_data;
+    client_type_t _type;
 } amber_net_client_t;
 
 /**
