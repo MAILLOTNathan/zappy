@@ -15,6 +15,7 @@
     #include "string_array.h"
     #include "amber_check_arg.h"
     #include "amber_clock.h"
+    #include "map.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -110,6 +111,7 @@ typedef struct amber_world_s {
     unsigned long _clock;
     int _last_egg_id;
     list_t *_incantation_grp;
+    map_t *_playersMap;
 } amber_world_t;
 
 /**
