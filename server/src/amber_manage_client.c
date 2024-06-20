@@ -32,7 +32,6 @@ void amber_destroy_client(void *client)
     close(tmp->_tcp._fd);
     if (tmp->_buffer)
         free(tmp->_buffer);
-        
     free(tmp);
 }
 
