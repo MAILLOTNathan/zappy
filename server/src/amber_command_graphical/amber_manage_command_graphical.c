@@ -44,6 +44,7 @@ void amber_graphic_loop(amber_serv_t *server, amber_world_t *world)
             tmp = tmp->_next;
         }
         queue_destroy(&tmp);
+        client->_data = NULL;
         node = node->next;
     }
 }

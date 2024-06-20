@@ -12,6 +12,7 @@ void amber_graphic_tna(amber_net_cli_t *client, UNUSED char **arg)
     queue_command_t *queue = QUEUE_CAST(client);
 
     queue_push_back_d(&queue, NULL, 0, T_TNA);
+    client->_data = queue;
 }
 
 void amber_graphic_ppo(amber_net_cli_t *client, char **arg)
@@ -23,6 +24,7 @@ void amber_graphic_ppo(amber_net_cli_t *client, char **arg)
         return;
     }
     queue_push_back_d(&queue, strdup(arg[1]), 0, T_PPO);
+    client->_data = queue;
 }
 
 void amber_graphic_plv(amber_net_cli_t *client, char **arg)
@@ -34,6 +36,7 @@ void amber_graphic_plv(amber_net_cli_t *client, char **arg)
         return;
     }
     queue_push_back_d(&queue, strdup(arg[1]), 0, T_PLV);
+    client->_data = queue;
 }
 
 void amber_graphic_pin(amber_net_cli_t *client, char **arg)
@@ -45,4 +48,5 @@ void amber_graphic_pin(amber_net_cli_t *client, char **arg)
         return;
     }
     queue_push_back_d(&queue, strdup(arg[1]), 0, T_PIN);
+    client->_data = queue;
 }
