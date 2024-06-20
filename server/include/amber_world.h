@@ -67,7 +67,7 @@ typedef struct box_s {
 typedef struct pair_s {
     int _c_value; /**< The current value. */
     int _m_value; /**< The maximum value. */
-} pair_t;
+} pair_int_t;
 
 /**
  * @brief Structure representing the Amber World.
@@ -99,13 +99,13 @@ typedef struct amber_world_s {
     int _clientsNb;
     char **_teams_name;
     box_t **_case;
-    pair_t _food_info;
-    pair_t _linemate_info;
-    pair_t _deraumere_info;
-    pair_t _sibur_info;
-    pair_t _mendiane_info;
-    pair_t _phiras_info;
-    pair_t _thystame_info;
+    pair_int_t _food_info;
+    pair_int_t _linemate_info;
+    pair_int_t _deraumere_info;
+    pair_int_t _sibur_info;
+    pair_int_t _mendiane_info;
+    pair_int_t _phiras_info;
+    pair_int_t _thystame_info;
     list_t *_eggs;
     double _freq;
     unsigned long _clock;

@@ -97,11 +97,11 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
         return false;
     if (!ressource_available(&world->_case[client->_y][client->_x],
         needs)) {
-        send_cli_msg(client, "ko 3");
+        send_cli_msg(client, "ko");
         return false;
     }
     if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
-        send_cli_msg(client, "ko 4");
+        send_cli_msg(client, "ko");
         return false;
     }
     info = update_players_on_case(serv, client);
@@ -121,7 +121,7 @@ bool check_command_queue_team_name(amber_world_t *world, amber_serv_t *serv,
     amber_client_t *client, char **arg)
 {
     if (queue_command_size(client->_queue_command) >= 10) {
-        send_cli_msg(client, "ko 2");
+        send_cli_msg(client, "ko");
         return false;
     }
     if (client->_team_name == NULL) {
@@ -148,7 +148,7 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
             return check_ellapsed_time(client, world->_freq);
         }
     }
-    send_cli_msg(client, "ko 6");
+    send_cli_msg(client, "ko");
 }
 
 const ai_command_t ai_commands[] = {

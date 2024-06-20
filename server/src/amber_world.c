@@ -8,7 +8,7 @@
 #include "amber_world.h"
 #include "amber_manage_incantation.h"
 
-static void init_pair(pair_t *pair, int width, int height, double density)
+static void init_pair(pair_int_t *pair, int width, int height, double density)
 {
     pair->_c_value = 0;
     pair->_m_value = width * height * density;

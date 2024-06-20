@@ -98,7 +98,7 @@ static void incantion_failed(amber_world_t *world, info_incantation_t *info)
 
     for (int i = 0; i < info->_nb_players; i++) {
         ids[i]->_is_incantating = false;
-        send_cli_msg(ids[i], "ko 1");
+        send_cli_msg(ids[i], "ko");
     }
     remove_node(&world->_incantation_grp,
         world->_incantation_grp->nodes, true);
