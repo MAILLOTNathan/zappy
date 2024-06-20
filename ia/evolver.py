@@ -34,6 +34,8 @@ class evolver:
             8: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
         self.broadcast_key = ""
+        self.encrypted_key = ""
+
 
     def check_level_up(self, box_zero):
         """

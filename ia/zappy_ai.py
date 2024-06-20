@@ -5,6 +5,7 @@ import os
 import subprocess
 import threading
 import base64
+import random
 
 class TuringAI:
     """
@@ -247,11 +248,11 @@ class TuringAI:
         """
         if look is None or look == "done":
             return
-
         team_name_b64 = base64.b64encode(self.team_name.encode()).decode()
         items_string = broadcast_needed(self, look[0][1])
-        b64items = base64.b64encode(items_string.encode()).decode()
-        concatenated_b64 = team_name_b64 + ":" + b64items
+        shift = sum(bytearray(self.encrypted_key.encode('utf-8'))) % 26
+        encrypted_items_string = caesar_cipher_encrypt(items_string, shift)
+        concatenated_b64 = team_name_b64 + ":" + encrypted_items_string
         final_string = "Broadcast " + concatenated_b64
         res = conn.send_request(final_string)
         res = self.broadcast_parse(res, conn)
@@ -327,6 +328,20 @@ class TuringAI:
             8: {"player": 6, "linemate": 2, "deraumere": 2, "sibur": 2, "mendiane": 2, "phiras": 2, "thystame": 1},
         }
         self.broadcast_key = ""
+        self.encrypted_key = generate_sring()
+
+def generate_sring():
+    """
+    Generate a random string and append it to the 'broadcast' variable.
+    Returns:
+        None
+    """
+
+    key = ""
+    string = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(10):
+        key += random.choice(string)
+    return key
 
 def get_obj(map, obj):
     x = 0
@@ -444,7 +459,7 @@ def launch_new_instance(self, map, conn):
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
-        command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        command = ["python", "sucide.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host, "-k", self.encrypted_key]
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
         return
@@ -452,7 +467,7 @@ def launch_new_instance(self, map, conn):
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
-        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        command = ["python", "evolver.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host, "-k", self.encrypted_key]
         thread = threading.Thread(target=run_subprocess, args=(command,))
         thread.start()
         return
@@ -460,11 +475,34 @@ def launch_new_instance(self, map, conn):
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)
-        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host]
+        command = ["python", "collector.py", "-p", str(self.port), "-n", self.team_name, "-h", self.host, "-k", self.encrypted_key]
         self.collector += 1
         thread = threading.Thread(target=run_subprocess, args=(command, decrement_collector))
         thread.start()
         return
+
+def caesar_cipher_encrypt(text, shift):
+        """
+        Encrypts the given text using the Caesar cipher algorithm.
+
+        Args:
+            text (str): The text to be encrypted.
+            shift (int): The number of positions to shift each character.
+
+        Returns:
+            str: The encrypted text.
+        """
+        result = ""
+        for char in text:
+            if char.isalpha():
+                shift_amount = shift % 26
+                if char.islower():
+                    result += chr((ord(char) - ord('a') + shift_amount) % 26 + ord('a'))
+                elif char.isupper():
+                    result += chr((ord(char) - ord('A') + shift_amount) % 26 + ord('A'))
+            else:
+                result += char
+        return result
 
 def main():
     """

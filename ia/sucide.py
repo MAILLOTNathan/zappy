@@ -11,6 +11,8 @@ class Sucide:
         self.port = None
         self.team_name = ""
         self.host = "localhost"
+        self.broadcast_key = ""
+        self.encrypted_key = ""
 
 def main():
     """

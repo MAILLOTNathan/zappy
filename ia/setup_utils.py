@@ -28,9 +28,11 @@ def check_args(TuringAI):
             TuringAI.team_name = sys.argv[i + 1]
             if TuringAI.team_name == "GRAPHIC":
                 print("Error: Team name cannot be GRAPHIC.")
-                exit(83)
+                exit(84)
         elif sys.argv[i] == "-h":
             TuringAI.host = sys.argv[i + 1]
+        elif sys.argv[i] == "-k":
+            TuringAI.encrypted_key = sys.argv[i + 1]
     if (len(sys.argv) < 2) or sys.argv[1] == "-help":
         help_message()
     if sys.argv[1] == "--debug":

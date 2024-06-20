@@ -26,6 +26,7 @@ class food_collector:
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.broadcast_key = ""
+        self.encrypted_key = ""
     
     def elevate_parse(self, response):
         """
@@ -77,10 +78,16 @@ class food_collector:
         """
         if response.find(self.broadcast_key) == -1:
             return "pass"
+        
         skip_string = self.broadcast_key + ":"
-        response = response.split(skip_string)
-        decoded_string =  base64.b64decode(response[1].encode()).decode()
-        return response[0] + decoded_string
+        response_parts = response.split(skip_string)
+        encrypted_string = response_parts[1]
+        shift = sum(bytearray(self.encrypted_key.encode('utf-8'))) % 26
+        decrypted_string = caesar_cipher_decrypt(encrypted_string, shift)
+        final = response_parts[0] + decrypted_string
+        print("FINALLLL", final)
+
+        return final
 
     def broadcast_parse(self, response):
         """
@@ -314,6 +321,19 @@ def find_path(direction : list, quantity, obj : str, ai: food_collector):
         res = ai.elevate_parse(res)
         ai.broadcast_parse(res)
         ai.inventory[obj] = ai.inventory[obj] + 1
+
+def caesar_cipher_decrypt(text, shift):
+    result = ""
+    for char in text:
+        if char.isalpha():
+            shift_amount = shift % 26
+            if char.islower():
+                result += chr((ord(char) - ord('a') - shift_amount) % 26 + ord('a'))
+            elif char.isupper():
+                result += chr((ord(char) - ord('A') - shift_amount) % 26 + ord('A'))
+        else:
+            result += char
+    return result
 
 def main():
     a = 0
