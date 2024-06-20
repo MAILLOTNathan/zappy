@@ -12,6 +12,7 @@
     #include "amber_manage_client.h"
 
     #define CONTANT_MAP "bct %d %d %d %d %d %d %d %d %d"
+    #define QUEUE_CAST(client) (queue_command_t *)client->_data
 
 /**
  * @brief Struct representing a graphical command.

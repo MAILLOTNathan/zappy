@@ -10,7 +10,7 @@
 void amber_ai_broadcast(amber_net_cli_t *client, char **arg)
 {
     if (length_string_array(arg) != 2) {
-        send_cli_msg(client, "ko");
+        send_cli_msg(client, "ko 1");
         return;
     }
     queue_push_back_d(&TRANTOR(client)->_queue_command,
@@ -30,7 +30,7 @@ void amber_ai_fork(amber_net_cli_t *client, UNUSED char **arg)
 void amber_ai_take_object(amber_net_cli_t *client, char **arg)
 {
     if (length_string_array(arg) != 2) {
-        send_cli_msg(client, "ko");
+        send_cli_msg(client, "ko 2");
         return;
     }
     queue_push_back_d(&TRANTOR(client)->_queue_command, strdup(arg[1]), 7,
@@ -40,7 +40,7 @@ void amber_ai_take_object(amber_net_cli_t *client, char **arg)
 void amber_ai_set_object(amber_net_cli_t *client, char **arg)
 {
     if (length_string_array(arg) != 2) {
-        send_cli_msg(client, "ko");
+        send_cli_msg(client, "ko 3");
         return;
     }
     queue_push_back_d(&TRANTOR(client)->_queue_command, strdup(arg[1]), 7,

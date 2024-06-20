@@ -43,7 +43,7 @@ void amber_graphic_loop(amber_serv_t *server, amber_world_t *world)
             check_command(client, world, tmp, server->_clients);
             tmp = tmp->_next;
         }
-        queue_destroy(&client->_data);
+        queue_destroy(&tmp);
         node = node->next;
     }
 }

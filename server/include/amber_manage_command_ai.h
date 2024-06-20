@@ -64,7 +64,8 @@ void amber_ai_set_object(amber_net_cli_t *client, char **arg);
  * @brief Moves the AI client forward in the game.
  *
  * This function is responsible for moving the AI client forward in the game.
- * It takes a pointer to the `amber_net_cli_t` structure representing the client
+ * It takes a pointer to the `amber_net_cli_t` structure representing
+ * the client
  * and a pointer to the buffer containing the command.
  *
  * @param client A pointer to the `amber_net_cli_t` structure representing

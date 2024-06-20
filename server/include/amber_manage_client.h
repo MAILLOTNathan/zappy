@@ -86,7 +86,8 @@ amber_net_cli_t *amber_get_client_by_id(list_t *clients, int id);
  * structure, a pointer to an `amber_serv_t` structure, a pointer to an
  * `amber_world_t` structure, and a double pointer to a character array.
  *
- * @param client A pointer to the `amber_net_cli_t` structure to be initialized.
+ * @param client A pointer to the `amber_net_cli_t` structure to be
+ * initialized.
  * @param serv A pointer to the `amber_serv_t` structure representing
  * the server.
  * @param world A pointer to the `amber_world_t` structure representing

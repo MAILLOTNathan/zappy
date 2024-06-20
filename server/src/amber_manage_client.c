@@ -19,7 +19,7 @@ void *amber_create_client(va_list *ap)
         return NULL;
     client->_buffer = NULL;
     client->_tcp._fd = va_arg(*ap, int);
-    client->_type = UNKNOWN;
+    client->_type = va_arg(*ap, client_type_t);
     client->_is_error = false;
     client->_data = NULL;
     client->_id = -1;

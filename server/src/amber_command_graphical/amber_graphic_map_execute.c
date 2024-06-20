@@ -8,13 +8,13 @@
 #include "amber_command_graphical.h"
 #include "amber_logic.h"
 
-void amber_graphic_execute_msz(UNUSED command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_msz(UNUSED command_t *cmd, amber_net_cli_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
     snprintfizer(client, "msz %d %d", world->_width, world->_height);
 }
 
-void amber_graphic_execute_mct(UNUSED command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_mct(UNUSED command_t *cmd, amber_net_cli_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
     for (int i = 0; world->_height > i; i++) {
@@ -28,7 +28,7 @@ void amber_graphic_execute_mct(UNUSED command_t *cmd, amber_client_t *client,
     }
 }
 
-void amber_graphic_execute_bct(command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_bct(command_t *cmd, amber_net_cli_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
     char **arg = string_to_string_array(cmd->_arg);
@@ -46,13 +46,13 @@ void amber_graphic_execute_bct(command_t *cmd, amber_client_t *client,
         world->_case[y][x]._phiras, world->_case[y][x]._thystame);
 }
 
-void amber_graphic_execute_sgt(UNUSED command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_sgt(UNUSED command_t *cmd, amber_net_cli_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
     snprintfizer(client, "sgt %f", world->_freq);
 }
 
-void amber_graphic_execute_sst(command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_sst(command_t *cmd, amber_net_cli_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
     double freq = atof(cmd->_arg);

@@ -8,46 +8,48 @@
 #include "amber_logic.h"
 #include "amber_command_graphical.h"
 
-void amber_logic_forward(amber_client_t *client, amber_world_t *world,
+void amber_logic_forward(amber_net_cli_t *client, amber_world_t *world,
     amber_serv_t *serv)
 {
-    world->_case[client->_y][client->_x]._players--;
-    switch (client->_direction) {
+    amber_trantor_t *trantor = TRANTOR(client);
+
+    world->_case[trantor->_y][trantor->_x]._players--;
+    switch (trantor->_direction) {
         case UP:
-            client->_y = clamp(0, client->_y - 1, world->_height);
+            trantor->_y = clamp(0, trantor->_y - 1, world->_height);
             break;
         case DOWN:
-            client->_y = clamp(0, client->_y + 1,
+            trantor->_y = clamp(0, trantor->_y + 1,
             world->_height);
             break;
         case LEFT:
-            client->_x = clamp(0, client->_x - 1, world->_width);
+            trantor->_x = clamp(0, trantor->_x - 1, world->_width);
             break;
         case RIGHT:
-            client->_x = clamp(0, client->_x + 1, world->_width);
+            trantor->_x = clamp(0, trantor->_x + 1, world->_width);
     }
-    client->_x = world->_width == client->_x ? 0 : client->_x;
-    client->_y = world->_height == client->_y ? 0 : client->_y;
-    world->_case[client->_y][client->_x]._players++;
+    trantor->_x = world->_width == trantor->_x ? 0 : trantor->_x;
+    trantor->_y = world->_height == trantor->_y ? 0 : trantor->_y;
+    world->_case[trantor->_y][trantor->_x]._players++;
     send_cli_msg(client, "ok");
     amber_event_idmoved(client, serv->_graphic_clients, 'F');
 }
 
-void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
+void amber_logic_right(amber_net_cli_t *client, UNUSED amber_world_t *world,
     amber_serv_t *serv)
 {
-    switch (client->_direction) {
+    switch (TRANTOR(client)->_direction) {
         case UP:
-            client->_direction = RIGHT;
+            TRANTOR(client)->_direction = RIGHT;
             break;
         case DOWN:
-            client->_direction = LEFT;
+            TRANTOR(client)->_direction = LEFT;
             break;
         case LEFT:
-            client->_direction = UP;
+            TRANTOR(client)->_direction = UP;
             break;
         case RIGHT:
-            client->_direction = DOWN;
+            TRANTOR(client)->_direction = DOWN;
             break;
         default:
             break;
@@ -56,21 +58,21 @@ void amber_logic_right(amber_client_t *client, UNUSED amber_world_t *world,
     amber_event_idmoved(client, serv->_graphic_clients, 'R');
 }
 
-void amber_logic_left(amber_client_t *client, UNUSED amber_world_t *world,
+void amber_logic_left(amber_net_cli_t *client, UNUSED amber_world_t *world,
     UNUSED amber_serv_t *serv)
 {
-    switch (client->_direction) {
+    switch (TRANTOR(client)->_direction) {
         case UP:
-            client->_direction = LEFT;
+            TRANTOR(client)->_direction = LEFT;
             break;
         case DOWN:
-            client->_direction = RIGHT;
+            TRANTOR(client)->_direction = RIGHT;
             break;
         case LEFT:
-            client->_direction = DOWN;
+            TRANTOR(client)->_direction = DOWN;
             break;
         case RIGHT:
-            client->_direction = UP;
+            TRANTOR(client)->_direction = UP;
             break;
         default:
             break;

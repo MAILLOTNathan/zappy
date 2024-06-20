@@ -95,11 +95,11 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
         return false;
     if (!ressource_available(&world->_case[trantor->_y][trantor->_x],
         needs)) {
-        send_cli_msg(client, "ko");
+        send_cli_msg(client, "ko 4");
         return false;
     }
     if (!nbr_players_on_case_lvl(serv, trantor, needs->_players)) {
-        send_cli_msg(client, "ko");
+        send_cli_msg(client, "ko 5");
         return false;
     }
     info = update_players_on_case(serv, trantor, client);
@@ -118,7 +118,7 @@ void check_ellapsed_time(amber_trantor_t *trantor, double freq)
 bool check_command_queue(amber_net_cli_t *client, amber_trantor_t *trantor)
 {
     if (queue_command_size(trantor->_queue_command) >= 10) {
-        send_cli_msg(client, "ko");
+        send_cli_msg(client, "ko 6");
         return false;
     }
     return true;
@@ -133,16 +133,17 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
     printf("[AMBER AI] Command recevei %s BY %d\n", arg[0], client->_id);
     if (!check_command_queue(client, trantor))
         return;
-    if (strcmp(arg[0], "Incantation") == 0 &&
-        !check_incanation(world, serv, client, trantor))
+    if (strcmp(arg[0], "Incantation") == 0) {
+        check_incanation(world, serv, client, trantor);
         return;
+    }
     for (i = 0; ai_commands[i]._command; i++) {
         if (strcmp(ai_commands[i]._command, arg[0]) == 0) {
             ai_commands[i]._func(client, arg);
             return check_ellapsed_time(trantor, world->_freq);
         }
     }
-    send_cli_msg(client, "ko");
+    send_cli_msg(client, "ko 7");
 }
 
 const ai_command_t ai_commands[] = {

@@ -9,12 +9,15 @@
 #include <unistd.h>
 
 static void exec_logic_function(amber_net_cli_t *cli, amber_world_t *wd,
-    amber_serv_t *serv, amber_trantor_t *trantor)
+    amber_serv_t *serv)
 {
+    amber_trantor_t *trantor = TRANTOR(cli);
+
     if (trantor->_ellapsed_time >= get_time_in_microseconds())
         return;
     for (int i = 0; logic_commands[i]._func != NULL; i++)
-        if (trantor->_queue_command->_command->_id == logic_commands[i]._command)
+        if (trantor->_queue_command->_command->_id ==
+            logic_commands[i]._command)
             logic_commands[i]._func(cli, wd, serv);
     queue_pop_front(&trantor->_queue_command);
     if (queue_command_size(trantor->_queue_command) == 0)
@@ -43,7 +46,7 @@ void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
         if (trantor->_is_incantating &&
         trantor->_queue_command->_command->_id != T_INCANTATION)
             continue;
-        exec_logic_function(trantor, world, serv);
+        exec_logic_function(tmp, world, serv);
     }
 }
 

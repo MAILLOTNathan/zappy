@@ -27,6 +27,8 @@ amber_net_cli_t *amber_init_client_by_egg(amber_net_cli_t *client, egg_t *egg,
     trantor->_clock_food = get_new_time_in_microseconds(126 / freq);
     client->_data = trantor;
     amber_destroy_egg(egg);
+    client->_id = trantor->_id;
+    client->_type = AI;
     return client;
 }
 
@@ -68,7 +70,7 @@ static bool check_different_mode(amber_net_cli_t *client, amber_serv_t *serv,
     if (length_string_array(arg) != 1)
         return false;
     if (strncmp(arg[0], "GRAPHIC", 8) == 0) {
-        push_back_list(serv->_graphic_clients, client->_tcp._fd, true);
+        push_back_list(serv->_graphic_clients, client->_tcp._fd, GRAPHIC);
         amber_send_egg_on_connection(client, world->_eggs);
         send_graphical_players(client, serv->_clients);
         remove_node(&serv->_clients, list_find_node_p(serv->_clients, client),
@@ -96,7 +98,7 @@ bool amber_init_client(amber_net_cli_t *client, amber_serv_t *serv,
     egg = amber_get_egg_by_team(world, arg[0]);
     if (!egg) {
         printf("[AMBER ERROR] No egg available for team %s\n", arg[0]);
-        send_cli_msg(client, "ko");
+        send_cli_msg(client, "ko 13");
         return false;
     }
     amber_event_edi(server->_graphic_clients, egg);

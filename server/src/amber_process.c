@@ -57,7 +57,7 @@ static void amber_accept_client(amber_serv_t *server, UNUSED
         return;
     }
     dprintf(new_fd, "WELCOME\n");
-    push_back_list(server->_clients, new_fd, false);
+    push_back_list(server->_clients, new_fd, UNKNOWN);
     printf("[AMBER INFO] New client connected\n");
 }
 
