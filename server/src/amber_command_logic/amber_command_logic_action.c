@@ -53,7 +53,7 @@ static void manage_eject_send(amber_net_cli_t *client, amber_net_cli_t *tmp,
     amber_trantor_t *trantor = TRANTOR(client);
     amber_trantor_t *t_trant = TRANTOR(tmp);
 
-    update_client_pos(trantor->_direction, trantor, world);
+    update_client_pos(trantor->_direction, t_trant, world);
     if (trantor->_direction == UP || trantor->_direction == DOWN) {
         dir = concave[t_trant->_direction - 1]
         [(invert(trantor->_direction) - 1)* 2];

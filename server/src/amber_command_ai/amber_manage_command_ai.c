@@ -56,7 +56,7 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv,
         if (tmp->_type != AI)
             continue;
         t_tmp = TRANTOR(tmp);
-        if (t_tmp->_level != trantor->_level || trantor->_is_incantating)
+        if (t_tmp->_level != trantor->_level || t_tmp->_is_incantating)
             continue;
         if (t_tmp->_x == trantor->_x && t_tmp->_y == trantor->_y)
             count++;
@@ -65,7 +65,7 @@ static bool nbr_players_on_case_lvl(amber_serv_t *serv,
 }
 
 static info_incantation_t *update_players_on_case(amber_serv_t *serv,
-    amber_trantor_t *trantor, amber_net_cli_t *client)
+    amber_trantor_t *trantor)
 {
     linked_list_t *clients = serv->_clients->nodes;
     amber_net_cli_t *tmp = NULL;
@@ -76,7 +76,7 @@ static info_incantation_t *update_players_on_case(amber_serv_t *serv,
         tmp = (amber_net_cli_t *)node->data;
         if (tmp->_type != AI)
             continue;
-        t_tmp = TRANTOR(client);
+        t_tmp = TRANTOR(tmp);
         if (t_tmp->_level != trantor->_level || t_tmp->_is_incantating)
             continue;
         if (t_tmp->_x == trantor->_x && t_tmp->_y == trantor->_y)
@@ -102,7 +102,7 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
         send_cli_msg(client, "ko 5");
         return false;
     }
-    info = update_players_on_case(serv, trantor, client);
+    info = update_players_on_case(serv, trantor);
     push_back_list(world->_incantation_grp, info);
     return true;
 }
@@ -133,10 +133,9 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
     printf("[AMBER AI] Command recevei %s BY %d\n", arg[0], client->_id);
     if (!check_command_queue(client, trantor))
         return;
-    if (strcmp(arg[0], "Incantation") == 0) {
-        check_incanation(world, serv, client, trantor);
+    if (strcmp(arg[0], "Incantation") == 0 &&
+        !check_incanation(world, serv, client, trantor))
         return;
-    }
     for (i = 0; ai_commands[i]._command; i++) {
         if (strcmp(ai_commands[i]._command, arg[0]) == 0) {
             ai_commands[i]._func(client, arg);

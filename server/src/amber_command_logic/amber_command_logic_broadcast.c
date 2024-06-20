@@ -68,6 +68,8 @@ void amber_logic_broadcast(amber_net_cli_t *client, amber_world_t *world,
 
     for (linked_list_t *node = clients; node; node = node->next) {
         tmp = (amber_net_cli_t *)node->data;
+        if (tmp->_type != AI)
+            continue;
         t_trant = TRANTOR(tmp);
         if (tmp->_id == client->_id || t_trant->_team_name == NULL)
             continue;

@@ -122,7 +122,24 @@ void amber_logic_take(amber_net_cli_t *client, amber_world_t *world,
         amber_event_pgt(client, serv->_graphic_clients, ressource_needed);
         return send_cli_msg(client, "ok");
     }
-    return send_cli_msg(client, "ko 11");
+    return send_cli_msg(client, "ko");
+}
+
+void update_world_case(amber_world_t *world, amber_trantor_t *trantor,
+    box_t *ressource_needed)
+{
+    world->_case[trantor->_y][trantor->_x]._food += ressource_needed->_food;
+    world->_case[trantor->_y][trantor->_x]._linemate +=
+        ressource_needed->_linemate;
+    world->_case[trantor->_y][trantor->_x]._deraumere +=
+        ressource_needed->_deraumere;
+    world->_case[trantor->_y][trantor->_x]._sibur += ressource_needed->_sibur;
+    world->_case[trantor->_y][trantor->_x]._mendiane +=
+        ressource_needed->_mendiane;
+    world->_case[trantor->_y][trantor->_x]._phiras +=
+        ressource_needed->_phiras;
+    world->_case[trantor->_y][trantor->_x]._thystame +=
+        ressource_needed->_thystame;
 }
 
 void amber_logic_set(amber_net_cli_t *client, amber_world_t *world,
@@ -133,18 +150,8 @@ void amber_logic_set(amber_net_cli_t *client, amber_world_t *world,
     box_t *ressource_needed = get_ressource_needed(request);
 
     if (!ressource_available(trantor->_inventory, ressource_needed))
-        return send_cli_msg(client, "ko 12");
-    world->_case[trantor->_y][trantor->_x]._food += ressource_needed->_food;
-    world->_case[trantor->_y][trantor->_x]._linemate +=
-        ressource_needed->_linemate;
-    world->_case[trantor->_y][trantor->_x]._deraumere +=
-        ressource_needed->_deraumere;
-    world->_case[trantor->_y][trantor->_x]._sibur += ressource_needed->_sibur;
-    world->_case[trantor->_y][trantor->_x]._mendiane +=
-        ressource_needed->_mendiane;
-    world->_case[trantor->_y][trantor->_x]._phiras += ressource_needed->_phiras;
-    world->_case[trantor->_y][trantor->_x]._thystame +=
-        ressource_needed->_thystame;
+        return send_cli_msg(client, "ko");
+    update_world_case(world, trantor, ressource_needed);
     change_inventory(TRANTOR(client), ressource_needed, false);
     drop_ressource_from_world(world, ressource_needed);
     amber_event_pdr(client, serv->_graphic_clients, ressource_needed);
