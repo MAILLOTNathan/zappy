@@ -8,19 +8,19 @@
 #include "amber_command_server.h"
 #include "amber_manage_client.h"
 
-static void update_world(amber_world_t *world, amber_client_t *client,
+static void update_world(amber_world_t *world, amber_trantor_t *trantor,
     int x, int y)
 {
-    world->_case[client->_y][client->_x]._players--;
-    client->_x = x;
-    client->_y = y;
-    world->_case[client->_y][client->_x]._players++;
+    world->_case[trantor->_y][trantor->_x]._players--;
+    trantor->_x = x;
+    trantor->_y = y;
+    world->_case[trantor->_y][trantor->_x]._players++;
 }
 
 void amber_serv_tp(amber_serv_t *serv, amber_world_t *world,
     char **cmd)
 {
-    amber_client_t *client = NULL;
+    amber_net_cli_t *client = NULL;
     int x = 0;
     int y = 0;
 
@@ -35,7 +35,7 @@ void amber_serv_tp(amber_serv_t *serv, amber_world_t *world,
         dprintf(FDDEBUG(serv), "Client %d not found\n", atoi(cmd[3]));
         return;
     }
-    update_world(world, client, x, y);
+    update_world(world, TRANTOR(client), x, y);
     dprintf(FDDEBUG(serv), "Client %d teleported to %d %d\n",
     client->_id, x, y);
 }

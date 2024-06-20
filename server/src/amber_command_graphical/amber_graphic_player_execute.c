@@ -22,54 +22,59 @@ static char get_direction(direction_t direction)
     return 'N';
 }
 
-void amber_graphic_execute_tna(UNUSED command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_tna(UNUSED command_t *cmd, amber_net_cli_t *client,
     amber_world_t *world, UNUSED list_t *clients)
 {
     for (int i = 0; world->_teams_name[i]; i++) {
-        dprintf(client->_tcp._fd, "tna %s\n", world->_teams_name[i]);
+        snprintfizer(client, "tna %s", world->_teams_name[i]);
     }
 }
 
-void amber_graphic_execute_ppo(command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_ppo(command_t *cmd, amber_net_cli_t *client,
     UNUSED amber_world_t *world, list_t *clients)
 {
     int id = atoi(cmd->_arg + 1);
-    amber_client_t *tmp = amber_get_client_by_id(clients, id);
+    amber_net_cli_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp\n");
+        snprintfizer(client, "sbp ppo");
         return;
     }
-    dprintf(client->_tcp._fd, "ppo #%d %d %d %c\n", tmp->_id, tmp->_x, tmp->_y,
-        get_direction(tmp->_direction));
+    snprintfizer(client, "ppo #%d %d %d %c", tmp->_id, TRANTOR(tmp)->_x,
+        TRANTOR(tmp)->_y, get_direction(TRANTOR(tmp)->_direction));
 }
 
-void amber_graphic_execute_plv(command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_plv(command_t *cmd, amber_net_cli_t *client,
     UNUSED amber_world_t *world, list_t *clients)
 {
     int id = atoi(cmd->_arg + 1);
-    amber_client_t *tmp = amber_get_client_by_id(clients, id);
+    amber_net_cli_t *tmp = amber_get_client_by_id(clients, id);
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp\n");
+        snprintfizer(client, "sbp plv");
         return;
     }
-    dprintf(client->_tcp._fd, "plv #%d %d\n", tmp->_id, tmp->_level);
+    snprintfizer(client, "plv #%d %d", TRANTOR(tmp)->_id,
+        TRANTOR(tmp)->_level);
 }
 
-void amber_graphic_execute_pin(command_t *cmd, amber_client_t *client,
+void amber_graphic_execute_pin(command_t *cmd, amber_net_cli_t *client,
     UNUSED amber_world_t *world, list_t *clients)
 {
     int id = atoi(cmd->_arg + 1);
-    amber_client_t *tmp = amber_get_client_by_id(clients, id);
+    amber_net_cli_t *tmp = amber_get_client_by_id(clients, id);
+    amber_trantor_t *trantor;
 
     if (!tmp) {
-        dprintf(client->_tcp._fd, "sbp\n");
+        snprintfizer(client, "sbp pin");
         return;
     }
-    dprintf(client->_tcp._fd, "pin #%d %d %d %d %d %d %d %d %d %d\n", tmp->_id,
-        tmp->_x, tmp->_y, tmp->_inventory->_food, tmp->_inventory->_linemate,
-        tmp->_inventory->_deraumere, tmp->_inventory->_sibur,
-        tmp->_inventory->_mendiane, tmp->_inventory->_phiras,
-        tmp->_inventory->_thystame);
+    trantor = TRANTOR(tmp);
+    snprintfizer(client, "pin #%d %d %d %d %d %d %d %d %d %d",
+        tmp->_id,
+        trantor->_x, trantor->_y, trantor->_inventory->_food,
+        trantor->_inventory->_linemate,
+        trantor->_inventory->_deraumere, trantor->_inventory->_sibur,
+        trantor->_inventory->_mendiane, trantor->_inventory->_phiras,
+        trantor->_inventory->_thystame);
 }

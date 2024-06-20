@@ -15,14 +15,14 @@
 /**
  * Creates a new Amber client.
  *
- * This function allocates memory for a new `amber_client_t
+ * This function allocates memory for a new `amber_net_cli_t
  * structure and initializes its fields.
  * The file descriptor for the TCP connection is obtained from
  * the variable argument list `ap`.
  *
  * @param ap A pointer to the variable argument list containing
  * the file descriptor for the TCP connection.
- * @return A pointer to the newly created `amber_client_t`
+ * @return A pointer to the newly created `amber_net_cli_t`
  * structure, or `NULL` if memory allocation fails.
  */
 void *amber_create_client(va_list *ap);
@@ -50,7 +50,7 @@ void amber_destroy_client(void *client);
  * @param clients A pointer to the list of clients.
  */
 void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
-    amber_client_t *client, list_t *clients);
+    amber_net_cli_t *client, list_t *clients);
 
 /**
  * @brief Retrieves the number of clients belonging to a specific team
@@ -76,17 +76,18 @@ int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team);
  * @param id The ID of the client to retrieve.
  * @return A pointer to the client if found, or NULL if not found.
  */
-amber_client_t *amber_get_client_by_id(list_t *clients, int id);
+amber_net_cli_t *amber_get_client_by_id(list_t *clients, int id);
 
 /**
  * Initializes an Amber client.
  *
  * This function initializes an Amber client by setting up the necessary
- * connections and resources. It takes a pointer to an `amber_client_t`
+ * connections and resources. It takes a pointer to an `amber_net_cli_t`
  * structure, a pointer to an `amber_serv_t` structure, a pointer to an
  * `amber_world_t` structure, and a double pointer to a character array.
  *
- * @param client A pointer to the `amber_client_t` structure to be initialized.
+ * @param client A pointer to the `amber_net_cli_t` structure to be
+ * initialized.
  * @param serv A pointer to the `amber_serv_t` structure representing
  * the server.
  * @param world A pointer to the `amber_world_t` structure representing
@@ -94,7 +95,7 @@ amber_client_t *amber_get_client_by_id(list_t *clients, int id);
  * @param arg A double pointer to a character array representing the arguments.
  * @return `true` if the client is successfully initialized, `false` otherwise.
  */
-bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
+bool amber_init_client(amber_net_cli_t *client, amber_serv_t *serv,
     amber_world_t *world, char **arg);
 
 /**
@@ -104,13 +105,13 @@ bool amber_init_client(amber_client_t *client, amber_serv_t *serv,
  * according to the specified format string.
  * The resulting formatted string is then sent to the specified client.
  *
- * @param client A pointer to the `amber_client_t` structure representing the
+ * @param client A pointer to the `amber_net_cli_t` structure representing the
  * client.
  * @param format The format string specifying how the arguments should be
  * formatted.
  * @param ... Additional arguments to be formatted according to the format
  * string.
  */
-void snprintfizer(amber_client_t *client, char *format, ...);
+void snprintfizer(amber_net_cli_t *client, char *format, ...);
 
 #endif /* !AMBER_MANAGE_CLIENT_H_ */

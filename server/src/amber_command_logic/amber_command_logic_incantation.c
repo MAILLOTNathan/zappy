@@ -7,6 +7,7 @@
 
 #include "amber_logic.h"
 #include "amber_command_graphical.h"
+#include "amber_manage_incantation.h"
 
 static const box_t *elevation_needs[] = {
     &(box_t){._players = 1, ._linemate = 1, ._deraumere = 0, ._sibur = 0,
@@ -42,60 +43,50 @@ static bool ressource_available(box_t *world_case, const box_t *need)
     return true;
 }
 
-static bool nbr_players_on_case_lvl(amber_serv_t *serv, amber_client_t *client,
-    int need_players)
+static bool nbr_players_on_case_lvl(int need_players, info_incantation_t *info)
 {
-    linked_list_t *clients = serv->_clients->nodes;
-    amber_client_t *tmp = NULL;
+    amber_net_cli_t **ids = info->_ids;
+    amber_trantor_t *trantor = NULL;
     int count = 0;
 
-    for (linked_list_t *node = clients; node; node = node->next) {
-        tmp = (amber_client_t *)node->data;
-        if (tmp->_level != client->_level)
-            continue;
-        if (tmp->_x == client->_x && tmp->_y == client->_y &&
-            tmp->_is_incantating)
+    for (int i = 0; i < info->_nb_players; i++) {
+        trantor = TRANTOR(ids[i]);
+        if (trantor->_x == info->_x && trantor->_y == info->_y &&
+            trantor->_level == info->_level)
             count++;
     }
     return count >= need_players;
 }
 
-static void print_res_incantation(amber_client_t *client, int level)
+static void print_res_incantation(amber_net_cli_t *client, int level,
+    amber_serv_t *server)
 {
     snprintfizer(client, "Current level: %d", level);
+    amber_event_idmoved(client, server->_graphic_clients, 'I');
 }
 
-static void level_up_players(amber_client_t *client, amber_serv_t *server)
+static void level_up_players(info_incantation_t *info, amber_serv_t *serv)
 {
-    linked_list_t *clients = server->_clients->nodes;
-    amber_client_t *tmp = NULL;
+    amber_net_cli_t **ids = info->_ids;
+    amber_trantor_t *trantor = NULL;
 
-    for (linked_list_t *node = clients; node; node = node->next) {
-        tmp = (amber_client_t *)node->data;
-        if (tmp->_level != client->_level || tmp->_id == client->_id)
-            continue;
-        if (tmp->_x == client->_x && tmp->_y == client->_y &&
-            tmp->_is_incantating) {
-            tmp->_level++;
-            print_res_incantation(tmp, tmp->_level);
-            tmp->_is_incantating = false;
-        }
+    for (int i = 0; i < info->_nb_players; i++) {
+        trantor = TRANTOR(ids[i]);
+        trantor->_level++;
+        trantor->_is_incantating = false;
+        print_res_incantation(ids[i], trantor->_level, serv);
     }
-    client->_level++;
-    print_res_incantation(client, client->_level);
-    client->_is_incantating = false;
-    amber_event_pie(client, server->_graphic_clients, true);
 }
 
-static void remove_from_info_world(amber_world_t *world, amber_client_t *cli,
+static void remove_from_info_world(amber_world_t *world, amber_trantor_t *trt,
     const box_t *needs)
 {
-    world->_case[cli->_y][cli->_x]._linemate -= needs->_linemate;
-    world->_case[cli->_y][cli->_x]._deraumere -= needs->_deraumere;
-    world->_case[cli->_y][cli->_x]._sibur -= needs->_sibur;
-    world->_case[cli->_y][cli->_x]._mendiane -= needs->_mendiane;
-    world->_case[cli->_y][cli->_x]._phiras -= needs->_phiras;
-    world->_case[cli->_y][cli->_x]._thystame -= needs->_thystame;
+    world->_case[trt->_y][trt->_x]._linemate -= needs->_linemate;
+    world->_case[trt->_y][trt->_x]._deraumere -= needs->_deraumere;
+    world->_case[trt->_y][trt->_x]._sibur -= needs->_sibur;
+    world->_case[trt->_y][trt->_x]._mendiane -= needs->_mendiane;
+    world->_case[trt->_y][trt->_x]._phiras -= needs->_phiras;
+    world->_case[trt->_y][trt->_x]._thystame -= needs->_thystame;
     world->_food_info._c_value -= needs->_food;
     world->_linemate_info._c_value -= needs->_linemate;
     world->_deraumere_info._c_value -= needs->_deraumere;
@@ -105,37 +96,34 @@ static void remove_from_info_world(amber_world_t *world, amber_client_t *cli,
     world->_thystame_info._c_value -= needs->_thystame;
 }
 
-static void incation_failed(amber_client_t *client, amber_serv_t *serv)
+static void incantion_failed(amber_world_t *world, info_incantation_t *info)
 {
-    linked_list_t *node = serv->_clients->nodes;
-    amber_client_t *tmp = NULL;
+    amber_net_cli_t **ids = info->_ids;
 
-    for (; node; node = node->next) {
-        tmp = (amber_client_t *)node->data;
-        if (tmp->_x != client->_x || tmp->_y != client->_y)
-            continue;
-        if (tmp->_level != client->_level || tmp->_id == client->_id ||
-            !tmp->_is_incantating || tmp->_team_name == NULL)
-            continue;
-        tmp->_is_incantating = false;
-        send_cli_msg(tmp, "ko");
+    for (int i = 0; i < info->_nb_players; i++) {
+        TRANTOR(ids[i])->_is_incantating = false;
+        send_cli_msg(ids[i], "ko 10");
     }
-    client->_is_incantating = false;
-    send_cli_msg(client, "ko");
+    remove_node(&world->_incantation_grp,
+        world->_incantation_grp->nodes, true);
 }
 
-void amber_logic_incantation(amber_client_t *client, amber_world_t *world,
+void amber_logic_incantation(amber_net_cli_t *client, amber_world_t *world,
     amber_serv_t *serv)
 {
-    const box_t *needs = elevation_needs[client->_level - 1];
+    amber_trantor_t *trantor = TRANTOR(client);
+    const box_t *needs = elevation_needs[trantor->_level - 1];
+    info_incantation_t *info = world->_incantation_grp->nodes->data;
 
-    if (!ressource_available(&world->_case[client->_y][client->_x],
-        needs)) {
-        return incation_failed(client, serv);
-    }
-    if (!nbr_players_on_case_lvl(serv, client, needs->_players)) {
-        return incation_failed(client, serv);
-    }
-    remove_from_info_world(world, client, needs);
-    level_up_players(client, serv);
+    if (info->_y != trantor->_y || info->_x != trantor->_x)
+        return incantion_failed(world, info);
+    if (!ressource_available(&world->_case[trantor->_y][trantor->_x],
+        needs))
+        return incantion_failed(world, info);
+    if (!nbr_players_on_case_lvl(needs->_players, info))
+        return incantion_failed(world, info);
+    remove_from_info_world(world, trantor, needs);
+    level_up_players(info, serv);
+    remove_node(&world->_incantation_grp,
+        world->_incantation_grp->nodes, true);
 }
