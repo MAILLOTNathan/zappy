@@ -66,7 +66,7 @@ bool amber_check_arg(int ac, char **av, args_t *args);
  * @param flag The flag to search for.
  * @return The value of the specified flag, or NULL if the flag is not found.
  */
-double amber_get_flags(int ac, char **av, char *flag);
+double amber_get_flags(int ac, char **av, char *flag, int default_value);
 
 /**
  * Displays the arguments passed to the program.

@@ -7,6 +7,15 @@
 
 #include "amber_check_arg.h"
 
+static void default_team_name(args_t *args)
+{
+    char *team_name = strdup("Team1");
+
+    args->_teams = append_string_array(args->_teams, team_name);
+    args->_teams = append_string_array(args->_teams, strdup("Team2"));
+    free(team_name);
+}
+
 static bool add_team_name(args_t *args, char **av, int i, int ac)
 {
     char *team_name = NULL;
@@ -34,11 +43,11 @@ bool amber_get_team_name(int ac, char **av, args_t *args)
             return add_team_name(args, av, i + 1, ac);
         }
     }
-    printf("Error: flag -n not found\n");
-    return false;
+    default_team_name(args);
+    return true;
 }
 
-double amber_get_flags(int ac, char **av, char *flag)
+double amber_get_flags(int ac, char **av, char *flag, int default_value)
 {
     double res = -1;
 
@@ -53,10 +62,10 @@ double amber_get_flags(int ac, char **av, char *flag)
     }
     if (res == -1)
         printf("Error: flag %s not found\n", flag);
-    return res;
+    return res == -1 ? default_value : res;
 }
 
-static void display_help(void)
+static void display_help(int exit_code)
 {
     printf(HELP"\n");
     printf("\tport: is the port number (0-65535)\n");
@@ -65,27 +74,27 @@ static void display_help(void)
     printf("\tnameX: is the name of the team X\n");
     printf("\tclientsNb: is the number of authorized clients per team\n");
     printf(HELP_FREQ);
+    exit(exit_code);
 }
 
 bool amber_check_arg(int ac, char **av, args_t *args)
 {
     if (ac == 2 && strcmp(av[1], "-help") == 0){
-        display_help();
-        exit(0);
+        display_help(0);
     }
-    args->_port = amber_get_flags(ac, av, "-p");
-    args->_width = amber_get_flags(ac, av, "-x");
-    args->_height = amber_get_flags(ac, av, "-y");
-    args->_freq = amber_get_flags(ac, av, "-f");
-    args->_clientsNb = amber_get_flags(ac, av, "-c");
+    args->_port = amber_get_flags(ac, av, "-p", 4242);
+    args->_width = amber_get_flags(ac, av, "-x", 10);
+    args->_height = amber_get_flags(ac, av, "-y", 10);
+    args->_freq = amber_get_flags(ac, av, "-f", 100);
+    args->_clientsNb = amber_get_flags(ac, av, "-c", 2);
     if (args->_port <= 0 || args->_port > 65535 || args->_width <= 0 ||
         args->_height <= 0 || args->_clientsNb <= 0)
-        return false;
+        display_help(84);
     args->_freq = args->_freq == -1 ? 100 : args->_freq;
     if (args->_freq <= 0)
-        return false;
+        display_help(84);
     if (amber_get_team_name(ac, av, args) == false)
-        return false;
+        display_help(84);
     return true;
 }
 
