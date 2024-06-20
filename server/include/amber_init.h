@@ -23,6 +23,8 @@
     #include "amber_world.h"
     #include "amber_queue_command.h"
 
+    #define TRANTOR(cli) CAST(amber_trantor_t *, cli->_data)
+
 /**
  * @brief Represents a TCP connection.
  *
