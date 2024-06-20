@@ -5,8 +5,7 @@
 ** amber_init
 */
 
-#ifndef AMBER_INIT_H_
-    #define AMBER_INIT_H_
+#pragma once
 
     #include <stdlib.h>
     #include <stdio.h>
@@ -23,6 +22,8 @@
     #include "string_array.h"
     #include "amber_world.h"
     #include "amber_queue_command.h"
+
+    #define TRANTOR(cli) CAST(amber_trantor_t *, cli->_data)
 
 /**
  * @brief Represents a TCP connection.
@@ -62,24 +63,34 @@ typedef struct tcp_s {
  * @param _is_incantating A boolean flag indicating if the client
  * is incantating.
  */
-typedef struct amber_client_s {
+// typedef struct amber_client_s {
+//     tcp_t _tcp;
+//     char *_buffer;
+//     char *_team_name;
+//     direction_t _direction;
+//     int _x;
+//     int _y;
+//     int _level;
+//     int _id;
+//     queue_command_t *_queue_command;
+//     box_t *_inventory;
+//     bool _is_graphical;
+//     bool _is_incantating;
+//     unsigned long _ellapsed_time;
+//     unsigned long _clock_food;
+//     bool _is_error;
+// } amber_client_t;
+
+typedef struct amber_net_cli_s {
+    bool _is_error;
+    int _id;
     tcp_t _tcp;
     char *_buffer;
-    char *_team_name;
-    direction_t _direction;
-    int _x;
-    int _y;
-    int _level;
-    int _id;
-    queue_command_t *_queue_command;
-    box_t *_inventory;
-    bool _is_graphical;
-    bool _is_incantating;
-    unsigned long _ellapsed_time;
-    unsigned long _clock_food;
-    bool _is_error;
-} amber_client_t;
+    void *_data;
+    client_type_t _type;
+} amber_net_cli_t;
 
+    #define TRANTOR(cli) CAST(amber_trantor_t *, cli->_data)
 /**
  * @brief Structure representing the Amber server.
  *
@@ -136,5 +147,3 @@ void amber_destroy_server(amber_serv_t *server);
  * @brief Pointer to the amber_serv_t server instance.
  */
 extern amber_serv_t *server;
-
-#endif /* !AMBER_INIT_H_ */

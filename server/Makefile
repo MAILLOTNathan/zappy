@@ -19,8 +19,10 @@ SRC = 	main.c \
 
 CFLAGS = -W -Werror -Wall -Wextra -I./include
 CFLAGS += -I./libs/string_array/include -I./libs/list/include
+CFLAGS += -I./libs/map
 
 LDFLAGS = -L./libs/string_array -l_string_array -L./libs/list -llist
+LDFLAGS += -L./libs/map -lmap
 
 OBJ = $(SRC:.c=.o)
 
@@ -40,10 +42,10 @@ TEST_GREP = $(wildcard tests/GREP*.c) \
 			$(wildcard src/amber_command_logic/*.c) \
 			$(wildcard src/amber_command_graphic/*.c) \
 
-all: lib_string_array lib_list $(OBJ)
+all: lib_string_array lib_list lib_map $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
 
-debug: lib_string_array lib_list
+debug: lib_string_array lib_list lib_map
 	$(CC) -o $(NAME) $(SRC) $(CFLAGS) $(LDFLAGS) -g3 -ggdb
 
 lib_list:
@@ -70,13 +72,25 @@ lib_string_array_fclean:
 lib_string_array_re:
 	make re -C libs/string_array
 
-clean: lib_string_array_clean lib_list_clean
+lib_map:
+	make -C libs/map
+
+lib_map_clean:
+	make clean -C libs/map
+
+lib_map_fclean:
+	make fclean -C libs/map
+
+lib_map_re:
+	make re -C libs/map
+
+clean: lib_string_array_clean lib_list_clean lib_map_clean
 	rm -f $(OBJ)
 
-fclean: lib_string_array_fclean lib_list_fclean clean
+fclean: lib_string_array_fclean lib_list_fclean lib_map_fclean clean
 	rm -f $(NAME)
 
-re: lib_string_array_re lib_list_re fclean all
+re: lib_string_array_re lib_list_re fclean lib_map_re all
 
 tests_run: lib_string_array lib_list
 	$(CC) -o unit_tests $(TEST_SRC) $(CFLAGS) $(LDFLAGS) --coverage -lcriterion

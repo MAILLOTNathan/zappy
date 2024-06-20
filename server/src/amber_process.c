@@ -31,16 +31,16 @@ void amber_init_fd(amber_serv_t *server)
     if (server->_debug_client._fd != -1)
         FD_SET(server->_debug_client._fd, &server->_readfds);
     while (tmp) {
-        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_readfds);
-        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_writefds);
-        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_exceptfds);
+        FD_SET(((amber_net_cli_t *)tmp->data)->_tcp._fd, &server->_readfds);
+        FD_SET(((amber_net_cli_t *)tmp->data)->_tcp._fd, &server->_writefds);
+        FD_SET(((amber_net_cli_t *)tmp->data)->_tcp._fd, &server->_exceptfds);
         tmp = tmp->next;
     }
     tmp = server->_graphic_clients->nodes;
     for (tmp = server->_graphic_clients->nodes; tmp; tmp = tmp->next) {
-        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_readfds);
-        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_writefds);
-        FD_SET(((amber_client_t *)tmp->data)->_tcp._fd, &server->_exceptfds);
+        FD_SET(((amber_net_cli_t *)tmp->data)->_tcp._fd, &server->_readfds);
+        FD_SET(((amber_net_cli_t *)tmp->data)->_tcp._fd, &server->_writefds);
+        FD_SET(((amber_net_cli_t *)tmp->data)->_tcp._fd, &server->_exceptfds);
     }
 }
 
@@ -57,7 +57,7 @@ static void amber_accept_client(amber_serv_t *server, UNUSED
         return;
     }
     dprintf(new_fd, "WELCOME\n");
-    push_back_list(server->_clients, new_fd, false);
+    push_back_list(server->_clients, new_fd, UNKNOWN);
     printf("[AMBER INFO] New client connected\n");
 }
 
@@ -67,10 +67,10 @@ void amber_manage_client(amber_world_t *world, amber_serv_t *server,
     linked_list_t *node = clients->nodes;
     linked_list_t *ref = clients->nodes;
     int len = list_len(clients);
-    amber_client_t *client = NULL;
+    amber_net_cli_t *client = NULL;
 
     for (int i = 0; i < len; i++) {
-        client = CAST(amber_client_t *, node->data);
+        client = CAST(amber_net_cli_t *, node->data);
         ref = node->next;
         if (FD_ISSET(client->_tcp._fd, &server->_exceptfds)) {
             printf("[AMBER INFO] Client disconnected\n");

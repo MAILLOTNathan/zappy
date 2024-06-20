@@ -5,9 +5,7 @@
 ** amber_world
 */
 
-#ifndef AMBER_WORLD_H_
-    #define AMBER_WORLD_H_
-
+#pragma once
     #include <stdlib.h>
     #include <stdio.h>
     #include <string.h>
@@ -17,6 +15,8 @@
     #include "string_array.h"
     #include "amber_check_arg.h"
     #include "amber_clock.h"
+    #include "map.h"
+    #include "amber_queue_command.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -68,7 +68,22 @@ typedef struct box_s {
 typedef struct pair_s {
     int _c_value; /**< The current value. */
     int _m_value; /**< The maximum value. */
-} pair_t;
+} pair_int_t;
+
+typedef struct amber_trantor_s {
+    int _x;
+    int _y;
+    int _level;
+    int _id;
+    direction_t _direction;
+    char *_team_name;
+    box_t *_inventory;
+    bool _is_graphical;
+    bool _is_incantating;
+    unsigned long _ellapsed_time;
+    unsigned long _clock_food;
+    queue_command_t *_queue_command;
+} amber_trantor_t;
 
 /**
  * @brief Structure representing the Amber World.
@@ -100,17 +115,19 @@ typedef struct amber_world_s {
     int _clientsNb;
     char **_teams_name;
     box_t **_case;
-    pair_t _food_info;
-    pair_t _linemate_info;
-    pair_t _deraumere_info;
-    pair_t _sibur_info;
-    pair_t _mendiane_info;
-    pair_t _phiras_info;
-    pair_t _thystame_info;
+    pair_int_t _food_info;
+    pair_int_t _linemate_info;
+    pair_int_t _deraumere_info;
+    pair_int_t _sibur_info;
+    pair_int_t _mendiane_info;
+    pair_int_t _phiras_info;
+    pair_int_t _thystame_info;
     list_t *_eggs;
     double _freq;
     unsigned long _clock;
     int _last_egg_id;
+    list_t *_incantation_grp;
+    map_t *_playersMap;
 } amber_world_t;
 
 /**
@@ -226,5 +243,3 @@ box_t *amber_world_case_init(void);
  * @param world The Amber world to initialize the egg in.
  */
 void amber_init_egg(amber_world_t *world);
-
-#endif /* !AMBER_WORLD_H_ */

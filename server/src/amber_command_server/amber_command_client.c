@@ -13,7 +13,7 @@ static void display_client_graphic(int fd, linked_list_t *client_graphical)
     while (client_graphical) {
         dprintf(fd, "================USER GRAPHIC================\n");
         dprintf(fd, "Client ID: %d\n",
-            ((amber_client_t *)client_graphical->data)->_id);
+            ((amber_net_cli_t *)client_graphical->data)->_id);
         dprintf(fd, "========================================\n");
         client_graphical = client_graphical->next;
     }
@@ -32,27 +32,32 @@ static char *get_direction(int direction)
     return "UNKNOWN";
 }
 
+static void content_display(int fd, amber_trantor_t *trantor)
+{
+    dprintf(fd, "================USER AI================\n");
+    dprintf(fd, INFO_CLIENT,
+        trantor->_id, trantor->_team_name, trantor->_y,
+        trantor->_x, trantor->_level);
+    dprintf(fd, "Direction: %s\n",
+        get_direction(trantor->_direction));
+    dprintf(fd, INVENTORY, trantor->_inventory->_food,
+        trantor->_inventory->_linemate, trantor->_inventory->_deraumere,
+        trantor->_inventory->_sibur, trantor->_inventory->_mendiane,
+        trantor->_inventory->_phiras, trantor->_inventory->_thystame);
+    dprintf(fd, "========================================\n");
+}
+
 void amber_serv_clients(amber_serv_t *serv, UNUSED amber_world_t *world,
     UNUSED char **cmd)
 {
     linked_list_t *tmp = serv->_clients->nodes;
-    amber_client_t *client = NULL;
+    amber_net_cli_t *client = NULL;
 
     for (; tmp; tmp = tmp->next) {
-        client = (amber_client_t *)tmp->data;
-        if (client->_team_name == NULL)
+        client = (amber_net_cli_t *)tmp->data;
+        if (client->_type != AI)
             continue;
-        dprintf(FDDEBUG(serv), "================USER AI================\n");
-        dprintf(FDDEBUG(serv), INFO_CLIENT,
-            client->_id, client->_team_name, client->_y,
-            client->_x, client->_level);
-        dprintf(FDDEBUG(serv), "Direction: %s\n",
-        get_direction(client->_direction));
-        dprintf(FDDEBUG(serv), INVENTORY, client->_inventory->_food,
-            client->_inventory->_linemate, client->_inventory->_deraumere,
-            client->_inventory->_sibur, client->_inventory->_mendiane,
-            client->_inventory->_phiras, client->_inventory->_thystame);
-        dprintf(FDDEBUG(serv), "========================================\n");
+        content_display(FDDEBUG(serv), TRANTOR(client));
     }
     display_client_graphic(FDDEBUG(serv), serv->_graphic_clients->nodes);
 }

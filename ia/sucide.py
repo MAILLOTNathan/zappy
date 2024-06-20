@@ -1,72 +1,20 @@
 #!/usr/bin/python3
-import sys
 import debug_lib
-import time
-import socket
-
-
-def help_message():
-    """
-    Prints the usage message for the zappy_ai script.
-    """
-    print("USAGE: ./zappy_ai -p port -n name -h machine")
-    exit(0)
-
-def check_args(TuringAI):
-    """
-    Check the command line arguments and perform necessary actions based on the arguments.
-
-    If the number of arguments is less than 2 or the first argument is "-help", it calls the help_message function.
-    If the first argument is "--debug", it sets the debug flag to True and sends a debug request.
-
-    Args:
-        None
-
-    Returns:
-        None
-    """
-    for i in range(1, len(sys.argv)):
-        if sys.argv[i] == "-p":
-            TuringAI.port = int(sys.argv[i + 1])
-        elif sys.argv[i] == "-n":
-            TuringAI.team_name = sys.argv[i + 1]
-            if TuringAI.team_name == "GRAPHIC":
-                print("Error: Team name cannot be GRAPHIC.")
-                exit(84)
-        elif sys.argv[i] == "-h":
-            TuringAI.host = sys.argv[i + 1]
-    if (len(sys.argv) < 2) or sys.argv[1] == "-help":
-        help_message()
-    if sys.argv[1] == "--debug":
-        TuringAI.debug = True
-        return
-    if TuringAI.port == None or TuringAI.team_name == "":
-        help_message()
-
+import setup_utils
 
 class Sucide:
-    print("COLLECTOR INIT")
-    debug = False
     port = None
     team_name = ""
     host = "localhost"
-    signal_angle = []
-    food_quantity = 0
-    level = 1
-    elapsed_time = 0
     conn = None
-    wait = False
     def __init__(self):
-        self.debug = False
         self.port = None
         self.team_name = ""
-        self.food_quantity = 0
-        self.level = 1
-        self.signal_angle = -1
-        self.wait = True
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
+        self.broadcast_key = ""
+        self.encrypted_key = ""
 
     def broadcast_parse(self, response):
         """
@@ -327,20 +275,14 @@ def main():
     The main function of the program.
     """
     bot : Sucide = Sucide()
-    check_args(bot)
+    setup_utils.check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
 
     while True:
-        response = bot.conn.send_request('Inventory')
+        response = bot.conn.send_request("Set food")
         if response == None or response == 'done':
             return
-        response = response.decode().strip('[]')
-        response = response.split(',')
-        response = [component.strip() for component in response]
-        response = [int(component.split()[1]) for component in response]
-        for i in range(response[0]):
-            bot.conn.send_request("Set food")
 
 if __name__ == "__main__":
     main()
