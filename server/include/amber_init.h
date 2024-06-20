@@ -90,6 +90,7 @@ typedef struct amber_net_cli_s {
     client_type_t _type;
 } amber_net_cli_t;
 
+    #define TRANTOR(cli) CAST(amber_trantor_t *, cli->_data)
 /**
  * @brief Structure representing the Amber server.
  *

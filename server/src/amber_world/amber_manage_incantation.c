@@ -6,16 +6,18 @@
 */
 
 #include "amber_manage_incantation.h"
+#include "amber_logic.h"
 
-info_incantation_t *amber_init_info_incantation(amber_client_t *client)
+
+info_incantation_t *amber_init_info_incantation(amber_trantor_t *trantor)
 {
     info_incantation_t *info = malloc(sizeof(info_incantation_t));
 
     if (info == NULL)
         return NULL;
-    info->_x = client->_x;
-    info->_y = client->_y;
-    info->_level = client->_level;
+    info->_x = trantor->_x;
+    info->_y = trantor->_y;
+    info->_level = trantor->_level;
     info->_nb_players = 0;
     info->_ids = NULL;
     return info;
@@ -32,4 +34,17 @@ void amber_destroy_incantation_grp(void *data)
 
     free(info->_ids);
     free(info);
+}
+
+void amber_add_player_to_incantation(info_incantation_t *info,
+    amber_net_cli_t *client)
+{
+    amber_trantor_t *trantor = TRANTOR(client);
+
+    send_cli_msg(client, "Elevation underway");
+    info->_ids = realloc(info->_ids, sizeof(amber_net_cli_t *) *
+        (info->_nb_players + 1));
+    info->_ids[info->_nb_players] = client;
+    info->_nb_players++;
+    trantor->_is_incantating = true;
 }

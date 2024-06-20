@@ -16,6 +16,7 @@
     #include "amber_check_arg.h"
     #include "amber_clock.h"
     #include "map.h"
+    #include "amber_queue_command.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -75,6 +76,7 @@ typedef struct amber_trantor_s {
     int _level;
     int _id;
     direction_t _direction;
+    char *_team_name;
     box_t *_inventory;
     bool _is_graphical;
     bool _is_incantating;
