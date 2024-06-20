@@ -56,7 +56,8 @@ GuiVR::GuiVR(android_app *app)
         } catch (std::exception &e) {
             throw EGE::Error("[PNW] Invalid level received : |" + args[5] + "|.");
         }
-        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], this->_timeUnit);
+        __android_log_print(ANDROID_LOG_INFO, "MYTAG", "in pnw LEVEL %d\n", level);
+        this->addPlayer(id, EGE::Maths::Vector2<int>(x, y), args[6], args[4], level, this->_timeUnit);
     });
 
     this->_client->addCommand("ppo", net::type_command_t::PPO, [this](std::vector<std::string>& args) {
@@ -135,6 +136,30 @@ GuiVR::GuiVR(android_app *app)
                 //     player->setPos(EGE::Maths::Vector2<int>(x, y));
                 //     player->setRotationString(rotation);
                 // });
+
+            }
+        }
+    });
+
+    this->_client->addCommand("plv", net::type_command_t::PLV, [this](std::vector<std::string>& args) {
+        if (args.size() != 3)
+            throw EGE::Error("[PLV] Wrong number of param.");
+        int id = 0;
+        int level = 0;
+        try {
+            id = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[PLV] Invalid id received : |" + args[1] + "|.");
+        }
+        try {
+            level = std::stoi(args[2]);
+        } catch (std::exception &e) {
+            throw EGE::Error("[PLV] Invalid level received : |" + args[2] + "|.");
+        }
+        for (auto &player : this->_players) {
+            if (player->getId() == id) {
+                std::cout << "set player " << id << " to level " << level << std::endl;
+                player->setLevel(level);
             }
         }
     });
@@ -150,11 +175,43 @@ GuiVR::GuiVR(android_app *app)
         }
         for (auto &player : this->_players) {
             if (player->getId() == id) {
+                this->_window->removeModel("Map", player->getModel());
                 this->_players.erase(std::remove(this->_players.begin(), this->_players.end(), player), this->_players.end());
                 break;
             }
         }
         __android_log_print(ANDROID_LOG_INFO, "MYTAG", "in pdi command\n");
+    });
+
+    this->_client->addCommand("enw", net::type_command_t::ENW, [this](std::vector<std::string>& args) {
+        if (args.size() != 5)
+            throw EGE::Error("[ENW] Wrong number of param.");
+        int eggId = 0;
+        int id = 0;
+        int x = 0;
+        int y = 0;
+        try {
+            eggId = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid egg id received : |" + args[1] + "|.");
+        }
+        try {
+            id = std::stoi(args[2].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid id received : |" + args[2] + "|.");
+        }
+        try {
+            x = std::atoi(args[3].c_str());
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid x position received : |" + args[3] + "|.");
+        }
+        try {
+            y = std::atoi(args[4].c_str());
+        } catch (std::exception &e) {
+            throw EGE::Error("[ENW] Invalid y position received : |" + args[4] + "|.");
+        }
+
+        // this->_map->addEgg(EGE::Maths::Vector3<int>(x, y, eggId));
     });
 
     this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
@@ -172,23 +229,21 @@ GuiVR::GuiVR(android_app *app)
     });
 
     this->_client->addCommand("idm", net::type_command_t::IDM, [this](std::vector<std::string>& args) {
-        std::cout << "IDM passed" << std::endl;
         if (args.size() != 3)
             throw EGE::Error("[IDM] Wrong number of param.");
-        for (const auto& arg : args)
-            std::cout << arg << std::endl;
         int id = std::stoi(args[1]);
         switch (args[2][0]) {
             case 'F':
             case 'L':
             case 'R':
                 this->_client->sendRequest("ppo #" + args[1] + "\n");
+            case 'I':
+                this->_client->sendRequest("plv #" + args[1] + "\n");
                 break;
             default:
                 throw EGE::Error("[IDM] Invalid change received : |" + args[2] + "|.");
                 break;
         }
-        __android_log_print(ANDROID_LOG_INFO, "MYTAG", "in idm command %s\n", args[1].c_str());
     });
 
     this->_client->sendRequest("msz\n");
@@ -223,8 +278,8 @@ void GuiVR::createMap(int width, int height)
     this->_map = std::make_shared<MapVR>(EGE::Maths::Vector2<int>(width, height), this->_window);
 }
 
-void GuiVR::addPlayer(int id, EGE::Maths::Vector2<int> position, const std::string &teamName, const std::string& rotation, float timeUnit)
+void GuiVR::addPlayer(int id, EGE::Maths::Vector2<int> position, const std::string &teamName, const std::string& rotation, int level, float timeUnit)
 {
-    this->_players.push_back(std::make_shared<PlayerVR>(id, teamName, position, rotation, timeUnit, this->_window));
+    this->_players.push_back(std::make_shared<PlayerVR>(id, teamName, position, rotation, level, timeUnit, this->_window));
 }
 

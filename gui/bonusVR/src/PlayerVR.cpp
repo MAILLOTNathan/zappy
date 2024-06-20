@@ -12,9 +12,10 @@ std::vector<std::shared_ptr<ItemVR>> PlayerVR::_items = {};
 static int currentColor = 1;
 
 
-PlayerVR::PlayerVR(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, float timeUnit, std::shared_ptr<EGE::WindowVR> window) : _teamName(teamName)
+PlayerVR::PlayerVR(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, int level, float timeUnit, std::shared_ptr<EGE::WindowVR> window) : _teamName(teamName)
 {
-    this->_level = 1;
+    __android_log_print(ANDROID_LOG_INFO, "MYTAG", "in player constructor\n");
+    this->_level = level;
     memset(this->_quantity, 0, sizeof(this->_quantity));
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::FOOD, window));
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::LINEMATE, window));
@@ -90,6 +91,13 @@ float PlayerVR::getDelta() const
 void PlayerVR::setLevel(int level)
 {
     this->_level = level;
+    this->_window->removeModel("Map", this->_model);
+    std::string mtl = EGE::UtilsVR::readAssetFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
+    this->_setColor(mtl);
+    gMemoryIOSystem->addFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl);
+    this->_model = std::make_shared<EGE::ModelVR>("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
+    this->_window->addModel("Map", this->_model);
+
 }
 
 int PlayerVR::getLevel() const
@@ -248,5 +256,5 @@ void PlayerVR::_setColor(std::string &fileContent)
     default:
         break;
     }
-    fileContent = std::regex_replace(fileContent, std::regex("diffuseColorMap: .*"), "diffuseColorMap: " + newFile);
+    fileContent = std::regex_replace(fileContent, std::regex("map_Kd .+"), "map_Kd " + newFile);
 }

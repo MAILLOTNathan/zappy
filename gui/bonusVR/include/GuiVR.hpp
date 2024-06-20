@@ -29,7 +29,7 @@ class GuiVR {
 
         void createMap(int width, int height);
 
-        void addPlayer(int id, EGE::Maths::Vector2<int> position, const std::string &teamName, const std::string &rotation, float timeUnit);
+        void addPlayer(int id, EGE::Maths::Vector2<int> position, const std::string &teamName, const std::string &rotation, int level, float timeUnit);
 
         std::shared_ptr<MapVR> _map;
     protected:
