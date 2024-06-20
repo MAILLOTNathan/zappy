@@ -7,7 +7,7 @@
 
 #include "amber_command_graphical.h"
 
-void amber_manage_command_graphical(amber_client_t *client, char **arg)
+void amber_manage_command_graphical(amber_net_cli_t *client, char **arg)
 {
     printf("[AMBER INFO] GRAPHICAL COMMAND: %s\n", arg[0]);
     for (int i = 0; graphical_commands[i]._command; i++) {
@@ -18,7 +18,7 @@ void amber_manage_command_graphical(amber_client_t *client, char **arg)
     }
 }
 
-static void check_command(amber_client_t *client, amber_world_t *world,
+static void check_command(amber_net_cli_t *client, amber_world_t *world,
     queue_command_t *tmp, list_t *clients)
 {
     for (int i = 0; graphical_commands[i]._command; i++) {
@@ -33,17 +33,17 @@ static void check_command(amber_client_t *client, amber_world_t *world,
 void amber_graphic_loop(amber_serv_t *server, amber_world_t *world)
 {
     linked_list_t *node = server->_graphic_clients->nodes;
-    amber_client_t *client = NULL;
+    amber_net_cli_t *client = NULL;
     queue_command_t *tmp = NULL;
 
     while (node) {
-        client = (amber_client_t *)node->data;
-        tmp = client->_queue_command;
+        client = (amber_net_cli_t *)node->data;
+        tmp = client->_data;
         while (tmp) {
             check_command(client, world, tmp, server->_clients);
             tmp = tmp->_next;
         }
-        queue_destroy(&client->_queue_command);
+        queue_destroy(&client->_data);
         node = node->next;
     }
 }

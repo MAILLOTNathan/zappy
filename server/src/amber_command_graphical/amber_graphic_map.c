@@ -8,12 +8,12 @@
 #include "amber_command_graphical.h"
 
 
-void amber_graphic_msz(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_msz(amber_net_cli_t *client, UNUSED char **arg)
 {
-    queue_push_back_d(&client->_queue_command, NULL, 0, T_MSZ);
+    queue_push_back_d(&client->_data, NULL, 0, T_MSZ);
 }
 
-void amber_graphic_bct(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_bct(amber_net_cli_t *client, UNUSED char **arg)
 {
     char *str = NULL;
 
@@ -28,17 +28,17 @@ void amber_graphic_bct(amber_client_t *client, UNUSED char **arg)
     queue_push_back_d(&client->_queue_command, str, 0, T_BCT);
 }
 
-void amber_graphic_mct(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_mct(amber_net_cli_t *client, UNUSED char **arg)
 {
     queue_push_back_d(&client->_queue_command, NULL, 0, T_MCT);
 }
 
-void amber_graphic_sgt(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_sgt(amber_net_cli_t *client, UNUSED char **arg)
 {
     queue_push_back_d(&client->_queue_command, NULL, 0, T_SGT);
 }
 
-void amber_graphic_sst(amber_client_t *client, char **arg)
+void amber_graphic_sst(amber_net_cli_t *client, char **arg)
 {
     if (length_string_array(arg) != 2) {
         snprintfizer(client, "sbp sst");

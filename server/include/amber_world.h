@@ -16,6 +16,7 @@
     #include "amber_check_arg.h"
     #include "amber_clock.h"
     #include "map.h"
+    #include "amber_queue_command.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
