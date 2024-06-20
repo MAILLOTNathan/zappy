@@ -8,38 +8,43 @@
 #include "amber_logic.h"
 #include <unistd.h>
 
-static void exec_logic_function(amber_client_t *cli, amber_world_t *wd,
+static void exec_logic_function(amber_net_cli_t *cli, amber_world_t *wd,
     amber_serv_t *serv)
 {
-    if (cli->_ellapsed_time >= get_time_in_microseconds())
+    amber_trantor_t *trantor = TRANTOR(cli);
+
+    if (trantor->_ellapsed_time >= get_time_in_microseconds())
         return;
     for (int i = 0; logic_commands[i]._func != NULL; i++)
-        if (cli->_queue_command->_command->_id == logic_commands[i]._command)
+        if (trantor->_queue_command->_command->_id ==
+            logic_commands[i]._command)
             logic_commands[i]._func(cli, wd, serv);
-    queue_pop_front(&cli->_queue_command);
-    if (queue_command_size(cli->_queue_command) == 0)
+    queue_pop_front(&trantor->_queue_command);
+    if (queue_command_size(trantor->_queue_command) == 0)
         return;
-    cli->_ellapsed_time = get_new_time_in_microseconds(
-        cli->_queue_command->_command->_time / wd->_freq);
+    trantor->_ellapsed_time = get_new_time_in_microseconds(
+        trantor->_queue_command->_command->_time / wd->_freq);
 }
 
 void amber_logic_loop(amber_serv_t *serv, amber_world_t *world)
 {
     linked_list_t *clients = NULL;
-    amber_client_t *tmp = NULL;
+    amber_net_cli_t *tmp = NULL;
+    amber_trantor_t *trantor = NULL;
 
     if (world->_clock < get_time_in_microseconds())
         amber_refill_world(world);
     amber_check_client_alive(serv, world);
     clients = serv->_clients->nodes;
     for (; clients; clients = clients->next) {
-        tmp = (amber_client_t *)clients->data;
-        if (tmp->_queue_command == NULL)
+        tmp = (amber_net_cli_t *)clients->data;
+        if (tmp->_type != AI)
             continue;
-        if (tmp->_is_incantating &&
-        tmp->_queue_command->_command->_id != T_INCANTATION)
+        trantor = TRANTOR(tmp);
+        if (trantor->_queue_command == NULL)
             continue;
-        if (!tmp->_queue_command || tmp->_team_name == NULL)
+        if (trantor->_is_incantating &&
+        trantor->_queue_command->_command->_id != T_INCANTATION)
             continue;
         exec_logic_function(tmp, world, serv);
     }

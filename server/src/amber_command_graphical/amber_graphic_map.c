@@ -8,14 +8,18 @@
 #include "amber_command_graphical.h"
 
 
-void amber_graphic_msz(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_msz(amber_net_cli_t *client, UNUSED char **arg)
 {
-    queue_push_back_d(&client->_queue_command, NULL, 0, T_MSZ);
+    queue_command_t *queue = QUEUE_CAST(client);
+
+    queue_push_back_d(&queue, NULL, 0, T_MSZ);
+    client->_data = queue;
 }
 
-void amber_graphic_bct(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_bct(amber_net_cli_t *client, UNUSED char **arg)
 {
     char *str = NULL;
+    queue_command_t *queue = QUEUE_CAST(client);
 
     if (length_string_array(arg) != 3) {
         snprintfizer(client, "sbp bct");
@@ -25,24 +29,34 @@ void amber_graphic_bct(amber_client_t *client, UNUSED char **arg)
     str = realloc(str, strlen(str) + strlen(arg[2]) + 2);
     strcat(str, " ");
     strcat(str, arg[2]);
-    queue_push_back_d(&client->_queue_command, str, 0, T_BCT);
+    queue_push_back_d(&queue, str, 0, T_BCT);
+    client->_data = queue;
 }
 
-void amber_graphic_mct(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_mct(amber_net_cli_t *client, UNUSED char **arg)
 {
-    queue_push_back_d(&client->_queue_command, NULL, 0, T_MCT);
+    queue_command_t *queue = QUEUE_CAST(client);
+
+    queue_push_back_d(&queue, NULL, 0, T_MCT);
+    client->_data = queue;
 }
 
-void amber_graphic_sgt(amber_client_t *client, UNUSED char **arg)
+void amber_graphic_sgt(amber_net_cli_t *client, UNUSED char **arg)
 {
-    queue_push_back_d(&client->_queue_command, NULL, 0, T_SGT);
+    queue_command_t *queue = QUEUE_CAST(client);
+
+    queue_push_back_d(&queue, NULL, 0, T_SGT);
+    client->_data = queue;
 }
 
-void amber_graphic_sst(amber_client_t *client, char **arg)
+void amber_graphic_sst(amber_net_cli_t *client, char **arg)
 {
+    queue_command_t *queue = QUEUE_CAST(client);
+
     if (length_string_array(arg) != 2) {
         snprintfizer(client, "sbp sst");
         return;
     }
-    queue_push_back_d(&client->_queue_command, strdup(arg[1]), 0, T_SST);
+    queue_push_back_d(&queue, strdup(arg[1]), 0, T_SST);
+    client->_data = queue;
 }

@@ -13,39 +13,26 @@
 
 void *amber_create_client(va_list *ap)
 {
-    amber_client_t *client = calloc(1, sizeof(amber_client_t));
+    amber_net_cli_t *client = calloc(1, sizeof(amber_net_cli_t));
 
     if (!client)
         return NULL;
     client->_buffer = NULL;
-    client->_queue_command = NULL;
     client->_tcp._fd = va_arg(*ap, int);
-    client->_is_graphical = va_arg(*ap, int);
+    client->_type = va_arg(*ap, client_type_t);
     client->_is_error = false;
-    client->_team_name = NULL;
-    client->_direction = UP;
-    client->_x = 0;
-    client->_y = 0;
-    client->_level = 1;
-    client->_inventory = NULL;
-    client->_is_incantating = false;
-    client->_clock_food = 0;
-    client->_ellapsed_time = 0;
-    client->_id = 0;
+    client->_data = NULL;
+    client->_id = -1;
     return client;
 }
 
 void amber_destroy_client(void *client)
 {
-    amber_client_t *tmp = (amber_client_t *)client;
+    amber_net_cli_t *tmp = (amber_net_cli_t *)client;
 
     close(tmp->_tcp._fd);
     if (tmp->_buffer)
         free(tmp->_buffer);
-    if (tmp->_team_name)
-        free(tmp->_team_name);
-    if (tmp->_queue_command)
-        queue_destroy(&tmp->_queue_command);
     free(tmp);
 }
 
@@ -55,13 +42,17 @@ static bool cmp(void *data, void *data_ref)
 }
 
 static void choose_handler(amber_world_t *world, amber_serv_t *server,
-    amber_client_t *client, char *cmd)
+    amber_net_cli_t *client, char *cmd)
 {
     char **arg = string_to_string_array(cmd);
 
     if (arg == NULL)
         return;
-    if (client->_is_graphical)
+    if (client->_type == UNKNOWN) {
+        amber_init_client(client, server, world, arg);
+        return;
+    }
+    if (client->_type == GRAPHIC)
         amber_manage_command_graphical(client, arg);
     else
         amber_manage_command_ai(world, server, client, arg);
@@ -69,7 +60,7 @@ static void choose_handler(amber_world_t *world, amber_serv_t *server,
 }
 
 static void eval_command(amber_world_t *world, amber_serv_t *server,
-    amber_client_t *client, char *buffer)
+    amber_net_cli_t *client, char *buffer)
 {
     char *match = NULL;
     char *cmd = NULL;
@@ -94,53 +85,41 @@ static void eval_command(amber_world_t *world, amber_serv_t *server,
 }
 
 void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
-    amber_client_t *client, list_t *clients)
+    amber_net_cli_t *client, list_t *clients)
 {
     char buffer[1025] = {0};
     int valread = read(client->_tcp._fd, buffer, 1024);
+    amber_trantor_t *trantor = TRANTOR(client);
 
     buffer[valread] = '\0';
     if (valread != 0)
         eval_command(world, server, client, buffer);
     if (valread == 0 || client->_is_error) {
-        if (client->_team_name != NULL) {
-            world->_case[client->_y][client->_x]._players--;
+        if (client->_type == AI) {
+            world->_case[trantor->_y][trantor->_x]._players--;
             amber_event_pdi(client, server->_graphic_clients);
         }
         printf("[AMBER INFO] Client %d died (lost connection)\n",
             client->_tcp._fd);
-        remove_node(&clients, list_find_node(
-        clients, client, cmp), true);
+        remove_node(&clients, list_find_node(clients, client, cmp), true);
         fflush(stdout);
         return;
     }
 }
 
-int amber_get_nbr_clients_by_team(amber_serv_t *server, char *team)
-{
-    linked_list_t *tmp = server->_clients->nodes;
-    int count = 0;
-
-    while (tmp) {
-        if (((amber_client_t *)tmp->data)->_team_name == NULL) {
-            tmp = tmp->next;
-            continue;
-        }
-        if (!strcmp(((amber_client_t *)tmp->data)->_team_name, team))
-            count++;
-        tmp = tmp->next;
-    }
-    return count;
-}
-
-amber_client_t *amber_get_client_by_id(list_t *clients, int id)
+amber_net_cli_t *amber_get_client_by_id(list_t *clients, int id)
 {
     linked_list_t *tmp = clients->nodes;
+    amber_trantor_t *trantor = NULL;
+    amber_net_cli_t *client = NULL;
 
-    while (tmp) {
-        if (((amber_client_t *)tmp->data)->_id == id)
-            return (amber_client_t *)tmp->data;
-        tmp = tmp->next;
+    for (; tmp; tmp = tmp->next) {
+        client = (amber_net_cli_t *)tmp->data;
+        if (client->_type != AI)
+            continue;
+        trantor = TRANTOR(client);
+        if (trantor->_id == id)
+            return client;
     }
     return NULL;
 }

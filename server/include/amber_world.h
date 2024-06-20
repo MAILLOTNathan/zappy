@@ -16,6 +16,7 @@
     #include "amber_check_arg.h"
     #include "amber_clock.h"
     #include "map.h"
+    #include "amber_queue_command.h"
 
     #define FOOD_DENSITY 0.5
     #define LINEMATE_DENSITY 0.3
@@ -68,6 +69,21 @@ typedef struct pair_s {
     int _c_value; /**< The current value. */
     int _m_value; /**< The maximum value. */
 } pair_int_t;
+
+typedef struct amber_trantor_s {
+    int _x;
+    int _y;
+    int _level;
+    int _id;
+    direction_t _direction;
+    char *_team_name;
+    box_t *_inventory;
+    bool _is_graphical;
+    bool _is_incantating;
+    unsigned long _ellapsed_time;
+    unsigned long _clock_food;
+    queue_command_t *_queue_command;
+} amber_trantor_t;
 
 /**
  * @brief Structure representing the Amber World.

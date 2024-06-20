@@ -8,25 +8,25 @@
 #include "amber_logic.h"
 #include "amber_command_graphical.h"
 
-static void change_inventory(amber_client_t *client,
+static void change_inventory(amber_trantor_t *trantor,
     box_t *ressource, bool mode)
 {
     if (mode) {
-        client->_inventory->_food += ressource->_food;
-        client->_inventory->_linemate += ressource->_linemate;
-        client->_inventory->_deraumere += ressource->_deraumere;
-        client->_inventory->_sibur += ressource->_sibur;
-        client->_inventory->_mendiane += ressource->_mendiane;
-        client->_inventory->_phiras += ressource->_phiras;
-        client->_inventory->_thystame += ressource->_thystame;
+        trantor->_inventory->_food += ressource->_food;
+        trantor->_inventory->_linemate += ressource->_linemate;
+        trantor->_inventory->_deraumere += ressource->_deraumere;
+        trantor->_inventory->_sibur += ressource->_sibur;
+        trantor->_inventory->_mendiane += ressource->_mendiane;
+        trantor->_inventory->_phiras += ressource->_phiras;
+        trantor->_inventory->_thystame += ressource->_thystame;
     } else {
-        client->_inventory->_food -= ressource->_food;
-        client->_inventory->_linemate -= ressource->_linemate;
-        client->_inventory->_deraumere -= ressource->_deraumere;
-        client->_inventory->_sibur -= ressource->_sibur;
-        client->_inventory->_mendiane -= ressource->_mendiane;
-        client->_inventory->_phiras -= ressource->_phiras;
-        client->_inventory->_thystame -= ressource->_thystame;
+        trantor->_inventory->_food -= ressource->_food;
+        trantor->_inventory->_linemate -= ressource->_linemate;
+        trantor->_inventory->_deraumere -= ressource->_deraumere;
+        trantor->_inventory->_sibur -= ressource->_sibur;
+        trantor->_inventory->_mendiane -= ressource->_mendiane;
+        trantor->_inventory->_phiras -= ressource->_phiras;
+        trantor->_inventory->_thystame -= ressource->_thystame;
     }
 }
 
@@ -49,7 +49,7 @@ static bool ressource_available(box_t *world_case, box_t *need)
     return true;
 }
 
-static bool take_ressource(amber_client_t *cli, amber_world_t *world,
+static bool take_ressource(amber_trantor_t *cli, amber_world_t *world,
     box_t *need)
 {
     box_t *copy = &world->_case[cli->_y][cli->_x];
@@ -105,13 +105,13 @@ static void drop_ressource_from_world(amber_world_t *world, box_t *res)
     world->_thystame_info._c_value += res->_thystame;
 }
 
-void amber_logic_take(amber_client_t *client, amber_world_t *world,
+void amber_logic_take(amber_net_cli_t *client, amber_world_t *world,
     amber_serv_t *serv)
 {
-    char *request = client->_queue_command->_command->_arg;
+    char *request = TRANTOR(client)->_queue_command->_command->_arg;
     box_t *ressource_needed = get_ressource_needed(request);
 
-    if (take_ressource(client, world, ressource_needed)) {
+    if (take_ressource(TRANTOR(client), world, ressource_needed)) {
         world->_food_info._c_value -= ressource_needed->_food;
         world->_linemate_info._c_value -= ressource_needed->_linemate;
         world->_deraumere_info._c_value -= ressource_needed->_deraumere;
@@ -125,26 +125,34 @@ void amber_logic_take(amber_client_t *client, amber_world_t *world,
     return send_cli_msg(client, "ko");
 }
 
-void amber_logic_set(amber_client_t *client, amber_world_t *world,
+void update_world_case(amber_world_t *world, amber_trantor_t *trantor,
+    box_t *ressource_needed)
+{
+    world->_case[trantor->_y][trantor->_x]._food += ressource_needed->_food;
+    world->_case[trantor->_y][trantor->_x]._linemate +=
+        ressource_needed->_linemate;
+    world->_case[trantor->_y][trantor->_x]._deraumere +=
+        ressource_needed->_deraumere;
+    world->_case[trantor->_y][trantor->_x]._sibur += ressource_needed->_sibur;
+    world->_case[trantor->_y][trantor->_x]._mendiane +=
+        ressource_needed->_mendiane;
+    world->_case[trantor->_y][trantor->_x]._phiras +=
+        ressource_needed->_phiras;
+    world->_case[trantor->_y][trantor->_x]._thystame +=
+        ressource_needed->_thystame;
+}
+
+void amber_logic_set(amber_net_cli_t *client, amber_world_t *world,
     UNUSED amber_serv_t *serv)
 {
-    char *request = client->_queue_command->_command->_arg;
+    amber_trantor_t *trantor = TRANTOR(client);
+    char *request = trantor->_queue_command->_command->_arg;
     box_t *ressource_needed = get_ressource_needed(request);
 
-    if (!ressource_available(client->_inventory, ressource_needed))
+    if (!ressource_available(trantor->_inventory, ressource_needed))
         return send_cli_msg(client, "ko");
-    world->_case[client->_y][client->_x]._food += ressource_needed->_food;
-    world->_case[client->_y][client->_x]._linemate +=
-        ressource_needed->_linemate;
-    world->_case[client->_y][client->_x]._deraumere +=
-        ressource_needed->_deraumere;
-    world->_case[client->_y][client->_x]._sibur += ressource_needed->_sibur;
-    world->_case[client->_y][client->_x]._mendiane +=
-        ressource_needed->_mendiane;
-    world->_case[client->_y][client->_x]._phiras += ressource_needed->_phiras;
-    world->_case[client->_y][client->_x]._thystame +=
-        ressource_needed->_thystame;
-    change_inventory(client, ressource_needed, false);
+    update_world_case(world, trantor, ressource_needed);
+    change_inventory(TRANTOR(client), ressource_needed, false);
     drop_ressource_from_world(world, ressource_needed);
     amber_event_pdr(client, serv->_graphic_clients, ressource_needed);
     return send_cli_msg(client, "ok");
