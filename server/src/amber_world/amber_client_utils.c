@@ -128,3 +128,17 @@ void snprintfizer(amber_net_cli_t *client, char *format, ...)
     send_cli_msg(client, str);
     free(str);
 }
+
+void amber_end_game(list_t *clients)
+{
+    amber_net_cli_t *client = NULL;
+    linked_list_t *tmp = clients->nodes;
+
+    for (; tmp; tmp = tmp->next) {
+        client = (amber_net_cli_t *)tmp->data;
+        if (client->_type != AI)
+            continue;
+        send_cli_msg(client, "dead");
+        client->_is_dead = true;
+    }
+}

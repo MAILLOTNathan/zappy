@@ -65,10 +65,10 @@ static void print_res_incantation(amber_net_cli_t *client, int level,
     amber_event_idmoved(client, server->_graphic_clients, 'I');
 }
 
-static void level_up_players(info_incantation_t *info, amber_serv_t *serv)
+static void level_up_players(info_incantation_t *info, amber_serv_t *serv,
+    amber_trantor_t *trantor)
 {
     amber_net_cli_t **ids = info->_ids;
-    amber_trantor_t *trantor = NULL;
 
     for (int i = 0; i < info->_nb_players; i++) {
         trantor = TRANTOR(ids[i]);
@@ -76,6 +76,12 @@ static void level_up_players(info_incantation_t *info, amber_serv_t *serv)
         trantor->_is_incantating = false;
         print_res_incantation(ids[i], trantor->_level, serv);
     }
+    if (trantor->_level != 8)
+        return;
+    if (!amber_check_winner(serv->_clients, trantor))
+        return;
+    amber_event_seg(serv->_graphic_clients, trantor->_team_name);
+    printf("[AMBER INFO] Team %s won the game\n", trantor->_team_name);
 }
 
 static void remove_from_info_world(amber_world_t *world, amber_trantor_t *trt,
@@ -123,7 +129,7 @@ void amber_logic_incantation(amber_net_cli_t *client, amber_world_t *world,
     if (!nbr_players_on_case_lvl(needs->_players, info))
         return incantion_failed(world, info);
     remove_from_info_world(world, trantor, needs);
-    level_up_players(info, serv);
+    level_up_players(info, serv, trantor);
     remove_node(&world->_incantation_grp,
         world->_incantation_grp->nodes, true);
 }

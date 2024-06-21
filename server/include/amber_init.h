@@ -82,7 +82,7 @@ typedef struct tcp_s {
 // } amber_client_t;
 
 typedef struct amber_net_cli_s {
-    bool _is_error;
+    bool _is_dead;
     int _id;
     tcp_t _tcp;
     char *_buffer;

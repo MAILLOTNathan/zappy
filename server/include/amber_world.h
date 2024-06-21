@@ -244,3 +244,15 @@ box_t *amber_world_case_init(void);
  * @param world The Amber world to initialize the egg in.
  */
 void amber_init_egg(amber_world_t *world);
+
+/**
+ * @brief Checks if there is a winner in the Amber World game.
+ *
+ * This function checks if there is a winner in the Amber World game
+ * by analyzing the state of the clients and the Trantor world.
+ *
+ * @param clients A pointer to the list of clients in the game.
+ * @param trantor A pointer to the Trantor world structure.
+ * @return Returns true if there is a winner, false otherwise.
+ */
+bool amber_check_winner(list_t *clients, amber_trantor_t *trantor);
