@@ -1,2 +1,8 @@
-NORMAL MODE : ./zappy_ai.py -n cedric -p 4242
-DEBUG MODE : ./zappy_ai.py --debug -p 4242
+## How to use :
+
+./zappy_ai -p 4242 -n team1 -k key
+
+./zappy_ay : Binary python file
+-p flag (NEEDED) : Desired port 4242 for example
+-n flag (NEEDED) : Desired team name
+-k flag (optionnal) : secret key to encrypt / decrypt broadcast message 
