@@ -1,49 +1,7 @@
 #!/usr/bin/python3
-import sys
 import debug_lib
-import time
-import socket
-
-
-def help_message():
-    """
-    Prints the usage message for the zappy_ai script.
-    """
-    print("USAGE: ./zappy_ai -p port -n name -h machine")
-    exit(0)
-
-def check_args(TuringAI):
-    """
-    Check the command line arguments and perform necessary actions based on the arguments.
-
-    If the number of arguments is less than 2 or the first argument is "-help", it calls the help_message function.
-    If the first argument is "--debug", it sets the debug flag to True and sends a debug request.
-
-    Args:
-        None
-
-    Returns:
-        None
-    """
-    for i in range(1, len(sys.argv)):
-        if sys.argv[i] == "-p":
-            TuringAI.port = int(sys.argv[i + 1])
-        elif sys.argv[i] == "-n":
-            TuringAI.team_name = sys.argv[i + 1]
-            if TuringAI.team_name == "GRAPHIC":
-                print("Error: Team name cannot be GRAPHIC.")
-                exit(84)
-        elif sys.argv[i] == "-h":
-            TuringAI.host = sys.argv[i + 1]
-    if (len(sys.argv) < 2) or sys.argv[1] == "-help":
-        help_message()
-    if sys.argv[1] == "--debug":
-        TuringAI.debug = True
-        return
-    if TuringAI.port == None or TuringAI.team_name == "":
-        help_message()
-
-
+import setup_utils
+import base64
 
 class food_collector:
     """
@@ -75,7 +33,6 @@ class food_collector:
         take_action: Takes action based on the given object and map.
 
     """
-    print("COLLECTOR INIT")
     debug = False
     port = None
     team_name = ""
@@ -97,7 +54,9 @@ class food_collector:
         self.host = "localhost"
         self.inventory = {"food": 10, "linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
         self.objectif = {"linemate": 0, "deraumere": 0, "sibur": 0, "mendiane": 0, "phiras": 0, "thystame": 0}
-
+        self.broadcast_key = ""
+        self.encrypted_key = ""
+    
     def elevate_parse(self, response):
         """
         Parses the response received after sending an elevation command.
@@ -114,19 +73,50 @@ class food_collector:
         """
         if response is None:
             exit(84)
+        if "Elevation" not in response.decode():
+            return response
         if "Elevation" in response.decode():
-            response = response.decode()
-            res = response.split('\n')
-            print("THE RES IS", res)
-            data = self.conn.read_line()
-            while data.decode().find("level") >= 0 or data.decode().find("ko") >= 0:
-                data = self.conn.read_line()
-                data = self.broadcast_parse(data)
-                if data.decode().find("level") >= 0:
+            response = self.conn.read_line()
+            while response.decode().find("Current") == -1:
+                response = self.broadcast_parse(response)
+                if 'dead' in response.decode():
+                    exit(84)
+                if 'ko' in response.decode():
+                    return self.conn.read_line()
+                if response.decode().find("Current") != -1:
                     self.level += 1
-                    return data
-            return data
+                    response = self.conn.read_line()
+                    return response
+                response = self.conn.read_line()
+            self.level += 1
+            return self.conn.read_line()
         return response
+
+    def decrypt_response(self, response):
+        """
+        Decrypt the response received from the server.
+
+        Args:
+            response (str): The response received from the server.
+
+        Returns:
+            str: The decrypted response.
+
+        Raises:
+            None
+        """
+        if response.find(self.broadcast_key) == -1:
+            return "pass"
+        
+        skip_string = self.broadcast_key + ":"
+        response_parts = response.split(skip_string)
+        encrypted_string = response_parts[1]
+        shift = sum(bytearray(self.encrypted_key.encode('utf-8'))) % 26
+        decrypted_string = caesar_cipher_decrypt(encrypted_string, shift)
+        final = response_parts[0] + decrypted_string
+        print("FINALLLL", final)
+
+        return final
 
     def broadcast_parse(self, response):
         """
@@ -145,14 +135,15 @@ class food_collector:
         if response == None:
             exit(0)
         if "message" in response.decode():
-            response = response.decode()
+            response = self.decrypt_response(response.decode())
+            if response == "pass":
+                return response
             res = response.split('\n')
             self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
-            print(res)
             result = res[0].split(' ')
             self.signal_angle = int(result[1].split(',')[0])
             self.wait = False
-            data = self.conn.s.recv(1024)
+            data = self.conn.read_line()
             data = self.broadcast_parse(data)
             return data
         return response
@@ -263,7 +254,6 @@ class food_collector:
             find = self.get_max_objectif()
             self.take_action(find, map)
         elif self.objectif_done() == True and self.wait == False:
-            print("gogogog")
             self.go_to_broadcast()
         return
 
@@ -297,7 +287,6 @@ def parse_look(response):
     Returns:
         str: The direction where there is the most food.
     """
-    print(response)
     tiles = response.strip('[]').split(',')
     if len(tiles) == 1:
         return []
@@ -324,6 +313,8 @@ def get_obj(map, obj):
                 x = i
                 y = e
                 nb = map[i][e].count(obj)
+                if map[i][e].count('player') > 2:
+                    nb = 1
     return x,y,nb
 
 def get_direction(x, y):
@@ -377,29 +368,38 @@ def find_path(direction : list, quantity, obj : str, ai: food_collector):
         res = ai.conn.send_request("Take " + obj)
         res = ai.elevate_parse(res)
         ai.broadcast_parse(res)
-        print(obj + " taken")
         ai.inventory[obj] = ai.inventory[obj] + 1
+
+def caesar_cipher_decrypt(text, shift):
+    result = ""
+    for char in text:
+        if char.isalpha():
+            shift_amount = shift % 26
+            if char.islower():
+                result += chr((ord(char) - ord('a') - shift_amount) % 26 + ord('a'))
+            elif char.isupper():
+                result += chr((ord(char) - ord('A') - shift_amount) % 26 + ord('A'))
+        else:
+            result += char
+    return result
 
 def main():
     a = 0
     bot : food_collector = food_collector()
-    check_args(bot)
+    setup_utils.check_args(bot)
     bot.conn = debug_lib.ServerConnection(bot)
     bot.conn.connect_to_server(bot.team_name)
-
+    bot.broadcast_key = base64.b64encode(bot.team_name.encode()).decode()
+ 
     while True:
-        if a == 1:
-            response = bot.elevate_parse(response)
         response = bot.conn.send_request('Look')
         response = bot.elevate_parse(response)
         response = bot.broadcast_parse(response)
-        response = bot.elevate_parse(response)
         if response == None or response == 'done':
             return
         map = parse_look(response.decode())
         bot.get_food()
         bot.priority_guide(map)
-        a = 1
 
 if __name__ == "__main__":
     main()

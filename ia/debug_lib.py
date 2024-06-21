@@ -36,9 +36,12 @@ class ServerConnection:
         else:
             self.HOST = ai.host
         self.PORT = ai.port
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.connect((self.HOST, self.PORT))
-        self.conn_num = 0
+        try :
+            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.s.connect((self.HOST, self.PORT))
+            self.conn_num = 0
+        except ConnectionRefusedError:
+            exit(84)
 
     def get_con_num(self, data):
         """
@@ -102,14 +105,19 @@ class ServerConnection:
 
         """
         data = self.s.recv(1024)
-        print(repr(data))
         self.s.sendall((team_name + "\n").encode())
         data = self.s.recv(1024)
-        print(repr(data))
         self.get_con_num(data)
         data = self.s.recv(1024)
-        print(repr(data)) 
 
+    def broad_cast(self,response, bot):
+        response = response.decode()
+        res = response.split('\n')
+        bot.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
+        result = res[0].split(' ')
+        bot.signal_angle = int(result[1].split(',')[0])
+        bot.wait = False
+        bot.data = bot.conn.s.recv(1024)
 
     def send_request(self, request):
         """

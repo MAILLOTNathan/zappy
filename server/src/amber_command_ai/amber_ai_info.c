@@ -7,17 +7,18 @@
 
 #include "amber_manage_command_ai.h"
 
-void amber_ai_look(amber_client_t *client, UNUSED char **arg)
+void amber_ai_look(amber_net_cli_t *client, UNUSED char **arg)
 {
-    queue_push_back_d(&client->_queue_command, NULL, 7, T_LOOK);
+    queue_push_back_d(&TRANTOR(client)->_queue_command, NULL, 7, T_LOOK);
 }
 
-void amber_ai_inventory(amber_client_t *client, UNUSED char **arg)
+void amber_ai_inventory(amber_net_cli_t *client, UNUSED char **arg)
 {
-    queue_push_back_d(&client->_queue_command, NULL, 1, T_INVENTORY);
+    queue_push_back_d(&TRANTOR(client)->_queue_command, NULL, 1, T_INVENTORY);
 }
 
-void amber_ai_connect_nbr(amber_client_t *client, UNUSED char **arg)
+void amber_ai_connect_nbr(amber_net_cli_t *client, UNUSED char **arg)
 {
-    queue_push_back_d(&client->_queue_command, NULL, 0, T_CONNECT_NBR);
+    queue_push_back_d(&TRANTOR(client)->_queue_command, NULL, 0,
+        T_CONNECT_NBR);
 }

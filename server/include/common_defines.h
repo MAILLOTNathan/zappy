@@ -60,4 +60,10 @@ typedef enum direction_s {
     LEFT    /**< Left direction */
 } direction_t;
 
+typedef enum client_type_s {
+    AI = 1,
+    GRAPHIC,
+    UNKNOWN
+} client_type_t;
+
 #endif /* !COMMONDEFINES_H_ */
