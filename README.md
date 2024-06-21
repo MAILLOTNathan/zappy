@@ -6,20 +6,20 @@ We had 5 weeks to make an entire simulation based on rules set by Epitech.
 In this project, we were 6 persons working on it.
 
 - Network side
-  - Léo Sautron
-  - Nathan Maillot
+  - [@Léo SAUTRON](https://github.com/ElPepitaux)
+  - [@Nathan MAILLOT](https://github.com/MAILLOTNathan)      
 This part of the project was restricted by without using threads and sub-process.
 
 - Artificial Intelligence
-  - Noah Lagrange Bacary
-  - Cédric Roulof
+  - [@Cédrid ROULOF](https://github.com/Shookapic)
+  - [@Noah LAGRANGE BACARY](https://github.com/noahlagrange)      
 Here, we were faced with algorithms, and understanding of AI actually.
 
 - Graphical User Interface
-  - Julien Ferdinand (OpenGL handling)
-  - Benjamin Lauret (UI/UX)
-  - Léo Sautron (OpenGL handling)
-  - Nathan Maillot (UI/UX and architecture)
+  - [@Julien FERDINAND](https://github.com/ju-lit-hein) (Etib Game Engine and its VR side)
+  - [@Benjamin LAURET](https://github.com/LAURETbenjamin) (UI/UX)
+  - [@Léo SAUTRON](https://github.com/ElPepitaux) (GUI and VR side)
+  - [@Nathan MAILLOT](https://github.com/MAILLOTNathan) (UI/UX and architecture)      
 The main goal was to make a cosy User Interface, user-friendly, and full of informations.
 
 Special thanks to Raphaël Turpin, who help us on OpenGL and VR implementation (thanks God).
@@ -126,3 +126,29 @@ To see the documentation about the project and how you can integrate your own ru
 Thanks for your visit !
 
 Nathan from Etib Corp.
+
+## Installation
+
+### Install Onyx dependencies
+
+#### For Ubuntu, run the following command :
+```bash
+sudo apt-get -y install g++ cmake build-essential libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libjpeg-dev libsndfile1-dev libopenal-dev libgl-dev libglfw3-dev libglm-dev libassimp-dev
+```
+
+#### For Fedora, run the following command :
+```bash
+sudo dnf -y install gcc-c++ cmake make libX11-devel libXrandr-devel freetype-devel libjpeg-turbo-devel openal-soft-devel libsndfile-devel glfw-devel glm-devel assimp-devel
+```
+
+#### For Arch Linux, run the following command :
+```bash
+sudo pacman -S --noconfirm gcc cmake make libx11 libxrandr freetype2 libjpeg openal libsndfile glfw-x11 glm assimp
+```
+
+Once you have installed the dependencies, you can clone the repository.
+
+Finally, to build the project, you just have to run the following command at the repository root :
+```bash
+make
+```
