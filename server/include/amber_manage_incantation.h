@@ -29,4 +29,7 @@ void amber_destroy_incantation_grp(void *data);
 void amber_add_player_to_incantation(info_incantation_t *info,
     amber_net_cli_t *client);
 
+void amber_remove_player_from_incantation(list_t *_incantation_grp,
+    amber_net_cli_t *client);
+
 #endif /* !AMBER_MANAGE_INCANTATION_H_ */

@@ -50,6 +50,8 @@ static bool nbr_players_on_case_lvl(int need_players, info_incantation_t *info)
     int count = 0;
 
     for (int i = 0; i < info->_nb_players; i++) {
+        if (ids[i] == NULL)
+            continue;
         trantor = TRANTOR(ids[i]);
         if (trantor->_x == info->_x && trantor->_y == info->_y &&
             trantor->_level == info->_level)
@@ -71,6 +73,8 @@ static void level_up_players(info_incantation_t *info, amber_serv_t *serv,
     amber_net_cli_t **ids = info->_ids;
 
     for (int i = 0; i < info->_nb_players; i++) {
+        if (ids[i] == NULL)
+            continue;
         trantor = TRANTOR(ids[i]);
         trantor->_level++;
         trantor->_is_incantating = false;
@@ -107,8 +111,10 @@ static void incantion_failed(amber_world_t *world, info_incantation_t *info)
     amber_net_cli_t **ids = info->_ids;
 
     for (int i = 0; i < info->_nb_players; i++) {
+        if (ids[i] == NULL)
+            continue;
         TRANTOR(ids[i])->_is_incantating = false;
-        send_cli_msg(ids[i], "ko 10");
+        send_cli_msg(ids[i], "ko");
     }
     remove_node(&world->_incantation_grp,
         world->_incantation_grp->nodes, true);
