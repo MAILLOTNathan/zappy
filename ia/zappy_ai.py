@@ -291,9 +291,6 @@ class TuringAI:
                 self.stay_alive(look, conn)
                 if self.check_level_up(res) == True:
                     self.do_incantation(conn)
-                res = self.crypted_broadcast(conn, look)
-                res = self.broadcast_parse(res, conn)
-                res = self.elevate_parse(conn, res)
                 launch_new_instance(self, look, conn)
                 if self.collector >= 1:
                     res = self.crypted_broadcast(conn, look)
@@ -449,7 +446,7 @@ def launch_new_instance(self, map, conn):
     def decrement_collector():
         self.collector -= 1
 
-    if map[0][1].count("food") < 4:
+    if map[0][1].count("food") < 6:
         res = conn.send_request("Fork")
         res = self.broadcast_parse(res, conn)
         self.elevate_parse(conn, res)

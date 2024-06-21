@@ -85,8 +85,6 @@ class food_collector:
         shift = sum(bytearray(self.encrypted_key.encode('utf-8'))) % 26
         decrypted_string = caesar_cipher_decrypt(encrypted_string, shift)
         final = response_parts[0] + decrypted_string
-        print("FINALLLL", final)
-
         return final
 
     def broadcast_parse(self, response):
@@ -181,32 +179,50 @@ class food_collector:
             None
         """
         self.wait = True
-        if self.signal_angle == 0:
-            for i in self.inventory:
-                if i != 'food':
-                    for y in range(self.inventory[i]):
-                        res = self.conn.send_request("Set " + i)
-                        res = self.elevate_parse(res)
-                        self.broadcast_parse(res)
-        if self.signal_angle == 1 or self.signal_angle == 3 or self.signal_angle == 7 :
-            res = self.conn.send_request("Forward")
-            res = self.elevate_parse(res)
-            self.broadcast_parse(res)
-        elif self.signal_angle == 3 or self.signal_angle == 4:
-            res = self.conn.send_request("Left")
-            res = self.elevate_parse(res)
-            self.broadcast_parse(res)
-        elif self.signal_angle == 7 or self.signal_angle == 6:
-            res = self.conn.send_request("Right")
-            res = self.elevate_parse(res)
-            self.broadcast_parse(res)
-        elif self.signal_angle == 5:
-            res = self.conn.send_request("Right")
-            res = self.elevate_parse(res)
-            self.broadcast_parse(res)
-            res = self.conn.send_request("Right")
-            res = self.elevate_parse(res)
-            self.broadcast_parse(res)
+        match self.signal_angle:
+
+            case 0:
+                for i in self.inventory:
+                    if i != 'food':
+                        for y in range(self.inventory[i]):
+                            res = self.conn.send_request("Set " + i)
+                            res = self.elevate_parse(res)
+                            self.broadcast_parse(res)
+            case 1:
+                res = self.conn.send_request("Forward")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+            case 3:
+                res = self.conn.send_request("Forward")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+            case 7:
+                res = self.conn.send_request("Forward")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+            case 3:
+                res = self.conn.send_request("Left")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+            case 4:
+                res = self.conn.send_request("Left")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+            case 7:
+                res = self.conn.send_request("Right")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+            case 6:
+                res = self.conn.send_request("Right")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+            case 5:
+                res = self.conn.send_request("Right")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
+                res = self.conn.send_request("Right")
+                res = self.elevate_parse(res)
+                self.broadcast_parse(res)
         return
 
     def priority_guide(self, map : list): 
