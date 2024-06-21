@@ -137,16 +137,6 @@ class TuringAI:
         if response == None:
             exit(0)
         if "message" in response.decode():
-            response = self.decrypt_response(response.decode())
-            if response == "pass":
-                data = conn.read_line()
-                data = self.broadcast_parse(data, conn)
-                return data
-            res = response.split('\n')
-            self.objectif = {"linemate": res[0].count("linemate"), "deraumere":  res[0].count("deraumere"), "sibur": res[0].count("sibur"), "mendiane": res[0].count("mendiane"), "phiras": res[0].count("phiras"), "thystame": res[0].count("thystame")}
-            result = res[0].split(' ')
-            self.signal_angle = int(result[1].split(',')[0])
-            self.wait = False
             data = conn.read_line()
             data = self.broadcast_parse(data, conn)
             return data
@@ -295,16 +285,19 @@ class TuringAI:
                 res = conn.send_request("Look")
                 res = self.broadcast_parse(res, conn)
                 res = self.elevate_parse(conn, res)
+                res = self.broadcast_parse(res, conn)
                 look = parse_look(res)
                 self.stay_alive(look, conn)
                 if self.check_level_up(res) == True:
                     self.do_incantation(conn)
                 res = self.crypted_broadcast(conn, look)
-                self.elevate_parse(conn, res)
+                res = self.broadcast_parse(res, conn)
+                res = self.elevate_parse(conn, res)
                 launch_new_instance(self, look, conn)
                 if self.collector >= 1:
                     res = self.crypted_broadcast(conn, look)
-                    self.elevate_parse(conn, res)
+                    res = self.broadcast_parse(res, conn)
+                    res = self.elevate_parse(conn, res)
                 self.get_food(conn)
 
     def __init__(self):
