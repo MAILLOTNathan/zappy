@@ -224,6 +224,7 @@ class TuringAI:
         if self.inventory["food"] > 5:
             return
         data = conn.send_request("Take food")
+        data = self.broadcast_parse(data, conn)
         self.elevate_parse(conn, data)
              
     def crypted_broadcast(self, conn, look):
