@@ -1,0 +1,616 @@
+\doxysection{EGE\+::Camera Class Reference}
+\hypertarget{classEGE_1_1Camera}{}\label{classEGE_1_1Camera}\index{EGE::Camera@{EGE::Camera}}
+
+
+The \doxylink{classEGE_1_1Camera}{Camera} class represents a camera in a 3D space.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Camera\+:
+% FIG 0
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149c}{Movement}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca328cf84514c4d9a4db16b783237fcec5}{FORWARD}}
+, \mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cad6a0684a84e68dbe93ec8c6c1eb81e26}{BACKWARD}}
+, \mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cae6953fb3ec8b61bd19b6012b170db046}{LEFT}}
+, \mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cab3b2e13ecff0f985c23ebe04cb2a4f96}{RIGHT}}
+, \newline
+\mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca2ac7467eba1608fd8a99ff638d760584}{UP}}
+, \mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca8f4b7f3e1c59a80fb77e6bb955fae53b}{DOWN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the possible directions in which the camera can move. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Camera_aaa5649bbdfeaa577f044da210fc3bd2a}{Camera}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ position=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$(0.\+0f, 0.\+0f, 0.\+0f), \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ up=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$(0.\+0f, 1.\+0f, 0.\+0f), float yaw=\mbox{\hyperlink{classEGE_1_1Camera_a11a777bdc6440aa52685007ae903c592}{YAW}}, float pitch=\mbox{\hyperlink{classEGE_1_1Camera_a4ed00b8011b3f0a7097340dd9aad38f3}{PITCH}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Camera}{Camera} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Camera_a7b953971d337b159d65644dafaa26b1b}{\texorpdfstring{$\sim$}{\string~}\+Camera}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Camera}{Camera} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \mbox{\hyperlink{classEGE_1_1Camera_a49ebe89e7b1de394e9fe951c0dd1b887}{get\+View\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Calculates the view matrix for the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a142197f86060a8b5a21215d36de92f05}{move}} (\mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149c}{Movement}} direction, float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Moves the camera based on the specified direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a3a6f73ad03800893422d312d706b9b16}{update}} (\mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} \&shader, float aspect)
+\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a79ba577fc179a743b94a92b5279c601a}{rotate}} (float xoffset, float yoffset, bool constrain\+Pitch=true)
+\begin{DoxyCompactList}\small\item\em Rotates the camera based on the specified offset values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a5e6e1a149dc4956f02455b2d98663bae}{zoom}} (float yoffset)
+\begin{DoxyCompactList}\small\item\em Zooms the camera based on the specified offset value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_aea11473305c26674472b25a2a5a39828}{set\+Position}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ position)
+\begin{DoxyCompactList}\small\item\em Sets the position of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a7888f084ae44c653c3a7c94e550db461}{set\+Front}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ front)
+\begin{DoxyCompactList}\small\item\em Sets the front vector of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_af20b26bc0597219ce1325ae9138e7b00}{set\+Up}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ up)
+\begin{DoxyCompactList}\small\item\em Sets the up vector of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a6bf0e53c31935c29ea402b30b5ec96da}{set\+Right}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ right)
+\begin{DoxyCompactList}\small\item\em Sets the right vector of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a163bd32998c8ce0897d85418527001fe}{set\+World\+Up}} (\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ world\+Up)
+\begin{DoxyCompactList}\small\item\em Sets the world up vector of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a4ab00a39153af1a5fcfd3a594bfbe262}{set\+Yaw}} (float yaw)
+\begin{DoxyCompactList}\small\item\em Sets the yaw angle of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_ae76ef3ab330366bfd9d3ea83454db8d6}{set\+Pitch}} (float pitch)
+\begin{DoxyCompactList}\small\item\em Sets the pitch angle of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a406ec27e9a63179c6dc731a32628b318}{set\+Speed}} (float speed)
+\begin{DoxyCompactList}\small\item\em Sets the speed of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a76c327ef089a034fefec8baf5b152831}{set\+Zoom}} (float \mbox{\hyperlink{classEGE_1_1Camera_a5e6e1a149dc4956f02455b2d98663bae}{zoom}})
+\begin{DoxyCompactList}\small\item\em Sets the zoom value of the camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Camera_a5737a39f685b82ed12665aac39129a3c}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Gets the position of the camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Camera_a749beccd1803c47ee370bd7d1ef394ab}{get\+Front}} () const
+\begin{DoxyCompactList}\small\item\em Gets the front vector of the camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Camera_acaa51bb1fe21a06558ba320b35f85b12}{get\+Up}} () const
+\begin{DoxyCompactList}\small\item\em Gets the up vector of the camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Camera_a1fd1e3730c0b1ac21394ca12c8b3ad5e}{get\+Right}} () const
+\begin{DoxyCompactList}\small\item\em Gets the right vector of the camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1Camera_ae7e56703a7793adc0c502fec63d4e25a}{get\+World\+Up}} () const
+\begin{DoxyCompactList}\small\item\em Gets the world up vector of the camera. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEGE_1_1Camera_a9983d7606cfd97e9e32144de436cf507}{get\+Yaw}} () const
+\begin{DoxyCompactList}\small\item\em Gets the yaw angle of the camera. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEGE_1_1Camera_a5af69d15183bc1c4e74108bce79abd4b}{get\+Pitch}} () const
+\begin{DoxyCompactList}\small\item\em Gets the pitch angle of the camera. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEGE_1_1Camera_a9cb7fb2b948952e69e26f1b374e24593}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Gets the speed of the camera. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEGE_1_1Camera_a9bf5fda5ec39957c038de5442040cb07}{get\+Zoom}} () const
+\begin{DoxyCompactList}\small\item\em Gets the zoom value of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Camera_a2fb1525434d99b9d51889ca7c525b25f}{set\+Sensitivity}} (float sensitivity)
+\begin{DoxyCompactList}\small\item\em Sets the sensitivity of the camera. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEGE_1_1Camera_a8621d2348d51c261b464d55945a230ad}{get\+Sensitivity}} () const
+\begin{DoxyCompactList}\small\item\em Gets the sensitivity of the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \mbox{\hyperlink{classEGE_1_1Camera_a8654f3322a6e56c17a1dca4be9ace98d}{\+\_\+view}}
+\begin{DoxyCompactList}\small\item\em The view matrix of the camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Maths\+::\+Matrix}}$<$ 4, 4, float $>$ \mbox{\hyperlink{classEGE_1_1Camera_a8ac22878eff23c02d5ee88ed6329527b}{\+\_\+projection}}
+\begin{DoxyCompactList}\small\item\em The projection matrix of the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr const float \mbox{\hyperlink{classEGE_1_1Camera_a11a777bdc6440aa52685007ae903c592}{YAW}} = -\/90.\+0f
+\begin{DoxyCompactList}\small\item\em Default yaw value. \end{DoxyCompactList}\item 
+static constexpr const float \mbox{\hyperlink{classEGE_1_1Camera_a4ed00b8011b3f0a7097340dd9aad38f3}{PITCH}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Default pitch value. \end{DoxyCompactList}\item 
+static constexpr const float \mbox{\hyperlink{classEGE_1_1Camera_af810c0956ad22ca4a96399e93ec1db19}{SPEED}} = 10.\+0f
+\begin{DoxyCompactList}\small\item\em Default speed value. \end{DoxyCompactList}\item 
+static constexpr const float \mbox{\hyperlink{classEGE_1_1Camera_a1d3ab447ba1359c2f860ae8c6b53eb97}{SENSITIVITY}} = 2.\+5f
+\begin{DoxyCompactList}\small\item\em Default sensitivity value. \end{DoxyCompactList}\item 
+static constexpr const float \mbox{\hyperlink{classEGE_1_1Camera_aae04b9283bf8b2ec80b007a12416ae00}{ZOOM}} = 45.\+0f
+\begin{DoxyCompactList}\small\item\em Default zoom value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1Camera}{Camera} class represents a camera in a 3D space. 
+
+Represents a camera in a 3D scene.
+
+The \doxylink{classEGE_1_1Camera}{Camera} class provides functionality to manipulate and control the position and orientation of a camera in a 3D scene. It also calculates the view matrix used for rendering objects from the perspective of the camera. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149c}\label{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149c} 
+\index{EGE::Camera@{EGE::Camera}!Movement@{Movement}}
+\index{Movement@{Movement}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{Movement}{Movement}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149c}{EGE\+::\+Camera\+::\+Movement}}}
+
+
+
+Represents the possible directions in which the camera can move. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FORWARD@{FORWARD}!EGE::Camera@{EGE::Camera}}\index{EGE::Camera@{EGE::Camera}!FORWARD@{FORWARD}}}\Hypertarget{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca328cf84514c4d9a4db16b783237fcec5}\label{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca328cf84514c4d9a4db16b783237fcec5} 
+FORWARD&Move the camera forward. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BACKWARD@{BACKWARD}!EGE::Camera@{EGE::Camera}}\index{EGE::Camera@{EGE::Camera}!BACKWARD@{BACKWARD}}}\Hypertarget{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cad6a0684a84e68dbe93ec8c6c1eb81e26}\label{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cad6a0684a84e68dbe93ec8c6c1eb81e26} 
+BACKWARD&Move the camera backward. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!EGE::Camera@{EGE::Camera}}\index{EGE::Camera@{EGE::Camera}!LEFT@{LEFT}}}\Hypertarget{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cae6953fb3ec8b61bd19b6012b170db046}\label{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cae6953fb3ec8b61bd19b6012b170db046} 
+LEFT&Move the camera left. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!EGE::Camera@{EGE::Camera}}\index{EGE::Camera@{EGE::Camera}!RIGHT@{RIGHT}}}\Hypertarget{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cab3b2e13ecff0f985c23ebe04cb2a4f96}\label{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149cab3b2e13ecff0f985c23ebe04cb2a4f96} 
+RIGHT&Move the camera right. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP@{UP}!EGE::Camera@{EGE::Camera}}\index{EGE::Camera@{EGE::Camera}!UP@{UP}}}\Hypertarget{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca2ac7467eba1608fd8a99ff638d760584}\label{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca2ac7467eba1608fd8a99ff638d760584} 
+UP&Move the camera up. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN@{DOWN}!EGE::Camera@{EGE::Camera}}\index{EGE::Camera@{EGE::Camera}!DOWN@{DOWN}}}\Hypertarget{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca8f4b7f3e1c59a80fb77e6bb955fae53b}\label{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149ca8f4b7f3e1c59a80fb77e6bb955fae53b} 
+DOWN&Move the camera down. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Camera_aaa5649bbdfeaa577f044da210fc3bd2a}\label{classEGE_1_1Camera_aaa5649bbdfeaa577f044da210fc3bd2a} 
+\index{EGE::Camera@{EGE::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily EGE\+::\+Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$}]{position = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$~float~$>$(0.0f,~0.0f,~0.0f)},  }\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$}]{up = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$~float~$>$(0.0f,~1.0f,~0.0f)},  }\item[{float}]{yaw = {\ttfamily \mbox{\hyperlink{classEGE_1_1Camera_a11a777bdc6440aa52685007ae903c592}{YAW}}},  }\item[{float}]{pitch = {\ttfamily \mbox{\hyperlink{classEGE_1_1Camera_a4ed00b8011b3f0a7097340dd9aad38f3}{PITCH}}} }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classEGE_1_1Camera}{Camera} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the camera in 3D space. \\
+\hline
+{\em up} & The up vector of the camera. \\
+\hline
+{\em yaw} & The yaw angle of the camera. \\
+\hline
+{\em pitch} & The pitch angle of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a7b953971d337b159d65644dafaa26b1b}\label{classEGE_1_1Camera_a7b953971d337b159d65644dafaa26b1b} 
+\index{EGE::Camera@{EGE::Camera}!````~Camera@{\texorpdfstring{$\sim$}{\string~}Camera}}
+\index{````~Camera@{\texorpdfstring{$\sim$}{\string~}Camera}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Camera()}{\string~Camera()}}
+{\footnotesize\ttfamily EGE\+::\+Camera\+::\texorpdfstring{$\sim$}{\string~}\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Camera}{Camera} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Camera_a749beccd1803c47ee370bd7d1ef394ab}\label{classEGE_1_1Camera_a749beccd1803c47ee370bd7d1ef394ab} 
+\index{EGE::Camera@{EGE::Camera}!getFront@{getFront}}
+\index{getFront@{getFront}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getFront()}{getFront()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Camera\+::get\+Front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the front vector of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The front vector of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a5af69d15183bc1c4e74108bce79abd4b}\label{classEGE_1_1Camera_a5af69d15183bc1c4e74108bce79abd4b} 
+\index{EGE::Camera@{EGE::Camera}!getPitch@{getPitch}}
+\index{getPitch@{getPitch}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getPitch()}{getPitch()}}
+{\footnotesize\ttfamily float EGE\+::\+Camera\+::get\+Pitch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the pitch angle of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The pitch angle of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a5737a39f685b82ed12665aac39129a3c}\label{classEGE_1_1Camera_a5737a39f685b82ed12665aac39129a3c} 
+\index{EGE::Camera@{EGE::Camera}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Camera\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the position of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The position of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a1fd1e3730c0b1ac21394ca12c8b3ad5e}\label{classEGE_1_1Camera_a1fd1e3730c0b1ac21394ca12c8b3ad5e} 
+\index{EGE::Camera@{EGE::Camera}!getRight@{getRight}}
+\index{getRight@{getRight}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getRight()}{getRight()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Camera\+::get\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the right vector of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The right vector of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a8621d2348d51c261b464d55945a230ad}\label{classEGE_1_1Camera_a8621d2348d51c261b464d55945a230ad} 
+\index{EGE::Camera@{EGE::Camera}!getSensitivity@{getSensitivity}}
+\index{getSensitivity@{getSensitivity}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getSensitivity()}{getSensitivity()}}
+{\footnotesize\ttfamily float EGE\+::\+Camera\+::get\+Sensitivity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the sensitivity of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The sensitivity of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a9cb7fb2b948952e69e26f1b374e24593}\label{classEGE_1_1Camera_a9cb7fb2b948952e69e26f1b374e24593} 
+\index{EGE::Camera@{EGE::Camera}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily float EGE\+::\+Camera\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the speed of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The speed of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_acaa51bb1fe21a06558ba320b35f85b12}\label{classEGE_1_1Camera_acaa51bb1fe21a06558ba320b35f85b12} 
+\index{EGE::Camera@{EGE::Camera}!getUp@{getUp}}
+\index{getUp@{getUp}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getUp()}{getUp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Camera\+::get\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the up vector of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The up vector of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a49ebe89e7b1de394e9fe951c0dd1b887}\label{classEGE_1_1Camera_a49ebe89e7b1de394e9fe951c0dd1b887} 
+\index{EGE::Camera@{EGE::Camera}!getViewMatrix@{getViewMatrix}}
+\index{getViewMatrix@{getViewMatrix}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getViewMatrix()}{getViewMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Maths\+::\+Matrix}}$<$ 4, 4, float $>$ EGE\+::\+Camera\+::get\+View\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Calculates the view matrix for the camera. 
+
+\begin{DoxyReturn}{Returns}
+The view matrix. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_ae7e56703a7793adc0c502fec63d4e25a}\label{classEGE_1_1Camera_ae7e56703a7793adc0c502fec63d4e25a} 
+\index{EGE::Camera@{EGE::Camera}!getWorldUp@{getWorldUp}}
+\index{getWorldUp@{getWorldUp}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getWorldUp()}{getWorldUp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Camera\+::get\+World\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the world up vector of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The world up vector of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a9983d7606cfd97e9e32144de436cf507}\label{classEGE_1_1Camera_a9983d7606cfd97e9e32144de436cf507} 
+\index{EGE::Camera@{EGE::Camera}!getYaw@{getYaw}}
+\index{getYaw@{getYaw}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getYaw()}{getYaw()}}
+{\footnotesize\ttfamily float EGE\+::\+Camera\+::get\+Yaw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the yaw angle of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The yaw angle of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a9bf5fda5ec39957c038de5442040cb07}\label{classEGE_1_1Camera_a9bf5fda5ec39957c038de5442040cb07} 
+\index{EGE::Camera@{EGE::Camera}!getZoom@{getZoom}}
+\index{getZoom@{getZoom}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{getZoom()}{getZoom()}}
+{\footnotesize\ttfamily float EGE\+::\+Camera\+::get\+Zoom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the zoom value of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The zoom value of the camera. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Camera_a142197f86060a8b5a21215d36de92f05}\label{classEGE_1_1Camera_a142197f86060a8b5a21215d36de92f05} 
+\index{EGE::Camera@{EGE::Camera}!move@{move}}
+\index{move@{move}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Camera_aca5c7bec67612a19493b0d53b689149c}{Movement}}}]{direction,  }\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Moves the camera based on the specified direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & The direction in which to move the camera. \\
+\hline
+{\em delta\+Time} & The time between the last frame and the current frame. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a79ba577fc179a743b94a92b5279c601a}\label{classEGE_1_1Camera_a79ba577fc179a743b94a92b5279c601a} 
+\index{EGE::Camera@{EGE::Camera}!rotate@{rotate}}
+\index{rotate@{rotate}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{rotate()}{rotate()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::rotate (\begin{DoxyParamCaption}\item[{float}]{xoffset,  }\item[{float}]{yoffset,  }\item[{bool}]{constrain\+Pitch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Rotates the camera based on the specified offset values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xoffset} & The offset value for the x-\/axis. \\
+\hline
+{\em yoffset} & The offset value for the y-\/axis. \\
+\hline
+{\em constrain\+Pitch} & Whether to constrain the pitch angle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a7888f084ae44c653c3a7c94e550db461}\label{classEGE_1_1Camera_a7888f084ae44c653c3a7c94e550db461} 
+\index{EGE::Camera@{EGE::Camera}!setFront@{setFront}}
+\index{setFront@{setFront}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setFront()}{setFront()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$}]{front }\end{DoxyParamCaption})}
+
+
+
+Sets the front vector of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em front} & The new front vector of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_ae76ef3ab330366bfd9d3ea83454db8d6}\label{classEGE_1_1Camera_ae76ef3ab330366bfd9d3ea83454db8d6} 
+\index{EGE::Camera@{EGE::Camera}!setPitch@{setPitch}}
+\index{setPitch@{setPitch}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setPitch()}{setPitch()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Pitch (\begin{DoxyParamCaption}\item[{float}]{pitch }\end{DoxyParamCaption})}
+
+
+
+Sets the pitch angle of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pitch} & The new pitch angle of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_aea11473305c26674472b25a2a5a39828}\label{classEGE_1_1Camera_aea11473305c26674472b25a2a5a39828} 
+\index{EGE::Camera@{EGE::Camera}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$}]{position }\end{DoxyParamCaption})}
+
+
+
+Sets the position of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The new position of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a6bf0e53c31935c29ea402b30b5ec96da}\label{classEGE_1_1Camera_a6bf0e53c31935c29ea402b30b5ec96da} 
+\index{EGE::Camera@{EGE::Camera}!setRight@{setRight}}
+\index{setRight@{setRight}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setRight()}{setRight()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$}]{right }\end{DoxyParamCaption})}
+
+
+
+Sets the right vector of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em right} & The new right vector of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a2fb1525434d99b9d51889ca7c525b25f}\label{classEGE_1_1Camera_a2fb1525434d99b9d51889ca7c525b25f} 
+\index{EGE::Camera@{EGE::Camera}!setSensitivity@{setSensitivity}}
+\index{setSensitivity@{setSensitivity}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setSensitivity()}{setSensitivity()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Sensitivity (\begin{DoxyParamCaption}\item[{float}]{sensitivity }\end{DoxyParamCaption})}
+
+
+
+Sets the sensitivity of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensitivity} & The new sensitivity of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a406ec27e9a63179c6dc731a32628b318}\label{classEGE_1_1Camera_a406ec27e9a63179c6dc731a32628b318} 
+\index{EGE::Camera@{EGE::Camera}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed }\end{DoxyParamCaption})}
+
+
+
+Sets the speed of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & The new speed of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_af20b26bc0597219ce1325ae9138e7b00}\label{classEGE_1_1Camera_af20b26bc0597219ce1325ae9138e7b00} 
+\index{EGE::Camera@{EGE::Camera}!setUp@{setUp}}
+\index{setUp@{setUp}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setUp()}{setUp()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$}]{up }\end{DoxyParamCaption})}
+
+
+
+Sets the up vector of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em up} & The new up vector of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a163bd32998c8ce0897d85418527001fe}\label{classEGE_1_1Camera_a163bd32998c8ce0897d85418527001fe} 
+\index{EGE::Camera@{EGE::Camera}!setWorldUp@{setWorldUp}}
+\index{setWorldUp@{setWorldUp}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setWorldUp()}{setWorldUp()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+World\+Up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Maths\+::\+Vector3}}$<$ float $>$}]{world\+Up }\end{DoxyParamCaption})}
+
+
+
+Sets the world up vector of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Up} & The new world up vector of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a4ab00a39153af1a5fcfd3a594bfbe262}\label{classEGE_1_1Camera_a4ab00a39153af1a5fcfd3a594bfbe262} 
+\index{EGE::Camera@{EGE::Camera}!setYaw@{setYaw}}
+\index{setYaw@{setYaw}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setYaw()}{setYaw()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Yaw (\begin{DoxyParamCaption}\item[{float}]{yaw }\end{DoxyParamCaption})}
+
+
+
+Sets the yaw angle of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em yaw} & The new yaw angle of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a76c327ef089a034fefec8baf5b152831}\label{classEGE_1_1Camera_a76c327ef089a034fefec8baf5b152831} 
+\index{EGE::Camera@{EGE::Camera}!setZoom@{setZoom}}
+\index{setZoom@{setZoom}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{setZoom()}{setZoom()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::set\+Zoom (\begin{DoxyParamCaption}\item[{float}]{zoom }\end{DoxyParamCaption})}
+
+
+
+Sets the zoom value of the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em zoom} & The new zoom value of the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Camera_a3a6f73ad03800893422d312d706b9b16}\label{classEGE_1_1Camera_a3a6f73ad03800893422d312d706b9b16} 
+\index{EGE::Camera@{EGE::Camera}!update@{update}}
+\index{update@{update}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Shader}{EGE\+::\+Shader}} \&}]{shader,  }\item[{float}]{aspect }\end{DoxyParamCaption})}
+
+\Hypertarget{classEGE_1_1Camera_a5e6e1a149dc4956f02455b2d98663bae}\label{classEGE_1_1Camera_a5e6e1a149dc4956f02455b2d98663bae} 
+\index{EGE::Camera@{EGE::Camera}!zoom@{zoom}}
+\index{zoom@{zoom}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{zoom()}{zoom()}}
+{\footnotesize\ttfamily void EGE\+::\+Camera\+::zoom (\begin{DoxyParamCaption}\item[{float}]{yoffset }\end{DoxyParamCaption})}
+
+
+
+Zooms the camera based on the specified offset value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em yoffset} & The offset value for the y-\/axis. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Camera_a8ac22878eff23c02d5ee88ed6329527b}\label{classEGE_1_1Camera_a8ac22878eff23c02d5ee88ed6329527b} 
+\index{EGE::Camera@{EGE::Camera}!\_projection@{\_projection}}
+\index{\_projection@{\_projection}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{\_projection}{\_projection}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Maths\+::\+Matrix}}$<$4, 4, float$>$ EGE\+::\+Camera\+::\+\_\+projection}
+
+
+
+The projection matrix of the camera. 
+
+\Hypertarget{classEGE_1_1Camera_a8654f3322a6e56c17a1dca4be9ace98d}\label{classEGE_1_1Camera_a8654f3322a6e56c17a1dca4be9ace98d} 
+\index{EGE::Camera@{EGE::Camera}!\_view@{\_view}}
+\index{\_view@{\_view}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{\_view}{\_view}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{Maths\+::\+Matrix}}$<$4, 4, float$>$ EGE\+::\+Camera\+::\+\_\+view}
+
+
+
+The view matrix of the camera. 
+
+\Hypertarget{classEGE_1_1Camera_a4ed00b8011b3f0a7097340dd9aad38f3}\label{classEGE_1_1Camera_a4ed00b8011b3f0a7097340dd9aad38f3} 
+\index{EGE::Camera@{EGE::Camera}!PITCH@{PITCH}}
+\index{PITCH@{PITCH}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{PITCH}{PITCH}}
+{\footnotesize\ttfamily constexpr const float EGE\+::\+Camera\+::\+PITCH = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Default pitch value. 
+
+\Hypertarget{classEGE_1_1Camera_a1d3ab447ba1359c2f860ae8c6b53eb97}\label{classEGE_1_1Camera_a1d3ab447ba1359c2f860ae8c6b53eb97} 
+\index{EGE::Camera@{EGE::Camera}!SENSITIVITY@{SENSITIVITY}}
+\index{SENSITIVITY@{SENSITIVITY}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{SENSITIVITY}{SENSITIVITY}}
+{\footnotesize\ttfamily constexpr const float EGE\+::\+Camera\+::\+SENSITIVITY = 2.\+5f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Default sensitivity value. 
+
+\Hypertarget{classEGE_1_1Camera_af810c0956ad22ca4a96399e93ec1db19}\label{classEGE_1_1Camera_af810c0956ad22ca4a96399e93ec1db19} 
+\index{EGE::Camera@{EGE::Camera}!SPEED@{SPEED}}
+\index{SPEED@{SPEED}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{SPEED}{SPEED}}
+{\footnotesize\ttfamily constexpr const float EGE\+::\+Camera\+::\+SPEED = 10.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Default speed value. 
+
+\Hypertarget{classEGE_1_1Camera_a11a777bdc6440aa52685007ae903c592}\label{classEGE_1_1Camera_a11a777bdc6440aa52685007ae903c592} 
+\index{EGE::Camera@{EGE::Camera}!YAW@{YAW}}
+\index{YAW@{YAW}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{YAW}{YAW}}
+{\footnotesize\ttfamily constexpr const float EGE\+::\+Camera\+::\+YAW = -\/90.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Default yaw value. 
+
+\Hypertarget{classEGE_1_1Camera_aae04b9283bf8b2ec80b007a12416ae00}\label{classEGE_1_1Camera_aae04b9283bf8b2ec80b007a12416ae00} 
+\index{EGE::Camera@{EGE::Camera}!ZOOM@{ZOOM}}
+\index{ZOOM@{ZOOM}!EGE::Camera@{EGE::Camera}}
+\doxysubsubsection{\texorpdfstring{ZOOM}{ZOOM}}
+{\footnotesize\ttfamily constexpr const float EGE\+::\+Camera\+::\+ZOOM = 45.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Default zoom value. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Camera_8hpp}{Camera.\+hpp}}\end{DoxyCompactItemize}

@@ -15,6 +15,9 @@ MapVR::MapVR(const EGE::Maths::Vector2<int>& size, std::shared_ptr<EGE::WindowVR
 {
     this->_size = size;
     this->_window = window;
+    if (this->_modelEgg == nullptr) {
+        this->_modelEgg = std::make_shared<EGE::ModelVR>("./assets/models/egg/egg.obj");
+    }
     for (int i = 0; i < size.y; i++) {
         for (int j = 0; j < size.x; j++) {
             this->_floor.push_back(std::make_shared<FloorVR>(EGE::Maths::Vector2<int>(j, i), window));

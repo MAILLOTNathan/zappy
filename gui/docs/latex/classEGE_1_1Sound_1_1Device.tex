@@ -1,0 +1,236 @@
+\doxysection{EGE\+::Sound\+::Device Class Reference}
+\hypertarget{classEGE_1_1Sound_1_1Device}{}\label{classEGE_1_1Sound_1_1Device}\index{EGE::Sound::Device@{EGE::Sound::Device}}
+
+
+Represents an audio device and its associated context.  
+
+
+
+
+{\ttfamily \#include $<$Device.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Sound\+::Device\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_1_1SoundDeviceError}{Sound\+Device\+Error}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classEGE_1_1Sound_1_1Device_1_1SoundDeviceError}{Sound\+Device\+Error} class represents an error related to the sound device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707}{Error\+Type}} \{ \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707a35e449b8915ea23ee0d7e62dcd839e9d}{NO\+\_\+\+ERROR}}
+, \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707a129d36e903adba8d81f1c740b8b9bdc9}{CAN\+\_\+\+NOT\+\_\+\+OPEN\+\_\+\+DEVICE}}
+, \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707ae25d0b93f14a2da2f3d8013a441ec72b}{CAN\+\_\+\+NOT\+\_\+\+CREATE\+\_\+\+CONTEXT}}
+, \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707ad990abfbe46ff2424cfc2996e254b323}{CAN\+\_\+\+NOT\+\_\+\+MAKE\+\_\+\+CONTEXT\+\_\+\+CURRENT}}
+ \}
+\begin{DoxyCompactList}\small\item\em The Error\+Type enum represents the possible error types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Device_afeab27b14dad00233f91bd255552057e}{Device}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{classEGE_1_1Sound_1_1Device}{Device} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Sound_1_1Device_a5e17e1b6a07f80e9e834d6035e0b2535}{\texorpdfstring{$\sim$}{\string~}\+Device}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Sound_1_1Device}{Device} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_af00878bc731cd56f0a8ee608e86d14ef}{refresh\+Devices}} ()
+\begin{DoxyCompactList}\small\item\em Refreshes the list of available sound devices. \end{DoxyCompactList}\item 
+ALCdevice \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_ae17196ac1bccbe3918953bbb5ae4ef23}{get\+Open\+ALMain\+Device}} ()
+\begin{DoxyCompactList}\small\item\em Returns the main Open\+AL device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aa0676089961fe6c4efa9a3d692b543fa}{set\+Open\+ALDevice}} (ALCdevice \texorpdfstring{$\ast$}{*}open\+ALDevice)
+\begin{DoxyCompactList}\small\item\em Sets the main Open\+AL device. \end{DoxyCompactList}\item 
+ALCcontext \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_a9206cbb7e61e034682abb72225ce6599}{get\+Open\+ALContext}} ()
+\begin{DoxyCompactList}\small\item\em Returns the Open\+AL context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_a58f4ab594e8126a85a003adec6b36a56}{set\+Open\+ALContext}} (ALCcontext \texorpdfstring{$\ast$}{*}open\+ALContext)
+\begin{DoxyCompactList}\small\item\em Sets the Open\+AL context. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_a52761fbb86648d75b19d1ea34c9030c1}{get\+Devices}} ()
+\begin{DoxyCompactList}\small\item\em Returns a vector of available sound devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ALCdevice \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aed81fafed07ae5cea22866dd377a624d}{\+\_\+open\+ALMain\+Device}}
+\begin{DoxyCompactList}\small\item\em The main Open\+AL device. \end{DoxyCompactList}\item 
+ALCcontext \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_a0ce0807f93e47d29d1f7c44529276254}{\+\_\+open\+ALMain\+Context}}
+\begin{DoxyCompactList}\small\item\em The Open\+AL context. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_afa02c87ea644c849014956d4b84e07fd}{\+\_\+devices}}
+\begin{DoxyCompactList}\small\item\em Vector of available sound devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an audio device and its associated context. 
+
+The \doxylink{classEGE_1_1Sound_1_1Device}{Device} class provides functionality to manage an audio device and its associated context using the Open\+AL library. It allows opening and closing the device, creating and setting the context, refreshing the available devices, and retrieving the list of available devices. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707}\label{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!ErrorType@{ErrorType}}
+\index{ErrorType@{ErrorType}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{ErrorType}{ErrorType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707}{EGE\+::\+Sound\+::\+Device\+::\+Error\+Type}}}
+
+
+
+The Error\+Type enum represents the possible error types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NO\_ERROR@{NO\_ERROR}!EGE::Sound::Device@{EGE::Sound::Device}}\index{EGE::Sound::Device@{EGE::Sound::Device}!NO\_ERROR@{NO\_ERROR}}}\Hypertarget{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707a35e449b8915ea23ee0d7e62dcd839e9d}\label{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707a35e449b8915ea23ee0d7e62dcd839e9d} 
+NO\+\_\+\+ERROR&No error. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_NOT\_OPEN\_DEVICE@{CAN\_NOT\_OPEN\_DEVICE}!EGE::Sound::Device@{EGE::Sound::Device}}\index{EGE::Sound::Device@{EGE::Sound::Device}!CAN\_NOT\_OPEN\_DEVICE@{CAN\_NOT\_OPEN\_DEVICE}}}\Hypertarget{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707a129d36e903adba8d81f1c740b8b9bdc9}\label{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707a129d36e903adba8d81f1c740b8b9bdc9} 
+CAN\+\_\+\+NOT\+\_\+\+OPEN\+\_\+\+DEVICE&Unable to open the device. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_NOT\_CREATE\_CONTEXT@{CAN\_NOT\_CREATE\_CONTEXT}!EGE::Sound::Device@{EGE::Sound::Device}}\index{EGE::Sound::Device@{EGE::Sound::Device}!CAN\_NOT\_CREATE\_CONTEXT@{CAN\_NOT\_CREATE\_CONTEXT}}}\Hypertarget{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707ae25d0b93f14a2da2f3d8013a441ec72b}\label{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707ae25d0b93f14a2da2f3d8013a441ec72b} 
+CAN\+\_\+\+NOT\+\_\+\+CREATE\+\_\+\+CONTEXT&Unable to create the context. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_NOT\_MAKE\_CONTEXT\_CURRENT@{CAN\_NOT\_MAKE\_CONTEXT\_CURRENT}!EGE::Sound::Device@{EGE::Sound::Device}}\index{EGE::Sound::Device@{EGE::Sound::Device}!CAN\_NOT\_MAKE\_CONTEXT\_CURRENT@{CAN\_NOT\_MAKE\_CONTEXT\_CURRENT}}}\Hypertarget{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707ad990abfbe46ff2424cfc2996e254b323}\label{classEGE_1_1Sound_1_1Device_aa7277dae36e8effaf83eee94f4f53707ad990abfbe46ff2424cfc2996e254b323} 
+CAN\+\_\+\+NOT\+\_\+\+MAKE\+\_\+\+CONTEXT\+\_\+\+CURRENT&Unable to make the context current. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Device_afeab27b14dad00233f91bd255552057e}\label{classEGE_1_1Sound_1_1Device_afeab27b14dad00233f91bd255552057e} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!Device@{Device}}
+\index{Device@{Device}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{Device()}{Device()}}
+{\footnotesize\ttfamily EGE\+::\+Sound\+::\+Device\+::\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for the \doxylink{classEGE_1_1Sound_1_1Device}{Device} class. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Device_a5e17e1b6a07f80e9e834d6035e0b2535}\label{classEGE_1_1Sound_1_1Device_a5e17e1b6a07f80e9e834d6035e0b2535} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!````~Device@{\texorpdfstring{$\sim$}{\string~}Device}}
+\index{````~Device@{\texorpdfstring{$\sim$}{\string~}Device}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Device()}{\string~Device()}}
+{\footnotesize\ttfamily EGE\+::\+Sound\+::\+Device\+::\texorpdfstring{$\sim$}{\string~}\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Sound_1_1Device}{Device} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Device_a52761fbb86648d75b19d1ea34c9030c1}\label{classEGE_1_1Sound_1_1Device_a52761fbb86648d75b19d1ea34c9030c1} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!getDevices@{getDevices}}
+\index{getDevices@{getDevices}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{getDevices()}{getDevices()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ EGE\+::\+Sound\+::\+Device\+::get\+Devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of available sound devices. 
+
+\begin{DoxyReturn}{Returns}
+A vector of strings representing the available sound devices. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Sound_1_1Device_a9206cbb7e61e034682abb72225ce6599}\label{classEGE_1_1Sound_1_1Device_a9206cbb7e61e034682abb72225ce6599} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!getOpenALContext@{getOpenALContext}}
+\index{getOpenALContext@{getOpenALContext}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{getOpenALContext()}{getOpenALContext()}}
+{\footnotesize\ttfamily ALCcontext \texorpdfstring{$\ast$}{*} EGE\+::\+Sound\+::\+Device\+::get\+Open\+ALContext (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the Open\+AL context. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the Open\+AL context. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Sound_1_1Device_ae17196ac1bccbe3918953bbb5ae4ef23}\label{classEGE_1_1Sound_1_1Device_ae17196ac1bccbe3918953bbb5ae4ef23} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!getOpenALMainDevice@{getOpenALMainDevice}}
+\index{getOpenALMainDevice@{getOpenALMainDevice}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{getOpenALMainDevice()}{getOpenALMainDevice()}}
+{\footnotesize\ttfamily ALCdevice \texorpdfstring{$\ast$}{*} EGE\+::\+Sound\+::\+Device\+::get\+Open\+ALMain\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the main Open\+AL device. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the main Open\+AL device. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Sound_1_1Device_af00878bc731cd56f0a8ee608e86d14ef}\label{classEGE_1_1Sound_1_1Device_af00878bc731cd56f0a8ee608e86d14ef} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!refreshDevices@{refreshDevices}}
+\index{refreshDevices@{refreshDevices}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{refreshDevices()}{refreshDevices()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Device\+::refresh\+Devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Refreshes the list of available sound devices. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Device_a58f4ab594e8126a85a003adec6b36a56}\label{classEGE_1_1Sound_1_1Device_a58f4ab594e8126a85a003adec6b36a56} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!setOpenALContext@{setOpenALContext}}
+\index{setOpenALContext@{setOpenALContext}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{setOpenALContext()}{setOpenALContext()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Device\+::set\+Open\+ALContext (\begin{DoxyParamCaption}\item[{ALCcontext \texorpdfstring{$\ast$}{*}}]{open\+ALContext }\end{DoxyParamCaption})}
+
+
+
+Sets the Open\+AL context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em open\+ALContext} & A pointer to the Open\+AL context to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Sound_1_1Device_aa0676089961fe6c4efa9a3d692b543fa}\label{classEGE_1_1Sound_1_1Device_aa0676089961fe6c4efa9a3d692b543fa} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!setOpenALDevice@{setOpenALDevice}}
+\index{setOpenALDevice@{setOpenALDevice}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{setOpenALDevice()}{setOpenALDevice()}}
+{\footnotesize\ttfamily void EGE\+::\+Sound\+::\+Device\+::set\+Open\+ALDevice (\begin{DoxyParamCaption}\item[{ALCdevice \texorpdfstring{$\ast$}{*}}]{open\+ALDevice }\end{DoxyParamCaption})}
+
+
+
+Sets the main Open\+AL device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em open\+ALDevice} & A pointer to the Open\+AL device to set. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Sound_1_1Device_afa02c87ea644c849014956d4b84e07fd}\label{classEGE_1_1Sound_1_1Device_afa02c87ea644c849014956d4b84e07fd} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!\_devices@{\_devices}}
+\index{\_devices@{\_devices}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{\_devices}{\_devices}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ EGE\+::\+Sound\+::\+Device\+::\+\_\+devices\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Vector of available sound devices. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Device_a0ce0807f93e47d29d1f7c44529276254}\label{classEGE_1_1Sound_1_1Device_a0ce0807f93e47d29d1f7c44529276254} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!\_openALMainContext@{\_openALMainContext}}
+\index{\_openALMainContext@{\_openALMainContext}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{\_openALMainContext}{\_openALMainContext}}
+{\footnotesize\ttfamily ALCcontext\texorpdfstring{$\ast$}{*} EGE\+::\+Sound\+::\+Device\+::\+\_\+open\+ALMain\+Context\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Open\+AL context. 
+
+\Hypertarget{classEGE_1_1Sound_1_1Device_aed81fafed07ae5cea22866dd377a624d}\label{classEGE_1_1Sound_1_1Device_aed81fafed07ae5cea22866dd377a624d} 
+\index{EGE::Sound::Device@{EGE::Sound::Device}!\_openALMainDevice@{\_openALMainDevice}}
+\index{\_openALMainDevice@{\_openALMainDevice}!EGE::Sound::Device@{EGE::Sound::Device}}
+\doxysubsubsection{\texorpdfstring{\_openALMainDevice}{\_openALMainDevice}}
+{\footnotesize\ttfamily ALCdevice\texorpdfstring{$\ast$}{*} EGE\+::\+Sound\+::\+Device\+::\+\_\+open\+ALMain\+Device\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The main Open\+AL device. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+Sound/\mbox{\hyperlink{Device_8hpp}{Device.\+hpp}}\end{DoxyCompactItemize}

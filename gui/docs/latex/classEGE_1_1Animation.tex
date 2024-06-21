@@ -1,0 +1,155 @@
+\doxysection{EGE\+::Animation Class Reference}
+\hypertarget{classEGE_1_1Animation}{}\label{classEGE_1_1Animation}\index{EGE::Animation@{EGE::Animation}}
+
+
+Class representing an animation.  
+
+
+
+
+{\ttfamily \#include $<$Animation.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Animation\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Animation_a8fb04bf8350368336b23bb1641028c8e}{Animation}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Animation_a8d2e0b49213579d19fc264d50cad9e30}{Animation}} (const std\+::string \&animatio\+Path, \mbox{\hyperlink{classEGE_1_1Model}{Model}} \texorpdfstring{$\ast$}{*}model)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classEGE_1_1Animation}{Animation} object with the given animation path and model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Animation_aedf28efbcc897cb3a34e7e764379ad56}{\texorpdfstring{$\sim$}{\string~}\+Animation}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Bone}{Bone}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Animation_a064a48a33e7fa356e5746a23ac5285ed}{find\+Bone}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Finds a bone with the given name in the animation. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEGE_1_1Animation_a9127a75b931622e87a4d41240120cd17}{get\+Tick\+Per\+Second}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ticks per second of the animation. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEGE_1_1Animation_ac9c1e25bbfdbddd359e417118b7a642b}{get\+Duration}} ()
+\begin{DoxyCompactList}\small\item\em Gets the duration of the animation. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structEGE_1_1AssimpNodeData}{Assimp\+Node\+Data}} \& \mbox{\hyperlink{classEGE_1_1Animation_aacd201587b38a6bcfa51310ad50f2436}{get\+Root\+Node}} () const
+\begin{DoxyCompactList}\small\item\em Gets the root node of the animation. \end{DoxyCompactList}\item 
+const std\+::map$<$ std\+::string, \mbox{\hyperlink{structEGE_1_1BoneInfo}{Bone\+Info}} $>$ \& \mbox{\hyperlink{classEGE_1_1Animation_a4c2160744c4b8c82c34b14a939fd1b30}{get\+Bone\+Info\+Map}} () const
+\begin{DoxyCompactList}\small\item\em Gets the map of bone information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing an animation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Animation_a8fb04bf8350368336b23bb1641028c8e}\label{classEGE_1_1Animation_a8fb04bf8350368336b23bb1641028c8e} 
+\index{EGE::Animation@{EGE::Animation}!Animation@{Animation}}
+\index{Animation@{Animation}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{Animation()}{Animation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily EGE\+::\+Animation\+::\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classEGE_1_1Animation_a8d2e0b49213579d19fc264d50cad9e30}\label{classEGE_1_1Animation_a8d2e0b49213579d19fc264d50cad9e30} 
+\index{EGE::Animation@{EGE::Animation}!Animation@{Animation}}
+\index{Animation@{Animation}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{Animation()}{Animation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily EGE\+::\+Animation\+::\+Animation (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{animatio\+Path,  }\item[{\mbox{\hyperlink{classEGE_1_1Model}{Model}} \texorpdfstring{$\ast$}{*}}]{model }\end{DoxyParamCaption})}
+
+
+
+Constructs an \doxylink{classEGE_1_1Animation}{Animation} object with the given animation path and model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animatio\+Path} & The path to the animation file. \\
+\hline
+{\em model} & The model associated with the animation. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Animation_aedf28efbcc897cb3a34e7e764379ad56}\label{classEGE_1_1Animation_aedf28efbcc897cb3a34e7e764379ad56} 
+\index{EGE::Animation@{EGE::Animation}!````~Animation@{\texorpdfstring{$\sim$}{\string~}Animation}}
+\index{````~Animation@{\texorpdfstring{$\sim$}{\string~}Animation}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Animation()}{\string~Animation()}}
+{\footnotesize\ttfamily EGE\+::\+Animation\+::\texorpdfstring{$\sim$}{\string~}\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Animation_a064a48a33e7fa356e5746a23ac5285ed}\label{classEGE_1_1Animation_a064a48a33e7fa356e5746a23ac5285ed} 
+\index{EGE::Animation@{EGE::Animation}!findBone@{findBone}}
+\index{findBone@{findBone}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{findBone()}{findBone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Bone}{Bone}} \texorpdfstring{$\ast$}{*} EGE\+::\+Animation\+::find\+Bone (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Finds a bone with the given name in the animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the bone to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the found bone, or nullptr if not found. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Animation_a4c2160744c4b8c82c34b14a939fd1b30}\label{classEGE_1_1Animation_a4c2160744c4b8c82c34b14a939fd1b30} 
+\index{EGE::Animation@{EGE::Animation}!getBoneInfoMap@{getBoneInfoMap}}
+\index{getBoneInfoMap@{getBoneInfoMap}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{getBoneInfoMap()}{getBoneInfoMap()}}
+{\footnotesize\ttfamily const std\+::map$<$ std\+::string, \mbox{\hyperlink{structEGE_1_1BoneInfo}{Bone\+Info}} $>$ \& EGE\+::\+Animation\+::get\+Bone\+Info\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the map of bone information. 
+
+\begin{DoxyReturn}{Returns}
+The map of bone information. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Animation_ac9c1e25bbfdbddd359e417118b7a642b}\label{classEGE_1_1Animation_ac9c1e25bbfdbddd359e417118b7a642b} 
+\index{EGE::Animation@{EGE::Animation}!getDuration@{getDuration}}
+\index{getDuration@{getDuration}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{getDuration()}{getDuration()}}
+{\footnotesize\ttfamily float EGE\+::\+Animation\+::get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the duration of the animation. 
+
+\begin{DoxyReturn}{Returns}
+The duration in seconds. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Animation_aacd201587b38a6bcfa51310ad50f2436}\label{classEGE_1_1Animation_aacd201587b38a6bcfa51310ad50f2436} 
+\index{EGE::Animation@{EGE::Animation}!getRootNode@{getRootNode}}
+\index{getRootNode@{getRootNode}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{getRootNode()}{getRootNode()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structEGE_1_1AssimpNodeData}{Assimp\+Node\+Data}} \& EGE\+::\+Animation\+::get\+Root\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the root node of the animation. 
+
+\begin{DoxyReturn}{Returns}
+The root node. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Animation_a9127a75b931622e87a4d41240120cd17}\label{classEGE_1_1Animation_a9127a75b931622e87a4d41240120cd17} 
+\index{EGE::Animation@{EGE::Animation}!getTickPerSecond@{getTickPerSecond}}
+\index{getTickPerSecond@{getTickPerSecond}!EGE::Animation@{EGE::Animation}}
+\doxysubsubsection{\texorpdfstring{getTickPerSecond()}{getTickPerSecond()}}
+{\footnotesize\ttfamily float EGE\+::\+Animation\+::get\+Tick\+Per\+Second (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the ticks per second of the animation. 
+
+\begin{DoxyReturn}{Returns}
+The ticks per second. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Animation_8hpp}{Animation.\+hpp}}\end{DoxyCompactItemize}

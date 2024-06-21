@@ -1,0 +1,223 @@
+\doxysection{EGE\+::GUI Class Reference}
+\hypertarget{classEGE_1_1GUI}{}\label{classEGE_1_1GUI}\index{EGE::GUI@{EGE::GUI}}
+
+
+The \doxylink{classEGE_1_1GUI}{GUI} class represents a graphical user interface.  
+
+
+
+
+{\ttfamily \#include $<$GUI.\+hpp$>$}
+
+
+
+Inheritance diagram for EGE\+::GUI\+:
+% FIG 0
+
+
+Collaboration diagram for EGE\+::GUI\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classEGE_1_1GUI_a1c6a6065e39ac7ebffb80f2e110e9a07}{\texorpdfstring{$\sim$}{\string~}\+GUI}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1GUI}{GUI} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEGE_1_1GUI_a2f327ccb324db64d91a5d8643263c7b5}{draw}} ()=0
+\begin{DoxyCompactList}\small\item\em Draws the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a53108c7e906ec4b2698424460dbfdad5}{init}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{classEGE_1_1GUI}{GUI} with a window. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_a2b9ebc4bc477127a26bd817c9e15071b}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a2e2e1da784eeae10a19527806ee85b5b}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_abef37bc1d78289a4039bae35d5ca5732}{set\+Window}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Sets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a95a018779bfd9414768209eb3c2ff516}{get\+Window}} () const
+\begin{DoxyCompactList}\small\item\em Gets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_af7cafc6d2a24cbeac515f388cb35d459}{set\+Visible}} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_a1b6a7ee168d21bf17973303d45856dd5}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the \doxylink{classEGE_1_1GUI}{GUI} is visible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a8e9db67256da924a7a19878e1eb04cbd}{\+\_\+window}}
+\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_aa70e32e7457f4dd7f17e6be70da0b758}{\+\_\+name}}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_abc5afa48d51ac54bf3bc1b29b3ffc902}{\+\_\+visible}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classEGE_1_1GUI}{GUI} class represents a graphical user interface. 
+
+This class provides an interface for creating and managing \doxylink{classEGE_1_1GUI}{GUI} elements. It defines common methods for drawing, initializing, and managing the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1GUI_a1c6a6065e39ac7ebffb80f2e110e9a07}\label{classEGE_1_1GUI_a1c6a6065e39ac7ebffb80f2e110e9a07} 
+\index{EGE::GUI@{EGE::GUI}!````~GUI@{\texorpdfstring{$\sim$}{\string~}GUI}}
+\index{````~GUI@{\texorpdfstring{$\sim$}{\string~}GUI}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GUI()}{\string~GUI()}}
+{\footnotesize\ttfamily virtual EGE\+::\+GUI\+::\texorpdfstring{$\sim$}{\string~}\+GUI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{classEGE_1_1GUI}{GUI} class. 
+
+This is a virtual destructor to allow proper cleanup when inheriting from this class. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1GUI_a2f327ccb324db64d91a5d8643263c7b5}\label{classEGE_1_1GUI_a2f327ccb324db64d91a5d8643263c7b5} 
+\index{EGE::GUI@{EGE::GUI}!draw@{draw}}
+\index{draw@{draw}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual void EGE\+::\+GUI\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Draws the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+This method is responsible for drawing the \doxylink{classEGE_1_1GUI}{GUI} elements on the screen. It should be implemented by derived classes. 
+
+Implemented in \mbox{\hyperlink{classEGE_1_1Button_ace6cdc87f59b91a0ee89a5c072923f5c}{EGE\+::\+Button}}, \mbox{\hyperlink{classEGE_1_1CheckBox_a954dc3708dabf36e4abd2d33c76447e5}{EGE\+::\+Check\+Box}}, \mbox{\hyperlink{classEGE_1_1ColorEditor_a5af063363361d3e46cede6a3391c285e}{EGE\+::\+Color\+Editor}}, \mbox{\hyperlink{classEGE_1_1Number_a1ea6557db29ea3e5304ec401a384b2f0}{EGE\+::\+Number}}, \mbox{\hyperlink{classEGE_1_1RadioButton_a11124c814ad329a97dbf8253b6f26bcd}{EGE\+::\+Radio\+Button}}, \mbox{\hyperlink{classEGE_1_1Slider_a0c2e21e2e01871f1dd4d3a09253cda67}{EGE\+::\+Slider}}, \mbox{\hyperlink{classEGE_1_1String_a2873a5523c11467e4d7c3c9da5c964ac}{EGE\+::\+String}}, \mbox{\hyperlink{classEGE_1_1ListBox_a09b4d486ebe4999aa179124224b0ace6}{EGE\+::\+List\+Box}}, \mbox{\hyperlink{classEGE_1_1Bar_a8d08433bd6ce572ef8ddc09b9b7b80c6}{EGE\+::\+Bar}}, \mbox{\hyperlink{classEGE_1_1Item_a153ef204d43be8c0595f15831d158363}{EGE\+::\+Item}}, \mbox{\hyperlink{classEGE_1_1Main_a1e0d8db6b38273e9f89a8ef4e52c02c3}{EGE\+::\+Main}}, \mbox{\hyperlink{classEGE_1_1Menu_a395ce99454959ef67a2e222e2cd5d026}{EGE\+::\+Menu}}, \mbox{\hyperlink{classEGE_1_1Panel_aec70492a3f55e7bbbc3d33a18be6ab13}{EGE\+::\+Panel}}, \mbox{\hyperlink{classEGE_1_1RadioButtonList_a5dc85609eb219587c041351937406382}{EGE\+::\+Radio\+Button\+List}}, and \mbox{\hyperlink{classEGE_1_1Text_a6aaea8e10d2da99bbceebed15e5358ba}{EGE\+::\+Text}}.
+
+\Hypertarget{classEGE_1_1GUI_a2b9ebc4bc477127a26bd817c9e15071b}\label{classEGE_1_1GUI_a2b9ebc4bc477127a26bd817c9e15071b} 
+\index{EGE::GUI@{EGE::GUI}!getName@{getName}}
+\index{getName@{getName}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string EGE\+::\+GUI\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the name of the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+This method returns the name of the \doxylink{classEGE_1_1GUI}{GUI}.
+
+\begin{DoxyReturn}{Returns}
+The name of the \doxylink{classEGE_1_1GUI}{GUI}. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GUI_a95a018779bfd9414768209eb3c2ff516}\label{classEGE_1_1GUI_a95a018779bfd9414768209eb3c2ff516} 
+\index{EGE::GUI@{EGE::GUI}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} EGE\+::\+GUI\+::get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+This method returns the window associated with the \doxylink{classEGE_1_1GUI}{GUI}.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GUI_a53108c7e906ec4b2698424460dbfdad5}\label{classEGE_1_1GUI_a53108c7e906ec4b2698424460dbfdad5} 
+\index{EGE::GUI@{EGE::GUI}!init@{init}}
+\index{init@{init}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void EGE\+::\+GUI\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+
+Initializes the \doxylink{classEGE_1_1GUI}{GUI} with a window. 
+
+This method initializes the \doxylink{classEGE_1_1GUI}{GUI} with the specified window. It should be called before using any other \doxylink{classEGE_1_1GUI}{GUI} methods.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the window to associate with the \doxylink{classEGE_1_1GUI}{GUI}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1GUI_a1b6a7ee168d21bf17973303d45856dd5}\label{classEGE_1_1GUI_a1b6a7ee168d21bf17973303d45856dd5} 
+\index{EGE::GUI@{EGE::GUI}!isVisible@{isVisible}}
+\index{isVisible@{isVisible}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{isVisible()}{isVisible()}}
+{\footnotesize\ttfamily bool EGE\+::\+GUI\+::is\+Visible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the \doxylink{classEGE_1_1GUI}{GUI} is visible. 
+
+This method checks if the \doxylink{classEGE_1_1GUI}{GUI} is currently visible.
+
+\begin{DoxyReturn}{Returns}
+True if the \doxylink{classEGE_1_1GUI}{GUI} is visible, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1GUI_a2e2e1da784eeae10a19527806ee85b5b}\label{classEGE_1_1GUI_a2e2e1da784eeae10a19527806ee85b5b} 
+\index{EGE::GUI@{EGE::GUI}!setName@{setName}}
+\index{setName@{setName}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void EGE\+::\+GUI\+::set\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Sets the name of the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+This method sets the name of the \doxylink{classEGE_1_1GUI}{GUI}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to set for the \doxylink{classEGE_1_1GUI}{GUI}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1GUI_af7cafc6d2a24cbeac515f388cb35d459}\label{classEGE_1_1GUI_af7cafc6d2a24cbeac515f388cb35d459} 
+\index{EGE::GUI@{EGE::GUI}!setVisible@{setVisible}}
+\index{setVisible@{setVisible}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{setVisible()}{setVisible()}}
+{\footnotesize\ttfamily void EGE\+::\+GUI\+::set\+Visible (\begin{DoxyParamCaption}\item[{bool}]{visible }\end{DoxyParamCaption})}
+
+
+
+Sets the visibility of the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+This method sets the visibility of the \doxylink{classEGE_1_1GUI}{GUI}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em visible} & The visibility state to set for the \doxylink{classEGE_1_1GUI}{GUI}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1GUI_abef37bc1d78289a4039bae35d5ca5732}\label{classEGE_1_1GUI_abef37bc1d78289a4039bae35d5ca5732} 
+\index{EGE::GUI@{EGE::GUI}!setWindow@{setWindow}}
+\index{setWindow@{setWindow}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{setWindow()}{setWindow()}}
+{\footnotesize\ttfamily void EGE\+::\+GUI\+::set\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+
+Sets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+This method sets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the window to associate with the \doxylink{classEGE_1_1GUI}{GUI}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1GUI_aa70e32e7457f4dd7f17e6be70da0b758}\label{classEGE_1_1GUI_aa70e32e7457f4dd7f17e6be70da0b758} 
+\index{EGE::GUI@{EGE::GUI}!\_name@{\_name}}
+\index{\_name@{\_name}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{\_name}{\_name}}
+{\footnotesize\ttfamily std\+::string EGE\+::\+GUI\+::\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+The name of the \doxylink{classEGE_1_1GUI}{GUI}. \Hypertarget{classEGE_1_1GUI_abc5afa48d51ac54bf3bc1b29b3ffc902}\label{classEGE_1_1GUI_abc5afa48d51ac54bf3bc1b29b3ffc902} 
+\index{EGE::GUI@{EGE::GUI}!\_visible@{\_visible}}
+\index{\_visible@{\_visible}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{\_visible}{\_visible}}
+{\footnotesize\ttfamily bool EGE\+::\+GUI\+::\+\_\+visible\hspace{0.3cm}{\ttfamily [protected]}}
+
+The visibility state of the \doxylink{classEGE_1_1GUI}{GUI}. \Hypertarget{classEGE_1_1GUI_a8e9db67256da924a7a19878e1eb04cbd}\label{classEGE_1_1GUI_a8e9db67256da924a7a19878e1eb04cbd} 
+\index{EGE::GUI@{EGE::GUI}!\_window@{\_window}}
+\index{\_window@{\_window}!EGE::GUI@{EGE::GUI}}
+\doxysubsubsection{\texorpdfstring{\_window}{\_window}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Window}{Window}}\texorpdfstring{$\ast$}{*} EGE\+::\+GUI\+::\+\_\+window\hspace{0.3cm}{\ttfamily [protected]}}
+
+A pointer to the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+GUI/\mbox{\hyperlink{GUI_8hpp}{GUI.\+hpp}}\end{DoxyCompactItemize}

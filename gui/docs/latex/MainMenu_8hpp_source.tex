@@ -1,0 +1,56 @@
+\doxysection{Main\+Menu.\+hpp}
+\hypertarget{MainMenu_8hpp_source}{}\label{MainMenu_8hpp_source}\index{include/MainMenu.hpp@{include/MainMenu.hpp}}
+\mbox{\hyperlink{MainMenu_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ zappy}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ MainMenu}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ MAINMENU\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MAINMENU\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Camera_8hpp}{Camera.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Window_8hpp}{Window.hpp}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{TcpClient_8hpp}{TcpClient.hpp}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Gui_8hpp}{Gui.hpp}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceOnyx}{Onyx}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOnyx_1_1MainMenu}{MainMenu}}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOnyx_1_1MainMenu_a05363d23ffc4d663f9cb610246591307}{MainMenu}}(\textcolor{keyword}{const}\ std::string\&\ ip,\ \textcolor{keywordtype}{int}\ port);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOnyx_1_1MainMenu_a51c7d11fcc698c2a7d9a271b5347466b}{\string~MainMenu}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a626683548508d3b6d7918460887f02f6}{update}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a42152a1d5bd077ca75c23911d3e2a26f}{loop}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a14f38cea6e30954f7e2531a2e07d91ca}{isRunning}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1MainMenu_ae9ab3c22c7f8c2babe6e60ecfa58e9c4}{createMainPanel}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpClient}{net::TcpClient}}\ *\mbox{\hyperlink{classOnyx_1_1MainMenu_a14034ab0b408c102b71ca71c172ae214}{getClient}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<EGE::Window>\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a4955e3f88318b3df8902e80d1e01bad2}{getWindow}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a112501a52efd32b6c2c308a4f8ff3050}{\_running}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpClient}{net::TcpClient}}\ *\mbox{\hyperlink{classOnyx_1_1MainMenu_a992ca3ef2f4e31325ef798c820b10504}{\_client}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<EGE::Window>\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a9ca071ce914f2691f953527c4d3404f9}{\_window}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<EGE::Camera>\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a2a89a748686196c3782cf82e34a889bb}{\_camera}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a5405c9631069b525a545a9d68e5e714f}{\_deltaTime}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Onyx::UserInterface>\ \mbox{\hyperlink{classOnyx_1_1MainMenu_ad5f4bf05c3394161c53d1d3da6823cca}{\_interface}};\ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classOnyx_1_1MainMenu_accd1f94e58fa6a3a23383ef717e17448}{\_ip}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classOnyx_1_1MainMenu_a59445b8967dbe7603cf8adcd5a83979a}{\_port}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \};}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !MAINMENU\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,195 @@
+\doxysection{Window\+VR.\+hpp}
+\hypertarget{WindowVR_8hpp_source}{}\label{WindowVR_8hpp_source}\index{ege/include/WindowVR.hpp@{ege/include/WindowVR.hpp}}
+\mbox{\hyperlink{WindowVR_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ WindowVR}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ HAND\_COUNT\ (2)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ MAX\_VIEWS\ (4)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ MAX\_SWAPCHAIN\_LENGTH\ (3)}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <EGL/egl.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <GLES3/gl3.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}external/vr/include/android\_native\_app\_glue.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <jni.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <android/log.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <android/native\_activity.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ModelVR_8hpp}{ModelVR.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Shader_8hpp}{Shader.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector3_8hpp}{Maths/Vector3.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Matrix_8hpp}{Maths/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ XR\_USE\_PLATFORM\_ANDROID}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ XR\_USE\_GRAPHICS\_API\_OPENGL\_ES}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}openxr/openxr.h"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}openxr/openxr\_platform.h"{}}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ LOGV(...)\ \_\_android\_log\_print(ANDROID\_LOG\_VERBOSE,\ "{}tag"{},\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1WindowVRError}{WindowVRError}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{EGE::Error}}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1WindowVRError_a97fcb9a0335636fab7df0cf2df9a3201}{WindowVRError}}(\textcolor{keyword}{const}\ std::string\ \&message)\ :\ \mbox{\hyperlink{namespaceEGE}{EGE}}::\mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00050\ \ \ \ \ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1WindowVR}{WindowVR}}\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1WindowVR_a91fb65c7cdde774a8141afa0f3d84838}{WindowVR}}(android\_app\ *app);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1WindowVR_aa06829866b0fb88c83dc9d530f531785}{\string~WindowVR}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a19eb20dc2688c32e2d079a66f24b765c}{create}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a4eba85ef5528ca4a0f7736496d09b4c9}{setWindowInit}}(\textcolor{keywordtype}{bool}\ is\_init);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a9af37fa892952ece97e49f0dce422b39}{getIsWindowInit}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a67b3a95114d73fcee7682e6d05849c2c}{appUpdatePumpEvents}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a3bf981de258bc4955d26567fc6caa572}{appUpdateBeginFrame}}();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_ab8235722b59e9f4e1bf4f9c2ae8a3edf}{appUpdateEndFrame}}();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1WindowVR_ab29272734921bc6625becd5a49af22c9}{isRunning}}();}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1WindowVR_ad4a7bf8202ed2b3d5f0b39710c3fb398}{isSessionReady}}();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ void\ setSessionReady(bool\ is\_ready);}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a8179bb6c82f8d1eb186241954aaa8582}{isShouldRender}}();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a2339b5729b3d704c33237b33a5ac9b53}{addModel}}(\textcolor{keyword}{const}\ std::string\ \&key,\ \textcolor{keyword}{const}\ std::shared\_ptr<ModelVR>\ \&model);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_ae8e7790a4f4f6e37586dbc1bd9339025}{removeModel}}(\textcolor{keyword}{const}\ std::string\ \&key,\ \textcolor{keyword}{const}\ std::shared\_ptr<ModelVR>\ \&model);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a2aa9ca80fc96b07719eace07d7e72493}{addNewSlot}}(\textcolor{keyword}{const}\ std::string\ \&key,\ \textcolor{keyword}{const}\ std::shared\_ptr<Shader>\ \&shader);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1WindowVR_a3ad9fd7fe4208fbac5a45c3074152940}{display}}();}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<std::shared\_ptr<Shader>,\ std::vector<std::shared\_ptr<ModelVR>>>>\ \_drawable;\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appSetCallbacksAndWait();}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitEgl();}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitXrCreateInstance();}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitXrGetSystem();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitXrEnumViews();}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitXrCreateSession();}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitXrCreateStageSpace();}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitXrCreateActions();}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitXrCreateSwapchains();}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appInitOpengl();}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_appUpdateBeginSession();}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ appUpdateSessionStateChange(XrSessionState\ state);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ void\ \_appInitOpenglShaders();}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ XrVector3f\ \_position;\ \ \ }
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Native\ app\ glue}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ android\_app\ *\_app;\ \ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_isWindowInit;\ \ \ \ \ }
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ EGL\ state\ required\ to\ initialise\ OpenXR}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ EGLDisplay\ \_eglDisplay;\ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ EGLConfig\ \_eglConfig;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ EGLContext\ \_eglContext;\ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ EGLSurface\ \_eglSurface;\ \ \ \ \ }
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OpenXR\ driver\ state}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ XrInstance\ \_instance;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ XrSystemId\ \_system;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ XrSession\ \_session;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Views}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_viewCount;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ XrViewConfigurationView\ \_viewConfigs[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}];\ \ \ \ }
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Spaces}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ XrSpace\ \_stageSpace;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ XrSpace\ \_handSpaces[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OpenXR\ paths\ (interned\ query\ strings)}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_touchControllerPath;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_handPaths[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_squeezeValuePaths[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_triggerValuePaths[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_posePaths[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_hapticPaths[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_menuClickPaths[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ XrPath\ \_thumbstickPaths[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action\ Set\ and\ Actions}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ XrActionSet\ \_actionSet;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ XrAction\ \_grabAction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ XrAction\ \_triggerAction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ XrAction\ \_triggerClickAction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ XrAction\ \_poseAction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ XrAction\ \_vibrateAction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ XrAction\ \_menuAction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ XrAction\ \_thumbstickAction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swapchains}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ \_swapchainWidths[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}];\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ \_swapchainHeights[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}];\ \ \ \ \ \ \ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_swapchainLengths[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}];\ \ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ XrSwapchain\ \_swapchains[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}];\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ XrSwapchainImageOpenGLESKHR\ \_swapchainImages[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}][\mbox{\hyperlink{WindowVR_8hpp_a410699dbf3f2e978b9c731e6fb92eeda}{MAX\_SWAPCHAIN\_LENGTH}}];\ \ \ \ \ \ }
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OpenGL\ state}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_boxProgram;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_backgroundProgram;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_screenProgram;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_framebuffer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_screenFramebuffer;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_screenTexture;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_depthTargets[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}];\ \ }
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ Controller\ Inputs}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ XrSpaceLocation\ \_handLocations[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ XrActionStateFloat\ \_triggerStates[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ XrActionStateBoolean\ \_triggerClickStates[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ XrActionStateVector2f\ \_thumbstickStates[\mbox{\hyperlink{WindowVR_8hpp_af57d0a76ef7e5d854ab01fe7b65d1280}{HAND\_COUNT}}];\ \ \ \ }
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Session\ State}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ XrSessionState\ \_sessionState;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ XrFrameState\ \_frameState;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_shouldRender;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_isRunning;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_isSessionReady;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_isSessionBeginEver;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Frame\ Submission}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_viewSubmitCount;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ XrCompositionLayerProjection\ \_projectionLayer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ XrCompositionLayerProjectionView\ \_projectionLayerViews[\mbox{\hyperlink{WindowVR_8hpp_a8a78887dc0393aa1b07fe9552a5f9308}{MAX\_VIEWS}}];\ \ \ \ \ \ }
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \};}
+\DoxyCodeLine{00305\ \}}
+
+\end{DoxyCode}

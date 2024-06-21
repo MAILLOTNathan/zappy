@@ -40,8 +40,11 @@ namespace net {
         EBO,    ///< Get the notification of an egg being laid
         EDI,    ///< Get the notification of an egg dying
         SGT,    ///< Get the time unit value
+        SST,    ///< Set the time unit value
         SEG,    ///< Get the end of the game
         SMG,    ///< Get a server message
+        SUC,   ///< Get the response to an unknown command
+        SBP,    ///< Get the response to a bad parameter
         IDM,    ///< Get the id of the player that moves or rotates
     } type_command_t;
 
@@ -76,10 +79,7 @@ namespace net {
             void exec(std::vector<std::string>& args);
 
         protected:
-            /**
-             * @brief The type of the command.
-             */
-            type_command_t _type;
+            type_command_t _type;       ///< The type of the command.
 
             /**
              * @brief A callable object that can hold and invoke a function with the signature:

@@ -1,0 +1,185 @@
+\doxysection{Vector2.\+hpp}
+\hypertarget{Vector2_8hpp_source}{}\label{Vector2_8hpp_source}\index{ege/include/Maths/Vector2.hpp@{ege/include/Maths/Vector2.hpp}}
+\mbox{\hyperlink{Vector2_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Vector2}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{glm_8hpp}{glm.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{namespace\ }Maths\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ requires\ std::is\_arithmetic<T>::value}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_1_1Vector2Error}{Vector2Error}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_1_1Vector2Error_a3ca611720927be213f14a84c9125e0f7}{Vector2Error}}(\textcolor{keyword}{const}\ std::string\ \&message)\ :\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_adb5e25dd68d8f037487bfe3657fa23f5}{Vector2}}()}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a7ba9bf6e431ec5b75e0c3c4e6e2459b4}{Vector2}}(\textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}},\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}})\ :\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}),\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}})\ \{\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a0d7604d0f197fc2862e151f6819a1c75}{Vector2}}(\textcolor{keyword}{const}\ glm::vec2\&\ vec)\ :\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}(vec.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}),\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}(vec.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}})\ \{\}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a9d50ab412f35b9557aae33df2491f38f}{\string~Vector2}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a3810a5d38a648c6f4ad6e4144806e17f}{length}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sqrt(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ *\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ +\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ *\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a90e1e415c5eda9f5e123bf9df39a1ee1}{distance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sqrt(pow(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ -\/\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}},\ 2)\ +\ pow(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ -\/\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}},\ 2));}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a60f6037b72ac5cbea998f0518326199f}{dot}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00118\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ *\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ +\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ *\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_adea19a2f93182aa6164c37b560e031d6}{cross}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ *\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ -\/\ this-\/>x\ *\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}},\ this-\/>x\ *\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ -\/\ this-\/>y\ *\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a28602c9584d6548d94e28a4ff80023d7}{normalize}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ len\ =\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a3810a5d38a648c6f4ad6e4144806e17f}{length}}();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ ==\ 0)}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_1_1Vector2Error}{Vector2Error}}(\textcolor{stringliteral}{"{}Cannot\ normalize\ a\ vector\ with\ length\ 0."{}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ /\ len,\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ /\ len);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_ab1562884c60702e5f6dcbf6d87879319}{faceForward}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ n)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a60f6037b72ac5cbea998f0518326199f}{dot}}(n)\ <\ 0\ ?\ n\ :\ n\ *\ -\/1;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af31831925f647418692201c7f8693738}{reflect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ n)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00164\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ -\/\ n\ *\ (2\ *\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a60f6037b72ac5cbea998f0518326199f}{dot}}(n));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a507b3b8f4d50a0c7d7f0680a625e5641}{refract}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ n,\ \textcolor{keywordtype}{double}\ eta)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ k\ =\ 1.0\ -\/\ eta\ *\ eta\ *\ (1.0\ -\/\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a60f6037b72ac5cbea998f0518326199f}{dot}}(n)\ *\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a60f6037b72ac5cbea998f0518326199f}{dot}}(n));}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (k\ <\ 0.0)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}();}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ *\ eta\ -\/\ n\ *\ (eta\ *\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a60f6037b72ac5cbea998f0518326199f}{dot}}(n)\ +\ sqrt(k));}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_aa658afa310a0039f87176f895182130d}{toGlmVec2}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00189\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::vec2(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}},\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}});}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_ae8e7a781bb23662af4be7a20d2bb688f}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00200\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ +\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}},\ this-\/>y\ +\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}});}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a3d4a0a3879618a0dc898cc5d6bca4219}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ +=\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ +=\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_aa9798468bb9182d860a59ddca79ac974}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00222\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ -\/\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}},\ this-\/>y\ -\/\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}});}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_ac8aaf228fe8d63631fab6bf24945e8cb}{operator-\/}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00232\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}(-\/this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}},\ -\/this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}});}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_aa993f28f1abb8b2a1b5903645e80c98e}{operator-\/=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ -\/=\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}};}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ -\/=\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a2d30ef3c4f380e6723832dfacb116fa6}{operator*}}(\textcolor{keyword}{const}\ T\&\ scalar)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00254\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ *\ scalar,\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ *\ scalar);}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_ab48c3c3631caed70df738437a9db1cc8}{operator*=}}(\textcolor{keyword}{const}\ T\&\ scalar)}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ *=\ scalar;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ *=\ scalar;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a43529e91a30ea430e3bcb22d163a3890}{operator/}}(\textcolor{keyword}{const}\ T\&\ scalar)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00276\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (scalar\ ==\ 0)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_1_1Vector2Error}{Vector2Error}}(\textcolor{stringliteral}{"{}Cannot\ divide\ by\ zero"{}});}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}(this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ /\ scalar,\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ /\ scalar);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a197c0b88475a6fffe3c8cd9ea7922fe3}{operator/=}}(\textcolor{keyword}{const}\ T\&\ scalar)}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (scalar\ ==\ 0)}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_1_1Vector2Error}{Vector2Error}}(\textcolor{stringliteral}{"{}Cannot\ divide\ by\ zero"{}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ /=\ scalar;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ /=\ scalar;}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a73ccf3254010ba85ed222f494aa76cc9}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00302\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ ==\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ \&\&\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ ==\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_aa94861f02fe77920ea04504e313e9768}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{Vector2<T>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00313\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ !=\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}}\ ||\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}}\ !=\ other.\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\&\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a89eb77206535d9a7f450d241dfc84006}{operator[]}}(\textcolor{keywordtype}{int}\ index)}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ 0)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}};}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (index\ ==\ 1)}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_1_1Vector2Error}{Vector2Error}}(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_ae539f84a3493ebeb8c8edc7f474d4f87}{operator[]}}(\textcolor{keywordtype}{int}\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00342\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ 0)}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}};}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (index\ ==\ 1)}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_1_1Vector2Error}{Vector2Error}}(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_a4a6682f32162caac59bd6a6d376cb428}{x}};\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2_af19dcc773923330ff553cab191aa0895}{y}};\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \}}
+
+\end{DoxyCode}

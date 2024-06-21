@@ -1,0 +1,51 @@
+\doxysection{Playlist.\+hpp}
+\hypertarget{Playlist_8hpp_source}{}\label{Playlist_8hpp_source}\index{ege/include/Sound/Playlist.hpp@{ege/include/Sound/Playlist.hpp}}
+\mbox{\hyperlink{Playlist_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Playlist}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Sound_8hpp}{Sound/Sound.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Utils_8hpp}{Utils.hpp}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{namespace\ }Sound\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist}{Playlist}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a387007ddcb1f85956059829aa18c1709}{Playlist}}(\textcolor{keyword}{const}\ std::string\ \&path);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a6cb1da7049d20c84b149eb2332c8b88f}{\string~Playlist}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a13fa1b8edb2486faba35c4a68fc9cc40}{play}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a5edec90323139bb02e50fb3b2496cbb7}{pause}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a2bde6a2349f43c5ee2ec8212422548f7}{playPause}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_adb26f7a183d361ba299187cbd053c97c}{stop}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a395049caeaa0342c38d5dd1802e1040b}{next}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_ad8f5c5e5db73814cb6635275bf3b807c}{previous}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<EGE::Sound::Sound\ *>\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a82ec98b819f5369aed7b181429174e1e}{\_musics}};\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_afc578f9f2ebffc0eed4f4c4eca55b823}{\_currentMusic}};\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Playlist_a8a876ec87392900998ef18f0b8f968e6}{\_isPlaying}};\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \}}
+
+\end{DoxyCode}

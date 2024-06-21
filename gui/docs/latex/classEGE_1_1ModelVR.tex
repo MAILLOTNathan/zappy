@@ -1,0 +1,179 @@
+\doxysection{EGE\+::Model\+VR Class Reference}
+\hypertarget{classEGE_1_1ModelVR}{}\label{classEGE_1_1ModelVR}\index{EGE::ModelVR@{EGE::ModelVR}}
+
+
+Class representing a 3D model.  
+
+
+
+
+{\ttfamily \#include $<$Model\+VR.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Model\+VR\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1ModelVR_1_1ModelError}{Model\+Error}}
+\begin{DoxyCompactList}\small\item\em Exception class for \doxylink{classEGE_1_1ModelVR}{Model\+VR} related errors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1ModelVR_a284531fe5d4ad31a6b5f08dbe0a2b9ca}{Model\+VR}} (const std\+::string \&path, const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$(0.\+0f, 0.\+0f, 0.\+0f), const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&rotation=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$(0.\+0f, 0.\+0f, 0.\+0f), const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&scale=\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$(1.\+0f, 1.\+0f, 1.\+0f), bool flip\+Texture=false, bool force\+Reload=false)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classEGE_1_1ModelVR}{Model\+VR}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1ModelVR_a99f98858ce587b6dd1c36a9d37112753}{\texorpdfstring{$\sim$}{\string~}\+Model\+VR}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{classEGE_1_1ModelVR}{Model\+VR}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1ModelVR_ad7b7c4b0607bc1eaa754b3043f938268}{draw}} (\mbox{\hyperlink{classEGE_1_1Shader}{Shader}} \&shader)
+\begin{DoxyCompactList}\small\item\em Draws the model using a shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1ModelVR_adb9c414ed35bf14a12ce43086f860386}{set\+Position}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&position)
+\begin{DoxyCompactList}\small\item\em Set the position og the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1ModelVR_a9f43b81799bbfaacee836fe84b10dc28}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Returns the position of the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1ModelVR_a0fcf80228ebde62e544a60b68b61afb4}{set\+Scale}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&scale)
+\begin{DoxyCompactList}\small\item\em Set the scale of the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1ModelVR_a00daca24730e961b38ac6fa04e439001}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Returns the scale of the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \mbox{\hyperlink{classEGE_1_1ModelVR_a3eac1ccc78f4375d8d093479e08d7079}{get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em Returns the rotation of the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1ModelVR_af48d652bfee63ceeb0d064537412762d}{set\+Rotation}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&rotation)
+\begin{DoxyCompactList}\small\item\em Set the rotation of the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a 3D model. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1ModelVR_a284531fe5d4ad31a6b5f08dbe0a2b9ca}\label{classEGE_1_1ModelVR_a284531fe5d4ad31a6b5f08dbe0a2b9ca} 
+\index{EGE::ModelVR@{EGE::ModelVR}!ModelVR@{ModelVR}}
+\index{ModelVR@{ModelVR}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{ModelVR()}{ModelVR()}}
+{\footnotesize\ttfamily EGE\+::\+Model\+VR\+::\+Model\+VR (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{position = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$~float~$>$(0.0f,~0.0f,~0.0f)},  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{rotation = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$~float~$>$(0.0f,~0.0f,~0.0f)},  }\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{scale = {\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$~float~$>$(1.0f,~1.0f,~1.0f)},  }\item[{bool}]{flip\+Texture = {\ttfamily false},  }\item[{bool}]{force\+Reload = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classEGE_1_1ModelVR}{Model\+VR}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the model file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1ModelVR_a99f98858ce587b6dd1c36a9d37112753}\label{classEGE_1_1ModelVR_a99f98858ce587b6dd1c36a9d37112753} 
+\index{EGE::ModelVR@{EGE::ModelVR}!````~ModelVR@{\texorpdfstring{$\sim$}{\string~}ModelVR}}
+\index{````~ModelVR@{\texorpdfstring{$\sim$}{\string~}ModelVR}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ModelVR()}{\string~ModelVR()}}
+{\footnotesize\ttfamily EGE\+::\+Model\+VR\+::\texorpdfstring{$\sim$}{\string~}\+Model\+VR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for \doxylink{classEGE_1_1ModelVR}{Model\+VR}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1ModelVR_ad7b7c4b0607bc1eaa754b3043f938268}\label{classEGE_1_1ModelVR_ad7b7c4b0607bc1eaa754b3043f938268} 
+\index{EGE::ModelVR@{EGE::ModelVR}!draw@{draw}}
+\index{draw@{draw}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+VR\+::draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEGE_1_1Shader}{Shader}} \&}]{shader }\end{DoxyParamCaption})}
+
+
+
+Draws the model using a shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader to use for drawing. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1ModelVR_a9f43b81799bbfaacee836fe84b10dc28}\label{classEGE_1_1ModelVR_a9f43b81799bbfaacee836fe84b10dc28} 
+\index{EGE::ModelVR@{EGE::ModelVR}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Model\+VR\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the position of the model. 
+
+\begin{DoxyReturn}{Returns}
+Vector3 of float that is the position of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1ModelVR_a3eac1ccc78f4375d8d093479e08d7079}\label{classEGE_1_1ModelVR_a3eac1ccc78f4375d8d093479e08d7079} 
+\index{EGE::ModelVR@{EGE::ModelVR}!getRotation@{getRotation}}
+\index{getRotation@{getRotation}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{getRotation()}{getRotation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Model\+VR\+::get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the rotation of the model. 
+
+\begin{DoxyReturn}{Returns}
+Vector3 of float that is the rotation of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1ModelVR_a00daca24730e961b38ac6fa04e439001}\label{classEGE_1_1ModelVR_a00daca24730e961b38ac6fa04e439001} 
+\index{EGE::ModelVR@{EGE::ModelVR}!getScale@{getScale}}
+\index{getScale@{getScale}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ EGE\+::\+Model\+VR\+::get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the scale of the model. 
+
+\begin{DoxyReturn}{Returns}
+Vector3 of float that is the scale of the model 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1ModelVR_adb9c414ed35bf14a12ce43086f860386}\label{classEGE_1_1ModelVR_adb9c414ed35bf14a12ce43086f860386} 
+\index{EGE::ModelVR@{EGE::ModelVR}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+VR\+::set\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Set the position og the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Vector3 of float that is the new position of the model \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1ModelVR_af48d652bfee63ceeb0d064537412762d}\label{classEGE_1_1ModelVR_af48d652bfee63ceeb0d064537412762d} 
+\index{EGE::ModelVR@{EGE::ModelVR}!setRotation@{setRotation}}
+\index{setRotation@{setRotation}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{setRotation()}{setRotation()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+VR\+::set\+Rotation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{rotation }\end{DoxyParamCaption})}
+
+
+
+Set the rotation of the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & Vector3 of float that is the new rotation of the model \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1ModelVR_a0fcf80228ebde62e544a60b68b61afb4}\label{classEGE_1_1ModelVR_a0fcf80228ebde62e544a60b68b61afb4} 
+\index{EGE::ModelVR@{EGE::ModelVR}!setScale@{setScale}}
+\index{setScale@{setScale}!EGE::ModelVR@{EGE::ModelVR}}
+\doxysubsubsection{\texorpdfstring{setScale()}{setScale()}}
+{\footnotesize\ttfamily void EGE\+::\+Model\+VR\+::set\+Scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE\+::\+Maths\+::\+Vector3}}$<$ float $>$ \&}]{scale }\end{DoxyParamCaption})}
+
+
+
+Set the scale of the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & Vector3 of float that is the new scale of the model \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{ModelVR_8hpp}{Model\+VR.\+hpp}}\end{DoxyCompactItemize}

@@ -7,7 +7,15 @@
 
 #pragma once
 
-#define CELL_SIZE 3
+#define CELL_SIZE 9
+
+#define foodPosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE - CELL_SIZE / 4.0f, 3.0f, position.y * CELL_SIZE - CELL_SIZE / 4.0f) ///< The position of the food item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
+#define linematePosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 3.0f, position.y * CELL_SIZE - CELL_SIZE / 4.0f) ///< The position of the linemate item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
+#define deraumerePosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE + CELL_SIZE / 4.0f, 3.0f, position.y * CELL_SIZE - CELL_SIZE / 4.0f) ///< The position of the deraumere item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
+#define siburPosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE - CELL_SIZE / 4.0f, 3.0f, position.y * CELL_SIZE) ///< The position of the sibur item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
+#define mendianePosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE + CELL_SIZE / 4.0f, 3.0f, position.y * CELL_SIZE) ///< The position of the mendiane item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
+#define phirasPosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE - CELL_SIZE / 4.0f, 3.0f, position.y * CELL_SIZE + CELL_SIZE / 4.0f) ///< The position of the phiras item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
+#define thystamePosition EGE::Maths::Vector3<float>(position.x * CELL_SIZE + CELL_SIZE / 4.0f, 3.0f, position.y * CELL_SIZE + CELL_SIZE / 4.0f) ///< The position of the thystame item in the game grid. @note use only if a EGE::Maths::Vector2<int> position is defined in the current scope.
 
 #include "Entity.hpp"
 #include "Error.hpp"
@@ -45,13 +53,13 @@ namespace Onyx {
              * @brief This enum represents the type of an item.
              */
             enum TYPE {
-                FOOD = 0,
-                LINEMATE,
-                DERAUMERE,
-                SIBUR,
-                MENDIANE,
-                PHIRAS,
-                THYSTAME,
+                FOOD = 0,   /// the steak item
+                LINEMATE,   /// the purple item
+                DERAUMERE,  /// the yellow item
+                SIBUR,      /// the blue-green square
+                MENDIANE,   /// the blue diamond
+                PHIRAS,     /// the blue rectangle
+                THYSTAME,   /// the pink (or red) square
                 MAX
             };
 
@@ -99,14 +107,7 @@ namespace Onyx {
             */
             void setPos(EGE::Maths::Vector2<int> position);
         private:
-            /**
-             * @brief The type of the item.
-             */
-            TYPE _type;
-
-            /**
-             * @brief The position of the item.
-             */
-            EGE::Maths::Vector2<int> _position;
+            TYPE _type;                             ///< The type of the item.
+            EGE::Maths::Vector2<int> _position;     ///< The position of the item in the grid of the game.
     };
 }

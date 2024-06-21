@@ -7,18 +7,18 @@
 
 #include "UserInterface.hpp"
 
-UserInterface::UserInterface()
+Onyx::UserInterface::UserInterface()
 {
     this->_menuBar = new EGE::Main();
     this->_soundDevice = new EGE::Sound::Device();
 }
 
-void UserInterface::initPlaylist(const std::string &path)
+void Onyx::UserInterface::initPlaylist(const std::string &path)
 {
     this->_playlist = new EGE::Sound::Playlist(path);
 }
 
-EGE::Sound::Playlist *UserInterface::getPlaylist()
+EGE::Sound::Playlist *Onyx::UserInterface::getPlaylist()
 {
     return this->_playlist;
 }

@@ -1,0 +1,67 @@
+\doxysection{Sound.\+hpp}
+\hypertarget{Sound_8hpp_source}{}\label{Sound_8hpp_source}\index{ege/include/Sound/Sound.hpp@{ege/include/Sound/Sound.hpp}}
+\mbox{\hyperlink{Sound_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Sound}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Sound/dr\_mp3.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Sound/dr\_wav.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <AL/al.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <AL/alc.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{namespace\ }Sound\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound}{Sound}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_1_1SoundError}{SoundError}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{EGE::Error}}\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_1_1SoundError_a6bf4962a529ed1bdd722abcdae2f3219}{SoundError}}(\textcolor{keyword}{const}\ std::string\ \&message)\ :\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_1_1SoundError_a781c33a04e99b38439c2fb3701fada71}{\string~SoundError}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{FileType}}\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea460aff0b3ff8b669de13ec8707b285a5}{WAV}},\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea28c4618a765f1118c7c4e91110fa19b8}{MP3}},\ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4deaf0adbf0927da873fa5b38bf437adbcfe}{UNKNOWN}}\ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a792272819433a2bf2a214e3a9b4bd597}{Sound}}(\textcolor{keyword}{const}\ std::string\ \&path,\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{FileType}}\ type\ =\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4dea28c4618a765f1118c7c4e91110fa19b8}{FileType::MP3}});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ae1b1f3f163517c981607994a0f94a19f}{\string~Sound}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a18db1cdd131902fa87bacff6bc37e4fb}{play}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a2971622e5d75a124774102075fdb77f1}{pause}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a5b1fc14b880c63cbb9504a62b980a79d}{stop}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac3844311dc5b422641597fbeaa7f0500}{replay}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ALuint\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_afe0912844cb7aa97f428c9247da0d36a}{\_buffer}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ALuint\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a87c3380d70d1f4284ef9750698558bbb}{\_source}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac8690d167b9cbf94295a969a510ff4de}{FileType}}\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a1e3c7cd52bcb903d8a0815ae0dadd4f9}{\_type}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drwav\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ac3a3c7568e471a7d082b95742c887f3e}{\_wav}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drmp3\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a003295e97795f82a833874393d7a2b03}{\_mp3}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_a989ed1d36bc70a115ad6e3a57ffd2939}{\_path}};\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::thread\ \mbox{\hyperlink{classEGE_1_1Sound_1_1Sound_ad8cd5dd22c5c3890b8bf6b80922c27be}{\_stream}};\ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \}}
+
+\end{DoxyCode}

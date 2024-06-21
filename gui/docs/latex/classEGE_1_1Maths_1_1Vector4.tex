@@ -1,0 +1,598 @@
+\doxysection{EGE\+::Maths\+::Vector4\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classEGE_1_1Maths_1_1Vector4}{}\label{classEGE_1_1Maths_1_1Vector4}\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+
+
+A 4D vector class template.  
+
+
+
+
+{\ttfamily \#include $<$Vector4.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Maths\+::Vector4\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_1_1Vector4Error}{Vector4\+Error}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a3642206e0bfe75d03dcfd46c02fee889}{Vector4}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object with default x, y, z and w components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_adff13d01c977a8bb04701e4441d09f64}{Vector4}} (const T \&\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ab1e658d54c8bdeaf1233becd4886de1a}{x}}, const T \&\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a705a842290b873358777d6911dfe9411}{y}}, const T \&\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a36586b557180e444a58591e174bbbd45}{z}}, const T \&\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a77ed860f87255b4068ef68ba102aa7cc}{w}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object with specified x, y, z and w components. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_abe5298aa88c7f428ec50b77e50c40efa}{Vector4}} (const glm\+::vec4 \&vec)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object from the specified glm\+::vec4 object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a45ceea270b12a6fb180540421ccfc41b}{\texorpdfstring{$\sim$}{\string~}\+Vector4}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ac8db648dacf0f48c1c15a02858111215}{length}} () const
+\begin{DoxyCompactList}\small\item\em Returns the length of the vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ae9d5ad9ae3db79cc9cc2ce0d28e29274}{distance}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the distance between this vector and another vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a4d17dcc26bba4cf17e4a4569fe6f4f36}{dot}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the dot product of this vector and another vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ae2c10c560e8a58f2d6f46a77a3d5e50a}{cross}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the cross product of this vector and another vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a277207a6d4fd9b4c8306ca343afc98ec}{normalize}} () const
+\begin{DoxyCompactList}\small\item\em Normalizes the vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ab1af5f50680a83db4f954e70c4483467}{face\+Forward}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \&n) const
+\begin{DoxyCompactList}\small\item\em Returns the face forward vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ad62d4809a32d9c1c12f684ebe8c69471}{reflect}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \&n) const
+\begin{DoxyCompactList}\small\item\em Returns the reflection vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_af0595adeb2d2d5f964f1d10d98923740}{refract}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \&n, double eta) const
+\begin{DoxyCompactList}\small\item\em Returns the refraction vector. \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a6842a7f8e39714bf38c9ff49bcccdf7b}{to\+Glm\+Vec4}} () const
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object as a glm\+::vec4 object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a2eb9bc94dffd070175e04c538b07a00f}{operator+}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the sum of this vector and another vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a63b42c18975d2f5976592cb07d3046cb}{operator+=}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Adds another vector to this vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ac3ab235d0d646b9636018cba742c7808}{operator-\/}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns the difference of this vector and another vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_aad45f2dcc940ccad087e6892c1cbc9a4}{operator-\/}} () const
+\begin{DoxyCompactList}\small\item\em Negate this vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a8b2ac6b34b3cdf7e0780c27720fbc6ec}{operator-\/=}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Subtracts another vector from this vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a3bc2f6a372438c96ac220a09932c8d56}{operator\texorpdfstring{$\ast$}{*}}} (const T \&scalar) const
+\begin{DoxyCompactList}\small\item\em Returns the product of this vector and a scalar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a1663572dea63be66119dc8d8c788cdb8}{operator\texorpdfstring{$\ast$}{*}=}} (const T \&scalar)
+\begin{DoxyCompactList}\small\item\em Multiplies this vector by a scalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ab6ab84d77827432d4882942233762e4f}{operator/}} (const T \&scalar) const
+\begin{DoxyCompactList}\small\item\em Returns the division of this vector by a scalar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a3eb54350611714642acc538c1717c0d9}{operator/=}} (const T \&scalar)
+\begin{DoxyCompactList}\small\item\em Divides this vector by a scalar. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a981cc6f75a01448e3358a43e38818838}{operator==}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns true if this vector is equal to another vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a1a7d084daddd53a158f7e8bee556d71f}{operator!=}} (const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em Returns true if this vector is not equal to another vector. \end{DoxyCompactList}\item 
+T \& \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a09e84963a21d516f6b2ba99193b093df}{operator\mbox{[}$\,$\mbox{]}}} (int index)
+\begin{DoxyCompactList}\small\item\em Returns the component of the vector at the specified index. \end{DoxyCompactList}\item 
+T \& \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ac173f7687c8106d1820931c1117692e7}{operator\mbox{[}$\,$\mbox{]}}} (int index) const
+\begin{DoxyCompactList}\small\item\em Returns the component of the vector at the specified index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_ab1e658d54c8bdeaf1233becd4886de1a}{x}}
+\item 
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a705a842290b873358777d6911dfe9411}{y}}
+\item 
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a36586b557180e444a58591e174bbbd45}{z}}
+\item 
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4_a77ed860f87255b4068ef68ba102aa7cc}{w}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class EGE\+::\+Maths\+::\+Vector4$<$ T $>$}
+A 4D vector class template. 
+
+This class represents a 4D vector with x, y, z and w components. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the components of the vector. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+The template parameter T must be an arithmetic type. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a3642206e0bfe75d03dcfd46c02fee889}\label{classEGE_1_1Maths_1_1Vector4_a3642206e0bfe75d03dcfd46c02fee889} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::\+Vector4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object with default x, y, z and w components. 
+
+The default x and y components are set to 0. \Hypertarget{classEGE_1_1Maths_1_1Vector4_adff13d01c977a8bb04701e4441d09f64}\label{classEGE_1_1Maths_1_1Vector4_adff13d01c977a8bb04701e4441d09f64} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::\+Vector4 (\begin{DoxyParamCaption}\item[{const T \&}]{x,  }\item[{const T \&}]{y,  }\item[{const T \&}]{z,  }\item[{const T \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object with specified x, y, z and w components. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x component of the vector. \\
+\hline
+{\em y} & The y component of the vector. \\
+\hline
+{\em z} & The z component of the vector. \\
+\hline
+{\em w} & The w component of the vector. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_abe5298aa88c7f428ec50b77e50c40efa}\label{classEGE_1_1Maths_1_1Vector4_abe5298aa88c7f428ec50b77e50c40efa} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!Vector4@{Vector4}}
+\index{Vector4@{Vector4}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vector4()}{Vector4()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::\+Vector4 (\begin{DoxyParamCaption}\item[{const glm\+::vec4 \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object from the specified glm\+::vec4 object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & The glm\+::vec4 object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a45ceea270b12a6fb180540421ccfc41b}\label{classEGE_1_1Maths_1_1Vector4_a45ceea270b12a6fb180540421ccfc41b} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!````~Vector4@{\texorpdfstring{$\sim$}{\string~}Vector4}}
+\index{````~Vector4@{\texorpdfstring{$\sim$}{\string~}Vector4}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Vector4()}{\string~Vector4()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ae2c10c560e8a58f2d6f46a77a3d5e50a}\label{classEGE_1_1Maths_1_1Vector4_ae2c10c560e8a58f2d6f46a77a3d5e50a} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!cross@{cross}}
+\index{cross@{cross}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cross()}{cross()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::cross (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the cross product of this vector and another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cross product of this vector and the other vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ae9d5ad9ae3db79cc9cc2ce0d28e29274}\label{classEGE_1_1Maths_1_1Vector4_ae9d5ad9ae3db79cc9cc2ce0d28e29274} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!distance@{distance}}
+\index{distance@{distance}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the distance between this vector and another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance between this vector and the other vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a4d17dcc26bba4cf17e4a4569fe6f4f36}\label{classEGE_1_1Maths_1_1Vector4_a4d17dcc26bba4cf17e4a4569fe6f4f36} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!dot@{dot}}
+\index{dot@{dot}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the dot product of this vector and another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dot product of this vector and the other vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ab1af5f50680a83db4f954e70c4483467}\label{classEGE_1_1Maths_1_1Vector4_ab1af5f50680a83db4f954e70c4483467} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!faceForward@{faceForward}}
+\index{faceForward@{faceForward}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{faceForward()}{faceForward()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::face\+Forward (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \&}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the face forward vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The normal vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The face forward vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ac8db648dacf0f48c1c15a02858111215}\label{classEGE_1_1Maths_1_1Vector4_ac8db648dacf0f48c1c15a02858111215} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!length@{length}}
+\index{length@{length}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{length()}{length()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the length of the vector. 
+
+\begin{DoxyReturn}{Returns}
+The length of the vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a277207a6d4fd9b4c8306ca343afc98ec}\label{classEGE_1_1Maths_1_1Vector4_a277207a6d4fd9b4c8306ca343afc98ec} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!normalize@{normalize}}
+\index{normalize@{normalize}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::normalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Normalizes the vector. 
+
+\begin{DoxyReturn}{Returns}
+The normalized vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a1a7d084daddd53a158f7e8bee556d71f}\label{classEGE_1_1Maths_1_1Vector4_a1a7d084daddd53a158f7e8bee556d71f} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns true if this vector is not equal to another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this vector is not equal to the other vector, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a3bc2f6a372438c96ac220a09932c8d56}\label{classEGE_1_1Maths_1_1Vector4_a3bc2f6a372438c96ac220a09932c8d56} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the product of this vector and a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The product of this vector and the scalar. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a1663572dea63be66119dc8d8c788cdb8}\label{classEGE_1_1Maths_1_1Vector4_a1663572dea63be66119dc8d8c788cdb8} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}}
+\index{operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator\texorpdfstring{$\ast$}{*}= (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiplies this vector by a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a2eb9bc94dffd070175e04c538b07a00f}\label{classEGE_1_1Maths_1_1Vector4_a2eb9bc94dffd070175e04c538b07a00f} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the sum of this vector and another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of this vector and the other vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a63b42c18975d2f5976592cb07d3046cb}\label{classEGE_1_1Maths_1_1Vector4_a63b42c18975d2f5976592cb07d3046cb} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds another vector to this vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_aad45f2dcc940ccad087e6892c1cbc9a4}\label{classEGE_1_1Maths_1_1Vector4_aad45f2dcc940ccad087e6892c1cbc9a4} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Negate this vector. 
+
+\begin{DoxyReturn}{Returns}
+The negated vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ac3ab235d0d646b9636018cba742c7808}\label{classEGE_1_1Maths_1_1Vector4_ac3ab235d0d646b9636018cba742c7808} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the difference of this vector and another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The difference of this vector and the other vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a8b2ac6b34b3cdf7e0780c27720fbc6ec}\label{classEGE_1_1Maths_1_1Vector4_a8b2ac6b34b3cdf7e0780c27720fbc6ec} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtracts another vector from this vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ab6ab84d77827432d4882942233762e4f}\label{classEGE_1_1Maths_1_1Vector4_ab6ab84d77827432d4882942233762e4f} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator/ (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the division of this vector by a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The division of this vector by the scalar. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a3eb54350611714642acc538c1717c0d9}\label{classEGE_1_1Maths_1_1Vector4_a3eb54350611714642acc538c1717c0d9} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Divides this vector by a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a981cc6f75a01448e3358a43e38818838}\label{classEGE_1_1Maths_1_1Vector4_a981cc6f75a01448e3358a43e38818838} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{Vector4}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns true if this vector is equal to another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this vector is equal to the other vector, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a09e84963a21d516f6b2ba99193b093df}\label{classEGE_1_1Maths_1_1Vector4_a09e84963a21d516f6b2ba99193b093df} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the component of the vector at the specified index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the component. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The component of the vector at the specified index. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Vector2\+Error} & if the index is out of range. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ac173f7687c8106d1820931c1117692e7}\label{classEGE_1_1Maths_1_1Vector4_ac173f7687c8106d1820931c1117692e7} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the component of the vector at the specified index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the component. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The component of the vector at the specified index. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Vector2\+Error} & if the index is out of range. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_ad62d4809a32d9c1c12f684ebe8c69471}\label{classEGE_1_1Maths_1_1Vector4_ad62d4809a32d9c1c12f684ebe8c69471} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!reflect@{reflect}}
+\index{reflect@{reflect}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{reflect()}{reflect()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::reflect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \&}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the reflection vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The normal vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The reflection vector. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_af0595adeb2d2d5f964f1d10d98923740}\label{classEGE_1_1Maths_1_1Vector4_af0595adeb2d2d5f964f1d10d98923740} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!refract@{refract}}
+\index{refract@{refract}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{refract()}{refract()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::refract (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{Vector3}}$<$ T $>$ \&}]{n,  }\item[{double}]{eta }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the refraction vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The normal vector. \\
+\hline
+{\em eta} & The refraction index. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a6842a7f8e39714bf38c9ff49bcccdf7b}\label{classEGE_1_1Maths_1_1Vector4_a6842a7f8e39714bf38c9ff49bcccdf7b} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!toGlmVec4@{toGlmVec4}}
+\index{toGlmVec4@{toGlmVec4}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{toGlmVec4()}{toGlmVec4()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+glm\+::vec4 \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::to\+Glm\+Vec4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object as a glm\+::vec4 object. 
+
+\begin{DoxyReturn}{Returns}
+The \doxylink{classEGE_1_1Maths_1_1Vector4}{Vector4} object as a glm\+::vec4 object. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Maths_1_1Vector4_a77ed860f87255b4068ef68ba102aa7cc}\label{classEGE_1_1Maths_1_1Vector4_a77ed860f87255b4068ef68ba102aa7cc} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!w@{w}}
+\index{w@{w}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::w}
+
+The w component of the vector. \Hypertarget{classEGE_1_1Maths_1_1Vector4_ab1e658d54c8bdeaf1233becd4886de1a}\label{classEGE_1_1Maths_1_1Vector4_ab1e658d54c8bdeaf1233becd4886de1a} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!x@{x}}
+\index{x@{x}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::x}
+
+The x component of the vector. \Hypertarget{classEGE_1_1Maths_1_1Vector4_a705a842290b873358777d6911dfe9411}\label{classEGE_1_1Maths_1_1Vector4_a705a842290b873358777d6911dfe9411} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!y@{y}}
+\index{y@{y}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::y}
+
+The y component of the vector. \Hypertarget{classEGE_1_1Maths_1_1Vector4_a36586b557180e444a58591e174bbbd45}\label{classEGE_1_1Maths_1_1Vector4_a36586b557180e444a58591e174bbbd45} 
+\index{EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}!z@{z}}
+\index{z@{z}!EGE::Maths::Vector4$<$ T $>$@{EGE::Maths::Vector4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector4}{EGE\+::\+Maths\+::\+Vector4}}$<$ T $>$\+::z}
+
+The z component of the vector. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+Maths/\mbox{\hyperlink{Vector4_8hpp}{Vector4.\+hpp}}\end{DoxyCompactItemize}

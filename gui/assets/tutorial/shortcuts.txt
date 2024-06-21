@@ -8,3 +8,6 @@
 [Esc] -> Quit
 
 [C] -> Change mouse mode
+
+[O] -> Hide interface
+[P] -> Show interface

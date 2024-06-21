@@ -1,0 +1,48 @@
+\doxysection{Container.\+hpp}
+\hypertarget{Container_8hpp_source}{}\label{Container_8hpp_source}\index{ege/include/GUI/Container.hpp@{ege/include/GUI/Container.hpp}}
+\mbox{\hyperlink{Container_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Container}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ CONTAINER\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ CONTAINER\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{GUI_8hpp}{GUI/GUI.hpp}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Container}{Container}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1GUI}{GUI}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classEGE_1_1Container_a5bf2adffa2070f1d398fc60bc5741529}{\string~Container}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Container_a9fa98d2ea2e3a7d7bfb395e392e503b5}{add}}(T\ *gui,\ \textcolor{keyword}{const}\ std::string\&\ name)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Container_ab0453dfcfbb23db54ee0a3e5d46c0ea4}{\_elements}}[name]\ =\ gui;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ T\ *\mbox{\hyperlink{classEGE_1_1Container_a984ac6dc07e58064bfba9353b5bca066}{get}}(\textcolor{keyword}{const}\ std::string\&\ name)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{classEGE_1_1Container_ab0453dfcfbb23db54ee0a3e5d46c0ea4}{\_elements}}[name];}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Container_afef51d5f16ba1f33e7fa0a9e2602b8f9}{remove}}(\textcolor{keyword}{const}\ std::string\&\ name)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classEGE_1_1Container_ab0453dfcfbb23db54ee0a3e5d46c0ea4}{\_elements}}.erase(name);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ std::map<std::string,\ T\ *>\ \mbox{\hyperlink{classEGE_1_1Container_ab0453dfcfbb23db54ee0a3e5d46c0ea4}{\_elements}};}
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !CONTAINER\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

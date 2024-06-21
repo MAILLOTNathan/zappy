@@ -47,6 +47,7 @@ SRC = 	src/*.cpp \
 		../src/TcpCommand.cpp \
 		../src/TcpManagerCmd.cpp \
 		../src/TcpClient.cpp \
+		../ege/src/Utils.cpp \
 
 all:
 	@echo "Compiling for $(USER)"

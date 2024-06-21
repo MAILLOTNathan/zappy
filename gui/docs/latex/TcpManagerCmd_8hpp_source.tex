@@ -1,0 +1,36 @@
+\doxysection{Tcp\+Manager\+Cmd.\+hpp}
+\hypertarget{TcpManagerCmd_8hpp_source}{}\label{TcpManagerCmd_8hpp_source}\index{include/TcpManagerCmd.hpp@{include/TcpManagerCmd.hpp}}
+\mbox{\hyperlink{TcpManagerCmd_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ zappy}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ TcpManagerCmd}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ TCPMANAGERCMD\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ TCPMANAGERCMD\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <map>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{TcpCommand_8hpp}{TcpCommand.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacenet}{net}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classnet_1_1TcpManagerCmd}{TcpManagerCmd}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpManagerCmd_a4f9e78bd1f9a60fb64e8c1daca9af8ed}{TcpManagerCmd}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpManagerCmd_aa13a06dd59a991ad658674b459ed8af1}{\string~TcpManagerCmd}}();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classnet_1_1TcpCommand}{TcpCommand}}\ *\mbox{\hyperlink{classnet_1_1TcpManagerCmd_afef08ffbe50cb9c5d60495b54a98ab2b}{getCommand}}(std::string\ command);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classnet_1_1TcpManagerCmd_a0cf0edef62b337659d48c42033da7286}{addCommand}}(\textcolor{keyword}{const}\ std::string\&\ command,\ \mbox{\hyperlink{namespacenet_acfd69685aa30431a4b60cac163e561df}{net::type\_command\_t}}\ type,\ std::function<\textcolor{keywordtype}{void}(std::vector<std::string>\&\ args)>\ callback);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ TcpCommand\ *>\ \mbox{\hyperlink{classnet_1_1TcpManagerCmd_ac2c44703d42d8403d75957ac68aa341a}{\_commands}};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \};}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !TCPMANAGERCMD\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

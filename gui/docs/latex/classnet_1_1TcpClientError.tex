@@ -1,0 +1,67 @@
+\doxysection{net\+::Tcp\+Client\+Error Class Reference}
+\hypertarget{classnet_1_1TcpClientError}{}\label{classnet_1_1TcpClientError}\index{net::TcpClientError@{net::TcpClientError}}
+
+
+An exception class for TCP client errors.  
+
+
+
+
+{\ttfamily \#include $<$Tcp\+Client.\+hpp$>$}
+
+
+
+Inheritance diagram for net\+::Tcp\+Client\+Error\+:
+% FIG 0
+
+
+Collaboration diagram for net\+::Tcp\+Client\+Error\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classnet_1_1TcpClientError_a9e1305245b9080578c48aa29d6d8ee17}{Tcp\+Client\+Error}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classnet_1_1TcpClientError}{Tcp\+Client\+Error} object with the given error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEGE_1_1Error}{EGE\+::\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f}{Error}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classEGE_1_1Error}{Error} object with the specified error message. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Error_abb34aadafc09de8c6476584d8efc19e8}{\texorpdfstring{$\sim$}{\string~}\+Error}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Error}{Error} object. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Error_a8c99c9e9f9608777041f20d55c941f23}{what}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Returns a C-\/style string representing the error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEGE_1_1Error}{EGE\+::\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1Error_ad7dfbcf78e5dac04aa92baa41c215d1c}{\+\_\+message}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An exception class for TCP client errors. 
+
+This class is used to represent errors that occur during TCP client operations. It inherits from the \doxylink{classEGE_1_1Error}{EGE\+::\+Error} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classnet_1_1TcpClientError_a9e1305245b9080578c48aa29d6d8ee17}\label{classnet_1_1TcpClientError_a9e1305245b9080578c48aa29d6d8ee17} 
+\index{net::TcpClientError@{net::TcpClientError}!TcpClientError@{TcpClientError}}
+\index{TcpClientError@{TcpClientError}!net::TcpClientError@{net::TcpClientError}}
+\doxysubsubsection{\texorpdfstring{TcpClientError()}{TcpClientError()}}
+{\footnotesize\ttfamily net\+::\+Tcp\+Client\+Error\+::\+Tcp\+Client\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classnet_1_1TcpClientError}{Tcp\+Client\+Error} object with the given error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message associated with the exception. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{TcpClient_8hpp}{Tcp\+Client.\+hpp}}\end{DoxyCompactItemize}

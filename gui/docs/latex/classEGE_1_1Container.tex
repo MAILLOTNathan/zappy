@@ -1,0 +1,155 @@
+\doxysection{EGE\+::Container\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classEGE_1_1Container}{}\label{classEGE_1_1Container}\index{EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}}
+
+
+A container class that holds \doxylink{classEGE_1_1GUI}{GUI} elements.  
+
+
+
+
+{\ttfamily \#include $<$Container.\+hpp$>$}
+
+
+
+Inheritance diagram for EGE\+::Container\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+% FIG 0
+
+
+Collaboration diagram for EGE\+::Container\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classEGE_1_1Container_a5bf2adffa2070f1d398fc60bc5741529}{\texorpdfstring{$\sim$}{\string~}\+Container}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Container}{Container} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Container_a9fa98d2ea2e3a7d7bfb395e392e503b5}{add}} (T \texorpdfstring{$\ast$}{*}gui, const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Adds a \doxylink{classEGE_1_1GUI}{GUI} element to the container. \end{DoxyCompactList}\item 
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Container_a984ac6dc07e58064bfba9353b5bca066}{get}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Gets a \doxylink{classEGE_1_1GUI}{GUI} element from the container. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Container_afef51d5f16ba1f33e7fa0a9e2602b8f9}{remove}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Removes a \doxylink{classEGE_1_1GUI}{GUI} element from the container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEGE_1_1GUI}{EGE\+::\+GUI}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classEGE_1_1GUI_a1c6a6065e39ac7ebffb80f2e110e9a07}{\texorpdfstring{$\sim$}{\string~}\+GUI}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1GUI}{GUI} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEGE_1_1GUI_a2f327ccb324db64d91a5d8643263c7b5}{draw}} ()=0
+\begin{DoxyCompactList}\small\item\em Draws the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a53108c7e906ec4b2698424460dbfdad5}{init}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{classEGE_1_1GUI}{GUI} with a window. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_a2b9ebc4bc477127a26bd817c9e15071b}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a2e2e1da784eeae10a19527806ee85b5b}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_abef37bc1d78289a4039bae35d5ca5732}{set\+Window}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Sets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a95a018779bfd9414768209eb3c2ff516}{get\+Window}} () const
+\begin{DoxyCompactList}\small\item\em Gets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_af7cafc6d2a24cbeac515f388cb35d459}{set\+Visible}} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_a1b6a7ee168d21bf17973303d45856dd5}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the \doxylink{classEGE_1_1GUI}{GUI} is visible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, T \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classEGE_1_1Container_ab0453dfcfbb23db54ee0a3e5d46c0ea4}{\+\_\+elements}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEGE_1_1GUI}{EGE\+::\+GUI}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a8e9db67256da924a7a19878e1eb04cbd}{\+\_\+window}}
+\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_aa70e32e7457f4dd7f17e6be70da0b758}{\+\_\+name}}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_abc5afa48d51ac54bf3bc1b29b3ffc902}{\+\_\+visible}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class EGE\+::\+Container$<$ T $>$}
+A container class that holds \doxylink{classEGE_1_1GUI}{GUI} elements. 
+
+This class is a template class that can hold any type of \doxylink{classEGE_1_1GUI}{GUI} element. It provides methods to add and remove \doxylink{classEGE_1_1GUI}{GUI} elements from the container. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Container_a5bf2adffa2070f1d398fc60bc5741529}\label{classEGE_1_1Container_a5bf2adffa2070f1d398fc60bc5741529} 
+\index{EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}!````~Container@{\texorpdfstring{$\sim$}{\string~}Container}}
+\index{````~Container@{\texorpdfstring{$\sim$}{\string~}Container}!EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Container()}{\string~Container()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+virtual \mbox{\hyperlink{classEGE_1_1Container}{EGE\+::\+Container}}$<$ T $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classEGE_1_1Container}{Container}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Container}{Container} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Container_a9fa98d2ea2e3a7d7bfb395e392e503b5}\label{classEGE_1_1Container_a9fa98d2ea2e3a7d7bfb395e392e503b5} 
+\index{EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}!add@{add}}
+\index{add@{add}!EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Container}{EGE\+::\+Container}}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{T \texorpdfstring{$\ast$}{*}}]{gui,  }\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a \doxylink{classEGE_1_1GUI}{GUI} element to the container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gui} & A pointer to the \doxylink{classEGE_1_1GUI}{GUI} element to be added. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Container_a984ac6dc07e58064bfba9353b5bca066}\label{classEGE_1_1Container_a984ac6dc07e58064bfba9353b5bca066} 
+\index{EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}!get@{get}}
+\index{get@{get}!EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1Container}{EGE\+::\+Container}}$<$ T $>$\+::get (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets a \doxylink{classEGE_1_1GUI}{GUI} element from the container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the \doxylink{classEGE_1_1GUI}{GUI} element to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the \doxylink{classEGE_1_1GUI}{GUI} element. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Container_afef51d5f16ba1f33e7fa0a9e2602b8f9}\label{classEGE_1_1Container_afef51d5f16ba1f33e7fa0a9e2602b8f9} 
+\index{EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}!remove@{remove}}
+\index{remove@{remove}!EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classEGE_1_1Container}{EGE\+::\+Container}}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a \doxylink{classEGE_1_1GUI}{GUI} element from the container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gui} & A pointer to the \doxylink{classEGE_1_1GUI}{GUI} element to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1Container_ab0453dfcfbb23db54ee0a3e5d46c0ea4}\label{classEGE_1_1Container_ab0453dfcfbb23db54ee0a3e5d46c0ea4} 
+\index{EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}!\_elements@{\_elements}}
+\index{\_elements@{\_elements}!EGE::Container$<$ T $>$@{EGE::Container$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_elements}{\_elements}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::map$<$std\+::string, T \texorpdfstring{$\ast$}{*}$>$ \mbox{\hyperlink{classEGE_1_1Container}{EGE\+::\+Container}}$<$ T $>$\+::\+\_\+elements\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+GUI/\mbox{\hyperlink{Container_8hpp}{Container.\+hpp}}\end{DoxyCompactItemize}

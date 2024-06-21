@@ -48,7 +48,7 @@ class Linear_QNet(nn.Module):
         x = torch.relu(self.linear1(x))
         x = self.linear2(x)
         return x
-    
+
     def save(self, file_name='model.pth'):
         """
         Saves the model's state dictionary to a file.

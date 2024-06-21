@@ -1,0 +1,41 @@
+\doxysection{Vertex.\+hpp}
+\hypertarget{Vertex_8hpp_source}{}\label{Vertex_8hpp_source}\index{ege/include/Vertex.hpp@{ege/include/Vertex.hpp}}
+\mbox{\hyperlink{Vertex_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Vertex}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector2_8hpp}{Maths/Vector2.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector3_8hpp}{Maths/Vector3.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ MAX\_BONE\ 4}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEGE_1_1Vertex}{Vertex}}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structEGE_1_1Vertex_a4694e7053472ec4ae3e8c601edcaa4d3}{\_position}};\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structEGE_1_1Vertex_a6a41fc2e4f22cb6db25344fb5f257a98}{\_normal}};\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{structEGE_1_1Vertex_a0d603edaec1e571a7ab6929acef290ee}{\_texCoords}};\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structEGE_1_1Vertex_a944cbb3efaa3ac3b6a76e07ba4f11a4f}{\_tangent}};\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structEGE_1_1Vertex_ac9783611cd11323963e27f125ba75372}{\_bitangent}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structEGE_1_1Vertex_a9e057a91e93043ee00b8c521696960a9}{\_boneIDs}}[\mbox{\hyperlink{Vertex_8hpp_a42361d87778b6e7945eeb7d8a7490f9d}{MAX\_BONE}}];\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structEGE_1_1Vertex_a1711b2aaee27e5950d56ab64b998d05f}{\_boneWeights}}[\mbox{\hyperlink{Vertex_8hpp_a42361d87778b6e7945eeb7d8a7490f9d}{MAX\_BONE}}];\ }
+\DoxyCodeLine{00038\ \ \ \ \ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEGE_1_1BoneInfo}{BoneInfo}}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structEGE_1_1BoneInfo_a79df9fdec75478239a22504db301e001}{\_id}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{structEGE_1_1BoneInfo_ac824046b1efbfc553b16d0669155b46e}{\_offset}};\ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \};}
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}

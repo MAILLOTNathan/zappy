@@ -22,3 +22,8 @@ EGE::Maths::Vector3<float>  EntityVR::getPosition()
 {
     return this->_position;
 }
+
+std::shared_ptr<EGE::ModelVR> EntityVR::getModel()
+{
+    return this->_model;
+}

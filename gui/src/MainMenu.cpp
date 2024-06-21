@@ -13,7 +13,7 @@ Onyx::MainMenu::MainMenu(const std::string& ip, int port)
     this->_window->create();
     this->_camera = std::make_shared<EGE::Camera>(EGE::Maths::Vector3<float>(7.0f, 3.0f, 7.0f), EGE::Maths::Vector3<float>(0.0f, 1.0f, 0.0f), -135.0f, 0.0f);
     this->_deltaTime = 0.0f;
-    this->_interface = std::make_shared<UserInterface>();
+    this->_interface = std::make_shared<Onyx::UserInterface>();
     if (ip == "")
         this->_ip = "127.0.0.1";
     else
@@ -32,6 +32,7 @@ Onyx::MainMenu::MainMenu(const std::string& ip, int port)
 
     this->createMainPanel();
     this->_interface->init(this->_window.get());
+    this->_interface->defaultMode();
 }
 
 Onyx::MainMenu::~MainMenu()
@@ -72,7 +73,7 @@ void Onyx::MainMenu::update()
     lastFrame = glfwGetTime();
     timer += this->_deltaTime;
     this->_window->pollEvents();
-    this->_window->clear(EGE::Color(0.0f, 1.0f, 0.0f, 1.0f));
+    this->_window->clear(EGE::Color(0.0f, 0.0f, 0.0f, 1.0f));
     this->_interface->clear();
     this->_interface->draw();
     this->_interface->display();

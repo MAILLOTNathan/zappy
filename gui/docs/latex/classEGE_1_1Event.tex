@@ -1,0 +1,1188 @@
+\doxysection{EGE\+::Event Class Reference}
+\hypertarget{classEGE_1_1Event}{}\label{classEGE_1_1Event}\index{EGE::Event@{EGE::Event}}
+
+
+Represents an event in the game engine.  
+
+
+
+
+{\ttfamily \#include $<$Event.\+hpp$>$}
+
+
+
+Collaboration diagram for EGE\+::Event\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEGE_1_1Event_1_1EventError}{Event\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents an error that occurred during an event. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{classEGE_1_1Event_1_1Trigger}{Trigger} class represents a trigger event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}{Type}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaecaee265b925e75c7f19c2aaff752d60}{Keyboard}}
+, \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaf4c2b31979459be54a972c32ba2a5b5f}{Mouse}}
+, \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea85886d3e02a8381e26de1cdae2b671a0}{Joystick\+Button}}
+, \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea1feef105f6181fa41785f62d68bbaffe}{Joystick\+Axis}}
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea5e89a1de321128cf9cdded7d665d405a}{Window}}
+ \}
+\begin{DoxyCompactList}\small\item\em The enumeration of event types. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}{Mode}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a08df458c1217cb14351eb151349c0329}{Moved}} = 0
+, \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5aa58216208099a81e78f913cd814b0733}{Changed}} = 0
+, \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a2f9174846516f3800094238695a066ef}{Pressed}} = 1
+, \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5ace5ef62d3792706cda17c4952d560061}{Just\+Pressed}} = 2
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a30046fd545b5a9c4385060323317169a}{Released}} = 4
+, \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a5341dcb4ec0f403709f7e99979dce92c}{Just\+Released}} = 8
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration representing different modes of an event. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844}{Key}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1801af6b53b240b6c0e4f780ae872e66}{KeyA}} = GLFW\+\_\+\+KEY\+\_\+A
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a33d4e9aee9b2c9f6bd019cfefe66d135}{KeyB}} = GLFW\+\_\+\+KEY\+\_\+B
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a858eed91c2a8424f60d7d24d40c542d6}{KeyC}} = GLFW\+\_\+\+KEY\+\_\+C
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7b638f2341da5191199c485c62de4064}{KeyD}} = GLFW\+\_\+\+KEY\+\_\+D
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3091685465e3df2093f2900478421ae7}{KeyE}} = GLFW\+\_\+\+KEY\+\_\+E
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa22f36a22e685a883cbe4f171459a5bd}{KeyF}} = GLFW\+\_\+\+KEY\+\_\+F
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4116925f22a4ca4e3545df997b58b7b8}{KeyG}} = GLFW\+\_\+\+KEY\+\_\+G
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa0fc4c2a02190c75866e9b124762f8a9}{KeyH}} = GLFW\+\_\+\+KEY\+\_\+H
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a024918e90a4da4de861c3312e429bf5e}{KeyI}} = GLFW\+\_\+\+KEY\+\_\+I
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a55f0a46be43767ed8685d6e6b260f5f1}{KeyJ}} = GLFW\+\_\+\+KEY\+\_\+J
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1b95e3fa8a9a0a1bc43b99c8cf05f02e}{KeyK}} = GLFW\+\_\+\+KEY\+\_\+K
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af0761fd2a08cb6ad69fef35b03f53a22}{KeyL}} = GLFW\+\_\+\+KEY\+\_\+L
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa454fc7271a6441162381a6908ea0a9d}{KeyM}} = GLFW\+\_\+\+KEY\+\_\+M
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2539a622fb2856b33fe49a94b4159ee8}{KeyN}} = GLFW\+\_\+\+KEY\+\_\+N
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4ef3957ad0af611c49aabd39a716bb86}{KeyO}} = GLFW\+\_\+\+KEY\+\_\+O
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a344f23cab1453458e84560d5877d7d79}{KeyP}} = GLFW\+\_\+\+KEY\+\_\+P
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a30d5c9065f17ef1fc8b955307719e779}{KeyQ}} = GLFW\+\_\+\+KEY\+\_\+Q
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac40429deee16d776ffa873d75cc78d85}{KeyR}} = GLFW\+\_\+\+KEY\+\_\+R
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acb1cf3b7703abf89a93860606f2ce6bb}{KeyS}} = GLFW\+\_\+\+KEY\+\_\+S
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac3e40c9e3ff873cd10477ffb7e7fcb6e}{KeyT}} = GLFW\+\_\+\+KEY\+\_\+T
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7fc8e230dc1667aea617241f45f5a132}{KeyU}} = GLFW\+\_\+\+KEY\+\_\+U
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a02ab33c7ce96af95f7591369524fd4a0}{KeyV}} = GLFW\+\_\+\+KEY\+\_\+V
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9b2360f5a761601d6dc4d7a123209d4d}{KeyW}} = GLFW\+\_\+\+KEY\+\_\+W
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6dec42e51ed9e115fbc2f3469a6cf768}{KeyX}} = GLFW\+\_\+\+KEY\+\_\+X
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a844a6d5ecfcfbf570af041b94cfa8546}{KeyY}} = GLFW\+\_\+\+KEY\+\_\+Y
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1a87624c8d0bbc34819b1e6c619d79c9}{KeyZ}} = GLFW\+\_\+\+KEY\+\_\+Z
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8906e0af1625f5731d91d28db5e572a9}{Key\+Backtick}} = GLFW\+\_\+\+KEY\+\_\+\+GRAVE\+\_\+\+ACCENT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a91665bf9bf7d5d9cdac47f1c1d4ec0d0}{Key0}} = GLFW\+\_\+\+KEY\+\_\+0
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aef861d8aa30afec70e4c1d2b21479e1e}{Key1}} = GLFW\+\_\+\+KEY\+\_\+1
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae5b90621d3ab9c92f91d63e3acf3d104}{Key2}} = GLFW\+\_\+\+KEY\+\_\+2
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af46d4eb6fc7fbad049ad67db2097f4e7}{Key3}} = GLFW\+\_\+\+KEY\+\_\+3
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a233d370adc5d5b1f2af80362c4c80b80}{Key4}} = GLFW\+\_\+\+KEY\+\_\+4
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9c2816887323f6cbacc7124939d56198}{Key5}} = GLFW\+\_\+\+KEY\+\_\+5
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8e8de6fb9936087e5f3d71d295c7d27}{Key6}} = GLFW\+\_\+\+KEY\+\_\+6
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a11ed66c402baed1e1784aa924943e858}{Key7}} = GLFW\+\_\+\+KEY\+\_\+7
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a18c1cb8412df5a551808ae103be93d67}{Key8}} = GLFW\+\_\+\+KEY\+\_\+8
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1c79d1e5f46571aa1c84cf492b19379}{Key9}} = GLFW\+\_\+\+KEY\+\_\+9
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1a20bf7a109dd1b5e3332880cf3f183}{Key\+Minus}} = GLFW\+\_\+\+KEY\+\_\+\+MINUS
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a71b161133c50c78f8da759f3ce8bb8b9}{Key\+Equal}} = GLFW\+\_\+\+KEY\+\_\+\+EQUAL
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a56ad91ba5553a71f9f6102efd427616d}{Key\+Left\+Bracket}} = GLFW\+\_\+\+KEY\+\_\+\+LEFT\+\_\+\+BRACKET
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a76f543d16c326340f2cd448768658d59}{Key\+Right\+Bracket}} = GLFW\+\_\+\+KEY\+\_\+\+RIGHT\+\_\+\+BRACKET
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c4ff98a12f1783e47df15063c30e7d}{Key\+Backslash}} = GLFW\+\_\+\+KEY\+\_\+\+BACKSLASH
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a841c1c109510d01502466da07b098c98}{Key\+Semicolon}} = GLFW\+\_\+\+KEY\+\_\+\+SEMICOLON
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a302d53467aeb59c430257dbd98f2e05b}{Key\+Apostrophe}} = GLFW\+\_\+\+KEY\+\_\+\+APOSTROPHE
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a68e2bde8e9bc3aac39a81933d0ef6fcb}{Key\+Comma}} = GLFW\+\_\+\+KEY\+\_\+\+COMMA
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae360440ad592710f037e33c7a6c8ef6e}{Key\+Period}} = GLFW\+\_\+\+KEY\+\_\+\+PERIOD
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac0e0802f3925788e2eab0c7bfdef930e}{Key\+Slash}} = GLFW\+\_\+\+KEY\+\_\+\+SLASH
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1fa9a17f6e0d07e58c0e4e8235e5dd7a}{Key\+Caps\+Lock}} = GLFW\+\_\+\+KEY\+\_\+\+CAPS\+\_\+\+LOCK
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3847a73355493d5fcc799f6d156f51eb}{Key\+World1}} = GLFW\+\_\+\+KEY\+\_\+\+WORLD\+\_\+1
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6fe8984a8d1f236dd248764c14dd0082}{Key\+World2}} = GLFW\+\_\+\+KEY\+\_\+\+WORLD\+\_\+2
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a729228b02251198d60b0318a28ea43d9}{Key\+Super}} = GLFW\+\_\+\+KEY\+\_\+\+LEFT\+\_\+\+SUPER
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945a28a38cb5635f16fb4d58b537239f}{Key\+Num\+Lock}} = GLFW\+\_\+\+KEY\+\_\+\+NUM\+\_\+\+LOCK
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a31310d70a8e9b4b8c7bde2c14eb8b90a}{Key\+Pad\+Divide}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+\+DIVIDE
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acc2eb3588dc74ab86fbee0a8f10da6fb}{Key\+Pad\+Multiply}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+\+MULTIPLY
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad243f5b89be32b9973f19dc837d9a881}{Key\+Pad\+Subtract}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+\+SUBTRACT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aee29a4445bd4e2b67c7cc7b8f26bd004}{Key\+Pad\+Add}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+\+ADD
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afcbde62c97938bad6501c57573158c2c}{Key\+Pad\+Decimal}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+\+DECIMAL
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1f86edcf711187b5aa8254c34c7e1eb7}{Key\+Pad\+Enter}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+\+ENTER
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8d7ef2df0787dbc525a75b8d34bb67a}{Key\+Pad0}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+0
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844abffec6336529991316cbd7ac996250ad}{Key\+Pad1}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+1
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6409e78ff26cd3450a3bb674d42f12d3}{Key\+Pad2}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+2
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a75e414047e840dc64e6e4eb174812505}{Key\+Pad3}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+3
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1564274dd550e86d0042536f580dc05c}{Key\+Pad4}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+4
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab7acb2f66955bc5576fcf30ba718dda5}{Key\+Pad5}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+5
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a041f04420cfabfea4598c4f133dd94f7}{Key\+Pad6}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+6
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a66bf358baa83a0026bcb99668bc2d85d}{Key\+Pad7}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+7
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afc16ac3fa589e4c85c10f2cd6a697104}{Key\+Pad8}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+8
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a04dc859bddfb32d41cf1b014cf623ad6}{Key\+Pad9}} = GLFW\+\_\+\+KEY\+\_\+\+KP\+\_\+9
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae603d69ec87dced0917eb48519530397}{Key\+Space}} = GLFW\+\_\+\+KEY\+\_\+\+SPACE
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af6d803fb8956c761f920a380d225b9c8}{Key\+LShift}} = GLFW\+\_\+\+KEY\+\_\+\+LEFT\+\_\+\+SHIFT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1989deaaf6aca7fdb18e012cacbb19c9}{Key\+RShift}} = GLFW\+\_\+\+KEY\+\_\+\+RIGHT\+\_\+\+SHIFT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3d32df90cab48c83ada4525d28f01832}{Key\+LCtrl}} = GLFW\+\_\+\+KEY\+\_\+\+LEFT\+\_\+\+CONTROL
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a13b5a19b0d47d8cf7832b586852245f6}{Key\+RCtrl}} = GLFW\+\_\+\+KEY\+\_\+\+RIGHT\+\_\+\+CONTROL
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7e8e3cd9455a230f46fa5e66e84c7649}{Key\+LAlt}} = GLFW\+\_\+\+KEY\+\_\+\+LEFT\+\_\+\+ALT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1d342b747e743d264f49491a4770adad}{Key\+RAlt}} = GLFW\+\_\+\+KEY\+\_\+\+RIGHT\+\_\+\+ALT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae81dab7e2d63afe344d3c4d9de5d6b75}{Key\+Tab}} = GLFW\+\_\+\+KEY\+\_\+\+TAB
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af5dda6ee4928218b3a5a49d770e914fe}{Key\+Enter}} = GLFW\+\_\+\+KEY\+\_\+\+ENTER
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c1bb7ac5d780eea0fa222a5df73fb1}{Key\+Backspace}} = GLFW\+\_\+\+KEY\+\_\+\+BACKSPACE
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b77b051f99a8df7310b0b0b6a2ab2dc}{Key\+Escape}} = GLFW\+\_\+\+KEY\+\_\+\+ESCAPE
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945778af5a62a425293fa62fd6c66ca2}{Key\+Delete}} = GLFW\+\_\+\+KEY\+\_\+\+DELETE
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4cc32794b085a062069e3b2fbbc81087}{Key\+Insert}} = GLFW\+\_\+\+KEY\+\_\+\+INSERT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a5b2113466a326c96ba9c51c5b0127b77}{Key\+Home}} = GLFW\+\_\+\+KEY\+\_\+\+HOME
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad1f706436e964ad30a7137bbce15c666}{Key\+Pause}} = GLFW\+\_\+\+KEY\+\_\+\+PAUSE
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad36f39a457717a9ccc17f98963fe4bff}{Key\+Prnt\+Scrn}} = GLFW\+\_\+\+KEY\+\_\+\+PRINT\+\_\+\+SCREEN
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a53052adb5edae0764d2b97deb679059b}{Key\+Up}} = GLFW\+\_\+\+KEY\+\_\+\+UP
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af540d17cc494fefd2e65f130e31aa216}{Key\+Down}} = GLFW\+\_\+\+KEY\+\_\+\+DOWN
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa9fc4a6770735ce2921698166fa0b9b3}{Key\+Left}} = GLFW\+\_\+\+KEY\+\_\+\+LEFT
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a63d32539b61632abafcb53bedda19056}{Key\+Right}} = GLFW\+\_\+\+KEY\+\_\+\+RIGHT
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a28dfbbd3176632a0bb1ba16bf1f1f04c}{Key\+F1}} = GLFW\+\_\+\+KEY\+\_\+\+F1
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab4d80537d3df6bbe7c19656107411bfc}{Key\+F2}} = GLFW\+\_\+\+KEY\+\_\+\+F2
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a904cd8fc0a2f429783e38be1a2e2bf8b}{Key\+F3}} = GLFW\+\_\+\+KEY\+\_\+\+F3
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afca8e27a3b63cd0c34ad1b12ebd4cfd4}{Key\+F4}} = GLFW\+\_\+\+KEY\+\_\+\+F4
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1573837d82d602fc0378671d5a405a97}{Key\+F5}} = GLFW\+\_\+\+KEY\+\_\+\+F5
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a681576610b0da8bf4bff5de3a758b817}{Key\+F6}} = GLFW\+\_\+\+KEY\+\_\+\+F6
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a49583e7ed7cf51652c731d8e7e1e2d3a}{Key\+F7}} = GLFW\+\_\+\+KEY\+\_\+\+F7
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8910a8e5e65b16f29ed49ad1c9fe9ea6}{Key\+F8}} = GLFW\+\_\+\+KEY\+\_\+\+F8
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aaad7d4a0e11b527fbbc014c686f3d66d}{Key\+F9}} = GLFW\+\_\+\+KEY\+\_\+\+F9
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2e56c439a3883d11339fbb8700e8c64c}{Key\+F10}} = GLFW\+\_\+\+KEY\+\_\+\+F10
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a64ef2f53e4361a8a18531738a0b15254}{Key\+F11}} = GLFW\+\_\+\+KEY\+\_\+\+F11
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4a56dfa9c9bc6ece7ff4557331043595}{Key\+F12}} = GLFW\+\_\+\+KEY\+\_\+\+F12
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a70ec2ce69ed397553a6811daf75457b7}{Key\+Special1}} = GLFW\+\_\+\+KEY\+\_\+\+F13
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afae3410c97d419d8d067d62815e9619e}{Key\+Special2}} = GLFW\+\_\+\+KEY\+\_\+\+F14
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a09b4d5301728fe8999f2c448bd6521a4}{Key\+Special3}} = GLFW\+\_\+\+KEY\+\_\+\+F15
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a45a4f353e0a052e4f3c0e2ffb6946f27}{Key\+Special4}} = GLFW\+\_\+\+KEY\+\_\+\+F16
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac97c25edf3ee00ea937e6e3323135371}{Key\+Special5}} = GLFW\+\_\+\+KEY\+\_\+\+F17
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4d4f0a2c424ad64b23f63105e9a52edc}{Key\+Special6}} = GLFW\+\_\+\+KEY\+\_\+\+F18
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a23b4eee44cd3ae27a7290301536db620}{Key\+Special7}} = GLFW\+\_\+\+KEY\+\_\+\+F19
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aedb54642e948cbdbe3aa93a30e299f42}{Key\+Special8}} = GLFW\+\_\+\+KEY\+\_\+\+F20
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a651d74704926447d6a52b17d84579e9a}{Key\+Special9}} = GLFW\+\_\+\+KEY\+\_\+\+F21
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9e19e312cf1da3cbd152c18c6464a364}{Key\+Special10}} = GLFW\+\_\+\+KEY\+\_\+\+F22
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae350d239320f019df0da70e591ae0cef}{Key\+Special11}} = GLFW\+\_\+\+KEY\+\_\+\+F23
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b52d97e1308b69faa00530f0fffe32c}{Key\+Special12}} = GLFW\+\_\+\+KEY\+\_\+\+F24
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9007adc81b7cf1829351b7e1ed347165}{Key\+Special13}} = GLFW\+\_\+\+KEY\+\_\+\+F25
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acf27c0459f72c2ff7d4651a4ad55afc9}{Key\+Page\+Up}} = GLFW\+\_\+\+KEY\+\_\+\+PAGE\+\_\+\+UP
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1c19bdbd560a7118c91b72a856b35d5d}{Key\+Page\+Down}} = GLFW\+\_\+\+KEY\+\_\+\+PAGE\+\_\+\+DOWN
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3ad21a6e3b20e864a20c97e97dbaf1ad}{Key\+Scroll\+Lock}} = GLFW\+\_\+\+KEY\+\_\+\+SCROLL\+\_\+\+LOCK
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae1bdc7f9b72e87134631db93e9852d4e}{Key\+End}} = GLFW\+\_\+\+KEY\+\_\+\+END
+, \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae967ead800e1f0759982faebd8acb2af}{Key\+Menu}} = GLFW\+\_\+\+KEY\+\_\+\+MENU
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of key codes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21}{Mouse}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a7c3cab1156451526299c8101f2188ef7}{Mouse\+Left}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+\+LEFT
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ad8011084bf876edcd68e0516be4c2cdd}{Mouse\+Right}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+\+RIGHT
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ab54b17475726b26e20e924042bd9653d}{Mouse\+Middle}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+\+MIDDLE
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a6e1294ff2613fa9f5b4f2b2efc23f25d}{Mouse1}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+1
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a0176613df07180e581408cf6cbefe4ef}{Mouse2}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+2
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a33de25841a5b0ef8aa15238a4cb1a48b}{Mouse3}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+3
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aaf85ef3a9eb73d355eeb09c21fa8f5ff}{Mouse4}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+4
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aa9007ecc043a65d117ff3433fdaa3c97}{Mouse5}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+5
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ae1e89f90f7ce5c458e2d18b61a46e300}{Mouse6}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+6
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a217c625a6c8d843dd216e13fad649afa}{Mouse7}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+7
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21abdd93c152b45cbb7794e626ef57b43f0}{Mouse8}} = GLFW\+\_\+\+MOUSE\+\_\+\+BUTTON\+\_\+8
+, \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a3e5125329f335fec2f55e6866204abf4}{Cursor}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of mouse buttons. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0}{Joystick\+Button}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a886c17a7a21981a7c8561f5e45560024}{JoystickA}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+A
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ad533c98800b61ca07b901ba92722e6ff}{Joystick\+Cross}} = JoystickA
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc941f545e0d297463b66bd85dba4c7e}{JoystickB}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+B
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a435d29b86545c48c74b3aefb9bf35860}{Joystick\+Circle}} = JoystickB
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae914fd198d8a1bf691931bafc129f1d7}{JoystickX}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+X
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a207eebf73dfeb4673642af670e70bf16}{Joystick\+Square}} = JoystickX
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aff1fea9b718b99ac93cd9aa7c9bd1236}{JoystickY}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+Y
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a96327ba4b3a34fe9a0cd4dc727c53c72}{Joystick\+Triangle}} = JoystickY
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a713c380ff4920328172c8d0fea9f98ee}{Joystick\+LB}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+LEFT\+\_\+\+BUMPER
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae043c15a40b27130a95961dff30f02d9}{Joystick\+RB}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+RIGHT\+\_\+\+BUMPER
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a73b3a490933d9cf4b678923d13d2da38}{Joystick\+Back}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+BACK
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a69e85214b49239b24ecb3c9a04fc8ca3}{Joystick\+Start}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+START
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a06d5f34f04fefea2b5ac659f819c74ee}{Joystick\+Guide}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+GUIDE
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9a3ba115c28fa00387959626fcf36159}{Joystick\+LThumb}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+LEFT\+\_\+\+THUMB
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a50fee4a05f536e94157d20cd0f160729}{Joystick\+RThumb}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+RIGHT\+\_\+\+THUMB
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc71b5bef536ac4188b5bfb46f932e06}{Joystick\+Up}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+DPAD\+\_\+\+UP
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aa71720ba98ffa56ef7c13de78f76d443}{Joystick\+Right}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+DPAD\+\_\+\+RIGHT
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a4306ab0fb9bd1bba1cf9745f03ccd23a}{Joystick\+Down}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+DPAD\+\_\+\+DOWN
+, \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9c14ee5cca3665952f0ac321147b9607}{Joystick\+Left}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+BUTTON\+\_\+\+DPAD\+\_\+\+LEFT
+ \}
+\item 
+enum \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7}{Joystick\+Axis}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7ad404bcdaaffce090ba85450c2b2a7604}{Joystick\+LX}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+AXIS\+\_\+\+LEFT\+\_\+X
+, \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a95188f3f5dd4c3e5696ae26c4c8b5bd7}{Joystick\+LY}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+AXIS\+\_\+\+LEFT\+\_\+Y
+, \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7af3fd2c96e474ac7545c55bdb25a06b99}{Joystick\+LT}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+AXIS\+\_\+\+RIGHT\+\_\+X
+, \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a6ff41a81468cdacdec3659a93053869c}{Joystick\+RX}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+AXIS\+\_\+\+RIGHT\+\_\+Y
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a4f948c709e8cda272275c7a2e4f6fcd4}{Joystick\+RY}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+AXIS\+\_\+\+LEFT\+\_\+\+TRIGGER
+, \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a66481ac444e14ecd65dacf8b1740af4f}{Joystick\+RT}} = GLFW\+\_\+\+GAMEPAD\+\_\+\+AXIS\+\_\+\+RIGHT\+\_\+\+TRIGGER
+ \}
+\item 
+enum \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{Window\+Trigger}} \{ \newline
+\mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a0218a41d1468bec5c0f6c79ba052d270}{Window\+Close}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a220f849f2fab172c0a34a03e9be7fa3a}{Window\+Focus}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4ec9d952fc2132ae202dfe2e09720579}{Window\+Lost\+Focus}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9ec393cb779f6de6c4a178b6b54762d2}{Window\+File\+Drop}}
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a7f479458d2e38de0e214ecc28d4d56ea}{Window\+Scroll}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aa0c513e66dc4f44002315e760cf0123f}{Window\+Content\+Scale\+Changed}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ae54daa5a9d0b1f8c9f94bdc0fa94a990}{Window\+Framebuffer\+Resized}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aecb6115be2a17cb41cd48353d4831ed5}{Window\+Iconified}}
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9d22ecf615f4e771875e5e0fbb4d771b}{Window\+Maximized}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aefd6d496059953b05872862efde79ff9}{Window\+Moved}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a16fec00c87314844baae767ef333d729}{Window\+Resized}}
+, \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4f4eaa5454c67136fc806b5f0e85a82d}{Window\+Refreshed}}
+, \newline
+\mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ab810ae9f1084ebdcec3b4d68f9085fca}{Window\+Cursor\+Moved}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Event_a44e82dc6bcd80838bc2071dadd4a78cd}{Event}} (GLFWwindow \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classEGE_1_1Event}{Event} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Event_a9420a188a30abd18dc9c690e50d44f63}{\texorpdfstring{$\sim$}{\string~}\+Event}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Event}{Event} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1Event_ad45dec2c5757d21dc7eff140a6b34627}{bind\+Trigger}} (const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}} \&trigger)
+\begin{DoxyCompactList}\small\item\em Binds a trigger to the event. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... \+\_\+\+Arg\+Types, typename F $>$ \newline
+requires std\+::invocable$<$F, \+\_\+\+Arg\+Types...$>$}\\bool \mbox{\hyperlink{classEGE_1_1Event_a822a1e56de94a694b4fa478ab6900228}{bind\+Window\+Trigger}} (const \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{EGE\+::\+Event\+::\+Window\+Trigger}} \&trigger, F \&\&callback)
+\begin{DoxyCompactList}\small\item\em Binds a callback function to a specific window trigger event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Event_a8571ae4d771f4514f505e5cf9c8a9baf}{unbind\+Trigger}} (const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}} \&trigger)
+\begin{DoxyCompactList}\small\item\em Unbinds a trigger from the event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Event_a1158bef46c11f0e60606e45ccdce4120}{poll\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Polls events from the event queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an event in the game engine. 
+
+The \doxylink{classEGE_1_1Event}{Event} class provides functionality to handle various types of events, such as keyboard, mouse, window, joystick, and trigger events. It allows registering triggers and callbacks to be executed when specific events occur. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7}\label{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7} 
+\index{EGE::Event@{EGE::Event}!JoystickAxis@{JoystickAxis}}
+\index{JoystickAxis@{JoystickAxis}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{JoystickAxis}{JoystickAxis}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7}{EGE\+::\+Event\+::\+Joystick\+Axis}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickLX@{JoystickLX}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickLX@{JoystickLX}}}\Hypertarget{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7ad404bcdaaffce090ba85450c2b2a7604}\label{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7ad404bcdaaffce090ba85450c2b2a7604} 
+Joystick\+LX&Joystick axis code for the left X axis. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickLY@{JoystickLY}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickLY@{JoystickLY}}}\Hypertarget{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a95188f3f5dd4c3e5696ae26c4c8b5bd7}\label{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a95188f3f5dd4c3e5696ae26c4c8b5bd7} 
+Joystick\+LY&Joystick axis code for the left Y axis. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickLT@{JoystickLT}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickLT@{JoystickLT}}}\Hypertarget{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7af3fd2c96e474ac7545c55bdb25a06b99}\label{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7af3fd2c96e474ac7545c55bdb25a06b99} 
+Joystick\+LT&Joystick axis code for the left trigger axis. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickRX@{JoystickRX}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickRX@{JoystickRX}}}\Hypertarget{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a6ff41a81468cdacdec3659a93053869c}\label{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a6ff41a81468cdacdec3659a93053869c} 
+Joystick\+RX&Joystick axis code for the right X axis. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickRY@{JoystickRY}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickRY@{JoystickRY}}}\Hypertarget{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a4f948c709e8cda272275c7a2e4f6fcd4}\label{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a4f948c709e8cda272275c7a2e4f6fcd4} 
+Joystick\+RY&Joystick axis code for the right Y axis. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickRT@{JoystickRT}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickRT@{JoystickRT}}}\Hypertarget{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a66481ac444e14ecd65dacf8b1740af4f}\label{classEGE_1_1Event_a0f9b0aab6378c12ec99c999b1d868dc7a66481ac444e14ecd65dacf8b1740af4f} 
+Joystick\+RT&Joystick axis code for the right trigger axis. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0} 
+\index{EGE::Event@{EGE::Event}!JoystickButton@{JoystickButton}}
+\index{JoystickButton@{JoystickButton}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{JoystickButton}{JoystickButton}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0}{EGE\+::\+Event\+::\+Joystick\+Button}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickA@{JoystickA}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickA@{JoystickA}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a886c17a7a21981a7c8561f5e45560024}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a886c17a7a21981a7c8561f5e45560024} 
+JoystickA&Joystick button code for the A button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickCross@{JoystickCross}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickCross@{JoystickCross}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ad533c98800b61ca07b901ba92722e6ff}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ad533c98800b61ca07b901ba92722e6ff} 
+Joystick\+Cross&Joystick button code for the cross button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickB@{JoystickB}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickB@{JoystickB}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc941f545e0d297463b66bd85dba4c7e}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc941f545e0d297463b66bd85dba4c7e} 
+JoystickB&Joystick button code for the B button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickCircle@{JoystickCircle}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickCircle@{JoystickCircle}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a435d29b86545c48c74b3aefb9bf35860}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a435d29b86545c48c74b3aefb9bf35860} 
+Joystick\+Circle&Joystick button code for the circle button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickX@{JoystickX}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickX@{JoystickX}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae914fd198d8a1bf691931bafc129f1d7}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae914fd198d8a1bf691931bafc129f1d7} 
+JoystickX&Joystick button code for the X button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickSquare@{JoystickSquare}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickSquare@{JoystickSquare}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a207eebf73dfeb4673642af670e70bf16}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a207eebf73dfeb4673642af670e70bf16} 
+Joystick\+Square&Joystick button code for the square button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickY@{JoystickY}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickY@{JoystickY}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aff1fea9b718b99ac93cd9aa7c9bd1236}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aff1fea9b718b99ac93cd9aa7c9bd1236} 
+JoystickY&Joystick button code for the Y button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickTriangle@{JoystickTriangle}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickTriangle@{JoystickTriangle}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a96327ba4b3a34fe9a0cd4dc727c53c72}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a96327ba4b3a34fe9a0cd4dc727c53c72} 
+Joystick\+Triangle&Joystick button code for the triangle button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickLB@{JoystickLB}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickLB@{JoystickLB}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a713c380ff4920328172c8d0fea9f98ee}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a713c380ff4920328172c8d0fea9f98ee} 
+Joystick\+LB&Joystick button code for the left bumper button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickRB@{JoystickRB}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickRB@{JoystickRB}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae043c15a40b27130a95961dff30f02d9}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0ae043c15a40b27130a95961dff30f02d9} 
+Joystick\+RB&Joystick button code for the right bumper button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickBack@{JoystickBack}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickBack@{JoystickBack}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a73b3a490933d9cf4b678923d13d2da38}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a73b3a490933d9cf4b678923d13d2da38} 
+Joystick\+Back&Joystick button code for the back button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickStart@{JoystickStart}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickStart@{JoystickStart}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a69e85214b49239b24ecb3c9a04fc8ca3}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a69e85214b49239b24ecb3c9a04fc8ca3} 
+Joystick\+Start&Joystick button code for the start button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickGuide@{JoystickGuide}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickGuide@{JoystickGuide}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a06d5f34f04fefea2b5ac659f819c74ee}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a06d5f34f04fefea2b5ac659f819c74ee} 
+Joystick\+Guide&Joystick button code for the guide button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickLThumb@{JoystickLThumb}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickLThumb@{JoystickLThumb}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9a3ba115c28fa00387959626fcf36159}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9a3ba115c28fa00387959626fcf36159} 
+Joystick\+LThumb&Joystick button code for the left thumb button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickRThumb@{JoystickRThumb}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickRThumb@{JoystickRThumb}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a50fee4a05f536e94157d20cd0f160729}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a50fee4a05f536e94157d20cd0f160729} 
+Joystick\+RThumb&Joystick button code for the right thumb button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickUp@{JoystickUp}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickUp@{JoystickUp}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc71b5bef536ac4188b5bfb46f932e06}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0acc71b5bef536ac4188b5bfb46f932e06} 
+Joystick\+Up&Joystick button code for the up button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickRight@{JoystickRight}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickRight@{JoystickRight}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aa71720ba98ffa56ef7c13de78f76d443}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0aa71720ba98ffa56ef7c13de78f76d443} 
+Joystick\+Right&Joystick button code for the right button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickDown@{JoystickDown}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickDown@{JoystickDown}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a4306ab0fb9bd1bba1cf9745f03ccd23a}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a4306ab0fb9bd1bba1cf9745f03ccd23a} 
+Joystick\+Down&Joystick button code for the down button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickLeft@{JoystickLeft}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickLeft@{JoystickLeft}}}\Hypertarget{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9c14ee5cca3665952f0ac321147b9607}\label{classEGE_1_1Event_a8adc9418426a736f2697746e305875c0a9c14ee5cca3665952f0ac321147b9607} 
+Joystick\+Left&Joystick button code for the left button. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844} 
+\index{EGE::Event@{EGE::Event}!Key@{Key}}
+\index{Key@{Key}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{Key}{Key}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Event_a1961ff8089388aea24068bba58454844}{EGE\+::\+Event\+::\+Key}}}
+
+
+
+Enumeration of key codes. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyA@{KeyA}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyA@{KeyA}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1801af6b53b240b6c0e4f780ae872e66}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1801af6b53b240b6c0e4f780ae872e66} 
+KeyA&Key code for the A key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyB@{KeyB}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyB@{KeyB}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a33d4e9aee9b2c9f6bd019cfefe66d135}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a33d4e9aee9b2c9f6bd019cfefe66d135} 
+KeyB&Key code for the B key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyC@{KeyC}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyC@{KeyC}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a858eed91c2a8424f60d7d24d40c542d6}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a858eed91c2a8424f60d7d24d40c542d6} 
+KeyC&Key code for the C key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyD@{KeyD}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyD@{KeyD}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7b638f2341da5191199c485c62de4064}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7b638f2341da5191199c485c62de4064} 
+KeyD&Key code for the D key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyE@{KeyE}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyE@{KeyE}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3091685465e3df2093f2900478421ae7}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3091685465e3df2093f2900478421ae7} 
+KeyE&Key code for the E key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF@{KeyF}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF@{KeyF}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa22f36a22e685a883cbe4f171459a5bd}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa22f36a22e685a883cbe4f171459a5bd} 
+KeyF&Key code for the F key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyG@{KeyG}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyG@{KeyG}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4116925f22a4ca4e3545df997b58b7b8}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4116925f22a4ca4e3545df997b58b7b8} 
+KeyG&Key code for the G key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyH@{KeyH}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyH@{KeyH}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa0fc4c2a02190c75866e9b124762f8a9}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa0fc4c2a02190c75866e9b124762f8a9} 
+KeyH&Key code for the H key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyI@{KeyI}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyI@{KeyI}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a024918e90a4da4de861c3312e429bf5e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a024918e90a4da4de861c3312e429bf5e} 
+KeyI&Key code for the I key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyJ@{KeyJ}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyJ@{KeyJ}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a55f0a46be43767ed8685d6e6b260f5f1}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a55f0a46be43767ed8685d6e6b260f5f1} 
+KeyJ&Key code for the J key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyK@{KeyK}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyK@{KeyK}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1b95e3fa8a9a0a1bc43b99c8cf05f02e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1b95e3fa8a9a0a1bc43b99c8cf05f02e} 
+KeyK&Key code for the K key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyL@{KeyL}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyL@{KeyL}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af0761fd2a08cb6ad69fef35b03f53a22}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af0761fd2a08cb6ad69fef35b03f53a22} 
+KeyL&Key code for the L key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyM@{KeyM}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyM@{KeyM}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa454fc7271a6441162381a6908ea0a9d}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa454fc7271a6441162381a6908ea0a9d} 
+KeyM&Key code for the M key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyN@{KeyN}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyN@{KeyN}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2539a622fb2856b33fe49a94b4159ee8}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2539a622fb2856b33fe49a94b4159ee8} 
+KeyN&Key code for the N key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyO@{KeyO}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyO@{KeyO}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4ef3957ad0af611c49aabd39a716bb86}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4ef3957ad0af611c49aabd39a716bb86} 
+KeyO&Key code for the O key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyP@{KeyP}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyP@{KeyP}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a344f23cab1453458e84560d5877d7d79}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a344f23cab1453458e84560d5877d7d79} 
+KeyP&Key code for the P key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyQ@{KeyQ}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyQ@{KeyQ}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a30d5c9065f17ef1fc8b955307719e779}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a30d5c9065f17ef1fc8b955307719e779} 
+KeyQ&Key code for the Q key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyR@{KeyR}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyR@{KeyR}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac40429deee16d776ffa873d75cc78d85}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac40429deee16d776ffa873d75cc78d85} 
+KeyR&Key code for the R key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyS@{KeyS}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyS@{KeyS}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acb1cf3b7703abf89a93860606f2ce6bb}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acb1cf3b7703abf89a93860606f2ce6bb} 
+KeyS&Key code for the S key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyT@{KeyT}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyT@{KeyT}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac3e40c9e3ff873cd10477ffb7e7fcb6e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac3e40c9e3ff873cd10477ffb7e7fcb6e} 
+KeyT&Key code for the T key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyU@{KeyU}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyU@{KeyU}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7fc8e230dc1667aea617241f45f5a132}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7fc8e230dc1667aea617241f45f5a132} 
+KeyU&Key code for the U key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyV@{KeyV}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyV@{KeyV}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a02ab33c7ce96af95f7591369524fd4a0}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a02ab33c7ce96af95f7591369524fd4a0} 
+KeyV&Key code for the V key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyW@{KeyW}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyW@{KeyW}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9b2360f5a761601d6dc4d7a123209d4d}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9b2360f5a761601d6dc4d7a123209d4d} 
+KeyW&Key code for the W key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyX@{KeyX}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyX@{KeyX}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6dec42e51ed9e115fbc2f3469a6cf768}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6dec42e51ed9e115fbc2f3469a6cf768} 
+KeyX&Key code for the X key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyY@{KeyY}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyY@{KeyY}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a844a6d5ecfcfbf570af041b94cfa8546}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a844a6d5ecfcfbf570af041b94cfa8546} 
+KeyY&Key code for the Y key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyZ@{KeyZ}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyZ@{KeyZ}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1a87624c8d0bbc34819b1e6c619d79c9}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1a87624c8d0bbc34819b1e6c619d79c9} 
+KeyZ&Key code for the Z key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyBacktick@{KeyBacktick}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyBacktick@{KeyBacktick}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8906e0af1625f5731d91d28db5e572a9}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8906e0af1625f5731d91d28db5e572a9} 
+Key\+Backtick&Key code for the backtick key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key0@{Key0}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key0@{Key0}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a91665bf9bf7d5d9cdac47f1c1d4ec0d0}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a91665bf9bf7d5d9cdac47f1c1d4ec0d0} 
+Key0&Key code for the 0 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key1@{Key1}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key1@{Key1}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aef861d8aa30afec70e4c1d2b21479e1e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aef861d8aa30afec70e4c1d2b21479e1e} 
+Key1&Key code for the 1 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key2@{Key2}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key2@{Key2}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae5b90621d3ab9c92f91d63e3acf3d104}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae5b90621d3ab9c92f91d63e3acf3d104} 
+Key2&Key code for the 2 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key3@{Key3}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key3@{Key3}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af46d4eb6fc7fbad049ad67db2097f4e7}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af46d4eb6fc7fbad049ad67db2097f4e7} 
+Key3&Key code for the 3 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key4@{Key4}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key4@{Key4}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a233d370adc5d5b1f2af80362c4c80b80}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a233d370adc5d5b1f2af80362c4c80b80} 
+Key4&Key code for the 4 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key5@{Key5}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key5@{Key5}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9c2816887323f6cbacc7124939d56198}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9c2816887323f6cbacc7124939d56198} 
+Key5&Key code for the 5 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key6@{Key6}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key6@{Key6}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8e8de6fb9936087e5f3d71d295c7d27}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8e8de6fb9936087e5f3d71d295c7d27} 
+Key6&Key code for the 6 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key7@{Key7}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key7@{Key7}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a11ed66c402baed1e1784aa924943e858}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a11ed66c402baed1e1784aa924943e858} 
+Key7&Key code for the 7 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key8@{Key8}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key8@{Key8}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a18c1cb8412df5a551808ae103be93d67}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a18c1cb8412df5a551808ae103be93d67} 
+Key8&Key code for the 8 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Key9@{Key9}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Key9@{Key9}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1c79d1e5f46571aa1c84cf492b19379}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1c79d1e5f46571aa1c84cf492b19379} 
+Key9&Key code for the 9 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyMinus@{KeyMinus}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyMinus@{KeyMinus}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1a20bf7a109dd1b5e3332880cf3f183}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa1a20bf7a109dd1b5e3332880cf3f183} 
+Key\+Minus&Key code for the minus key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyEqual@{KeyEqual}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyEqual@{KeyEqual}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a71b161133c50c78f8da759f3ce8bb8b9}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a71b161133c50c78f8da759f3ce8bb8b9} 
+Key\+Equal&Key code for the equal key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyLeftBracket@{KeyLeftBracket}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyLeftBracket@{KeyLeftBracket}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a56ad91ba5553a71f9f6102efd427616d}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a56ad91ba5553a71f9f6102efd427616d} 
+Key\+Left\+Bracket&Key code for the left bracket key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyRightBracket@{KeyRightBracket}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyRightBracket@{KeyRightBracket}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a76f543d16c326340f2cd448768658d59}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a76f543d16c326340f2cd448768658d59} 
+Key\+Right\+Bracket&Key code for the right bracket key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyBackslash@{KeyBackslash}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyBackslash@{KeyBackslash}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c4ff98a12f1783e47df15063c30e7d}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c4ff98a12f1783e47df15063c30e7d} 
+Key\+Backslash&Key code for the backslash key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySemicolon@{KeySemicolon}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySemicolon@{KeySemicolon}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a841c1c109510d01502466da07b098c98}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a841c1c109510d01502466da07b098c98} 
+Key\+Semicolon&Key code for the semicolon key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyApostrophe@{KeyApostrophe}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyApostrophe@{KeyApostrophe}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a302d53467aeb59c430257dbd98f2e05b}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a302d53467aeb59c430257dbd98f2e05b} 
+Key\+Apostrophe&Key code for the apostrophe key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyComma@{KeyComma}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyComma@{KeyComma}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a68e2bde8e9bc3aac39a81933d0ef6fcb}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a68e2bde8e9bc3aac39a81933d0ef6fcb} 
+Key\+Comma&Key code for the comma key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPeriod@{KeyPeriod}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPeriod@{KeyPeriod}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae360440ad592710f037e33c7a6c8ef6e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae360440ad592710f037e33c7a6c8ef6e} 
+Key\+Period&Key code for the period key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySlash@{KeySlash}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySlash@{KeySlash}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac0e0802f3925788e2eab0c7bfdef930e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac0e0802f3925788e2eab0c7bfdef930e} 
+Key\+Slash&Key code for the slash key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyCapsLock@{KeyCapsLock}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyCapsLock@{KeyCapsLock}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1fa9a17f6e0d07e58c0e4e8235e5dd7a}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1fa9a17f6e0d07e58c0e4e8235e5dd7a} 
+Key\+Caps\+Lock&Key code for the caps lock key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyWorld1@{KeyWorld1}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyWorld1@{KeyWorld1}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3847a73355493d5fcc799f6d156f51eb}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3847a73355493d5fcc799f6d156f51eb} 
+Key\+World1&Key code for the world 1 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyWorld2@{KeyWorld2}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyWorld2@{KeyWorld2}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6fe8984a8d1f236dd248764c14dd0082}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6fe8984a8d1f236dd248764c14dd0082} 
+Key\+World2&Key code for the world 2 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySuper@{KeySuper}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySuper@{KeySuper}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a729228b02251198d60b0318a28ea43d9}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a729228b02251198d60b0318a28ea43d9} 
+Key\+Super&Key code for the left super key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyNumLock@{KeyNumLock}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyNumLock@{KeyNumLock}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945a28a38cb5635f16fb4d58b537239f}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945a28a38cb5635f16fb4d58b537239f} 
+Key\+Num\+Lock&Key code for the num lock key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPadDivide@{KeyPadDivide}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPadDivide@{KeyPadDivide}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a31310d70a8e9b4b8c7bde2c14eb8b90a}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a31310d70a8e9b4b8c7bde2c14eb8b90a} 
+Key\+Pad\+Divide&Key code for the keypad divide key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPadMultiply@{KeyPadMultiply}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPadMultiply@{KeyPadMultiply}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acc2eb3588dc74ab86fbee0a8f10da6fb}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acc2eb3588dc74ab86fbee0a8f10da6fb} 
+Key\+Pad\+Multiply&Key code for the keypad multiply key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPadSubtract@{KeyPadSubtract}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPadSubtract@{KeyPadSubtract}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad243f5b89be32b9973f19dc837d9a881}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad243f5b89be32b9973f19dc837d9a881} 
+Key\+Pad\+Subtract&Key code for the keypad subtract key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPadAdd@{KeyPadAdd}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPadAdd@{KeyPadAdd}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aee29a4445bd4e2b67c7cc7b8f26bd004}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aee29a4445bd4e2b67c7cc7b8f26bd004} 
+Key\+Pad\+Add&Key code for the keypad add key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPadDecimal@{KeyPadDecimal}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPadDecimal@{KeyPadDecimal}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afcbde62c97938bad6501c57573158c2c}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afcbde62c97938bad6501c57573158c2c} 
+Key\+Pad\+Decimal&Key code for the keypad decimal key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPadEnter@{KeyPadEnter}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPadEnter@{KeyPadEnter}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1f86edcf711187b5aa8254c34c7e1eb7}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1f86edcf711187b5aa8254c34c7e1eb7} 
+Key\+Pad\+Enter&Key code for the keypad enter key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad0@{KeyPad0}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad0@{KeyPad0}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8d7ef2df0787dbc525a75b8d34bb67a}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad8d7ef2df0787dbc525a75b8d34bb67a} 
+Key\+Pad0&Key code for the keypad 0 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad1@{KeyPad1}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad1@{KeyPad1}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844abffec6336529991316cbd7ac996250ad}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844abffec6336529991316cbd7ac996250ad} 
+Key\+Pad1&Key code for the keypad 1 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad2@{KeyPad2}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad2@{KeyPad2}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6409e78ff26cd3450a3bb674d42f12d3}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a6409e78ff26cd3450a3bb674d42f12d3} 
+Key\+Pad2&Key code for the keypad 2 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad3@{KeyPad3}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad3@{KeyPad3}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a75e414047e840dc64e6e4eb174812505}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a75e414047e840dc64e6e4eb174812505} 
+Key\+Pad3&Key code for the keypad 3 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad4@{KeyPad4}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad4@{KeyPad4}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1564274dd550e86d0042536f580dc05c}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1564274dd550e86d0042536f580dc05c} 
+Key\+Pad4&Key code for the keypad 4 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad5@{KeyPad5}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad5@{KeyPad5}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab7acb2f66955bc5576fcf30ba718dda5}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab7acb2f66955bc5576fcf30ba718dda5} 
+Key\+Pad5&Key code for the keypad 5 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad6@{KeyPad6}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad6@{KeyPad6}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a041f04420cfabfea4598c4f133dd94f7}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a041f04420cfabfea4598c4f133dd94f7} 
+Key\+Pad6&Key code for the keypad 6 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad7@{KeyPad7}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad7@{KeyPad7}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a66bf358baa83a0026bcb99668bc2d85d}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a66bf358baa83a0026bcb99668bc2d85d} 
+Key\+Pad7&Key code for the keypad 7 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad8@{KeyPad8}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad8@{KeyPad8}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afc16ac3fa589e4c85c10f2cd6a697104}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afc16ac3fa589e4c85c10f2cd6a697104} 
+Key\+Pad8&Key code for the keypad 8 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPad9@{KeyPad9}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPad9@{KeyPad9}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a04dc859bddfb32d41cf1b014cf623ad6}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a04dc859bddfb32d41cf1b014cf623ad6} 
+Key\+Pad9&Key code for the keypad 9 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpace@{KeySpace}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpace@{KeySpace}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae603d69ec87dced0917eb48519530397}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae603d69ec87dced0917eb48519530397} 
+Key\+Space&Key code for the space key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyLShift@{KeyLShift}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyLShift@{KeyLShift}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af6d803fb8956c761f920a380d225b9c8}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af6d803fb8956c761f920a380d225b9c8} 
+Key\+LShift&Key code for the left shift key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyRShift@{KeyRShift}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyRShift@{KeyRShift}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1989deaaf6aca7fdb18e012cacbb19c9}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1989deaaf6aca7fdb18e012cacbb19c9} 
+Key\+RShift&Key code for the right shift key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyLCtrl@{KeyLCtrl}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyLCtrl@{KeyLCtrl}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3d32df90cab48c83ada4525d28f01832}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3d32df90cab48c83ada4525d28f01832} 
+Key\+LCtrl&Key code for the left control key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyRCtrl@{KeyRCtrl}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyRCtrl@{KeyRCtrl}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a13b5a19b0d47d8cf7832b586852245f6}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a13b5a19b0d47d8cf7832b586852245f6} 
+Key\+RCtrl&Key code for the right control key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyLAlt@{KeyLAlt}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyLAlt@{KeyLAlt}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7e8e3cd9455a230f46fa5e66e84c7649}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a7e8e3cd9455a230f46fa5e66e84c7649} 
+Key\+LAlt&Key code for the left alt key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyRAlt@{KeyRAlt}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyRAlt@{KeyRAlt}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1d342b747e743d264f49491a4770adad}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1d342b747e743d264f49491a4770adad} 
+Key\+RAlt&Key code for the right alt key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyTab@{KeyTab}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyTab@{KeyTab}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae81dab7e2d63afe344d3c4d9de5d6b75}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae81dab7e2d63afe344d3c4d9de5d6b75} 
+Key\+Tab&Key code for the tab key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyEnter@{KeyEnter}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyEnter@{KeyEnter}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af5dda6ee4928218b3a5a49d770e914fe}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af5dda6ee4928218b3a5a49d770e914fe} 
+Key\+Enter&Key code for the enter key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyBackspace@{KeyBackspace}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyBackspace@{KeyBackspace}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c1bb7ac5d780eea0fa222a5df73fb1}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad4c1bb7ac5d780eea0fa222a5df73fb1} 
+Key\+Backspace&Key code for the backspace key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyEscape@{KeyEscape}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyEscape@{KeyEscape}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b77b051f99a8df7310b0b0b6a2ab2dc}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b77b051f99a8df7310b0b0b6a2ab2dc} 
+Key\+Escape&Key code for the escape key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyDelete@{KeyDelete}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyDelete@{KeyDelete}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945778af5a62a425293fa62fd6c66ca2}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a945778af5a62a425293fa62fd6c66ca2} 
+Key\+Delete&Key code for the delete key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyInsert@{KeyInsert}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyInsert@{KeyInsert}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4cc32794b085a062069e3b2fbbc81087}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4cc32794b085a062069e3b2fbbc81087} 
+Key\+Insert&Key code for the insert key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyHome@{KeyHome}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyHome@{KeyHome}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a5b2113466a326c96ba9c51c5b0127b77}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a5b2113466a326c96ba9c51c5b0127b77} 
+Key\+Home&Key code for the home key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPause@{KeyPause}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPause@{KeyPause}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad1f706436e964ad30a7137bbce15c666}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad1f706436e964ad30a7137bbce15c666} 
+Key\+Pause&Key code for the pause key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPrntScrn@{KeyPrntScrn}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPrntScrn@{KeyPrntScrn}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad36f39a457717a9ccc17f98963fe4bff}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ad36f39a457717a9ccc17f98963fe4bff} 
+Key\+Prnt\+Scrn&Key code for the print screen key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyUp@{KeyUp}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyUp@{KeyUp}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a53052adb5edae0764d2b97deb679059b}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a53052adb5edae0764d2b97deb679059b} 
+Key\+Up&Key code for the up key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyDown@{KeyDown}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyDown@{KeyDown}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af540d17cc494fefd2e65f130e31aa216}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844af540d17cc494fefd2e65f130e31aa216} 
+Key\+Down&Key code for the down key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyLeft@{KeyLeft}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyLeft@{KeyLeft}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa9fc4a6770735ce2921698166fa0b9b3}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aa9fc4a6770735ce2921698166fa0b9b3} 
+Key\+Left&Key code for the left key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyRight@{KeyRight}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyRight@{KeyRight}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a63d32539b61632abafcb53bedda19056}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a63d32539b61632abafcb53bedda19056} 
+Key\+Right&Key code for the right key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF1@{KeyF1}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF1@{KeyF1}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a28dfbbd3176632a0bb1ba16bf1f1f04c}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a28dfbbd3176632a0bb1ba16bf1f1f04c} 
+Key\+F1&Key code for the F1 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF2@{KeyF2}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF2@{KeyF2}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab4d80537d3df6bbe7c19656107411bfc}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ab4d80537d3df6bbe7c19656107411bfc} 
+Key\+F2&Key code for the F2 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF3@{KeyF3}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF3@{KeyF3}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a904cd8fc0a2f429783e38be1a2e2bf8b}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a904cd8fc0a2f429783e38be1a2e2bf8b} 
+Key\+F3&Key code for the F3 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF4@{KeyF4}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF4@{KeyF4}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afca8e27a3b63cd0c34ad1b12ebd4cfd4}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afca8e27a3b63cd0c34ad1b12ebd4cfd4} 
+Key\+F4&Key code for the F4 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF5@{KeyF5}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF5@{KeyF5}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1573837d82d602fc0378671d5a405a97}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1573837d82d602fc0378671d5a405a97} 
+Key\+F5&Key code for the F5 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF6@{KeyF6}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF6@{KeyF6}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a681576610b0da8bf4bff5de3a758b817}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a681576610b0da8bf4bff5de3a758b817} 
+Key\+F6&Key code for the F6 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF7@{KeyF7}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF7@{KeyF7}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a49583e7ed7cf51652c731d8e7e1e2d3a}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a49583e7ed7cf51652c731d8e7e1e2d3a} 
+Key\+F7&Key code for the F7 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF8@{KeyF8}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF8@{KeyF8}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8910a8e5e65b16f29ed49ad1c9fe9ea6}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a8910a8e5e65b16f29ed49ad1c9fe9ea6} 
+Key\+F8&Key code for the F8 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF9@{KeyF9}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF9@{KeyF9}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aaad7d4a0e11b527fbbc014c686f3d66d}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aaad7d4a0e11b527fbbc014c686f3d66d} 
+Key\+F9&Key code for the F9 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF10@{KeyF10}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF10@{KeyF10}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2e56c439a3883d11339fbb8700e8c64c}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2e56c439a3883d11339fbb8700e8c64c} 
+Key\+F10&Key code for the F10 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF11@{KeyF11}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF11@{KeyF11}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a64ef2f53e4361a8a18531738a0b15254}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a64ef2f53e4361a8a18531738a0b15254} 
+Key\+F11&Key code for the F11 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyF12@{KeyF12}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyF12@{KeyF12}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4a56dfa9c9bc6ece7ff4557331043595}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4a56dfa9c9bc6ece7ff4557331043595} 
+Key\+F12&Key code for the F12 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial1@{KeySpecial1}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial1@{KeySpecial1}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a70ec2ce69ed397553a6811daf75457b7}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a70ec2ce69ed397553a6811daf75457b7} 
+Key\+Special1&Key code for the special 1 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial2@{KeySpecial2}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial2@{KeySpecial2}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afae3410c97d419d8d067d62815e9619e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844afae3410c97d419d8d067d62815e9619e} 
+Key\+Special2&Key code for the special 2 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial3@{KeySpecial3}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial3@{KeySpecial3}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a09b4d5301728fe8999f2c448bd6521a4}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a09b4d5301728fe8999f2c448bd6521a4} 
+Key\+Special3&Key code for the special 3 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial4@{KeySpecial4}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial4@{KeySpecial4}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a45a4f353e0a052e4f3c0e2ffb6946f27}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a45a4f353e0a052e4f3c0e2ffb6946f27} 
+Key\+Special4&Key code for the special 4 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial5@{KeySpecial5}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial5@{KeySpecial5}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac97c25edf3ee00ea937e6e3323135371}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ac97c25edf3ee00ea937e6e3323135371} 
+Key\+Special5&Key code for the special 5 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial6@{KeySpecial6}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial6@{KeySpecial6}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4d4f0a2c424ad64b23f63105e9a52edc}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a4d4f0a2c424ad64b23f63105e9a52edc} 
+Key\+Special6&Key code for the special 6 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial7@{KeySpecial7}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial7@{KeySpecial7}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a23b4eee44cd3ae27a7290301536db620}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a23b4eee44cd3ae27a7290301536db620} 
+Key\+Special7&Key code for the special 7 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial8@{KeySpecial8}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial8@{KeySpecial8}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aedb54642e948cbdbe3aa93a30e299f42}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844aedb54642e948cbdbe3aa93a30e299f42} 
+Key\+Special8&Key code for the special 8 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial9@{KeySpecial9}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial9@{KeySpecial9}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a651d74704926447d6a52b17d84579e9a}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a651d74704926447d6a52b17d84579e9a} 
+Key\+Special9&Key code for the special 9 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial10@{KeySpecial10}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial10@{KeySpecial10}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9e19e312cf1da3cbd152c18c6464a364}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9e19e312cf1da3cbd152c18c6464a364} 
+Key\+Special10&Key code for the special 10 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial11@{KeySpecial11}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial11@{KeySpecial11}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae350d239320f019df0da70e591ae0cef}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae350d239320f019df0da70e591ae0cef} 
+Key\+Special11&Key code for the special 11 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial12@{KeySpecial12}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial12@{KeySpecial12}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b52d97e1308b69faa00530f0fffe32c}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a2b52d97e1308b69faa00530f0fffe32c} 
+Key\+Special12&Key code for the special 12 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeySpecial13@{KeySpecial13}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeySpecial13@{KeySpecial13}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9007adc81b7cf1829351b7e1ed347165}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a9007adc81b7cf1829351b7e1ed347165} 
+Key\+Special13&Key code for the special 13 key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPageUp@{KeyPageUp}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPageUp@{KeyPageUp}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acf27c0459f72c2ff7d4651a4ad55afc9}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844acf27c0459f72c2ff7d4651a4ad55afc9} 
+Key\+Page\+Up&Key code for the page up key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyPageDown@{KeyPageDown}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyPageDown@{KeyPageDown}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1c19bdbd560a7118c91b72a856b35d5d}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a1c19bdbd560a7118c91b72a856b35d5d} 
+Key\+Page\+Down&Key code for the page down key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyScrollLock@{KeyScrollLock}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyScrollLock@{KeyScrollLock}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3ad21a6e3b20e864a20c97e97dbaf1ad}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844a3ad21a6e3b20e864a20c97e97dbaf1ad} 
+Key\+Scroll\+Lock&Key code for the scroll lock key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyEnd@{KeyEnd}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyEnd@{KeyEnd}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae1bdc7f9b72e87134631db93e9852d4e}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae1bdc7f9b72e87134631db93e9852d4e} 
+Key\+End&Key code for the end key. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KeyMenu@{KeyMenu}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!KeyMenu@{KeyMenu}}}\Hypertarget{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae967ead800e1f0759982faebd8acb2af}\label{classEGE_1_1Event_a1961ff8089388aea24068bba58454844ae967ead800e1f0759982faebd8acb2af} 
+Key\+Menu&Key code for the menu key. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}\label{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5} 
+\index{EGE::Event@{EGE::Event}!Mode@{Mode}}
+\index{Mode@{Mode}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{Mode}{Mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5}{EGE\+::\+Event\+::\+Mode}}}
+
+
+
+Enumeration representing different modes of an event. 
+
+This enumeration defines the different modes of an event, such as MOVED, PRESSED, JUST\+\_\+\+PRESSED, RELEASED, and JUST\+\_\+\+RELEASED. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Moved@{Moved}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Moved@{Moved}}}\Hypertarget{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a08df458c1217cb14351eb151349c0329}\label{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a08df458c1217cb14351eb151349c0329} 
+Moved&\doxylink{classEGE_1_1Event}{Event} mode for movement. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Changed@{Changed}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Changed@{Changed}}}\Hypertarget{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5aa58216208099a81e78f913cd814b0733}\label{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5aa58216208099a81e78f913cd814b0733} 
+Changed&\doxylink{classEGE_1_1Event}{Event} mode for window state change. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pressed@{Pressed}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Pressed@{Pressed}}}\Hypertarget{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a2f9174846516f3800094238695a066ef}\label{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a2f9174846516f3800094238695a066ef} 
+Pressed&\doxylink{classEGE_1_1Event}{Event} mode for button press. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JustPressed@{JustPressed}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JustPressed@{JustPressed}}}\Hypertarget{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5ace5ef62d3792706cda17c4952d560061}\label{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5ace5ef62d3792706cda17c4952d560061} 
+Just\+Pressed&\doxylink{classEGE_1_1Event}{Event} mode for just pressed button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Released@{Released}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Released@{Released}}}\Hypertarget{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a30046fd545b5a9c4385060323317169a}\label{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a30046fd545b5a9c4385060323317169a} 
+Released&\doxylink{classEGE_1_1Event}{Event} mode for button release. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JustReleased@{JustReleased}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JustReleased@{JustReleased}}}\Hypertarget{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a5341dcb4ec0f403709f7e99979dce92c}\label{classEGE_1_1Event_aba3c018c1c578c72232279373a180bc5a5341dcb4ec0f403709f7e99979dce92c} 
+Just\+Released&\doxylink{classEGE_1_1Event}{Event} mode for just released button. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21} 
+\index{EGE::Event@{EGE::Event}!Mouse@{Mouse}}
+\index{Mouse@{Mouse}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{Mouse}{Mouse}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21}{EGE\+::\+Event\+::\+Mouse}}}
+
+
+
+Enumeration of mouse buttons. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MouseLeft@{MouseLeft}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!MouseLeft@{MouseLeft}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a7c3cab1156451526299c8101f2188ef7}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a7c3cab1156451526299c8101f2188ef7} 
+Mouse\+Left&Mouse button code for the left mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MouseRight@{MouseRight}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!MouseRight@{MouseRight}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ad8011084bf876edcd68e0516be4c2cdd}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ad8011084bf876edcd68e0516be4c2cdd} 
+Mouse\+Right&Mouse button code for the right mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MouseMiddle@{MouseMiddle}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!MouseMiddle@{MouseMiddle}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ab54b17475726b26e20e924042bd9653d}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ab54b17475726b26e20e924042bd9653d} 
+Mouse\+Middle&Mouse button code for the middle mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse1@{Mouse1}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse1@{Mouse1}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a6e1294ff2613fa9f5b4f2b2efc23f25d}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a6e1294ff2613fa9f5b4f2b2efc23f25d} 
+Mouse1&Mouse button code for the first mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse2@{Mouse2}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse2@{Mouse2}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a0176613df07180e581408cf6cbefe4ef}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a0176613df07180e581408cf6cbefe4ef} 
+Mouse2&Mouse button code for the second mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse3@{Mouse3}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse3@{Mouse3}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a33de25841a5b0ef8aa15238a4cb1a48b}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a33de25841a5b0ef8aa15238a4cb1a48b} 
+Mouse3&Mouse button code for the third mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse4@{Mouse4}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse4@{Mouse4}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aaf85ef3a9eb73d355eeb09c21fa8f5ff}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aaf85ef3a9eb73d355eeb09c21fa8f5ff} 
+Mouse4&Mouse button code for the fourth mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse5@{Mouse5}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse5@{Mouse5}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aa9007ecc043a65d117ff3433fdaa3c97}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21aa9007ecc043a65d117ff3433fdaa3c97} 
+Mouse5&Mouse button code for the fifth mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse6@{Mouse6}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse6@{Mouse6}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ae1e89f90f7ce5c458e2d18b61a46e300}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21ae1e89f90f7ce5c458e2d18b61a46e300} 
+Mouse6&Mouse button code for the sixth mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse7@{Mouse7}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse7@{Mouse7}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a217c625a6c8d843dd216e13fad649afa}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a217c625a6c8d843dd216e13fad649afa} 
+Mouse7&Mouse button code for the seventh mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse8@{Mouse8}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse8@{Mouse8}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21abdd93c152b45cbb7794e626ef57b43f0}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21abdd93c152b45cbb7794e626ef57b43f0} 
+Mouse8&Mouse button code for the eighth mouse button. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Cursor@{Cursor}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Cursor@{Cursor}}}\Hypertarget{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a3e5125329f335fec2f55e6866204abf4}\label{classEGE_1_1Event_abfd6e5abde05b8a290ea67361ed4eb21a3e5125329f335fec2f55e6866204abf4} 
+Cursor&Mouse button code for mouse movement. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}\label{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce} 
+\index{EGE::Event@{EGE::Event}!Type@{Type}}
+\index{Type@{Type}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dce}{EGE\+::\+Event\+::\+Type}}}
+
+
+
+The enumeration of event types. 
+
+This enumeration defines the different types of events that can occur in the game engine. The event types include KEYBOARD, MOUSE, JOYSTICK, and WINDOW. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Keyboard@{Keyboard}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Keyboard@{Keyboard}}}\Hypertarget{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaecaee265b925e75c7f19c2aaff752d60}\label{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaecaee265b925e75c7f19c2aaff752d60} 
+Keyboard&\doxylink{classEGE_1_1Event}{Event} type for keyboard events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse@{Mouse}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Mouse@{Mouse}}}\Hypertarget{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaf4c2b31979459be54a972c32ba2a5b5f}\label{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dceaf4c2b31979459be54a972c32ba2a5b5f} 
+Mouse&\doxylink{classEGE_1_1Event}{Event} type for mouse events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickButton@{JoystickButton}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickButton@{JoystickButton}}}\Hypertarget{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea85886d3e02a8381e26de1cdae2b671a0}\label{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea85886d3e02a8381e26de1cdae2b671a0} 
+Joystick\+Button&\doxylink{classEGE_1_1Event}{Event} type for joystick events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JoystickAxis@{JoystickAxis}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!JoystickAxis@{JoystickAxis}}}\Hypertarget{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea1feef105f6181fa41785f62d68bbaffe}\label{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea1feef105f6181fa41785f62d68bbaffe} 
+Joystick\+Axis&\doxylink{classEGE_1_1Event}{Event} type for joystick events. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Window@{Window}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!Window@{Window}}}\Hypertarget{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea5e89a1de321128cf9cdded7d665d405a}\label{classEGE_1_1Event_a0b831301e8fa394dc20722fd7e0b3dcea5e89a1de321128cf9cdded7d665d405a} 
+Window&\doxylink{classEGE_1_1Event}{Event} type for window events. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4} 
+\index{EGE::Event@{EGE::Event}!WindowTrigger@{WindowTrigger}}
+\index{WindowTrigger@{WindowTrigger}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{WindowTrigger}{WindowTrigger}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{EGE\+::\+Event\+::\+Window\+Trigger}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowClose@{WindowClose}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowClose@{WindowClose}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a0218a41d1468bec5c0f6c79ba052d270}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a0218a41d1468bec5c0f6c79ba052d270} 
+Window\+Close&\doxylink{classEGE_1_1Window}{Window} event for closing the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowFocus@{WindowFocus}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowFocus@{WindowFocus}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a220f849f2fab172c0a34a03e9be7fa3a}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a220f849f2fab172c0a34a03e9be7fa3a} 
+Window\+Focus&\doxylink{classEGE_1_1Window}{Window} event for focusing the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowLostFocus@{WindowLostFocus}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowLostFocus@{WindowLostFocus}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4ec9d952fc2132ae202dfe2e09720579}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4ec9d952fc2132ae202dfe2e09720579} 
+Window\+Lost\+Focus&\doxylink{classEGE_1_1Window}{Window} event for losing focus. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowFileDrop@{WindowFileDrop}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowFileDrop@{WindowFileDrop}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9ec393cb779f6de6c4a178b6b54762d2}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9ec393cb779f6de6c4a178b6b54762d2} 
+Window\+File\+Drop&\doxylink{classEGE_1_1Window}{Window} event for dropping a file. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowScroll@{WindowScroll}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowScroll@{WindowScroll}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a7f479458d2e38de0e214ecc28d4d56ea}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a7f479458d2e38de0e214ecc28d4d56ea} 
+Window\+Scroll&\doxylink{classEGE_1_1Window}{Window} event for scrolling the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowContentScaleChanged@{WindowContentScaleChanged}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowContentScaleChanged@{WindowContentScaleChanged}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aa0c513e66dc4f44002315e760cf0123f}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aa0c513e66dc4f44002315e760cf0123f} 
+Window\+Content\+Scale\+Changed&\doxylink{classEGE_1_1Window}{Window} event for changing the content scale. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowFramebufferResized@{WindowFramebufferResized}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowFramebufferResized@{WindowFramebufferResized}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ae54daa5a9d0b1f8c9f94bdc0fa94a990}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ae54daa5a9d0b1f8c9f94bdc0fa94a990} 
+Window\+Framebuffer\+Resized&\doxylink{classEGE_1_1Window}{Window} event for resizing the framebuffer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowIconified@{WindowIconified}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowIconified@{WindowIconified}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aecb6115be2a17cb41cd48353d4831ed5}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aecb6115be2a17cb41cd48353d4831ed5} 
+Window\+Iconified&\doxylink{classEGE_1_1Window}{Window} event for iconifying the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowMaximized@{WindowMaximized}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowMaximized@{WindowMaximized}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9d22ecf615f4e771875e5e0fbb4d771b}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a9d22ecf615f4e771875e5e0fbb4d771b} 
+Window\+Maximized&\doxylink{classEGE_1_1Window}{Window} event for maximizing the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowMoved@{WindowMoved}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowMoved@{WindowMoved}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aefd6d496059953b05872862efde79ff9}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4aefd6d496059953b05872862efde79ff9} 
+Window\+Moved&\doxylink{classEGE_1_1Window}{Window} event for moving the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowResized@{WindowResized}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowResized@{WindowResized}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a16fec00c87314844baae767ef333d729}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a16fec00c87314844baae767ef333d729} 
+Window\+Resized&\doxylink{classEGE_1_1Window}{Window} event for resizing the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowRefreshed@{WindowRefreshed}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowRefreshed@{WindowRefreshed}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4f4eaa5454c67136fc806b5f0e85a82d}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4a4f4eaa5454c67136fc806b5f0e85a82d} 
+Window\+Refreshed&\doxylink{classEGE_1_1Window}{Window} event for refreshing the window. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WindowCursorMoved@{WindowCursorMoved}!EGE::Event@{EGE::Event}}\index{EGE::Event@{EGE::Event}!WindowCursorMoved@{WindowCursorMoved}}}\Hypertarget{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ab810ae9f1084ebdcec3b4d68f9085fca}\label{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4ab810ae9f1084ebdcec3b4d68f9085fca} 
+Window\+Cursor\+Moved&\doxylink{classEGE_1_1Window}{Window} event for moving the cursor. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1Event_a44e82dc6bcd80838bc2071dadd4a78cd}\label{classEGE_1_1Event_a44e82dc6bcd80838bc2071dadd4a78cd} 
+\index{EGE::Event@{EGE::Event}!Event@{Event}}
+\index{Event@{Event}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{Event()}{Event()}}
+{\footnotesize\ttfamily EGE\+::\+Event\+::\+Event (\begin{DoxyParamCaption}\item[{GLFWwindow \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+
+Constructs an \doxylink{classEGE_1_1Event}{Event} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The GLFWwindow associated with the event. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1Event_a9420a188a30abd18dc9c690e50d44f63}\label{classEGE_1_1Event_a9420a188a30abd18dc9c690e50d44f63} 
+\index{EGE::Event@{EGE::Event}!````~Event@{\texorpdfstring{$\sim$}{\string~}Event}}
+\index{````~Event@{\texorpdfstring{$\sim$}{\string~}Event}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Event()}{\string~Event()}}
+{\footnotesize\ttfamily EGE\+::\+Event\+::\texorpdfstring{$\sim$}{\string~}\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classEGE_1_1Event}{Event} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1Event_ad45dec2c5757d21dc7eff140a6b34627}\label{classEGE_1_1Event_ad45dec2c5757d21dc7eff140a6b34627} 
+\index{EGE::Event@{EGE::Event}!bindTrigger@{bindTrigger}}
+\index{bindTrigger@{bindTrigger}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{bindTrigger()}{bindTrigger()}}
+{\footnotesize\ttfamily bool EGE\+::\+Event\+::bind\+Trigger (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}} \&}]{trigger }\end{DoxyParamCaption})}
+
+
+
+Binds a trigger to the event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trigger} & The trigger to bind. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the trigger was successfully bound, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Event_a822a1e56de94a694b4fa478ab6900228}\label{classEGE_1_1Event_a822a1e56de94a694b4fa478ab6900228} 
+\index{EGE::Event@{EGE::Event}!bindWindowTrigger@{bindWindowTrigger}}
+\index{bindWindowTrigger@{bindWindowTrigger}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{bindWindowTrigger()}{bindWindowTrigger()}}
+{\footnotesize\ttfamily template$<$typename... \+\_\+\+Arg\+Types, typename F $>$ \newline
+requires std\+::invocable$<$F, \+\_\+\+Arg\+Types...$>$\\
+bool EGE\+::\+Event\+::bind\+Window\+Trigger (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{EGE\+::\+Event\+::\+Window\+Trigger}} \&}]{trigger,  }\item[{F \&\&}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binds a callback function to a specific window trigger event. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Arg\+Types} & The argument types of the callback function. \\
+\hline
+{\em F} & The type of the callback function. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em trigger} & The window trigger event to bind the callback to. \\
+\hline
+{\em callback} & The callback function to bind. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the binding was successful, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1Event_a1158bef46c11f0e60606e45ccdce4120}\label{classEGE_1_1Event_a1158bef46c11f0e60606e45ccdce4120} 
+\index{EGE::Event@{EGE::Event}!pollEvents@{pollEvents}}
+\index{pollEvents@{pollEvents}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{pollEvents()}{pollEvents()}}
+{\footnotesize\ttfamily void EGE\+::\+Event\+::poll\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Polls events from the event queue. 
+
+This function retrieves and processes events from the event queue. It should be called in the main game loop to handle user input and other events. \Hypertarget{classEGE_1_1Event_a8571ae4d771f4514f505e5cf9c8a9baf}\label{classEGE_1_1Event_a8571ae4d771f4514f505e5cf9c8a9baf} 
+\index{EGE::Event@{EGE::Event}!unbindTrigger@{unbindTrigger}}
+\index{unbindTrigger@{unbindTrigger}!EGE::Event@{EGE::Event}}
+\doxysubsubsection{\texorpdfstring{unbindTrigger()}{unbindTrigger()}}
+{\footnotesize\ttfamily void EGE\+::\+Event\+::unbind\+Trigger (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{Trigger}} \&}]{trigger }\end{DoxyParamCaption})}
+
+
+
+Unbinds a trigger from the event. 
+
+This function removes the specified trigger from the event\textquotesingle{}s list of triggers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em trigger} & The trigger to unbind. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{Event_8hpp}{Event.\+hpp}}\end{DoxyCompactItemize}

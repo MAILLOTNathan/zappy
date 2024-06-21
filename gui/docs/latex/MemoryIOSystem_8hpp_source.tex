@@ -1,0 +1,47 @@
+\doxysection{Memory\+IOSystem.\+hpp}
+\hypertarget{MemoryIOSystem_8hpp_source}{}\label{MemoryIOSystem_8hpp_source}\index{ege/include/MemoryIOSystem.hpp@{ege/include/MemoryIOSystem.hpp}}
+\mbox{\hyperlink{MemoryIOSystem_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ MemoryIOSystem}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ MEMORYIOSYSTEM\_HPP\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#define\ MEMORYIOSYSTEM\_HPP\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}\mbox{\hyperlink{MemoryIOStream_8hpp}{MemoryIOStream.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \#include\ <assimp/IOSystem.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ <map>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMemoryIOSystem}{MemoryIOSystem}}\ :\ \textcolor{keyword}{public}\ Assimp::IOSystem\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryIOSystem_a1dd3cb21486d9e778ed22015907a194d}{addFile}}(\textcolor{keyword}{const}\ std::string\ \&path);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryIOSystem_af1e0d2853077a3062201098f0b35ef30}{addFile}}(\textcolor{keyword}{const}\ std::string\ \&path,\ \textcolor{keyword}{const}\ std::string\ \&buffer);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMemoryIOSystem_a2145617f9e6891f0148033a26ec1956e}{Exists}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *pFile)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classMemoryIOSystem_a4c1df8b235085d5d011fb1899ae04bd4}{getOsSeparator}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ Assimp::IOStream\ *\mbox{\hyperlink{classMemoryIOSystem_ac0813bfa23f65dc09b2cc997e21a87f1}{Open}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *pFile,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *pMode)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryIOSystem_a2ed35844799a83579cfc1f1436ab9c7c}{Close}}(Assimp::IOStream\ *pFile)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryIOSystem_aca228a74b398f2b112e4ab2caa773a20}{setAssetManager}}(AAssetManager\ *mgr);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ AAssetManager\ *\mbox{\hyperlink{classMemoryIOSystem_ad7a7e2353fe619d43128b97c557919d9}{getAssetManager}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ std::map<std::string,\ std::pair<const\ unsigned\ char*,\ size\_t>>\ files;\ \textcolor{comment}{//\ Map\ of\ file\ paths\ and\ their\ corresponding\ buffer\ content}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ AAssetManager\ *\_mgr;\ \textcolor{comment}{//\ Pointer\ to\ the\ asset\ manager\ for\ accessing\ Android\ assets}}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !MEMORYIOSYSTEM\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

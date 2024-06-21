@@ -1,0 +1,135 @@
+\doxysection{Onyx\+Animator.\+hpp}
+\hypertarget{OnyxAnimator_8hpp_source}{}\label{OnyxAnimator_8hpp_source}\index{include/OnyxAnimator.hpp@{include/OnyxAnimator.hpp}}
+\mbox{\hyperlink{OnyxAnimator_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ gui}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Animator}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Player_8hpp}{Player.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Movement_8hpp}{Movement.hpp}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceOnyx}{Onyx}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structOnyx_1_1Animation}{Animation}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOnyx_1_1Animation_ae368314ceedfe58ccb56046e6c275a85}{id}};\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOnyx_1_1Animation_a74d4db2256411f134a6eeea333f491b8}{globalId}};\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::shared\_ptr<Onyx::Player>\ \mbox{\hyperlink{structOnyx_1_1Animation_afce8c52f45d7d9c85dba1b1107365363}{player}};\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}\ \mbox{\hyperlink{structOnyx_1_1Animation_af2e994fa804c7256b21cdcea8eb16f7c}{movement}};\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::function<void()>\ \mbox{\hyperlink{structOnyx_1_1Animation_ac37019257fe14261e96ab8a705889b63}{callback}};\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structOnyx_1_1Animation_acf25742e986f61f5bb0c0ab6948d43e7}{time}};\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structOnyx_1_1Animation_ac20190851e114b6b8b1fa8e37b2a64e8}{elapsedTime}};\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structOnyx_1_1Animation_ac25240d86aa4c87a9665c507bc8501a5}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structOnyx_1_1Animation}{Animation}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>player.get()\ ==\ other.\mbox{\hyperlink{structOnyx_1_1Animation_afce8c52f45d7d9c85dba1b1107365363}{player}}.get();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOnyx_1_1Animator}{Animator}}\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOnyx_1_1Animator_a8e5ead3d12b3b1d98fd33ff78b07533b}{Animator}}(\textcolor{keywordtype}{float}\ timeUnit\ =\ 1.0f);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOnyx_1_1Animator_a8237a6cf8121e4398afbba7ef5c12aaa}{\string~Animator}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1Animator_a854d06c0e790ccf9e49bc98a9901728a}{update}}(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1Animator_a9f3effef8af4be1a2134ae2f660a446e}{startAnimation}}(\textcolor{keyword}{const}\ std::shared\_ptr<Onyx::Player>\&\ player,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classOnyx_1_1Player_ab503869b52a70fe62fd28a230f528fcd}{Onyx::Player::Animation}}\&\ type,\ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}()>\&\ callback);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1Animator_a9aa3eca7c81db34af1aa7a8b0ebef195}{setTimeUnit}}(\textcolor{keywordtype}{float}\ timeUnit);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Onyx::Animation>\ \_animations;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Onyx::Animation>\ \_queuedAnimations;\ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \_timeUnit;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}\ forwardNorth\ =\ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}()\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}))}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ -\/\mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\_SIZE}}\},}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}\ forwardSouth\ =\ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}()\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}))}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\_SIZE}}\},}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}\ forwardEast\ =\ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}()\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}))}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ \mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\_SIZE}}\},}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}\ forwardWest\ =\ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}()\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}))}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ -\/\mbox{\hyperlink{include_2Item_8hpp_a7a4127f14f16563da90eb3c836bc404f}{CELL\_SIZE}}\},}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}\ left\ =\ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}))}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{90.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}\ right\ =\ \mbox{\hyperlink{classEGE_1_1Movement}{EGE::Movement}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \}))}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classEGE_1_1Movement_a3b92f792f4338741615113835f1f0a2c}{pushBackKeyFrame}}(\mbox{\hyperlink{classEGE_1_1Maths_1_1Matrix}{EGE::Maths::Matrix<4,\ 4,\ float>}}(\{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{-\/90.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\},}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.0f,\ 0.0f,\ 0.0f,\ 0.0f\}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00172\ \ \ \ \ \};}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ }
+
+\end{DoxyCode}

@@ -1,0 +1,115 @@
+\doxysection{Window.\+hpp}
+\hypertarget{Window_8hpp_source}{}\label{Window_8hpp_source}\index{ege/include/Window.hpp@{ege/include/Window.hpp}}
+\mbox{\hyperlink{Window_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ IWindow}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Engine\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Color_8hpp}{Color.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Error_8hpp}{Error.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Event_8hpp}{Event.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Vector2_8hpp}{Maths/Vector2.hpp}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{OpenGL_8hpp}{OpenGL.hpp}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_glfwInitializations\ =\ 0;\ \ \ \ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Window}{Window}}\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Window_1_1WindowError}{WindowError}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_1_1WindowError_abffab9835f110e2bc3cadd316ed123e4}{WindowError}}(\textcolor{keyword}{const}\ std::string\&\ message)\ :\ \mbox{\hyperlink{classEGE_1_1Error}{Error}}(message)\ \{\}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3}{Styles}}\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ada20e7b6caea61123ffa7247b463633b}{None}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3aec78efe959a5b4608ac9d37f7686bf18}{Titlebar}}\ =\ 1\ <<\ 0,\ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ae5335efc4c6f683ddd4b114bf3911782}{Resize}}\ =\ 1\ <<\ 1,\ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a75f1463f970bede091c97fde08de6238}{Close}}\ =\ 1\ <<\ 2,\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a8779fd8caa99ab60eb34c78cb0fb3487}{Fullscreen}}\ =\ 1\ <<\ 3,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa}{Default}}\ =\ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3aec78efe959a5b4608ac9d37f7686bf18}{Titlebar}}\ |\ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3ae5335efc4c6f683ddd4b114bf3911782}{Resize}}\ |\ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a75f1463f970bede091c97fde08de6238}{Close}}\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_a64214c384d043032ebce0d9af62b18e2}{Window}}(\textcolor{keyword}{const}\ std::string\&\ title,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\&\ size,\ \textcolor{keyword}{const}\ std::uint8\_t\&\ style\ =\ \mbox{\hyperlink{classEGE_1_1Window_a7b4e0ac4d3c8ffb780ba7f6a610f26b3a6fb41777285cd5c0bc1ba5cc4a0dadaa}{Styles::Default}});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Window_af0ce46a7f994fe64a356fabcf0ea81e9}{\string~Window}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_ad726d81b0b701a786d4162f7033e4c9a}{create}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a0699425d0b6249e1007c67fd612a3ceb}{destroy}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_ac72682bfc681e0c4add904c4335c457d}{clear}}(\mbox{\hyperlink{classEGE_1_1Color}{EGE::Color}}\ color\ =\ \mbox{\hyperlink{classEGE_1_1Color}{EGE::Color}}(0.0f,\ 0.0f,\ 0.0f,\ 1.0f));}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a8d62d1927379647fac4561d382cff432}{display}}();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a2426a403e0c8f2fe929cc483b4a5cdde}{pollEvents}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Window_a00883616de25797521e37e2910520d55}{isOpen}}();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a9eb0f2deb0c1a7ece182ff14e56ef7b8}{close}}();}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Window_acc563a69f52a47846308da28959423f4}{bindTrigger}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{EGE::Event::Trigger}}\&\ trigger);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ \_ArgTypes,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<F,\ \_ArgTypes...>}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEGE_1_1Window_ab3fe1e23d5aadf06219bfe99fa6d1a02}{bindWindowTrigger}}(\mbox{\hyperlink{classEGE_1_1Event_a82bc98d88a38bebae0aebe90f9debeb4}{EGE::Event::WindowTrigger}}\ trigger,\ F\ \&\&callback)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_event-\/>bindWindowTrigger<\_ArgTypes...>(trigger,\ callback);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_aa1004f78a6b74d937ae0b3e376e8bfe0}{unbindTrigger}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Event_1_1Trigger}{EGE::Event::Trigger}}\&\ trigger);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_aa9c6d0e4d52b4dc2d0a4afd213edca8e}{setTitle}}(\textcolor{keyword}{const}\ std::string\&\ title);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a5ba240683c3a7e417b64413c489356f0}{setSize}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ width,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ height);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_acca896ceba08127e4af8d7584ac625eb}{setSize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\&\ size);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a6522a2c2bbbc1fc47f91c0c1719cd122}{setPosition}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ x,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ y);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a1192323d738eddf67a106c75a1532eb9}{setPosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\&\ position);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a83fed67588b8490b3b71a86eb5211d94}{setFramerateLimit}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ limit);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_a903c5e651a5a50bc2f7a16ffcc5ac160}{setCursorVisible}}(\textcolor{keywordtype}{bool}\ visible);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEGE_1_1Window_aa0183f0292aeb4a58def96d45ea4a455}{setActive}}(\textcolor{keywordtype}{bool}\ active);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\ \mbox{\hyperlink{classEGE_1_1Window_aa1ff3169b172a041545e456f36907dd9}{getPosition}}();}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\ \mbox{\hyperlink{classEGE_1_1Window_aa833fec35fbd2e0d8e02d7a26fcf661e}{getSize}}();}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\ \mbox{\hyperlink{classEGE_1_1Window_a2e9d0dd179b1c4963015f0577bb38bfc}{getMousePosition}}();}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ GLFWwindow\ *\mbox{\hyperlink{classEGE_1_1Window_a09ea56a81098d5ee09081bb878f073ad}{getWindow}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_initializeGlfw();}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ GLFWmonitor*\ \_monitor;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ GLFWvidmode*\ \_mode;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ GLFWwindow*\ \_window;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \_title;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\ \_size;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\ \_position;\ \ \ \ \ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_framerateLimit;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_cursorVisible;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_active;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ std::uint8\_t\ \_style;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<EGE::Event>\ \_event;\ \ \ \ \ }
+\DoxyCodeLine{00325\ \ \ \ \ \};}
+\DoxyCodeLine{00326\ \}}
+
+\end{DoxyCode}

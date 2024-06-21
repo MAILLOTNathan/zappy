@@ -22,6 +22,7 @@ class EntityVR {
         virtual void setPosition(const EGE::Maths::Vector3<float>& position);
 
         virtual EGE::Maths::Vector3<float> getPosition();
+        std::shared_ptr<EGE::ModelVR> getModel();
 
     protected:
         std::shared_ptr<EGE::ModelVR> _model;

@@ -1,0 +1,31 @@
+\doxysection{Error.\+hpp}
+\hypertarget{Error_8hpp_source}{}\label{Error_8hpp_source}\index{ege/include/Error.hpp@{ege/include/Error.hpp}}
+\mbox{\hyperlink{Error_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ etib-\/game-\/engine}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Error}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ C++\ include}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceEGE}{EGE}}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEGE_1_1Error}{Error}}\ :\ \textcolor{keyword}{public}\ std::exception\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Error_a19ded8464d950dd4669c70e5e760a20f}{Error}}(\textcolor{keyword}{const}\ std::string\&\ message)\ :\ \mbox{\hyperlink{classEGE_1_1Error_ad7dfbcf78e5dac04aa92baa41c215d1c}{\_message}}(message)\ \{\}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Error_abb34aadafc09de8c6476584d8efc19e8}{\string~Error}}()\ \{\}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{classEGE_1_1Error_a8c99c9e9f9608777041f20d55c941f23}{what}}()\ const\ noexcept\textcolor{keyword}{\ override\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEGE_1_1Error_ad7dfbcf78e5dac04aa92baa41c215d1c}{\_message}}.c\_str();\ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classEGE_1_1Error_ad7dfbcf78e5dac04aa92baa41c215d1c}{\_message}};\ }
+\DoxyCodeLine{00054\ \ \ \ \ \};}
+\DoxyCodeLine{00055\ \}}
+
+\end{DoxyCode}

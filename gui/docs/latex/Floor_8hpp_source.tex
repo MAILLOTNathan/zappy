@@ -1,0 +1,46 @@
+\doxysection{Floor.\+hpp}
+\hypertarget{Floor_8hpp_source}{}\label{Floor_8hpp_source}\index{include/Floor.hpp@{include/Floor.hpp}}
+\mbox{\hyperlink{Floor_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ EPITECH\ PROJECT,\ 2024}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ gui}}
+\DoxyCodeLine{00004\ \textcolor{comment}{**\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ Floot}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Entity_8hpp}{Entity.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{include_2Item_8hpp}{Item.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Shader_8hpp}{Shader.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <GL/glu.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceOnyx}{Onyx}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOnyx_1_1Floor}{Floor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classOnyx_1_1Entity}{Onyx::Entity}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOnyx_1_1Floor_a36b200404ca856b552c1d90af7182213}{Floor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\&\ position);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOnyx_1_1Floor_a610bde6e577aa6f390c9d02d8244498f}{\string~Floor}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1Floor_adef280c8b76f95aa8e128070a754fec6}{update}}(std::shared\_ptr<EGE::Shader>\ shader)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1Floor_a364feee53a0bfd8638ba6d2f5a8ae421}{addItem}}(\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx::Item::TYPE}}\ type,\ \textcolor{keywordtype}{int}\ number);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOnyx_1_1Floor_a34192d49281460448f97084474aaab31}{removeItem}}(\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx::Item::TYPE}}\ type);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classOnyx_1_1Floor_ac6b2cd4d680111e0fd12d508eb066553}{getQuantity}}(\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdd}{Onyx::Item::TYPE}}\ type)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classOnyx_1_1Floor_aba10fb6d7449a67d7874e409cef1404a}{getDistance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ cameraPosition,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector3}{EGE::Maths::Vector3<float>}}\&\ cameraFront)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\ \mbox{\hyperlink{classOnyx_1_1Floor_abff1e1f1893e51e388fc4672aca9ff2e}{getPos}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_quantity[\mbox{\hyperlink{classOnyx_1_1Item_a52344f941bc0c2054d9b71063f09cbdda626e194c8ebcf0ee32b4b4320339b4f5}{Onyx::Item::TYPE::MAX}}];\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::shared\_ptr<Onyx::Item>>\ \_items;\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEGE_1_1Maths_1_1Vector2}{EGE::Maths::Vector2<int>}}\ \_pos;\ }
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ \}}
+
+\end{DoxyCode}

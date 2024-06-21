@@ -62,7 +62,7 @@ namespace Onyx {
              * @param rotation The rotation of the player.
              * @param timeUnit The time unit of the world.
              */
-            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, float timeUnit);
+            void addPlayer(int id, EGE::Maths::Vector2<int> position, std::string teamName, const std::string& rotation, int level, float timeUnit);
 
             /**
              * @brief Gets the map.
@@ -173,7 +173,7 @@ namespace Onyx {
             float _deltaTime;                                       /**< The time between frames. */
             std::shared_ptr<Onyx::Map> _map;                        /**< The map in the graphical user interface. */
             int _tileSelected;                                      /**< The selected tile. */
-            std::shared_ptr<UserInterface> _interface;              /**< The Interface which displays informations about the world. */
+            std::shared_ptr<Onyx::UserInterface> _interface;              /**< The Interface which displays informations about the world. */
             bool _running;                                          /**< A boolean that indicates whether the application is running. */
             net::TcpClient *_client;                                /**< The TCP client used for communication with the server. */
             std::vector<std::shared_ptr<Onyx::Player>> _players;    /**< The players in the graphical user interface. */

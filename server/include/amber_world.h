@@ -237,7 +237,6 @@ int amber_get_nbr_eggs_by_team(amber_world_t *world, char *team);
  */
 box_t *amber_world_case_init(void);
 
-
 /**
  * Initializes an egg in the Amber world.
  *

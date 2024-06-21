@@ -1,0 +1,178 @@
+\doxysection{EGE\+::Radio\+Button Class Reference}
+\hypertarget{classEGE_1_1RadioButton}{}\label{classEGE_1_1RadioButton}\index{EGE::RadioButton@{EGE::RadioButton}}
+
+
+Represents a radio button \doxylink{classEGE_1_1GUI}{GUI} element.  
+
+
+
+
+{\ttfamily \#include $<$Radio\+Button.\+hpp$>$}
+
+
+
+Inheritance diagram for EGE\+::Radio\+Button\+:
+% FIG 0
+
+
+Collaboration diagram for EGE\+::Radio\+Button\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1RadioButton_a45ad13e50545a450e87ea6b115086f7f}{Radio\+Button}} (const std\+::string \&title)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1RadioButton}{Radio\+Button} object with the specified title. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1RadioButton_a94df13cc46c83e4f0489757b207b34ba}{\texorpdfstring{$\sim$}{\string~}\+Radio\+Button}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classEGE_1_1RadioButton}{Radio\+Button} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1RadioButton_a11124c814ad329a97dbf8253b6f26bcd}{draw}} () override
+\begin{DoxyCompactList}\small\item\em Draws the radio button on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1RadioButton_ad895e081e06b6e09492f8f7de9626aab}{set\+Checked}} (bool checked)
+\begin{DoxyCompactList}\small\item\em Sets the checked state of the radio button. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1RadioButton_a0cbd17b1fc300f9dd47b25ea47dce2dd}{is\+Checked}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the radio button is currently checked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEGE_1_1Button}{EGE\+::\+Button}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Button_a2cc6d8769e524528273932c43bacb5bd}{Button}} (const std\+::string \&title, std\+::function$<$ void()$>$ callback)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classEGE_1_1Button}{Button} object with the specified title and callback function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Button_a860b58d0f61b95ff94ad85cc2d633024}{\texorpdfstring{$\sim$}{\string~}\+Button}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classEGE_1_1Button}{Button} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEGE_1_1Interactable}{EGE\+::\+Interactable}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classEGE_1_1Interactable_a09a896c707f84ef5657e7892a1433a46}{\texorpdfstring{$\sim$}{\string~}\+Interactable}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1Interactable}{Interactable} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Interactable_ae752c4a52994bd0315e491e59db26f91}{perform}} ()
+\begin{DoxyCompactList}\small\item\em Perform the interaction action. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1Interactable_af30c960bc56d9171b65452e76e7b278a}{set\+Callback}} (std\+::function$<$ void()$>$ callback)
+\begin{DoxyCompactList}\small\item\em Set the callback function for the interaction action. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEGE_1_1GUI}{EGE\+::\+GUI}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classEGE_1_1GUI_a1c6a6065e39ac7ebffb80f2e110e9a07}{\texorpdfstring{$\sim$}{\string~}\+GUI}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEGE_1_1GUI}{GUI} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a53108c7e906ec4b2698424460dbfdad5}{init}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{classEGE_1_1GUI}{GUI} with a window. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_a2b9ebc4bc477127a26bd817c9e15071b}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_a2e2e1da784eeae10a19527806ee85b5b}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_abef37bc1d78289a4039bae35d5ca5732}{set\+Window}} (\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Sets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a95a018779bfd9414768209eb3c2ff516}{get\+Window}} () const
+\begin{DoxyCompactList}\small\item\em Gets the window associated with the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEGE_1_1GUI_af7cafc6d2a24cbeac515f388cb35d459}{set\+Visible}} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of the \doxylink{classEGE_1_1GUI}{GUI}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_a1b6a7ee168d21bf17973303d45856dd5}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the \doxylink{classEGE_1_1GUI}{GUI} is visible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1RadioButton_a989e5ba227779c3cbf94872474df22e2}{\+\_\+checked}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEGE_1_1Interactable}{EGE\+::\+Interactable}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ void()$>$ \mbox{\hyperlink{classEGE_1_1Interactable_a61fbd772d4a53bc57e7a4778b50cb247}{\+\_\+callback}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEGE_1_1GUI}{EGE\+::\+GUI}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEGE_1_1Window}{Window}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEGE_1_1GUI_a8e9db67256da924a7a19878e1eb04cbd}{\+\_\+window}}
+\item 
+std\+::string \mbox{\hyperlink{classEGE_1_1GUI_aa70e32e7457f4dd7f17e6be70da0b758}{\+\_\+name}}
+\item 
+bool \mbox{\hyperlink{classEGE_1_1GUI_abc5afa48d51ac54bf3bc1b29b3ffc902}{\+\_\+visible}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a radio button \doxylink{classEGE_1_1GUI}{GUI} element. 
+
+The \doxylink{classEGE_1_1RadioButton}{Radio\+Button} class is a subclass of \doxylink{classEGE_1_1Button}{Button} and represents a radio button \doxylink{classEGE_1_1GUI}{GUI} element. It allows the user to select a single option from a group of options. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEGE_1_1RadioButton_a45ad13e50545a450e87ea6b115086f7f}\label{classEGE_1_1RadioButton_a45ad13e50545a450e87ea6b115086f7f} 
+\index{EGE::RadioButton@{EGE::RadioButton}!RadioButton@{RadioButton}}
+\index{RadioButton@{RadioButton}!EGE::RadioButton@{EGE::RadioButton}}
+\doxysubsubsection{\texorpdfstring{RadioButton()}{RadioButton()}}
+{\footnotesize\ttfamily EGE\+::\+Radio\+Button\+::\+Radio\+Button (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{title }\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classEGE_1_1RadioButton}{Radio\+Button} object with the specified title. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & The title of the radio button. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEGE_1_1RadioButton_a94df13cc46c83e4f0489757b207b34ba}\label{classEGE_1_1RadioButton_a94df13cc46c83e4f0489757b207b34ba} 
+\index{EGE::RadioButton@{EGE::RadioButton}!````~RadioButton@{\texorpdfstring{$\sim$}{\string~}RadioButton}}
+\index{````~RadioButton@{\texorpdfstring{$\sim$}{\string~}RadioButton}!EGE::RadioButton@{EGE::RadioButton}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}RadioButton()}{\string~RadioButton()}}
+{\footnotesize\ttfamily EGE\+::\+Radio\+Button\+::\texorpdfstring{$\sim$}{\string~}\+Radio\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classEGE_1_1RadioButton}{Radio\+Button} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEGE_1_1RadioButton_a11124c814ad329a97dbf8253b6f26bcd}\label{classEGE_1_1RadioButton_a11124c814ad329a97dbf8253b6f26bcd} 
+\index{EGE::RadioButton@{EGE::RadioButton}!draw@{draw}}
+\index{draw@{draw}!EGE::RadioButton@{EGE::RadioButton}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void EGE\+::\+Radio\+Button\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Draws the radio button on the screen. 
+
+This function overrides the \doxylink{classEGE_1_1RadioButton_a11124c814ad329a97dbf8253b6f26bcd}{draw()} function of the \doxylink{classEGE_1_1Button}{Button} class. It is responsible for rendering the radio button on the screen. 
+
+Reimplemented from \mbox{\hyperlink{classEGE_1_1Button_ace6cdc87f59b91a0ee89a5c072923f5c}{EGE\+::\+Button}}.
+
+\Hypertarget{classEGE_1_1RadioButton_a0cbd17b1fc300f9dd47b25ea47dce2dd}\label{classEGE_1_1RadioButton_a0cbd17b1fc300f9dd47b25ea47dce2dd} 
+\index{EGE::RadioButton@{EGE::RadioButton}!isChecked@{isChecked}}
+\index{isChecked@{isChecked}!EGE::RadioButton@{EGE::RadioButton}}
+\doxysubsubsection{\texorpdfstring{isChecked()}{isChecked()}}
+{\footnotesize\ttfamily bool EGE\+::\+Radio\+Button\+::is\+Checked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the radio button is currently checked. 
+
+\begin{DoxyReturn}{Returns}
+true if the radio button is checked, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEGE_1_1RadioButton_ad895e081e06b6e09492f8f7de9626aab}\label{classEGE_1_1RadioButton_ad895e081e06b6e09492f8f7de9626aab} 
+\index{EGE::RadioButton@{EGE::RadioButton}!setChecked@{setChecked}}
+\index{setChecked@{setChecked}!EGE::RadioButton@{EGE::RadioButton}}
+\doxysubsubsection{\texorpdfstring{setChecked()}{setChecked()}}
+{\footnotesize\ttfamily void EGE\+::\+Radio\+Button\+::set\+Checked (\begin{DoxyParamCaption}\item[{bool}]{checked }\end{DoxyParamCaption})}
+
+
+
+Sets the checked state of the radio button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em checked} & The checked state to set. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classEGE_1_1RadioButton_a989e5ba227779c3cbf94872474df22e2}\label{classEGE_1_1RadioButton_a989e5ba227779c3cbf94872474df22e2} 
+\index{EGE::RadioButton@{EGE::RadioButton}!\_checked@{\_checked}}
+\index{\_checked@{\_checked}!EGE::RadioButton@{EGE::RadioButton}}
+\doxysubsubsection{\texorpdfstring{\_checked}{\_checked}}
+{\footnotesize\ttfamily bool EGE\+::\+Radio\+Button\+::\+\_\+checked\hspace{0.3cm}{\ttfamily [protected]}}
+
+The checked state of the radio button. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\+GUI/\+Input/\mbox{\hyperlink{RadioButton_8hpp}{Radio\+Button.\+hpp}}\end{DoxyCompactItemize}

@@ -10,7 +10,6 @@
 
     #include <iostream>
     #include <sys/socket.h>
-    #include <netinet/in.h>
     #include <arpa/inet.h>
     #include <unistd.h>
     #include <string>
@@ -18,14 +17,24 @@
     #include <array>
     #include <cstring>
     #include "Error.hpp"
-    #include "TcpCommand.hpp"
     #include "TcpManagerCmd.hpp"
 
     #define COMMAND_VALIDE
 
 namespace net {
+    /**
+     * @brief An exception class for TCP client errors.
+     *
+     * This class is used to represent errors that occur during TCP client operations.
+     * It inherits from the EGE::Error class.
+     */
     class TcpClientError : public EGE::Error {
         public:
+            /**
+             * @brief Constructs a TcpClientError object with the given error message.
+             *
+             * @param message The error message associated with the exception.
+             */
             TcpClientError(const std::string& message) : Error(message) {}
     };
 
@@ -112,14 +121,14 @@ namespace net {
             int getPort() const;
 
         protected:
-            std::string _ip; /**< The IP address of the server. */
-            int _port; /**< The port number of the server. */
-            int _fd; /**< The file descriptor associated with the TCP client. */
-            struct sockaddr_in _serv_addr; /**< The server address structure. */
-            TcpManagerCmd _manager; /**< The command manager for the TCP client. */
-            fd_set _readfds; /**< The file descriptor set for the select operation. */
-            std::string _buffer; /**< The buffer for storing received data. */
-            fd_set _writefds; /**< The file descriptor set for the select operation. */
+            std::string _ip;                    /**< The IP address of the server. */
+            int _port;                          /**< The port number of the server. */
+            int _fd;                            /**< The file descriptor associated with the TCP client. */
+            struct sockaddr_in _serv_addr;      /**< The server address structure. */
+            TcpManagerCmd _manager;             /**< The command manager for the TCP client. */
+            fd_set _readfds;                    /**< The file descriptor set for the select operation. */
+            std::string _buffer;                /**< The buffer for storing received data. */
+            fd_set _writefds;                   /**< The file descriptor set for the select operation. */
 
         private:
             /**

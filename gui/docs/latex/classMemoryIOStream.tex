@@ -1,0 +1,179 @@
+\doxysection{Memory\+IOStream Class Reference}
+\hypertarget{classMemoryIOStream}{}\label{classMemoryIOStream}\index{MemoryIOStream@{MemoryIOStream}}
+
+
+A custom IOStream implementation for reading from and writing to memory buffers.  
+
+
+
+
+{\ttfamily \#include $<$Memory\+IOStream.\+hpp$>$}
+
+
+
+Inheritance diagram for Memory\+IOStream\+:
+% FIG 0
+
+
+Collaboration diagram for Memory\+IOStream\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMemoryIOStream_afdeb2c2f43245b3021ee7950d20d5dd6}{Memory\+IOStream}} (const unsigned char \texorpdfstring{$\ast$}{*}buffer, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classMemoryIOStream}{Memory\+IOStream} object with the given buffer and length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMemoryIOStream_a7772769932588f7d0b6ff33e5367695d}{\texorpdfstring{$\sim$}{\string~}\+Memory\+IOStream}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classMemoryIOStream_a960e73ea0fd444deb5c06c772cb8e038}{Read}} (void \texorpdfstring{$\ast$}{*}out\+Buffer, size\+\_\+t size, size\+\_\+t count) override
+\begin{DoxyCompactList}\small\item\em Reads data from the memory buffer. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classMemoryIOStream_a45a5fed767cfc4bc153b85886bb888ad}{Write}} (const void \texorpdfstring{$\ast$}{*}buffer, size\+\_\+t size, size\+\_\+t count) override
+\begin{DoxyCompactList}\small\item\em Writes data to the memory buffer. \end{DoxyCompactList}\item 
+ai\+Return \mbox{\hyperlink{classMemoryIOStream_aa8295fafc9420f43a680422b1d7a3e84}{Seek}} (size\+\_\+t offset, ai\+Origin origin) override
+\begin{DoxyCompactList}\small\item\em Sets the position indicator of the memory buffer. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classMemoryIOStream_a7f9b2d1187e3367bbb1e9f00b8c61d0c}{Tell}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the current position indicator of the memory buffer. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classMemoryIOStream_afcceee34745ef637a1ecc5959e363fb6}{File\+Size}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the size of the memory buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMemoryIOStream_ab15a9e77ab59c655c34b204898ae47c5}{Flush}} () override
+\begin{DoxyCompactList}\small\item\em Flushes any buffered data to the memory buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A custom IOStream implementation for reading from and writing to memory buffers. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMemoryIOStream_afdeb2c2f43245b3021ee7950d20d5dd6}\label{classMemoryIOStream_afdeb2c2f43245b3021ee7950d20d5dd6} 
+\index{MemoryIOStream@{MemoryIOStream}!MemoryIOStream@{MemoryIOStream}}
+\index{MemoryIOStream@{MemoryIOStream}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{MemoryIOStream()}{MemoryIOStream()}}
+{\footnotesize\ttfamily Memory\+IOStream\+::\+Memory\+IOStream (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classMemoryIOStream}{Memory\+IOStream} object with the given buffer and length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The memory buffer to read from or write to. \\
+\hline
+{\em length} & The length of the memory buffer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMemoryIOStream_a7772769932588f7d0b6ff33e5367695d}\label{classMemoryIOStream_a7772769932588f7d0b6ff33e5367695d} 
+\index{MemoryIOStream@{MemoryIOStream}!````~MemoryIOStream@{\texorpdfstring{$\sim$}{\string~}MemoryIOStream}}
+\index{````~MemoryIOStream@{\texorpdfstring{$\sim$}{\string~}MemoryIOStream}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MemoryIOStream()}{\string~MemoryIOStream()}}
+{\footnotesize\ttfamily Memory\+IOStream\+::\texorpdfstring{$\sim$}{\string~}\+Memory\+IOStream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMemoryIOStream_afcceee34745ef637a1ecc5959e363fb6}\label{classMemoryIOStream_afcceee34745ef637a1ecc5959e363fb6} 
+\index{MemoryIOStream@{MemoryIOStream}!FileSize@{FileSize}}
+\index{FileSize@{FileSize}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{FileSize()}{FileSize()}}
+{\footnotesize\ttfamily size\+\_\+t Memory\+IOStream\+::\+File\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Returns the size of the memory buffer. 
+
+\begin{DoxyReturn}{Returns}
+The size of the memory buffer. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOStream_ab15a9e77ab59c655c34b204898ae47c5}\label{classMemoryIOStream_ab15a9e77ab59c655c34b204898ae47c5} 
+\index{MemoryIOStream@{MemoryIOStream}!Flush@{Flush}}
+\index{Flush@{Flush}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{Flush()}{Flush()}}
+{\footnotesize\ttfamily void Memory\+IOStream\+::\+Flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Flushes any buffered data to the memory buffer. 
+
+\Hypertarget{classMemoryIOStream_a960e73ea0fd444deb5c06c772cb8e038}\label{classMemoryIOStream_a960e73ea0fd444deb5c06c772cb8e038} 
+\index{MemoryIOStream@{MemoryIOStream}!Read@{Read}}
+\index{Read@{Read}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily size\+\_\+t Memory\+IOStream\+::\+Read (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{out\+Buffer,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Reads data from the memory buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+Buffer} & Pointer to the buffer where the read data will be stored. \\
+\hline
+{\em size} & Size of each element to be read. \\
+\hline
+{\em count} & Number of elements to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total number of elements successfully read. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOStream_aa8295fafc9420f43a680422b1d7a3e84}\label{classMemoryIOStream_aa8295fafc9420f43a680422b1d7a3e84} 
+\index{MemoryIOStream@{MemoryIOStream}!Seek@{Seek}}
+\index{Seek@{Seek}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{Seek()}{Seek()}}
+{\footnotesize\ttfamily ai\+Return Memory\+IOStream\+::\+Seek (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{offset,  }\item[{ai\+Origin}]{origin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Sets the position indicator of the memory buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & Number of bytes to offset from the specified origin. \\
+\hline
+{\em origin} & Position used as reference for the offset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ai\+Return\+\_\+\+SUCCESS if the operation was successful, otherwise an error code. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOStream_a7f9b2d1187e3367bbb1e9f00b8c61d0c}\label{classMemoryIOStream_a7f9b2d1187e3367bbb1e9f00b8c61d0c} 
+\index{MemoryIOStream@{MemoryIOStream}!Tell@{Tell}}
+\index{Tell@{Tell}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{Tell()}{Tell()}}
+{\footnotesize\ttfamily size\+\_\+t Memory\+IOStream\+::\+Tell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Returns the current position indicator of the memory buffer. 
+
+\begin{DoxyReturn}{Returns}
+The current position indicator. 
+\end{DoxyReturn}
+\Hypertarget{classMemoryIOStream_a45a5fed767cfc4bc153b85886bb888ad}\label{classMemoryIOStream_a45a5fed767cfc4bc153b85886bb888ad} 
+\index{MemoryIOStream@{MemoryIOStream}!Write@{Write}}
+\index{Write@{Write}!MemoryIOStream@{MemoryIOStream}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily size\+\_\+t Memory\+IOStream\+::\+Write (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Writes data to the memory buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to the buffer containing the data to be written. \\
+\hline
+{\em size} & Size of each element to be written. \\
+\hline
+{\em count} & Number of elements to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total number of elements successfully written. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ege/include/\mbox{\hyperlink{MemoryIOStream_8hpp}{Memory\+IOStream.\+hpp}}\end{DoxyCompactItemize}
