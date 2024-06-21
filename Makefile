@@ -13,7 +13,7 @@ zappy_server:
 
 # zappy_gui rule needs to make symbolic link to the assets folder
 zappy_gui:
-	cd gui && git submodule init && git pull origin feat/gui --recurse-submodules
+	cd gui && git submodule init && git checkout feat/gui  && git pull --recurse-submodules
 	cd gui && ./build.sh
 	cp gui/imgui.ini .
 	mv gui/zappy_gui .
