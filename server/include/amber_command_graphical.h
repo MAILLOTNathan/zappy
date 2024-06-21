@@ -493,4 +493,17 @@ void amber_send_egg_on_connection(amber_net_cli_t *client, list_t *egg);
  */
 void amber_event_edi(list_t *gra_client, egg_t *egg);
 
+/**
+ * @brief Sends an amber event segment to all connected graphical clients.
+ *
+ * This function sends an amber event segment to all connected graphical
+ * clients.
+ * It takes a pointer to a list of clients and a string representing
+ * the teams as parameters.
+ *
+ * @param clients A pointer to a list of clients.
+ * @param teams A string representing the teams.
+ */
+void amber_event_seg(list_t *clients, char *teams);
+
 #endif /* !AMBER_COMMAND_GRAPHICAL_H_ */

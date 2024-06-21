@@ -98,7 +98,7 @@ bool amber_init_client(amber_net_cli_t *client, amber_serv_t *serv,
     egg = amber_get_egg_by_team(world, arg[0]);
     if (!egg) {
         printf("[AMBER ERROR] No egg available for team %s\n", arg[0]);
-        send_cli_msg(client, "ko 13");
+        send_cli_msg(client, "ko");
         return false;
     }
     amber_event_edi(server->_graphic_clients, egg);
@@ -127,4 +127,18 @@ void snprintfizer(amber_net_cli_t *client, char *format, ...)
     va_end(args);
     send_cli_msg(client, str);
     free(str);
+}
+
+void amber_end_game(list_t *clients)
+{
+    amber_net_cli_t *client = NULL;
+    linked_list_t *tmp = clients->nodes;
+
+    for (; tmp; tmp = tmp->next) {
+        client = (amber_net_cli_t *)tmp->data;
+        if (client->_type != AI)
+            continue;
+        send_cli_msg(client, "dead");
+        client->_is_dead = true;
+    }
 }

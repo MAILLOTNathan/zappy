@@ -48,3 +48,30 @@ void amber_add_player_to_incantation(info_incantation_t *info,
     info->_nb_players++;
     trantor->_is_incantating = true;
 }
+
+static bool check_if_player_in_incantation(info_incantation_t *info,
+    amber_net_cli_t *client)
+{
+    for (int i = 0; i < info->_nb_players; i++) {
+        if (info->_ids[i] == client) {
+            info->_ids[i] = NULL;
+            info->_nb_players--;
+            return true;
+        }
+    }
+    return false;
+}
+
+void amber_remove_player_from_incantation(list_t *_incantation_grp,
+    amber_net_cli_t *client)
+{
+    linked_list_t *tmp = _incantation_grp->nodes;
+    info_incantation_t *info = NULL;
+
+    for (; tmp; tmp = tmp->next) {
+        info = (info_incantation_t *)tmp->data;
+        if (check_if_player_in_incantation(info, client)) {
+            break;
+        }
+    }
+}

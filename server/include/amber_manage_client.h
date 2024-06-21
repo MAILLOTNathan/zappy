@@ -114,4 +114,6 @@ bool amber_init_client(amber_net_cli_t *client, amber_serv_t *serv,
  */
 void snprintfizer(amber_net_cli_t *client, char *format, ...);
 
+void amber_end_game(list_t *clients);
+
 #endif /* !AMBER_MANAGE_CLIENT_H_ */

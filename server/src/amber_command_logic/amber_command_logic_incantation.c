@@ -50,6 +50,8 @@ static bool nbr_players_on_case_lvl(int need_players, info_incantation_t *info)
     int count = 0;
 
     for (int i = 0; i < info->_nb_players; i++) {
+        if (ids[i] == NULL)
+            continue;
         trantor = TRANTOR(ids[i]);
         if (trantor->_x == info->_x && trantor->_y == info->_y &&
             trantor->_level == info->_level)
@@ -65,17 +67,25 @@ static void print_res_incantation(amber_net_cli_t *client, int level,
     amber_event_idmoved(client, server->_graphic_clients, 'I');
 }
 
-static void level_up_players(info_incantation_t *info, amber_serv_t *serv)
+static void level_up_players(info_incantation_t *info, amber_serv_t *serv,
+    amber_trantor_t *trantor)
 {
     amber_net_cli_t **ids = info->_ids;
-    amber_trantor_t *trantor = NULL;
 
     for (int i = 0; i < info->_nb_players; i++) {
+        if (ids[i] == NULL)
+            continue;
         trantor = TRANTOR(ids[i]);
         trantor->_level++;
         trantor->_is_incantating = false;
         print_res_incantation(ids[i], trantor->_level, serv);
     }
+    if (trantor->_level != 8)
+        return;
+    if (!amber_check_winner(serv->_clients, trantor))
+        return;
+    amber_event_seg(serv->_graphic_clients, trantor->_team_name);
+    printf("[AMBER INFO] Team %s won the game\n", trantor->_team_name);
 }
 
 static void remove_from_info_world(amber_world_t *world, amber_trantor_t *trt,
@@ -101,8 +111,10 @@ static void incantion_failed(amber_world_t *world, info_incantation_t *info)
     amber_net_cli_t **ids = info->_ids;
 
     for (int i = 0; i < info->_nb_players; i++) {
+        if (ids[i] == NULL)
+            continue;
         TRANTOR(ids[i])->_is_incantating = false;
-        send_cli_msg(ids[i], "ko 10");
+        send_cli_msg(ids[i], "ko");
     }
     remove_node(&world->_incantation_grp,
         world->_incantation_grp->nodes, true);
@@ -123,7 +135,7 @@ void amber_logic_incantation(amber_net_cli_t *client, amber_world_t *world,
     if (!nbr_players_on_case_lvl(needs->_players, info))
         return incantion_failed(world, info);
     remove_from_info_world(world, trantor, needs);
-    level_up_players(info, serv);
+    level_up_players(info, serv, trantor);
     remove_node(&world->_incantation_grp,
         world->_incantation_grp->nodes, true);
 }

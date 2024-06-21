@@ -84,7 +84,7 @@ void amber_logic_eject(amber_net_cli_t *client, amber_world_t *world,
     }
     if (is_eject)
         return send_cli_msg(client, "ok");
-    return send_cli_msg(client, "ko 9");
+    return send_cli_msg(client, "ko");
 }
 
 void amber_logic_fork(amber_net_cli_t *client, amber_world_t *world,

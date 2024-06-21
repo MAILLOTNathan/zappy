@@ -95,11 +95,11 @@ static bool check_incanation(amber_world_t *world, amber_serv_t *serv,
         return false;
     if (!ressource_available(&world->_case[trantor->_y][trantor->_x],
         needs)) {
-        send_cli_msg(client, "ko 4");
+        send_cli_msg(client, "ko");
         return false;
     }
     if (!nbr_players_on_case_lvl(serv, trantor, needs->_players)) {
-        send_cli_msg(client, "ko 5");
+        send_cli_msg(client, "ko");
         return false;
     }
     info = update_players_on_case(serv, trantor);
@@ -118,7 +118,7 @@ void check_ellapsed_time(amber_trantor_t *trantor, double freq)
 bool check_command_queue(amber_net_cli_t *client, amber_trantor_t *trantor)
 {
     if (queue_command_size(trantor->_queue_command) >= 10) {
-        send_cli_msg(client, "ko 6");
+        send_cli_msg(client, "ko");
         return false;
     }
     return true;
@@ -142,7 +142,7 @@ void amber_manage_command_ai(amber_world_t *world, amber_serv_t *serv,
             return check_ellapsed_time(trantor, world->_freq);
         }
     }
-    send_cli_msg(client, "ko 7");
+    send_cli_msg(client, "ko");
 }
 
 const ai_command_t ai_commands[] = {

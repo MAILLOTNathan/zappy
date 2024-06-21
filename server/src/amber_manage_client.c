@@ -10,6 +10,7 @@
 #include "amber_world.h"
 #include "amber_manage_command_ai.h"
 #include "amber_command_graphical.h"
+#include "amber_manage_incantation.h"
 
 void *amber_create_client(va_list *ap)
 {
@@ -20,7 +21,7 @@ void *amber_create_client(va_list *ap)
     client->_buffer = NULL;
     client->_tcp._fd = va_arg(*ap, int);
     client->_type = va_arg(*ap, client_type_t);
-    client->_is_error = false;
+    client->_is_dead = false;
     client->_data = NULL;
     client->_id = -1;
     return client;
@@ -81,7 +82,7 @@ static void eval_command(amber_world_t *world, amber_serv_t *server,
         client->_buffer[strlen(client->_buffer)] = '\0';
         choose_handler(world, server, client, cmd);
         free(cmd);
-    } while ((match && !client->_is_error));
+    } while ((match && !client->_is_dead));
 }
 
 void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
@@ -94,8 +95,10 @@ void amber_manage_client_read(amber_world_t *world, amber_serv_t *server,
     buffer[valread] = '\0';
     if (valread != 0)
         eval_command(world, server, client, buffer);
-    if (valread == 0 || client->_is_error) {
+    if (valread == 0 || client->_is_dead) {
         if (client->_type == AI) {
+            amber_remove_player_from_incantation(world->_incantation_grp,
+                client);
             world->_case[trantor->_y][trantor->_x]._players--;
             amber_event_pdi(client, server->_graphic_clients);
         }
