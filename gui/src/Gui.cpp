@@ -883,6 +883,8 @@ void Onyx::Gui::updateConsolePanel(std::vector<std::string>& args)
 
     for (auto &arg : args)
         message += " " + arg;
+    if (this->_interface->_panels["Console"]->getElements().size() > 64)
+        this->_interface->_panels["Console"]->clear();
     this->_interface->_panels["Console"]->add(new EGE::Text(message), message);
 }
 
