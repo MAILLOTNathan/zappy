@@ -51,17 +51,17 @@ class PlayerVR : public EntityVR {
             FORWARD_WEST,
             MAX
         };
-        PlayerVR(int id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, int level, float timeUnit, std::shared_ptr<EGE::WindowVR> window);
+        PlayerVR(int id, const std::string& teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, int level, float timeUnit, std::shared_ptr<EGE::WindowVR> window, std::shared_ptr<EGE::Shader> shader);
         ~PlayerVR();
 
         void update(std::shared_ptr<EGE::Shader> shader) override;
 
-        void evolve();
+        void evolve(std::shared_ptr<EGE::Shader> shader);
         void forward();
         void left();
         void right();
 
-        void setLevel(int level);
+        void setLevel(int level, std::shared_ptr<EGE::Shader> shader);
         int getLevel() const;
 
         void setColor(const Color& color);

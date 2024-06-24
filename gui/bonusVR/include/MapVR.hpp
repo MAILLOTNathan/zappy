@@ -17,7 +17,7 @@ class MapVR : public EntityVR {
     public:
         MapVR();
 
-        MapVR(const EGE::Maths::Vector2<int>& size, std::shared_ptr<EGE::WindowVR> window);
+        MapVR(const EGE::Maths::Vector2<int>& size, std::shared_ptr<EGE::WindowVR> window, std::shared_ptr<EGE::Shader> shader);
 
         ~MapVR();
 

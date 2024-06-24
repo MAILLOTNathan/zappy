@@ -6,6 +6,7 @@
 */
 
 #include "TcpClient.hpp"
+#include "android/log.h"
 
 net::TcpClient::TcpClient(const std::string& ip, int port)
 {
@@ -88,7 +89,6 @@ void net::TcpClient::addCommand(const std::string& command, net::type_command_t 
     this->_manager.addCommand(command, type, callback);
 }
 
-#ifndef VR
 void net::TcpClient::_readAll()
 {
     char buffer[1025] = {0};
@@ -102,27 +102,8 @@ void net::TcpClient::_readAll()
         response += buffer;
         std::memset(buffer, 0, 1025);
     } while (valread == 1024);
-
     this->_buffer += response;
 }
-#else
-void net::TcpClient::_readAll()
-{
-    char buffer[1024] = {0};
-    std::string response;
-    ssize_t valread;
-
-    do {
-        valread = recv(this->_fd, buffer, 1024, 0);
-        if (valread == 0)
-            break;
-        response += buffer;
-        std::memset(buffer, 0, 1024);
-    } while (valread == 1024);
-
-    this->_buffer += response;
-}
-#endif
 
 void net::TcpClient::_evalCommand()
 {

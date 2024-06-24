@@ -12,38 +12,71 @@ std::vector<std::shared_ptr<ItemVR>> PlayerVR::_items = {};
 static int currentColor = 1;
 
 
-PlayerVR::PlayerVR(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, int level, float timeUnit, std::shared_ptr<EGE::WindowVR> window) : _teamName(teamName)
+PlayerVR::PlayerVR(int id, const std::string &teamName, const EGE::Maths::Vector2<int>& position, const std::string& rotation, int level, float timeUnit, std::shared_ptr<EGE::WindowVR> window, std::shared_ptr<EGE::Shader> shader) : _teamName(teamName)
 {
     __android_log_print(ANDROID_LOG_INFO, "MYTAG", "in player constructor\n");
     this->_level = level;
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:19\n");
     memset(this->_quantity, 0, sizeof(this->_quantity));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:21\n");
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::FOOD, window));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:23\n");
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::LINEMATE, window));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:25\n");
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::DERAUMERE, window));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:27\n");
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::SIBUR, window));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:29\n");
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::MENDIANE, window));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:31\n");
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::PHIRAS, window));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:33\n");
     this->_items.push_back(std::make_shared<ItemVR>(EGE::Maths::Vector2<int>(0, 0), ItemVR::TYPE::THYSTAME, window));
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:35\n");
     if (PlayerVR::_colorMap[teamName] == 0) {
+        __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:37\n");
         PlayerVR::_colorMap[teamName] = static_cast<Color>(currentColor++);
+        __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:39\n");
     }
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:41\n");
     if (PlayerVR::_colorMap[teamName] >= PlayerVR::Color::LAST) {
+        __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:43\n");
         throw PlayerVRError("The GUI does not support more than " + std::to_string(static_cast<int>(PlayerVR::Color::LAST) - 1) + " teams.");
     }
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:46\n");
     this->_id = id;
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:48\n");
     this->_color = PlayerVR::_colorMap[teamName];
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:50\n");
     std::string mtl = EGE::UtilsVR::readAssetFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:52\n");
     this->_setColor(mtl);
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:54\n");
     gMemoryIOSystem->addFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl);
-    this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 1, position.y * CELL_SIZE);
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:56\n");
+    this->_position = EGE::Maths::Vector3<float>(position.x * CELL_SIZE, CELL_SIZE / 2.5f, position.y * CELL_SIZE);
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:58\n");
     this->_pos = position;
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:60\n");
     this->_deltaTime = 0.0f;
-    if (rotation.size() != 1)
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:62\n");
+    if (rotation.size() != 1) {
+        __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:64\n");
         throw PlayerVRError("Invalid rotation: " + rotation);
+    }
     this->_model = std::make_shared<EGE::ModelVR>("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
-    window->addModel("Map", this->_model);
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:68\n");
+    window->addDrawable("player_" + std::to_string(id), shader, [this] (const std::shared_ptr<EGE::Shader> shader, float view_proj[16]) {
+        __android_log_print(ANDROID_LOG_INFO, "MYTAG", "draw a player\n");
+        shader->use();
+        shader->setMat("view_proj", EGE::Maths::Matrix<4, 4, float>(view_proj));
+        this->_model->draw(*shader.get());
+    });
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:75\n");
     this->_window = window;
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:77\n");
     this->setRotation(rotation);
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "PlayerVR.cpp:79\n");
     this->isAnimated = false;
 }
 
@@ -55,15 +88,18 @@ void PlayerVR::update(std::shared_ptr<EGE::Shader> shader)
 {
 }
 
-void PlayerVR::evolve()
+
+void PlayerVR::evolve(std::shared_ptr<EGE::Shader> shader)
 {
     this->_level++;
     std::string mtl = EGE::UtilsVR::readAssetFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
     this->_setColor(mtl);
     gMemoryIOSystem->addFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl);
-    this->_window->removeModel("Map", this->_model);
+    this->_window->removeDrawable("player_" + std::to_string(this->_id));
     this->_model = std::make_shared<EGE::ModelVR>("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
-    this->_window->addModel("Map", this->_model);
+    this->_window->addDrawable("player_" + std::to_string(this->_id), shader, [this] (const std::shared_ptr<EGE::Shader> shader, float view_proj[16]) {
+        this->_model->draw(*shader.get());
+    });
 }
 
 void PlayerVR::forward()
@@ -88,16 +124,17 @@ float PlayerVR::getDelta() const
     return this->_deltaTime;
 }
 
-void PlayerVR::setLevel(int level)
+void PlayerVR::setLevel(int level, std::shared_ptr<EGE::Shader> shader)
 {
     this->_level = level;
-    this->_window->removeModel("Map", this->_model);
+    this->_window->removeDrawable("player_" + std::to_string(this->_id));
     std::string mtl = EGE::UtilsVR::readAssetFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl");
     this->_setColor(mtl);
     gMemoryIOSystem->addFile("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".mtl", mtl);
     this->_model = std::make_shared<EGE::ModelVR>("models/player/lvl" + std::to_string(this->_level) + "/lvl" + std::to_string(this->_level) + ".obj", this->_position, this->_rotation, this->_scale, false, true);
-    this->_window->addModel("Map", this->_model);
-
+    this->_window->addDrawable("player_" + std::to_string(this->_id), shader, [this] (const std::shared_ptr<EGE::Shader> shader, float view_proj[16]) {
+        this->_model->draw(*shader.get());
+    });
 }
 
 int PlayerVR::getLevel() const

@@ -58,17 +58,6 @@ namespace Onyx {
              */
             virtual std::shared_ptr<EGE::Model> getModel();
 
-            /**
-             * @brief Checks if the entity intersects with a ray.
-             *
-             * @param rayOrigin The origin of the ray.
-             * @param rayPosition The position of the ray.
-             * @param t The distance from the ray origin to the intersection point.
-             * @param u The barycentric coordinate u of the intersection point.
-             * @param v The barycentric coordinate v of the intersection point.
-             * @return True if the entity intersects with the ray, false otherwise.
-             */
-            bool intersects(const glm::vec3& rayOrigin, const glm::vec3& rayPosition, float& t, float& u, float& v);
         protected:
             std::shared_ptr<EGE::Model> _model; /**< The model used for rendering the entity. */
             EGE::Maths::Vector3<float> _position; /**< The position of the entity in 3D space. */

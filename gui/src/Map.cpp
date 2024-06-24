@@ -100,12 +100,6 @@ int Onyx::Map::getTileSelected(const EGE::Maths::Vector3<float>& cameraPosition,
     rayEye = glm::vec4(rayEye.x, rayEye.y, -1.0f, 0.0f);
     glm::vec3 rayWorld = glm::normalize(glm::vec3(glm::inverse(view.toGlm()) * rayEye));
 
-    for (int i = 0; i < this->_floor.size(); i++) {
-        if (this->_floor[i]->intersects(cameraPosition.toGlmVec3(), rayWorld, t, u, v)) {
-            tileSelected = i;
-            break;
-        }
-    }
     return tileSelected;
 }
 

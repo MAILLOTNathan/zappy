@@ -11,6 +11,7 @@
     #include "Maths/Vector3.hpp"
     #include "ModelVR.hpp"
     #include "Shader.hpp"
+    #include <memory>
 
 
 class EntityVR {

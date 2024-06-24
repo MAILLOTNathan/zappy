@@ -10,7 +10,7 @@
 ItemVR::ItemVR(const EGE::Maths::Vector2<int> &position, ItemVR::TYPE type, std::shared_ptr<EGE::WindowVR> window)
 {
     this->_position = position;
-    this->_type = static_cast<TYPE>(rand() % 7);
+    this->_type = type;
     switch (this->_type) {
           case FOOD:
             this->_model = std::make_shared<EGE::ModelVR>("models/food/steak.obj", foodPosition, EGE::Maths::Vector3<float>(0.0f, 0.0f, 0.0f), EGE::Maths::Vector3<float>(0.05f, 0.05f, 0.05f));
@@ -36,7 +36,6 @@ ItemVR::ItemVR(const EGE::Maths::Vector2<int> &position, ItemVR::TYPE type, std:
         default:
             break;
     }
-    window->addModel("Map", this->_model);
 }
 
 ItemVR::~ItemVR()
@@ -45,6 +44,8 @@ ItemVR::~ItemVR()
 
 void ItemVR::update(std::shared_ptr<EGE::Shader> shader)
 {
+    __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "draw an item\n");
+    shader->use();
     this->_model->draw(*shader.get());
 }
 
@@ -61,7 +62,7 @@ ItemVR::TYPE ItemVR::getType() const
 void ItemVR::setPos(EGE::Maths::Vector2<int> position)
 {
     this->_position = position;
-    this->_model->setPosition(EGE::Maths::Vector3<float>(position.x * CELL_SIZE, 3.0f, position.y * CELL_SIZE));
+    this->_model->setPosition(EGE::Maths::Vector3<float>(position.x * CELL_SIZE, CELL_SIZE / 2.5f, position.y * CELL_SIZE));
 }
 
 EGE::Maths::Vector2<int> ItemVR::getPos() const
