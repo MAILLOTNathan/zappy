@@ -6,7 +6,6 @@
 */
 
 #include "TcpClient.hpp"
-#include "android/log.h"
 
 net::TcpClient::TcpClient(const std::string& ip, int port)
 {

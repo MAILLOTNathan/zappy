@@ -31,16 +31,17 @@ class MapVR : public EntityVR {
 
         std::vector<std::shared_ptr<FloorVR>> getFloor() const;
 
-        void addEgg(const EGE::Maths::Vector2<int>& position);
+        void addEgg(EGE::Maths::Vector3<int> position);
 
-        std::vector<EGE::Maths::Vector2<int>>& getEggPos();
+        std::vector<EGE::Maths::Vector3<int>>& getEggPos();
+
 
     protected:
         std::vector<std::shared_ptr<FloorVR>> _floor;
         EGE::Maths::Vector2<int> _size;
         std::shared_ptr<EGE::WindowVR> _window;
         std::shared_ptr<EGE::ModelVR> _modelEgg;
-        std::vector<EGE::Maths::Vector2<int>> _eggPos;
+        std::vector<EGE::Maths::Vector3<int>> _eggPos;
     private:
 };
 

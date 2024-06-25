@@ -91,6 +91,8 @@ extern "C" void android_main(android_app *app) {
         __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "main.cpp: android_main():82");
         gMemoryIOSystem->addFile("models/egg/materials.mtl");
         __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "main.cpp: android_main():84");
+        gMemoryIOSystem->addFile("models/egg/egg.obj");
+        gMemoryIOSystem->addFile("models/egg/materials.mtl");
 
         GuiVR a(app);
         __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "main.cpp: android_main():87");

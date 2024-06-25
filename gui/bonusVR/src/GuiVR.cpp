@@ -14,7 +14,7 @@ GuiVR::GuiVR(android_app *app)
     __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "GuiVR.cpp: GuiVR():14");
     this->_window->create();
     __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "GuiVR.cpp: GuiVR():16");
-    this->_client = std::make_shared<net::TcpClient>("192.168.197.45", 4242);
+    this->_client = std::make_shared<net::TcpClient>("192.168.197.247", 4242);
     __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "GuiVR.cpp: GuiVR():18");
     this->_client->connection();
     __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "GuiVR.cpp: GuiVR():20");
@@ -268,9 +268,46 @@ GuiVR::GuiVR(android_app *app)
             __android_log_print(ANDROID_LOG_FATAL, "DEBUG", "[ENW] Invalid y position received : |%s|.", args[4].c_str());
             throw EGE::Error("[ENW] Invalid y position received : |" + args[4] + "|.");
         }
-
-        // this->_map->addEgg(EGE::Maths::Vector3<int>(x, y, eggId));
+        __android_log_print(ANDROID_LOG_DEBUG, "MYTAG", "%d %d %d\n", x, y, eggId);
+        this->_map->addEgg(EGE::Maths::Vector3<int>(x, y, eggId));
     });
+
+    this->_client->addCommand("ebo", net::type_command_t::EBO, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[EBO] Wrong number of param.");
+        int eggId = 0;
+        try {
+            eggId = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[EBO] Invalid egg id received : |" + args[1] + "|.");
+        }
+        std::vector<EGE::Maths::Vector3<int>>& eggPos = this->_map->getEggPos();
+        for (auto& pos : eggPos) {
+            if (pos.z == eggId) {
+                eggPos.erase(std::remove(eggPos.begin(), eggPos.end(), pos), eggPos.end());
+                break;
+            }
+        }
+    });
+
+    this->_client->addCommand("edi" , net::type_command_t::EDI, [this](std::vector<std::string>& args) {
+        if (args.size() != 2)
+            throw EGE::Error("[EDI] Wrong number of param.");
+        int eggId = 0;
+        try {
+            eggId = std::stoi(args[1].substr(1));
+        } catch (std::exception &e) {
+            throw EGE::Error("[EDI] Invalid egg id received : |" + args[1] + "|.");
+        }
+        std::vector<EGE::Maths::Vector3<int>>& eggPos = this->_map->getEggPos();
+        for (auto& pos : eggPos) {
+            if (pos.z == eggId) {
+                eggPos.erase(std::remove(eggPos.begin(), eggPos.end(), pos), eggPos.end());
+                break;
+            }
+        }
+    });
+
 
     this->_client->addCommand("sgt", net::type_command_t::SGT, [this](std::vector<std::string>& args) {
         if (args.size() != 2) {
